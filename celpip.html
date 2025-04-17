@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Which CELPIP Test is Right for Me?</title>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #26262B;
+      margin: 0;
+      background: #fff;
+    }
+
+    .table-section {
+      max-width: 1200px;
+      margin: 12px;
+    }
+
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .styled-table thead {
+      background-color: #00427C;
+      color: #fff;
+    }
+
+    .styled-table th,
+    .styled-table td {
+      padding: 18px 20px;
+      text-align: left;
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    .styled-table th {
+      font-weight: 700;
+    }
+
+    .styled-table tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .styled-table ul {
+      padding-left: 18px;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .styled-table th,
+      .styled-table td {
+        font-size: 16px;
+        padding: 14px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .styled-table {
+        box-shadow: none;
+      }
+
+      .styled-table thead {
+        display: none;
+      }
+
+      .styled-table tr {
+        display: block;
+        margin-bottom: 20px;
+        background: #fff;
+        border: 1px solid #00427C;
+        border-radius: 16px;
+        padding: 16px;
+        box-shadow: 0 4px 10px rgba(0, 66, 124, 0.1);
+      }
+
+      .styled-table td {
+        display: block;
+        font-size: 15px;
+        padding: 10px 0;
+        border: none;
+        font-weight: 500;
+      }
+
+      .styled-table td::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: 700;
+        color: #00427C;
+        margin-bottom: 4px;
+      }
+
+      .styled-table ul {
+        padding-left: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="table-section">
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Purpose</th>
+        <th>Test Type</th>
+        <th>Skills Tested</th>
+        <th>Required For</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td data-label="Purpose">Permanent Residency / Work Permit</td>
+        <td data-label="Test Type">CELPIP – General</td>
+        <td data-label="Skills Tested">Listening, Reading, Writing, Speaking</td>
+        <td data-label="Required For">
+          <ul>
+            <li>Express Entry (FSW, CEC, FST)</li>
+            <li>Provincial Nominee Programs (PNPs)</li>
+            <li>Work Permits</li>
+            <li>IRCC Language Requirements</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td data-label="Purpose">Citizenship</td>
+        <td data-label="Test Type">CELPIP – General LS</td>
+        <td data-label="Skills Tested">Listening, Speaking</td>
+        <td data-label="Required For">
+          <ul>
+            <li>Canadian Citizenship Applications (IRCC approved)</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td data-label="Purpose">University / College Admissions</td>
+        <td data-label="Test Type">CELPIP – General</td>
+        <td data-label="Skills Tested">Listening, Reading, Writing, Speaking</td>
+        <td data-label="Required For">
+          <ul>
+            <li>Some Colleges, Universities, and Vocational Programs in Canada</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
