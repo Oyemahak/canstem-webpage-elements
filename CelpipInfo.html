@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CELPIP Test Info</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .celpip-card-container {
+      max-width: 1100px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 8px 8px 24px 8px rgba(0, 0, 0, 0.14);
+      padding: 20px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: #000;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .gold-divider {
+      border: none;
+      border-top: 2px solid #F8B229;
+      width: 100%;
+      margin: 15px 0 25px;
+    }
+
+    .test-cards {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: nowrap;
+    }
+
+    .test-card {
+      flex: 1 1 48%;
+      border: 1px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 15px;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .test-logo {
+      max-width: 120px;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .test-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 8px;
+    }
+
+    .info-text {
+      font-size: 13px;
+      color: #444;
+      margin-bottom: 6px;
+    }
+
+    .info-text strong {
+      color: #000;
+    }
+
+    .section-list {
+      font-size: 13px;
+      margin-top: 8px;
+      text-align: left;
+      display: inline-block;
+    }
+
+    .section-list div {
+      margin-bottom: 4px;
+    }
+
+    .label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .duration {
+      font-style: italic;
+      color: #555;
+    }
+
+    @media (max-width: 768px) {
+      .test-card {
+        flex: 1 1 100%;
+      }
+
+      .test-cards {
+        gap: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="celpip-card-container">
+    <div class="section-title">CELPIP Test Information</div>
+    <hr class="gold-divider" />
+
+    <div class="test-cards">
+      <!-- CELPIP General -->
+      <div class="test-card">
+        <img src="https://canstemeducation.com/wp-content/uploads/2025/04/CELPIP-General-Test.png" alt="CELPIP General" class="test-logo" />
+        <div class="test-title">CELPIP - General Test</div>
+        <div class="info-text">For <strong>PR applications</strong></div>
+        <div class="info-text"><strong>3 hrs</strong> | 1 sitting</div>
+        <div class="section-list">
+          <div><span class="label">Listening:</span> 47–55 mins</div>
+          <div><span class="label">Reading:</span> 55–60 mins</div>
+          <div><span class="label">Writing:</span> 53–60 mins</div>
+          <div><span class="label">Speaking:</span> 15–20 mins</div>
+        </div>
+      </div>
+
+      <!-- CELPIP LS -->
+      <div class="test-card">
+        <img src="https://canstemeducation.com/wp-content/uploads/2025/04/CELPIP-General-LS-Test.png" alt="CELPIP General LS" class="test-logo" />
+        <div class="test-title">CELPIP - General LS Test</div>
+        <div class="info-text">For <strong>Citizenship</strong></div>
+        <div class="info-text"><strong>1 hr 10 mins</strong> | 1 sitting</div>
+        <div class="section-list">
+          <div><span class="label">Listening:</span> 47–55 mins</div>
+          <div><span class="label">Speaking:</span> 15–20 mins</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
