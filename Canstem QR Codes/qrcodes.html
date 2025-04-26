@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CanSTEM QR Codes Standee</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      color: #003366;
+      margin-bottom: 40px;
+    }
+    
+    .qr-container {
+      background: white;
+      padding: 30px;
+      margin: 20px auto;
+      max-width: 300px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
+    
+    canvas {
+      display: block;
+      margin: 0 auto;
+      width: 200px !important;
+      height: 200px !important;
+    }
+    
+    /* Make sure QR codes are visible */
+    #tiktok-qr, #facebook-qr, #instagram-qr {
+      background: white;
+      padding: 10px;
+      border: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+  <h1>Stay Connected with CanSTEM!</h1>
+
+  <div class="qr-container" id="tiktok">
+    <h2>Follow us on TikTok</h2>
+    <canvas id="tiktok-qr"></canvas>
+  </div>
+
+  <div class="qr-container" id="facebook">
+    <h2>Follow us on Facebook</h2>
+    <canvas id="facebook-qr"></canvas>
+  </div>
+
+  <div class="qr-container" id="instagram">
+    <h2>Join us on Instagram</h2>
+    <canvas id="instagram-qr"></canvas>
+  </div>
+
+  <script>
+    // Ensure QR codes are generated after DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      function generateQRCode(id, url) {
+        try {
+          new QRious({
+            element: document.getElementById(id),
+            value: url,
+            size: 200,
+            background: 'white',
+            foreground: 'black',
+            level: 'H' // High error correction
+          });
+          console.log('Generated QR code for:', id);
+        } catch (error) {
+          console.error('Error generating QR code for', id, error);
+        }
+      }
+
+      generateQRCode('tiktok-qr', 'https://www.tiktok.com/@canstemeducation');
+      generateQRCode('facebook-qr', 'https://www.facebook.com/CanSTEM/');
+      generateQRCode('instagram-qr', 'https://www.instagram.com/canstemeducation/');
+      
+      // Fallback: If QR codes still not visible, add visible borders
+      document.querySelectorAll('canvas').forEach(canvas => {
+        canvas.style.border = '2px solid #003366';
+      });
+    });
+  </script>
+</body>
+</html>
