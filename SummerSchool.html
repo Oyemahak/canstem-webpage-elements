@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>High School Credits (Revision)</title>
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: #26262B;
+            margin: 0;
+            background: #fff;
+        }
+
+        .table-section {
+            margin: 0 auto;
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            height: 398px;
+        }
+
+        .styled-table thead {
+            background-color: #00427C;
+            color: #fff;
+        }
+
+        .styled-table th,
+        .styled-table td {
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .styled-table th {
+            font-weight: 700;
+        }
+
+        .styled-table tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .register-link {
+            display: inline-block;
+            color: #2196F3;
+            font-weight: 900;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            word-break: break-word;
+        }
+
+        .register-link:hover {
+            color: #00427C;
+        }
+
+        @media (max-width: 768px) {
+            .styled-table {
+                height: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .styled-table {
+                height: auto;
+                box-shadow: none;
+            }
+
+            .styled-table thead {
+                display: none;
+            }
+
+            .styled-table tr {
+                display: block;
+                margin-bottom: 20px;
+                background: #fff;
+                border: 1px solid #00427C;
+                border-radius: 16px;
+                padding: 16px;
+                box-shadow: 0 4px 10px rgba(0, 66, 124, 0.1);
+            }
+
+            .styled-table td {
+                display: block;
+                font-size: 15px;
+                padding: 10px 0;
+                border: none;
+                font-weight: 500;
+                text-align: left;
+            }
+
+            .styled-table td::before {
+                content: attr(data-label);
+                display: block;
+                font-weight: 700;
+                color: #00427C;
+                margin-bottom: 4px;
+            }
+
+            .register-link {
+                display: block;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="table-section">
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>High School Credits (Revision)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Dates">1 July – 30 August</td>
+                </tr>
+                <tr>
+                    <td data-label="Prices">$499 (per Course)</td>
+                </tr>
+                <tr>
+                    <td data-label="Registration Link">
+                        <a href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000879&amp;culture=en"
+                            class="register-link" target="_blank" rel="noopener noreferrer">Enroll Now !</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
