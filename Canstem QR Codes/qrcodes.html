@@ -42,9 +42,9 @@
     }
     
     /* Make sure QR codes are visible */
-    #tiktok-qr, #facebook-qr, #instagram-qr {
+    #tiktok-qr, #facebook-qr, #instagram-qr #linkedin-qr #website-qr #review-qr {
       background: white;
-      padding: 10px;
+      padding: 20px;
       border: 1px solid #eee;
     }
   </style>
@@ -65,6 +65,21 @@
   <div class="qr-container" id="instagram">
     <h2>Join us on Instagram</h2>
     <canvas id="instagram-qr"></canvas>
+  </div>
+
+  <div class="qr-container" id="linkedin">
+    <h2>Join us on LinkedIn</h2>
+    <canvas id="linkedin-qr"></canvas>
+  </div>
+
+  <div class="qr-container" id="website">
+    <h2>Checkout out our website</h2>
+    <canvas id="website-qr"></canvas>
+  </div>
+
+  <div class="qr-container" id="review">
+    <h2>✍️ Leave a Review</h2>
+    <canvas id="review-qr"></canvas>
   </div>
 
   <script>
@@ -89,6 +104,9 @@
       generateQRCode('tiktok-qr', 'https://www.tiktok.com/@canstemeducation');
       generateQRCode('facebook-qr', 'https://www.facebook.com/CanSTEM/');
       generateQRCode('instagram-qr', 'https://www.instagram.com/canstemeducation/');
+      generateQRCode('linkedin-qr', 'https://www.linkedin.com/in/canstem-education-private-school-106480214/');
+      generateQRCode('website-qr', 'https://canstemeducation.com');
+      generateQRCode('review-qr', 'https://canstemeducation.com/google-reviews/');
       
       // Fallback: If QR codes still not visible, add visible borders
       document.querySelectorAll('canvas').forEach(canvas => {
