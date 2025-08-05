@@ -11,22 +11,38 @@
 
     .ossd-wrapper {
       max-width: 1200px;
-      padding: 40px 48px;
+      padding: 32px 32px;
       border: 2px solid #fbb025;
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
       box-sizing: border-box;
-      margin-bottom:20px;
+      margin-bottom: 20px;
     }
+
     .ossd-columns {
       display: flex;
       flex-wrap: wrap;
       gap: 40px;
+      position: relative;
     }
 
     .ossd-section {
       flex: 1 1 400px;
       min-width: 300px;
+    }
+
+    /* Vertical separator for desktop */
+    @media (min-width: 768px) {
+      .ossd-columns::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 1px;
+        background: #ddd;
+        transform: translateX(-50%);
+      }
     }
 
     .ossd-heading {
@@ -60,30 +76,33 @@
     }
 
     @media (max-width: 768px) {
-  .ossd-heading {
-    font-size: 1.125rem; /* 18px */
-  }
+      .ossd-heading {
+        font-size: 1.125rem;
+      }
 
-  .ossd-item {
-    font-size: 1rem; /* 16px */
-    line-height: 1.7;
-  }
-  
-  .ossd-item a {
-    font-size: 1rem; /* 16px */
-    line-height: 1.7;
-  }
+      .ossd-item {
+        font-size: 1rem;
+        line-height: 1.7;
+      }
 
-  .ossd-columns {
-    flex-direction: column;
-    gap: 32px;
-  }
+      .ossd-item a {
+        font-size: 1rem;
+        line-height: 1.7;
+      }
 
-  .ossd-wrapper {
-    padding: 32px 20px;
-  }
-}
+      .ossd-columns {
+        flex-direction: column;
+        gap: 32px;
+      }
 
+      .ossd-wrapper {
+        padding: 32px 20px;
+      }
+
+      .ossd-columns::before {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -93,14 +112,17 @@
 
       <!-- Compulsory Credits -->
       <div class="ossd-section">
-        <div class="ossd-heading">Compulsory Credits (18)</div>
+        <div class="ossd-heading">Compulsory Credits (17)</div>
 
         <div class="ossd-item"><strong>English (4 credits):</strong>
           <a href="https://canstemeducation.com/product/eng1d/">ENG1D</a>, 
+          <a href="https://canstemeducation.com/product/eng2d/">ENG2D</a>, 
+          <a href="https://canstemeducation.com/product/eng3u/">ENG3U</a>, 
           <a href="https://canstemeducation.com/product/eng4u/">ENG4U</a>
         </div>
 
-        <div class="ossd-item"><strong>Math (3 credits):</strong>
+        <div class="ossd-item"><strong>Mathematics (3 credits):</strong>
+          <a href="https://canstemeducation.com/product/mpm1d/">MPM1D</a>, 
           <a href="https://canstemeducation.com/product/mpm2d/">MPM2D</a>, 
           <a href="https://canstemeducation.com/product/mhf4u/">MHF4U</a>
         </div>
@@ -123,34 +145,42 @@
           <a href="https://canstemeducation.com/product/amu1o/">AMU1O</a>
         </div>
 
-        <div class="ossd-item"><strong>Health & Phys. Ed (1 credit):</strong>
+        <div class="ossd-item"><strong>Health & Physical Education (1 credit):</strong>
           <a href="https://canstemeducation.com/product/ppl1o/">PPL1O</a>
         </div>
 
-        <div class="ossd-item"><strong>French (1 credit):</strong>
-          <a href="https://canstemeducation.com/product/fsf1d/">FSF1D</a>, 
-          <a href="https://canstemeducation.com/product/fsf2d/">FSF2D</a>
+        <div class="ossd-item"><strong>French as a Second Language (1 credit):</strong>
+          <a href="https://canstemeducation.com/product/fsf1d/">FSF1D</a>
         </div>
 
         <div class="ossd-item"><strong>Career Studies (0.5 credit):</strong>
           <a href="https://canstemeducation.com/product/glc2o/">GLC2O</a>
         </div>
 
-        <div class="ossd-item"><strong>Civics (0.5 credit):</strong>
+        <div class="ossd-item"><strong>Civics and Citizenship (0.5 credit):</strong>
           <a href="https://canstemeducation.com/product/chv2o/">CHV2O</a>
+        </div>
+
+        <div class="ossd-item"><strong>Technological Education (1 credit):</strong>
+          <a href="https://canstemeducation.com/product/tdj2o/">TDJ2O</a>
+        </div>
+
+        <div class="ossd-item"><strong>STEM-Related Course Group (1 credit):</strong>
+          <a href="https://canstemeducation.com/product/mcv4u/">MCV4U</a>, 
+          <a href="https://canstemeducation.com/product/sph4u/">SPH4U</a>, 
+          <a href="https://canstemeducation.com/product/sch4u/">SCH4U</a>
         </div>
       </div>
 
       <!-- Elective Credits -->
       <div class="ossd-section">
-        <div class="ossd-heading">Elective Credits (12)</div>
+        <div class="ossd-heading">Elective Credits (13)</div>
 
         <div class="ossd-item"><strong>Business:</strong>
           <a href="https://canstemeducation.com/product/bep2o/">BEP2O</a>
         </div>
 
         <div class="ossd-item"><strong>Technology:</strong>
-          <a href="https://canstemeducation.com/product/tdj2o/">TDJ2O</a>, 
           <a href="https://canstemeducation.com/product/tej2o/">TEJ2O</a>
         </div>
 

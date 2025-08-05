@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="accordion-box">
+        <div class="accordion-title-element" onclick="this.nextElementSibling.style.display = this.nextElementSibling.style.display === 'block' ? 'none' : 'block'">
+          View Full List of CanSTEM Credit Courses
+        </div>
+        <div class="accordion-content">
+      
+          <div class="course-category">
+            <h4>English</h4>
+            <div class="course-links">
+              <a href="https://canstemeducation.com/product/eng1d/">ENG1D</a>
+              <a href="https://canstemeducation.com/product/eng2d/">ENG2D</a>
+              <a href="https://canstemeducation.com/product/eng3u/">ENG3U</a>
+              <a href="https://canstemeducation.com/product/eng4u/">ENG4U</a>
+            </div>
+          </div>
+      
+          <div class="course-category">
+            <h4>Mathematics</h4>
+            <div class="course-links">
+              <a href="https://canstemeducation.com/product/mpm1d/">MPM1D</a>
+              <a href="https://canstemeducation.com/product/mpm2d/">MPM2D</a>
+              <a href="https://canstemeducation.com/product/mhf4u/">MHF4U</a>
+              <a href="https://canstemeducation.com/product/mcv4u/">MCV4U</a>
+            </div>
+          </div>
+      
+          <div class="course-category">
+            <h4>Science</h4>
+            <div class="course-links">
+              <a href="https://canstemeducation.com/product/snc2d/">SNC2D</a>
+              <a href="https://canstemeducation.com/product/sbi3u/">SBI3U</a>
+              <a href="https://canstemeducation.com/product/sch4u/">SCH4U</a>
+              <a href="https://canstemeducation.com/product/sph4u/">SPH4U</a>
+            </div>
+          </div>
+      
+          <div class="course-category">
+            <h4>History & Geography</h4>
+            <div class="course-links">
+              <a href="https://canstemeducation.com/product/chc2d/">CHC2D</a>
+              <a href="https://canstemeducation.com/product/cgc1d/">CGC1D</a>
+            </div>
+          </div>
+      
+          <div class="course-category">
+            <h4>Arts</h4>
+            <div class="course-links">
+              <a href="https://canstemeducation.com/product/ada1o/">ADA1O</a>
+              <a href="https://canstemeducation.com/product/amu1o/">AMU1O</a>
+              <a href="https://canstemeducation.com/product/avi1o/">AVI1O</a>
+            </div>
+          </div>
+      
+          <div class="course-category">
+            <h4>Health & Phys. Ed</h4>
+            <div class="course-links">
+              <a href="https://canstemeducation.com/product/ppl1o/">PPL1O</a>
+              <a href="https://canstemeducation.com/product/paf2o/">PAF2O</a>
+            </div>
+          </div>
+      
+          <div class="course-category">
+            <h4>French & ESL</h4>
+            <div class="course-links">
+              <a href="https://canstemeducation.com/product/fsf1d/">FSF1D</a>
+              <a href="https://canstemeducation.com/product/eldco/">ELDCO</a>
+              <a href="https://canstemeducation.com/product/elddo/">ELDDO</a>
+              <a href="https://canstemeducation.com/product/eldeo/">ELDEO</a>
+            </div>
+          </div>
+      
+          <div class="course-category">
+            <h4>Technology & Computer Science</h4>
+            <div class="course-links">
+              <a href="https://canstemeducation.com/product/tdj2o/">TDJ2O</a>
+              <a href="https://canstemeducation.com/product/tej2o/">TEJ2O</a>
+              <a href="https://canstemeducation.com/product/ics2o/">ICS2O</a>
+            </div>
+          </div>
+      
+          <div class="course-category">
+            <h4>Career & Civics</h4>
+            <div class="course-links">
+              <a href="https://canstemeducation.com/product/glc2o/">GLC2O</a>
+              <a href="https://canstemeducation.com/product/chv2o/">CHV2O</a>
+            </div>
+          </div>
+      
+          <div class="course-category">
+            <h4>Business</h4>
+            <div class="course-links">
+              <a href="https://canstemeducation.com/product/bep2o/">BEP2O</a>
+            </div>
+          </div>
+      
+          <div class="course-category">
+            <h4>Cooperative Education</h4>
+            <div class="course-links">
+              <a href="mailto:canstem.frontdesk@gmail.com">Contact to Enroll</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <style>
+      .accordion-box {
+  
+        border-radius: 16px;
+        overflow: hidden;
+        border: 2px solid #fbb025;
+        background-color: #fff;
+      }
+      
+      .accordion-title-element {
+        background-color: #00427c;
+        color: #fff;
+        font-size: 1.2rem;
+        font-weight: 700;
+        padding: 16px 24px;
+        text-align: left;
+        cursor: pointer;
+        border: none;
+        width: 100%;
+      }
+      
+      .accordion-content {
+        display: none;
+        padding: 24px;
+        background-color: #ffffff;
+        font-size: 1rem;
+      }
+      
+      .course-category {
+        margin-bottom: 32px;
+        padding-bottom: 20px;
+        border-bottom: 1px dashed #fff;
+      }
+      
+      .course-category h4 {
+        color: #000;
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+        font-weight: 600;
+      }
+      
+      .course-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      
+      .course-links a {
+        background: #fff;
+        border: 1px solid #c1d9ff;
+        color: #001161;
+        text-decoration: none;
+        padding: 8px 14px;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: 0.2s;
+        font-size: 1rem;
+      }
+      
+      .course-links a:hover {
+        background-color: #fff;
+        color: #fbb025;
+      }
+      
+      @media (min-width: 768px) {
+        .accordion-content {
+          columns: 2;
+          column-gap: 48px;
+        }
+        .course-category {
+          break-inside: avoid;
+        }
+      }
+      
+      @media (max-width: 767px) {
+        .accordion-title-element {
+          font-size: 1rem;
+          padding: 14px 20px;
+        }
+        .accordion-content {
+          padding: 20px;
+        }
+        .course-links a {
+          width: 100%;
+          font-size: 1rem;
+        }
+      }
+      </style>      
+      
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Responsive Down Arrow</title>
+  <style>
+    .down-arrow {
+      height: 40px;
+      background: transparent;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 56px;
+      color: #fbb025;
+      text-shadow: 0 0 10px rgba(251, 176, 37, 0.6),
+        0 0 20px rgba(251, 176, 37, 0.4);
+      animation: bounce 1.6s infinite;
+      cursor: default;
+      user-select: none;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(10px);
+      }
+    }
+
+    .down-arrow:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 1024px) {
+      .down-arrow {
+        font-size: 52px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .down-arrow {
+        font-size: 48px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .down-arrow {
+        height: 20px;
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="down-arrow">&#x2193;</div>
+
+</body>
+
+</html>
