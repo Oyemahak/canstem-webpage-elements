@@ -1,0 +1,90 @@
+/* ================================
+   GTranslate — CanSTEM Responsive Styling
+   ================================ */
+
+/* Base wrapper: fixed and spaced from edges */
+.gtranslate_wrapper {
+  position: fixed !important;
+  top: 80px !important;      /* desktop offset from top */
+  right: 24px !important;    /* desktop offset from right */
+  z-index: 9999 !important;  /* keep above banners/menus */
+}
+
+/* WordPress admin bar safety */
+.admin-bar .gtranslate_wrapper {
+  top: 112px !important;     /* 80 + 32px admin bar */
+}
+
+/* Dropdown look */
+.gtranslate_wrapper select {
+  font-family: \'Open Sans\', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif !important;
+  font-size: 16px !important;
+  line-height: 1.25 !important;
+  color: #333 !important;
+  border: 1px solid #ddd !important;
+  border-radius: 8px !important;
+  padding: 8px 12px !important;    /* larger tap target */
+  background-color: #fff !important;
+  box-shadow: 0 3px 10px rgba(0,0,0,.12) !important;
+  transition: box-shadow .2s ease, border-color .2s ease !important;
+}
+
+/* Flags inside the control */
+.gtranslate_wrapper img {
+  width: 18px !important;
+  height: auto !important;
+  margin-right: 6px !important;
+  vertical-align: middle !important;
+}
+
+/* Hover / focus */
+.gtranslate_wrapper select:hover,
+.gtranslate_wrapper select:focus {
+  border-color: #0a66c2 !important;          /* CanSTEM blue-ish highlight */
+  box-shadow: 0 6px 16px rgba(10,102,194,.20) !important;
+  outline: none !important;
+  cursor: pointer !important;
+}
+
+/* ====== Tablet (&lt;= 1024px) ====== */
+@media (max-width: 1024px) {
+  .gtranslate_wrapper {
+    top: 72px !important;
+    right: 18px !important;
+  }
+  .admin-bar .gtranslate_wrapper {
+    top: 104px !important;
+  }
+  .gtranslate_wrapper select {
+    font-size: 15px !important;
+    padding: 7px 10px !important;
+    border-radius: 7px !important;
+  }
+  .gtranslate_wrapper img { width: 16px !important; }
+}
+
+/* ====== Mobile (&lt;= 767px) ======
+   Move away from the extreme corner and above chat/cookie bars. */
+@media (max-width: 767px) {
+  .gtranslate_wrapper {
+    top: auto !important;
+    right: 16px !important;
+    bottom: 96px !important;   /* sits above Tidio/chat &amp; cookie bar */
+  }
+  .admin-bar .gtranslate_wrapper {
+    bottom: 96px !important;
+  }
+  .gtranslate_wrapper select {
+    font-size: 14px !important;
+    padding: 10px 12px !important;  /* 44px+ tap target height */
+    border-radius: 10px !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,.18) !important;
+  }
+  .gtranslate_wrapper img { width: 16px !important; }
+}
+
+/* ====== Very small phones (&lt;= 360px) ====== */
+@media (max-width: 360px) {
+  .gtranslate_wrapper { right: 12px !important; bottom: 92px !important; }
+  .gtranslate_wrapper select { font-size: 13px !important; padding: 9px 10px !important; }
+}
