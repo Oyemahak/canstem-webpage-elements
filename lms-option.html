@@ -1,0 +1,242 @@
+<!-- CanSTEM • Important Instructions (Full-Width, White, Enhanced Readability) -->
+<style>
+    /* Scoped styles so we don't affect other Moodle parts */
+    .canstem-notice {
+        --accent: #e11d48;
+        --accent-dark: #b91c1c;
+        --blue: #0a58ca;
+        --ink: #0f172a;
+        --muted: #475569;
+        --ok: #16a34a
+    }
+
+    .canstem-notice {
+        box-sizing: border-box;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: #fff
+    }
+
+    .canstem-notice .card {
+        width: 100%;
+        color: var(--ink);
+        background: #fff;
+        border: 1px solid rgba(2, 6, 23, .08);
+        border-left: 12px solid var(--accent);
+        border-radius: 14px;
+        box-shadow: 0 10px 28px rgba(2, 6, 23, .08);
+        padding: 28px 28px;
+        font-family: "Open Sans", system-ui, Segoe UI, Roboto, Arial, sans-serif;
+        line-height: 1.7;
+        /* subtle animated top glow */
+        position: relative;
+        overflow: hidden;
+    }
+
+    .canstem-notice .card::before {
+        content: "";
+        position: absolute;
+        inset: 0 0 auto 0;
+        height: 6px;
+        background: linear-gradient(90deg, rgba(225, 29, 72, .12), rgba(14, 165, 233, .12), rgba(16, 185, 129, .12));
+        animation: glow 6s linear infinite;
+    }
+
+    @keyframes glow {
+        0% {
+            filter: brightness(1)
+        }
+
+        50% {
+            filter: brightness(1.25)
+        }
+
+        100% {
+            filter: brightness(1)
+        }
+    }
+
+    /* Typography */
+    .canstem-notice h2 {
+        margin: 0 0 8px;
+        font-weight: 800;
+        color: #dc2626;
+        font-size: 28px;
+        letter-spacing: .2px
+    }
+
+    .canstem-notice h3 {
+        margin: 6px 0 14px;
+        font-weight: 800;
+        color: #0b1324;
+        font-size: 22px
+    }
+
+    .canstem-notice p {
+        margin: 0 0 14px;
+        font-size: 18px;
+        color: var(--ink)
+    }
+
+    .canstem-notice ul {
+        margin: 0 0 18px 22px;
+        font-size: 18px
+    }
+
+    .canstem-notice .ok {
+        color: var(--ok);
+        font-weight: 600
+    }
+
+    .canstem-notice .warn {
+        color: var(--accent-dark);
+        font-weight: 700
+    }
+
+    .canstem-notice .section-title {
+        font-size: 20px;
+        font-weight: 800;
+        margin: 14px 0 10px
+    }
+
+    .canstem-notice .sep {
+        border: none;
+        border-top: 1px dashed rgba(2, 6, 23, .18);
+        margin: 16px 0 18px
+    }
+
+    /* Nice link styling */
+    .canstem-notice a {
+        color: var(--blue);
+        text-decoration: underline
+    }
+
+    .canstem-notice .mailto {
+        font-size: 19px;
+        font-weight: 700;
+        text-underline-offset: 3px;
+        position: relative;
+    }
+
+    .canstem-notice .mailto:hover {
+        filter: brightness(1.05)
+    }
+
+    .canstem-notice .mailto::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -2px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--blue), #60a5fa);
+        opacity: .35;
+        transition: opacity .2s ease;
+    }
+
+    .canstem-notice .mailto:hover::after {
+        opacity: .7
+    }
+
+    /* Callout chips */
+    .canstem-notice .chip {
+        display: inline-block;
+        padding: 3px 10px;
+        font-size: 12px;
+        font-weight: 700;
+        background: #ffe4e6;
+        color: var(--accent-dark);
+        border: 1px solid #fecdd3;
+        border-radius: 999px;
+        margin-left: 8px;
+    }
+
+    /* Responsive tweaks */
+    @media (max-width:720px) {
+        .canstem-notice .card {
+            padding: 22px 18px
+        }
+
+        .canstem-notice h2 {
+            font-size: 24px
+        }
+
+        .canstem-notice h3 {
+            font-size: 20px
+        }
+
+        .canstem-notice p,
+        .canstem-notice ul {
+            font-size: 17px
+        }
+    }
+</style>
+
+<div class="canstem-notice">
+    <div class="card">
+
+        <!-- Header -->
+        <h2>📢 Important Instructions <span class="chip">Read First</span></h2>
+        <h3>✋ Digital Work is NOT Accepted</h3>
+
+        <p>
+            To maintain academic integrity and uphold the standards of our learning environment, all work, including
+            assignments, exercises, and exams, must be completed by hand. Digital submissions will not be accepted.
+        </p>
+
+        <p style="font-weight:700;margin:18px 0 8px;">Please ensure that your work is:</p>
+        <ul>
+            <li>Neatly written</li>
+            <li>Clearly legible</li>
+            <li>Submitted by the given deadlines</li>
+        </ul>
+
+        <p class="ok">✅ Thank you for your cooperation in adhering to these guidelines.</p>
+
+        <hr class="sep">
+
+        <!-- Submission Instructions -->
+        <div class="section-title warn">🔴 Submission Instructions</div>
+        <p>👉 Students must:</p>
+        <ul>
+            <li>Open the activity.</li>
+            <li>Write all answers on lined paper by hand using pen/pencil.</li>
+            <li>Submit the work as per the given instructions.</li>
+        </ul>
+        <p class="warn">🚫 Do not submit typed or digital work.</p>
+
+        <hr class="sep">
+
+        <!-- Contact Info -->
+        <div class="section-title">📞/✉️ Contact Information</div>
+        <p>If you have any query or doubt regarding the portal, kindly contact:</p>
+
+        <p style="margin:0 0 12px;">
+            <a class="mailto"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=mathematics@canstemeducation.com&su=Assignment%20%2F%20Homework%20Query&body=Hello%2C%0A%0A1.%20Student%20Name:%0A2.%20Course%20Name:%0A3.%20Unit%20Number%2FDocument%20Name:%0A4.%20Mode%20(In-person%2FOnline):%0A%0ADescribe%20your%20Issue%20Here:%0A%0AThanks"
+                target="_blank">✉️ mathematics@canstemeducation.com</a>
+        </p>
+
+        <p>
+            You may use an online converter such as
+            <a href="https://jpg2pdf.com" target="_blank">https://jpg2pdf.com</a>
+            to combine your photos OR Word documents into one PDF.
+        </p>
+
+        <p>📨 While sending an email inquiry, kindly mention your name, course code/name, and assignment name or number
+            to make the process easier for your teacher.</p>
+
+        <hr class="sep">
+
+        <!-- Quiz Timing -->
+        <div class="section-title warn">🔴 Quiz Timing Update</div>
+        <p>Quizzes will now be scheduled for a total duration of 1.5 hours.</p>
+
+        <ul>
+            <li>⏰ 1 hour to complete the quiz</li>
+            <li>⏰ 30 minutes specifically for submitting documents</li>
+        </ul>
+
+    </div>
+</div>
