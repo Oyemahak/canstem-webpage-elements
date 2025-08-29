@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PTE Test Fees</title>
+  <style>
+    body {
+      margin: 0px;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #f5f5f5;
+    }
+
+    .pte-fee-card {
+      width: auto;
+      height: 483px;
+      margin: auto;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 8px 8px 24px 8px rgba(0, 0, 0, 0.14);
+      padding: 30px 30px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+    }
+
+    .discount-banner {
+      color: #2600FF;
+      font-size: 20px;
+      font-weight: 900;
+      line-height: 27px;
+      text-align: center;
+      -webkit-text-stroke: 0.7px #ffffff;
+      text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+      margin-bottom: 16px;
+    }
+
+    .gold-divider {
+      border: none;
+      border-top: 2px solid #F8B229;
+      width: 100%;
+      margin: 4px !important;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 400;
+      color: #333333;
+      line-height: 27px;
+      text-align: center;
+      margin-top: 16px;
+      margin-bottom: 6px;
+      /* tightened to make room for the note */
+    }
+
+    /* NEW: soft disclaimer note under the title */
+    .province-note {
+      font-size: 14px;
+      line-height: 20px;
+      color: #666666;
+      text-align: center;
+      margin: 0 0 24px 0;
+    }
+
+    .test-section {
+      margin-bottom: 0px;
+    }
+
+    .test-name {
+      font-size: 20px;
+      font-weight: 700;
+      color: #000000;
+      line-height: 27px;
+      margin-bottom: 16px;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid #E0E0E0;
+      margin: 24px 0 !important;
+    }
+
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .price-label,
+    .original-price,
+    .our-price-label,
+    .our-price {
+      font-size: 18px;
+      line-height: 28px;
+    }
+
+    .price-label,
+    .original-price {
+      color: #333333;
+    }
+
+    .original-price {
+      text-decoration: line-through;
+    }
+
+    .our-price-label,
+    .our-price {
+      font-weight: 700;
+      color: #2600FF;
+    }
+
+    /* NEW: small pill to indicate Ontario next to OUR PRICE */
+    .province-tag {
+      display: inline-block;
+      margin-left: 8px;
+      padding: 2px 8px;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 700;
+      color: #000000;
+      border: 1px solid #F8B229;
+      border-radius: 999px;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 768px) {
+      .pte-fee-card {
+        width: 100%;
+        height: auto;
+        padding: 32px 32px;
+      }
+
+      .discount-banner,
+      .section-title,
+      .test-name {
+        font-size: 18px;
+      }
+
+      .price-label,
+      .original-price,
+      .our-price-label,
+      .our-price {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gold-divider {
+        margin: 0px !important;
+      }
+
+      .pte-fee-card {
+        padding: 24px 16px;
+      }
+
+      .discount-banner,
+      .section-title,
+      .test-name {
+        font-size: 18px;
+      }
+
+      .price-label,
+      .original-price
+      {
+        font-size: 13px;
+      }
+      .our-price-label,
+      .our-price {
+        font-size: 15px;
+      }
+      .province-note {
+        font-size: 13px;
+        line-height: 18px;
+        margin-bottom: 20px;
+      }
+
+      .province-tag {
+        font-size: 11px;
+        line-height: 14px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="pte-fee-card">
+    <div class="discount-banner">SAVE 5% BY BOOKING WITH US</div>
+    <hr class="gold-divider" />
+    <div class="section-title">PTE Test Fees</div>
+
+    <!-- NEW: province disclaimer line -->
+    <div class="province-note">
+      Prices may vary depending on the province. Please call us to know more details.
+    </div>
+
+    <div class="test-section">
+      <div class="test-name">PTE Academic</div>
+      <div class="price-row">
+        <span class="price-label">PTE Academic (Original Price)</span>
+        <span class="original-price">$ 350 + Tax</span>
+      </div>
+      <div class="price-row">
+        <!-- Marking our price as Ontario explicitly -->
+        <span class="our-price-label">OUR PRICE <span class="province-tag"> Ontario</span></span>
+        <span class="our-price">$ 332.50 + Tax</span>
+      </div>
+    </div>
+
+    <hr class="divider" />
+
+    <div class="test-section">
+      <div class="test-name">PTE Core</div>
+      <div class="price-row">
+        <span class="price-label">PTE Core (Original Price)</span>
+        <span class="original-price">$ 350 + Tax</span>
+      </div>
+      <div class="price-row">
+        <!-- Marking our price as Ontario explicitly -->
+        <span class="our-price-label">OUR PRICE <span class="province-tag"> Ontario</span></span>
+        <span class="our-price">$ 332.50 + Tax</span>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
