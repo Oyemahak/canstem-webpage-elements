@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CanSTEM Education – Course Requests</title>
+
+    <!-- If you have a hosted "Pen Sans" webfont, replace this with the correct link.
+       For now we try to use "Pen Sans" if available on the system, then fall back. -->
+    <style>
+        :root {
+            --brand: #001161;
+            /* Header text color you requested */
+            --primary: #0a58ca;
+            /* Button blue */
+            --ink: #0f172a;
+            /* Body text */
+            --muted: #475569;
+            /* Secondary text */
+            --border: #e5e7eb;
+            --bg: #ffffff;
+            --card-shadow: 0 8px 24px rgba(2, 6, 23, .08);
+            --radius: 14px;
+            --gap: clamp(12px, 2vw, 16px);
+            --pad: clamp(16px, 3vw, 22px);
+            --fs-sm: clamp(12px, 1.7vw, 14px);
+            --fs-md: clamp(14px, 2vw, 16px);
+            --fs-lg: clamp(18px, 2.6vw, 22px);
+            --fs-xl: clamp(20px, 3vw, 26px);
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            font-family: "Pen Sans", "DM Sans", Inter, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+            background: var(--bg);
+            margin: 0;
+            color: var(--ink)
+        }
+
+        .wrap {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: clamp(16px, 3vw, 24px)
+        }
+
+        .header {
+            background: #fff;
+            border: 1px solid rgba(2, 6, 23, .08);
+            border-radius: var(--radius);
+            box-shadow: var(--card-shadow);
+            padding: var(--pad);
+            margin-bottom: var(--gap)
+        }
+
+        .header h2 {
+            margin: 0 0 6px;
+            font-size: var(--fs-xl);
+            color: var(--brand);
+            font-weight: 800
+        }
+
+        .header p {
+            margin: 0;
+            font-size: var(--fs-sm);
+            color: var(--muted)
+        }
+
+        .notice {
+            margin: 12px 0 18px;
+            padding: 12px 14px;
+            border: 1px dashed var(--border);
+            border-radius: 12px;
+            background: #f8fafc
+        }
+
+        .notice p {
+            margin: 0;
+            color: #0b1324;
+            font-size: var(--fs-sm)
+        }
+
+        .notice a {
+            color: #0a58ca;
+            text-decoration: underline
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 10px 0 16px
+        }
+
+        .tab {
+            appearance: none;
+            border: 1px solid var(--border);
+            background: #fff;
+            padding: 10px 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: var(--fs-md)
+        }
+
+        .tab.active {
+            border-color: var(--brand);
+            color: var(--brand);
+            box-shadow: 0 0 0 3px rgba(0, 17, 97, .12)
+        }
+
+        .card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: var(--pad);
+            background: #fff;
+            box-shadow: var(--card-shadow)
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--gap)
+        }
+
+        @media (min-width:720px) {
+            .row {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 10px
+        }
+
+        .field label {
+            font-size: var(--fs-sm);
+            font-weight: 700;
+            color: #0b1324
+        }
+
+        .req:after {
+            content: " *";
+            color: #e11d48
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 12px 14px;
+            font-size: var(--fs-md);
+            outline: none;
+            transition: border-color .15s, box-shadow .15s;
+            background: #fff
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, .15)
+        }
+
+        input[type="file"] {
+            padding: 10px
+        }
+
+        .help {
+            font-size: var(--fs-sm);
+            color: #64748b
+        }
+
+        .sep {
+            border: none;
+            border-top: 1px dashed #e2e8f0;
+            margin: 14px 0 16px
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            justify-content: flex-start;
+            margin-top: 8px;
+            flex-wrap: wrap
+        }
+
+        .btn {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 12px 16px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: var(--fs-md)
+        }
+
+        .btn:focus-visible {
+            outline: 3px solid rgba(10, 88, 202, .35)
+        }
+
+        .badge {
+            display: inline-block;
+            background: #f1f5f9;
+            border: 1px solid #e2e8f0;
+            color: #0f172a;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: var(--fs-sm);
+            font-weight: 700;
+            margin-bottom: 8px
+        }
+
+        .note {
+            font-size: var(--fs-sm);
+            color: var(--muted)
+        }
+
+        .ok {
+            color: #16a34a;
+            font-weight: 700
+        }
+
+        .err {
+            color: #b91c1c;
+            font-weight: 700
+        }
+
+        .status {
+            min-height: 1.4em
+        }
+
+        @media (max-width:420px) {
+            .btn {
+                width: 100%
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="header" role="banner">
+            <h2>CanSTEM Education – Course Request Form (Withdrawal / Change / Mode Switch)</h2>
+            <p>Fill the form and click Submit. Your request will be emailed to
+                <strong>frontdesk@canstemeducation.com</strong> automatically.</p>
+        </div>
+
+        <!-- Frontend-only note (NOT in email) -->
+        <div class="notice" role="note">
+            <p><strong>Note:</strong> To check out the fees details and to know more, follow this link:
+                <a href="https://canstemeducation.com/course-mode-change-terms-policy/" target="_blank" rel="noopener">
+                    https://canstemeducation.com/course-mode-change-terms-policy/
+                </a>
+            </p>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Request type">
+            <button class="tab active" data-tab="withdraw" role="tab" aria-selected="true">Withdraw from Course</button>
+            <button class="tab" data-tab="change" role="tab" aria-selected="false">Change Course</button>
+            <button class="tab" data-tab="mode" role="tab" aria-selected="false">Switch Mode (Online ↔
+                In-Person)</button>
+        </div>
+
+        <!-- Withdraw -->
+        <section id="pane-withdraw" class="card" role="tabpanel" aria-labelledby="withdraw-tab">
+            <div class="badge">Withdrawal Request</div>
+            <div class="row">
+                <div class="field"><label class="req" for="w-name">Student Full Name</label><input id="w-name" required
+                        autocomplete="name"></div>
+                <div class="field"><label class="req" for="w-email">Student Email</label><input id="w-email"
+                        type="email" required autocomplete="email"></div>
+                <div class="field"><label class="req" for="w-phone">Phone Number</label><input id="w-phone" type="tel"
+                        inputmode="tel" required placeholder="+1 (___) ___-____"></div>
+                <div class="field"><label class="req" for="w-course">Current Course Name & Code</label><input
+                        id="w-course" required placeholder="e.g., MHF4U – Advanced Functions"></div>
+
+                <div class="field"><label class="req" for="w-grade">Select Grade</label>
+                    <select id="w-grade" required></select>
+                </div>
+                <div class="field"><label class="req" for="w-subject">Subject</label>
+                    <select id="w-subject" required></select>
+                </div>
+            </div>
+
+            <div class="field"><label class="req" for="w-reason">Reason for Withdrawal</label><textarea id="w-reason"
+                    rows="4" required></textarea></div>
+
+            <div class="field">
+                <label for="files-withdraw">Upload Supporting Documents (optional)</label>
+                <input id="files-withdraw" type="file" multiple>
+                <div class="help">You can select multiple files or open the picker again to add more.</div>
+            </div>
+
+            <hr class="sep">
+            <div class="actions">
+                <button class="btn" onclick="submitWithdraw()">Submit</button>
+                <span class="note">Attachments are sent with the email to frontdesk.</span>
+            </div>
+            <p id="w-status" class="note status" aria-live="polite"></p>
+        </section>
+
+        <!-- Change -->
+        <section id="pane-change" class="card" style="display:none;" role="tabpanel" aria-labelledby="change-tab">
+            <div class="badge">Course Change Request</div>
+            <div class="row">
+                <div class="field"><label class="req" for="c-name">Student Full Name</label><input id="c-name" required>
+                </div>
+                <div class="field"><label class="req" for="c-email">Student Email</label><input id="c-email"
+                        type="email" required></div>
+                <div class="field"><label class="req" for="c-phone">Phone Number</label><input id="c-phone" type="tel"
+                        inputmode="tel" required></div>
+                <div class="field"><label class="req" for="c-course">Current Course Name & Code</label><input
+                        id="c-course" required></div>
+
+                <div class="field"><label class="req" for="c-grade">Select Grade</label>
+                    <select id="c-grade" required></select>
+                </div>
+                <div class="field"><label class="req" for="c-subject">Subject</label>
+                    <select id="c-subject" required></select>
+                </div>
+
+                <div class="field"><label class="req" for="c-newcourse">New Requested Course</label><input
+                        id="c-newcourse" required></div>
+            </div>
+
+            <div class="field"><label class="req" for="c-reason">Reason for Course Change</label><textarea id="c-reason"
+                    rows="4" required></textarea></div>
+
+            <div class="field">
+                <label for="files-change">Upload Supporting Documents (optional)</label>
+                <input id="files-change" type="file" multiple>
+                <div class="help">You can select multiple files or open the picker again to add more.</div>
+            </div>
+
+            <hr class="sep">
+            <div class="actions">
+                <button class="btn" onclick="submitChange()">Submit</button>
+                <span class="note">Attachments are sent with the email to frontdesk.</span>
+            </div>
+            <p id="c-status" class="note status" aria-live="polite"></p>
+        </section>
+
+        <!-- Mode -->
+        <section id="pane-mode" class="card" style="display:none;" role="tabpanel" aria-labelledby="mode-tab">
+            <div class="badge">Course Mode Switch Request</div>
+            <div class="row">
+                <div class="field"><label class="req" for="m-name">Student Full Name</label><input id="m-name" required>
+                </div>
+                <div class="field"><label class="req" for="m-email">Student Email</label><input id="m-email"
+                        type="email" required></div>
+                <div class="field"><label class="req" for="m-phone">Phone Number</label><input id="m-phone" type="tel"
+                        inputmode="tel" required></div>
+                <div class="field"><label class="req" for="m-course">Current Course Name & Code</label><input
+                        id="m-course" required></div>
+
+                <div class="field"><label class="req" for="m-grade">Select Grade</label>
+                    <select id="m-grade" required></select>
+                </div>
+                <div class="field"><label class="req" for="m-subject">Subject</label>
+                    <select id="m-subject" required></select>
+                </div>
+
+                <div class="field">
+                    <label class="req" for="m-mode">Requested Mode</label>
+                    <select id="m-mode" required>
+                        <option value="">Select mode…</option>
+                        <option>Online</option>
+                        <option>In-Person</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field"><label class="req" for="m-reason">Reason for Mode Switch</label><textarea id="m-reason"
+                    rows="4" required></textarea></div>
+
+            <div class="field">
+                <label for="files-mode">Upload Supporting Documents (optional)</label>
+                <input id="files-mode" type="file" multiple>
+                <div class="help">You can select multiple files or open the picker again to add more.</div>
+            </div>
+
+            <hr class="sep">
+            <div class="actions">
+                <button class="btn" onclick="submitMode()">Submit</button>
+                <span class="note">Attachments are sent with the email to frontdesk.</span>
+            </div>
+            <p id="m-status" class="note status" aria-live="polite"></p>
+        </section>
+    </div>
+
+    <script>
+        // ----- Subject lists by grade (Ontario-style; replace with your official list anytime) -----
+        const SUBJECTS = {
+            "Grade 9": [
+                "English", "Mathematics (De-streamed)", "Science",
+                "Geography of Canada", "French as a Second Language",
+                "Health & Physical Education", "Arts", "Business/Technology",
+                "Computer Studies", "Social Studies"
+            ],
+            "Grade 10": [
+                "English", "Mathematics", "Science",
+                "Canadian History since WWI", "Civics", "Careers",
+                "French as a Second Language", "Health & Physical Education",
+                "Arts", "Business", "Computer Studies", "Technological Education"
+            ],
+            "Grade 11": [
+                "English", "Functions", "Foundations for College Math",
+                "Biology", "Chemistry", "Physics", "Environmental Science",
+                "American History / Canadian Law / World Religions",
+                "French as a Second Language", "Computer Science",
+                "Business Leadership", "Technological Design", "Visual/Media/Performing Arts"
+            ],
+            "Grade 12": [
+                "English", "Advanced Functions", "Calculus & Vectors", "Mathematics of Data Management",
+                "Biology", "Chemistry", "Physics", "Earth & Space Science",
+                "Canadian & International Law / Politics / Economics", "French as a Second Language",
+                "Computer Science", "Business/Entrepreneurship/Accounting",
+                "Technological Design", "Visual/Media/Performing Arts"
+            ]
+        };
+        const GRADES = ["Grade 9", "Grade 10", "Grade 11", "Grade 12"];
+
+        function populateGradeAndSubjects(gradeId, subjectId) {
+            const gradeSel = document.getElementById(gradeId);
+            const subjSel = document.getElementById(subjectId);
+            // fill grades once
+            if (!gradeSel.dataset.ready) {
+                GRADES.forEach(g => {
+                    const opt = document.createElement('option'); opt.value = g; opt.textContent = g; gradeSel.appendChild(opt);
+                });
+                gradeSel.dataset.ready = "1";
+            }
+            const setSubjects = (g) => {
+                subjSel.innerHTML = '<option value="">Select subject…</option>';
+                (SUBJECTS[g] || []).forEach(s => {
+                    const o = document.createElement('option'); o.value = s; o.textContent = s; subjSel.appendChild(o);
+                });
+            };
+            // initial
+            setSubjects(gradeSel.value || GRADES[0]);
+            if (!gradeSel.value) gradeSel.value = GRADES[0];
+            // change listener
+            gradeSel.addEventListener('change', () => setSubjects(gradeSel.value));
+        }
+
+        // ----- Tabs -----
+        document.querySelector('.tabs').addEventListener('click', (e) => {
+            if (!e.target.classList.contains('tab')) return;
+            document.querySelectorAll('.tab').forEach(t => {
+                t.classList.remove('active'); t.setAttribute('aria-selected', 'false');
+            });
+            e.target.classList.add('active'); e.target.setAttribute('aria-selected', 'true');
+            const tab = e.target.dataset.tab;
+            document.querySelectorAll('[role="tabpanel"]').forEach(p => p.style.display = 'none');
+            document.getElementById('pane-' + tab).style.display = 'block';
+        });
+
+        // ----- File helpers -----
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const r = new FileReader();
+                r.onload = () => {
+                    const res = r.result || '';
+                    const base64 = (res.split('base64,')[1] || '').trim();
+                    resolve({ name: file.name, mimeType: file.type || 'application/octet-stream', dataBase64: base64 });
+                };
+                r.onerror = () => reject(r.error);
+                r.readAsDataURL(file);
+            });
+        }
+        async function collectAttachments(inputId) {
+            const input = document.getElementById(inputId);
+            if (!input || !input.files || !input.files.length) return [];
+            const files = Array.from(input.files);
+            const packed = [];
+            for (const f of files) packed.push(await fileToBase64(f));
+            return packed;
+        }
+
+        // ----- UX helpers -----
+        function isValid(paneId) {
+            const pane = document.getElementById(paneId);
+            const req = pane.querySelectorAll('[required]');
+            for (const el of req) {
+                if (!el.value || (el.tagName === 'SELECT' && !el.value)) { el.focus(); return false; }
+            }
+            return true;
+        }
+        function showStatus(id, msg, ok) {
+            const el = document.getElementById(id);
+            el.classList.remove('ok', 'err');
+            el.textContent = msg;
+            el.classList.add(ok ? 'ok' : 'err');
+            if (ok) {
+                // Clear fields of the visible pane (nice reset after success)
+                const pane = el.closest('[role="tabpanel"]');
+                pane.querySelectorAll('input, textarea, select').forEach(x => { if (x.type === 'file') x.value = ''; else x.value = ''; });
+            }
+        }
+        function val(id) { return (document.getElementById(id)?.value || '').trim(); }
+
+        // ----- Submitters -----
+        async function submitWithdraw() {
+            if (!isValid('pane-withdraw')) return;
+            document.getElementById('w-status').textContent = 'Submitting...';
+            const payload = {
+                type: 'Withdrawal',
+                name: val('w-name'),
+                email: val('w-email'),
+                phone: val('w-phone'),
+                course: val('w-course'),
+                grade: document.getElementById('w-grade').value,
+                subject: document.getElementById('w-subject').value,
+                reason: val('w-reason'),
+                attachments: await collectAttachments('files-withdraw')
+            };
+            google.script.run
+                .withSuccessHandler(() => showStatus('w-status', 'Success! Your request has been emailed to the front desk.', true))
+                .withFailureHandler(() => showStatus('w-status', 'Error sending your request. Please try again.', false))
+                .sendToFrontDesk(payload);
+        }
+
+        async function submitChange() {
+            if (!isValid('pane-change')) return;
+            document.getElementById('c-status').textContent = 'Submitting...';
+            const payload = {
+                type: 'Change Course',
+                name: val('c-name'),
+                email: val('c-email'),
+                phone: val('c-phone'),
+                course: val('c-course'),
+                grade: document.getElementById('c-grade').value,
+                subject: document.getElementById('c-subject').value,
+                newcourse: val('c-newcourse'),
+                reason: val('c-reason'),
+                attachments: await collectAttachments('files-change')
+            };
+            google.script.run
+                .withSuccessHandler(() => showStatus('c-status', 'Success! Your request has been emailed to the front desk.', true))
+                .withFailureHandler(() => showStatus('c-status', 'Error sending your request. Please try again.', false))
+                .sendToFrontDesk(payload);
+        }
+
+        async function submitMode() {
+            if (!isValid('pane-mode')) return;
+            document.getElementById('m-status').textContent = 'Submitting...';
+            const payload = {
+                type: 'Mode Switch',
+                name: val('m-name'),
+                email: val('m-email'),
+                phone: val('m-phone'),
+                course: val('m-course'),
+                grade: document.getElementById('m-grade').value,
+                subject: document.getElementById('m-subject').value,
+                mode: document.getElementById('m-mode').value,
+                reason: val('m-reason'),
+                attachments: await collectAttachments('files-mode')
+            };
+            google.script.run
+                .withSuccessHandler(() => showStatus('m-status', 'Success! Your request has been emailed to the front desk.', true))
+                .withFailureHandler(() => showStatus('m-status', 'Error sending your request. Please try again.', false))
+                .sendToFrontDesk(payload);
+        }
+
+        // Initialize the grade/subject selects for all panes
+        window.addEventListener('DOMContentLoaded', () => {
+            populateGradeAndSubjects('w-grade', 'w-subject');
+            populateGradeAndSubjects('c-grade', 'c-subject');
+            populateGradeAndSubjects('m-grade', 'm-subject');
+        });
+    </script>
+</body>
+
+</html>
