@@ -1,0 +1,253 @@
+<!-- CanSTEM • Course Request Forms (Email -> frontdesk@canstemeducation.com) -->
+<div class="canstem-forms">
+
+  <style>
+    .canstem-forms{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;color:#0f172a}
+    .cs-wrap{max-width:1000px;margin:0 auto}
+    .cs-header{border-left:10px solid #e11d48;background:#fff;border:1px solid rgba(2,6,23,.08);border-radius:14px;box-shadow:0 10px 28px rgba(2,6,23,.08);padding:20px 22px;margin-bottom:16px}
+    .cs-header h2{margin:0 0 6px;font-size:24px;color:#e11d48;font-weight:800}
+    .cs-header p{margin:0;font-size:14px;color:#475569}
+
+    .cs-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+    .cs-tab{appearance:none;border:1px solid #e5e7eb;background:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700}
+    .cs-tab.active{border-color:#e11d48;color:#e11d48;box-shadow:0 0 0 3px rgba(225,29,72,.12)}
+
+    .cs-card{border:1px solid #e5e7eb;border-radius:14px;padding:18px;background:#fff;box-shadow:0 6px 18px rgba(2,6,23,.06)}
+    .cs-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    @media (max-width:720px){.cs-row{grid-template-columns:1fr}}
+    .cs-field{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+    .cs-field label{font-size:14px;font-weight:700;color:#0b1324}
+    .cs-field input,.cs-field select,.cs-field textarea{
+      width:100%;border:1px solid #cbd5e1;border-radius:10px;padding:10px 12px;font-size:15px;
+      outline:none;transition:border-color .15s ease, box-shadow .15s ease;background:#fff
+    }
+    .cs-field input:focus,.cs-field select:focus,.cs-field textarea:focus{
+      border-color:#0ea5e9;box-shadow:0 0 0 3px rgba(14,165,233,.15)
+    }
+    .cs-help{font-size:12px;color:#64748b}
+    .cs-sep{border:none;border-top:1px dashed #e2e8f0;margin:12px 0 16px}
+    .cs-actions{display:flex;gap:10px;align-items:center;justify-content:flex-start;margin-top:8px}
+    .cs-btn{background:#0a58ca;color:#fff;border:none;border-radius:10px;padding:10px 14px;font-weight:800;cursor:pointer}
+    .cs-btn:hover{filter:brightness(1.05)}
+    .cs-note{font-size:12px;color:#475569}
+    .cs-badge{display:inline-block;background:#f1f5f9;border:1px solid #e2e8f0;color:#0f172a;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:700}
+  </style>
+
+  <div class="cs-wrap">
+    <div class="cs-header">
+      <h2>CanSTEM Education – Course Request Forms</h2>
+      <p>Select the request type below. Submitting opens Gmail with your details pre-filled and addressed to <strong>frontdesk@canstemeducation.com</strong>.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="cs-tabs">
+      <button class="cs-tab active" data-tab="withdraw">Withdraw from Course</button>
+      <button class="cs-tab" data-tab="change">Change Course</button>
+      <button class="cs-tab" data-tab="mode">Switch Mode (Online ↔ In-Person)</button>
+    </div>
+
+    <!-- Withdraw Form -->
+    <div class="cs-card cs-pane" id="pane-withdraw">
+      <div class="cs-badge">Withdrawal Request</div>
+      <div class="cs-row">
+        <div class="cs-field">
+          <label>Student Full Name *</label>
+          <input required id="w-name" type="text" placeholder="Your full name">
+        </div>
+        <div class="cs-field">
+          <label>Student Email *</label>
+          <input required id="w-email" type="email" placeholder="name@example.com">
+        </div>
+        <div class="cs-field">
+          <label>Phone Number *</label>
+          <input required id="w-phone" type="tel" placeholder="+1 (___) ___-____">
+        </div>
+        <div class="cs-field">
+          <label>Current Course Name & Code *</label>
+          <input required id="w-course" type="text" placeholder="e.g., MHF4U – Advanced Functions">
+        </div>
+      </div>
+      <div class="cs-field">
+        <label>Reason for Withdrawal *</label>
+        <textarea required id="w-reason" rows="4" placeholder="Please describe your reason..."></textarea>
+      </div>
+      <hr class="cs-sep">
+      <div class="cs-actions">
+        <button class="cs-btn" onclick="sendWithdraw()">Open Gmail Draft</button>
+        <span class="cs-note">Attach any supporting files in the Gmail window before sending.</span>
+      </div>
+    </div>
+
+    <!-- Change Course Form -->
+    <div class="cs-card cs-pane" id="pane-change" style="display:none;">
+      <div class="cs-badge">Course Change Request</div>
+      <div class="cs-row">
+        <div class="cs-field">
+          <label>Student Full Name *</label>
+          <input required id="c-name" type="text">
+        </div>
+        <div class="cs-field">
+          <label>Student Email *</label>
+          <input required id="c-email" type="email">
+        </div>
+        <div class="cs-field">
+          <label>Phone Number *</label>
+          <input required id="c-phone" type="tel">
+        </div>
+        <div class="cs-field">
+          <label>Current Course Name & Code *</label>
+          <input required id="c-course" type="text">
+        </div>
+        <div class="cs-field">
+          <label>New Requested Course *</label>
+          <input required id="c-newcourse" type="text" placeholder="Course you want to switch to">
+        </div>
+      </div>
+      <div class="cs-field">
+        <label>Reason for Course Change *</label>
+        <textarea required id="c-reason" rows="4"></textarea>
+      </div>
+      <hr class="cs-sep">
+      <div class="cs-actions">
+        <button class="cs-btn" onclick="sendChange()">Open Gmail Draft</button>
+        <span class="cs-note">Attach any supporting files in the Gmail window before sending.</span>
+      </div>
+    </div>
+
+    <!-- Mode Switch Form -->
+    <div class="cs-card cs-pane" id="pane-mode" style="display:none;">
+      <div class="cs-badge">Mode Switch Request</div>
+      <div class="cs-row">
+        <div class="cs-field">
+          <label>Student Full Name *</label>
+          <input required id="m-name" type="text">
+        </div>
+        <div class="cs-field">
+          <label>Student Email *</label>
+          <input required id="m-email" type="email">
+        </div>
+        <div class="cs-field">
+          <label>Phone Number *</label>
+          <input required id="m-phone" type="tel">
+        </div>
+        <div class="cs-field">
+          <label>Current Course Name & Code *</label>
+          <input required id="m-course" type="text">
+        </div>
+        <div class="cs-field">
+          <label>Requested Mode *</label>
+          <select id="m-mode" required>
+            <option value="">Select mode…</option>
+            <option>Online</option>
+            <option>In-Person</option>
+          </select>
+        </div>
+      </div>
+      <div class="cs-field">
+        <label>Reason for Mode Switch *</label>
+        <textarea required id="m-reason" rows="4"></textarea>
+      </div>
+      <hr class="cs-sep">
+      <div class="cs-actions">
+        <button class="cs-btn" onclick="sendMode()">Open Gmail Draft</button>
+        <span class="cs-note">Attach any supporting files in the Gmail window before sending.</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Tab logic
+    document.querySelectorAll('.cs-tab').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        document.querySelectorAll('.cs-tab').forEach(b=>b.classList.remove('active'));
+        btn.classList.add('active');
+        const tab = btn.getAttribute('data-tab');
+        document.querySelectorAll('.cs-pane').forEach(p=>p.style.display='none');
+        document.getElementById('pane-'+tab).style.display='block';
+      });
+    });
+
+    // Helpers
+    function enc(s){return encodeURIComponent(s||'')}
+    function openGmail(subject, body){
+      const to = 'frontdesk@canstemeducation.com';
+      const base = 'https://mail.google.com/mail/?view=cm&fs=1';
+      const url = `${base}&to=${enc(to)}&su=${enc(subject)}&body=${enc(body)}`;
+      window.open(url, '_blank');
+    }
+
+    // Builders
+    function sendWithdraw(){
+      const name = val('w-name'), email = val('w-email'), phone = val('w-phone'), course = val('w-course'), reason = val('w-reason');
+      if(!name||!email||!phone||!course||!reason){alert('Please fill all required fields.');return}
+      const subject = `Course Withdrawal Request – ${name}`;
+      const body = [
+        'Hello,',
+        '',
+        `Student Full Name: ${name}`,
+        `Student Email: ${email}`,
+        `Phone Number: ${phone}`,
+        `Current Course Name & Code: ${course}`,
+        '',
+        `Reason for Withdrawal: ${reason}`,
+        '',
+        'Supporting Docs: (please attach in Gmail before sending)',
+        '',
+        'To check out the fees details and to know more, follow this link: https://canstemeducation.com/course-mode-change-terms-policy/',
+        '',
+        'Thanks.'
+      ].join('\n');
+      openGmail(subject, body);
+    }
+
+    function sendChange(){
+      const name = val('c-name'), email = val('c-email'), phone = val('c-phone'), course = val('c-course'), newc = val('c-newcourse'), reason = val('c-reason');
+      if(!name||!email||!phone||!course||!newc||!reason){alert('Please fill all required fields.');return}
+      const subject = `Course Change Request – ${name}`;
+      const body = [
+        'Hello,',
+        '',
+        `Student Full Name: ${name}`,
+        `Student Email: ${email}`,
+        `Phone Number: ${phone}`,
+        `Current Course Name & Code: ${course}`,
+        `New Requested Course: ${newc}`,
+        '',
+        `Reason for Course Change: ${reason}`,
+        '',
+        'Supporting Docs: (please attach in Gmail before sending)',
+        '',
+        'To check out the fees details and to know more, follow this link: https://canstemeducation.com/course-mode-change-terms-policy/',
+        '',
+        'Thanks.'
+      ].join('\n');
+      openGmail(subject, body);
+    }
+
+    function sendMode(){
+      const name = val('m-name'), email = val('m-email'), phone = val('m-phone'), course = val('m-course'), mode = val('m-mode'), reason = val('m-reason');
+      if(!name||!email||!phone||!course||!mode||!reason){alert('Please fill all required fields.');return}
+      const subject = `Mode Switch Request – ${name}`;
+      const body = [
+        'Hello,',
+        '',
+        `Student Full Name: ${name}`,
+        `Student Email: ${email}`,
+        `Phone Number: ${phone}`,
+        `Current Course Name & Code: ${course}`,
+        `Requested Mode (Online or In-Person): ${mode}`,
+        '',
+        `Reason for Mode Switch: ${reason}`,
+        '',
+        'Supporting Docs: (please attach in Gmail before sending)',
+        '',
+        'To check out the fees details and to know more, follow this link: https://canstemeducation.com/course-mode-change-terms-policy/',
+        '',
+        'Thanks.'
+      ].join('\n');
+      openGmail(subject, body);
+    }
+
+    function val(id){return (document.getElementById(id)?.value || '').trim()}
+  </script>
+</div>
