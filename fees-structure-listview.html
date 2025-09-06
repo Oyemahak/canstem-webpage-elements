@@ -1,0 +1,516 @@
+<!-- ===== Fees Structure – No-Table Version (Exact Wording) ===== -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --head: #001161;
+    /* main heading */
+    --sub: #00427c;
+    /* section headings */
+    --ink: #26262B;
+    /* body text */
+    --muted: #475569;
+    --panel: #fff;
+    --border: #e2e8f0;
+    --chip-border: #f59e0b;
+    /* red border initial */
+    --chip-hover: #ef4444;
+    /* orange hover */
+    --chip-active-bg: #e6f0ff;
+    /* light blue active */
+    --chip-active-border: #60a5fa;
+    --radius: 12px;
+    --shadow: 0 4px 16px rgba(0, 0, 0, .08);
+  }
+
+  body {
+    margin: 0;
+    background: #fff;
+  }
+
+  .fees {
+    font-family: "Open Sans", sans-serif;
+    color: var(--ink);
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    line-height: 1.6;
+    font-size: 16px;
+    /* global */
+  }
+
+  .fees h1,
+  .fees h2 {
+    margin: 0 0 1rem 0;
+    font-weight: 700
+  }
+
+  .fees h1 {
+    color: var(--head);
+    font-size: 1.9rem
+  }
+
+  .fees .subtitle {
+    color: var(--sub);
+    font-weight: 700;
+    margin: .25rem 0 1rem
+  }
+
+  /* Quick links */
+  .quicklinks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin: 0 0 1.25rem
+  }
+
+  .chip {
+    display: inline-block;
+    padding: .5rem .85rem;
+    border-radius: 999px;
+    border: 2px solid var(--chip-border);
+    background: #fff;
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform .05s, border-color .2s, box-shadow .2s, background .2s;
+  }
+
+  .chip:hover,
+  .chip:focus {
+    border-color: var(--chip-hover);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, .25);
+    outline: none
+  }
+
+  .chip:active {
+    transform: scale(.98)
+  }
+
+  .chip.active {
+    background: var(--chip-active-bg);
+    border-color: var(--chip-active-border);
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, .25);
+    color: #0b3b80
+  }
+
+  /* Sections */
+  details.section {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 0 0 1rem;
+    box-shadow: var(--shadow)
+  }
+
+  summary.section-head {
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding: 14px 16px;
+    background: #fff;
+    border-left: 6px solid var(--sub);
+    font-weight: 700;
+    color: #000
+  }
+
+  summary.section-head::-webkit-details-marker {
+    display: none
+  }
+
+  summary.section-head .tag {
+    color: var(--sub);
+    font-weight: 700
+  }
+
+  summary.section-head:after {
+    content: "▸";
+    margin-left: auto;
+    color: var(--sub);
+    font-weight: 800;
+    transition: transform .2s
+  }
+
+  details[open]>summary.section-head:after {
+    transform: rotate(90deg)
+  }
+
+  .body {
+    padding: 16px;
+    border-top: 1px solid var(--border)
+  }
+
+  .body>*+* {
+    margin-top: 12px
+  }
+
+  /* List styling */
+  .bullets {
+    margin: .25rem 0 .5rem 1.1rem
+  }
+
+  .bullets li {
+    margin: .25rem 0
+  }
+
+  .block {
+    border: 1px solid #edf2f7;
+    border-left: 4px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 12px 14px;
+    background: #fafafa
+  }
+
+  .label {
+    display: inline-block;
+    font-weight: 700;
+    color: var(--sub);
+    margin-right: .25rem
+  }
+
+  .note {
+    color: var(--muted)
+  }
+
+  .sep {
+    height: 1px;
+    background: #eef2f7;
+    margin: .75rem 0
+  }
+
+  /* Anchors */
+  a.link {
+    color: var(--sub);
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 1px dashed var(--sub)
+  }
+
+  a.link:hover {
+    color: #003566;
+    border-bottom-color: #003566
+  }
+
+  /* Mobile tweaks */
+  @media (max-width:768px) {
+    .fees h1 {
+      font-size: 1.6rem
+    }
+
+    .chip {
+      padding: .45rem .75rem
+    }
+  }
+</style>
+
+<div class="fees" id="fees-no-table">
+  <h1>Fee Structure</h1>
+  <p class="subtitle">Quick Links</p>
+  <nav class="quicklinks">
+    <a class="chip" href="#full-time">FULL-TIME DAY SCHOOL FEES</a>
+    <a class="chip" href="#international">Full time International</a>
+    <a class="chip" href="#ontario">Students with Ontario Education</a>
+    <a class="chip" href="#mature-fulltime">Mature Fulltime</a>
+    <a class="chip" href="#mature-loa">Mature Students- LOA</a>
+    <a class="chip" href="#after-school">After School care</a>
+    <a class="chip" href="#night-school">High School Night School Students</a>
+    <a class="chip" href="#course-mode">Course mode change</a>
+    <a class="chip" href="#language">Language Proficiency</a>
+    <a class="chip" href="#caec">CAEC</a>
+    <a class="chip" href="#tutoring">New TUTORING FEES from September 2025</a>
+  </nav>
+
+  <!-- FULL-TIME DAY SCHOOL FEES -->
+  <details class="section" id="full-time">
+    <summary class="section-head"><span class="tag">FULL-TIME DAY SCHOOL FEES—September 2025 to August 2026</span>
+    </summary>
+    <div class="body">
+      <ul class="bullets">
+        <li>One time Registration fee--$ 850 ( Can be paid in installments, includes all the report cards, Transcripts,
+          grade reporting, Graduation Ceremonies, all events celebrations)</li>
+      </ul>
+
+      <div class="block">
+        <span class="label">Grade 1 to 8 ( In-Class, Online)</span>-------$ 600 Per month ( 9am to 4pm).
+        <ul class="bullets">
+          <li>Final exam, even if online, included. Unlimited after school help included.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <span class="label">Grade 9—10 ( In-Class, Online)</span>---$700 per month ( 9am to 4pm).
+        <ul class="bullets">
+          <li>Final exam, even if online, included. Unlimited after school help included.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <span class="label">Grade 11---12 ( In-Class, Online)</span>--$ 750 per month, from Sept 2025.
+        <ul class="bullets">
+          <li>Final exam, even if online, included. Unlimited after school help included.</li>
+        </ul>
+      </div>
+    </div>
+  </details>
+
+  <!-- Full time International -->
+  <details class="section" id="international">
+    <summary class="section-head"><span class="tag">Full time International</span></summary>
+    <div class="body">
+      <ul class="bullets">
+        <li>One time Registration fee--$ 850 ( Can be paid in installments, includes all the report cards, Transcripts,
+          grade reporting, Graduation Ceremonies, all events celebrations)</li>
+      </ul>
+
+      <div class="block">
+        <span class="label">Grade 1 to 8 ( In-Class, Online)</span>-------$ 600 Per month ( 9am to 4pm).
+        <ul class="bullets">
+          <li>Final exam, even if online, included. Unlimited after school help included.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <span class="label">Grade 9—10 ( In-Class, Online)</span>---$700 per month ( 9am to 4pm).
+        <ul class="bullets">
+          <li>Final exam, even if online, included. Unlimited after school help included.</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <span class="label">Grade 11---12 ( In-Class, Online)</span>--$ 750 per month, from Sept 2025.
+        <ul class="bullets">
+          <li>Final exam, even if online, included. Unlimited after school help included.</li>
+        </ul>
+      </div>
+
+      <div class="sep"></div>
+
+      <ul class="bullets">
+        <li>Assessment charges -- $450</li>
+        <li>Admin fee: $95</li>
+        <li>Documentation processing fee: $250</li>
+        <li>Consultation fee: $100</li>
+        <li>Document checklist (link) : <a class="link"
+            href="https://canstemeducation.com/wp-content/uploads/2023/08/document-checklist-full-time-student.pdf"
+            target="_blank"
+            rel="noopener">https://canstemeducation.com/wp-content/uploads/2023/08/document-checklist-full-time-student.pdf</a>
+        </li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- Students with Ontario Education -->
+  <details class="section" id="ontario">
+    <summary class="section-head"><span class="tag">Students with Ontario Education - Full time course by course (Grade
+        9- 12 only)</span></summary>
+    <div class="body">
+      <div class="block">
+        <span class="label">Full-time day school (Asynchronous) or Paying by the course</span><br>
+        Registration fee--$ 850, $ 499 Per course, $ 150 per online exam. No after school help included.
+      </div>
+    </div>
+  </details>
+
+  <!-- Mature Fulltime -->
+  <details class="section" id="mature-fulltime">
+    <summary class="section-head"><span class="tag">Mature Fulltime</span></summary>
+    <div class="body">
+      <ul class="bullets">
+        <li>PLAR - $150 per course</li>
+        <li>Registration fee--$ 850, $ 499 Per course, $ 150 per online exam. No after school help included.</li>
+      </ul>
+
+      <div class="sep"></div>
+
+      <ul class="bullets">
+        <li>Sending transcripts to different guidance counselor/ university/ college - $25</li>
+        <li>Assessment charges -- $450</li>
+        <li>Admin fee: $95</li>
+        <li>Documentation processing fee: $250</li>
+        <li>Consultation fee: $100</li>
+        <li>Document checklist (link) : <a class="link"
+            href="https://canstemeducation.com/wp-content/uploads/2023/08/document-checklist-full-time-student.pdf"
+            target="_blank"
+            rel="noopener">https://canstemeducation.com/wp-content/uploads/2023/08/document-checklist-full-time-student.pdf</a>
+        </li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- Mature Students - LOA -->
+  <details class="section" id="mature-loa">
+    <summary class="section-head"><span class="tag">Mature Students- LOA</span></summary>
+    <div class="body">
+      <ul class="bullets">
+        <li>One time Registration fee: $850</li>
+        <li>PLAR - $450</li>
+        <li>Grade 9 - $7,350</li>
+        <li>Grade 10- $7,350</li>
+        <li>Grade 11- $7,850</li>
+        <li>Grade 12- $7,850</li>
+        <li>One year fee should be paid upfront in order to get LOA.</li>
+      </ul>
+
+      <ul class="bullets">
+        <li>Admin fee: $95</li>
+        <li>Consultation fee: $100</li>
+        <li>Document checklist (link) : <a class="link"
+            href="https://canstemeducation.com/wp-content/uploads/2023/08/document-checklist-full-time-student.pdf"
+            target="_blank"
+            rel="noopener">https://canstemeducation.com/wp-content/uploads/2023/08/document-checklist-full-time-student.pdf</a>
+        </li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- After School care -->
+  <details class="section" id="after-school">
+    <summary class="section-head"><span class="tag">After School care (at last separate category)</span></summary>
+    <div class="body">
+      <ul class="bullets">
+        <li>Extra hour before 9am and after 4pm charged $ 20 per hour, $ 50 per week or $ 150 per month ( from 4pm to
+          8pm, 8am to 9am). No Tutoring or study included.</li>
+        <li>(They can get our tutoring packages, no need to pay for after school care if tutoring package)</li>
+      </ul>
+
+      <ul class="bullets">
+        <li>Document checklist (link) : <a class="link"
+            href="https://canstemeducation.com/wp-content/uploads/2023/08/document-checklist-full-time-student.pdf"
+            target="_blank"
+            rel="noopener">https://canstemeducation.com/wp-content/uploads/2023/08/document-checklist-full-time-student.pdf</a>
+        </li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- Night School -->
+  <details class="section" id="night-school">
+    <summary class="section-head"><span class="tag">High School Night School Students (Individual Credits)</span>
+    </summary>
+    <div class="body">
+      <ul class="bullets">
+        <li>Grade 9 & 10 -- $449 per course </li>
+        <li>Grade 11 & 12 -- $499 per course</li>
+        <li>Online final exam fee- $150 per course</li>
+        <li>Sending transcripts to different guidance counselor/ university/ college - $25</li>
+        <li>Fast tracking report card - $100 (Within 24 hours)</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- Course mode change -->
+  <details class="section" id="course-mode">
+    <summary class="section-head"><span class="tag">Course mode change</span></summary>
+    <div class="body">
+      <p>You may change your course within one week of registration, provided you have not started or accessed the
+        course (in-class or online). After one week, fees will apply based on the number of units accessed:</p>
+      <ul class="bullets">
+        <li>Course not accessed after one week: You will need to pay $75.</li>
+        <li>One unit accessed after one week: You will need to pay $75 + $50 (and so on for each additional unit).</li>
+      </ul>
+      <p>Course change- You may change your course within one week of registration if you have not started or accessed
+        the course (in-class or online). After one week, a fee will apply for switching course mode or course. We
+        reserve the right to refuse your request for a change in course or mode of course. For more details, please
+        contact us at 647-847-1231 or frontdesk@canstemeducation.com</p>
+    </div>
+  </details>
+
+  <!-- Language Proficiency -->
+  <details class="section" id="language">
+    <summary class="section-head"><span class="tag">Language Proficiency:</span></summary>
+    <div class="body">
+      <ul class="bullets">
+        <li>PTE/ IELTS/ CELPIP/TOEFL - $250 a month / $150 for 2 weeks / $100 for 4 hours crash preparation (Online
+          teacher assisted class 1 hr, in person- 1 hr, but they can stay and practice)</li>
+        <li>Trial class $25 - in person, $35 online</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- CAEC -->
+  <details class="section" id="caec">
+    <summary class="section-head"><span class="tag">CAEC:</span></summary>
+    <div class="body">
+      <ul class="bullets">
+        <li>Package 1 – $250/month</li>
+        <li> In-person classes, twice a week</li>
+        <li> Package 2 – $500/month</li>
+        <li> In-person classes, six days a week</li>
+        <li> Package 3 – $250/month</li>
+        <li>Online program via Zoom, 2 hours/day (5 days/week)</li>
+      </ul>
+    </div>
+  </details>
+
+  <!-- New Tutoring Fees -->
+  <details class="section" id="tutoring">
+    <summary class="section-head"><span class="tag">New TUTORING FEES from September 2025</span></summary>
+    <div class="body">
+
+      <div class="block">
+        <div class="label">Grade 1 to 8 Tutoring, ESL, Math Kangaroo Test</div>
+        <ul class="bullets">
+          <li>One-time registration fee--$ 50</li>
+          <li>2 days a week, Monthly package--$ 250 per month, all the subjects, fixed days</li>
+          <li>3 days a week, Monthly package--$ 350 per month, all the subjects, fixed days</li>
+          <li>5 days a week, Monthly package--$ 500 per month, any subject, all subjects</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="label">Grade 9--10 Tutoring</div>
+        <ul class="bullets">
+          <li>One-time registration fee--$ 50</li>
+          <li>2 days a week, Monthly package--$ 350 per month, all the subjects, fixed days</li>
+          <li>3 days a week, Monthly package--$ 450 per month, all the subjects, fixed days</li>
+          <li>5 days a week, Monthly package--$ 500 per month, any subject, all subjects</li>
+          <li>Hourly Package---$ 25 per hour, In-Class (Scheduled hour before 3 days)</li>
+          <li>Hourly Package---$ 35 per hour, Online (Scheduled hour before 3 days)</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="label">Grade 11--12 Tutoring</div>
+        <ul class="bullets">
+          <li>One-time registration fee--$ 50</li>
+          <li>2 days a week, Monthly package--$ 400 per month, all the subjects, fixed days</li>
+          <li>3 days a week, Monthly package--$ 500 per month, all the subjects, fixed days</li>
+          <li>5 days a week, Monthly package--$ 600 per month, any subject, all subjects</li>
+          <li>Hourly Package---$ 25 per hour, In-Class (Scheduled hour before 3 days)</li>
+          <li>Hourly Package---$ 35 per hour, Online (Scheduled hour before 3 days)</li>
+        </ul>
+      </div>
+
+      <div class="block">
+        <div class="label">University - College Subjects</div>
+        <ul class="bullets">
+          <li>Hourly Package---$ 35 per hour, In-Class (Scheduled hour before 3 days)</li>
+          <li>Hourly Package---$ 40 per hour, Online (Scheduled hour before 3 days)</li>
+        </ul>
+      </div>
+
+    </div>
+  </details>
+
+<script>
+  // highlight active quick-link based on hash
+  (function () {
+    const chips = [...document.querySelectorAll('.chip')];
+    function sync() {
+      const id = (location.hash || '').slice(1);
+      chips.forEach(c => c.classList.toggle('active', c.getAttribute('href').slice(1) === id && id));
+      if (id) {
+        const d = document.getElementById(id);
+        if (d && d.tagName.toLowerCase() === 'details') { d.setAttribute('open', ''); }
+      }
+    }
+    window.addEventListener('hashchange', sync); sync();
+    chips.forEach(ch => ch.addEventListener('click', () => { chips.forEach(c => c.classList.remove('active')); ch.classList.add('active'); }));
+  })();
+</script>
+<!-- ===== End – No-Table Version ===== -->
