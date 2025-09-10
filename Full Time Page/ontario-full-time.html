@@ -1,0 +1,108 @@
+<!-- START: FAQ Answer – Ontario Course by Course Fees -->
+<style>
+    .faq-ontario {
+        font-family: "Open Sans", sans-serif;
+        color: #26262B;
+        line-height: 1.6;
+        font-size: 18px;
+    }
+
+    .faq-ontario table {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
+        margin: 0 0 1rem;
+    }
+
+    .faq-ontario thead {
+        background: #00427c;
+        color: #fff;
+    }
+
+    .faq-ontario th,
+    .faq-ontario td {
+        padding: 14px 16px;
+        text-align: left;
+        font-size: 16px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+
+    .faq-ontario tbody tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    /* Responsive mobile view */
+    @media (max-width:768px) {
+        .faq-ontario {
+            font-size: 16px;
+        }
+
+        .faq-ontario thead {
+            display: none;
+        }
+
+        .faq-ontario table,
+        .faq-ontario tbody,
+        .faq-ontario tr,
+        .faq-ontario td {
+            display: block;
+            width: 100%;
+        }
+
+        .faq-ontario tr {
+            margin-bottom: 16px;
+            border: 1px solid #00427c;
+            padding: 16px;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        .faq-ontario td {
+            border: none;
+            padding: 12px 0;
+            position: relative;
+            font-size: 16px;
+        }
+
+        .faq-ontario td::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: #00427c;
+            display: block;
+            margin-bottom: 4px;
+        }
+    }
+</style>
+
+<div class="faq-ontario">
+    <table>
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Amount</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="Item">Registration Fee</td>
+                <td data-label="Amount">$850</td>
+                <td data-label="Notes"></td>
+            </tr>
+            <tr>
+                <td data-label="Item">Course Fee</td>
+                <td data-label="Amount">$499 per course</td>
+                <td data-label="Notes"></td>
+            </tr>
+            <tr>
+                <td data-label="Item">Online Exam Fee</td>
+                <td data-label="Amount">$150 per online exam</td>
+                <td data-label="Notes">No after school help included</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<!-- END: FAQ Answer – Ontario Course by Course Fees -->

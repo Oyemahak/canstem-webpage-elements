@@ -1,0 +1,137 @@
+<style>
+    /* Scoped to this block */
+    .ft-fees {
+        --sub: #00427c;
+        --ink: #26262B;
+        --border: #e2e8f0;
+        --shadow: 0 4px 20px rgba(0, 0, 0, .08);
+        font-family: "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--ink);
+        line-height: 1.6;
+        font-size: 18px;
+    }
+
+    .ft-fees .list {
+        margin: .25rem 0 .75rem 1.1rem;
+    }
+
+    .ft-fees .list li {
+        margin: .3rem 0;
+    }
+
+    .ft-fees .muted {
+        color: #333;
+    }
+
+    .ft-fees .rtable {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        margin: 0 0 1rem;
+    }
+
+    .ft-fees .rtable thead {
+        background: var(--sub);
+        color: #fff;
+    }
+
+    .ft-fees .rtable th,
+    .ft-fees .rtable td {
+        padding: 16px;
+        text-align: left;
+        font-size: 18px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+
+    .ft-fees .rtable tbody tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    /* Mobile: card-style rows with labels (same behavior as main fee structure) */
+    @media (max-width: 768px) {
+        .ft-fees {
+            font-size: 16px;
+        }
+
+        .ft-fees .rtable thead {
+            display: none;
+        }
+
+        .ft-fees .rtable,
+        .ft-fees .rtable tbody,
+        .ft-fees .rtable tr,
+        .ft-fees .rtable td {
+            display: block;
+            width: 100%;
+        }
+
+        .ft-fees .rtable {
+            box-shadow: none !important;
+            margin-bottom: 0 !important;
+        }
+
+        .ft-fees .rtable tr {
+            margin-bottom: 16px;
+            border: 1px solid var(--sub);
+            padding: 16px;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        .ft-fees .rtable td {
+            border: none;
+            padding: 12px 0;
+            font-size: 16px;
+        }
+
+        .ft-fees .rtable td::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: var(--sub);
+            display: block;
+            margin-bottom: 4px;
+        }
+    }
+</style>
+
+<div class="ft-fees">
+    <ul class="list">
+        <li>One-time Registration Fee: <strong>$850</strong></li>
+        <li class="muted">(Can be paid in installments; includes all the report cards, transcripts, grade reporting,
+            graduation ceremonies, all events celebrations)</li>
+    </ul>
+
+    <table class="rtable">
+        <thead>
+            <tr>
+                <th>Grade</th>
+                <th>Schedule (From Sept 2025)</th>
+                <th>Monthly Fee</th>
+                <th>Includes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="Grade">Grade 1–8 (In-Class, Online)</td>
+                <td data-label="Schedule (From Sept 2025)">9am to 4pm</td>
+                <td data-label="Monthly Fee">$600 / month</td>
+                <td data-label="Includes">Final exam (even if online). Unlimited after school help.</td>
+            </tr>
+            <tr>
+                <td data-label="Grade">Grade 9–10 (In-Class, Online)</td>
+                <td data-label="Schedule (From Sept 2025)">9am to 4pm</td>
+                <td data-label="Monthly Fee">$700 / month</td>
+                <td data-label="Includes">Final exam (even if online). Unlimited after school help.</td>
+            </tr>
+            <tr>
+                <td data-label="Grade">Grade 11–12 (In-Class, Online)</td>
+                <td data-label="Schedule (From Sept 2025)">9am to 4pm</td>
+                <td data-label="Monthly Fee">$750 / month</td>
+                <td data-label="Includes">Final exam (even if online). Unlimited after school help.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,344 @@
+<!-- ========== Scoped FAQ styles (safe to reuse anywhere) ========== -->
+<style>
+    .ft-faq {
+        font-family: "Open Sans", sans-serif;
+        color: #26262B;
+    }
+
+    .ft-faq .note {
+        background: #F8FAFF;
+        border-left: 4px solid #00427c;
+        padding: .75rem 1rem;
+        border-radius: 8px;
+    }
+
+    .ft-faq ul {
+        margin: .5rem 0 .75rem 1.2rem;
+    }
+
+    .ft-faq li {
+        margin: .25rem 0;
+    }
+
+    .ft-faq a {
+        color: #00427c;
+        font-weight: 700;
+        text-decoration: none;
+        border-bottom: 1px dashed #00427c;
+    }
+
+    .ft-faq a:hover {
+        color: #003566;
+        border-bottom-color: #003566;
+    }
+
+    /* Responsive table (same mobile pattern as your Fee Structure) */
+    .ft-faq .rtable {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
+        margin: .5rem 0 1rem;
+    }
+
+    .ft-faq .rtable thead {
+        background: #00427c;
+        color: #fff;
+    }
+
+    .ft-faq .rtable th,
+    .ft-faq .rtable td {
+        padding: 14px 16px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+
+    .ft-faq .rtable tbody tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    .ft-faq .sep {
+        height: 1px;
+        background: #eef2f7;
+        margin: 1rem 0;
+    }
+
+    @media (max-width:768px) {
+        .ft-faq .rtable thead {
+            display: none;
+        }
+
+        .ft-faq .rtable,
+        .ft-faq .rtable tbody,
+        .ft-faq .rtable tr,
+        .ft-faq .rtable td {
+            display: block;
+            width: 100%;
+        }
+
+        .ft-faq .rtable tr {
+            border: 1px solid #00427c;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 14px;
+            background: #fff;
+        }
+
+        .ft-faq .rtable td {
+            border: none;
+            padding: 10px 0;
+        }
+
+        .ft-faq .rtable td::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: #00427c;
+            display: block;
+            margin-bottom: 4px;
+        }
+    }
+</style>
+
+<!-- ========== FAQ ANSWER BLOCKS (put each inside its accordion item) ========== -->
+<div class="ft-faq">
+
+    <!-- Q1: What grades are offered in the Full-Time Day School? -->
+    <div id="faq-grades" class="ft-faq__answer">
+        <p>We enroll students from <strong>Grade 1 to Grade 12</strong> in our Full-Time Day School, with both
+            <strong>In-Class</strong> and <strong>Online</strong> options.</p>
+        <table class="rtable">
+            <thead>
+                <tr>
+                    <th>Division</th>
+                    <th>Grades</th>
+                    <th>Mode</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Division">Elementary</td>
+                    <td data-label="Grades">1–8</td>
+                    <td data-label="Mode">In-Class or Online</td>
+                </tr>
+                <tr>
+                    <td data-label="Division">Secondary (Junior)</td>
+                    <td data-label="Grades">9–10</td>
+                    <td data-label="Mode">In-Class or Online</td>
+                </tr>
+                <tr>
+                    <td data-label="Division">Secondary (Senior)</td>
+                    <td data-label="Grades">11–12</td>
+                    <td data-label="Mode">In-Class or Online</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Q2: What are the school hours and annual calendar? -->
+    <div id="faq-hours" class="ft-faq__answer">
+        <p><strong>School hours:</strong> 9:00 AM – 4:00 PM (Monday–Friday). The fee schedule listed is valid from
+            <strong>September 2025 to August 2026</strong>.</p>
+    </div>
+
+    <!-- Q3: What is included in the one-time registration fee? -->
+    <div id="faq-registration" class="ft-faq__answer">
+        <p>The <strong>$850 one-time registration fee</strong> can be paid in installments and includes:</p>
+        <ul>
+            <li>All report cards and transcripts</li>
+            <li>Grade reporting and administration</li>
+            <li>Graduation ceremonies and all school event celebrations</li>
+        </ul>
+    </div>
+
+    <!-- Q4: What does the monthly fee include? -->
+    <div id="faq-monthly-includes" class="ft-faq__answer">
+        <p>Monthly tuition includes the <strong>final exam (even if online)</strong> and <strong>unlimited after-school
+                help</strong>.</p>
+        <table class="rtable">
+            <thead>
+                <tr>
+                    <th>Grade</th>
+                    <th>Monthly Fee</th>
+                    <th>Includes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Grade">Grades 1–8</td>
+                    <td data-label="Monthly Fee">$600 / month</td>
+                    <td data-label="Includes">Final exam; unlimited after-school help</td>
+                </tr>
+                <tr>
+                    <td data-label="Grade">Grades 9–10</td>
+                    <td data-label="Monthly Fee">$700 / month</td>
+                    <td data-label="Includes">Final exam; unlimited after-school help</td>
+                </tr>
+                <tr>
+                    <td data-label="Grade">Grades 11–12</td>
+                    <td data-label="Monthly Fee">$750 / month</td>
+                    <td data-label="Includes">Final exam; unlimited after-school help</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Q5: Do you offer payment plans? -->
+    <div id="faq-payment-plans" class="ft-faq__answer">
+        <p>Yes. The <strong>registration fee ($850)</strong> may be paid in <strong>installments</strong>. Monthly
+            tuition is billed per grade as listed above.</p>
+    </div>
+
+    <!-- Q6: Is after-school care available? -->
+    <div id="faq-aftercare" class="ft-faq__answer">
+        <p>Yes. After-School Care is optional (no tutoring included):</p>
+        <table class="rtable">
+            <thead>
+                <tr>
+                    <th>Option</th>
+                    <th>Fee</th>
+                    <th>Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Option">Hourly</td>
+                    <td data-label="Fee">$20 / hour</td>
+                    <td data-label="Time">Before 9am &amp; after 4pm</td>
+                </tr>
+                <tr>
+                    <td data-label="Option">Weekly</td>
+                    <td data-label="Fee">$50 / week</td>
+                    <td data-label="Time">As scheduled</td>
+                </tr>
+                <tr>
+                    <td data-label="Option">Monthly</td>
+                    <td data-label="Fee">$150 / month</td>
+                    <td data-label="Time">4pm–8pm &amp; 8am–9am</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="note">Families choosing our tutoring packages don’t need to pay for After-School Care.</div>
+    </div>
+
+    <!-- Q7: Do you provide tutoring or academic support? -->
+    <div id="faq-tutoring" class="ft-faq__answer">
+        <p>Yes. We offer structured tutoring packages (Grades 1–12) and hourly options (in-class &amp; online). See our
+            “New Tutoring Fees” section for full details.</p>
+    </div>
+
+    <!-- Q8: How are assessments and final exams handled? -->
+    <div id="faq-exams" class="ft-faq__answer">
+        <p>Final exams are <strong>included</strong> in monthly tuition and are available even if the student studies
+            online. Additional assessments may apply for international or mature student evaluations.</p>
+    </div>
+
+    <!-- Q9: Can students switch between in-class and online? -->
+    <div id="faq-mode-change" class="ft-faq__answer">
+        <p>You may change your course/mode within <strong>one week</strong> of registration if you have not started or
+            accessed the course. After one week, fees apply based on units accessed:</p>
+        <ul>
+            <li>Course not accessed after one week: <strong>$75</strong></li>
+            <li>One unit accessed after one week: <strong>$75 + $50</strong> (and so on per additional unit)</li>
+        </ul>
+        <p class="note">We may refuse a change request depending on progress. For details, call <a
+                href="tel:16478471231">647-847-1231</a> or email <a
+                href="mailto:frontdesk@canstemeducation.com">frontdesk@canstemeducation.com</a>.</p>
+    </div>
+
+    <!-- Q10: Do you accept international students? What documents are required? -->
+    <div id="faq-international" class="ft-faq__answer">
+        <p>Yes. International students are welcome in Full-Time Day School. Please prepare the required documents using
+            our checklist:</p>
+        <p><a href="https://canstemeducation.com/wp-content/uploads/2023/08/document-checklist-full-time-student.pdf"
+                target="_blank" rel="noopener">Download the Full-Time Student Document Checklist</a></p>
+        <p>Registration fee for international students is <strong>$850</strong>. Monthly fees by grade are the same as
+            listed above.</p>
+    </div>
+
+    <!-- Q11: Are transcripts and report cards provided? -->
+    <div id="faq-transcripts" class="ft-faq__answer">
+        <p>Yes. Transcripts and report cards are part of the registration package. If you need us to send transcripts to
+            a counselor/university/college, the fee is <strong>$25</strong> per request. Fast-tracking a report card
+            within 24 hours costs <strong>$100</strong>.</p>
+    </div>
+
+    <!-- Q12: What is PLAR and do mature students have options? -->
+    <div id="faq-mature" class="ft-faq__answer">
+        <p>For mature students, <strong>PLAR</strong> (Prior Learning Assessment and Recognition) is available at
+            <strong>$150 per course</strong> (or $450 for LOA cases). We also offer a <strong>Mature Full-Time</strong>
+            stream and an LOA package—see our Mature sections for full pricing.</p>
+    </div>
+
+</div>
+
+<!-- ========== Optional JSON-LD for SEO (keep questions identical to your accordion titles) ========== -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type":"Question",
+      "name":"What grades are offered in the Full-Time Day School?",
+      "acceptedAnswer":{"@type":"Answer","text":"We enroll Grades 1–12 with both In-Class and Online options across Elementary (1–8), Secondary Junior (9–10), and Secondary Senior (11–12)."}
+    },
+    {
+      "@type":"Question",
+      "name":"What are the school hours and annual calendar?",
+      "acceptedAnswer":{"@type":"Answer","text":"Classes run 9:00 AM–4:00 PM, Monday–Friday. The listed fees apply from September 2025 to August 2026."}
+    },
+    {
+      "@type":"Question",
+      "name":"What is included in the one-time registration fee?",
+      "acceptedAnswer":{"@type":"Answer","text":"The $850 registration fee (installment-friendly) includes report cards, transcripts, grade reporting, graduation ceremonies, and all school event celebrations."}
+    },
+    {
+      "@type":"Question",
+      "name":"What does the monthly fee include?",
+      "acceptedAnswer":{"@type":"Answer","text":"Monthly tuition includes the final exam (even if online) and unlimited after-school help. Fees: $600 (Gr.1–8), $700 (Gr.9–10), $750 (Gr.11–12)."}
+    },
+    {
+      "@type":"Question",
+      "name":"Do you offer payment plans?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. The $850 registration fee can be paid in installments. Monthly tuition is billed per grade."}
+    },
+    {
+      "@type":"Question",
+      "name":"Is after-school care available?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes: $20/hour, $50/week, or $150/month (4–8pm & 8–9am). Tutoring is not included; families with tutoring packages don’t need after-care."}
+    },
+    {
+      "@type":"Question",
+      "name":"Do you provide tutoring or academic support?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. We offer tutoring packages for Grades 1–12 and hourly options (in-class & online)."}
+    },
+    {
+      "@type":"Question",
+      "name":"How are assessments and final exams handled?",
+      "acceptedAnswer":{"@type":"Answer","text":"Final exams are included in tuition and available even for online learners. Additional assessments may apply for mature or international evaluations."}
+    },
+    {
+      "@type":"Question",
+      "name":"Can students switch between in-class and online?",
+      "acceptedAnswer":{"@type":"Answer","text":"Within one week of registration you can change mode if the course hasn’t been accessed. After one week: $75 if not accessed; $75 + $50 per unit accessed."}
+    },
+    {
+      "@type":"Question",
+      "name":"Do you accept international students? What documents are required?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. Registration is $850 and monthly fees are the same by grade. Use our document checklist to prepare your application."}
+    },
+    {
+      "@type":"Question",
+      "name":"Are transcripts and report cards provided?",
+      "acceptedAnswer":{"@type":"Answer","text":"Yes. We can send transcripts to institutions for $25 each. Fast-tracking a report card within 24 hours costs $100."}
+    },
+    {
+      "@type":"Question",
+      "name":"What is PLAR and do mature students have options?",
+      "acceptedAnswer":{"@type":"Answer","text":"PLAR recognizes prior learning. For mature students, PLAR is $150/course (or $450 for LOA). Mature Full-Time and LOA packages are available."}
+    }
+  ]
+}
+</script>

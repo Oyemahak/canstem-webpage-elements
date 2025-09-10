@@ -1,0 +1,240 @@
+<!-- Tutoring Fees — stand-alone, fully responsive (tablet + mobile) -->
+<style>
+    /* Scope everything to this block only */
+    #tutoring-fees {
+        --head: #000000;
+        --sub: #00427c;
+        --ink: #26262B;
+        --muted: #333333;
+        --panel: #ffffff;
+        --border: #e2e8f0;
+        --shadow: 0 4px 20px rgba(0, 0, 0, .08);
+        --chip-border: #f59e0b;
+        --chip-text: #000000;
+        --chip-bg: #fff;
+        --chip-hover-border: #000000;
+        --chip-active-bg: #e6f0ff;
+        --chip-active-border: #666666;
+        --radius: 12px;
+
+        font-family: "Open Sans", sans-serif;
+        color: var(--ink);
+        max-width: 1200px;
+        line-height: 1.6;
+        font-size: 18px;
+    }
+
+    /* Accordion shell */
+    #tutoring-fees details.section {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+    }
+
+    #tutoring-fees .section-body {
+        background: #fff;
+    }
+
+    #tutoring-fees .section-body>*+* {
+        margin-top: 14px;
+    }
+
+    #tutoring-fees .accent {
+        color: var(--sub);
+        font-weight: 700;
+        margin-top: 1.25rem;
+    }
+
+    #tutoring-fees .sep {
+        height: 1px;
+        background: #eef2f7;
+        margin: 1rem 0;
+    }
+
+    /* Table styling (desktop) */
+    #tutoring-fees table.rtable {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        margin: 0 0 1rem;
+    }
+
+    #tutoring-fees .rtable thead {
+        background: var(--sub);
+        color: #fff;
+    }
+
+    #tutoring-fees .rtable th,
+    #tutoring-fees .rtable td {
+        padding: 16px;
+        text-align: left;
+        font-size: 18px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+
+    #tutoring-fees .rtable tbody tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    /* Tablet & mobile: turn table into cards (match your main page behavior) */
+    @media (max-width: 1024px) {
+        #tutoring-fees {
+            font-size: 16px;
+        }
+
+        #tutoring-fees .rtable thead {
+            display: none;
+        }
+
+        #tutoring-fees .rtable,
+        #tutoring-fees .rtable tbody,
+        #tutoring-fees .rtable tr,
+        #tutoring-fees .rtable td {
+            display: block;
+            width: 100%;
+        }
+
+        #tutoring-fees .rtable {
+            box-shadow: none !important;
+            margin-bottom: 0 !important;
+        }
+
+        #tutoring-fees .rtable tr {
+            margin-bottom: 16px;
+            border: 1px solid var(--sub);
+            padding: 16px;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        #tutoring-fees .rtable td {
+            border: none;
+            padding: 12px 0;
+            position: relative;
+            font-size: 16px;
+        }
+
+        #tutoring-fees .rtable td::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: var(--sub);
+            display: block;
+            margin-bottom: 4px;
+        }
+    }
+</style>
+
+<div id="tutoring-fees">
+        <div class="section-body">
+            <p class="accent">Grade 1–8 Tutoring</p>
+            <table class="rtable">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Item">One-time registration fee</td>
+                        <td data-label="Amount">$50</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">2 days/week (monthly)</td>
+                        <td data-label="Amount">$250 per month (all subjects, fixed days)</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">3 days/week (monthly)</td>
+                        <td data-label="Amount">$350 per month (all subjects, fixed days)</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">5 days/week (monthly)</td>
+                        <td data-label="Amount">$500 per month (any subject, all subjects)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="sep"></div>
+
+            <p class="accent">Grade 9–10 Tutoring</p>
+            <table class="rtable">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Item">One-time registration fee</td>
+                        <td data-label="Amount">$50</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">2 days/week (monthly)</td>
+                        <td data-label="Amount">$350 per month (all subjects, fixed days)</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">3 days/week (monthly)</td>
+                        <td data-label="Amount">$450 per month (all subjects, fixed days)</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">5 days/week (monthly)</td>
+                        <td data-label="Amount">$500 per month (any subject, all subjects)</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">Hourly In-Class</td>
+                        <td data-label="Amount">$25 per hour (scheduled 3 days before)</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">Hourly Online</td>
+                        <td data-label="Amount">$35 per hour (scheduled 3 days before)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="sep"></div>
+
+            <p class="accent">Grade 11–12 Tutoring</p>
+            <table class="rtable">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Item">One-time registration fee</td>
+                        <td data-label="Amount">$50</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">2 days/week (monthly)</td>
+                        <td data-label="Amount">$400 per month (all subjects, fixed days)</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">3 days/week (monthly)</td>
+                        <td data-label="Amount">$500 per month (all subjects, fixed days)</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">5 days/week (monthly)</td>
+                        <td data-label="Amount">$600 per month (any subject, all subjects)</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">Hourly In-Class</td>
+                        <td data-label="Amount">$25 per hour (scheduled 3 days before)</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">Hourly Online</td>
+                        <td data-label="Amount">$35 per hour (scheduled 3 days before)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </details>
+</div>
