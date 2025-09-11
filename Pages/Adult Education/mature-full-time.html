@@ -1,0 +1,169 @@
+<!-- Mature Full-Time — stand-alone & responsive -->
+<style>
+    #mature-fulltime {
+        --head: #000;
+        --sub: #00427c;
+        --ink: #26262B;
+        --panel: #fff;
+        --border: #e2e8f0;
+        --shadow: 0 4px 20px rgba(0, 0, 0, .08);
+        font-family: "Open Sans", sans-serif;
+        color: var(--ink);
+        max-width: 1200px;
+        line-height: 1.6;
+        font-size: 18px;
+    }
+
+    #mature-fulltime .accent {
+        color: var(--sub);
+        font-weight: 700;
+        margin: 0 0 .75rem;
+    }
+
+    #mature-fulltime .section-body {
+        background: #fff;
+    }
+
+    #mature-fulltime .sep {
+        height: 1px;
+        background: #eef2f7;
+        margin: 1rem 0;
+    }
+
+    #mature-fulltime ul.bullets {
+        margin: .25rem 0 1rem 1.25rem;
+    }
+
+    #mature-fulltime ul.bullets li {
+        margin: .35rem 0;
+    }
+
+    /* table (desktop) */
+    #mature-fulltime table.rtable {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        margin: 0 0 1rem;
+    }
+
+    #mature-fulltime .rtable thead {
+        background: var(--sub);
+        color: #fff;
+    }
+
+    #mature-fulltime .rtable th,
+    #mature-fulltime .rtable td {
+        padding: 16px;
+        text-align: left;
+        font-size: 18px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+
+    #mature-fulltime .rtable tbody tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    /* mobile/tablet: table -> cards */
+    @media (max-width:768px) {
+        #mature-fulltime {
+            font-size: 16px;
+        }
+
+        #mature-fulltime .rtable thead {
+            display: none;
+        }
+
+        #mature-fulltime .rtable,
+        #mature-fulltime .rtable tbody,
+        #mature-fulltime .rtable tr,
+        #mature-fulltime .rtable td {
+            display: block;
+            width: 100%;
+        }
+
+        #mature-fulltime .rtable {
+            box-shadow: none !important;
+            margin-bottom: 0 !important;
+        }
+
+        #mature-fulltime .rtable tr {
+            margin-bottom: 16px;
+            border: 1px solid var(--sub);
+            padding: 16px;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        #mature-fulltime .rtable td {
+            border: none;
+            padding: 12px 0;
+            position: relative;
+            font-size: 16px;
+        }
+
+        #mature-fulltime .rtable td::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: var(--sub);
+            display: block;
+            margin-bottom: 4px;
+        }
+    }
+</style>
+
+<div id="mature-fulltime">
+    <div class="section-body">
+        <p class="accent">Mature Full-Time</p>
+
+        <table class="rtable">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Item">PLAR</td>
+                    <td data-label="Amount">$150 per course</td>
+                </tr>
+                <tr>
+                    <td data-label="Item">Registration Fee</td>
+                    <td data-label="Amount">$850</td>
+                </tr>
+                <tr>
+                    <td data-label="Item">Course Fee</td>
+                    <td data-label="Amount">$499 per course</td>
+                </tr>
+                <tr>
+                    <td data-label="Item">Online Exam Fee</td>
+                    <td data-label="Amount">$150 per online exam</td>
+                </tr>
+                <tr>
+                    <td data-label="Item">After school help</td>
+                    <td data-label="Amount">Not included</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="sep"></div>
+
+        <ul class="bullets">
+            <li>Sending transcripts to different guidance counselor/ university/ college : $25</li>
+            <li>Assessment charges: $450</li>
+            <li>Admin fee: $95</li>
+            <li>Documentation processing fee: $250</li>
+            <li>Consultation fee: $100</li>
+        </ul>
+
+        <div class="sep"></div>
+
+        <p class="accent">Document Checklist:
+            <a href="https://canstemeducation.com/wp-content/uploads/2025/09/document-checklist-full-time-student.pdf"
+                target="_blank" rel="noopener">Download here</a>
+        </p>
+    </div>
+</div>

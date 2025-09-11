@@ -1,0 +1,123 @@
+<!-- University – College Subjects (Tutoring) — stand-alone & responsive -->
+<style>
+    /* Scope everything to this block only */
+    #uni-college-fees {
+        --head: #000000;
+        --sub: #00427c;
+        --ink: #26262B;
+        --muted: #333333;
+        --panel: #ffffff;
+        --border: #e2e8f0;
+        --shadow: 0 4px 20px rgba(0, 0, 0, .08);
+
+        font-family: "Open Sans", sans-serif;
+        color: var(--ink);
+        max-width: 1200px;
+        line-height: 1.6;
+        font-size: 18px;
+    }
+
+    #uni-college-fees .section-body {
+        border-top: 1px solid var(--border);
+        background: #fff;
+    }
+
+    /* Table (desktop) */
+    #uni-college-fees table.rtable {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        margin: 0 0 1rem;
+    }
+
+    #uni-college-fees .rtable thead {
+        background: var(--sub);
+        color: #fff;
+    }
+
+    #uni-college-fees .rtable th,
+    #uni-college-fees .rtable td {
+        padding: 16px;
+        text-align: left;
+        font-size: 18px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+
+    #uni-college-fees .rtable tbody tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    /* Tablet & mobile: table -> cards (matches your main page behavior) */
+    @media (max-width: 768px) {
+        #uni-college-fees {
+            font-size: 16px;
+        }
+
+        #uni-college-fees .rtable thead {
+            display: none;
+        }
+
+        #uni-college-fees .rtable,
+        #uni-college-fees .rtable tbody,
+        #uni-college-fees .rtable tr,
+        #uni-college-fees .rtable td {
+            display: block;
+            width: 100%;
+        }
+
+        #uni-college-fees .rtable {
+            box-shadow: none !important;
+            margin-bottom: 0 !important;
+        }
+
+        #uni-college-fees .rtable tr {
+            margin-bottom: 16px;
+            border: 1px solid var(--sub);
+            padding: 16px;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        #uni-college-fees .rtable td {
+            border: none;
+            padding: 12px 0;
+            position: relative;
+            font-size: 16px;
+        }
+
+        #uni-college-fees .rtable td::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: var(--sub);
+            display: block;
+            margin-bottom: 4px;
+        }
+    }
+</style>
+
+<div id="uni-college-fees">
+    <div class="section-body">
+        <table class="rtable">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Item">Hourly In - Class</td>
+                    <td data-label="Amount">$35 per hour (scheduled 3 days before)</td>
+                </tr>
+                <tr>
+                    <td data-label="Item">Hourly Online</td>
+                    <td data-label="Amount">$40 per hour (scheduled 3 days before)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </details>
+</div>
