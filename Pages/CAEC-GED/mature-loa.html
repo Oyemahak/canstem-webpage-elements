@@ -1,6 +1,6 @@
-<!-- Mature Full-Time — stand-alone & responsive -->
+<!-- Mature – LOA — stand-alone & responsive -->
 <style>
-    #mature-fulltime {
+    #mature-loa-block {
         --head: #000;
         --sub: #00427c;
         --ink: #26262B;
@@ -14,47 +14,47 @@
         font-size: 18px;
     }
 
-    #mature-fulltime .accent {
+    #mature-loa-block .accent {
         color: var(--sub);
         font-weight: 700;
         margin: 0 0 .75rem;
     }
 
-    #mature-fulltime .section-body {
+    #mature-loa-block .section-body {
         background: #fff;
     }
 
-    #mature-fulltime .sep {
+    #mature-loa-block .sep {
         height: 1px;
         background: #eef2f7;
         margin: 1rem 0;
     }
 
-    #mature-fulltime ul.bullets {
+    #mature-loa-block ul.bullets {
         margin: .25rem 0 1rem 1.25rem;
     }
 
-    #mature-fulltime ul.bullets li {
+    #mature-loa-block ul.bullets li {
         margin: .35rem 0;
     }
 
     /* table (desktop) */
-    #mature-fulltime table.rtable {
+    #mature-loa-block table.rtable {
         width: 100%;
         border-collapse: collapse;
         overflow: hidden;
         border-radius: 12px;
         box-shadow: var(--shadow);
-        margin: 0 0 1rem;
+        margin: 0 0 1.5rem;
     }
 
-    #mature-fulltime .rtable thead {
+    #mature-loa-block .rtable thead {
         background: var(--sub);
         color: #fff;
     }
 
-    #mature-fulltime .rtable th,
-    #mature-fulltime .rtable td {
+    #mature-loa-block .rtable th,
+    #mature-loa-block .rtable td {
         padding: 16px;
         text-align: left;
         font-size: 18px;
@@ -62,34 +62,34 @@
         vertical-align: top;
     }
 
-    #mature-fulltime .rtable tbody tr:nth-child(even) {
+    #mature-loa-block .rtable tbody tr:nth-child(even) {
         background: #f9f9f9;
     }
 
-    /* mobile/tablet: table -> cards */
+    /* mobile/tablet */
     @media (max-width:768px) {
-        #mature-fulltime {
+        #mature-loa-block {
             font-size: 16px;
         }
 
-        #mature-fulltime .rtable thead {
+        #mature-loa-block .rtable thead {
             display: none;
         }
 
-        #mature-fulltime .rtable,
-        #mature-fulltime .rtable tbody,
-        #mature-fulltime .rtable tr,
-        #mature-fulltime .rtable td {
+        #mature-loa-block .rtable,
+        #mature-loa-block .rtable tbody,
+        #mature-loa-block .rtable tr,
+        #mature-loa-block .rtable td {
             display: block;
             width: 100%;
         }
 
-        #mature-fulltime .rtable {
+        #mature-loa-block .rtable {
             box-shadow: none !important;
             margin-bottom: 0 !important;
         }
 
-        #mature-fulltime .rtable tr {
+        #mature-loa-block .rtable tr {
             margin-bottom: 16px;
             border: 1px solid var(--sub);
             padding: 16px;
@@ -97,14 +97,14 @@
             background: #fff;
         }
 
-        #mature-fulltime .rtable td {
+        #mature-loa-block .rtable td {
             border: none;
             padding: 12px 0;
             position: relative;
             font-size: 16px;
         }
 
-        #mature-fulltime .rtable td::before {
+        #mature-loa-block .rtable td::before {
             content: attr(data-label);
             font-weight: 700;
             color: var(--sub);
@@ -114,7 +114,7 @@
     }
 </style>
 
-<div id="mature-fulltime">
+<div id="mature-loa-block">
     <div class="section-body">
 
         <table class="rtable">
@@ -126,35 +126,38 @@
             </thead>
             <tbody>
                 <tr>
-                    <td data-label="Item">PLAR</td>
-                    <td data-label="Amount">$150 per course</td>
-                </tr>
-                <tr>
-                    <td data-label="Item">Registration Fee</td>
+                    <td data-label="Item">One-time Registration Fee</td>
                     <td data-label="Amount">$850</td>
                 </tr>
                 <tr>
-                    <td data-label="Item">Course Fee</td>
-                    <td data-label="Amount">$499 per course</td>
+                    <td data-label="Item">PLAR</td>
+                    <td data-label="Amount">$450</td>
                 </tr>
                 <tr>
-                    <td data-label="Item">Online Exam Fee</td>
-                    <td data-label="Amount">$150 per online exam</td>
+                    <td data-label="Item">Grade 9</td>
+                    <td data-label="Amount">$7,350</td>
                 </tr>
                 <tr>
-                    <td data-label="Item">After school help</td>
-                    <td data-label="Amount">Not included</td>
+                    <td data-label="Item">Grade 10</td>
+                    <td data-label="Amount">$7,350</td>
+                </tr>
+                <tr>
+                    <td data-label="Item">Grade 11</td>
+                    <td data-label="Amount">$7,850</td>
+                </tr>
+                <tr>
+                    <td data-label="Item">Grade 12</td>
+                    <td data-label="Amount">$7,850</td>
+                </tr>
+                <tr>
+                    <td data-label="Item">LOA Requirement</td>
+                    <td data-label="Amount">One year fee should be paid upfront</td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="sep"></div>
-
         <ul class="bullets">
-            <li>Sending transcripts to different guidance counselor/ university/ college : $25</li>
-            <li>Assessment charges: $450</li>
             <li>Admin fee: $95</li>
-            <li>Documentation processing fee: $250</li>
             <li>Consultation fee: $100</li>
         </ul>
 

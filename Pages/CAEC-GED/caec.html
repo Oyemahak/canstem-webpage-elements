@@ -1,0 +1,152 @@
+<!-- CAEC Tutoring Fees — stand-alone & responsive -->
+<style>
+    /* Scope to this block only */
+    #caec-fees {
+        --head: #000000;
+        --sub: #00427c;
+        --ink: #26262B;
+        --muted: #333333;
+        --panel: #ffffff;
+        --border: #e2e8f0;
+        --shadow: 0 4px 20px rgba(0, 0, 0, .08);
+
+        font-family: "Open Sans", sans-serif;
+        color: var(--ink);
+        max-width: 1200px;
+        line-height: 1.6;
+        font-size: 18px;
+    }
+
+    #caec-fees .section-body {
+        background: #fff;
+    }
+
+    #caec-fees .section-body>*+* {
+        margin-top: 14px;
+    }
+
+    #caec-fees .accent {
+        color: var(--sub);
+        font-weight: 700;
+        margin-top: 1.25rem;
+    }
+
+    #caec-fees .muted {
+        color: var(--muted);
+    }
+
+    #caec-fees .sep {
+        height: 1px;
+        background: #eef2f7;
+        margin: 1rem 0;
+    }
+
+    /* Table (desktop) */
+    #caec-fees table.rtable {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        margin: 0 0 1rem;
+    }
+
+    #caec-fees .rtable thead {
+        background: var(--sub);
+        color: #fff;
+    }
+
+    #caec-fees .rtable th,
+    #caec-fees .rtable td {
+        padding: 16px;
+        text-align: left;
+        font-size: 18px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+
+    #caec-fees .rtable tbody tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    /* Tablet & mobile: table -> cards */
+    @media (max-width: 1024px) {
+        #caec-fees {
+            font-size: 16px;
+        }
+
+        #caec-fees .rtable thead {
+            display: none;
+        }
+
+        #caec-fees .rtable,
+        #caec-fees .rtable tbody,
+        #caec-fees .rtable tr,
+        #caec-fees .rtable td {
+            display: block;
+            width: 100%;
+        }
+
+        #caec-fees .rtable {
+            box-shadow: none !important;
+            margin-bottom: 0 !important;
+        }
+
+        #caec-fees .rtable tr {
+            margin-bottom: 16px;
+            border: 1px solid var(--sub);
+            padding: 16px;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        #caec-fees .rtable td {
+            border: none;
+            padding: 12px 0;
+            position: relative;
+            font-size: 16px;
+        }
+
+        #caec-fees .rtable td::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: var(--sub);
+            display: block;
+            margin-bottom: 4px;
+        }
+    }
+</style>
+
+<div id="caec-fees">
+        <div class="section-body">
+            <table class="rtable">
+                <thead>
+                    <tr>
+                        <th>Package</th>
+                        <th>Details</th>
+                        <th>Monthly Fee</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Package">Package 1</td>
+                        <td data-label="Details">In-person classes, twice a week</td>
+                        <td data-label="Monthly Fee"><strong>$250 / month</strong></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Package">Package 2</td>
+                        <td data-label="Details">In-person classes, six days a week</td>
+                        <td data-label="Monthly Fee"><strong>$500 / month</strong></td>
+                    </tr>
+                    <tr>
+                        <td data-label="Package">Package 3</td>
+                        <td data-label="Details">Online program (Zoom), 2 hours/day, 5 days/week</td>
+                        <td data-label="Monthly Fee"><strong>$250 / month</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p class="muted">Note: Scheduling is subject to availability. Please contact us to confirm class times.</p>
+        </div>
+    </details>
+</div>

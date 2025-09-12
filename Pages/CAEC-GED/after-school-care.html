@@ -1,0 +1,112 @@
+<!-- After School Care — stand-alone & responsive -->
+<style>
+  /* Scope to this block only */
+  #after-school-fees {
+    --sub: #00427c;
+    --ink: #26262B;
+    --border: #e2e8f0;
+    --shadow: 0 4px 20px rgba(0,0,0,.08);
+    font-family: "Open Sans", sans-serif;
+    color: var(--ink);
+    max-width: 1200px;
+    line-height: 1.6;
+    font-size: 18px;
+  }
+
+  #after-school-fees .section-body {
+    background: #fff;
+  }
+
+  /* Table (desktop) */
+  #after-school-fees table.rtable {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    margin: 0 0 1rem;
+  }
+  #after-school-fees .rtable thead {
+    background: var(--sub);
+    color: #fff;
+  }
+  #after-school-fees .rtable th,
+  #after-school-fees .rtable td {
+    padding: 16px;
+    text-align: left;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+  #after-school-fees .rtable tbody tr:nth-child(even){
+    background:#f9f9f9;
+  }
+
+  /* Mobile & tablet: table -> cards */
+  @media (max-width: 768px) {
+    #after-school-fees { font-size: 16px; }
+    #after-school-fees .rtable thead { display:none; }
+    #after-school-fees .rtable,
+    #after-school-fees .rtable tbody,
+    #after-school-fees .rtable tr,
+    #after-school-fees .rtable td {
+      display:block; width:100%;
+    }
+    #after-school-fees .rtable { box-shadow:none !important; margin-bottom:0 !important; }
+    #after-school-fees .rtable tr{
+      margin-bottom:16px;
+      border:1px solid var(--sub);
+      padding:16px;
+      border-radius:12px;
+      background:#fff;
+    }
+    #after-school-fees .rtable td{
+      border:none;
+      padding:12px 0;
+      position:relative;
+      font-size:16px;
+    }
+    #after-school-fees .rtable td::before{
+      content: attr(data-label);
+      font-weight:700;
+      color:var(--sub);
+      display:block;
+      margin-bottom:4px;
+    }
+  }
+</style>
+
+<div id="after-school-fees">
+  <div class="section-body">
+    <table class="rtable">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Amount / Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td data-label="Item">Extra hour (before 9am &amp; after 4pm)</td>
+          <td data-label="Amount / Notes">$20 per hour</td>
+        </tr>
+        <tr>
+          <td data-label="Item">Weekly</td>
+          <td data-label="Amount / Notes">$50 per week</td>
+        </tr>
+        <tr>
+          <td data-label="Item">Monthly</td>
+          <td data-label="Amount / Notes">$150 per month (4pm–8pm, 8am–9am)</td>
+        </tr>
+        <tr>
+          <td data-label="Item">Tutoring / Study</td>
+          <td data-label="Amount / Notes">Not included</td>
+        </tr>
+        <tr>
+          <td data-label="Item">Note</td>
+          <td data-label="Amount / Notes">(Students can get our tutoring packages; no need to pay for after school care if tutoring package is chosen)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
