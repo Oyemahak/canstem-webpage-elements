@@ -1,34 +1,41 @@
-// Name In Snippet: Disable Yoast Breadcrumbs schema on private pages
-// Remove Yoast Breadcrumbs schema AND WebPage->breadcrumb reference on selected pages.
+// Disable Yoast Breadcrumbs schema on selected pages (safe, no class refs).
 add_action( 'wp', function () {
 
     // Add every private/password page slug here:
     $private_slugs = array( 'live-links', 'fee-structure' );
 
-    if ( ! is_page( $private_slugs ) ) {
-        return; // do nothing on other pages
+    // Only act on those pages.
+    if ( ! is_page( $private_slugs ) || ! defined( 'WPSEO_VERSION' ) ) {
+        return;
     }
 
-    // 1) Drop the BreadcrumbList piece from the schema graph.
-    add_filter( 'wpseo_schema_graph_pieces', function( $pieces, $context ) {
-        foreach ( $pieces as $k => $piece ) {
-            $matches_class = class_exists( '\Yoast\WP\SEO\Generators\Schema\Breadcrumb' )
-                && $piece instanceof \Yoast\WP\SEO\Generators\Schema\Breadcrumb;
-            $matches_type = is_object( $piece ) && property_exists( $piece, 'type' )
-                && $piece->type === 'BreadcrumbList';
-            if ( $matches_class || $matches_type ) {
-                unset( $pieces[$k] );
-            }
-        }
-        return $pieces;
-    }, 10, 2 );
-
-    // 2) Remove the 'breadcrumb' @id from the WebPage schema piece.
+    // 1) Remove the 'breadcrumb' @id reference from the WebPage schema.
     add_filter( 'wpseo_schema_webpage', function( $data ) {
-        if ( isset( $data['breadcrumb'] ) ) {
+        if ( is_array( $data ) && isset( $data['breadcrumb'] ) ) {
             unset( $data['breadcrumb'] );
         }
         return $data;
-    }, 10, 1 );
+    }, 20 );
+
+    // 2) Neutralize Yoast's breadcrumb piece directly.
+    add_filter( 'wpseo_schema_breadcrumb', function( $data ) {
+        // Yoast passes an array; return empty to kill it.
+        return array();
+    }, 20 );
+
+    // 3) Final safety net: strip any BreadcrumbList objects from the full graph.
+    add_filter( 'wpseo_json_ld_output', function( $data ) {
+        if ( is_array( $data ) && isset( $data['@graph'] ) && is_array( $data['@graph'] ) ) {
+            $data['@graph'] = array_values( array_filter( $data['@graph'], function( $piece ) {
+                // Handles both string '@type' and array '@type'
+                if ( is_array( $piece ) && isset( $piece['@type'] ) ) {
+                    if ( is_string( $piece['@type'] ) && $piece['@type'] === 'BreadcrumbList' ) return false;
+                    if ( is_array( $piece['@type'] ) && in_array( 'BreadcrumbList', $piece['@type'], true ) ) return false;
+                }
+                return true;
+            } ) );
+        }
+        return $data;
+    }, 20 );
 
 });
