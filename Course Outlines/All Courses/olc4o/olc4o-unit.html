@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OLC4O - Ontario Secondary School Literacy Course (Grade 12)</title>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #fff;
+      color: #26262B;
+      margin: 0;
+      padding: 0;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .unit-details { margin-top: 1rem; }
+
+    .unit-toggle {
+      background-color: #00427C;
+      color: #fff;
+      font-weight: 600;
+      padding: 14px 20px;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 12px;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      transition: background 0.3s ease;
+    }
+    .unit-toggle:hover { background-color: #001161; }
+    .unit-toggle .arrow { transition: transform 0.3s ease; }
+    .unit-toggle.open .arrow { transform: rotate(180deg); }
+
+    .unit-content {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      padding: 0 1.5rem;
+      transform: scaleY(0.98);
+      transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.4s ease, transform 0.4s ease;
+      background-color: #ffffff;
+      border-left: 4px solid #e59500;
+      border-radius: 0 0 6px 6px;
+      margin-bottom: 1rem;
+    }
+    .unit-content.open { opacity: 1; transform: scaleY(1); }
+
+    .unit-content ul { margin: 0; padding: 1rem 0 1rem 1.2rem; }
+    .unit-content li { margin-bottom: 0.5rem; font-size: 18px; }
+
+    @media (max-width: 768px) {
+      .unit-toggle, .unit-content li { font-size: 16px; }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="olc4o-course">
+    <div class="container">
+      <div class="unit-details">
+
+        <div class="unit-toggle">1. Building Reading Skills <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Read and respond to informational, narrative, and graphic texts.</li>
+            <li>Understand organization and features of reports, stories, textbooks, news/magazine articles, and short fiction.</li>
+            <li>Apply before/during/after reading strategies to interpret content and meaning.</li>
+            <li>Use strategies to understand unfamiliar and specialized vocabulary.</li>
+            <li><strong>Time:</strong> 35 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">2. Building Writing Skills <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Use the writing process to plan, draft, revise, and produce polished pieces.</li>
+            <li>Write summaries, information paragraphs, opinion pieces (series of paragraphs), and news reports.</li>
+            <li>Match form to audience and purpose; include graphic elements when appropriate.</li>
+            <li><strong>Time:</strong> 35 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">3. Understanding and Assessing Growth in Literacy <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Recognize the importance of communication skills at school, work, and home.</li>
+            <li>Understand roles and responsibilities in the learning process.</li>
+            <li>Explain reading and writing processes and their role in learning.</li>
+            <li>Assess and reflect on personal growth in literacy during the course.</li>
+            <li><strong>Time:</strong> 35 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">Review, Summative & Exam <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Course review and culminating evaluations demonstrating overall literacy skills.</li>
+            <li><strong>Time:</strong> 5 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">Eligibility Requirement <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Students eligible to write the OSSLT at least twice and unsuccessful at least once may take this course.</li>
+            <li>Students who have already met the literacy requirement may take the course under special circumstances at the principal’s discretion.</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">Evaluation Breakdown <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li><strong>70%</strong> – Term Work (products, observations, conversations)</li>
+            <li><strong>30%</strong> – Final Evaluation (summative + exam)</li>
+            <li><strong>Categories:</strong> Knowledge &amp; Understanding – 20%, Thinking &amp; Inquiry – 20%, Application – 40%, Communication – 20%</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">Teaching & Learning Strategies <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Direct instruction; teacher‑facilitated class and small‑group discussions.</li>
+            <li>Worksheets/surveys, independent work, brainstorming, presentations.</li>
+            <li>Use of computers/Internet, video/audio materials, experiential learning.</li>
+            <li>Conferencing, peer/self assessment, inquiry‑based activities.</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">Resources <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li><strong>Core:</strong> Literature and Media – Nelson English.</li>
+            <li><strong>Additional:</strong> A variety of news articles, videos, and books.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const toggles = document.querySelectorAll('.unit-toggle');
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const content = toggle.nextElementSibling;
+        const isOpen = toggle.classList.contains('open');
+
+        document.querySelectorAll('.unit-toggle').forEach(t => t.classList.remove('open'));
+        document.querySelectorAll('.unit-content').forEach(c => {
+          c.classList.remove('open');
+          c.style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          toggle.classList.add('open');
+          content.classList.add('open');
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

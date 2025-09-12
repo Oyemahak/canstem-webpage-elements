@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OLC4O – Ontario Secondary School Literacy Course</title>
+
+  <style>
+    body {
+      font-family: 'Lato', sans-serif;
+      color: #26262B;
+      line-height: 1.6;
+      font-size: 16px;
+      background: #fff;
+      margin: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+    }
+
+    table,
+    td,
+    th {
+      border: 0;
+    }
+
+    .unit-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      table-layout: fixed;
+    }
+
+    .unit-table thead {
+      background-color: #00427C;
+      color: #fff;
+    }
+
+    .unit-table th,
+    .unit-table td {
+      padding: 18px 20px;
+      text-align: left;
+      font-size: 16px;
+      border-bottom: 1px solid transparent;
+      vertical-align: top;
+    }
+
+    .unit-table th:nth-child(1),
+    .unit-table td:nth-child(1) {
+      width: 8%;
+    }
+
+    .unit-table th:nth-child(2),
+    .unit-table td:nth-child(2) {
+      width: 36%;
+    }
+
+    .unit-table th:nth-child(3),
+    .unit-table td:nth-child(3) {
+      width: 41%;
+    }
+
+    .unit-table th:nth-child(4),
+    .unit-table td:nth-child(4) {
+      width: 15%;
+      white-space: nowrap;
+    }
+
+    .unit-table tbody tr:not(:last-child) td {
+      border-bottom: 1px solid #eee;
+    }
+
+    .unit-table tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    /* Desktop footer style (kept the same) */
+    .unit-table tfoot td {
+      color: #fff;
+      font-weight: bold;
+      border-top: 2px solid #00427C;
+      background-color: #00427C;
+    }
+
+    /* Mobile card view */
+    @media (max-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+
+      .unit-table thead {
+        display: none;
+      }
+
+      .unit-table,
+      .unit-table tbody,
+      .unit-table tr,
+      .unit-table td,
+      .unit-table tfoot,
+      .unit-table tfoot tr,
+      .unit-table tfoot td {
+        display: block;
+      }
+
+      .unit-table {
+        box-shadow: none !important;
+        margin-bottom: 0 !important;
+      }
+
+      .unit-table tbody tr:not(:last-child) td {
+        border-bottom: 0;
+      }
+
+      /* Column widths become full width in cards */
+      .unit-table th:nth-child(1),
+      .unit-table td:nth-child(1),
+      .unit-table th:nth-child(2),
+      .unit-table td:nth-child(2),
+      .unit-table th:nth-child(3),
+      .unit-table td:nth-child(3),
+      .unit-table th:nth-child(4),
+      .unit-table td:nth-child(4) {
+        width: 100%;
+      }
+
+      .unit-table tr {
+        margin: 16px 0;
+        border: 1px solid #00427c;
+        padding: 16px;
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+      }
+
+      .unit-table td{
+        font-size: 16px;
+        padding: 12px 0;
+        border: none;
+        position: relative;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        hyphens: auto;
+      }
+
+      .unit-table td::before{
+        content: attr(data-label);
+        font-weight: 700;
+        color: #00427c;
+        display: block;
+        margin-bottom: 4px;
+        white-space: nowrap;
+        /* keep label on one line */
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <section class="olc4o-course">
+    <div class="container">
+      <table class="unit-table">
+        <thead>
+          <tr>
+            <th>Unit</th>
+            <th>Title</th>
+            <th>Summary</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Unit">1</td>
+            <td data-label="Title">Building Reading Skills</td>
+            <td data-label="Summary">Read informational, narrative, and graphic texts; use strategies to understand
+              ideas, structure, and vocabulary.</td>
+            <td data-label="Time">35 Hours</td>
+          </tr>
+          <tr>
+            <td data-label="Unit">2</td>
+            <td data-label="Title">Building Writing Skills</td>
+            <td data-label="Summary">Use the writing process to produce summaries, information paragraphs, opinion
+              pieces, and news reports.</td>
+            <td data-label="Time">35 Hours</td>
+          </tr>
+          <tr>
+            <td data-label="Unit">3</td>
+            <td data-label="Title">Understanding and Assessing Growth in Literacy</td>
+            <td data-label="Summary">Reflect on communication skills, roles in learning, and personal growth in reading
+              and writing.</td>
+            <td data-label="Time">35 Hours</td>
+          </tr>
+          <tr>
+            <td data-label="Unit">Final</td>
+            <td data-label="Title">Review, Summative & Exam</td>
+            <td data-label="Summary">Culminating review and final evaluation.</td>
+            <td data-label="Time">5 Hours</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</body>
+
+</html>

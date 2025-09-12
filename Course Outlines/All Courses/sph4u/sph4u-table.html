@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPH4U – Physics, Grade 12 (University Preparation)</title>
+  <style>
+    :root {
+      --ink: #26262B;
+      --brand: #00427C;
+      --rule: #e6e6e6;
+      --stripe: #f9f9f9;
+    }
+
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
+
+    body {
+      font-family: 'Lato', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      margin: 0;
+      line-height: 1.6;
+      font-size: 16px;
+      background: #fff;
+    }
+
+    .container {
+      max-width: 1200px;
+    }
+
+    table,
+    td,
+    th {
+      border: 0;
+    }
+
+    .unit-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
+    }
+
+    .unit-table thead {
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .unit-table th,
+    .unit-table td {
+      padding: 16px 18px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid transparent;
+      font-size: 16px;
+    }
+
+    .unit-table tbody tr:not(:last-child) td {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .unit-table tbody tr:nth-child(even) {
+      background: var(--stripe);
+    }
+
+    .unit-table th:last-child,
+    .unit-table td:last-child {
+      white-space: nowrap;
+    }
+
+    /* Desktop column breathing room (helps long titles) */
+    .unit-table col:nth-child(1) {
+      width: 8%;
+    }
+
+    .unit-table col:nth-child(2) {
+      width: 36%;
+    }
+
+    /* wider title */
+    .unit-table col:nth-child(3) {
+      width: 41%;
+    }
+
+    .unit-table col:nth-child(4) {
+      width: 15%;
+    }
+
+    /* --- Mobile Card View --- */
+    @media (max-width: 768px) {
+      .unit-table thead {
+        display: none;
+      }
+
+      .unit-table {
+        box-shadow: none;
+        border-radius: 0;
+      }
+
+      .unit-table,
+      .unit-table tbody,
+      .unit-table tr,
+      .unit-table td {
+        display: block;
+      }
+
+      .unit-table tr {
+        width: 100%;
+        margin: 16px 0;
+        border: 1px solid var(--brand);
+        border-radius: 12px;
+        padding: 14px 16px;
+        background: #fff;
+        /* solid card background */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, .06);
+      }
+
+      .unit-table tbody tr:nth-child(even) {
+        background: #fff;
+      }
+
+      /* remove zebra inside cards */
+      .unit-table tbody tr:not(:last-child) td {
+        border-bottom: 0;
+      }
+
+      .unit-table td {
+        border: none;
+        padding: 8px 0;
+        position: relative;
+
+        /* 🧽 fix long-text squeeze */
+        overflow-wrap: anywhere;
+        /* modern wrap */
+        word-break: break-word;
+        /* fallback wrap */
+        hyphens: auto;
+        /* nicer splitting where allowed */
+      }
+
+      .unit-table td::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: 700;
+        color: var(--brand);
+        margin-bottom: 4px;
+        line-height: 1.2;
+      }
+
+      /* Emphasis + spacing for key rows inside card */
+      .unit-table td[data-label="Title"] {
+        font-weight: 700;
+        margin-top: 4px;
+      }
+
+      .unit-table td[data-label="Summary"] {
+        margin-top: 2px;
+      }
+
+      .unit-table td[data-label="Time"] {
+        margin-top: 6px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="sph4u-course">
+    <div class="container">
+      <table class="unit-table">
+        <colgroup>
+          <col>
+          <col>
+          <col>
+          <col>
+        </colgroup>
+        <thead>
+          <tr>
+            <th>Unit</th>
+            <th>Title</th>
+            <th>Summary</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Unit">1</td>
+            <td data-label="Title">Scientific Investigation Skills and Career Exploration</td>
+            <td data-label="Summary">Plan/perform investigations, analyze results, explore physics careers.</td>
+            <td data-label="Time">10 Hours</td>
+          </tr>
+          <tr>
+            <td data-label="Unit">2</td>
+            <td data-label="Title">Dynamics</td>
+            <td data-label="Summary">Motion in a plane, forces, circular motion, and tech applications.</td>
+            <td data-label="Time">20 Hours</td>
+          </tr>
+          <tr>
+            <td data-label="Unit">3</td>
+            <td data-label="Title">Energy and Momentum</td>
+            <td data-label="Summary">Conservation laws and collisions (1D/2D); labs/simulations.</td>
+            <td data-label="Time">20 Hours</td>
+          </tr>
+          <tr>
+            <td data-label="Unit">4</td>
+            <td data-label="Title">Gravitational, Electric, and Magnetic Fields</td>
+            <td data-label="Summary">Field concepts, interactions with matter, field‑based technologies.</td>
+            <td data-label="Time">20 Hours</td>
+          </tr>
+          <tr>
+            <td data-label="Unit">5</td>
+            <td data-label="Title">The Wave Nature of Light</td>
+            <td data-label="Summary">Diffraction, refraction, interference, and polarization of light.</td>
+            <td data-label="Time">20 Hours</td>
+          </tr>
+          <tr>
+            <td data-label="Unit">6</td>
+            <td data-label="Title">Revolutions in Modern Physics: Quantum Mechanics and Special Relativity</td>
+            <td data-label="Summary">Core ideas of quantum and relativity; impact on science/tech.</td>
+            <td data-label="Time">15 Hours</td>
+          </tr>
+          <tr>
+            <td data-label="Unit">Final</td>
+            <td data-label="Title">Review, Summative and Exam</td>
+            <td data-label="Summary">Course‑wide review and culminating evaluation.</td>
+            <td data-label="Time">5 Hours</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</body>
+
+</html>

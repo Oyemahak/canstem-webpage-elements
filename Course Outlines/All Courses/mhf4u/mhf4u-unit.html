@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MHF4U – Advanced Functions</title>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #fff;
+      color: #26262B;
+      margin: 0;
+      padding: 0;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .unit-details {
+      margin-top: 1rem;
+    }
+
+    .unit-toggle {
+      background-color: #00427C;
+      color: #fff;
+      font-weight: 600;
+      padding: 14px 20px;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 12px;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      transition: background 0.3s ease;
+    }
+
+    .unit-toggle:hover {
+      background-color: #001161;
+    }
+
+    .unit-toggle .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .unit-toggle.open .arrow {
+      transform: rotate(180deg);
+    }
+
+    .unit-content {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      padding: 0 1.5rem;
+      transform: scaleY(0.98);
+      transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.4s ease, transform 0.4s ease;
+      background-color: #ffffff;
+      border-left: 4px solid #e59500;
+      border-radius: 0 0 6px 6px;
+      margin-bottom: 1rem;
+    }
+
+    .unit-content.open {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+
+    .unit-content ul {
+      margin: 0;
+      padding: 1rem 0 1rem 1.2rem;
+    }
+
+    .unit-content li {
+      margin-bottom: 0.5rem;
+      font-size: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .unit-toggle,
+      .unit-content li {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="mhf4u-course">
+    <div class="container">
+      <div class="unit-details">
+
+        <div class="unit-toggle">1. Exponential & Logarithmic Functions <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Understand relationships between exponential and logarithmic expressions</li>
+            <li>Apply logarithmic laws to simplify and evaluate expressions</li>
+            <li>Graph and interpret logarithmic functions</li>
+            <li>Solve exponential and logarithmic equations including real-life applications</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">2. Trigonometric Functions <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Use radian measure to describe angles and arcs</li>
+            <li>Graph primary and reciprocal trigonometric functions</li>
+            <li>Prove trigonometric identities</li>
+            <li>Solve trigonometric equations with real applications</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">3. Polynomial & Rational Functions <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Analyze and graph polynomial functions of various degrees</li>
+            <li>Understand rational functions and asymptotic behavior</li>
+            <li>Solve rational equations and inequalities algebraically and graphically</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">4. Characteristics of Functions <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Determine average and instantaneous rate of change</li>
+            <li>Perform operations and compositions of functions</li>
+            <li>Compare properties of different types of functions</li>
+            <li>Model and solve complex problems with function behavior</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle"> Evaluation Breakdown <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li><strong>70%</strong> – Term Work (assignments, quizzes, unit tests, projects)</li>
+            <li><strong>30%</strong> – Final Evaluation (summative + exam)</li>
+            <li>🧠 Knowledge & Understanding – 20%</li>
+            <li>💡 Thinking & Inquiry – 20%</li>
+            <li>🛠 Application – 40%</li>
+            <li>🗣 Communication – 20%</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle"> Teaching & Learning Strategies <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Direct instruction and teacher-led discussions</li>
+            <li>Worksheets, brainstorming, and problem-solving activities</li>
+            <li>A mix of independent and group-based learning</li>
+            <li>Real-world applications enhanced through technology and visual tools</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle"> Resources <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>📘 Advanced Functions – McGraw-Hill Ryerson (2008)</li>
+            <li>📘 Advanced Functions – Nelson Education Ltd (2008)</li>
+            <li>🌐 Online platforms: YouTube, Wikipedia, GeoGebra, Desmos</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const toggles = document.querySelectorAll('.unit-toggle');
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const content = toggle.nextElementSibling;
+        const isOpen = toggle.classList.contains('open');
+
+        document.querySelectorAll('.unit-toggle').forEach(t => t.classList.remove('open'));
+        document.querySelectorAll('.unit-content').forEach(c => {
+          c.classList.remove('open');
+          c.style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          toggle.classList.add('open');
+          content.classList.add('open');
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

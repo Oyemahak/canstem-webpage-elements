@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MHF4U – Advanced Functions</title>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #26262B;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Table */
+    
+    table, td, th {
+    border: 0px solid var(--ast-border-color);
+    }
+    .unit-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .unit-table thead {
+      background-color: #00427C;
+      color: #fff;
+    }
+
+    .unit-table th,
+    .unit-table td {
+      padding: 18px 20px;
+      text-align: left;
+      font-size: 18px;
+      border-bottom: 1px solid transparent;
+    }
+
+    .unit-table td:last-child,
+    .unit-table th:last-child {
+      white-space: nowrap;
+    }
+
+    .unit-table tbody tr:not(:last-child) td {
+      border-bottom: 1px solid #eee;
+    }
+
+    .unit-table tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    /* Responsive Table */
+    @media (max-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+
+      .unit-table thead {
+        display: none;
+      }
+
+      .unit-table,
+      .unit-table tbody,
+      .unit-table tr,
+      .unit-table td {
+        display: block;
+      }
+
+      .unit-table {
+        box-shadow: none !important;
+        margin-bottom: 0 !important;
+      }
+
+      .unit-table tbody tr:not(:last-child) td {
+        border-bottom: 0;
+      }
+
+      .unit-table tr {
+        margin-bottom: 16px;
+        border: 1px solid #00427c;
+        padding: 16px;
+        box-shadow: none;
+        border-radius: 12px;
+      }
+
+      .unit-table td {
+        font-size: 16px;
+        padding: 12px 0px;
+        border: none;
+        position: relative;
+      }
+
+      .unit-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: #00427c;
+        display: block;
+        margin-bottom: 4px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="mhf4u-course">
+    <div class="container">
+      <table class="unit-table">
+        <thead>
+          <tr>
+            <th>Unit</th>
+            <th>Title</th>
+            <th>Expectations Summary</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="Unit">1</td>
+            <td data-label="Title">Exponential and Logarithmic Functions</td>
+            <td data-label="Expectations Summary">Understand exponential-log relationships, laws of logs, graphs, and equations for real-world problems.</td>
+            <td data-label="Time">26 Hours</td>
+          </tr>
+          <tr>
+            <td data-label="Unit">2</td>
+            <td data-label="Title">Trigonometric Functions</td>
+            <td data-label="Expectations Summary">Explore radian measure, graphs, identities, reciprocal functions, and trigonometric equations.</td>
+            <td data-label="Time">30 Hours</td>
+          </tr>
+          <tr>
+            <td data-label="Unit">3</td>
+            <td data-label="Title">Polynomial and Rational Functions</td>
+            <td data-label="Expectations Summary">Connect numeric, algebraic, graphical models, solve equations and inequalities.</td>
+            <td data-label="Time">26 Hours</td>
+          </tr>
+          <tr>
+            <td data-label="Unit">4</td>
+            <td data-label="Title">Characteristics of Functions</td>
+            <td data-label="Expectations Summary">Compare functions, calculate rate of change, perform operations and compositions.</td>
+            <td data-label="Time">26 Hours</td>
+          </tr>
+          <tr>
+            <td data-label="Unit">Final</td>
+            <td data-label="Title">Exam and Summative</td>
+            <td data-label="Expectations Summary">Evaluation of all learning</td>
+            <td data-label="Time">3 Hours</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</body>
+
+</html>

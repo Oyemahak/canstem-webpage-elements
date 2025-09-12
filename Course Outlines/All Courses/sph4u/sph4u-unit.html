@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPH4U – Physics, Grade 12 (University Preparation)</title>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #fff;
+      color: #26262B;
+      margin: 0;
+      padding: 0;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .unit-details {
+      margin-top: 1rem;
+    }
+
+    .unit-toggle {
+      background-color: #00427C;
+      color: #fff;
+      font-weight: 600;
+      padding: 14px 20px;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 12px;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      transition: background 0.3s ease;
+    }
+
+    .unit-toggle:hover {
+      background-color: #001161;
+    }
+
+    .unit-toggle .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .unit-toggle.open .arrow {
+      transform: rotate(180deg);
+    }
+
+    .unit-content {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      padding: 0 1.5rem;
+      transform: scaleY(0.98);
+      transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.4s ease, transform 0.4s ease;
+      background-color: #ffffff;
+      border-left: 4px solid #e59500;
+      border-radius: 0 0 6px 6px;
+      margin-bottom: 1rem;
+    }
+
+    .unit-content.open {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+
+    .unit-content ul {
+      margin: 0;
+      padding: 1rem 0 1rem 1.2rem;
+    }
+
+    .unit-content li {
+      margin-bottom: 0.5rem;
+      font-size: 18px;
+    }
+
+    @media (max-width: 768px) {
+
+      .unit-toggle,
+      .unit-content li {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="sph4u-course">
+    <div class="container">
+      <div class="unit-details">
+
+        <div class="unit-toggle">1. Scientific Investigation Skills and Career Exploration <span
+            class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Plan, perform, and record scientific investigations (inquiry & research).</li>
+            <li>Analyze and communicate results clearly using qualitative & quantitative methods.</li>
+            <li>Explore physics-related careers and contributions of scientists, including Canadians.</li>
+            <li><strong>Time:</strong> 10 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">2. Dynamics <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Investigate forces in uniform circular motion and motion in a plane.</li>
+            <li>Solve qualitative and quantitative motion problems.</li>
+            <li>Analyze technologies that apply dynamics and assess social/environmental impact.</li>
+            <li><strong>Time:</strong> 20 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">3. Energy and Momentum <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Examine work, energy, momentum, and conservation laws (1D & 2D).</li>
+            <li>Use labs/simulations to model collisions and energy transfer.</li>
+            <li>Evaluate technologies/procedures using energy & momentum principles.</li>
+            <li><strong>Time:</strong> 20 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">4. Gravitational, Electric, and Magnetic Fields <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Investigate field concepts, properties, and laws; solve field problems.</li>
+            <li>Describe interactions of fields with matter.</li>
+            <li>Analyze field‑based technologies and their social/environmental impact.</li>
+            <li><strong>Time:</strong> 20 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">5. The Wave Nature of Light <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Study wave and light behavior: diffraction, refraction, interference, polarization.</li>
+            <li>Solve quantitative problems using wave models.</li>
+            <li>Assess technologies that use the wave nature of light.</li>
+            <li><strong>Time:</strong> 20 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">6. Revolutions in Modern Physics: Quantum Mechanics and Special Relativity <span
+            class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Investigate core concepts of quantum mechanics and special relativity.</li>
+            <li>Interpret evidence supporting these models and solve related problems.</li>
+            <li>Discuss how new theories shift scientific thought and enable new tech.</li>
+            <li><strong>Time:</strong> 15 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">Review, Summative and Exam <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Comprehensive review of all strands and final evaluation tasks.</li>
+            <li><strong>Time:</strong> 5 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">Evaluation Breakdown <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li><strong>70%</strong> – Term Work (products, observations, conversations)</li>
+            <li><strong>30%</strong> – Final Evaluation (summative + exam)</li>
+            <li><strong>Category Weights:</strong> Knowledge &amp; Understanding – 25%, Thinking – 25%, Communication –
+              25%, Application – 25%</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">Teaching & Learning Strategies <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Direct instruction, teacher‑facilitated discussions, and small‑group work.</li>
+            <li>Labs/experiential learning, independent practice, worksheets & problem solving.</li>
+            <li>Use of technology (simulations, computer/Internet), videos, and presentations.</li>
+            <li>Brainstorming, conferencing/feedback, and inquiry‑based investigations.</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">Resources <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li><strong>Text:</strong> Physics 12 (Nelson, 2007)</li>
+            <li><strong>Other:</strong> Various internet resources</li>
+            <li><strong>Reference:</strong> No required textbook; PowerPoints, notes, and solved examples are provided
+              and required for learning.</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const toggles = document.querySelectorAll('.unit-toggle');
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const content = toggle.nextElementSibling;
+        const isOpen = toggle.classList.contains('open');
+
+        document.querySelectorAll('.unit-toggle').forEach(t => t.classList.remove('open'));
+        document.querySelectorAll('.unit-content').forEach(c => {
+          c.classList.remove('open');
+          c.style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          toggle.classList.add('open');
+          content.classList.add('open');
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>
