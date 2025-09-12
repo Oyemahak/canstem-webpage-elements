@@ -2,7 +2,8 @@
 // Remove Yoast Breadcrumbs schema AND WebPage->breadcrumb reference on selected pages.
 add_action( 'wp', function () {
 
-    $private_slugs = array( 'live-links', 'fees-structure' ); // add more slugs as needed
+    // Add every private/password page slug here:
+    $private_slugs = array( 'live-links', 'fee-structure' );
 
     if ( ! is_page( $private_slugs ) ) {
         return; // do nothing on other pages
