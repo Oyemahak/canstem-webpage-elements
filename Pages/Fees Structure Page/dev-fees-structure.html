@@ -232,11 +232,34 @@
       margin-bottom: 4px;
     }
   }
+
+  /* ---------- NEW: Payment Confirmation visual differentiation ---------- */
+  .chip-payment {
+    border-color: #0f766e;
+    background: #f0fdf9;
+  }
+
+  .chip-payment:hover,
+  .chip-payment:focus {
+    border-color: #0b5e52;
+  }
+
+  #payment-confirmation summary.section-head {
+    background: #f0fdf9;
+    border-left-color: #0f766e;
+  }
+
+  #payment-confirmation.section {
+    box-shadow: 0 6px 24px rgba(15, 118, 110, .12);
+  }
 </style>
 
 <div class="fees-container" id="fees-structure">
 
   <nav class="quicklinks" aria-label="Fee sections">
+    <!-- NEW chip first -->
+    <a class="chip chip-payment" href="#payment-confirmation">Payment Confirmation</a>
+
     <a class="chip" href="#full-time">Full-Time Day School Fees</a>
     <a class="chip" href="#international">Full-Time International</a>
     <a class="chip" href="#ontario-course">Ontario (Course-by-Course)</a>
@@ -249,6 +272,23 @@
     <a class="chip" href="#caec">CAEC</a>
     <a class="chip" href="#tutoring">New Tutoring Fees</a>
   </nav>
+
+  <!-- NEW: Payment Confirmation section (placed before Full-Time) -->
+  <details class="section" id="payment-confirmation">
+    <summary class="section-head">Payment Confirmation</summary>
+    <div class="section-body">
+      <p>We provide receipts for all the payments, and you receive confirmation of etransfer in your email.</p>
+      <ul class="bullets">
+        <li>But, for some reason, you want all payment details on our letterhead, we can provide, at nominal cost.</li>
+        <li>This cost covers time and resources used to investigate your payment transactions and combine them into one
+          single payment confirmation letter.</li>
+        <li>This fee vary and it depends upon number of transactions involved, how long ago these payment were made and
+          how these payment were made.</li>
+        <li>You can contact and submit your request with specific requirement and we will contact you with fee for such
+          a confirmation letter and when you will receive it.</li>
+      </ul>
+    </div>
+  </details>
 
   <details class="section" id="full-time" open>
     <summary class="section-head">Full-Time Day School Fees — Sept 2025 to Aug 2026</summary>
