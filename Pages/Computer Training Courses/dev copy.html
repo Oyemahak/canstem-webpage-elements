@@ -1,0 +1,936 @@
+<!-- ===========================================
+  CanSTEM — Computer Skills Programs (Accordion)
+  - Keeps your reference styles/JS patterns
+  - Distinct theme for Overview/Compare/FAQ
+  - Inquiry + Enroll buttons (given links)
+  - Prefilled mailto to frontdesk@canstem.com
+  - <p> headings only (no <h*> tags)
+  - Mobile/Tablet/Desktop responsive
+=========================================== -->
+
+<style>
+    :root {
+        /* Base palette from your reference */
+        --head: #000000;
+        --sub: #00427c;
+        /* Programs (Levels) accent */
+        --ink: #26262B;
+        --muted: #333333;
+        --panel: #ffffff;
+        --border: #e2e8f0;
+        --shadow: 0 4px 20px rgba(0, 0, 0, .08);
+
+        /* Chips */
+        --chip-border: #f59e0b;
+        --chip-text: #000000;
+        --chip-bg: #fff;
+        --chip-hover-border: #000000;
+        --chip-active-bg: #e6f0ff;
+        --chip-active-border: #666666;
+
+        /* Special theme for Overview/Compare/FAQs */
+        --prime: #0f766e;
+        /* teal */
+        --prime-100: #f0fdf9;
+        --prime-800: #0b5e52;
+
+        /* Background gradient */
+        --bg1: #f7fbff;
+        --bg2: #eef6ff;
+
+        --radius: 12px;
+    }
+
+    /* Page background */
+    .cs-bg {
+        background: radial-gradient(1200px 600px at 10% -10%, var(--bg2) 0%, transparent 60%),
+            radial-gradient(1000px 500px at 100% 0%, var(--prime-100) 0%, transparent 60%),
+            linear-gradient(180deg, var(--bg1), #ffffff);
+    }
+
+    .fees-container {
+        font-family: "Open Sans", sans-serif;
+        color: var(--ink);
+        max-width: 1200px;
+        line-height: 1.6;
+        font-size: 18px;
+        margin: 0 auto;
+        padding: 14px 16px 28px;
+    }
+
+    /* top title (p only) */
+    .page-title {
+        margin: .25rem 0 .5rem;
+        font-size: clamp(24px, 3.6vw, 34px);
+        font-weight: 800;
+        color: var(--head);
+        letter-spacing: .2px;
+    }
+
+    .page-sub {
+        margin: .25rem 0 1rem;
+        color: #444;
+    }
+
+    /* Quick chips */
+    .quicklinks {
+        display: flex;
+        flex-wrap: wrap;
+        gap: .6rem .6rem;
+        margin: .75rem 0 1.25rem;
+        justify-content: left;
+    }
+
+    .chip {
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 700;
+        padding: .55rem .9rem;
+        border-radius: 999px;
+        border: 2px solid var(--chip-border);
+        background: var(--chip-bg);
+        transition: border-color .2s, box-shadow .2s, background .2s, color .2s, transform .06s;
+        color: var(--chip-text) !important;
+    }
+
+    .chip:link,
+    .chip:visited {
+        color: var(--chip-text) !important;
+    }
+
+    .chip:hover,
+    .chip:focus {
+        color: var(--chip-text) !important;
+        border-color: var(--chip-hover-border);
+        outline: none;
+    }
+
+    .chip:active {
+        transform: scale(.98);
+    }
+
+    .chip.active {
+        background: var(--chip-active-bg);
+        border-color: var(--chip-active-border);
+        color: var(--chip-text) !important;
+    }
+
+    .chip-prime {
+        border-color: var(--prime-800);
+        background: var(--prime-100);
+    }
+
+    /* Sections (details) */
+    details.section {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 1.25rem;
+        box-shadow: var(--shadow);
+    }
+
+    summary.section-head {
+        list-style: none;
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+        padding: 16px;
+        font-weight: 800;
+        color: var(--head);
+        background: #fff;
+        border-left: 6px solid var(--sub);
+    }
+
+    /* prime themed headers (Overview/Compare/FAQ) */
+    .theme-prime>summary.section-head {
+        background: var(--prime-100);
+        border-left-color: var(--prime);
+    }
+
+    .theme-prime {
+        box-shadow: 0 6px 24px rgba(15, 118, 110, .12);
+    }
+
+    summary.section-head::-webkit-details-marker {
+        display: none;
+    }
+
+    summary.section-head:after {
+        content: "▸";
+        margin-left: auto;
+        color: var(--sub);
+        font-weight: 800;
+        transition: transform .2s ease;
+    }
+
+    .theme-prime>summary.section-head:after {
+        color: var(--prime);
+    }
+
+    details[open]>summary.section-head:after {
+        transform: rotate(90deg);
+    }
+
+    .section-body {
+        padding: 18px 16px 20px;
+        border-top: 1px solid var(--border);
+        background: #fff;
+    }
+
+    .section-body>*+* {
+        margin-top: 14px;
+    }
+
+    .muted {
+        color: #555;
+        font-size: .96em;
+    }
+
+    .accent {
+        color: var(--sub);
+        font-weight: 700;
+        margin-top: 1.25rem;
+    }
+
+    .accent-prime {
+        color: var(--prime);
+        font-weight: 800;
+        margin-top: 1.25rem;
+    }
+
+    .bullets {
+        margin: .25rem 0 .5rem 1.1rem;
+    }
+
+    .bullets li {
+        margin: .25rem 0;
+    }
+
+    .list {
+        margin: .25rem 0 .75rem 1.1rem;
+    }
+
+    .list li {
+        margin: .3rem 0;
+    }
+
+    table.rtable {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        margin: 0 0 1rem;
+    }
+
+    .rtable thead {
+        background: var(--sub);
+        color: #fff;
+    }
+
+    .rtable th,
+    .rtable td {
+        padding: 16px;
+        text-align: left;
+        font-size: 18px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+
+    .rtable tbody tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    /* prime table header for compare */
+    .rtable.prime thead {
+        background: var(--prime);
+    }
+
+    /* Links in body */
+    .section-body a {
+        color: var(--sub);
+        font-weight: 800;
+        text-decoration: none;
+        border-bottom: 1px dashed var(--sub);
+    }
+
+    .section-body a:hover {
+        color: #003566;
+        border-bottom-color: #003566;
+    }
+
+    .theme-prime .section-body a {
+        color: var(--prime);
+        border-bottom-color: var(--prime);
+    }
+
+    .theme-prime .section-body a:hover {
+        color: var(--prime-800);
+        border-bottom-color: var(--prime-800);
+    }
+
+    .sep {
+        height: 1px;
+        background: #eef2f7;
+        margin: 1rem 0;
+    }
+
+    /* Buttons */
+    .btn-row {
+        display: flex;
+        gap: .6rem;
+        flex-wrap: wrap;
+        margin-top: .25rem;
+    }
+
+    .btn {
+        display: inline-block;
+        font-weight: 800;
+        padding: .75rem 1.1rem;
+        border-radius: 999px;
+        border: 2px solid var(--sub);
+        color: #fff;
+        background: var(--sub);
+        text-decoration: none;
+        letter-spacing: .2px;
+        transition: transform .08s ease, box-shadow .2s ease, background .2s;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
+    }
+
+    .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, .12);
+    }
+
+    .btn:active {
+        transform: translateY(0);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, .10);
+    }
+
+    .btn.outline {
+        color: var(--sub);
+        background: #fff;
+    }
+
+    .btn.prime {
+        border-color: var(--prime);
+        background: var(--prime);
+    }
+
+    .btn.prime.outline {
+        color: var(--prime);
+        background: #fff;
+        border-color: var(--prime);
+    }
+
+    /* Tiny pill label */
+    .pill {
+        display: inline-block;
+        padding: .2rem .5rem;
+        border-radius: 999px;
+        background: #eef6ff;
+        color: #0b3d6b;
+        font-size: .78rem;
+        font-weight: 800;
+    }
+
+    /* Icons (inline SVG wrapper) */
+    .ico {
+        width: 22px;
+        height: 22px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #eef6ff;
+        border-radius: 8px;
+        border: 1px solid #dbeafe;
+    }
+
+    .ico svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .fees-container {
+            font-size: 17px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .fees-container {
+            font-size: 16px;
+        }
+
+        .chip {
+            padding: .5rem .8rem;
+        }
+
+        .rtable thead {
+            display: none;
+        }
+
+        .rtable,
+        .rtable tbody,
+        .rtable tr,
+        .rtable td {
+            display: block;
+            width: 100%;
+        }
+
+        .rtable {
+            box-shadow: none !important;
+            margin-bottom: 0 !important;
+        }
+
+        .rtable tr {
+            margin-bottom: 16px;
+            border: 1px solid var(--sub);
+            padding: 16px;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        .rtable.prime tr {
+            border-color: var(--prime);
+        }
+
+        .rtable td {
+            border: none;
+            padding: 12px 0;
+            position: relative;
+            font-size: 16px;
+        }
+
+        .rtable td::before {
+            content: attr(data-label);
+            font-weight: 800;
+            color: var(--sub);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .rtable.prime td::before {
+            color: var(--prime);
+        }
+    }
+</style>
+
+<div class="cs-bg">
+    <div class="fees-container" id="computer-skills-programs">
+
+        <p class="page-title">Computer Skills Training in Brampton – Beginner to Advanced</p>
+        <p class="page-sub">Step-by-step programs for students and adults. Build confidence with Microsoft 365, Google
+            Workspace, website creation and AI tools. Study in-class or online with flexible schedules.</p>
+
+        <nav class="quicklinks" aria-label="Program sections">
+            <a class="chip chip-prime" href="#overview">Overview</a>
+            <a class="chip" href="#level-1">Level 1</a>
+            <a class="chip" href="#level-2">Level 2</a>
+            <a class="chip" href="#level-3">Level 3</a>
+            <a class="chip" href="#level-4">Level 4</a>
+            <a class="chip" href="#level-5">Level 5</a>
+            <a class="chip chip-prime" href="#compare">Compare</a>
+            <a class="chip chip-prime" href="#faqs">FAQs</a>
+        </nav>
+
+        <!-- Overview (prime themed) -->
+        <details class="section theme-prime" id="overview" open>
+            <summary class="section-head">
+                <span class="ico" aria-hidden="true">
+                    <!-- book icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20" stroke-width="1.8" />
+                        <path d="M20 2H6.5A2.5 2.5 0 0 0 4 4.5V19.5" stroke-width="1.8" />
+                        <path d="M8 6h9" stroke-width="1.8" />
+                    </svg>
+                </span>
+                Program Overview & How It Works
+                <span class="pill" style="margin-left:.5rem;">In-class & Online</span>
+            </summary>
+            <div class="section-body">
+                <p><strong>Five practical levels.</strong> Start where you are and progress to job-ready digital skills.
+                </p>
+                <ul class="bullets">
+                    <li><strong>Mode:</strong> In-class in Brampton or live online.</li>
+                    <li><strong>Schedule:</strong> Weekday evenings or weekends. Rolling start dates.</li>
+                    <li><strong>Certificate:</strong> Level certificate on completion; Level 5 includes a capstone
+                        launch.</li>
+                    <li><strong>Placement help:</strong> Not sure which level? We’ll do a short skills check.</li>
+                </ul>
+                <div class="btn-row">
+                    <a class="btn prime"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                        target="_blank" rel="noopener">Inquiry (Quick Form)</a>
+                    <a class="btn prime outline"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000686&culture=en"
+                        target="_blank" rel="noopener">Enroll Now</a>
+                    <a class="btn outline"
+                        href="mailto:frontdesk@canstem.com?subject=I%20want%20to%20enroll%20for%20Computer%20Skills%20Program&body=Hello%20CanSTEM%2C%0A%0AI%20want%20to%20enroll%20for%20the%20following%20computer%20course%3A%20%5BLevel%201%2F2%2F3%2F4%2F5%5D.%0A%0AName%3A%20%0AEmail%3A%20%0AContact%20Number%3A%20%0APreferred%20Mode%20(In-class%20or%20Online)%3A%20%0APreferred%20Days%2FTime%3A%20%0A%0AThanks!">Email
+                        frontdesk@canstem.com</a>
+                </div>
+            </div>
+        </details>
+
+        <!-- Level 1 -->
+        <details class="section" id="level-1">
+            <summary class="section-head">
+                <span class="ico" aria-hidden="true">
+                    <!-- monitor icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="3" y="4" width="18" height="12" rx="2" stroke-width="1.8" />
+                        <path d="M8 20h8" stroke-width="1.8" />
+                    </svg>
+                </span>
+                Level 1: Basic Computer Skills — $499
+            </summary>
+            <div class="section-body">
+                <p><strong>Who it’s for:</strong> Beginners (Grade 5–6 or adults with no computer experience)</p>
+                <p><strong>Duration:</strong> 15–20 hours (1 month crash course)</p>
+                <p class="accent">What you’ll learn</p>
+                <ul class="bullets">
+                    <li>Using a computer (keyboard, mouse, turning on/off)</li>
+                    <li>Files and folders (save, rename, copy, delete)</li>
+                    <li>Word / Google Docs – typing and formatting text</li>
+                    <li>PowerPoint / Slides – making simple presentations</li>
+                    <li>Email basics – sending/receiving with attachments</li>
+                    <li>Internet use – browsing, searching, safety tips</li>
+                    <li>Fun creative tools (Paint, Canva basics)</li>
+                </ul>
+                <div class="btn-row">
+                    <a class="btn"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000686&culture=en"
+                        target="_blank" rel="noopener">Enroll Now</a>
+                    <a class="btn outline"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                        target="_blank" rel="noopener">Inquiry</a>
+                </div>
+            </div>
+        </details>
+
+        <!-- Level 2 -->
+        <details class="section" id="level-2">
+            <summary class="section-head">
+                <span class="ico" aria-hidden="true">
+                    <!-- folder-cloud icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M3 7h5l2 2h9a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" stroke-width="1.8" />
+                        <path d="M16 10a3 3 0 0 0-5.8.8" stroke-width="1.8" />
+                    </svg>
+                </span>
+                Level 2: Everyday Digital Skills — $599
+            </summary>
+            <div class="section-body">
+                <p><strong>Who it’s for:</strong> Students (Grade 7–8) or adults who know basics</p>
+                <p><strong>Duration:</strong> 20–25 hours (1–2 months)</p>
+                <p class="accent">What you’ll learn</p>
+                <ul class="bullets">
+                    <li>File types, zip folders, and cloud storage (Google Drive, OneDrive)</li>
+                    <li>Word/Docs – using styles, templates, tables</li>
+                    <li>Excel/Sheets – simple formulas, charts, and graphs</li>
+                    <li>PowerPoint/Slides – design, transitions, templates</li>
+                    <li>Professional email writing & calendar use</li>
+                    <li>Online safety (phishing, scams, cyberbullying)</li>
+                    <li>Digital citizenship (netiquette, online footprint)</li>
+                </ul>
+                <div class="btn-row">
+                    <a class="btn"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000686&culture=en"
+                        target="_blank" rel="noopener">Enroll Now</a>
+                    <a class="btn outline"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                        target="_blank" rel="noopener">Inquiry</a>
+                </div>
+            </div>
+        </details>
+
+        <!-- Level 3 -->
+        <details class="section" id="level-3">
+            <summary class="section-head">
+                <span class="ico" aria-hidden="true">
+                    <!-- spreadsheet icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="3" y="4" width="18" height="16" rx="2" stroke-width="1.8" />
+                        <path d="M3 10h18M9 4v16" stroke-width="1.8" />
+                    </svg>
+                </span>
+                Level 3: Office & Web Basics — $799
+            </summary>
+            <div class="section-body">
+                <p><strong>Who it’s for:</strong> High school students or adults wanting workplace skills</p>
+                <p><strong>Duration:</strong> 25–30 hours (2–3 months)</p>
+                <p class="accent">What you’ll learn</p>
+                <ul class="bullets">
+                    <li>MS Word – reports, references, formatting</li>
+                    <li>MS Excel – data entry, charts, formulas</li>
+                    <li>PowerPoint – advanced slide design and animation</li>
+                    <li>Google Docs/Sheets/Slides – teamwork and collaboration</li>
+                    <li>Google Forms – surveys, quizzes, feedback</li>
+                    <li>Intro to websites – HTML basics (text, links, images)</li>
+                    <li>Intro to coding – Scratch or Code.org (mini projects)</li>
+                    <li>Project tools – Google Tasks, Trello, Notion</li>
+                </ul>
+                <div class="btn-row">
+                    <a class="btn"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000686&culture=en"
+                        target="_blank" rel="noopener">Enroll Now</a>
+                    <a class="btn outline"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                        target="_blank" rel="noopener">Inquiry</a>
+                </div>
+            </div>
+        </details>
+
+        <!-- Level 4 -->
+        <details class="section" id="level-4">
+            <summary class="section-head">
+                <span class="ico" aria-hidden="true">
+                    <!-- code browser icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="3" y="4" width="18" height="14" rx="2" stroke-width="1.8" />
+                        <path d="M7 8l3 3-3 3M14 14l3-3-3-3" stroke-width="1.8" />
+                    </svg>
+                </span>
+                Level 4: Workplace Computer & Web Skills — $899
+            </summary>
+            <div class="section-body">
+                <p><strong>Who it’s for:</strong> Senior high school, college, or job seekers</p>
+                <p><strong>Duration:</strong> 40–60 hours (3–6 months)</p>
+                <p class="accent">What you’ll learn</p>
+                <ul class="bullets">
+                    <li>Advanced MS Office</li>
+                    <li>Google Workspace advanced (shared drives, Meet, Docs collaboration)</li>
+                    <li>Website building (HTML, CSS, JavaScript basics)</li>
+                    <li>Responsive web design (mobile-friendly websites)</li>
+                    <li>UI/UX design basics (color, layout, wireframing in Figma/Canva)</li>
+                    <li>Git & GitHub – saving and sharing projects online</li>
+                    <li>Workplace tools – email etiquette, scheduling meetings, reports</li>
+                    <li>Resume building, LinkedIn, job platforms overview</li>
+                </ul>
+                <div class="btn-row">
+                    <a class="btn"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000686&culture=en"
+                        target="_blank" rel="noopener">Enroll Now</a>
+                    <a class="btn outline"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                        target="_blank" rel="noopener">Inquiry</a>
+                </div>
+            </div>
+        </details>
+
+        <!-- Level 5 -->
+        <details class="section" id="level-5">
+            <summary class="section-head">
+                <span class="ico" aria-hidden="true">
+                    <!-- ai chip icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <rect x="7" y="7" width="10" height="10" rx="2" stroke-width="1.8" />
+                        <path d="M4 10v4M20 10v4M10 4h4M10 20h4" stroke-width="1.8" />
+                    </svg>
+                </span>
+                Level 5: Advanced Web & AI Skills — $999
+            </summary>
+            <div class="section-body">
+                <p><strong>Who it’s for:</strong> College students, professionals, entrepreneurs</p>
+                <p><strong>Duration:</strong> 60–80 hours (6 months+)</p>
+                <p class="accent">What you’ll learn</p>
+                <ul class="bullets">
+                    <li>Build full websites with HTML, CSS, JavaScript, WordPress (PHP)</li>
+                    <li>Create and publish sites on GitHub Pages / WordPress</li>
+                    <li>Website creation with AI (Wix AI, Durable AI, Framer AI, Hostinger AI)</li>
+                    <li>Customizing AI websites for branding and business</li>
+                    <li>Using AI tools (ChatGPT, Gemini, Copilot) for documents, emails, and reports</li>
+                    <li>Automating tasks with Google Sheets / Power Automate</li>
+                    <li>Digital marketing basics (SEO, social media, ads)</li>
+                    <li><strong>Capstone:</strong> Launch your own portfolio or small business website</li>
+                </ul>
+                <div class="btn-row">
+                    <a class="btn"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000686&culture=en"
+                        target="_blank" rel="noopener">Enroll Now</a>
+                    <a class="btn outline"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                        target="_blank" rel="noopener">Inquiry</a>
+                </div>
+            </div>
+        </details>
+
+        <!-- Compare (prime theme) -->
+        <details class="section theme-prime" id="compare">
+            <summary class="section-head">
+                <span class="ico" aria-hidden="true">
+                    <!-- compare arrows -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M8 3v14M5 6l3-3 3 3M16 21V7m3 11-3 3-3-3" stroke-width="1.8" />
+                    </svg>
+                </span>
+                Compare Levels at a Glance
+            </summary>
+            <div class="section-body">
+                <table class="rtable prime" aria-label="Comparison of Computer Skills Levels">
+                    <thead>
+                        <tr>
+                            <th>Level</th>
+                            <th>Price</th>
+                            <th>Hours</th>
+                            <th>Main Focus</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Level">Level 1</td>
+                            <td data-label="Price">$499</td>
+                            <td data-label="Hours">15–20</td>
+                            <td data-label="Main Focus">Computer basics, files, Docs, Slides, email, internet safety
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="Level">Level 2</td>
+                            <td data-label="Price">$599</td>
+                            <td data-label="Hours">20–25</td>
+                            <td data-label="Main Focus">Cloud storage, Docs/Sheets/Slides design, email & calendar,
+                                safety & citizenship</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Level">Level 3</td>
+                            <td data-label="Price">$799</td>
+                            <td data-label="Hours">25–30</td>
+                            <td data-label="Main Focus">Office mastery, Google collaboration, HTML basics, Scratch mini
+                                projects</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Level">Level 4</td>
+                            <td data-label="Price">$899</td>
+                            <td data-label="Hours">40–60</td>
+                            <td data-label="Main Focus">Responsive web, UX basics, GitHub, workplace tools & job prep
+                            </td>
+                        </tr>
+                        <tr>
+                            <td data-label="Level">Level 5</td>
+                            <td data-label="Price">$999</td>
+                            <td data-label="Hours">60–80</td>
+                            <td data-label="Main Focus">Full websites, WordPress, AI builders, automation, marketing,
+                                capstone</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="muted">Prices are placeholders and may change. Please confirm with our front desk for the
+                    latest offers and schedules.</p>
+                <div class="btn-row">
+                    <a class="btn prime"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                        target="_blank" rel="noopener">Inquiry (Quick Form)</a>
+                    <a class="btn prime outline"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000686&culture=en"
+                        target="_blank" rel="noopener">Enroll Now</a>
+                </div>
+            </div>
+        </details>
+
+        <!-- FAQs (prime theme; different style from level tabs) -->
+        <details class="section theme-prime" id="faqs">
+            <summary class="section-head">
+                <span class="ico" aria-hidden="true">
+                    <!-- help icon -->
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="12" cy="12" r="9" stroke-width="1.8" />
+                        <path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.9.4-1.5 1.1-1.5 2v.2" stroke-width="1.8" />
+                        <circle cx="12" cy="17" r="1" stroke-width="1.8" />
+                    </svg>
+                </span>
+                Frequently Asked Questions
+            </summary>
+            <div class="section-body">
+                <p class="accent-prime">Getting Started</p>
+
+                <details class="section theme-prime">
+                    <summary class="section-head">Who should join Level 1?</summary>
+                    <div class="section-body">
+                        <p>Level 1 is for absolute beginners—Grade 5–6 students and adults who are new to computers or
+                            want to build confidence with typing, files, email and safe browsing.</p>
+                    </div>
+                </details>
+
+                <details class="section theme-prime">
+                    <summary class="section-head">Can I skip a level?</summary>
+                    <div class="section-body">
+                        <p>Yes. We can run a 5–10 minute skills check and place you at the best starting level.</p>
+                    </div>
+                </details>
+
+                <details class="section theme-prime">
+                    <summary class="section-head">Do you offer online classes?</summary>
+                    <div class="section-body">
+                        <p>Yes. All levels are offered in-class in Brampton and live online via video meet. Materials
+                            are shared through Google Drive or OneDrive.</p>
+                    </div>
+                </details>
+
+                <p class="accent-prime">Schedule & Duration</p>
+
+                <details class="section theme-prime">
+                    <summary class="section-head">When do batches start?</summary>
+                    <div class="section-body">
+                        <p>We start new groups every 2–3 weeks. Contact us to join the next available batch.</p>
+                    </div>
+                </details>
+
+                <details class="section theme-prime">
+                    <summary class="section-head">How many hours per week?</summary>
+                    <div class="section-body">
+                        <p>Most learners attend 2–4 hours weekly (evenings/weekends). Private or accelerated options are
+                            available.</p>
+                    </div>
+                </details>
+
+                <p class="accent-prime">Course Content</p>
+
+                <details class="section theme-prime">
+                    <summary class="section-head">Which Microsoft 365 and Google apps are covered?</summary>
+                    <div class="section-body">
+                        <p>Across the five levels you’ll use Word/Docs, Excel/Sheets, PowerPoint/Slides, Outlook/Gmail,
+                            Calendar, Forms, Drive/OneDrive and collaboration features. Automation appears in Level 5.
+                        </p>
+                    </div>
+                </details>
+
+                <details class="section theme-prime">
+                    <summary class="section-head">Do we learn website creation with AI?</summary>
+                    <div class="section-body">
+                        <p>Yes. Level 5 covers AI site builders (Wix AI, Durable AI, Framer AI, Hostinger AI), branding,
+                            customization, and launch.</p>
+                    </div>
+                </details>
+
+                <details class="section theme-prime">
+                    <summary class="section-head">Is coding included?</summary>
+                    <div class="section-body">
+                        <p>Level 3 introduces HTML basics and Scratch mini projects. Level 4 adds responsive design and
+                            JavaScript fundamentals. Level 5 includes WordPress (PHP) and full builds.</p>
+                    </div>
+                </details>
+
+                <p class="accent-prime">Certificates & Outcomes</p>
+
+                <details class="section theme-prime">
+                    <summary class="section-head">Do I get a certificate?</summary>
+                    <div class="section-body">
+                        <p>Yes. You receive a certificate after each level. Level 5 ends with a capstone website launch
+                            you can showcase.</p>
+                    </div>
+                </details>
+
+                <details class="section theme-prime">
+                    <summary class="section-head">Will this help with jobs or co-op?</summary>
+                    <div class="section-body">
+                        <p>Levels 3–5 focus on workplace skills. We include resume building, LinkedIn setup and project
+                            artifacts to show employers.</p>
+                    </div>
+                </details>
+
+                <p class="accent-prime">Fees & Enrollment</p>
+
+                <details class="section theme-prime">
+                    <summary class="section-head">What are the fees for each level?</summary>
+                    <div class="section-body">
+                        <p>Placeholders: L1 $499, L2 $599, L3 $799, L4 $899, L5 $999. Please confirm current pricing
+                            with our front desk.</p>
+                    </div>
+                </details>
+
+                <details class="section theme-prime">
+                    <summary class="section-head">How do I enroll?</summary>
+                    <div class="section-body">
+                        <p>Use the Inquiry or Enroll buttons on this page, or email <a
+                                href="mailto:frontdesk@canstem.com">frontdesk@canstem.com</a> with your name, email,
+                            contact number, preferred mode and level.</p>
+                        <div class="btn-row">
+                            <a class="btn prime"
+                                href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                                target="_blank" rel="noopener">Inquiry (Quick Form)</a>
+                            <a class="btn prime outline"
+                                href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000686&culture=en"
+                                target="_blank" rel="noopener">Enroll Now</a>
+                        </div>
+                    </div>
+                </details>
+
+            </div>
+        </details>
+
+    </div>
+</div>
+
+<script>
+    (function () {
+        var chips = Array.from(document.querySelectorAll('.chip'));
+        var sections = Array.from(document.querySelectorAll('details.section'));
+        function openSection(id, scroll) {
+            sections.forEach(function (s) { s.removeAttribute('open'); });
+            var sec = document.getElementById(id);
+            if (sec) {
+                sec.setAttribute('open', '');
+                if (scroll !== false) {
+                    try { sec.scrollIntoView({ behavior: 'smooth', block: 'start' }); } catch (e) { }
+                }
+            }
+            chips.forEach(function (chip) {
+                chip.classList.toggle('active', chip.getAttribute('href').slice(1) === id);
+            });
+        }
+        function init() {
+            var idFromHash = (location.hash || '').replace('#', '');
+            var initial = idFromHash || 'overview';
+            openSection(initial, false);
+            if (!idFromHash) {
+                try { history.replaceState(null, '', '#' + initial); } catch (e) { location.hash = initial; }
+            }
+        }
+        window.addEventListener('hashchange', function () {
+            var id = (location.hash || '').replace('#', '');
+            if (id) openSection(id);
+        });
+        chips.forEach(function (chip) {
+            chip.addEventListener('click', function (e) {
+                e.preventDefault();
+                var id = chip.getAttribute('href').slice(1);
+                openSection(id);
+                try { history.pushState(null, '', '#' + id); } catch (err) { location.hash = id; }
+            });
+        });
+        init();
+    })();
+</script>
+
+<!-- JSON-LD: FAQ + Courses (helps SEO) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"Who should join Level 1?","acceptedAnswer":{"@type":"Answer","text":"Level 1 is for absolute beginners—Grade 5–6 students and adults who are new to computers."}},
+        {"@type":"Question","name":"Can I skip a level?","acceptedAnswer":{"@type":"Answer","text":"Yes. We can run a quick skills check and place you at the right level."}},
+        {"@type":"Question","name":"Do you offer online classes?","acceptedAnswer":{"@type":"Answer","text":"Yes. All levels are offered in-class in Brampton and live online."}},
+        {"@type":"Question","name":"When do batches start?","acceptedAnswer":{"@type":"Answer","text":"New cohorts start every 2–3 weeks. Contact us for the next date."}},
+        {"@type":"Question","name":"Which Microsoft 365 and Google apps are covered?","acceptedAnswer":{"@type":"Answer","text":"Word/Docs, Excel/Sheets, PowerPoint/Slides, Outlook/Gmail, Calendar, Forms, Drive/OneDrive, collaboration and automation (in Level 5)."}},
+        {"@type":"Question","name":"Is website creation with AI included?","acceptedAnswer":{"@type":"Answer","text":"Yes. Level 5 includes AI site builders like Wix AI, Durable AI, Framer AI and Hostinger AI."}},
+        {"@type":"Question","name":"Is coding included?","acceptedAnswer":{"@type":"Answer","text":"Level 3 introduces HTML and Scratch; Level 4 covers responsive design and JavaScript basics; Level 5 includes WordPress (PHP)."}},
+        {"@type":"Question","name":"Do I get a certificate?","acceptedAnswer":{"@type":"Answer","text":"Yes. You receive a certificate after each level. Level 5 ends with a capstone website launch."}},
+        {"@type":"Question","name":"What are the fees?","acceptedAnswer":{"@type":"Answer","text":"Placeholders: L1 $499, L2 $599, L3 $799, L4 $899, L5 $999. Confirm with the school for current pricing."}},
+        {"@type":"Question","name":"How do I enroll?","acceptedAnswer":{"@type":"Answer","text":"Use the Inquiry or Enroll buttons on the page, or email frontdesk@canstem.com with your name, email, contact number, preferred mode and level."}}
+      ]
+    },
+    {"@type":"Course","name":"Level 1: Basic Computer Skills","description":"Computer basics, files, Docs, Slides, email and safe browsing.","provider":{"@type":"Organization","name":"CanSTEM Education"}},
+    {"@type":"Course","name":"Level 2: Everyday Digital Skills","description":"Cloud storage, Docs/Sheets/Slides design, email and calendar, safety and citizenship.","provider":{"@type":"Organization","name":"CanSTEM Education"}},
+    {"@type":"Course","name":"Level 3: Office & Web Basics","description":"Office mastery, Google collaboration, HTML basics, Scratch mini projects, project tools.","provider":{"@type":"Organization","name":"CanSTEM Education"}},
+    {"@type":"Course","name":"Level 4: Workplace Computer & Web Skills","description":"Responsive web, UX basics, GitHub, workplace tools, resume and LinkedIn prep.","provider":{"@type":"Organization","name":"CanSTEM Education"}},
+    {"@type":"Course","name":"Level 5: Advanced Web & AI Skills","description":"Full websites, WordPress, AI site builders, automation, marketing and capstone launch.","provider":{"@type":"Organization","name":"CanSTEM Education"}}
+  ]
+}
+</script>
