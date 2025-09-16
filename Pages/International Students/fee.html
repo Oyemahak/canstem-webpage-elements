@@ -1,0 +1,134 @@
+<!-- International Student Fees (for FAQ section) -->
+<style>
+    #intl-fees {
+        --sub: #00427c;
+        --border: #e2e8f0;
+        font-family: "Open Sans", sans-serif;
+        max-width: 1200px;
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    #intl-fees table.rtable {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, .08);
+        margin: 1rem 0;
+    }
+
+    #intl-fees thead {
+        background: var(--sub);
+        color: #fff;
+    }
+
+    #intl-fees th,
+    #intl-fees td {
+        padding: 14px;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+        vertical-align: top;
+    }
+
+    #intl-fees tbody tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    #intl-fees .sep {
+        height: 1px;
+        background: #eef2f7;
+        margin: 1rem 0;
+    }
+
+    @media (max-width: 768px) {
+        #intl-fees {
+            font-size: 16px;
+        }
+
+        #intl-fees thead {
+            display: none;
+        }
+
+        #intl-fees table,
+        #intl-fees tbody,
+        #intl-fees tr,
+        #intl-fees td {
+            display: block;
+            width: 100%;
+        }
+
+        #intl-fees tr {
+            margin-bottom: 1rem;
+            border: 1px solid var(--sub);
+            padding: 12px;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        #intl-fees td {
+            border: none;
+            padding: 10px 0;
+        }
+
+        #intl-fees td::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: var(--sub);
+            display: block;
+            margin-bottom: 4px;
+        }
+    }
+</style>
+
+<div id="intl-fees">
+    <table class="rtable">
+        <thead>
+            <tr>
+                <th>Grade</th>
+                <th>Schedule</th>
+                <th>Monthly Fee</th>
+                <th>Includes</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="Grade">Grade 1–8 (In-Class / Online)</td>
+                <td data-label="Schedule">9am – 4pm</td>
+                <td data-label="Monthly Fee">$600 / month</td>
+                <td data-label="Includes">Final exam (even if online). Unlimited after school help.</td>
+            </tr>
+            <tr>
+                <td data-label="Grade">Grade 9–10 (In-Class / Online)</td>
+                <td data-label="Schedule">9am – 4pm</td>
+                <td data-label="Monthly Fee">$700 / month</td>
+                <td data-label="Includes">Final exam (even if online). Unlimited after school help.</td>
+            </tr>
+            <tr>
+                <td data-label="Grade">Grade 11–12 (In-Class / Online)</td>
+                <td data-label="Schedule">9am – 4pm</td>
+                <td data-label="Monthly Fee">$750 / month</td>
+                <td data-label="Includes">Final exam (even if online). Unlimited after school help.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="sep"></div>
+
+    <ul>
+        <li>📌 One-time Registration Fee: <strong>$850</strong></li>
+        <li>Assessment charges: $450</li>
+        <li>Admin fee: $95</li>
+        <li>Documentation processing fee: $250</li>
+        <li>Consultation fee: $100</li>
+    </ul>
+
+    <div class="sep"></div>
+
+    <p><strong>Document Checklist:</strong>
+        <a href="https://canstemeducation.com/wp-content/uploads/2025/09/document-checklist-full-time-student.pdf"
+            target="_blank" rel="noopener">
+            Download here
+        </a>
+    </p>
+</div>
