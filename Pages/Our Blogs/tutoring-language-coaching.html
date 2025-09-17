@@ -1,0 +1,466 @@
+<!-- CanSTEM — Tutoring & Language Coaching (scoped, responsive, SEO-rich) -->
+<style>
+    /* ===== Scope to this article ===== */
+    #guide-tutor {
+        --blue: #00427C;
+        --green: #2FBF71;
+        --orange: #F59E0B;
+        --purple: #6D5BD0;
+        --ink: #26262B;
+        --muted: #586174;
+        --panel: #fff;
+        --line: #e6edf5;
+        --shadow: 0 10px 34px rgba(0, 0, 0, .12);
+        font-family: "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--ink);
+        max-width: 1200px;
+        margin: 0 auto;
+        line-height: 1.75;
+        font-size: 18px;
+    }
+
+    /* ===== p-only headers per your rules ===== */
+    #guide-tutor .h {
+        font-size: 32px;
+        font-weight: 700;
+        margin: 2rem 0 1.2rem;
+        display: flex;
+        gap: 12px;
+        align-items: center;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, .06);
+        animation: rise .5s ease-out both;
+    }
+
+    #guide-tutor .h.black {
+        color: #000;
+    }
+
+    /* top + closing headers in black  */
+    #guide-tutor .h.blue {
+        color: var(--blue);
+    }
+
+    /* section headers in blue        */
+    #guide-tutor .h.green {
+        color: var(--green);
+    }
+
+    /* alt headers for variety        */
+    #guide-tutor .h.orange {
+        color: var(--orange);
+    }
+
+    #guide-tutor .subh {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--blue);
+        margin: 1rem 0 .6rem;
+    }
+
+    #guide-tutor p {
+        margin: 0 0 1rem;
+    }
+
+    #guide-tutor a {
+        color: var(--blue);
+        text-decoration: none;
+        font-weight: 700;
+    }
+
+    #guide-tutor a:hover {
+        text-decoration: underline;
+    }
+
+    #guide-tutor .muted {
+        color: var(--muted);
+    }
+
+    #guide-tutor .sep {
+        height: 1px;
+        background: #eaf0f7;
+        margin: 22px 0;
+    }
+
+    #guide-tutor .dash {
+        border-top: 2px dashed var(--line);
+        margin: 24px 0;
+    }
+
+    /* ===== Hero block with black title and multicolor gradient ===== */
+    #guide-tutor .hero {
+        background: linear-gradient(135deg, #E9F6FF 0%, #EFFFF7 50%, #FFF6E9 100%);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 26px 24px;
+        box-shadow: var(--shadow);
+        margin: 18px 0 28px;
+        animation: fade .6s ease-out both;
+    }
+
+    #guide-tutor .badge {
+        display: inline-block;
+        background: #000;
+        color: #fff;
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: .3px;
+        margin-bottom: 8px;
+    }
+
+    /* ===== Grid cards (collapse to 1 column on mobile) ===== */
+    #guide-tutor .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin: 26px 0;
+    }
+
+    #guide-tutor .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+        transition: transform .25s ease, box-shadow .25s ease;
+        animation: rise .6s ease-out both;
+    }
+
+    #guide-tutor .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, .16);
+    }
+
+    #guide-tutor .cap {
+        display: inline-block;
+        color: #fff;
+        font-weight: 800;
+        font-size: 13px;
+        padding: 6px 10px;
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        margin-bottom: 10px;
+    }
+
+    #guide-tutor .cap.blue {
+        background: linear-gradient(135deg, #0b68d6, var(--blue));
+    }
+
+    #guide-tutor .cap.green {
+        background: linear-gradient(135deg, #39d68d, var(--green));
+    }
+
+    #guide-tutor .cap.orange {
+        background: linear-gradient(135deg, #ffb454, var(--orange));
+    }
+
+    #guide-tutor .ico {
+        font-size: 26px;
+        color: var(--blue);
+    }
+
+    /* ===== Comparison table (turns into cards on mobile) ===== */
+    #guide-tutor table.compare {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        margin: 16px 0 26px;
+    }
+
+    #guide-tutor .compare thead th {
+        background: linear-gradient(135deg, var(--blue), #0b68d6);
+        color: #fff;
+        padding: 16px;
+        text-align: left;
+        font-weight: 900;
+    }
+
+    #guide-tutor .compare th,
+    #guide-tutor .compare td {
+        padding: 16px;
+        border-bottom: 1px dashed #e9eef6;
+        vertical-align: top;
+    }
+
+    #guide-tutor .compare tbody tr:nth-child(even) {
+        background: #f9fbfe;
+    }
+
+    /* ===== Info note (dashed) ===== */
+    #guide-tutor .note {
+        border: 2px dashed #cfe3ff;
+        background: #f7fbff;
+        border-radius: 14px;
+        padding: 14px 16px;
+    }
+
+    /* ===== CTA ===== */
+    #guide-tutor .cta {
+        text-align: center;
+        margin: 34px 0;
+    }
+
+    #guide-tutor .btn {
+        display: inline-block;
+        padding: 14px 34px;
+        border-radius: 12px;
+        font-weight: 900;
+        letter-spacing: .2px;
+        background: linear-gradient(135deg, var(--green), var(--blue));
+        color: #fff;
+        text-decoration: none;
+        box-shadow: var(--shadow);
+        transition: transform .2s ease, filter .2s ease;
+    }
+
+    #guide-tutor .btn:hover {
+        transform: translateY(-2px);
+        filter: brightness(.96);
+    }
+
+    /* ===== Mobile / tablet ===== */
+    @media (max-width:1024px) {
+        #guide-tutor {
+            font-size: 16px;
+        }
+
+        #guide-tutor .h {
+            font-size: 24px;
+        }
+
+        #guide-tutor .grid {
+            grid-template-columns: 1fr;
+        }
+
+        /* <-- single column */
+        #guide-tutor .compare thead {
+            display: none;
+        }
+
+        #guide-tutor .compare,
+        #guide-tutor .compare tbody,
+        #guide-tutor .compare tr,
+        #guide-tutor .compare td {
+            display: block;
+            width: 100%;
+        }
+
+        #guide-tutor .compare tr {
+            border: 1px solid var(--blue);
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        #guide-tutor .compare td {
+            border: none;
+            padding: 10px 0;
+            position: relative;
+            font-size: 16px;
+        }
+
+        #guide-tutor .compare td::before {
+            content: attr(data-label);
+            display: block;
+            font-weight: 800;
+            color: var(--blue);
+            margin-bottom: 4px;
+        }
+    }
+
+    /* ===== Animations ===== */
+    @keyframes fade {
+        from {
+            opacity: 0
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    @keyframes rise {
+        from {
+            opacity: 0;
+            transform: translateY(14px)
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0)
+        }
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<div id="guide-tutor" role="article" aria-label="Tutoring & Language Coaching in Mississauga and Brampton">
+
+    <!-- Hero intro -->
+    <div class="hero">
+        <span class="badge"><i class="fa-solid fa-location-dot"></i> Mississauga • Brampton • Online Across
+            Ontario</span>
+        <p>
+            Looking for <strong>tutoring in Mississauga and Brampton</strong> or expert <strong>IELTS / CELPIP / PTE
+                coaching</strong>?
+            At <a href="https://canstemeducation.com/tutoring/">CanSTEM Education</a>, students, international learners,
+            and adults get personalized support to
+            improve grades, earn <a href="https://canstemeducation.com/high-school-credits/">high school credits</a>,
+            and build real-world English fluency.
+            Flexible schedules include <a href="https://canstemeducation.com/online-high-school/">online tutoring</a>
+            and in-person options.
+        </p>
+    </div>
+
+    <!-- Feature cards -->
+    <div class="grid" aria-label="Key services">
+        <div class="card">
+            <span class="cap blue"><i class="fa-solid fa-graduation-cap"></i> High School Tutoring</span>
+            <p class="subh">Math • Science • English • Credit Courses</p>
+            <p>Boost marks with one-to-one coaching, homework help, and targeted test prep. Track progress toward the <a
+                    href="https://canstemeducation.com/student-services/ossd/">OSSD</a> and
+                stay on top of <a href="https://canstemeducation.com/final-exam-and-report-card-information/">final
+                    exams & report cards</a>.</p>
+        </div>
+
+        <div class="card">
+            <span class="cap green"><i class="fa-solid fa-language"></i> Language Coaching</span>
+            <p class="subh">IELTS • CELPIP • PTE • ESL</p>
+            <p>Score higher with speaking practice, writing feedback, and realistic mock tests. See our full <a
+                    href="https://canstemeducation.com/competitive-exam-prep/">competitive exam prep</a> options for
+                accelerated results.</p>
+        </div>
+
+        <div class="card">
+            <span class="cap orange"><i class="fa-solid fa-laptop-code"></i> Flexible for Adults & Busy Schedules</span>
+            <p class="subh">Evenings • Weekends • Online</p>
+            <p>Upgrade credits via <a href="https://canstemeducation.com/adult-education/">Adult Education</a> and CAEC,
+                or learn anywhere with our accredited
+                <a href="https://canstemeducation.com/online-high-school/">Online High School</a>. Great for mature
+                students and working professionals.
+            </p>
+        </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <!-- Comparison -->
+    <p class="h blue"><i class="fa-solid fa-table-list ico"></i> Tutoring vs Language Coaching: What’s the Difference?
+    </p>
+    <table class="compare" aria-label="Tutoring vs Language Coaching comparison">
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Tutoring</th>
+                <th>Language Coaching</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="Feature">Focus</td>
+                <td data-label="Tutoring">Math, Science, English, <a
+                        href="https://canstemeducation.com/high-school-credits/">credit courses</a>, study skills</td>
+                <td data-label="Language Coaching">IELTS, CELPIP, PTE, ESL, pronunciation & fluency</td>
+            </tr>
+            <tr>
+                <td data-label="Feature">Best For</td>
+                <td data-label="Tutoring">High school students, university-bound learners, <a
+                        href="https://canstemeducation.com/stem-programs/">STEM pathways</a></td>
+                <td data-label="Language Coaching"><a
+                        href="https://canstemeducation.com/international-student/">International students</a>,
+                    newcomers, mature adults</td>
+            </tr>
+            <tr>
+                <td data-label="Feature">Method</td>
+                <td data-label="Tutoring">Homework help, concept mastery, unit-test strategy, grade tracking</td>
+                <td data-label="Language Coaching">Speaking labs, writing correction, mock exams, timing strategy</td>
+            </tr>
+            <tr>
+                <td data-label="Feature">Outcomes</td>
+                <td data-label="Tutoring">Higher grades, OSSD progress, scholarship readiness</td>
+                <td data-label="Language Coaching">Target band/score achieved, confident academic & workplace English
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Why it works -->
+    <p class="h green"><i class="fa-solid fa-bolt ico"></i> Why Local Tutoring Works in Mississauga & Brampton</p>
+    <p>
+        Personalized tutoring addresses curriculum gaps fast, improves time-management, and builds test confidence.
+        Students practicing regularly see faster gains in <strong>Math tutors Mississauga / Brampton</strong>,
+        <strong>Science tutors</strong>, and <strong>English tutors</strong> than with self-study alone.
+        Families also value frequent updates and a clear plan to graduation.
+    </p>
+    <p class="note"><strong>Pro tip:</strong> Book early before exam season and coordinate sessions with your <a
+            href="https://canstemeducation.com/high-school-credits/">credit timetable</a>.</p>
+
+    <!-- Delivery -->
+    <p class="h orange"><i class="fa-solid fa-headset ico"></i> Learn Your Way: In-Person, Online, or Blended</p>
+    <p>
+        Choose in-person coaching or join live <strong>online tutoring in Ontario</strong> for maximum flexibility.
+        Our <a href="https://canstemeducation.com/online-high-school/">Online High School</a> matches classroom quality
+        with interactive tools and teacher support.
+    </p>
+
+    <!-- Who we help -->
+    <p class="h blue"><i class="fa-solid fa-users ico"></i> Who We Help</p>
+    <ul>
+        <li><strong>High School Students:</strong> Raise grades, improve study habits, and plan <a
+                href="https://canstemeducation.com/student-services/ossd/">OSSD</a> credits.</li>
+        <li><strong>International Learners:</strong> Transition smoothly with <a
+                href="https://canstemeducation.com/international-student/">international student support</a> and English
+            coaching.</li>
+        <li><strong>Mature & Adult Students:</strong> Finish or upgrade credits via <a
+                href="https://canstemeducation.com/adult-education/">Adult Education</a> and <a
+                href="https://canstemeducation.com/caec/">CAEC</a>.</li>
+        <li><strong>STEM & Healthcare Aspirants:</strong> Build competitive profiles with <a
+                href="https://canstemeducation.com/stem-programs/">STEM programs</a> and <a
+                href="https://canstemeducation.com/healthcare-programs/">Healthcare programs</a>.</li>
+    </ul>
+
+    <div class="dash"></div>
+
+    <!-- Decision checklist -->
+    <p class="h green"><i class="fa-solid fa-list-check ico"></i> Quick Checklist: Find Your Best-Fit Plan</p>
+    <ul>
+        <li>Need a higher average for university? → <a href="https://canstemeducation.com/tutoring/">Subject
+                tutoring</a> + exam strategy.</li>
+        <li>Need a target score for immigration or college? → <a
+                href="https://canstemeducation.com/competitive-exam-prep/">IELTS/CELPIP/PTE coaching</a>.</li>
+        <li>Busy schedule? → <a href="https://canstemeducation.com/online-high-school/">Online lessons</a> + weekend
+            intensives.</li>
+        <li>Unsure about credits? → Map your path with <a href="https://canstemeducation.com/high-school-credits/">High
+                School Credits</a> & <a href="https://canstemeducation.com/student-services/ossd/">OSSD
+                requirements</a>.</li>
+    </ul>
+
+    <!-- Closing CTA (black header) -->
+    <div class="cta">
+        <p class="h black" style="justify-content:center;"><i class="fa-solid fa-star"></i> Ready to Start? Book Your
+            Tutoring or Language Coaching</p>
+        <p class="muted">Read our <a href="https://canstemeducation.com/google-reviews/">Google Reviews</a>, check the
+            <a href="https://canstemeducation.com/faq/">FAQ</a>, or <a
+                href="https://canstemeducation.com/refer-a-friend/">refer a friend</a>.</p>
+        <a class="btn" href="https://canstemeducation.com/registration/">Book Your Spot Today</a>
+    </div>
+</div>
+
+<!-- Optional FAQ Schema for SEO -->
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"FAQPage",
+ "mainEntity":[
+  {"@type":"Question","name":"Which subjects do tutors cover in Mississauga & Brampton?","acceptedAnswer":{"@type":"Answer","text":"We support Math, Science, English, and other Ontario high school credit courses. Sessions align to OSSD requirements and your exam schedule."}},
+  {"@type":"Question","name":"Do you offer IELTS, CELPIP, and PTE coaching?","acceptedAnswer":{"@type":"Answer","text":"Yes. We provide structured language coaching with mock tests, band/score strategies, and targeted speaking and writing feedback."}},
+  {"@type":"Question","name":"Is online tutoring as effective as in-person?","acceptedAnswer":{"@type":"Answer","text":"Our live online sessions mirror in-person lessons with interactive tools, progress tracking, and teacher feedback—ideal for busy students and adult learners."}},
+  {"@type":"Question","name":"Can adult and international students join?","acceptedAnswer":{"@type":"Answer","text":"Absolutely. We offer Adult Education and CAEC pathways, plus onboarding and language support for international students."}}
+ ]
+}
+</script>

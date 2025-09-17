@@ -1,0 +1,611 @@
+<!-- CanSTEM Article — Private vs Public (multi-color, gradients, dashed accents, p-only headers) -->
+<style>
+    /* ===== Scoped styles for this article only ===== */
+    #cs-article {
+        --blue: #00427C;
+        /* Brand */
+        --green: #2FBF71;
+        /* Accents */
+        --orange: #F59E0B;
+        /* Accents */
+        --purple: #6D5BD0;
+        /* Soft accent */
+        --ink: #26262B;
+        --muted: #586174;
+        --panel: #ffffff;
+        --line: #e6edf5;
+        --shadow: 0 10px 36px rgba(0, 0, 0, .12);
+
+        font-family: "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--ink);
+        max-width: 1200px;
+        margin: 0 auto;
+        line-height: 1.75;
+        font-size: 18px;
+    }
+
+    /* ===== Typography (p-only headers) ===== */
+    #cs-article .h {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--blue);
+        margin: 2.2rem 0 1.2rem;
+        text-shadow: 0 2px 6px rgba(0, 0, 0, .06);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        animation: rise .5s ease-out both;
+    }
+
+    #cs-article .subh {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--blue);
+        margin: 1rem 0 .6rem;
+    }
+
+    #cs-article p {
+        margin: 0 0 1rem;
+    }
+
+    #cs-article a {
+        color: var(--blue);
+        text-decoration: none;
+    }
+
+    #cs-article a:hover {
+        text-decoration: underline;
+    }
+
+    #cs-article .muted {
+        color: var(--muted);
+    }
+
+    #cs-article .sep {
+        height: 1px;
+        background: #eaf0f7;
+        margin: 24px 0;
+    }
+
+    /* ===== Decorative separators ===== */
+    #cs-article .dash {
+        border-top: 2px dashed var(--line);
+        margin: 24px 0;
+    }
+
+    /* ===== Hero block (multi-color gradient) ===== */
+    #cs-article .hero {
+        background: linear-gradient(135deg, #E9F6FF 0%, #EFFFF7 50%, #FFF6E9 100%);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 26px 24px;
+        box-shadow: var(--shadow);
+        margin: 18px 0 28px;
+        animation: fade .6s ease-out both;
+    }
+
+    #cs-article .hero .badge {
+        display: inline-block;
+        font-weight: 800;
+        font-size: 14px;
+        letter-spacing: .4px;
+        background: linear-gradient(135deg, var(--green), var(--blue));
+        color: #fff;
+        padding: 6px 10px;
+        border-radius: 999px;
+        margin-bottom: 10px;
+    }
+
+    /* ===== Pill legend ===== */
+    #cs-article .legend {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: .5rem 0 0;
+    }
+
+    #cs-article .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 14px;
+        color: #fff;
+        box-shadow: var(--shadow);
+    }
+
+    #cs-article .pill.blue {
+        background: var(--blue);
+    }
+
+    #cs-article .pill.green {
+        background: var(--green);
+    }
+
+    #cs-article .pill.orange {
+        background: var(--orange);
+    }
+
+    #cs-article .pill.purple {
+        background: var(--purple);
+    }
+
+    /* ===== Feature cards (tri-color headers + gradient) ===== */
+    #cs-article .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        margin: 28px 0;
+    }
+
+    #cs-article .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+        transition: transform .25s ease, box-shadow .25s ease;
+        animation: rise .6s ease-out both;
+    }
+
+    #cs-article .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, .16);
+    }
+
+    #cs-article .card .cap {
+        font-size: 14px;
+        font-weight: 800;
+        color: #fff;
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+        box-shadow: var(--shadow);
+    }
+
+    #cs-article .card .cap.blue {
+        background: linear-gradient(135deg, #0060b4, var(--blue));
+    }
+
+    #cs-article .card .cap.green {
+        background: linear-gradient(135deg, #39d68d, var(--green));
+    }
+
+    #cs-article .card .cap.orange {
+        background: linear-gradient(135deg, #ffb454, var(--orange));
+    }
+
+    /* ===== Comparison table (desktop) ===== */
+    #cs-article table.compare {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 14px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        margin: 16px 0 26px;
+    }
+
+    #cs-article .compare thead th {
+        background: linear-gradient(135deg, var(--blue), #0b68d6);
+        color: #fff;
+        padding: 16px;
+        text-align: left;
+        font-weight: 800;
+    }
+
+    #cs-article .compare th,
+    #cs-article .compare td {
+        padding: 16px;
+        border-bottom: 1px solid #eef2f7;
+        vertical-align: top;
+    }
+
+    #cs-article .compare tbody tr:nth-child(even) {
+        background: #F9FBFE;
+    }
+
+    /* ===== Info stripe (dashed) ===== */
+    #cs-article .note {
+        border: 2px dashed #cfe3ff;
+        background: #f7fbff;
+        border-radius: 14px;
+        padding: 16px 18px;
+    }
+
+    /* ===== Steps ===== */
+    #cs-article .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    #cs-article .step {
+        background: var(--panel);
+        border: 1px dashed #ffd7a1;
+        border-radius: 14px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+    }
+
+    #cs-article .step .num {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: inline-grid;
+        place-items: center;
+        font-weight: 800;
+        color: #fff;
+        margin-right: 8px;
+        box-shadow: var(--shadow);
+    }
+
+    #cs-article .num.blue {
+        background: var(--blue);
+    }
+
+    #cs-article .num.green {
+        background: var(--green);
+    }
+
+    #cs-article .num.orange {
+        background: var(--orange);
+    }
+
+    /* ===== CTA ===== */
+    #cs-article .cta {
+        text-align: center;
+        margin: 34px 0;
+    }
+
+    #cs-article .btn {
+        display: inline-block;
+        padding: 14px 34px;
+        border-radius: 12px;
+        font-weight: 900;
+        letter-spacing: .2px;
+        background: linear-gradient(135deg, var(--green), var(--blue));
+        color: #fff;
+        text-decoration: none;
+        box-shadow: var(--shadow);
+        transition: transform .2s ease, filter .2s ease;
+    }
+
+    #cs-article .btn:hover {
+        transform: translateY(-2px);
+        filter: brightness(0.96);
+    }
+
+    /* ===== Mobile ===== */
+    @media (max-width: 1024px) {
+        #cs-article {
+            font-size: 16px;
+        }
+
+        #cs-article .h {
+            font-size: 24px;
+        }
+
+        #cs-article .grid,
+        #cs-article .steps {
+            grid-template-columns: 1fr;
+        }
+
+        #cs-article .compare thead {
+            display: none;
+        }
+
+        #cs-article .compare,
+        #cs-article .compare tbody,
+        #cs-article .compare tr,
+        #cs-article .compare td {
+            display: block;
+            width: 100%;
+        }
+
+        #cs-article .compare tr {
+            border: 1px solid var(--blue);
+            background: #fff;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 16px;
+            box-shadow: var(--shadow);
+        }
+
+        #cs-article .compare td {
+            border: none;
+            padding: 10px 0;
+            position: relative;
+            font-size: 16px;
+        }
+
+        #cs-article .compare td::before {
+            content: attr(data-label);
+            display: block;
+            font-weight: 800;
+            color: var(--blue);
+            margin-bottom: 4px;
+        }
+    }
+
+    /* ===== Animations ===== */
+    @keyframes fade {
+        from {
+            opacity: 0
+        }
+
+        to {
+            opacity: 1
+        }
+    }
+
+    @keyframes rise {
+        from {
+            opacity: 0;
+            transform: translateY(14px)
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0)
+        }
+    }
+</style>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<div id="cs-article" role="article" aria-label="Private vs Public School in Ontario">
+
+    <!-- Hero -->
+    <div class="hero">
+        <span class="badge"><i class="fa-solid fa-compass"></i> Decision Guide for Ontario Families</span>
+        <p>
+            Ontario offers strong options. <strong>Public schools</strong> deliver free, community-based education.
+            <strong>Private schools</strong> add smaller classes, personalized support, specialty programs, and flexible
+            schedules.
+            This guide compares both paths and links to helpful resources so you can map credits, boost grades, and
+            choose the best fit.
+        </p>
+        <div class="legend" aria-label="Legend">
+            <span class="pill blue"><i class="fa-solid fa-circle"></i> Academics</span>
+            <span class="pill green"><i class="fa-solid fa-circle"></i> Flexibility</span>
+            <span class="pill orange"><i class="fa-solid fa-circle"></i> Support</span>
+            <span class="pill purple"><i class="fa-solid fa-circle"></i> Pathways</span>
+        </div>
+    </div>
+
+    <!-- Feature Cards -->
+    <div class="grid" aria-label="Key areas">
+        <div class="card">
+            <span class="cap blue"><i class="fa-solid fa-user-graduate"></i> High School Pathways</span>
+            <p>Understand the <a href="https://canstemeducation.com/student-services/ossd/">OSSD diploma</a>, plan
+                <a href="https://canstemeducation.com/high-school-credits/">credits</a>, and track
+                <a href="https://canstemeducation.com/final-exam-and-report-card-information/">exams & report cards</a>.
+            </p>
+        </div>
+        <div class="card">
+            <span class="cap green"><i class="fa-solid fa-chalkboard-teacher"></i> Academic Support</span>
+            <p>Lift results with <a href="https://canstemeducation.com/tutoring/">tutoring</a>, targeted
+                <a href="https://canstemeducation.com/competitive-exam-prep/">exam prep</a>, and hands-on
+                <a href="https://canstemeducation.com/stem-programs/">STEM programs</a>.
+            </p>
+        </div>
+        <div class="card">
+            <span class="cap orange"><i class="fa-solid fa-laptop-code"></i> Flexible Options</span>
+            <p>Choose <a href="https://canstemeducation.com/full-time-school/">full-time school</a>,
+                <a href="https://canstemeducation.com/online-high-school/">online high school</a>, or
+                <a href="https://canstemeducation.com/adult-education/">adult pathways</a> with rolling intakes.
+            </p>
+        </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <!-- Quick Comparison -->
+    <p class="h"><i class="fa-solid fa-scale-balanced" style="color:#F59E0B"></i> Quick Comparison: Private vs Public
+    </p>
+    <table class="compare" aria-label="Comparison table: Private vs Public">
+        <thead>
+            <tr>
+                <th>Area</th>
+                <th>Private School</th>
+                <th>Public School</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td data-label="Area">Class Size</td>
+                <td data-label="Private School">Smaller groups (often 10–15). More feedback and faster intervention.
+                </td>
+                <td data-label="Public School">Larger classes (often 25–30). Teacher time spread across more learners.
+                </td>
+            </tr>
+            <tr>
+                <td data-label="Area">Curriculum & Credits</td>
+                <td data-label="Private School">Ontario curriculum with enriched pacing. Proactive <a
+                        href="https://canstemeducation.com/high-school-credits/">credit mapping</a> toward the <a
+                        href="https://canstemeducation.com/student-services/ossd/">OSSD</a>.</td>
+                <td data-label="Public School">Ontario curriculum with standardized pacing and broad access.</td>
+            </tr>
+            <tr>
+                <td data-label="Area">Academic Support</td>
+                <td data-label="Private School">Built-in <a href="https://canstemeducation.com/tutoring/">tutoring</a>,
+                    teacher office hours, and individualized plans.</td>
+                <td data-label="Public School">Extra help varies by school; families often add external tutoring.</td>
+            </tr>
+            <tr>
+                <td data-label="Area">Specialty Programs</td>
+                <td data-label="Private School"><a href="https://canstemeducation.com/stem-programs/">STEM</a>, <a
+                        href="https://canstemeducation.com/healthcare-programs/">Healthcare</a>, <a
+                        href="https://canstemeducation.com/competitive-exam-prep/">competitive exam prep</a>.</td>
+                <td data-label="Public School">Offerings depend on board resources and staffing.</td>
+            </tr>
+            <tr>
+                <td data-label="Area">Flexibility</td>
+                <td data-label="Private School">Rolling intakes, <a
+                        href="https://canstemeducation.com/online-high-school/">online options</a>, <a
+                        href="https://canstemeducation.com/adult-education/">adult/mature</a> schedules.</td>
+                <td data-label="Public School">Fixed timetables aligned to board calendars.</td>
+            </tr>
+            <tr>
+                <td data-label="Area">Post-Secondary Pathways</td>
+                <td data-label="Private School">Hands-on <a
+                        href="https://canstemeducation.com/student-services/ouac/">OUAC</a> & <a
+                        href="https://canstemeducation.com/student-services/ocas/">OCAS</a> support, references,
+                    portfolio curation.</td>
+                <td data-label="Public School">Guidance availability varies by school size and caseload.</td>
+            </tr>
+            <tr>
+                <td data-label="Area">International & Mature</td>
+                <td data-label="Private School"><a
+                        href="https://canstemeducation.com/international-student/">International services</a> and <a
+                        href="https://canstemeducation.com/caec/">CAEC</a> options.</td>
+                <td data-label="Public School">Primarily K–12 focus; adult/intl. options depend on board.</td>
+            </tr>
+            <tr>
+                <td data-label="Area">Enrollment Speed</td>
+                <td data-label="Private School">Fast, streamlined <a
+                        href="https://canstemeducation.com/registration/">registration</a> with personalized timetables.
+                </td>
+                <td data-label="Public School">Board timelines; boundaries and waitlists may apply.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Dashed info -->
+    <p class="note"><strong>Tip:</strong> Whichever path you choose, review <a
+            href="https://canstemeducation.com/high-school-credits/">credit requirements</a> early and track
+        <a href="https://canstemeducation.com/final-exam-and-report-card-information/">exam/report dates</a> to avoid
+        surprises.
+    </p>
+
+    <!-- Academics -->
+    <p class="h"><i class="fa-solid fa-book-open" style="color:#6D5BD0"></i> Academics, Credits & the Ontario Diploma
+        (OSSD)</p>
+    <p>
+        Both systems lead to the <a href="https://canstemeducation.com/student-services/ossd/">OSSD</a>. The difference
+        is planning and visibility.
+        Private schools provide clear course sequencing, early risk alerts, and regular checkpoints—keeping graduation
+        timelines on track and building confidence.
+    </p>
+
+    <!-- Support -->
+    <p class="h"><i class="fa-solid fa-person-chalkboard" style="color:#2FBF71"></i> Tutoring, STEM & Exam Prep that
+        Drive Results</p>
+    <p>
+        Integrated <a href="https://canstemeducation.com/tutoring/">tutoring</a> closes gaps quickly.
+        <a href="https://canstemeducation.com/stem-programs/">STEM programs</a> build problem-solving and innovation.
+        <a href="https://canstemeducation.com/competitive-exam-prep/">Exam prep</a> adds strategy for unit tests and
+        competitive admissions.
+    </p>
+
+    <!-- Flexibility -->
+    <p class="h"><i class="fa-solid fa-clock" style="color:#F59E0B"></i> Flexibility for Every Stage: Full-Time, Online,
+        Adult</p>
+    <p>
+        Not every learner follows the same timeline. Choose campus-based <a
+            href="https://canstemeducation.com/full-time-school/">Full-Time School</a>,
+        accredited <a href="https://canstemeducation.com/online-high-school/">Online High School</a>, or
+        <a href="https://canstemeducation.com/adult-education/">Adult Education</a> to finish or upgrade credits.
+        Returning adults can also leverage the <a href="https://canstemeducation.com/caec/">CAEC</a>.
+    </p>
+
+    <!-- Specialty -->
+    <p class="h"><i class="fa-solid fa-stethoscope" style="color:#2FBF71"></i> Beyond Core Subjects: Specialty &
+        Career-Aligned Programs</p>
+    <p>
+        Build a stand-out profile with <a href="https://canstemeducation.com/healthcare-programs/">Healthcare
+            programs</a>,
+        advanced <a href="https://canstemeducation.com/stem-programs/">STEM opportunities</a>, and supervised
+        projects—great assets for <a href="https://canstemeducation.com/student-services/ouac/">OUAC</a>/<a
+            href="https://canstemeducation.com/student-services/ocas/">OCAS</a>.
+    </p>
+
+    <!-- International -->
+    <p class="h"><i class="fa-solid fa-earth-americas" style="color:#6D5BD0"></i> International Students: Smooth
+        Landing, Strong Support</p>
+    <p>
+        Our <a href="https://canstemeducation.com/international-student/">International Student</a> services and
+        <a href="https://canstemeducation.com/student-services/">Student Services</a> hub streamline onboarding,
+        placement, documentation, and ongoing academic care.
+    </p>
+
+    <!-- Decision Framework -->
+    <div class="dash"></div>
+    <p class="h"><i class="fa-solid fa-list-check" style="color:#2FBF71"></i> A Simple Decision Framework</p>
+    <ul>
+        <li><strong>Academic Needs:</strong> If smaller classes or <a
+                href="https://canstemeducation.com/tutoring/">tutoring</a> would help, private often fits best.</li>
+        <li><strong>Schedule & Location:</strong> Need flexibility? Consider <a
+                href="https://canstemeducation.com/online-high-school/">online</a> or <a
+                href="https://canstemeducation.com/full-time-school/">full-time</a>.</li>
+        <li><strong>Next Steps:</strong> Planning university/college? Engage <a
+                href="https://canstemeducation.com/student-services/ouac/">OUAC</a> and <a
+                href="https://canstemeducation.com/student-services/ocas/">OCAS</a> support early.</li>
+        <li><strong>Learner Profile:</strong> International or mature? Explore <a
+                href="https://canstemeducation.com/international-student/">International</a>, <a
+                href="https://canstemeducation.com/adult-education/">Adult</a>, and <a
+                href="https://canstemeducation.com/caec/">CAEC</a>.</li>
+        <li><strong>School Fit:</strong> Read <a href="https://canstemeducation.com/about-2/">About CanSTEM</a>, browse
+            <a href="https://canstemeducation.com/faq/">FAQ</a>, and check <a
+                href="https://canstemeducation.com/google-reviews/">Google Reviews</a>.</li>
+    </ul>
+
+    <!-- Steps -->
+    <p class="h"><i class="fa-solid fa-shoe-prints" style="color:#F59E0B"></i> How to Get Started (3 Simple Steps)</p>
+    <div class="steps" aria-label="Start steps">
+        <div class="step">
+            <p class="subh"><span class="num blue">1</span> Explore Programs</p>
+            <p>Compare <a href="https://canstemeducation.com/full-time-school/">Full-Time School</a>,
+                <a href="https://canstemeducation.com/online-high-school/">Online High School</a>, and
+                <a href="https://canstemeducation.com/adult-education/">Adult Education</a>.
+            </p>
+        </div>
+        <div class="step">
+            <p class="subh"><span class="num green">2</span> Plan Credits</p>
+            <p>Review <a href="https://canstemeducation.com/high-school-credits/">High School Credits</a>, confirm
+                <a href="https://canstemeducation.com/student-services/ossd/">OSSD</a> requirements, and check
+                <a href="https://canstemeducation.com/final-exam-and-report-card-information/">exams & reports</a>.
+            </p>
+        </div>
+        <div class="step">
+            <p class="subh"><span class="num orange">3</span> Apply</p>
+            <p>Complete quick <a href="https://canstemeducation.com/registration/">Registration</a>. Need help? Visit
+                <a href="https://canstemeducation.com/student-services/">Student Services</a> or our
+                <a href="https://canstemeducation.com/faq/">FAQ</a>.
+            </p>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta">
+        <p class="h" style="justify-content:center;"><i class="fa-solid fa-star"></i> Ready to Explore the Right Fit?
+        </p>
+        <p class="muted">Our advisors map credits, align timelines, and build a plan—public, private, or a blended
+            approach with online + tutoring.</p>
+        <a class="btn" href="https://canstemeducation.com/registration/">Start Your Path Today</a>
+    </div>
+
+    <!-- Footer trust -->
+    <p class="muted" style="text-align:center;">
+        Learn <a href="https://canstemeducation.com/about-2/">About CanSTEM</a> • Read <a
+            href="https://canstemeducation.com/google-reviews/">Google Reviews</a> •
+        Share with a friend: <a href="https://canstemeducation.com/refer-a-friend/">Refer-a-Friend</a>
+    </p>
+</div>
+
+<!-- BONUS: FAQ schema for rich results -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"Do private schools in Ontario follow the same curriculum as public schools?","acceptedAnswer":{"@type":"Answer","text":"Yes. Both follow the Ontario curriculum and lead to the OSSD. Private schools often add enriched pacing, specialty options, and individualized support."}},
+    {"@type":"Question","name":"Which option offers more flexibility for schedules?","acceptedAnswer":{"@type":"Answer","text":"Private schools commonly provide rolling intakes, online high school, and adult pathways—useful for accelerating or catching up credits."}},
+    {"@type":"Question","name":"How do private schools support university and college applications?","acceptedAnswer":{"@type":"Answer","text":"With dedicated guidance for OUAC (universities) and OCAS (colleges), course planning, references, and portfolio preparation."}},
+    {"@type":"Question","name":"Can international and mature students enroll?","acceptedAnswer":{"@type":"Answer","text":"Yes. International students receive onboarding and language support; mature learners can complete or upgrade credits via Adult Education and CAEC."}}
+  ]
+}
+</script>
