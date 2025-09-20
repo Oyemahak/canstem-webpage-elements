@@ -1,0 +1,145 @@
+<!-- High School Night School — Individual Credits (stand-alone & responsive) -->
+<style>
+    /* Scope everything to this block only */
+    #night-school-fees {
+        --head: #000000;
+        --sub: #00427c;
+        --ink: #26262B;
+        --muted: #333333;
+        --panel: #ffffff;
+        --border: #e2e8f0;
+        --shadow: 0 4px 20px rgba(0, 0, 0, .08);
+
+        font-family: "Open Sans", sans-serif;
+        color: var(--ink);
+        max-width: 1200px;
+        line-height: 1.6;
+        font-size: 18px;
+    }
+
+    #night-school-fees .section-body {
+        background: #fff;
+    }
+
+    #night-school-fees .accent {
+        color: var(--sub);
+        font-weight: 700;
+        margin: 0 0 12px;
+    }
+
+    #night-school-fees .sep {
+        height: 1px;
+        background: #eef2f7;
+        margin: 1rem 0;
+    }
+
+    /* Table (desktop) */
+    #night-school-fees table.rtable {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        margin: 0 0 1rem;
+    }
+
+    #night-school-fees .rtable thead {
+        background: var(--sub);
+        color: #fff;
+    }
+
+    #night-school-fees .rtable th,
+    #night-school-fees .rtable td {
+        padding: 16px;
+        text-align: left;
+        font-size: 18px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+
+    #night-school-fees .rtable tbody tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    /* Mobile & tablet: table -> cards (matches your main page behavior) */
+    @media (max-width: 768px) {
+        #night-school-fees {
+            font-size: 16px;
+        }
+
+        #night-school-fees .rtable thead {
+            display: none;
+        }
+
+        #night-school-fees .rtable,
+        #night-school-fees .rtable tbody,
+        #night-school-fees .rtable tr,
+        #night-school-fees .rtable td {
+            display: block;
+            width: 100%;
+        }
+
+        #night-school-fees .rtable {
+            box-shadow: none !important;
+            margin-bottom: 0 !important;
+        }
+
+        #night-school-fees .rtable tr {
+            margin-bottom: 16px;
+            border: 1px solid var(--sub);
+            padding: 16px;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        #night-school-fees .rtable td {
+            border: none;
+            padding: 12px 0;
+            position: relative;
+            font-size: 16px;
+        }
+
+        #night-school-fees .rtable td::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: var(--sub);
+            display: block;
+            margin-bottom: 4px;
+        }
+    }
+</style>
+
+<div id="night-school-fees">
+    <div class="section-body">
+        <table class="rtable">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label="Item">Grade 9 &amp; 10</td>
+                    <td data-label="Amount">$449 per course</td>
+                </tr>
+                <tr>
+                    <td data-label="Item">Grade 11 &amp; 12</td>
+                    <td data-label="Amount">$499 per course</td>
+                </tr>
+                <tr>
+                    <td data-label="Item">Online Final Exam Fee</td>
+                    <td data-label="Amount">$150 for the first course; $100 for the second course; $50 for each additional course</td>
+                </tr>
+                <tr>
+                    <td data-label="Item">Transcripts (send to counselor/university/college)</td>
+                    <td data-label="Amount">$25</td>
+                </tr>
+                <tr>
+                    <td data-label="Item">Fast tracking report card</td>
+                    <td data-label="Amount">$100 (within 24 hours)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
