@@ -1,0 +1,198 @@
+<!-- CanSTEM • University Open House 2025 — Coming Soon -->
+<section class="cs-openhouse-soon" aria-live="polite">
+    <div class="oh-card">
+
+        <div class="oh-content">
+            <h3 class="oh-title">University Open House for 2025 — Coming Soon</h3>
+            <p class="oh-text">
+                We will update our schedule for 2025. Once we receive confirmation from the universities, we will post the new dates and the names of participating universities here. To get notified as soon as we publish, join the waitlist.
+            </p>
+
+            <div class="oh-actions">
+                <!-- Get Notified (Gmail compose, prefilled; collects just Name) -->
+                <a class="oh-btn primary" target="_blank" rel="noopener noreferrer"
+                    href="https://mail.google.com/mail/?view=cm&fs=1&to=frontdesk@canstemeducation.com&su=University%20Open%20House%202025%20%E2%80%94%20Notify%20Me&body=Hello%20CanSTEM%2C%0A%0APlease%20notify%20me%20about%20the%20next%20University%20Open%20House.%0A%0AName%3A%20%0A%0AThank%20you.%0A">
+                    Get Notified
+                </a>
+
+                <!-- Contact Us -->
+                <a class="oh-btn ghost" href="https://canstemeducation.com/contact-us/">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+
+        <span class="oh-badge">Coming&nbsp;Soon</span>
+    </div>
+</section>
+
+<style>
+    /* —— Scoped styles to avoid leaking —— */
+    .cs-openhouse-soon {
+        --oh-bg: #ffffff;
+        --oh-ink: #26262B;
+        --oh-sub: #00427C;
+        /* CanSTEM blue */
+        --oh-border: #e6eef6;
+        --oh-shadow: 0 8px 28px rgba(0, 66, 124, .12);
+        --oh-radius: 16px;
+        margin: 16px 0;
+    }
+
+    .cs-openhouse-soon .oh-card {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 16px;
+        align-items: start;
+        background: var(--oh-bg);
+        color: var(--oh-ink);
+        border: 1px solid var(--oh-border);
+        border-radius: var(--oh-radius);
+        box-shadow: var(--oh-shadow);
+        padding: 24px 24px 32px;
+        position: relative;
+        overflow: hidden;
+        isolation: isolate;
+    }
+
+    .cs-openhouse-soon .oh-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(500px 200px at 10% -20%, rgba(0, 66, 124, .08), transparent 60%),
+            radial-gradient(400px 160px at 90% 120%, rgba(0, 66, 124, .06), transparent 60%);
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    .cs-openhouse-soon .oh-content {
+        z-index: 1;
+    }
+
+    .cs-openhouse-soon .oh-title {
+        margin: 0 0 12px;
+        font: 700 24px/1.4 "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--oh-sub);
+        letter-spacing: .2px;
+    }
+
+    .cs-openhouse-soon .oh-text {
+        margin: 0;
+        font: 500 18px/1.8 "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        max-width: 100%;
+    }
+
+    .cs-openhouse-soon .oh-actions {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .cs-openhouse-soon .oh-btn {
+        display: inline-block;
+        padding: 10px 14px;
+        border-radius: 999px;
+        text-decoration: none;
+        font: 600 18px/1.8 "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        border: 1px solid rgba(0, 66, 124, .18);
+        transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+        will-change: transform;
+    }
+
+    .cs-openhouse-soon .oh-btn.primary {
+        background: var(--oh-sub);
+        color: #fff;
+        box-shadow: 0 6px 16px rgba(0, 66, 124, .22);
+    }
+
+    .cs-openhouse-soon .oh-btn.primary:hover {
+        transform: translateY(-1px);
+    }
+
+    .cs-openhouse-soon .oh-btn.ghost {
+        background: #fff;
+        color: var(--oh-sub);
+    }
+
+    .cs-openhouse-soon .oh-btn.ghost:hover {
+        background: rgba(0, 66, 124, .06);
+    }
+
+    .cs-openhouse-soon .oh-badge {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font: 700 14px/1 "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        letter-spacing: .4px;
+        text-transform: uppercase;
+        background: #0f172a;
+        color: #fff;
+        opacity: .92;
+        z-index: 1;
+    }
+
+    /* — Mobile-first stacking for a *different* view, not only smaller text — */
+    @media (max-width: 640px) {
+        .cs-openhouse-soon .oh-card {
+            grid-template-columns: 1fr;
+            padding: 16px;
+            gap: 12px;
+        }
+
+        .cs-openhouse-soon .oh-title {
+            font: 700 20px/1.4 "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        }
+
+        .cs-openhouse-soon .oh-icon {
+            width: 44px;
+            height: 44px;
+            justify-self: start;
+        }
+
+        .cs-openhouse-soon .oh-title {
+            font-size: 24px;
+        }
+
+        .cs-openhouse-soon .oh-text {
+            font-size: 18px;
+        }
+
+        .cs-openhouse-soon .oh-actions {
+            gap: 8px;
+        }
+
+        .cs-openhouse-soon .oh-btn {
+            padding: 10px 12px;
+            font-weight: 600;
+        }
+
+        .cs-openhouse-soon .oh-badge {
+            top: 8px;
+            right: 8px;
+        }
+    }
+
+    /* Dark-mode safety */
+    @media (prefers-color-scheme: dark) {
+        .cs-openhouse-soon {
+            --oh-bg: #0b1220;
+            --oh-ink: #e5e7eb;
+            --oh-border: rgba(255, 255, 255, .12);
+            --oh-shadow: 0 10px 28px rgba(0, 0, 0, .45);
+        }
+
+        .cs-openhouse-soon .oh-btn.ghost {
+            background: transparent;
+            color: #cde3ff;
+            border-color: rgba(205, 227, 255, .25);
+        }
+
+        .cs-openhouse-soon .oh-btn.primary {
+            background: #1b64a4;
+        }
+    }
+</style>

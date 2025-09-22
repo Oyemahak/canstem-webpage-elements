@@ -21,16 +21,12 @@
         background: #fff;
     }
 
-    #night-school-fees .accent {
-        color: var(--sub);
-        font-weight: 700;
-        margin: 0 0 12px;
-    }
-
-    #night-school-fees .sep {
-        height: 1px;
-        background: #eef2f7;
-        margin: 1rem 0;
+    #night-school-fees .rtable-note {
+        display: block;
+        font-size: 14px;
+        color: red;
+        margin-top: 6px;
+        font-weight: 500;
     }
 
     /* Table (desktop) */
@@ -106,6 +102,11 @@
             display: block;
             margin-bottom: 4px;
         }
+
+        #night-school-fees .rtable-note {
+            font-size: 13px;
+            margin-top: 4px;
+        }
     }
 </style>
 
@@ -128,7 +129,10 @@
                     <td data-label="Amount">$499 per course</td>
                 </tr>
                 <tr>
-                    <td data-label="Item">Online Final Exam Fee</td>
+                    <td data-label="Item">
+                        Online Final Exam Fee
+                        <small class="rtable-note">(There is no final exam fee for In-Class students)</small>
+                    </td>
                     <td data-label="Amount">$150 for the first course; $100 for the second course; $50 for each additional course</td>
                 </tr>
                 <tr>
