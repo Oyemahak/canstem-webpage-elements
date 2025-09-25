@@ -375,6 +375,17 @@
             border-radius: 10px
         }
 
+        .terms {
+            margin: 6px 0 4px 18px;
+            padding: 0
+        }
+
+        .terms li {
+            margin: 6px 0;
+            font-size: var(--fs-sm);
+            color: #0b1324
+        }
+
         .toast {
             position: fixed;
             top: 12px;
@@ -435,7 +446,7 @@
 
         <!-- Withdraw -->
         <section id="pane-withdraw" class="card" role="tabpanel">
-            <span class="section-title">Withdrawal Request Form details</span><br>
+            <span class="section-title">Withdrawal Request — Form Details</span>
             <p class="subnote">In order to withdraw — please make sure that all the fee is paid to process withdrawal.
             </p>
 
@@ -478,7 +489,7 @@
 
             <hr class="sep">
 
-            <!-- 2) PAYMENT -->
+            <!-- PAYMENT -->
             <span class="section-title">Payment</span>
             <div class="notice">Please complete payment here: <a href="https://canstemeducation.com/payment/"
                     target="_blank" rel="noopener">https://canstemeducation.com/payment/</a></div>
@@ -490,27 +501,30 @@
 
             <hr class="sep">
 
-            <!-- Terms acknowledgment (unchanged text) -->
+            <!-- TERMS -->
+            <span class="section-title">Terms &amp; Conditions</span>
+            <ul class="terms">
+                <li>I have read the policies, fees and terms on the <a
+                        href="https://canstemeducation.com/course-mode-change-terms-policy/" target="_blank"
+                        rel="noopener">Course Mode Change &amp; Terms page</a>.</li>
+                <li>This request is subject to approval.</li>
+                <li>All fees are non-refundable; I will not request a refund.</li>
+                <li>To reverse a submitted request, I must submit a new request; the same fees apply and it will be
+                    treated as a separate request.</li>
+            </ul>
             <div class="field checkline">
                 <input type="checkbox" id="w-ack" required>
-                <label for="w-ack"><strong>I confirm that I have read and agree to CanSTEM Education’s policies, fees,
-                        and terms as outlined on the Course Mode Change & Terms page (<a
-                            href="https://canstemeducation.com/course-mode-change-terms-policy/" target="_blank"
-                            rel="noopener">click here to read more..</a>). I understand that this request (withdrawal /
-                        change course / switch mode) is subject to approval and that all fees are non-refundable; I will
-                        not request a refund. Once a request is submitted, reversing your decision requires submitting a
-                        new request; the same fees apply again and the new submission will be treated as a separate
-                        request.</strong></label>
+                <label for="w-ack"><strong>I have read and agree to all the terms above.</strong></label>
             </div>
 
             <hr class="sep">
 
-            <!-- 3) UPLOADS -->
+            <!-- UPLOADS -->
             <span class="section-title">Uploads</span>
             <div class="field"><label for="w-up-payment">Proof of Payment</label><input id="w-up-payment" type="file"
                     multiple></div>
             <div class="field">
-                <label for="w-files">Upload Supporting Documents (optional)</label>
+                <label for="w-files">Upload Supporting Documents</label>
                 <input id="w-files" type="file" multiple>
                 <div class="help">You can select multiple files or open the picker again to add more.</div>
             </div>
@@ -525,7 +539,8 @@
 
         <!-- Change -->
         <section id="pane-change" class="card" style="display:none;" role="tabpanel">
-            <span class="section-title">Course Change Request Form details</span>
+            <span class="section-title">Course Change — Form Details</span>
+
             <div class="row">
                 <div class="field"><label class="req" for="c-name">Student Full Name</label><input id="c-name" required
                         placeholder="First Last"></div>
@@ -571,7 +586,7 @@
 
             <hr class="sep">
 
-            <!-- 2) PAYMENT -->
+            <!-- PAYMENT -->
             <span class="section-title">Payment</span>
             <div class="notice">Please complete payment here: <a href="https://canstemeducation.com/payment/"
                     target="_blank" rel="noopener">https://canstemeducation.com/payment/</a></div>
@@ -583,31 +598,36 @@
 
             <hr class="sep">
 
-            <!-- Terms acknowledgment with prerequisite note -->
+            <!-- TERMS -->
+            <span class="section-title">Terms &amp; Conditions</span>
+            <ul class="terms">
+                <li>I have read the policies, fees and terms on the <a
+                        href="https://canstemeducation.com/course-mode-change-terms-policy/" target="_blank"
+                        rel="noopener">Course Mode Change &amp; Terms page</a>.</li>
+                <li>This request is subject to approval.</li>
+                <li>All fees are non-refundable; I will not request a refund.</li>
+                <li>To reverse a submitted request, I must submit a new request; the same fees apply and it will be
+                    treated as a separate request.</li>
+                <li><strong>I have completed the prerequisite for the requested course; otherwise my request will not be
+                        accepted.</strong></li>
+                <li><strong>I will submit proof of the prerequisite along with this request (see uploads
+                        below).</strong></li>
+            </ul>
             <div class="field checkline">
                 <input type="checkbox" id="c-ack" required>
-                <label for="c-ack"><strong>I confirm that I have read and agree to CanSTEM Education’s policies, fees,
-                        and terms as outlined on the Course Mode Change & Terms page (<a
-                            href="https://canstemeducation.com/course-mode-change-terms-policy/" target="_blank"
-                            rel="noopener">click here to read more..</a>). I understand that this request (withdrawal /
-                        change course / switch mode) is subject to approval and that all fees are non-refundable; I will
-                        not request a refund. Once a request is submitted, reversing your decision requires submitting a
-                        new request; the same fees apply again and the new submission will be treated as a separate
-                        request. You must have completed the prerequisite of the course you are requesting; otherwise
-                        your request will not be accepted. You must submit proof of the prerequisite with this request
-                        (upload below).</strong></label>
+                <label for="c-ack"><strong>I have read and agree to all the terms above.</strong></label>
             </div>
 
             <hr class="sep">
 
-            <!-- 3) UPLOADS -->
+            <!-- UPLOADS -->
             <span class="section-title">Uploads</span>
             <div class="field"><label for="c-up-payment">Proof of Payment</label><input id="c-up-payment" type="file"
                     multiple></div>
             <div class="field"><label for="c-prereq">Proof of Prerequisite Subject(s)</label><input id="c-prereq"
                     type="file" multiple></div>
             <div class="field">
-                <label for="c-files">Upload Supporting Documents (optional)</label>
+                <label for="c-files">Upload Supporting Documents</label>
                 <input id="c-files" type="file" multiple>
                 <div class="help">You can select multiple files or open the picker again to add more.</div>
             </div>
@@ -622,7 +642,8 @@
 
         <!-- Mode -->
         <section id="pane-mode" class="card" style="display:none;" role="tabpanel">
-            <span class="section-title">Course Mode Switch Request Form details</span>
+            <span class="section-title">Course Mode Switch — Form Details</span>
+
             <div class="row">
                 <div class="field"><label class="req" for="m-name">Student Full Name</label><input id="m-name" required
                         placeholder="First Last"></div>
@@ -677,7 +698,7 @@
 
             <hr class="sep">
 
-            <!-- 2) PAYMENT -->
+            <!-- PAYMENT -->
             <span class="section-title">Payment</span>
             <div class="notice">Please complete payment here: <a href="https://canstemeducation.com/payment/"
                     target="_blank" rel="noopener">https://canstemeducation.com/payment/</a></div>
@@ -689,27 +710,30 @@
 
             <hr class="sep">
 
-            <!-- Terms acknowledgment (unchanged text) -->
+            <!-- TERMS -->
+            <span class="section-title">Terms &amp; Conditions</span>
+            <ul class="terms">
+                <li>I have read the policies, fees and terms on the <a
+                        href="https://canstemeducation.com/course-mode-change-terms-policy/" target="_blank"
+                        rel="noopener">Course Mode Change &amp; Terms page</a>.</li>
+                <li>This request is subject to approval.</li>
+                <li>All fees are non-refundable; I will not request a refund.</li>
+                <li>To reverse a submitted request, I must submit a new request; the same fees apply and it will be
+                    treated as a separate request.</li>
+            </ul>
             <div class="field checkline">
                 <input type="checkbox" id="m-ack" required>
-                <label for="m-ack"><strong>I confirm that I have read and agree to CanSTEM Education’s policies, fees,
-                        and terms as outlined on the Course Mode Change & Terms page (<a
-                            href="https://canstemeducation.com/course-mode-change-terms-policy/" target="_blank"
-                            rel="noopener">click here to read more..</a>). I understand that this request (withdrawal /
-                        change course / switch mode) is subject to approval and that all fees are non-refundable; I will
-                        not request a refund. Once a request is submitted, reversing your decision requires submitting a
-                        new request; the same fees apply again and the new submission will be treated as a separate
-                        request.</strong></label>
+                <label for="m-ack"><strong>I have read and agree to all the terms above.</strong></label>
             </div>
 
             <hr class="sep">
 
-            <!-- 3) UPLOADS -->
+            <!-- UPLOADS -->
             <span class="section-title">Uploads</span>
             <div class="field"><label for="m-up-payment">Proof of Payment</label><input id="m-up-payment" type="file"
                     multiple></div>
             <div class="field">
-                <label for="m-files">Upload Supporting Documents (optional)</label>
+                <label for="m-files">Upload Supporting Documents</label>
                 <input id="m-files" type="file" multiple>
                 <div class="help">You can select multiple files or open the picker again to add more.</div>
             </div>
@@ -857,7 +881,10 @@
                 hasPayment: document.getElementById('w-up-payment').files.length > 0,
                 hasSupporting: document.getElementById('w-files').files.length > 0
             };
-            google.script.run.withSuccessHandler(() => showStatus('w-status', 'Success! Your request has been emailed to the front desk.', true)).withFailureHandler(() => showStatus('w-status', 'Error sending your request. Please try again.', false)).sendToFrontDesk(payload);
+            google.script.run
+                .withSuccessHandler(() => showStatus('w-status', 'Success! Your request has been emailed to the front desk.', true))
+                .withFailureHandler(() => showStatus('w-status', 'Error sending your request. Please try again.', false))
+                .sendToFrontDesk(payload);
         }
 
         async function submitChange() {
@@ -881,7 +908,10 @@
                 hasPrereq: document.getElementById('c-prereq').files.length > 0,
                 hasSupporting: document.getElementById('c-files').files.length > 0
             };
-            google.script.run.withSuccessHandler(() => showStatus('c-status', 'Success! Your request has been emailed to the front desk.', true)).withFailureHandler(() => showStatus('c-status', 'Error sending your request. Please try again.', false)).sendToFrontDesk(payload);
+            google.script.run
+                .withSuccessHandler(() => showStatus('c-status', 'Success! Your request has been emailed to the front desk.', true))
+                .withFailureHandler(() => showStatus('c-status', 'Error sending your request. Please try again.', false))
+                .sendToFrontDesk(payload);
         }
 
         async function submitMode() {
@@ -901,7 +931,10 @@
                 hasPayment: document.getElementById('m-up-payment').files.length > 0,
                 hasSupporting: document.getElementById('m-files').files.length > 0
             };
-            google.script.run.withSuccessHandler(() => showStatus('m-status', 'Success! Your request has been emailed to the front desk.', true)).withFailureHandler(() => showStatus('m-status', 'Error sending your request. Please try again.', false)).sendToFrontDesk(payload);
+            google.script.run
+                .withSuccessHandler(() => showStatus('m-status', 'Success! Your request has been emailed to the front desk.', true))
+                .withFailureHandler(() => showStatus('m-status', 'Error sending your request. Please try again.', false))
+                .sendToFrontDesk(payload);
         }
 
         /* Init */

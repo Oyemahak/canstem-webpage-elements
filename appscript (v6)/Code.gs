@@ -79,23 +79,27 @@ function validatePayload_(p) {
   }
 }
 
-/** Subject like: "Course Withdrawal Request – Name – Code" */
+/** Human label for headers/subjects */
+function requestLabel_(p) {
+  const t = String(p.type || '').toLowerCase();
+  if (t === 'withdrawal')     return 'Course Withdrawal Request';
+  if (t === 'change course')  return 'Course Change Request';
+  if (t === 'mode switch')    return 'Course Mode Switch Request';
+  return 'Course Request';
+}
+
+/** SUBJECT — exact wording per request */
 function makeSubject_(p) {
   const safeName = oneLine_(p.name);
   const safeCode = oneLine_(p.courseCode);
-
-  const middle = (String(p.type || '').toLowerCase() === 'withdrawal')
-    ? 'Withdrawal Course Request'
-    : (String(p.type || '').toLowerCase() === 'change course')
-      ? 'Change Course Request'
-      : 'Mode Switch Request';
-
-  return `${middle} – ${safeName} – ${safeCode}`;
+  return `${requestLabel_(p)} – ${safeName} – ${safeCode}`;
 }
 
 function makeHtmlBody_(p) {
   const rows = [];
   const sep = '<tr><td colspan="2" style="padding:0"><hr style="border:none;border-top:1px solid #e5e7eb;margin:8px 0"></td></tr>';
+
+  const headerTitle = 'New ' + requestLabel_(p); // e.g., "New Course Withdrawal Request"
 
   rows.push(row_('Request Type', p.type));
   rows.push(row_('Submitted At', Utilities.formatDate(new Date(), SCRIPT_TZ, 'EEE, MMM d, yyyy • h:mm a')));
@@ -154,7 +158,7 @@ function makeHtmlBody_(p) {
   return `
     ${styles}
     <div class="wrap">
-      <h2>New Course (Withdrawal / Change / Mode Switch) Request</h2>
+      <h2>${esc_(headerTitle)}</h2>
       <table>${rows.join('')}</table>
       <p class="small">This message was sent automatically from the CanSTEM Change Request form.</p>
     </div>
