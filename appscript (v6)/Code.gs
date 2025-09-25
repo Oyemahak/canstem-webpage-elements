@@ -25,7 +25,7 @@ function sendToFrontDesk(payload) {
     const attachments = buildAttachments_(payload.attachments || []);
 
     const options = {
-      name: 'Change Request Form (Withdrawal / Change / Mode Switch)',
+      name: 'Course (Withdrawal / Change / Mode Switch) Request Form',
       htmlBody,
       attachments,
       replyTo: isEmail_(payload.email) ? payload.email.trim() : undefined
@@ -79,18 +79,18 @@ function validatePayload_(p) {
   }
 }
 
-/** Subject like: "Change Request : Withdrawal Course Submission – Name – Code" */
+/** Subject like: "Course Withdrawal Request – Name – Code" */
 function makeSubject_(p) {
   const safeName = oneLine_(p.name);
   const safeCode = oneLine_(p.courseCode);
 
   const middle = (String(p.type || '').toLowerCase() === 'withdrawal')
-    ? 'Withdrawal Course Submission'
+    ? 'Withdrawal Course Request'
     : (String(p.type || '').toLowerCase() === 'change course')
-      ? 'Change Course Submission'
-      : 'Mode Switch Submission';
+      ? 'Change Course Request'
+      : 'Mode Switch Request';
 
-  return `Change Request : ${middle} – ${safeName} – ${safeCode}`;
+  return `${middle} – ${safeName} – ${safeCode}`;
 }
 
 function makeHtmlBody_(p) {
@@ -154,7 +154,7 @@ function makeHtmlBody_(p) {
   return `
     ${styles}
     <div class="wrap">
-      <h2>New Change Request Submission</h2>
+      <h2>New Course (Withdrawal / Change / Mode Switch) Request</h2>
       <table>${rows.join('')}</table>
       <p class="small">This message was sent automatically from the CanSTEM Change Request form.</p>
     </div>
