@@ -1,0 +1,420 @@
+<!-- ================== CanSTEM Course Finder (compact, Google-style) ================== -->
+<section id="canstem-course-finder" class="csbx-wrap" aria-label="Find a course">
+    <div class="csbx-shell" role="search">
+        <input id="csbx-q" class="csbx-input" type="search" autocomplete="off" spellcheck="false"
+            placeholder="Search courses by code or name…" aria-autocomplete="list" aria-controls="csbx-suggest"
+            aria-expanded="false" />
+
+        <!-- Filter button (RIGHT) -->
+        <button id="csbx-filter" class="csbx-filter-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+            <span class="csbx-filter-label">All</span>
+            <svg class="csbx-caret" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+        </button>
+
+        <!-- Filter menu -->
+        <ul id="csbx-menu" class="csbx-menu" role="listbox" aria-label="Filter by grade">
+            <li role="option" data-grade="ALL" aria-selected="true"><span class="csbx-tick">✓</span> All</li>
+            <li role="option" data-grade="Grade 9"><span class="csbx-tick">✓</span> Grade 9</li>
+            <li role="option" data-grade="Grade 10"><span class="csbx-tick">✓</span> Grade 10</li>
+            <li role="option" data-grade="Grade 11"><span class="csbx-tick">✓</span> Grade 11</li>
+            <li role="option" data-grade="Grade 12"><span class="csbx-tick">✓</span> Grade 12</li>
+            <li role="option" data-grade="ESL/ELD Courses"><span class="csbx-tick">✓</span> ESL &amp; ELD</li>
+        </ul>
+
+        <!-- Suggestions -->
+        <div id="csbx-suggest" class="csbx-suggest" role="listbox" aria-label="Course suggestions"></div>
+    </div>
+</section>
+
+<style>
+    /* ---------- THEME-ISOLATED VARIABLES ---------- */
+    #canstem-course-finder {
+        --csbx-ink: #0f172a;
+        --csbx-muted: #64748b;
+        --csbx-border: #e6e6e6;
+        --csbx-bg: #ffffff;
+        --csbx-ring: rgba(251, 176, 37, .28);
+        /* nice faded yellow */
+        --csbx-ring-strong: rgba(251, 176, 37, .40);
+        --csbx-brand: #001161;
+        --csbx-blue: #2563eb;
+        --csbx-soft: #f8fafc;
+        --csbx-shadow: 0 12px 36px rgba(2, 6, 23, .10);
+        --csbx-radius: 999px;
+        --csbx-h: 54px;
+        /* compact height like Google */
+        --csbx-font: 18px;
+        /* requested 18px minimum */
+        --csbx-menu-radius: 14px;
+    }
+
+    /* ---------- CONTAINER ---------- */
+    .csbx-wrap {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    /* ---------- SHELL (Google-like bar) ---------- */
+    .csbx-shell {
+        position: relative;
+        display: block;
+        background: var(--csbx-bg);
+        border: 1px solid var(--csbx-border);
+        border-radius: var(--csbx-radius);
+        height: var(--csbx-h);
+        box-shadow:
+            0 1px 0 rgba(2, 6, 23, .02),
+            0 8px 24px rgba(2, 6, 23, .06);
+        outline: none;
+        transition: box-shadow .18s ease, border-color .18s ease;
+    }
+
+    .csbx-shell:focus-within {
+        border-color: transparent;
+        box-shadow:
+            0 8px 28px rgba(2, 6, 23, .10),
+            0 0 0 6px var(--csbx-ring);
+    }
+
+    /* ---------- INPUT ---------- */
+    .csbx-input {
+        all: unset;
+        /* stop theme bleed */
+        position: absolute;
+        left: 20px;
+        right: 144px;
+        /* space for filter button */
+        top: 50%;
+        transform: translateY(-50%);
+        height: calc(var(--csbx-h) - 18px);
+        line-height: calc(var(--csbx-h) - 18px);
+        font-size: var(--csbx-font);
+        color: var(--csbx-ink);
+    }
+
+    .csbx-input::placeholder {
+        color: #9aa5b1;
+    }
+
+    /* ---------- FILTER BUTTON (RIGHT) ---------- */
+    .csbx-filter-btn {
+        all: unset;
+        /* nuke global button styles */
+        position: absolute;
+        right: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        background: var(--csbx-soft);
+        border: 1px solid var(--csbx-border);
+        font-size: 16px;
+        color: var(--csbx-ink);
+        cursor: pointer;
+        transition: box-shadow .16s ease, background .16s ease, border-color .16s ease;
+    }
+
+    .csbx-filter-btn:hover {
+        box-shadow: 0 0 0 4px var(--csbx-ring);
+    }
+
+    .csbx-filter-btn[aria-expanded="true"] {
+        border-color: transparent;
+        box-shadow: 0 0 0 6px var(--csbx-ring-strong);
+        background: #fff;
+    }
+
+    .csbx-caret {
+        width: 18px;
+        height: 18px;
+        color: var(--csbx-muted);
+    }
+
+    /* ---------- FILTER MENU ---------- */
+    .csbx-menu {
+        all: unset;
+        position: absolute;
+        right: 6px;
+        top: calc(100% + 10px);
+        display: none;
+        min-width: 210px;
+        background: #fff;
+        border: 1px solid var(--csbx-border);
+        border-radius: var(--csbx-menu-radius);
+        box-shadow: var(--csbx-shadow);
+        padding: 8px;
+        z-index: 90;
+        opacity: 0;
+        transform: translateY(-6px);
+        transition: opacity .16s ease, transform .16s ease;
+    }
+
+    .csbx-menu.csbx-open {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .csbx-menu li {
+        all: unset;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font-size: 16px;
+        color: var(--csbx-ink);
+        cursor: pointer;
+    }
+
+    .csbx-menu li:hover {
+        background: #f1f5ff;
+    }
+
+    .csbx-menu li[aria-selected="true"] {
+        background: #eef2ff;
+    }
+
+    .csbx-tick {
+        width: 18px;
+        color: var(--csbx-blue);
+        opacity: 0;
+    }
+
+    .csbx-menu li[aria-selected="true"] .csbx-tick {
+        opacity: 1;
+    }
+
+    /* ---------- SUGGESTIONS ---------- */
+    .csbx-suggest {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(100% + 10px);
+        max-height: 420px;
+        overflow: auto;
+        background: #fff;
+        border: 1px solid var(--csbx-border);
+        border-radius: 18px;
+        box-shadow: var(--csbx-shadow);
+        padding: 8px;
+        display: none;
+        z-index: 80;
+    }
+
+    .csbx-suggest.csbx-show {
+        display: block;
+    }
+
+    .csbx-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 14px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background .12s ease;
+    }
+
+    .csbx-row:hover,
+    .csbx-row[aria-selected="true"] {
+        background: #f7fafc;
+    }
+
+    .csbx-left {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .csbx-code {
+        font-size: 18px;
+        /* bigger, per request */
+        font-weight: 800;
+        color: var(--csbx-ink);
+    }
+
+    .csbx-name {
+        font-size: 14px;
+        color: #334155;
+        margin-top: 2px;
+    }
+
+    .csbx-tag {
+        font-size: 12px;
+        color: #1e3a8a;
+        background: #eef2ff;
+        border: 1px solid #e0e7ff;
+        border-radius: 999px;
+        padding: 4px 10px;
+        white-space: nowrap;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 640px) {
+        .csbx-input {
+            right: 128px;
+            font-size: 17px;
+        }
+
+        .csbx-filter-btn {
+            padding: 9px 12px;
+            font-size: 15px;
+        }
+    }
+</style>
+
+<script>
+    /* ===== DATA (same sets you used in the form) ===== */
+    (function () {
+        const D9 = [{ code: "AVI1O", name: "Visual Arts" }, { code: "ADA1O", name: "Drama" }, { code: "BEM1O", name: "Building The Entrepreneurial Mindset" }, { code: "CGC1W", name: "Issues in Canadian Geography (De-Streamed)" }, { code: "ENL1W", name: "English (De-Streamed)" }, { code: "EAE1W", name: "English (French OSSD), De-Streamed" }, { code: "ENG1L", name: "English (LDCC)" }, { code: "FSF1D", name: "French (De-Streamed)" }, { code: "FSF1O", name: "Core French (Open)" }, { code: "GLS1O", name: "Learning Strategies 1: Skills for Success" }, { code: "GLE1O", name: "Learning Strategies 1: Skills for Success" }, { code: "HFN1O", name: "Food and Nutrition" }, { code: "HIF1O", name: "Exploring Family Studies" }, { code: "PPL1O", name: "Healthy Active Living Education" }, { code: "MTH1W", name: "Mathematics (De-Streamed)" }, { code: "MAT1L", name: "Mathematics (LDCC)" }, { code: "SNC1W", name: "Science (De-Streamed)" }, { code: "SNC1L", name: "Science (LDCC)" }, { code: "TIJ1O", name: "Exploring Technologies" }, { code: "TAS1O", name: "Technology and the Skilled Trades" }, { code: "NONE", name: "Not in the list" }];
+        const D10 = [{ code: "AVI2O", name: "Visual Arts (G10)" }, { code: "ADA2O", name: "Drama (G10)" }, { code: "ASM2O", name: "Media Arts (G10)" }, { code: "BEP2O", name: "Launching and Leading a Business (G10)" }, { code: "CHC2D", name: "Canadian History Since WWI (Academic)" }, { code: "CHC2P", name: "Canadian History Since WWI (Applied)" }, { code: "CHV2O", name: "Civics and Citizenship" }, { code: "ENG2D", name: "English (Academic)" }, { code: "ENG2P", name: "English (Applied)" }, { code: "ENG2L", name: "English (LDCC)" }, { code: "EAE2D", name: "English (French OSSD, Academic)" }, { code: "FSF2D", name: "French (Academic)" }, { code: "FSF2O", name: "Core French (Open)" }, { code: "FSF2P", name: "Core French (Applied)" }, { code: "GLC2O", name: "Career Studies" }, { code: "HIF2O", name: "Individual and Family Living" }, { code: "HFN2O", name: "Food and Nutrition (G10)" }, { code: "ICS2O", name: "Introduction to Computer Studies" }, { code: "ICD2O", name: "Digital Technology & Innovations" }, { code: "MPM2D", name: "Principles of Mathematics (Academic)" }, { code: "MFM2P", name: "Foundations of Mathematics (Applied)" }, { code: "MAT2L", name: "Mathematics (LDCC)" }, { code: "PPL2O", name: "Healthy Active Living Education (G10)" }, { code: "SNC2D", name: "Science (Academic)" }, { code: "SNC2P", name: "Science (Applied)" }, { code: "SNC2L", name: "Science (LDCC)" }, { code: "RGJ2O", name: "Communications Technology (G10)" }, { code: "TEJ2O", name: "Computer Technology (G10)" }, { code: "TFJ2O", name: "Hospitality and Tourism (G10)" }, { code: "TDJ2O", name: "Technological Design (G10)" }, { code: "TAS2O", name: "Technology and the Skilled Trades (G10)" }, { code: "NONE", name: "Not in the list" }];
+        const D11 = [{ code: "AVI3M", name: "Visual Arts (U/C)" }, { code: "AVI3O", name: "Visual Arts (Open)" }, { code: "ADA3M", name: "Drama (U/C)" }, { code: "ADA3O", name: "Drama (Open)" }, { code: "ASM3M", name: "Media Arts (U/C)" }, { code: "ASM3O", name: "Media Arts (Open)" }, { code: "BAF3M", name: "Financial Accounting Fundamentals" }, { code: "BAI3E", name: "Accounting Essentials (Workplace)" }, { code: "BDI3C", name: "Entrepreneurship: The Venture" }, { code: "BDP3O", name: "Entrepreneurship: The Enterprising Person" }, { code: "BTA3O", name: "ICT: The Digital Environment" }, { code: "BMI3C", name: "Marketing: Goods, Services, Events" }, { code: "CIE3M", name: "The Individual and the Economy" }, { code: "CGD3M", name: "Regional Geography" }, { code: "CGF3M", name: "Forces of Nature" }, { code: "CGT3O", name: "Intro to Spatial Technologies (Open)" }, { code: "CGG3O", name: "Travel & Tourism" }, { code: "CHA3U", name: "American History" }, { code: "CHW3U", name: "World History to 15th Century" }, { code: "CHT3O", name: "World History since 1900 (Open)" }, { code: "CLU3M", name: "Understanding Canadian Law" }, { code: "CPC3O", name: "Politics in Action: Making Change" }, { code: "ENG3C", name: "English (College)" }, { code: "ENG3U", name: "English (University)" }, { code: "ENG3E", name: "English (Workplace)" }, { code: "EAE3U", name: "English (French OSSD, University)" }, { code: "EPS3O", name: "Presentation and Speaking Skills" }, { code: "EMS3O", name: "Media Studies (Open)" }, { code: "FSF3U", name: "Core French (University)" }, { code: "FSF3O", name: "Core French (Open)" }, { code: "FEF3U", name: "Extended French (University)" }, { code: "FIF3U", name: "French Immersion (University)" }, { code: "FIF3O", name: "French Immersion (Open)" }, { code: "GWL3O", name: "Designing Your Future" }, { code: "HSG3M", name: "Gender Studies" }, { code: "HSE3E", name: "Equity & Social Justice (Workplace)" }, { code: "HFC3M", name: "Food and Culture" }, { code: "HPW3C", name: "Working with Infants & Young Children" }, { code: "HZB3M", name: "Philosophy: The Big Questions" }, { code: "HRT3M", name: "World Religions" }, { code: "HPC3O", name: "Raising Healthy Children" }, { code: "HSP3U", name: "Intro to Anthropology (University)" }, { code: "HSP3C", name: "Anthro/Psych/Soc (College)" }, { code: "ICS3C", name: "Intro to Computer Programming (College)" }, { code: "ICS3U", name: "Intro to Computer Science (University)" }, { code: "IDC3O", name: "Sports & Entertainment Marketing (Open)" }, { code: "MBF3C", name: "Foundations for College Mathematics" }, { code: "MCF3M", name: "Functions and Applications" }, { code: "MCR3U", name: "Functions" }, { code: "MEL3E", name: "Math for Work & Everyday Life (Workplace)" }, { code: "PPL3O", name: "Healthy Active Living Education" }, { code: "PPZ3C", name: "Health for Life" }, { code: "SBI3C", name: "Biology (College)" }, { code: "SBI3U", name: "Biology (University)" }, { code: "SCH3U", name: "Chemistry (University)" }, { code: "SPH3U", name: "Physics (University)" }, { code: "SVN3M", name: "Environmental Science (U/C)" }, { code: "SVN3E", name: "Environmental Science (Workplace)" }, { code: "TEI3M", name: "Computer Eng. Tech: Interfacing (U/C)" }, { code: "TEJ3M", name: "Computer Engineering Technology (U/C)" }, { code: "TEL3M", name: "Computer Eng. Tech: Electronics (U/C)" }, { code: "TEN3M", name: "Computer Eng. Tech: Networking (U/C)" }, { code: "TET3E", name: "Computer Technology: IT Support" }, { code: "TEW3E", name: "Computer Technology: Network Support" }, { code: "TGJ3M", name: "Communications Technology (U/C)" }, { code: "TFE3E", name: "Hospitality & Tourism: Event Planning (W)" }, { code: "TFJ3E", name: "Hospitality & Tourism (Workplace)" }, { code: "TFJC", name: "Hospitality & Tourism (College)" }, { code: "TDJ3M", name: "Technological Design (U/C)" }, { code: "TGJ3O", name: "Communications Tech: Broadcast/Print" }, { code: "TDJ3O", name: "Technological Design and the Environment" }, { code: "TGI3M", name: "Interactive New Media & Animation (U/C)" }, { code: "TGP3M", name: "Photography & Digital Imaging (U/C)" }, { code: "TPD3M", name: "Health Care: Dental Services (U/C)" }, { code: "TPL3M", name: "Health Care: Laboratory Services (U/C)" }, { code: "TPM3M", name: "Health Care: Nursing/Medical Services (U/C)" }, { code: "TPP3M", name: "Health Services: Pharmacy (U/C)" }, { code: "TPT3M", name: "Health Care: Therapy Services (U/C)" }, { code: "TPJ3C", name: "Health Care (College)" }, { code: "TPJ3M", name: "Health Care (U/C)" }, { code: "NONE", name: "Not in the list" }];
+        const D12 = [{ code: "ADA4E", name: "Drama (Workplace)" }, { code: "ADA4M", name: "Drama (U/C)" }, { code: "AEA4O", name: "Exploring & Creating in the Arts" }, { code: "ASM4M", name: "Media Arts (U/C)" }, { code: "ASM4E", name: "Media Arts (Workplace)" }, { code: "AVI4M", name: "Visual Arts (U/C)" }, { code: "BAT4M", name: "Financial Accounting Principles" }, { code: "BDV4C", name: "Entrepreneurship: Venture Planning (C)" }, { code: "BTX4C", name: "ICT: Multimedia Solutions (C)" }, { code: "BBB4M", name: "International Business Fundamentals" }, { code: "BOH4M", name: "Business Leadership" }, { code: "CIA4U", name: "Analysing Current Economic Issues" }, { code: "CGW4U", name: "World Issues (University)" }, { code: "CGW4C", name: "World Issues (College)" }, { code: "CGR4M", name: "Environment & Resource Management" }, { code: "CGO4M", name: "Spatial Technologies in Action" }, { code: "CGU4M", name: "World Geography: Urban Patterns" }, { code: "CHY4U", name: "World History since 15th Century (U)" }, { code: "CHY4C", name: "World History since 15th Century (C)" }, { code: "CHI4U", name: "Canada: History, Identity & Culture" }, { code: "CLN4U", name: "Canadian & International Law (U)" }, { code: "CLN4C", name: "Legal Studies (College)" }, { code: "CPW4U", name: "Canadian & International Politics" }, { code: "ENG4U", name: "English (University)" }, { code: "ENG4C", name: "English (College)" }, { code: "ENG4E", name: "English (Workplace)" }, { code: "EAE4U", name: "English (French OSSD, University)" }, { code: "EWC4U", name: "The Writer’s Craft (University)" }, { code: "EWC4C", name: "The Writer’s Craft (College)" }, { code: "FSF4U", name: "Core French (University)" }, { code: "FSF4O", name: "Core French (Open)" }, { code: "HSE4M", name: "Equity & Social Justice" }, { code: "HSC4M", name: "World Cultures" }, { code: "HFA4U", name: "Nutrition & Health (University)" }, { code: "HFA4C", name: "Nutrition & Health (College)" }, { code: "HHS4U", name: "Families in Canada (University)" }, { code: "HHS4C", name: "Families in Canada (College)" }, { code: "HHG4M", name: "Human Development Through the Life Span" }, { code: "HIP4O", name: "Personal Life Management" }, { code: "HPD4C", name: "Working with School-Age Children & Adolescents" }, { code: "HSB4U", name: "Challenge & Change in Society" }, { code: "HZT4U", name: "Philosophy: Questions & Theories" }, { code: "ICS4U", name: "Computer Science (University)" }, { code: "ICS4C", name: "Computer Programming (College)" }, { code: "IDC4U", name: "Sports & Entertainment Marketing (U)" }, { code: "IDC4O", name: "Sports & Entertainment Marketing (Open)" }, { code: "MHF4U", name: "Advanced Functions" }, { code: "MCV4U", name: "Calculus and Vectors" }, { code: "MDM4U", name: "Mathematics of Data Management" }, { code: "MCT4C", name: "Mathematics for College Technology" }, { code: "MAP4C", name: "Foundations for College Mathematics" }, { code: "MEL4E", name: "Math for Work & Everyday Life (Workplace)" }, { code: "OLC4O", name: "Ontario Secondary School Literacy Course" }, { code: "PPL4O", name: "Healthy Active Living Education" }, { code: "PLF4M", name: "Recreation & Healthy Active Living Leadership" }, { code: "PSK4U", name: "Introductory Kinesiology" }, { code: "SBI4U", name: "Biology (University)" }, { code: "SCH4C", name: "Chemistry (College)" }, { code: "SCH4U", name: "Chemistry (University)" }, { code: "SPH4U", name: "Physics (University)" }, { code: "SES4U", name: "Earth and Space Science" }, { code: "SNC4M", name: "Science (U/C)" }, { code: "SNC4E", name: "Science (Workplace)" }, { code: "TGJ4M", name: "Communications Technology (U/C)" }, { code: "TGJ4O", name: "Communications Tech: Digital Imagery & Web" }, { code: "TEJ4M", name: "Computer Engineering Technology (U/C)" }, { code: "TFJ4E", name: "Hospitality & Tourism (Workplace)" }, { code: "TFJ4C", name: "Hospitality & Tourism (College)" }, { code: "TDJ4M", name: "Technological Design (U/C)" }, { code: "TDJ4O", name: "Technological Design in the 21st Century" }, { code: "TEI4M", name: "Computer Eng. Tech: Interfacing (U/C)" }, { code: "TEN4M", name: "Computer Eng. Tech: Networking" }, { code: "TET4E", name: "Computer Technology: IT Support" }, { code: "TEW4E", name: "Computer Technology: Network Support" }, { code: "TGI4M", name: "Interactive New Media & Animation" }, { code: "TGP4M", name: "Photography & Digital Imaging" }, { code: "TOC4C", name: "Child Development" }, { code: "TOG4C", name: "Gerontology" }, { code: "TPD4M", name: "Health Care: Dental Services" }, { code: "TPL4M", name: "Health Care: Laboratory Services" }, { code: "TPM4M", name: "Health Care: Nursing/Medical Services" }, { code: "TPP4M", name: "Health Services: Pharmacy" }, { code: "TPT4M", name: "Health Care: Therapy Services" }, { code: "TPJ4C", name: "Health Care (College)" }, { code: "TPJ4E", name: "Health Care (Workplace)" }, { code: "TPJ4M", name: "Health Care (U/C)" }, { code: "NONE", name: "Not in the list" }];
+        const DESL = [{ code: "NONE", name: "Not in the list" }, { code: "ESLAO", name: "ESL Level 1" }, { code: "ESLBO", name: "ESL Level 2" }, { code: "ESLCO", name: "ESL Level 3" }, { code: "ESLDO", name: "ESL Level 4" }, { code: "ESLEO", name: "ESL Level 5" }, { code: "ELDAO", name: "ELD Level 1" }, { code: "ELDBO", name: "ELD Level 2" }, { code: "ELDCO", name: "ELD Level 3" }, { code: "ELDDO", name: "ELD Level 4" }, { code: "ELDEO", name: "ELD Level 5" }];
+
+        const GRADE_MAP = { "Grade 9": D9, "Grade 10": D10, "Grade 11": D11, "Grade 12": D12, "ESL/ELD Courses": DESL };
+        const ALL = [...D9, ...D10, ...D11, ...D12, ...DESL].filter(c => c.code !== "NONE");
+        const BASE = "https://canstemeducation.com/product/";
+        const toURL = code => BASE + String(code || "").toLowerCase() + "/";
+
+        const $ = sel => document.querySelector(sel);
+        const input = $('#csbx-q');
+        const suggest = $('#csbx-suggest');
+        const shell = document.querySelector('.csbx-shell');
+
+        // Filter
+        const btnFilter = $('#csbx-filter');
+        const menu = $('#csbx-menu');
+        const label = btnFilter.querySelector('.csbx-filter-label');
+        let activeGrade = 'ALL';
+
+        function listFor(grade) { return grade === 'ALL' ? ALL : (GRADE_MAP[grade] || []).filter(i => i.code !== 'NONE'); }
+        function gradeOf(code) {
+            if (D9.some(x => x.code === code)) return 'Grade 9';
+            if (D10.some(x => x.code === code)) return 'Grade 10';
+            if (D11.some(x => x.code === code)) return 'Grade 11';
+            if (D12.some(x => x.code === code)) return 'Grade 12';
+            if (DESL.some(x => x.code === code)) return 'ESL & ELD';
+            return '';
+        }
+
+        function search(list, q) {
+            const query = q.trim().toUpperCase();
+            if (!query) return [];
+            const out = [];
+            for (const item of list) {
+                const code = item.code.toUpperCase(), name = item.name.toUpperCase();
+                let score = null;
+                if (code.startsWith(query)) score = 0;
+                else if (code.includes(query)) score = 1;
+                else if (name.includes(query)) score = 2;
+                if (score !== null) out.push({ ...item, score });
+            }
+            return out.sort((a, b) => a.score - b.score || a.code.localeCompare(b.code)).slice(0, 25);
+        }
+
+        function setSuggestOpen(open) {
+            input.setAttribute('aria-expanded', open ? 'true' : 'false');
+            suggest.classList.toggle('csbx-show', open);
+        }
+
+        function render() {
+            const q = input.value;
+            const arr = search(listFor(activeGrade), q);
+            suggest.innerHTML = '';
+            if (!arr.length) { setSuggestOpen(false); return; }
+            arr.forEach((it, idx) => {
+                const row = document.createElement('div');
+                row.className = 'csbx-row';
+                row.id = 'csbx-opt-' + idx;
+                row.role = 'option';
+                row.setAttribute('aria-selected', 'false');
+                row.innerHTML = `
+        <div class="csbx-left">
+          <span class="csbx-code">${it.code}</span>
+          <span class="csbx-name">${it.name}</span>
+        </div>
+        <span class="csbx-tag">${activeGrade === 'ALL' ? gradeOf(it.code) : activeGrade}</span>`;
+                row.addEventListener('mousedown', e => e.preventDefault());
+                row.addEventListener('click', () => window.location.href = toURL(it.code));
+                suggest.appendChild(row);
+            });
+            activeIndex = -1;
+            setSuggestOpen(true);
+        }
+
+        // Filter interactions
+        btnFilter.addEventListener('click', () => {
+            const open = btnFilter.getAttribute('aria-expanded') === 'true';
+            btnFilter.setAttribute('aria-expanded', String(!open));
+            menu.classList.toggle('csbx-open', !open);
+        });
+        menu.addEventListener('click', e => {
+            const li = e.target.closest('li[role="option"]');
+            if (!li) return;
+            activeGrade = li.dataset.grade;
+            [...menu.children].forEach(n => n.setAttribute('aria-selected', 'false'));
+            li.setAttribute('aria-selected', 'true');
+            label.textContent = (activeGrade === 'ALL' ? 'All' : activeGrade.replace(' Courses', ''));
+            btnFilter.setAttribute('aria-expanded', 'false');
+            menu.classList.remove('csbx-open');
+            render();
+            input.focus();
+        });
+        document.addEventListener('click', e => {
+            if (!menu.contains(e.target) && e.target !== btnFilter) {
+                btnFilter.setAttribute('aria-expanded', 'false');
+                menu.classList.remove('csbx-open');
+            }
+        });
+
+        // Suggestions interactions
+        let activeIndex = -1, lastResults = [];
+        input.addEventListener('input', () => { render(); });
+        input.addEventListener('focus', () => { if (input.value.trim()) render(); });
+        input.addEventListener('blur', () => setTimeout(() => setSuggestOpen(false), 120));
+
+        input.addEventListener('keydown', e => {
+            const items = [...suggest.querySelectorAll('.csbx-row')];
+            lastResults = items;
+            if (!items.length) {
+                if (e.key === 'Enter' && input.value.trim()) {
+                    e.preventDefault();
+                    window.location.href = toURL(input.value.trim().toUpperCase());
+                }
+                return;
+            }
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                activeIndex = Math.min(activeIndex + 1, items.length - 1);
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                activeIndex = Math.max(activeIndex - 1, 0);
+            } else if (e.key === 'Enter') {
+                e.preventDefault();
+                const t = items[activeIndex] || items[0];
+                if (t) {
+                    const code = t.querySelector('.csbx-code').textContent.trim();
+                    window.location.href = toURL(code);
+                }
+            } else if (e.key === 'Escape') {
+                setSuggestOpen(false);
+                return;
+            } else {
+                return; // let other keys type
+            }
+            items.forEach(n => n.setAttribute('aria-selected', 'false'));
+            if (activeIndex >= 0 && items[activeIndex]) {
+                items[activeIndex].setAttribute('aria-selected', 'true');
+                items[activeIndex].scrollIntoView({ block: 'nearest' });
+            }
+        });
+    })();
+</script>
+<!-- ================== /CanSTEM Course Finder ================== -->
