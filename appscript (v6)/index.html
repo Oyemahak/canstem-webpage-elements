@@ -381,6 +381,7 @@
         }
 
         .terms li {
+            font-weight: 500;
             margin: 6px 0;
             font-size: var(--fs-sm);
             color: #0b1324
@@ -429,9 +430,7 @@
 
         <div class="notice" role="note">
             Fill the form and click Submit. Your request will be emailed to
-            <strong>frontdesk@canstemeducation.com</strong> automatically. To check out the fees details and to know
-            more,
-            follow this link:
+            <strong>frontdesk@canstemeducation.com</strong> automatically. To check the policy, see:
             <a href="https://canstemeducation.com/course-mode-change-terms-policy/" target="_blank" rel="noopener">
                 https://canstemeducation.com/course-mode-change-terms-policy/
             </a>
@@ -444,11 +443,10 @@
                 In-Person)</button>
         </div>
 
-        <!-- Withdraw -->
+        <!-- ===== Withdraw (NO PAYMENT) ===== -->
         <section id="pane-withdraw" class="card" role="tabpanel">
             <span class="section-title">Withdrawal Request — Form Details</span>
-            <p class="subnote">In order to withdraw — please make sure that all the fee is paid to process withdrawal.
-            </p>
+            <p class="subnote">In order to withdraw — please make sure that all the fee is paid to process withdrawal.</p>
 
             <div class="row">
                 <div class="field"><label class="req" for="w-name">Student Full Name</label><input id="w-name" required
@@ -489,27 +487,15 @@
 
             <hr class="sep">
 
-            <!-- PAYMENT -->
-            <span class="section-title">Payment</span>
-            <div class="notice">Please complete payment here: <a href="https://canstemeducation.com/payment/"
-                    target="_blank" rel="noopener">https://canstemeducation.com/payment/</a></div>
-            <div class="field checkline">
-                <input type="checkbox" id="w-paid">
-                <label for="w-paid"><strong>I made the payment on the above page and understand processing starts after
-                        verification.</strong></label>
-            </div>
-
-            <hr class="sep">
-
             <!-- TERMS -->
             <span class="section-title">Terms &amp; Conditions</span>
             <ul class="terms">
-                <li>I have read the policies, fees and terms on the <a
+                <li>I have read the policies and terms on the <a
                         href="https://canstemeducation.com/course-mode-change-terms-policy/" target="_blank"
                         rel="noopener">Course Mode Change &amp; Terms page</a>.</li>
                 <li>This request is subject to approval.</li>
-                <li>All fees are non-refundable; I will not request a refund.</li>
-                <li>To reverse a submitted request, I must submit a new request; the same fees apply and it will be
+                <li>All fees already paid are non-refundable; I will not request a refund.</li>
+                <li>To reverse a submitted request, I must submit a new request; the same policies apply and it will be
                     treated as a separate request.</li>
             </ul>
             <div class="field checkline">
@@ -521,10 +507,8 @@
 
             <!-- UPLOADS -->
             <span class="section-title">Uploads</span>
-            <div class="field"><label for="w-up-payment">Proof of Payment</label><input id="w-up-payment" type="file"
-                    multiple></div>
             <div class="field">
-                <label for="w-files">Upload Supporting Documents</label>
+                <label for="w-files">Upload Supporting Documents (optional)</label>
                 <input id="w-files" type="file" multiple>
                 <div class="help">You can select multiple files or open the picker again to add more.</div>
             </div>
@@ -537,7 +521,7 @@
             <p id="w-status" class="note status" aria-live="polite"></p>
         </section>
 
-        <!-- Change -->
+        <!-- ===== Change (UNCHANGED) ===== -->
         <section id="pane-change" class="card" style="display:none;" role="tabpanel">
             <span class="section-title">Course Change — Form Details</span>
 
@@ -586,7 +570,7 @@
 
             <hr class="sep">
 
-            <!-- PAYMENT -->
+            <!-- PAYMENT (kept for Change) -->
             <span class="section-title">Payment</span>
             <div class="notice">Please complete payment here: <a href="https://canstemeducation.com/payment/"
                     target="_blank" rel="noopener">https://canstemeducation.com/payment/</a></div>
@@ -640,7 +624,7 @@
             <p id="c-status" class="note status" aria-live="polite"></p>
         </section>
 
-        <!-- Mode -->
+        <!-- ===== Mode (UNCHANGED) ===== -->
         <section id="pane-mode" class="card" style="display:none;" role="tabpanel">
             <span class="section-title">Course Mode Switch — Form Details</span>
 
@@ -698,7 +682,7 @@
 
             <hr class="sep">
 
-            <!-- PAYMENT -->
+            <!-- PAYMENT (kept for Mode) -->
             <span class="section-title">Payment</span>
             <div class="notice">Please complete payment here: <a href="https://canstemeducation.com/payment/"
                     target="_blank" rel="noopener">https://canstemeducation.com/payment/</a></div>
@@ -815,10 +799,10 @@
         function fileToBase64(file) { return new Promise((res, rej) => { const r = new FileReader(); r.onload = () => { const out = (r.result || ''); const b64 = (out.split('base64,')[1] || '').trim(); res({ name: file.name, mimeType: file.type || 'application/octet-stream', dataBase64: b64 }) }; r.onerror = () => rej(r.error); r.readAsDataURL(file) }) }
         async function collectAttachments(ids) { const out = []; for (const id of ids) { const input = document.getElementById(id); if (input && input.files && input.files.length) { for (const f of [...input.files]) out.push(await fileToBase64(f)); } } return out; }
 
-        /* Toast helper */
+        /* Toast */
         function toast(msg) { const el = document.getElementById('toast'); el.textContent = msg; el.classList.add('show'); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove('show'), 1600); }
 
-        /* Disable course input until grade selected (desktop+mobile) */
+        /* Disable course until grade selected */
         function wireDisableFor(inputId, gradeSelId) {
             const input = document.getElementById(inputId);
             const grade = document.getElementById(gradeSelId);
@@ -830,7 +814,7 @@
             });
         }
 
-        /* Validation + UX */
+        /* Validation */
         function isValid(paneId) {
             const pane = document.getElementById(paneId);
             const req = pane.querySelectorAll('[required]');
@@ -870,15 +854,14 @@
             const grade = val('w-grade'), code = val('w-coursecode');
             if (!validateCourseCode(grade, code)) { alert('Please choose a valid course code for the selected grade.'); return; }
             document.getElementById('w-status').textContent = 'Submitting...';
-            const attachments = await collectAttachments(['w-up-payment', 'w-files']);
+            const attachments = await collectAttachments(['w-files']); // In order to withdraw — please make sure that all the fee is paid to process withdrawal.
             const payload = {
                 type: 'Withdrawal',
                 name: val('w-name'), email: val('w-email'), phone: val('w-phone'),
                 grade, courseCode: code, isAdult: (val('w-age') === 'yes'),
                 studentSig: val('w-stusig'), parentSig: val('w-parentsig'),
                 reason: val('w-reason'), attachments,
-                paidConfirmed: document.getElementById('w-paid').checked,
-                hasPayment: document.getElementById('w-up-payment').files.length > 0,
+                // intentionally no paidConfirmed / hasPayment for withdrawal
                 hasSupporting: document.getElementById('w-files').files.length > 0
             };
             google.script.run
