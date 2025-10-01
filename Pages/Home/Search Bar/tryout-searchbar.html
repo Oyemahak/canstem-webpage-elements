@@ -1,0 +1,565 @@
+<!-- ================== CanSTEM Unified Search (Courses + Pages + Blogs) ================== -->
+<section id="canstem-course-finder" aria-label="Find a course or page">
+    <div class="csbx-shell" role="search">
+        <!-- Persistent search icon -->
+        <svg class="csbx-search" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"></circle>
+            <path d="M20 20L16.2 16.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+        </svg>
+
+        <input id="csbx-q" class="csbx-input" type="search" spellcheck="false" autocomplete="off"
+            placeholder="Search courses (e.g., MHF4U) or site content…" aria-autocomplete="list"
+            aria-controls="csbx-suggest" aria-expanded="false" />
+
+        <button id="csbx-filter" class="csbx-filter-btn" type="button" aria-haspopup="listbox" aria-expanded="false">
+            <span class="csbx-filter-label">All Courses</span>
+            <svg class="csbx-caret" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+            </svg>
+        </button>
+
+        <ul id="csbx-menu" class="csbx-menu" role="listbox" aria-label="Filter by grade">
+            <li role="option" data-grade="ALL" aria-selected="true"><span class="csbx-tick">✓</span> All Grades</li>
+            <li role="option" data-grade="Grade 9" aria-selected="false"><span class="csbx-tick">✓</span> Grade 9</li>
+            <li role="option" data-grade="Grade 10" aria-selected="false"><span class="csbx-tick">✓</span> Grade 10</li>
+            <li role="option" data-grade="Grade 11" aria-selected="false"><span class="csbx-tick">✓</span> Grade 11</li>
+            <li role="option" data-grade="Grade 12" aria-selected="false"><span class="csbx-tick">✓</span> Grade 12</li>
+            <li role="option" data-grade="ESL/ELD Courses" aria-selected="false"><span class="csbx-tick">✓</span> ESL
+                &amp; ELD</li>
+        </ul>
+
+        <div id="csbx-suggest" class="csbx-suggest" role="listbox" aria-label="Suggestions"></div>
+    </div>
+</section>
+
+<style>
+    #canstem-course-finder {
+        --csbx-ink: #0f172a;
+        --csbx-muted: #667085;
+        --csbx-bg: #fff;
+        --csbx-border: #e6e6e6;
+        --csbx-ring: rgba(251, 176, 37, .36);
+        --csbx-brand: #001161;
+        --csbx-shadow: 0 10px 30px rgba(2, 6, 23, .10);
+        --csbx-radius: 999px;
+        --csbx-h: 52px;
+        --csbx-font: 18px;
+        --csbx-menu-radius: 14px;
+        --csbx-chip-blue: #eef2ff;
+        --csbx-chip-blue-b: #e0e7ff;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0
+    }
+
+    #canstem-course-finder input,
+    #canstem-course-finder button,
+    #canstem-course-finder ul,
+    #canstem-course-finder li {
+        all: unset
+    }
+
+    #canstem-course-finder input,
+    #canstem-course-finder button {
+        box-shadow: none !important;
+        background: none !important
+    }
+
+    .csbx-shell {
+        position: relative;
+        height: var(--csbx-h);
+        background: var(--csbx-bg);
+        border: 1px solid var(--csbx-border);
+        border-radius: var(--csbx-radius);
+        box-shadow: 0 1px 0 rgba(2, 6, 23, .02), 0 8px 24px rgba(2, 6, 23, .06);
+        transition: box-shadow .18s ease, border-color .18s ease
+    }
+
+    .csbx-shell:focus-within {
+        border-color: #cbd5e1;
+        box-shadow: 0 4px 28px rgba(251, 176, 37, .6), 0 0 0 0 var(--csbx-ring)
+    }
+
+    .csbx-search {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        color: #9aa5b1;
+        pointer-events: none
+    }
+
+    .csbx-input {
+        position: absolute;
+        left: 44px;
+        right: 168px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: calc(var(--csbx-h) - 18px);
+        line-height: calc(var(--csbx-h) - 18px);
+        color: var(--csbx-ink) !important;
+        font-size: var(--csbx-font)
+    }
+
+    .csbx-input::placeholder {
+        color: #9aa5b1
+    }
+
+    .csbx-filter-btn {
+        position: absolute;
+        right: 1px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 9px 32px;
+        border-radius: 0 30px 30px 0;
+        background: var(--csbx-brand) !important;
+        color: #fff !important;
+        font-weight: 800;
+        font-size: 16px;
+        letter-spacing: .2px;
+        cursor: pointer;
+        transition: transform .12s ease, box-shadow .12s ease
+    }
+
+    .csbx-caret {
+        width: 18px;
+        height: 18px;
+        color: #e6eaf9
+    }
+
+    .csbx-filter-btn[aria-expanded="true"] {
+        box-shadow: 0 0 0 4px rgba(251, 176, 37, .36), 0 10px 20px rgba(0, 17, 97, .26)
+    }
+
+    .csbx-menu {
+        position: absolute;
+        right: 6px;
+        top: calc(100% + 10px);
+        min-width: 220px;
+        background: #fff;
+        border: 1px solid var(--csbx-border);
+        border-radius: var(--csbx-menu-radius);
+        box-shadow: var(--csbx-shadow);
+        padding: 8px;
+        z-index: 9;
+        display: none;
+        opacity: 0;
+        transform: translateY(-6px);
+        transition: opacity .16s ease, transform .16s ease
+    }
+
+    .csbx-menu.csbx-open {
+        display: block;
+        opacity: 1;
+        transform: translateY(0)
+    }
+
+    .csbx-menu li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 10px;
+        font-size: 16px;
+        color: var(--csbx-ink);
+        cursor: pointer
+    }
+
+    .csbx-menu li:hover {
+        background: #f5f7ff
+    }
+
+    .csbx-tick {
+        width: 18px;
+        color: #2563eb;
+        opacity: 0
+    }
+
+    .csbx-menu li[aria-selected="true"] .csbx-tick {
+        opacity: 1
+    }
+
+    .csbx-suggest {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(100% + 10px);
+        background: #fff;
+        border: 1px solid var(--csbx-border);
+        border-radius: 18px;
+        box-shadow: var(--csbx-shadow);
+        padding: 8px;
+        max-height: 420px;
+        overflow: auto;
+        z-index: 8;
+        display: none
+    }
+
+    .csbx-suggest.csbx-show {
+        display: block
+    }
+
+    .csbx-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 14px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background .12s ease
+    }
+
+    .csbx-row:hover,
+    .csbx-row[aria-selected="true"] {
+        background: #f7fafc
+    }
+
+    .csbx-left {
+        display: flex;
+        flex-direction: column
+    }
+
+    .csbx-code {
+        font-size: 19px;
+        font-weight: 800;
+        color: var(--csbx-ink)
+    }
+
+    .csbx-name {
+        font-size: 14px;
+        color: #334155;
+        margin-top: 2px
+    }
+
+    .csbx-right {
+        display: flex;
+        gap: 6px;
+        align-items: center
+    }
+
+    .csbx-chip {
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        white-space: nowrap;
+        border: 1px solid transparent
+    }
+
+    .csbx-chip.grade {
+        background: var(--csbx-chip-blue);
+        border-color: var(--csbx-chip-blue-b);
+        color: #1e3a8a
+    }
+
+    .csbx-chip.type {
+        background: #ecfeff;
+        border-color: #a5f3fc;
+        color: #0e7490
+    }
+
+    @media (max-width:640px) {
+        .csbx-input {
+            left: 44px;
+            right: 150px;
+            font-size: 17px
+        }
+
+        .csbx-filter-btn {
+            right: 1px;
+            padding: 10px 12px;
+            font-size: 15px
+        }
+    }
+</style>
+
+<script>
+    (function () {
+        /* -------------------- COURSE DATA (unchanged from your build) -------------------- */
+        const D9 = [{ code: "AVI1O", name: "Visual Arts" }, { code: "ADA1O", name: "Drama" }, { code: "BEM1O", name: "Building The Entrepreneurial Mindset" }, { code: "CGC1W", name: "Issues in Canadian Geography (De-Streamed)" }, { code: "ENL1W", name: "English (De-Streamed)" }, { code: "EAE1W", name: "English (French OSSD), De-Streamed" }, { code: "ENG1L", name: "English (LDCC)" }, { code: "FSF1D", name: "French (De-Streamed)" }, { code: "FSF1O", name: "Core French (Open)" }, { code: "GLS1O", name: "Learning Strategies 1: Skills for Success" }, { code: "GLE1O", name: "Learning Strategies 1: Skills for Success" }, { code: "HFN1O", name: "Food and Nutrition" }, { code: "HIF1O", name: "Exploring Family Studies" }, { code: "PPL1O", name: "Healthy Active Living Education" }, { code: "MTH1W", name: "Mathematics (De-Streamed)" }, { code: "MAT1L", name: "Mathematics (LDCC)" }, { code: "SNC1W", name: "Science (De-Streamed)" }, { code: "SNC1L", name: "Science (LDCC)" }, { code: "TIJ1O", name: "Exploring Technologies" }, { code: "TAS1O", name: "Technology and the Skilled Trades" }, { code: "NONE", name: "Not in the list" }];
+        const D10 = [{ code: "AVI2O", name: "Visual Arts (G10)" }, { code: "ADA2O", name: "Drama (G10)" }, { code: "ASM2O", name: "Media Arts (G10)" }, { code: "BEP2O", name: "Launching and Leading a Business (G10)" }, { code: "CHC2D", name: "Canadian History Since WWI (Academic)" }, { code: "CHC2P", name: "Canadian History Since WWI (Applied)" }, { code: "CHV2O", name: "Civics and Citizenship" }, { code: "ENG2D", name: "English (Academic)" }, { code: "ENG2P", name: "English (Applied)" }, { code: "ENG2L", name: "English (LDCC)" }, { code: "EAE2D", name: "English (French OSSD, Academic)" }, { code: "FSF2D", name: "French (Academic)" }, { code: "FSF2O", name: "Core French (Open)" }, { code: "FSF2P", name: "Core French (Applied)" }, { code: "GLC2O", name: "Career Studies" }, { code: "HIF2O", name: "Individual and Family Living" }, { code: "HFN2O", name: "Food and Nutrition (G10)" }, { code: "ICS2O", name: "Introduction to Computer Studies" }, { code: "ICD2O", name: "Digital Technology & Innovations" }, { code: "MPM2D", name: "Principles of Mathematics (Academic)" }, { code: "MFM2P", name: "Foundations of Mathematics (Applied)" }, { code: "MAT2L", name: "Mathematics (LDCC)" }, { code: "PPL2O", name: "Healthy Active Living Education (G10)" }, { code: "SNC2D", name: "Science (Academic)" }, { code: "SNC2P", name: "Science (Applied)" }, { code: "SNC2L", name: "Science (LDCC)" }, { code: "RGJ2O", name: "Communications Technology (G10)" }, { code: "TEJ2O", name: "Computer Technology (G10)" }, { code: "TFJ2O", name: "Hospitality and Tourism (G10)" }, { code: "TDJ2O", name: "Technological Design (G10)" }, { code: "TAS2O", name: "Technology and the Skilled Trades (G10)" }, { code: "NONE", name: "Not in the list" }];
+        const D11 = [{ code: "AVI3M", name: "Visual Arts (U/C)" }, { code: "AVI3O", name: "Visual Arts (Open)" }, { code: "ADA3M", name: "Drama (U/C)" }, { code: "ADA3O", name: "Drama (Open)" }, { code: "ASM3M", name: "Media Arts (U/C)" }, { code: "ASM3O", name: "Media Arts (Open)" }, { code: "BAF3M", name: "Financial Accounting Fundamentals" }, { code: "BAI3E", name: "Accounting Essentials (Workplace)" }, { code: "BDI3C", name: "Entrepreneurship: The Venture" }, { code: "BDP3O", name: "Entrepreneurship: The Enterprising Person" }, { code: "BTA3O", name: "ICT: The Digital Environment" }, { code: "BMI3C", name: "Marketing: Goods, Services, Events" }, { code: "CIE3M", name: "The Individual and the Economy" }, { code: "CGD3M", name: "Regional Geography" }, { code: "CGF3M", name: "Forces of Nature" }, { code: "CGT3O", name: "Intro to Spatial Technologies (Open)" }, { code: "CGG3O", name: "Travel & Tourism" }, { code: "CHA3U", name: "American History" }, { code: "CHW3U", name: "World History to 15th Century" }, { code: "CHT3O", name: "World History since 1900 (Open)" }, { code: "CLU3M", name: "Understanding Canadian Law" }, { code: "CPC3O", name: "Politics in Action: Making Change" }, { code: "ENG3C", name: "English (College)" }, { code: "ENG3U", name: "English (University)" }, { code: "ENG3E", name: "English (Workplace)" }, { code: "EAE3U", name: "English (French OSSD, University)" }, { code: "EPS3O", name: "Presentation and Speaking Skills" }, { code: "EMS3O", name: "Media Studies (Open)" }, { code: "FSF3U", name: "Core French (University)" }, { code: "FSF3O", name: "Core French (Open)" }, { code: "FEF3U", name: "Extended French (University)" }, { code: "FIF3U", name: "French Immersion (University)" }, { code: "FIF3O", name: "French Immersion (Open)" }, { code: "GWL3O", name: "Designing Your Future" }, { code: "HSG3M", name: "Gender Studies" }, { code: "HSE3E", name: "Equity & Social Justice (Workplace)" }, { code: "HFC3M", name: "Food and Culture" }, { code: "HPW3C", name: "Working with Infants & Young Children" }, { code: "HZB3M", name: "Philosophy: The Big Questions" }, { code: "HRT3M", name: "World Religions" }, { code: "HPC3O", name: "Raising Healthy Children" }, { code: "HSP3U", name: "Intro to Anthropology (University)" }, { code: "HSP3C", name: "Anthro/Psych/Soc (College)" }, { code: "ICS3C", name: "Intro to Computer Programming (College)" }, { code: "ICS3U", name: "Intro to Computer Science (University)" }, { code: "IDC3O", name: "Sports & Entertainment Marketing (Open)" }, { code: "MBF3C", name: "Foundations for College Mathematics" }, { code: "MCF3M", name: "Functions and Applications" }, { code: "MCR3U", name: "Functions" }, { code: "MEL3E", name: "Math for Work & Everyday Life (Workplace)" }, { code: "PPL3O", name: "Healthy Active Living Education" }, { code: "PPZ3C", name: "Health for Life" }, { code: "SBI3C", name: "Biology (College)" }, { code: "SBI3U", name: "Biology (University)" }, { code: "SCH3U", name: "Chemistry (University)" }, { code: "SPH3U", name: "Physics (University)" }, { code: "SVN3M", name: "Environmental Science (U/C)" }, { code: "SVN3E", name: "Environmental Science (Workplace)" }, { code: "TEI3M", name: "Computer Eng. Tech: Interfacing (U/C)" }, { code: "TEJ3M", name: "Computer Engineering Technology (U/C)" }, { code: "TEL3M", name: "Computer Eng. Tech: Electronics (U/C)" }, { code: "TEN3M", name: "Computer Eng. Tech: Networking (U/C)" }, { code: "TET3E", name: "Computer Technology: IT Support" }, { code: "TEW3E", name: "Computer Technology: Network Support" }, { code: "TGJ3M", name: "Communications Technology (U/C)" }, { code: "TFE3E", name: "Hospitality & Tourism: Event Planning (W)" }, { code: "TFJ3E", name: "Hospitality & Tourism (Workplace)" }, { code: "TFJC", name: "Hospitality & Tourism (College)" }, { code: "TDJ3M", name: "Technological Design (U/C)" }, { code: "TGJ3O", name: "Communications Tech: Broadcast/Print" }, { code: "TDJ3O", name: "Technological Design and the Environment" }, { code: "TGI3M", name: "Interactive New Media & Animation (U/C)" }, { code: "TGP3M", name: "Photography & Digital Imaging (U/C)" }, { code: "TPD3M", name: "Health Care: Dental Services (U/C)" }, { code: "TPL3M", name: "Health Care: Laboratory Services (U/C)" }, { code: "TPM3M", name: "Health Care: Nursing/Medical Services (U/C)" }, { code: "TPP3M", name: "Health Services: Pharmacy (U/C)" }, { code: "TPT3M", name: "Health Care: Therapy Services (U/C)" }, { code: "TPJ3C", name: "Health Care (College)" }, { code: "TPJ3M", name: "Health Care (U/C)" }, { code: "NONE", name: "Not in the list" }];
+        const D12 = [{ code: "ADA4E", name: "Drama (Workplace)" }, { code: "ADA4M", name: "Drama (U/C)" }, { code: "AEA4O", name: "Exploring & Creating in the Arts" }, { code: "ASM4M", name: "Media Arts (U/C)" }, { code: "ASM4E", name: "Media Arts (Workplace)" }, { code: "AVI4M", name: "Visual Arts (U/C)" }, { code: "BAT4M", name: "Financial Accounting Principles" }, { code: "BDV4C", name: "Entrepreneurship: Venture Planning (C)" }, { code: "BTX4C", name: "ICT: Multimedia Solutions (C)" }, { code: "BBB4M", name: "International Business Fundamentals" }, { code: "BOH4M", name: "Business Leadership" }, { code: "CIA4U", name: "Analysing Current Economic Issues" }, { code: "CGW4U", name: "World Issues (University)" }, { code: "CGW4C", name: "World Issues (College)" }, { code: "CGR4M", name: "Environment & Resource Management" }, { code: "CGO4M", name: "Spatial Technologies in Action" }, { code: "CGU4M", name: "World Geography: Urban Patterns" }, { code: "CHY4U", name: "World History since 15th Century (U)" }, { code: "CHY4C", name: "World History since 15th Century (C)" }, { code: "CHI4U", name: "Canada: History, Identity & Culture" }, { code: "CLN4U", name: "Canadian & International Law (U)" }, { code: "CLN4C", name: "Legal Studies (College)" }, { code: "CPW4U", name: "Canadian & International Politics" }, { code: "ENG4U", name: "English (University)" }, { code: "ENG4C", name: "English (College)" }, { code: "ENG4E", name: "English (Workplace)" }, { code: "EAE4U", name: "English (French OSSD, University)" }, { code: "EWC4U", name: "The Writer’s Craft (University)" }, { code: "EWC4C", name: "The Writer’s Craft (College)" }, { code: "FSF4U", name: "Core French (University)" }, { code: "FSF4O", name: "Core French (Open)" }, { code: "HSE4M", name: "Equity & Social Justice" }, { code: "HSC4M", name: "World Cultures" }, { code: "HFA4U", name: "Nutrition & Health (University)" }, { code: "HFA4C", name: "Nutrition & Health (College)" }, { code: "HHS4U", name: "Families in Canada (University)" }, { code: "HHS4C", name: "Families in Canada (College)" }, { code: "HHG4M", name: "Human Development Through the Life Span" }, { code: "HIP4O", name: "Personal Life Management" }, { code: "HPD4C", name: "Working with School-Age Children & Adolescents" }, { code: "HSB4U", name: "Challenge & Change in Society" }, { code: "HZT4U", name: "Philosophy: Questions & Theories" }, { code: "ICS4U", name: "Computer Science (University)" }, { code: "ICS4C", name: "Computer Programming (College)" }, { code: "IDC4U", name: "Sports & Entertainment Marketing (U)" }, { code: "IDC4O", name: "Sports & Entertainment Marketing (Open)" }, { code: "MHF4U", name: "Advanced Functions" }, { code: "MCV4U", name: "Calculus and Vectors" }, { code: "MDM4U", name: "Mathematics of Data Management" }, { code: "MCT4C", name: "Mathematics for College Technology" }, { code: "MAP4C", name: "Foundations for College Mathematics" }, { code: "MEL4E", name: "Math for Work & Everyday Life (Workplace)" }, { code: "OLC4O", name: "Ontario Secondary School Literacy Course" }, { code: "PPL4O", name: "Healthy Active Living Education" }, { code: "PLF4M", name: "Recreation & Healthy Active Living Leadership" }, { code: "PSK4U", name: "Introductory Kinesiology" }, { code: "SBI4U", name: "Biology (University)" }, { code: "SCH4C", name: "Chemistry (College)" }, { code: "SCH4U", name: "Chemistry (University)" }, { code: "SPH4U", name: "Physics (University)" }, { code: "SES4U", name: "Earth and Space Science" }, { code: "SNC4M", name: "Science (U/C)" }, { code: "SNC4E", name: "Science (Workplace)" }, { code: "TGJ4M", name: "Communications Technology (U/C)" }, { code: "TGJ4O", name: "Communications Tech: Digital Imagery & Web" }, { code: "TEJ4M", name: "Computer Engineering Technology (U/C)" }, { code: "TFJ4E", name: "Hospitality & Tourism (Workplace)" }, { code: "TFJ4C", name: "Hospitality & Tourism (College)" }, { code: "TDJ4M", name: "Technological Design (U/C)" }, { code: "TDJ4O", name: "Technological Design in the 21st Century" }, { code: "TEI4M", name: "Computer Eng. Tech: Interfacing (U/C)" }, { code: "TEN4M", name: "Computer Eng. Tech: Networking" }, { code: "TET4E", name: "Computer Technology: IT Support" }, { code: "TEW4E", name: "Computer Technology: Network Support" }, { code: "TGI4M", name: "Interactive New Media & Animation" }, { code: "TGP4M", name: "Photography & Digital Imaging" }, { code: "TOC4C", name: "Child Development" }, { code: "TOG4C", name: "Gerontology" }, { code: "TPD4M", name: "Health Care: Dental Services" }, { code: "TPL4M", name: "Health Care: Laboratory Services" }, { code: "TPM4M", name: "Health Care: Nursing/Medical Services" }, { code: "TPP4M", name: "Health Services: Pharmacy" }, { code: "TPT4M", name: "Health Care: Therapy Services" }, { code: "TPJ4C", name: "Health Care (College)" }, { code: "TPJ4E", name: "Health Care (Workplace)" }, { code: "TPJ4M", name: "Health Care (U/C)" }, { code: "NONE", name: "Not in the list" }];
+        const DESL = [{ code: "NONE", name: "Not in the list" }, { code: "ESLAO", name: "ESL Level 1" }, { code: "ESLBO", name: "ESL Level 2" }, { code: "ESLCO", name: "ESL Level 3" }, { code: "ESLDO", name: "ESL Level 4" }, { code: "ESLEO", name: "ESL Level 5" }, { code: "ELDAO", name: "ELD Level 1" }, { code: "ELDBO", name: "ELD Level 2" }, { code: "ELDCO", name: "ELD Level 3" }, { code: "ELDDO", name: "ELD Level 4" }, { code: "ELDEO", name: "ELD Level 5" }];
+
+        const GRADE_MAP = { "Grade 9": D9, "Grade 10": D10, "Grade 11": D11, "Grade 12": D12, "ESL/ELD Courses": DESL };
+        const ALL = [...D9, ...D10, ...D11, ...D12, ...DESL].filter(c => c.code !== "NONE");
+        const POPULAR = new Set(["MHF4U", "BBB4M", "MCV4U", "OLC4O", "MAP4C", "SBI4U", "SPH4U", "SCH4U", "SCH4C", "ENG4U", "ENG4C", "MDM4U", "SBI3C", "SBI3U", "SPH3U", "SCH3U", "ENG3U", "HHS4U", "TEJ4M", "TDJ4O", "TFJ4C", "HHG4M", "PPL4O", "SNC4M", "CLN4U", "FIF4U", "CGW4M", "BOH4M", "AVI4M", "HFA4U"]);
+        const BASE = "https://canstemeducation.com/product/"; const toURL = code => BASE + String(code || "").toLowerCase() + "/";
+
+        /* -------------------- SITE INDEX (Pages + Blogs) -------------------- */
+        const SITE_INDEX_URL = "/search-index.json"; // optional JSON you can add later
+
+        const P = (title, url, category, keywords) => ({ title, url, category, keywords });
+        const kw = (...a) => a; // helper for readability
+
+        /* ⚠️ Titles+URLs exactly as you provided; keywords are curated for discoverability. */
+        const SITE_INDEX_FALLBACK = [
+            /* ===== PAGES (83) ===== */
+            P("About Us", "/about-2/", "Page", kw("about", "mission", "vision", "values", "private school brampton", "team")),
+            P("Accessibility", "/accessibility/", "Policy", kw("accessibility", "aoda", "inclusive", "accommodations", "assistive")),
+            P("Adult learning: Ontario high school diploma", "/adult-education/", "Page", kw("adult education", "mature students", "ossd for adults", "ged alternative", "night school")),
+            P("Attendance Policy", "/attendance-policy/", "Policy", kw("attendance", "absent", "late", "policy", "procedure")),
+            P("Canadian Adult Education Credential CAEC-GED Canada", "/caec/", "Page", kw("caec", "ged canada", "adult credential", "equivalency", "high school diploma")),
+            P("Career", "/career/", "Page", kw("jobs", "hiring", "careers", "work with us", "apply")),
+            P("CELPIP", "/celpip/", "Page", kw("celpip", "english test", "clb", "immigration", "coaching", "booking")),
+            P("Cheating and Plagiarism", "/cheating-and-plagiarism/", "Policy", kw("plagiarism", "cheating", "academic integrity", "dishonesty", "policy")),
+            P("Code of Conduct", "/code-of-conduct/", "Policy", kw("rules", "behaviour", "discipline", "expectations", "student code")),
+            P("Competitive Exam Prep", "/competitive-exam-prep/", "Page", kw("ielts", "pte", "celpip", "tcf", "tef", "gre", "sat", "gmat", "coaching")),
+            P("Computer Usage Policy", "/computer-usage-policy/", "Policy", kw("computer policy", "devices", "internet use", "wifi", "acceptable use")),
+            P("Contact Us", "/contact-us/", "Page", kw("contact", "email", "phone", "address", "location", "support", "help")),
+            P("Course Coding System", "/course-coding-system/", "Page", kw("course codes", "ics4u", "mcv4u", "mhf4u", "how codes work")),
+            P("Course/Mode Change Terms & Policy", "/course-mode-change-terms-policy/", "Policy", kw("course change", "mode switch", "withdrawal", "refund", "deadline")),
+            P("Examination Policy", "/examination-policy/", "Policy", kw("exam policy", "final exam", "rules", "proctor", "cheating")),
+            P("FAQ – Frequently Asked Questions", "/faq/", "Page", kw("faq", "questions", "policies", "support", "how to")),
+            P("Fee Structure 2025–26", "/fee-structure/", "Page", kw("fees", "tuition", "cost", "price", "payments", "refund")),
+            P("Final Exam and Report Card Information", "/final-exam-and-report-card-information/", "Page", kw("final exam", "report card", "transcript", "schedule", "distribution")),
+            P("Full-Time School in Canada (Grades 1–12)", "/full-time-school/", "Page", kw("full time school", "ossd", "day school", "international students", "grades 1-12")),
+            P("Gallery", "/gallery/", "Page", kw("photos", "events", "campus", "students", "pictures")),
+            P("High School Credits", "/high-school-credits/", "Page", kw("ontario credits", "course list", "grade 9", "grade 10", "grade 11", "grade 12", "online")),
+            P("High School for Healthcare", "/healthcare-programs/", "Page", kw("nursing prerequisites", "healthcare prerequisites", "biology", "chemistry", "physics")),
+            P("Holiday and Special Hours", "/holiday-and-special-hours/", "Page", kw("holiday hours", "office hours", "special hours", "open", "closed")),
+            P("Home", "/", "Page", kw("home", "main page", "canstem", "private school", "ossd")),
+            P("IELTS – International English Language Testing System", "/ielts/", "Page", kw("ielts", "band 6", "band 7", "academic ielts", "coaching", "test booking")),
+            P("In-Class Student Instructions", "/in-class-student-instructions/", "Page", kw("class instructions", "expectations", "classroom rules")),
+            P("International Students", "/international-student/", "Page", kw("international", "study in canada", "visa", "ossd international", "fees")),
+            P("Late and Missed Assignments Policy", "/late-and-missed-assignments-policy/", "Policy", kw("late policy", "missed work", "extensions", "penalties")),
+            P("Live Links", "/live-links/", "Page", kw("links", "resources", "shortcuts", "quick access")),
+            P("My Cart", "/cart/", "Page", kw("cart", "checkout", "basket")),
+            P("Online High School", "/online-high-school/", "Page", kw("virtual high school", "online courses", "e-learning", "remote study")),
+            P("Online Student Instructions", "/online-student-instructions/", "Page", kw("online rules", "zoom", "moodle", "expectations")),
+            P("Ontario High School Literacy", "/ontario-high-school-literacy/", "Page", kw("osslt", "literacy", "olc4o", "ontario literacy")),
+            P("Our Blog", "/our-blog/", "Page", kw("blog", "news", "articles", "updates")),
+            P("Our Blogs – CanSTEM", "/our-blogs-canstem/", "Page", kw("blog hub", "all posts", "news")),
+            P("7 Easy Steps to a Successful Result", "/7-easy-steps-to-a-successful-result/", "Page", kw("success steps", "study plan", "tips")),
+            P("Adult Learners Perspective on the Shift from GED Testing", "/adult-learners-perspective-on-the-shift-from-ged-testing/", "Page", kw("ged", "adult learners", "caec", "ossd")),
+            P("All-Inclusive Manual for Finishing the OUAC Application", "/all-inclusive-manual-for-finishing-the-ouac-application/", "Page", kw("ouac manual", "apply university", "guide")),
+            P("Applying through the OUAC website", "/applying-through-the-ouac-website/", "Page", kw("ouac", "how to apply", "application steps")),
+            P("Brampton’s Best High Schools", "/bramptons-best-high-schools/", "Page", kw("best schools brampton", "top high schools", "ranking")),
+            P("Building a Successful Study Plan", "/building-a-successful-study-plan/", "Page", kw("study plan", "time management", "tips")),
+            P("CanSTEM Education Private School Middle School Program Overview", "/canstem-education-private-school-middle-school-program-overview/", "Page", kw("middle school", "program overview", "grades 6-8")),
+            P("Exploring Modern Work Realities", "/exploring-modern-work-realities/", "Page", kw("modern work", "future of work", "careers")),
+            P("Exploring Possible Post-Secondary Careers", "/exploring-possible-post-secondary-careers/", "Page", kw("careers", "post-secondary", "jobs")),
+            P("Forward-Looking Summer Courses in 2024", "/forward-looking-summer-courses-in-2024/", "Page", kw("summer courses", "reach ahead", "upgrade")),
+            P("Handling the OSSD’s Requirements", "/handling-the-ossds-requirements/", "Page", kw("ossd requirements", "credits", "compulsory", "electives")),
+            P("How to Achieve Academic Success in High School", "/how-to-achieve-academic-success-in-high-school/", "Page", kw("academic success", "study skills", "grades")),
+            P("Making a Successful Exam Study Plan", "/making-a-successful-exam-study-plan/", "Page", kw("exam plan", "revision", "schedule")),
+            P("Manual for Post-Secondary Education", "/manual-for-post-secondary-education/", "Page", kw("post-secondary", "college", "university", "guide")),
+            P("Mississauga Night Schools: Unlock Your Potential", "/mississauga-night-schools-unlock-your-potential/", "Page", kw("night school", "mississauga", "adult credits")),
+            P("Online Students’ Guide to Back-to-School in 2024", "/online-students-guide-to-back-to-school-in-2024/", "Page", kw("online back to school", "start guide", "checklist")),
+            P("Ontario Students 2024 Graduation Requirements", "/ontario-students-2024-graduation-requirements/", "Page", kw("graduation 2024", "requirements", "credits")),
+            P("Ontario Updates Secondary School Graduation Standards", "/ontario-updates-secondary-school-graduation-standards/", "Page", kw("graduation standards", "financial literacy", "careers")),
+            P("Ontario’s grad requirements with tech credits and online access", "/ontarios-grad-requirements-with-tech-credits-and-online-access/", "Page", kw("tech credits", "online credits", "requirements")),
+            P("OUAC & OCAS Applications", "/ouac-ocas-applications/", "Page", kw("ouac", "ocas", "apply college", "apply university")),
+            P("OUAC Program for Students in Ontario", "/ouac-program-for-students-in-ontario/", "Page", kw("ouac program", "ouac help", "application portal")),
+            P("Planning for Summer 2024 College and University Admission", "/planning-for-summer-2024-college-and-university-admission/", "Page", kw("admission planning", "timeline", "deadlines")),
+            P("Payment", "/payment/", "Page", kw("payment", "pay online", "tuition", "fees", "credit card")),
+            P("Policies", "/policies/", "Page", kw("school policies", "rules", "guidelines", "handbook")),
+            P("Privacy Policy", "/privacy-policy/", "Policy", kw("privacy", "data", "policy", "consent")),
+            P("Promotions", "/promo/", "Page", kw("promotions", "discounts", "offers", "deals")),
+            P("PTE English Language Tests | Pearson PTE", "/pte/", "Page", kw("pte", "pearson pte", "english test", "booking", "prep")),
+            P("Rating & Reviews", "/google-reviews/", "Page", kw("reviews", "testimonials", "google reviews")),
+            P("Refer a Friend", "/refer-a-friend/", "Page", kw("refer", "referral", "invite", "discount")),
+            P("Registration", "/registration/", "Page", kw("register", "enroll", "apply", "admissions form")),
+            P("Registration Forms", "/registration-forms/", "Page", kw("forms", "registration forms", "download", "pdf")),
+            P("Safe School Policy", "/safe-school-policy/", "Policy", kw("safe school", "bullying", "safety", "security")),
+            P("School Policies, Practices, and Procedures", "/school-policies-practices-and-procedures/", "Policy", kw("policies", "procedures", "practices", "handbook")),
+            P("Services for Online/In Class Students", "/student-services/", "Page", kw("student services", "support", "counselling", "guidance")),
+            P("OCAS Information and Updates", "/ocas/", "Page", kw("ocas", "college applications", "updates")),
+            P("Ontario Secondary School Diploma (OSSD Requirements)", "/ossd/", "Page", kw("ossd", "requirements", "credits", "literacy", "volunteer")),
+            P("OUAC Guidance – 2025–2026 Schedule of Dates", "/ouac/", "Page", kw("ouac dates", "deadlines", "timeline", "important dates")),
+            P("How-to Videos | Ontario Universities’ Application", "/how-to-videos/", "Page", kw("ouac video", "tutorial", "how to apply")),
+            P("Sitemap", "/sitemap/", "Page", kw("sitemap", "all pages", "index", "navigation")),
+            P("STEM Programs", "/stem-programs/", "Page", kw("stem", "science", "technology", "engineering", "math", "coding")),
+            P("Student Achievement The Assessment and Evaluation Policy", "/student-achievement-the-assessment-and-evaluation-policy/", "Policy", kw("assessment", "evaluation", "reporting", "rubrics")),
+            P("Summer Camp", "/summer-camp/", "Page", kw("summer camp", "kids camp", "activities", "registration")),
+            P("Summer School", "/summer-school/", "Page", kw("summer school", "upgrade", "make up credits", "reach ahead")),
+            P("TCF & TEF – Canada", "/tcf-and-tef/", "Page", kw("tcf", "tef", "french test", "immigration", "clb")),
+            P("Terms & Conditions", "/terms-and-conditions/", "Policy", kw("terms", "conditions", "tos", "legal")),
+            P("Tutoring Services & Fees (Grades 1–12, IB, ESL, Test Prep, College)", "/tutoring/", "Page", kw("tutoring", "one on one", "ib", "esl tutoring", "test prep", "pricing")),
+            P("University Open House", "/university-open-house/", "Page", kw("open house", "event", "meet faculty", "campus tour")),
+
+            /* ===== BLOGS (36) ===== */
+            P("The Ultimate Guide to Tutoring and Language Coaching in Mississauga & Brampton", "/tutoring-language-coaching-mississauga-brampton/", "Blog", kw("tutoring", "language coaching", "mississauga", "brampton", "choose tutor")),
+            P("Private School vs Public School in Ontario: Which is Better for Your Child’s Future?", "/private-vs-public-school-ontario/", "Blog", kw("private vs public", "compare", "benefits", "cost", "class size")),
+            P("Enrollment Now Open for Full-Time School 2025–26 in Ontario — Grades 1 to 12 at CanSTEM Education", "/enrollment-open-full-time-school-ontario-2025-26/", "Blog", kw("enrollment open", "ossd 2025", "register now")),
+            P("OSSD Requirements 2025: Your Complete Guide to Ontario Secondary School Diploma Success", "/ossd-requirements-2025/", "Blog", kw("ossd 2025", "requirements", "credits", "literacy")),
+            P("Why CanSTEM? The Private School in Brampton That Puts Students First", "/why-canstem/", "Blog", kw("why canstem", "benefits", "student success")),
+            P("Summer Camp 2025 at CanSTEM", "/summer-camp-2025-at-canstem/", "Blog", kw("summer camp 2025", "registration", "activities")),
+            P("Summer School 2025 at CanSTEM", "/summer-school-2025-at-canstem/", "Blog", kw("summer school 2025", "upgrade", "make up credits")),
+            P("Best Coaching for PTE, IELTS, CELPIP & CAEL in Canada", "/english-test-coaching-canada/", "Blog", kw("ielts coaching", "pte coaching", "celpip coaching", "cael")),
+            P("The Role of AI in Modern Education", "/the-role-of-ai-in-modern-education/", "Blog", kw("ai in education", "technology", "future skills")),
+            P("The Role of Parents and Families in Online Schooling", "/the-role-of-parents-and-families-in-online-schooling/", "Blog", kw("parents role", "online school", "support at home")),
+            P("2024 High School Graduation Requirements", "/2024-high-school-graduation-requirements/", "Blog", kw("graduation 2024", "requirements", "ossd")),
+            P("CanSTEM Education Private School", "/canstem-education-private-school-3/", "Blog", kw("about canstem", "private school brampton")),
+            P("The Benefits of One on One Tutoring Services", "/the-benefits-of-one-on-one-tutoring-services/", "Blog", kw("tutoring benefits", "personalized learning", "grades")),
+            P("The Value of Private School Education", "/the-value-of-private-school-education/", "Blog", kw("private school value", "university acceptance", "success")),
+            P("Dual Enrollment Explained – College and High School Credits", "/dual-enrollment-explained-college-and-high-school-credits/", "Blog", kw("dual enrollment", "college credits in high school")),
+            P("5 Things To Consider Before Changing Schools For Your Child", "/5-things-to-consider-before-changing-schools-for-your-child/", "Blog", kw("transfer school", "change school", "checklist")),
+            P("5 Benefits of Earning College Credit in High School", "/5-benefits-of-earning-college-credit-in-high-school/", "Blog", kw("college credit", "advance", "dual credit")),
+            P("How Raising Pets Can Help Children Develop Emotional Intelligence", "/raising-pets-can-help-children-develop-emotional-intelligence/", "Blog", kw("pets", "emotional intelligence", "social skills")),
+            P("5 Ways A Tutor Can Help Students With Exceptionalities", "/5-ways-a-tutor-can-help-students-with-exceptionalities/", "Blog", kw("special education", "exceptionalities", "tutor help")),
+            P("The Best Way to Balance Study and Fun over the Holidays", "/the-best-way-to-balance-study-and-fun-over-the-holidays/", "Blog", kw("holidays", "study life balance", "break")),
+            P("How to Stop Your Child from Hating School", "/how-to-stop-your-child-from-hating-school/", "Blog", kw("motivation", "engagement", "school dislike", "parents tips")),
+            P("Perspectives on Screen Time in a Pandemic", "/perspectives-on-screen-time-in-a-pandemic/", "Blog", kw("screen time", "covid", "limits", "wellbeing")),
+            P("What to Wear to a Private School Parent Interview", "/what-to-wear-to-a-private-school-parent-interview/", "Blog", kw("parent interview", "dress code", "what to wear")),
+            P("Four Steps to Selecting a School for Your Child", "/four-steps-to-selecting-a-school-for-your-child/", "Blog", kw("selecting school", "criteria", "checklist")),
+            P("Tips To Choose A Tutor", "/tips-to-choose-a-tutor/", "Blog", kw("choose tutor", "tutoring tips", "selection")),
+            P("Tips for Starting High School", "/tips-for-starting-high-school/", "Blog", kw("starting high school", "grade 9", "transition")),
+            P("Boost Grades and Achieve Academic Excellence", "/boost-grades-and-achieve-academic-excellence/", "Blog", kw("improve grades", "study tips", "success")),
+            P("University Scholarship Applications for 2024–2025", "/university-scholarship-applications-for-2024-2025/", "Blog", kw("scholarship", "financial aid", "bursary", "awards")),
+            P("The Importance of Early Preparation for University", "/the-importance-of-early-preparation-for-university/", "Blog", kw("prepare for university", "grade 11 planning", "timeline")),
+            P("Empowering Mature Students", "/empowering-mature-students/", "Blog", kw("mature students", "adult learners", "ossd for adults")),
+            P("Nursing Prerequisite Courses at CanSTEM Education", "/nursing-prerequisite-courses-at-canstem-education/", "Blog", kw("nursing prerequisites", "biology", "chemistry", "physics")),
+            P("Online Learning at CanSTEM: Study Anytime, Anywhere", "/online-learning-at-canstem/", "Blog", kw("online learning", "flexible", "self paced")),
+            P("Why November 11 Matters: Remembrance Day in Canada", "/remembrance-day-in-canada/", "Blog", kw("remembrance day", "nov 11", "history")),
+            P("Impact of IRCC Closing the Student Direct Stream", "/impact-of-ircc-closing-the-student-direct-stream/", "Blog", kw("ircc", "sds", "international students", "study permits")),
+            P("How Raising Pets Can Help Children Develop Emotional Intelligence (Alt)", "/how-raising-pets-can-help-children-develop-emotional-intelligence/", "Blog", kw("pets", "emotional learning", "children")),
+            P("Navigating COVID", "/navigating-covid/", "Blog", kw("covid", "pandemic", "health", "balance")),
+            P("How Private Schools Influence Academic Success and Lifelong Outcomes", "/academic-success-and-lifelong-outcomes/", "Blog", kw("private school outcomes", "academic success", "lifelong skills")),
+        ];
+
+        /* Merge optional JSON index if you add /search-index.json later */
+        let SITE_INDEX = [...SITE_INDEX_FALLBACK];
+        fetch(SITE_INDEX_URL, { credentials: "omit" })
+            .then(r => r.ok ? r.json().catch(() => null) : null)
+            .then(json => {
+                if (!json) return;
+                if (Array.isArray(json)) SITE_INDEX = json.concat(SITE_INDEX);
+                else if (Array.isArray(json.items)) SITE_INDEX = json.items.concat(SITE_INDEX);
+            }).catch(() => { });
+
+        /* -------------------- Search mechanics (yours, lightly tuned) -------------------- */
+        const $ = s => document.querySelector(s);
+        const input = $("#csbx-q"), suggest = $("#csbx-suggest");
+        const btnFilter = $("#csbx-filter"), menu = $("#csbx-menu"), label = btnFilter.querySelector(".csbx-filter-label");
+        let activeGrade = "ALL";
+
+        const listFor = g => g === "ALL" ? ALL : (GRADE_MAP[g] || []).filter(i => i.code !== "NONE");
+        function gradeOf(code) {
+            if (D9.some(x => x.code === code)) return "Grade 9";
+            if (D10.some(x => x.code === code)) return "Grade 10";
+            if (D11.some(x => x.code === code)) return "Grade 11";
+            if (D12.some(x => x.code === code)) return "Grade 12";
+            if (DESL.some(x => x.code === code)) return "ESL & ELD";
+            return "";
+        }
+        function toAbsolute(u) { try { return new URL(u, location.origin).href } catch { return u } }
+
+        function coursesAsItems(gradeFilter) {
+            const list = listFor(gradeFilter);
+            return list.map(it => ({
+                kind: "course", code: it.code, name: it.name, title: `${it.code} — ${it.name}`, url: toURL(it.code),
+                grade: gradeOf(it.code), popular: POPULAR.has(it.code),
+                haystack: (it.code + " " + it.name).toUpperCase()
+            }));
+        }
+        function siteAsItems() {
+            return SITE_INDEX.map(p => ({
+                kind: "content", title: p.title || "", url: toAbsolute(p.url || "#"), category: p.category || "Page",
+                keywords: (p.keywords || []).map(String),
+                haystack: ((p.title || "") + " " + (p.keywords || []).join(" ")).toUpperCase()
+            }));
+        }
+
+        function searchAll(q) {
+            const t = q.trim().toUpperCase(); if (!t) return [];
+            const courseItems = coursesAsItems(activeGrade);
+            const pageItems = siteAsItems();
+            const out = [];
+
+            for (const it of courseItems) {
+                const C = (it.code || "").toUpperCase(), N = (it.name || "").toUpperCase(); let s = null;
+                if (C.startsWith(t)) s = 0;
+                else if (C.includes(t)) s = 1;
+                else if (N.includes(t)) s = 2;
+                if (s !== null) out.push({ ...it, score: s });
+            }
+            for (const it of pageItems) {
+                const H = (it.title || "").toUpperCase(), K = (it.keywords || []).join(" ").toUpperCase(); let s = null;
+                if (H.startsWith(t)) s = 0.5;
+                else if (H.includes(t)) s = 1.5;
+                else if (K.includes(t)) s = 2.5;
+                if (s !== null) out.push({ ...it, score: s });
+            }
+            return out.sort((a, b) => a.score - b.score || (a.kind === "course" ? -1 : 1)).slice(0, 30);
+        }
+
+        function setOpen(on) { input.setAttribute("aria-expanded", on ? "true" : "false"); suggest.classList.toggle("csbx-show", on) }
+        function nicePath(u) { try { const url = new URL(u, location.origin); return url.pathname.replace(/\/$/, "") || "/" } catch { return u } }
+
+        function render() {
+            const arr = searchAll(input.value);
+            suggest.innerHTML = ""; if (!arr.length) { setOpen(false); return }
+            arr.forEach((it, idx) => {
+                const row = document.createElement("div");
+                row.className = "csbx-row"; row.id = "csbx-opt-" + idx; row.role = "option"; row.setAttribute("aria-selected", "false");
+                if (it.kind === "course") {
+                    row.innerHTML = `<div class="csbx-left">
+          <span class="csbx-code">${it.code}</span>
+          <span class="csbx-name">${it.name}</span>
+        </div>
+        <div class="csbx-right">
+          <span class="csbx-chip grade">${it.grade}</span>
+          ${it.popular ? '<span class="csbx-chip">Popular</span>' : ''}
+        </div>`;
+                } else {
+                    row.innerHTML = `<div class="csbx-left">
+          <span class="csbx-code">${it.title}</span>
+          <span class="csbx-name">${nicePath(it.url)}</span>
+        </div>
+        <div class="csbx-right">
+          <span class="csbx-chip type">${it.category}</span>
+        </div>`;
+                }
+                row.addEventListener("mousedown", e => e.preventDefault());
+                row.addEventListener("click", () => location.href = it.url);
+                suggest.appendChild(row);
+            });
+            activeIndex = -1; setOpen(true);
+        }
+
+        /* Filter UI */
+        btnFilter.addEventListener("click", () => {
+            const open = btnFilter.getAttribute("aria-expanded") === "true";
+            btnFilter.setAttribute("aria-expanded", String(!open));
+            menu.classList.toggle("csbx-open", !open);
+        });
+        menu.addEventListener("click", e => {
+            const li = e.target.closest('li[role="option"]'); if (!li) return;
+            [...menu.children].forEach(n => n.setAttribute("aria-selected", "false"));
+            li.setAttribute("aria-selected", "true"); activeGrade = li.dataset.grade;
+            label.textContent = (activeGrade === "ALL" ? "All Courses" : activeGrade.replace(" Courses", ""));
+            btnFilter.setAttribute("aria-expanded", "false"); menu.classList.remove("csbx-open");
+            render(); input.focus();
+        });
+        document.addEventListener("click", e => {
+            if (!menu.contains(e.target) && e.target !== btnFilter) { btnFilter.setAttribute("aria-expanded", "false"); menu.classList.remove("csbx-open") }
+        });
+
+        /* Interactions */
+        let activeIndex = -1;
+        input.addEventListener("input", render);
+        input.addEventListener("focus", () => { if (input.value.trim()) render() });
+        input.addEventListener("blur", () => setTimeout(() => setOpen(false), 120));
+        input.addEventListener("keydown", e => {
+            const items = [...suggest.querySelectorAll(".csbx-row")];
+            if (!items.length) {
+                if (e.key === "Enter" && input.value.trim()) { e.preventDefault(); location.href = toURL(input.value.trim().toUpperCase()) }
+                return;
+            }
+            if (e.key === "ArrowDown") { e.preventDefault(); activeIndex = Math.min(activeIndex + 1, items.length - 1) }
+            else if (e.key === "ArrowUp") { e.preventDefault(); activeIndex = Math.max(activeIndex - 1, 0) }
+            else if (e.key === "Enter") { e.preventDefault(); const t = items[activeIndex] || items[0]; if (t) t.click() }
+            else if (e.key === "Escape") { setOpen(false); return }
+            else { return }
+            items.forEach(n => n.setAttribute("aria-selected", "false"));
+            if (activeIndex >= 0 && items[activeIndex]) { items[activeIndex].setAttribute("aria-selected", "true"); items[activeIndex].scrollIntoView({ block: "nearest" }) }
+        });
+    })();
+</script>
+<!-- ================== /CanSTEM Unified Search ================== -->
