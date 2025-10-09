@@ -8,8 +8,7 @@
         </svg>
 
         <input id="csbx-q" class="csbx-input" type="search" spellcheck="false" autocomplete="off"
-            placeholder="Search here.." aria-autocomplete="list" aria-controls="csbx-suggest"
-            aria-expanded="false" />
+            placeholder="Search here.." aria-autocomplete="list" aria-controls="csbx-suggest" aria-expanded="false" />
 
         <div id="csbx-suggest" class="csbx-suggest" role="listbox" aria-label="Suggestions"></div>
     </div>
@@ -60,15 +59,15 @@
     #canstem-course-finder .csbx-shell {
         position: relative;
         display: flex;
-        /* <-- switch to flex to fix vertical clipping */
+        /* flex fixes vertical clipping */
         align-items: center;
-        /* center text/placeholder reliably (Safari too) */
+        /* centers placeholder/text (Safari too) */
         height: var(--csbx-h);
         background: var(--csbx-bg);
         border: 1px solid var(--csbx-border);
         border-radius: var(--csbx-radius);
         padding: 0 16px 0 44px;
-        /* right/left padding (left keeps space for icon) */
+        /* left padding leaves space for icon */
         box-shadow: 0 1px 0 rgba(2, 6, 23, .02), 0 8px 24px rgba(2, 6, 23, .06);
         transition: box-shadow .18s ease, border-color .18s ease;
     }
@@ -93,15 +92,13 @@
     /* ===== Input (Safari-safe) ===== */
     #canstem-course-finder .csbx-input {
         flex: 1 1 auto;
-        /* take remaining width */
         min-width: 0;
         /* prevent overflow in flex */
         height: 2.5rem;
         /* inner control height; no clipping */
         line-height: normal;
-        /* avoid placeholder clipping on WebKit */
+        /* avoids placeholder clipping on WebKit */
         padding: 0;
-        /* the shell handles padding */
         font-size: var(--csbx-font);
         color: var(--csbx-ink) !important;
         caret-color: var(--csbx-ink);
@@ -136,9 +133,10 @@
 
     /* Rows */
     #canstem-course-finder .csbx-row {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px 14px;
         align-items: center;
-        justify-content: space-between;
         padding: 12px 14px;
         border-radius: 12px;
         cursor: pointer;
@@ -153,24 +151,34 @@
     #canstem-course-finder .csbx-left {
         display: flex;
         flex-direction: column;
+        min-width: 0;
     }
 
     #canstem-course-finder .csbx-code {
         font-size: 20px;
-        font-weight: 800;
+        font-weight: 700;
         color: var(--csbx-ink);
+        word-break: break-word;
     }
 
     #canstem-course-finder .csbx-name {
-        font-size: 14px;
+        font-size: 16px;
         color: #334155;
         margin-top: 2px;
+        line-height: 1.35;
+    }
+
+    #canstem-course-finder .csbx-name:empty {
+        display: none;
     }
 
     #canstem-course-finder .csbx-right {
         display: flex;
+        flex-wrap: wrap;
+        /* wrap nicely on tablet/mobile */
         gap: 6px;
         align-items: center;
+        justify-self: end;
     }
 
     #canstem-course-finder .csbx-chip {
@@ -200,277 +208,306 @@
     }
 
     /* ===== Mobile tweaks ===== */
-    @media (max-width:640px) {
+    @media (max-width: 640px) {
         #canstem-course-finder .csbx-shell {
             padding-right: 12px;
         }
-        #canstem-course-finder .csbx-code {
-        font-size: 14px !important;
-        font-weight: 700;
-        color: var(--csbx-ink);
-    }
 
-        /* still ≥16 for iOS */
+        #canstem-course-finder .csbx-name {
+            font-size: 14px;
+        }
+
+        #canstem-course-finder .csbx-code {
+            font-size: 14px !important;
+            font-weight: 700;
+            color: var(--csbx-ink);
+        }
+
+        /* Hide "Popular" on very small screens to keep layout clean */
+        #canstem-course-finder .csbx-chip.is-popular {
+            display: none;
+        }
+
+        /* ===== Result separators and text weight adjustments ===== */
+        #canstem-course-finder .csbx-row {
+            border-bottom: 1px solid #f1f5f9;
+            /* subtle divider */
+        }
+
+        #canstem-course-finder .csbx-row:last-child {
+            border-bottom: none;
+            /* hide last separator */
+        }
+
+        #canstem-course-finder .csbx-code {
+            font-weight: 600;
+            /* slightly less bold */
+        }
+
+        #canstem-course-finder .csbx-name {
+            font-weight: 400;
+            color: #475569;
+            /* slightly softer gray-blue tone */
+        }
     }
 </style>
 <!-- ============== /CanSTEM Search ============== -->
 
 <script>
     (function () {
-        /* ---------------- COURSES / PRODUCTS (unchanged behaviour) ---------------- */
+        /* ---------------- COURSES / PRODUCTS (unchanged lists) ---------------- */
         // Grade 9
         const D9 = [
-            { code: "AVI1O", name: "Visual Arts" }, 
-            { code: "ADA1O", name: "Drama" }, 
+            { code: "AVI1O", name: "Visual Arts" },
+            { code: "ADA1O", name: "Drama" },
             // { code: "BEM1O", name: "Building The Entrepreneurial Mindset" },
-            { code: "CGC1W", name: "Issues in Canadian Geography (De-Streamed)" }, 
+            { code: "CGC1W", name: "Issues in Canadian Geography (De-Streamed)" },
             { code: "ENL1W", name: "English (De-Streamed)" },
             // { code: "EAE1W", name: "English (French OSSD), De-Streamed" },
             // { code: "ENG1L", name: "English (LDCC)" },
             { code: "FSF1D", name: "French (De-Streamed)" },
-            // { code: "FSF1O", name: "Core French (Open)" }, 
+            // { code: "FSF1O", name: "Core French (Open)" },
             { code: "GLS1O", name: "Learning Strategies 1: Skills for Success" },
             // { code: "GLE1O", name: "Learning Strategies 1: Skills for Success" },
-            { code: "HFN1O", name: "Food and Nutrition" }, 
-            { code: "HIF1O", name: "Exploring Family Studies" }, 
+            { code: "HFN1O", name: "Food and Nutrition" },
+            { code: "HIF1O", name: "Exploring Family Studies" },
             { code: "PPL1O", name: "Healthy Active Living Education" },
-            { code: "MTH1W", name: "Mathematics (De-Streamed)" }, 
-            // { code: "MAT1L", name: "Mathematics (LDCC)" }, 
+            { code: "MTH1W", name: "Mathematics (De-Streamed)" },
+            // { code: "MAT1L", name: "Mathematics (LDCC)" },
             { code: "SNC1W", name: "Science (De-Streamed)" },
-            // { code: "SNC1L", name: "Science (LDCC)" }, 
-            { code: "TIJ1O", name: "Exploring Technologies" }, 
+            // { code: "SNC1L", name: "Science (LDCC)" },
+            { code: "TIJ1O", name: "Exploring Technologies" },
             { code: "TAS1O", name: "Technology and the Skilled Trades" },
             // { code: "PPL1O", name: "Healthy Active Living Education (Open)" }
         ];
         // Grade 10
         const D10 = [
-            { code: "AVI2O", name: "Visual Arts" }, 
-            { code: "ADA2O", name: "Drama" }, 
-            { code: "ASM2O", name: "Media Arts" },
-            { code: "BEP2O", name: "Launching and Leading a Business" }, 
+            { code: "AVI2O", name: "Visual Arts (G10)" },
+            { code: "ADA2O", name: "Drama (G10)" },
+            { code: "ASM2O", name: "Media Arts (G10)" },
+            { code: "BEP2O", name: "Launching and Leading a Business (G10)" },
             { code: "CHC2D", name: "Canadian History Since WWI (Academic)" },
-            { code: "CHC2P", name: "Canadian History Since WWI (Applied)" }, 
-            { code: "CHV2O", name: "Civics and Citizenship" }, 
+            { code: "CHC2P", name: "Canadian History Since WWI (Applied)" },
+            { code: "CHV2O", name: "Civics and Citizenship" },
             { code: "ENG2D", name: "English (Academic)" },
-            { code: "ENG2P", name: "English (Applied)" }, 
-            // { code: "ENG2L", name: "English (LDCC)" }, 
+            { code: "ENG2P", name: "English (Applied)" },
+            // { code: "ENG2L", name: "English (LDCC)" },
             { code: "EAE2D", name: "English (French OSSD, Academic)" },
-            { code: "FSF2D", name: "French (Academic)" }, 
-            // { code: "FSF2O", name: "Core French (Open)" }, 
+            { code: "FSF2D", name: "French (Academic)" },
+            // { code: "FSF2O", name: "Core French (Open)" },
             { code: "FSF2P", name: "Core French (Applied)" },
-            { code: "GLC2O", name: "Career Studies" }, 
-            { code: "HIF2O", name: "Individual and Family Living" }, 
+            { code: "GLC2O", name: "Career Studies" },
+            { code: "HIF2O", name: "Individual and Family Living" },
             { code: "HFN2O", name: "Food and Nutrition" },
-            { code: "ICS2O", name: "Introduction to Computer Studies" }, 
+            { code: "ICS2O", name: "Introduction to Computer Studies" },
             { code: "ICD2O", name: "Digital Technology & Innovations" },
-            { code: "MPM2D", name: "Principles of Mathematics (Academic)" }, 
+            { code: "MPM2D", name: "Principles of Mathematics (Academic)" },
             { code: "MFM2P", name: "Foundations of Mathematics (Applied)" },
-            // { code: "MAT2L", name: "Mathematics (LDCC)" }, 
+            // { code: "MAT2L", name: "Mathematics (LDCC)" },
             { code: "PPL2O", name: "Healthy Active Living Education" },
-            { code: "SNC2D", name: "Science (Academic)" }, 
-            { code: "SNC2P", name: "Science (Applied)" }, 
+            { code: "SNC2D", name: "Science (Academic)" },
+            { code: "SNC2P", name: "Science (Applied)" },
             // { code: "SNC2L", name: "Science (LDCC)" },
-            // { code: "RGJ2O", name: "Communications Technology" }, 
+            // { code: "RGJ2O", name: "Communications Technology (G10)" },
             { code: "TEJ2O", name: "Computer Technology" },
-            { code: "TFJ2O", name: "Hospitality and Tourism" }, 
+            { code: "TFJ2O", name: "Hospitality and Tourism" },
             { code: "TDJ2O", name: "Technological Design" },
             { code: "TAS2O", name: "Technology and the Skilled Trades" }
 
-             // On wordpress
+            // On wordpress
             // { code: "BBI2O", name: "Introduction to Business" },
             // { code: "EAE2D", name: "English" },
-            // { code: "TGJ2O", name: "Communications Technology" },
+            // { code: "TGJ2O", name: "Communications Technology (G10)" },
         ];
         // Grade 11
         const D11 = [
-            { code: "AVI3M", name: "Visual Arts (U/C)" }, 
-            { code: "AVI3O", name: "Visual Arts (Open)" }, 
+            { code: "AVI3M", name: "Visual Arts (U/C)" },
+            { code: "AVI3O", name: "Visual Arts (Open)" },
             { code: "ADA3M", name: "Drama (U/C)" },
-            { code: "ADA3O", name: "Drama (Open)" }, 
-            { code: "ASM3M", name: "Media Arts (U/C)" }, 
+            { code: "ADA3O", name: "Drama (Open)" },
+            { code: "ASM3M", name: "Media Arts (U/C)" },
             { code: "ASM3O", name: "Media Arts (Open)" },
-            { code: "BAF3M", name: "Financial Accounting Fundamentals" }, 
+            { code: "BAF3M", name: "Financial Accounting Fundamentals" },
             // { code: "BAI3E", name: "Accounting Essentials (Workplace)" },
-            // { code: "BDI3C", name: "Entrepreneurship: The Venture" }, 
+            // { code: "BDI3C", name: "Entrepreneurship: The Venture" },
             { code: "BDP3O", name: "Entrepreneurship: The Enterprising Person" },
-            { code: "BTA3O", name: "ICT: The Digital Environment" }, 
+            { code: "BTA3O", name: "ICT: The Digital Environment" },
             { code: "BMI3C", name: "Marketing: Goods, Services, Events" },
-            { code: "CIE3M", name: "The Individual and the Economy" }, 
-            { code: "CGD3M", name: "Regional Geography" }, 
+            { code: "CIE3M", name: "The Individual and the Economy" },
+            { code: "CGD3M", name: "Regional Geography" },
             { code: "CGF3M", name: "Forces of Nature" },
-            { code: "CGT3O", name: "Intro to Spatial Technologies (Open)" }, 
-            { code: "CGG3O", name: "Travel & Tourism" }, 
+            { code: "CGT3O", name: "Intro to Spatial Technologies (Open)" },
+            { code: "CGG3O", name: "Travel & Tourism" },
             { code: "CHA3U", name: "American History" },
-            // { code: "CHW3U", name: "World History to 15th Century" }, 
+            // { code: "CHW3U", name: "World History to 15th Century" },
             { code: "CHT3O", name: "World History since 1900 (Open)" },
-            { code: "CLU3M", name: "Understanding Canadian Law" }, 
+            { code: "CLU3M", name: "Understanding Canadian Law" },
             { code: "CPC3O", name: "Politics in Action: Making Change" },
-            { code: "ENG3C", name: "English (College)" }, 
-            { code: "ENG3U", name: "English (University)" }, 
+            { code: "ENG3C", name: "English (College)" },
+            { code: "ENG3U", name: "English (University)" },
             // { code: "ENG3E", name: "English (Workplace)" },
-            { code: "EAE3U", name: "English (French OSSD, University)" }, 
+            { code: "EAE3U", name: "English (French OSSD, University)" },
             { code: "EPS3O", name: "Presentation and Speaking Skills" },
-            // { code: "EMS3O", name: "Media Studies (Open)" }, 
-            { code: "FSF3U", name: "Core French (University)" }, 
+            // { code: "EMS3O", name: "Media Studies (Open)" },
+            { code: "FSF3U", name: "Core French (University)" },
             { code: "FSF3O", name: "Core French (Open)" },
-            { code: "FEF3U", name: "Extended French (University)" }, 
-            { code: "FIF3U", name: "French Immersion (University)" }, 
+            { code: "FEF3U", name: "Extended French (University)" },
+            { code: "FIF3U", name: "French Immersion (University)" },
             { code: "FIF3O", name: "French Immersion (Open)" },
-            { code: "GWL3O", name: "Designing Your Future" }, 
-            { code: "HSG3M", name: "Gender Studies" }, 
+            { code: "GWL3O", name: "Designing Your Future" },
+            { code: "HSG3M", name: "Gender Studies" },
             // { code: "HSE3E", name: "Equity & Social Justice (Workplace)" },
-            { code: "HFC3M", name: "Food and Culture" }, 
-            { code: "HPW3C", name: "Working with Infants & Young Children" }, 
+            { code: "HFC3M", name: "Food and Culture" },
+            { code: "HPW3C", name: "Working with Infants & Young Children" },
             { code: "HZB3M", name: "Philosophy: The Big Questions" },
-            { code: "HRT3M", name: "World Religions" }, 
+            { code: "HRT3M", name: "World Religions" },
             { code: "HPC3O", name: "Raising Healthy Children" },
-            { code: "HSP3U", name: "Intro to Anthropology (University)" }, 
+            { code: "HSP3U", name: "Intro to Anthropology (University)" },
             // { code: "HSP3C", name: "Anthro/Psych/Soc (College)" },
-            { code: "ICS3C", name: "Intro to Computer Programming (College)" }, 
+            { code: "ICS3C", name: "Intro to Computer Programming (College)" },
             { code: "ICS3U", name: "Intro to Computer Science (University)" },
-            { code: "IDC3O", name: "Sports & Entertainment Marketing (Open)" }, 
+            { code: "IDC3O", name: "Sports & Entertainment Marketing (Open)" },
             { code: "MBF3C", name: "Foundations for College Mathematics" },
-            { code: "MCF3M", name: "Functions and Applications" }, 
-            { code: "MCR3U", name: "Functions" }, 
+            { code: "MCF3M", name: "Functions and Applications" },
+            { code: "MCR3U", name: "Functions" },
             // { code: "MEL3E", name: "Math for Work & Everyday Life (Workplace)" },
-            { code: "PPL3O", name: "Healthy Active Living Education" }, 
-            { code: "PPZ3C", name: "Health for Life" }, 
+            { code: "PPL3O", name: "Healthy Active Living Education" },
+            { code: "PPZ3C", name: "Health for Life" },
             { code: "SBI3C", name: "Biology (College)" },
-            { code: "SBI3U", name: "Biology (University)" }, 
-            { code: "SCH3U", name: "Chemistry (University)" }, 
+            { code: "SBI3U", name: "Biology (University)" },
+            { code: "SCH3U", name: "Chemistry (University)" },
             { code: "SPH3U", name: "Physics (University)" },
-            { code: "SVN3M", name: "Environmental Science (U/C)" }, 
+            { code: "SVN3M", name: "Environmental Science (U/C)" },
             { code: "SVN3E", name: "Environmental Science (Workplace)" },
-            // { code: "TEI3M", name: "Computer Eng. Tech: Interfacing (U/C)" }, 
+            // { code: "TEI3M", name: "Computer Eng. Tech: Interfacing (U/C)" },
             // { code: "TEJ3M", name: "Computer Engineering Technology (U/C)" },
-            // { code: "TEL3M", name: "Computer Eng. Tech: Electronics (U/C)" }, 
+            // { code: "TEL3M", name: "Computer Eng. Tech: Electronics (U/C)" },
             // { code: "TEN3M", name: "Computer Eng. Tech: Networking (U/C)" },
-            // { code: "TET3E", name: "Computer Technology: IT Support" }, 
+            // { code: "TET3E", name: "Computer Technology: IT Support" },
             // { code: "TEW3E", name: "Computer Technology: Network Support" },
-            { code: "TGJ3M", name: "Communications Technology (U/C)" }, 
+            { code: "TGJ3M", name: "Communications Technology (U/C)" },
             // { code: "TFE3E", name: "Hospitality & Tourism: Event Planning (W)" },
-            // { code: "TFJ3E", name: "Hospitality & Tourism (Workplace)" }, 
+            // { code: "TFJ3E", name: "Hospitality & Tourism (Workplace)" },
             // { code: "TFJC", name: "Hospitality & Tourism (College)" },
-            { code: "TDJ3M", name: "Technological Design (U/C)" }, 
+            { code: "TDJ3M", name: "Technological Design (U/C)" },
             { code: "TGJ3O", name: "Communications Tech: Broadcast/Print" },
-            { code: "TDJ3O", name: "Technological Design and the Environment" }, 
+            { code: "TDJ3O", name: "Technological Design and the Environment" },
             // { code: "TGI3M", name: "Interactive New Media & Animation (U/C)" },
-            // { code: "TGP3M", name: "Photography & Digital Imaging (U/C)" }, 
+            // { code: "TGP3M", name: "Photography & Digital Imaging (U/C)" },
             // { code: "TPD3M", name: "Health Care: Dental Services (U/C)" },
-            // { code: "TPL3M", name: "Health Care: Laboratory Services (U/C)" }, 
+            // { code: "TPL3M", name: "Health Care: Laboratory Services (U/C)" },
             // { code: "TPM3M", name: "Health Care: Nursing/Medical Services (U/C)" },
-            // { code: "TPP3M", name: "Health Services: Pharmacy (U/C)" }, 
+            // { code: "TPP3M", name: "Health Services: Pharmacy (U/C)" },
             // { code: "TPT3M", name: "Health Care: Therapy Services (U/C)" },
-            // { code: "TPJ3C", name: "Health Care (College)" }, 
+            // { code: "TPJ3C", name: "Health Care (College)" },
             // { code: "TPJ3M", name: "Health Care (U/C)" }
 
             // On wordpress
-            // { code: "TGJ3M", name: "Communications Technology" }, 
-
+            // { code: "TGJ3M", name: "Communications Technology" },
         ];
         // Grade 12
         const D12 = [
-            { code: "ADA4E", name: "Drama (Workplace)" }, 
-            { code: "ADA4M", name: "Drama (U/C)" }, 
+            { code: "ADA4E", name: "Drama (Workplace)" },
+            { code: "ADA4M", name: "Drama (U/C)" },
             { code: "AEA4O", name: "Exploring & Creating in the Arts" },
-            // { code: "ASM4M", name: "Media Arts (U/C)" }, 
-            { code: "ASM4E", name: "Media Arts (Workplace)" }, 
+            // { code: "ASM4M", name: "Media Arts (U/C)" },
+            { code: "ASM4E", name: "Media Arts (Workplace)" },
             { code: "AVI4M", name: "Visual Arts (U/C)" },
-            { code: "BAT4M", name: "Financial Accounting Principles" }, 
+            { code: "BAT4M", name: "Financial Accounting Principles" },
             { code: "BDV4C", name: "Entrepreneurship: Venture Planning (C)" },
-            { code: "BTX4C", name: "ICT: Multimedia Solutions (C)" }, 
-            { code: "BBB4M", name: "International Business Fundamentals" }, 
+            { code: "BTX4C", name: "ICT: Multimedia Solutions (C)" },
+            { code: "BBB4M", name: "International Business Fundamentals" },
             { code: "BOH4M", name: "Business Leadership" },
-            { code: "CIA4U", name: "Analysing Current Economic Issues" }, 
-            { code: "CGW4U", name: "World Issues (University)" }, 
+            { code: "CIA4U", name: "Analysing Current Economic Issues" },
+            { code: "CGW4U", name: "World Issues (University)" },
             { code: "CGW4C", name: "World Issues (College)" },
-            { code: "CGR4M", name: "Environment & Resource Management" }, 
-            { code: "CGO4M", name: "Spatial Technologies in Action" }, 
+            { code: "CGR4M", name: "Environment & Resource Management" },
+            { code: "CGO4M", name: "Spatial Technologies in Action" },
             { code: "CGU4M", name: "World Geography: Urban Patterns" },
-            { code: "CHY4U", name: "World History since 15th Century (U)" }, 
-            { code: "CHY4C", name: "World History since 15th Century (C)" }, 
+            { code: "CHY4U", name: "World History since 15th Century (U)" },
+            { code: "CHY4C", name: "World History since 15th Century (C)" },
             { code: "CHI4U", name: "Canada: History, Identity & Culture" },
-            { code: "CLN4U", name: "Canadian & International Law (U)" }, 
-            { code: "CLN4C", name: "Legal Studies (College)" }, 
+            { code: "CLN4U", name: "Canadian & International Law (U)" },
+            { code: "CLN4C", name: "Legal Studies (College)" },
             { code: "CPW4U", name: "Canadian & International Politics" },
-            { code: "ENG4U", name: "English (University)" }, 
-            { code: "ENG4C", name: "English (College)" }, 
+            { code: "ENG4U", name: "English (University)" },
+            { code: "ENG4C", name: "English (College)" },
             // { code: "ENG4E", name: "English (Workplace)" },
-            { code: "EAE4U", name: "English (French OSSD, University)" }, 
-            { code: "EWC4U", name: "The Writer’s Craft (University)" }, 
+            { code: "EAE4U", name: "English (French OSSD, University)" },
+            { code: "EWC4U", name: "The Writer’s Craft (University)" },
             { code: "EWC4C", name: "The Writer’s Craft (College)" },
-            { code: "FSF4U", name: "Core French (University)" }, 
-            { code: "FSF4O", name: "Core French (Open)" }, 
+            { code: "FSF4U", name: "Core French (University)" },
+            { code: "FSF4O", name: "Core French (Open)" },
             { code: "HSE4M", name: "Equity & Social Justice" },
-            { code: "HSC4M", name: "World Cultures" }, 
-            { code: "HFA4U", name: "Nutrition & Health (University)" }, 
+            { code: "HSC4M", name: "World Cultures" },
+            { code: "HFA4U", name: "Nutrition & Health (University)" },
             { code: "HFA4C", name: "Nutrition & Health (College)" },
-            { code: "HHS4U", name: "Families in Canada (University)" }, 
-            { code: "HHS4C", name: "Families in Canada (College)" }, 
+            { code: "HHS4U", name: "Families in Canada (University)" },
+            { code: "HHS4C", name: "Families in Canada (College)" },
             { code: "HHG4M", name: "Human Development Through the Life Span" },
-            { code: "HIP4O", name: "Personal Life Management" }, 
+            { code: "HIP4O", name: "Personal Life Management" },
             { code: "HPD4C", name: "Working with School-Age Children & Adolescents" }, { code: "HSB4U", name: "Challenge & Change in Society" },
-            { code: "HZT4U", name: "Philosophy: Questions & Theories" }, 
-            { code: "ICS4U", name: "Computer Science (University)" }, 
+            { code: "HZT4U", name: "Philosophy: Questions & Theories" },
+            { code: "ICS4U", name: "Computer Science (University)" },
             { code: "ICS4C", name: "Computer Programming (College)" },
-            { code: "IDC4U", name: "Sports & Entertainment Marketing (U)" }, 
+            { code: "IDC4U", name: "Sports & Entertainment Marketing (U)" },
             { code: "IDC4O", name: "Sports & Entertainment Marketing (Open)" },
-            { code: "MHF4U", name: "Advanced Functions" }, 
-            { code: "MCV4U", name: "Calculus and Vectors" }, 
+            { code: "MHF4U", name: "Advanced Functions" },
+            { code: "MCV4U", name: "Calculus and Vectors" },
             { code: "MDM4U", name: "Mathematics of Data Management" },
-            { code: "MCT4C", name: "Mathematics for College Technology" }, 
-            { code: "MAP4C", name: "Foundations for College Mathematics" }, 
+            { code: "MCT4C", name: "Mathematics for College Technology" },
+            { code: "MAP4C", name: "Foundations for College Mathematics" },
             // { code: "MEL4E", name: "Math for Work & Everyday Life (Workplace)" },
-            { code: "OLC4O", name: "Ontario Secondary School Literacy Course" }, 
-            { code: "PPL4O", name: "Healthy Active Living Education" }, 
+            { code: "OLC4O", name: "Ontario Secondary School Literacy Course" },
+            { code: "PPL4O", name: "Healthy Active Living Education" },
             { code: "PLF4M", name: "Recreation & Healthy Active Living Leadership" },
-            { code: "PSK4U", name: "Introductory Kinesiology" }, 
-            { code: "SBI4U", name: "Biology (University)" }, 
-            { code: "SCH4C", name: "Chemistry (College)" }, 
+            { code: "PSK4U", name: "Introductory Kinesiology" },
+            { code: "SBI4U", name: "Biology (University)" },
+            { code: "SCH4C", name: "Chemistry (College)" },
             { code: "SCH4U", name: "Chemistry (University)" },
-            { code: "SPH4U", name: "Physics (University)" }, 
-            { code: "SPH4C", name: "Physics (College)" }, 
-            { code: "SES4U", name: "Earth and Space Science" }, 
-            { code: "SNC4M", name: "Science (U/C)" }, 
+            { code: "SPH4U", name: "Physics (University)" },
+            { code: "SPH4C", name: "Physics (College)" },
+            { code: "SES4U", name: "Earth and Space Science" },
+            { code: "SNC4M", name: "Science (U/C)" },
             { code: "SNC4E", name: "Science (Workplace)" },
-            { code: "TGJ4M", name: "Communications Technology (U/C)" }, 
+            { code: "TGJ4M", name: "Communications Technology (U/C)" },
             { code: "TGJ4O", name: "Communications Tech: Digital Imagery & Web" },
-            { code: "TEJ4M", name: "Computer Engineering Technology (U/C)" }, 
-            { code: "TFJ4E", name: "Hospitality & Tourism (Workplace)" }, 
+            { code: "TEJ4M", name: "Computer Engineering Technology (U/C)" },
+            { code: "TFJ4E", name: "Hospitality & Tourism (Workplace)" },
             { code: "TFJ4C", name: "Hospitality & Tourism (College)" },
-            { code: "TDJ4M", name: "Technological Design (U/C)" }, 
+            { code: "TDJ4M", name: "Technological Design (U/C)" },
             { code: "TDJ4O", name: "Technological Design in the 21st Century" },
-            // { code: "TEI4M", name: "Computer Eng. Tech: Interfacing (U/C)" }, 
-            // { code: "TEN4M", name: "Computer Eng. Tech: Networking" }, 
+            // { code: "TEI4M", name: "Computer Eng. Tech: Interfacing (U/C)" },
+            // { code: "TEN4M", name: "Computer Eng. Tech: Networking" },
             // { code: "TET4E", name: "Computer Technology: IT Support" },
-            // { code: "TEW4E", name: "Computer Technology: Network Support" }, 
-            // { code: "TGI4M", name: "Interactive New Media & Animation" }, 
+            // { code: "TEW4E", name: "Computer Technology: Network Support" },
+            // { code: "TGI4M", name: "Interactive New Media & Animation" },
             // { code: "TGP4M", name: "Photography & Digital Imaging" },
-            // { code: "TOC4C", name: "Child Development" }, 
-            // { code: "TOG4C", name: "Gerontology" }, 
+            // { code: "TOC4C", name: "Child Development" },
+            // { code: "TOG4C", name: "Gerontology" },
             // { code: "TPD4M", name: "Health Care: Dental Services" },
-            // { code: "TPL4M", name: "Health Care: Laboratory Services" }, 
+            // { code: "TPL4M", name: "Health Care: Laboratory Services" },
             // { code: "TPM4M", name: "Health Care: Nursing/Medical Services" },
-            // { code: "TPP4M", name: "Health Services: Pharmacy" }, 
+            // { code: "TPP4M", name: "Health Services: Pharmacy" },
             // { code: "TPT4M", name: "Health Care: Therapy Services" },
-            // { code: "TPJ4C", name: "Health Care (College)" }, 
-            // { code: "TPJ4E", name: "Health Care (Workplace)" }, 
+            // { code: "TPJ4C", name: "Health Care (College)" },
+            // { code: "TPJ4E", name: "Health Care (Workplace)" },
             { code: "TPJ4M", name: "Health Care (U/C)" }
             // On wordpress
-            // { code: "FIF4U", name: "French Immersion (University)" }, 
-            // { code: "HSB4U", name: "Challenge and Change in Society (University)" }, 
+            // { code: "FIF4U", name: "French Immersion (University)" },
+            // { code: "HSB4U", name: "Challenge and Change in Society (University)" },
         ];
         // ESL/ELD
         const DESL = [
-            { code: "ESLAO", name: "ESL Level 1" }, 
-            { code: "ESLBO", name: "ESL Level 2" }, 
-            { code: "ESLCO", name: "ESL Level 3" }, 
-            { code: "ESLDO", name: "ESL Level 4" }, 
+            { code: "ESLAO", name: "ESL Level 1" },
+            { code: "ESLBO", name: "ESL Level 2" },
+            { code: "ESLCO", name: "ESL Level 3" },
+            { code: "ESLDO", name: "ESL Level 4" },
             { code: "ESLEO", name: "ESL Level 5" },
-            { code: "ELDAO", name: "ELD Level 1" }, 
-            { code: "ELDBO", name: "ELD Level 2" }, 
-            { code: "ELDCO", name: "ELD Level 3" }, 
-            { code: "ELDDO", name: "ELD Level 4" }, 
+            { code: "ELDAO", name: "ELD Level 1" },
+            { code: "ELDBO", name: "ELD Level 2" },
+            { code: "ELDCO", name: "ELD Level 3" },
+            { code: "ELDDO", name: "ELD Level 4" },
             { code: "ELDEO", name: "ELD Level 5" }
         ];
 
@@ -605,18 +642,34 @@
             { title: "How Private Schools Influence Academic Success and Lifelong Outcomes", url: "/academic-success-and-lifelong-outcomes/", category: "Blog", keywords: ["private school", "success", "lifelong"] }
         ];
 
-        /* ---------------- Search helpers ---------------- */
-        const toCourseItem = c => ({
-            kind: "course",
-            title: c.code + " — " + c.name,
-            code: c.code,
-            name: c.name,
-            url: productURL(c.code),
-            chip: "Course",
-            chipClass: "course",
-            haystack: (c.code + " " + c.name).toLowerCase(),
-            popular: POPULAR.has(c.code)
-        });
+        /* ---------------- Helpers: grade label + item mapping ---------------- */
+        function gradeLabelForCode(code, name) {
+            // Standard Ontario course codes: 4th char is 1..4 -> Grade 9..12
+            const gChar = code?.[3];
+            if (/[1-4]/.test(gChar)) {
+                const g = 8 + Number(gChar); // 1->9, 2->10, 3->11, 4->12
+                return `Grade ${g}`;
+            }
+            // ESL/ELD: show the provided level name (e.g., "ESL Level 3")
+            if (/^(ESL|ELD)/.test(code)) return name;
+            return "";
+        }
+
+        const toCourseItem = c => {
+            const gradeText = gradeLabelForCode(c.code, c.name);
+            return {
+                kind: "course",
+                title: `${c.code} — ${gradeText}`,   // e.g., "MCR3U — Grade 11"
+                code: c.code,
+                name: c.name,                        // e.g., "Functions"
+                url: productURL(c.code),
+                chip: "Course",
+                chipClass: "course",
+                haystack: (c.code + " " + c.name).toLowerCase(),
+                popular: POPULAR.has(c.code),
+                gradeText
+            };
+        };
 
         const toSiteItem = p => ({
             kind: "content",
@@ -684,16 +737,22 @@
 
             results.forEach((it, idx) => {
                 const row = document.createElement("div");
-                row.className = "csbx-row"; row.id = "csbx-opt-" + idx; row.role = "option"; row.setAttribute("aria-selected", "false");
+                row.className = "csbx-row";
+                row.id = "csbx-opt-" + idx;
+                row.role = "option";
+                row.setAttribute("aria-selected", "false");
+
+                // Second line for courses now shows "Grade N — Course Name"
+                const secondLine = it.kind === "course" ? it.name : "";
 
                 row.innerHTML = `
         <div class="csbx-left">
           <span class="csbx-code">${it.title}</span>
-          <span class="csbx-name">${it.kind === "course" ? it.name : it.name}</span>
+          <span class="csbx-name">${secondLine}</span>
         </div>
         <div class="csbx-right">
           <span class="csbx-chip ${it.chipClass}">${it.chip}</span>
-          ${it.popular ? '<span class="csbx-chip course">Popular</span>' : ''}
+          ${it.popular ? '<span class="csbx-chip course is-popular">Popular</span>' : ''}
         </div>
       `;
                 row.addEventListener("mousedown", e => e.preventDefault());
@@ -715,7 +774,8 @@
             if (!items.length) {
                 if (e.key === "Enter" && input.value.trim()) {
                     // fallback: try course URL by code
-                    e.preventDefault(); location.href = productURL(input.value.trim().toUpperCase());
+                    e.preventDefault();
+                    location.href = productURL(input.value.trim().toUpperCase());
                 }
                 return;
             }
