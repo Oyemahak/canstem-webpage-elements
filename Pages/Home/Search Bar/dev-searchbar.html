@@ -33,8 +33,6 @@
         --csbx-font: 18px;
         /* input font (16+ avoids iOS zoom) */
         --csbx-menu-radius: 14px;
-        --csbx-chip-blue: #eef2ff;
-        --csbx-chip-blue-b: #e0e7ff;
 
         max-width: 1200px;
         margin: 0 auto;
@@ -59,7 +57,7 @@
     #canstem-course-finder .csbx-shell {
         position: relative;
         display: flex;
-        /* flex fixes vertical clipping */
+        /* fixes vertical clipping */
         align-items: center;
         /* centers placeholder/text (Safari too) */
         height: var(--csbx-h);
@@ -93,11 +91,8 @@
     #canstem-course-finder .csbx-input {
         flex: 1 1 auto;
         min-width: 0;
-        /* prevent overflow in flex */
         height: 2.5rem;
-        /* inner control height; no clipping */
         line-height: normal;
-        /* avoids placeholder clipping on WebKit */
         padding: 0;
         font-size: var(--csbx-font);
         color: var(--csbx-ink) !important;
@@ -107,7 +102,6 @@
     #canstem-course-finder .csbx-input::placeholder {
         color: #9aa5b1;
         opacity: 1;
-        /* ensure visible on Safari */
     }
 
     /* ===== Suggestions ===== */
@@ -131,7 +125,25 @@
         display: block;
     }
 
-    /* Rows */
+    /* ===== Section headers ===== */
+    #canstem-course-finder .csbx-section {
+        margin: 4px 0 10px 0;
+    }
+
+    #canstem-course-finder .csbx-section-title {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: .06em;
+        text-transform: uppercase;
+        color: #475569;
+        padding: 8px 12px;
+        margin: 6px 6px 6px 6px;
+        background: #f8fafc;
+        border: 1px solid #eef2f7;
+        border-radius: 8px;
+    }
+
+    /* ===== Rows ===== */
     #canstem-course-finder .csbx-row {
         display: grid;
         grid-template-columns: 1fr auto;
@@ -141,11 +153,17 @@
         border-radius: 12px;
         cursor: pointer;
         transition: background .12s ease;
+        border-bottom: 1px solid #f1f5f9;
+        /* light separator */
     }
 
     #canstem-course-finder .csbx-row:hover,
     #canstem-course-finder .csbx-row[aria-selected="true"] {
         background: #f7fafc;
+    }
+
+    #canstem-course-finder .csbx-row:last-child {
+        border-bottom: none;
     }
 
     #canstem-course-finder .csbx-left {
@@ -155,15 +173,16 @@
     }
 
     #canstem-course-finder .csbx-code {
-        font-size: 20px;
+        font-size: 19px;
         font-weight: 700;
         color: var(--csbx-ink);
         word-break: break-word;
     }
 
     #canstem-course-finder .csbx-name {
-        font-size: 16px;
-        color: #334155;
+        font-size: 15px;
+        font-weight: 500;
+        color: #475569;
         margin-top: 2px;
         line-height: 1.35;
     }
@@ -175,7 +194,6 @@
     #canstem-course-finder .csbx-right {
         display: flex;
         flex-wrap: wrap;
-        /* wrap nicely on tablet/mobile */
         gap: 6px;
         align-items: center;
         justify-self: end;
@@ -207,47 +225,29 @@
         color: #0e7490;
     }
 
+    /* Remove bottom border on last row of each section */
+    #canstem-course-finder .csbx-section .csbx-row:last-child {
+        border-bottom: none;
+    }
+
     /* ===== Mobile tweaks ===== */
     @media (max-width: 640px) {
         #canstem-course-finder .csbx-shell {
             padding-right: 12px;
         }
 
-        #canstem-course-finder .csbx-name {
+        #canstem-course-finder .csbx-code {
+            font-weight: 600;
             font-size: 14px;
         }
 
-        #canstem-course-finder .csbx-code {
-            font-size: 14px !important;
-            font-weight: 700;
-            color: var(--csbx-ink);
+        #canstem-course-finder .csbx-name {
+            font-size: 14px;
         }
 
         /* Hide "Popular" on very small screens to keep layout clean */
         #canstem-course-finder .csbx-chip.is-popular {
             display: none;
-        }
-
-        /* ===== Result separators and text weight adjustments ===== */
-        #canstem-course-finder .csbx-row {
-            border-bottom: 1px solid #f1f5f9;
-            /* subtle divider */
-        }
-
-        #canstem-course-finder .csbx-row:last-child {
-            border-bottom: none;
-            /* hide last separator */
-        }
-
-        #canstem-course-finder .csbx-code {
-            font-weight: 600;
-            /* slightly less bold */
-        }
-
-        #canstem-course-finder .csbx-name {
-            font-weight: 400;
-            color: #475569;
-            /* slightly softer gray-blue tone */
         }
     }
 </style>
@@ -644,14 +644,12 @@
 
         /* ---------------- Helpers: grade label + item mapping ---------------- */
         function gradeLabelForCode(code, name) {
-            // Standard Ontario course codes: 4th char is 1..4 -> Grade 9..12
             const gChar = code?.[3];
             if (/[1-4]/.test(gChar)) {
                 const g = 8 + Number(gChar); // 1->9, 2->10, 3->11, 4->12
                 return `Grade ${g}`;
             }
-            // ESL/ELD: show the provided level name (e.g., "ESL Level 3")
-            if (/^(ESL|ELD)/.test(code)) return name;
+            if (/^(ESL|ELD)/.test(code)) return name; // ESL/ELD keep level wording
             return "";
         }
 
@@ -659,9 +657,9 @@
             const gradeText = gradeLabelForCode(c.code, c.name);
             return {
                 kind: "course",
-                title: `${c.code} — ${gradeText}`,   // e.g., "MCR3U — Grade 11"
+                title: `${c.code} — ${gradeText}`,  // top line: code + grade
                 code: c.code,
-                name: c.name,                        // e.g., "Functions"
+                name: c.name,                        // second line: course full name
                 url: productURL(c.code),
                 chip: "Course",
                 chipClass: "course",
@@ -673,11 +671,11 @@
 
         const toSiteItem = p => ({
             kind: "content",
-            title: p.title,
-            code: p.title,
-            name: (new URL(p.url, location.origin)).pathname.replace(/\/$/, "") || "/",
+            title: p.title,                        // show only title (no URL)
+            code: p.title,                         // keep for sorting
+            name: "",                              // hide URL/slug; second line empty
             url: p.url,
-            chip: p.category,
+            chip: p.category,                      // "Page" or "Blog"
             chipClass: p.category === "Blog" ? "blog" : "page",
             haystack: (p.title + " " + (p.keywords || []).join(" ")).toLowerCase()
         });
@@ -711,7 +709,7 @@
                 if (score !== null) out.push({ ...it, score });
             }
 
-            // Sort: score asc; tie-breaker prefer courses; then alphabetical
+            // Sort globally by score; prefer courses on ties; then alphabetical
             out.sort((a, b) => {
                 if (a.score !== b.score) return a.score - b.score;
                 if (a.kind !== b.kind) return a.kind === "course" ? -1 : 1;
@@ -730,35 +728,60 @@
             suggest.classList.toggle("csbx-show", on);
         }
 
+        function makeSection(titleText) {
+            const section = document.createElement("div");
+            section.className = "csbx-section";
+            const header = document.createElement("div");
+            header.className = "csbx-section-title";
+            header.textContent = titleText;
+            section.appendChild(header);
+            return section;
+        }
+
         function render() {
             const results = searchAll(input.value);
             suggest.innerHTML = "";
             if (!results.length) { setOpen(false); return; }
 
-            results.forEach((it, idx) => {
-                const row = document.createElement("div");
-                row.className = "csbx-row";
-                row.id = "csbx-opt-" + idx;
-                row.role = "option";
-                row.setAttribute("aria-selected", "false");
+            // Split into sections
+            const courses = results.filter(r => r.kind === "course");
+            const pages = results.filter(r => r.kind === "content" && r.chip === "Page");
+            const blogs = results.filter(r => r.kind === "content" && r.chip === "Blog");
 
-                // Second line for courses now shows "Grade N — Course Name"
-                const secondLine = it.kind === "course" ? it.name : "";
+            const addSection = (label, items) => {
+                if (!items.length) return;
+                const section = makeSection(label);
+                items.forEach((it, idx) => {
+                    const row = document.createElement("div");
+                    row.className = "csbx-row";
+                    row.id = `${label.toLowerCase()}-${idx}`;
+                    row.role = "option";
+                    row.setAttribute("aria-selected", "false");
 
-                row.innerHTML = `
-        <div class="csbx-left">
-          <span class="csbx-code">${it.title}</span>
-          <span class="csbx-name">${secondLine}</span>
-        </div>
-        <div class="csbx-right">
-          <span class="csbx-chip ${it.chipClass}">${it.chip}</span>
-          ${it.popular ? '<span class="csbx-chip course is-popular">Popular</span>' : ''}
-        </div>
-      `;
-                row.addEventListener("mousedown", e => e.preventDefault());
-                row.addEventListener("click", () => location.href = it.url);
-                suggest.appendChild(row);
-            });
+                    const secondLine = it.kind === "course" ? it.name : ""; // hide URLs for pages/blogs
+
+                    row.innerHTML = `
+          <div class="csbx-left">
+            <span class="csbx-code">${it.title}</span>
+            <span class="csbx-name">${secondLine}</span>
+          </div>
+          <div class="csbx-right">
+            <span class="csbx-chip ${it.chipClass}">${it.chip}</span>
+            ${it.popular ? '<span class="csbx-chip course is-popular">Popular</span>' : ''}
+          </div>
+        `;
+
+                    // Keep clickability but don't show the URL text anywhere
+                    row.addEventListener("mousedown", e => e.preventDefault());
+                    row.addEventListener("click", () => location.href = it.url);
+                    section.appendChild(row);
+                });
+                suggest.appendChild(section);
+            };
+
+            addSection("Courses", courses);
+            addSection("Pages", pages);
+            addSection("Blogs", blogs);
 
             activeIndex = -1;
             setOpen(true);
@@ -773,17 +796,16 @@
             const items = [...suggest.querySelectorAll(".csbx-row")];
             if (!items.length) {
                 if (e.key === "Enter" && input.value.trim()) {
-                    // fallback: try course URL by code
                     e.preventDefault();
-                    location.href = productURL(input.value.trim().toUpperCase());
+                    location.href = productURL(input.value.trim().toUpperCase()); // fallback to course URL by code
                 }
                 return;
             }
             if (e.key === "ArrowDown") { e.preventDefault(); activeIndex = Math.min(activeIndex + 1, items.length - 1); }
             else if (e.key === "ArrowUp") { e.preventDefault(); activeIndex = Math.max(activeIndex - 1, 0); }
-            else if (e.key === "Enter") {
-                e.preventDefault(); (items[activeIndex] || items[0])?.click();
-            } else if (e.key === "Escape") { setOpen(false); return; } else return;
+            else if (e.key === "Enter") { e.preventDefault(); (items[activeIndex] || items[0])?.click(); }
+            else if (e.key === "Escape") { setOpen(false); return; }
+            else { return; }
 
             items.forEach(n => n.setAttribute("aria-selected", "false"));
             if (activeIndex >= 0 && items[activeIndex]) {
