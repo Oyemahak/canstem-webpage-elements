@@ -8,7 +8,7 @@
         </svg>
 
         <input id="csbx-q" class="csbx-input" type="search" spellcheck="false" autocomplete="off"
-            placeholder="Search courses, pages, or blog posts…" aria-autocomplete="list" aria-controls="csbx-suggest"
+            placeholder="Search here.." aria-autocomplete="list" aria-controls="csbx-suggest"
             aria-expanded="false" />
 
         <div id="csbx-suggest" class="csbx-suggest" role="listbox" aria-label="Suggestions"></div>
@@ -156,7 +156,7 @@
     }
 
     #canstem-course-finder .csbx-code {
-        font-size: 19px;
+        font-size: 20px;
         font-weight: 800;
         color: var(--csbx-ink);
     }
@@ -204,10 +204,11 @@
         #canstem-course-finder .csbx-shell {
             padding-right: 12px;
         }
-
-        #canstem-course-finder .csbx-input {
-            font-size: 17px;
-        }
+        #canstem-course-finder .csbx-code {
+        font-size: 14px !important;
+        font-weight: 700;
+        color: var(--csbx-ink);
+    }
 
         /* still ≥16 for iOS */
     }
@@ -221,22 +222,22 @@
         const D9 = [
             { code: "AVI1O", name: "Visual Arts" }, 
             { code: "ADA1O", name: "Drama" }, 
-            { code: "BEM1O", name: "Building The Entrepreneurial Mindset" },
+            // { code: "BEM1O", name: "Building The Entrepreneurial Mindset" },
             { code: "CGC1W", name: "Issues in Canadian Geography (De-Streamed)" }, 
             { code: "ENL1W", name: "English (De-Streamed)" },
-            { code: "EAE1W", name: "English (French OSSD), De-Streamed" },
-            { code: "ENG1L", name: "English (LDCC)" },
+            // { code: "EAE1W", name: "English (French OSSD), De-Streamed" },
+            // { code: "ENG1L", name: "English (LDCC)" },
             { code: "FSF1D", name: "French (De-Streamed)" },
-            { code: "FSF1O", name: "Core French (Open)" }, 
+            // { code: "FSF1O", name: "Core French (Open)" }, 
             { code: "GLS1O", name: "Learning Strategies 1: Skills for Success" },
-            { code: "GLE1O", name: "Learning Strategies 1: Skills for Success" },
+            // { code: "GLE1O", name: "Learning Strategies 1: Skills for Success" },
             { code: "HFN1O", name: "Food and Nutrition" }, 
             { code: "HIF1O", name: "Exploring Family Studies" }, 
             { code: "PPL1O", name: "Healthy Active Living Education" },
             { code: "MTH1W", name: "Mathematics (De-Streamed)" }, 
-            { code: "MAT1L", name: "Mathematics (LDCC)" }, 
+            // { code: "MAT1L", name: "Mathematics (LDCC)" }, 
             { code: "SNC1W", name: "Science (De-Streamed)" },
-            { code: "SNC1L", name: "Science (LDCC)" }, 
+            // { code: "SNC1L", name: "Science (LDCC)" }, 
             { code: "TIJ1O", name: "Exploring Technologies" }, 
             { code: "TAS1O", name: "Technology and the Skilled Trades" },
             // { code: "PPL1O", name: "Healthy Active Living Education (Open)" }
@@ -542,7 +543,7 @@
             { title: "Tutoring Services & Fees (Grades 1–12, IB, ESL, Test Prep, College)", url: "/tutoring/", category: "Page", keywords: ["tutoring", "fees", "1-12", "ib", "esl", "test prep"] },
             { title: "University Open House", url: "/university-open-house/", category: "Page", keywords: ["open house", "university"] },
 
-            /* BLOGS (36) */
+            /* BLOGS (60) */
             { title: "7 Easy Steps to a Successful Result", url: "/7-easy-steps-to-a-successful-result/", category: "Blog", keywords: ["steps", "success guide"] },
             { title: "Adult Learners Perspective on the Shift from GED Testing", url: "/adult-learners-perspective-on-the-shift-from-ged-testing/", category: "Blog", keywords: ["adult", "ged", "caec"] },
             { title: "All-Inclusive Manual for Finishing the OUAC Application", url: "/all-inclusive-manual-for-finishing-the-ouac-application/", category: "Blog", keywords: ["ouac", "manual", "apply"] },

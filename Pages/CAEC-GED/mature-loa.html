@@ -1,60 +1,94 @@
-<!-- Mature – LOA — stand-alone & responsive -->
+<!-- International Students – LOA (Immigration) — stand-alone & responsive -->
 <style>
-    #mature-loa-block {
-        --head: #000;
+    /* Scope to this FAQ only */
+    #immigration-loa-faq {
+        --head: #000000;
         --sub: #00427c;
         --ink: #26262B;
-        --panel: #fff;
+        --muted: #333333;
+        --panel: #ffffff;
         --border: #e2e8f0;
         --shadow: 0 4px 20px rgba(0, 0, 0, .08);
+
         font-family: "Open Sans", sans-serif;
         color: var(--ink);
         max-width: 1200px;
         line-height: 1.6;
         font-size: 18px;
+        margin: 0 auto;
     }
 
-    #mature-loa-block .accent {
-        color: var(--sub);
-        font-weight: 700;
-        margin: 0 0 .75rem;
+    /* Accordion shell (matches your global look) */
+    #immigration-loa-faq details.section {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        margin: 0 0 1.25rem;
     }
 
-    #mature-loa-block .section-body {
-        background: #fff;
+    #immigration-loa-faq .section-body>*+* {
+        margin-top: 14px;
     }
 
-    #mature-loa-block .sep {
+    #immigration-loa-faq .sep {
         height: 1px;
         background: #eef2f7;
         margin: 1rem 0;
     }
 
-    #mature-loa-block ul.bullets {
-        margin: .25rem 0 1rem 1.25rem;
+    #immigration-loa-faq .bullets {
+        margin: .25rem 0 .5rem 1.1rem;
     }
 
-    #mature-loa-block ul.bullets li {
-        margin: .35rem 0;
+    #immigration-loa-faq .bullets li {
+        margin: .25rem 0;
     }
 
-    /* table (desktop) */
-    #mature-loa-block table.rtable {
+    #immigration-loa-faq .list {
+        margin: .25rem 0 .75rem 1.1rem;
+    }
+
+    #immigration-loa-faq .list li {
+        margin: .3rem 0;
+    }
+
+    #immigration-loa-faq .accent {
+        color: var(--sub);
+        font-weight: 700;
+        margin-top: 1.25rem;
+    }
+
+    #immigration-loa-faq .section-body a {
+        color: var(--sub);
+        font-weight: 700;
+        text-decoration: none;
+        border-bottom: 1px dashed var(--sub);
+    }
+
+    #immigration-loa-faq .section-body a:hover {
+        color: #003566;
+        border-bottom-color: #003566;
+    }
+
+    /* Table (desktop) */
+    #immigration-loa-faq table.rtable {
         width: 100%;
         border-collapse: collapse;
         overflow: hidden;
         border-radius: 12px;
         box-shadow: var(--shadow);
-        margin: 0 0 1.5rem;
+        margin: 0 0 1rem;
     }
 
-    #mature-loa-block .rtable thead {
+    #immigration-loa-faq .rtable thead {
         background: var(--sub);
         color: #fff;
     }
 
-    #mature-loa-block .rtable th,
-    #mature-loa-block .rtable td {
+    #immigration-loa-faq .rtable th,
+    #immigration-loa-faq .rtable td {
         padding: 16px;
         text-align: left;
         font-size: 18px;
@@ -62,34 +96,34 @@
         vertical-align: top;
     }
 
-    #mature-loa-block .rtable tbody tr:nth-child(even) {
+    #immigration-loa-faq .rtable tbody tr:nth-child(even) {
         background: #f9f9f9;
     }
 
-    /* mobile/tablet */
-    @media (max-width:768px) {
-        #mature-loa-block {
+    /* Mobile & tablet: table -> cards (matches your main page behavior) */
+    @media (max-width: 768px) {
+        #immigration-loa-faq {
             font-size: 16px;
         }
 
-        #mature-loa-block .rtable thead {
+        #immigration-loa-faq .rtable thead {
             display: none;
         }
 
-        #mature-loa-block .rtable,
-        #mature-loa-block .rtable tbody,
-        #mature-loa-block .rtable tr,
-        #mature-loa-block .rtable td {
+        #immigration-loa-faq .rtable,
+        #immigration-loa-faq .rtable tbody,
+        #immigration-loa-faq .rtable tr,
+        #immigration-loa-faq .rtable td {
             display: block;
             width: 100%;
         }
 
-        #mature-loa-block .rtable {
+        #immigration-loa-faq .rtable {
             box-shadow: none !important;
             margin-bottom: 0 !important;
         }
 
-        #mature-loa-block .rtable tr {
+        #immigration-loa-faq .rtable tr {
             margin-bottom: 16px;
             border: 1px solid var(--sub);
             padding: 16px;
@@ -97,14 +131,14 @@
             background: #fff;
         }
 
-        #mature-loa-block .rtable td {
+        #immigration-loa-faq .rtable td {
             border: none;
             padding: 12px 0;
             position: relative;
             font-size: 16px;
         }
 
-        #mature-loa-block .rtable td::before {
+        #immigration-loa-faq .rtable td::before {
             content: attr(data-label);
             font-weight: 700;
             color: var(--sub);
@@ -114,62 +148,67 @@
     }
 </style>
 
-<div id="mature-loa-block">
-    <div class="section-body">
+<div id="immigration-loa-faq">
+        <div class="section-body">
+            <table class="rtable">
+                <thead>
+                    <tr>
+                        <th>LOA for Immigration Requirement</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="Item">One-time Registration Fee</td>
+                        <td data-label="Amount">$850</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">PLAR</td>
+                        <td data-label="Amount">$450</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">Grade 1–8</td>
+                        <td data-label="Amount">$6,350</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">Grade 9</td>
+                        <td data-label="Amount">$7,350</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">Grade 10</td>
+                        <td data-label="Amount">$7,350</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">Grade 11</td>
+                        <td data-label="Amount">$7,850</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item">Grade 12</td>
+                        <td data-label="Amount">$7,850</td>
+                    </tr>
+                    <tr>
+                        <td data-label="Item"><strong>Letter of Acceptance for Immigration Requirement</strong></td>
+                        <td data-label="Amount">One year fee should be paid upfront</td>
+                    </tr>
+                </tbody>
+            </table>
 
-        <table class="rtable">
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>Amount</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td data-label="Item">One-time Registration Fee</td>
-                    <td data-label="Amount">$850</td>
-                </tr>
-                <tr>
-                    <td data-label="Item">PLAR</td>
-                    <td data-label="Amount">$450</td>
-                </tr>
-                <tr>
-                    <td data-label="Item">Grade 1-8</td>
-                    <td data-label="Amount">$6,000</td>
-                </tr>
-                <tr>
-                    <td data-label="Item">Grade 9</td>
-                    <td data-label="Amount">$7,350</td>
-                </tr>
-                <tr>
-                    <td data-label="Item">Grade 10</td>
-                    <td data-label="Amount">$7,350</td>
-                </tr>
-                <tr>
-                    <td data-label="Item">Grade 11</td>
-                    <td data-label="Amount">$7,850</td>
-                </tr>
-                <tr>
-                    <td data-label="Item">Grade 12</td>
-                    <td data-label="Amount">$7,850</td>
-                </tr>
-                <tr>
-                    <td data-label="Item">LOA Requirement</td>
-                    <td data-label="Amount">One year fee should be paid upfront</td>
-                </tr>
-            </tbody>
-        </table>
+            <div class="sep"></div>
 
-        <ul class="bullets">
-            <li>Admin fee: $95</li>
-            <li>Consultation fee: $100</li>
-        </ul>
+            <ul class="bullets">
+                <li>Assessment charges: $450</li>
+                <li>Admin fee: $95</li>
+                <li>Documentation processing fee: $250</li>
+                <li>Consultation fee: $100</li>
+            </ul>
 
-        <div class="sep"></div>
+            <div class="sep"></div>
 
-        <p class="accent">Document Checklist:
-            <a href="https://canstemeducation.com/wp-content/uploads/2025/10/document-checklist-full-time-student.pdf"
-                target="_blank" rel="noopener">Download here</a>
-        </p>
-    </div>
+            <ul class="list">
+                <li class="accent">Document Checklist:
+                    <a href="https://canstemeducation.com/wp-content/uploads/2025/10/document-checklist-full-time-student.pdf"
+                        target="_blank" rel="noopener">Download here</a>
+                </li>
+            </ul>
+        </div>
 </div>
