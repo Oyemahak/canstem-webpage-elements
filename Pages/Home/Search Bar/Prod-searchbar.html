@@ -62,17 +62,18 @@
         /* centers placeholder/text (Safari too) */
         height: var(--csbx-h);
         background: var(--csbx-bg);
-        border: 1px solid var(--csbx-border);
+        border: 1px solid var(--csbx-brand);
         border-radius: var(--csbx-radius);
         padding: 0 16px 0 44px;
         /* left padding leaves space for icon */
-        box-shadow: 0 1px 0 rgba(2, 6, 23, .02), 0 8px 24px rgba(2, 6, 23, .06);
+        box-shadow: 0 4px 28px rgba(251, 176, 37, .6), 0 0 0 0 var(--csbx-ring);
         transition: box-shadow .18s ease, border-color .18s ease;
     }
 
     #canstem-course-finder .csbx-shell:focus-within {
-        border-color: lightgrey;
-        box-shadow: 0 4px 28px rgba(251, 176, 37, .6), 0 0 0 0 var(--csbx-ring);
+        /* box-shadow: 0 4px 28px rgba(0, 17, 97, 0.2), 0 0 0 0 var(--csbx-ring); */
+        border: 1px solid #000;
+        outline: 0.5px solid #000;
     }
 
     /* Icon */
@@ -742,8 +743,7 @@
             const results = searchAll(input.value);
             suggest.innerHTML = "";
             if (!results.length) { setOpen(false); return; }
-
-            // Split into sections
+            
             const courses = results.filter(r => r.kind === "course");
             const pages = results.filter(r => r.kind === "content" && r.chip === "Page");
             const blogs = results.filter(r => r.kind === "content" && r.chip === "Blog");
@@ -770,8 +770,6 @@
             ${it.popular ? '<span class="csbx-chip course is-popular">Popular</span>' : ''}
           </div>
         `;
-
-                    // Keep clickability but don't show the URL text anywhere
                     row.addEventListener("mousedown", e => e.preventDefault());
                     row.addEventListener("click", () => location.href = it.url);
                     section.appendChild(row);
