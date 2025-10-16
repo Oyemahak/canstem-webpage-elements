@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Breadcrumb Navigation</title>
+  <style>
+    .breadcrumb {
+      font-family: "Open Sans", Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      color: #333;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      background: #fbfcff;
+      border-top: 1px solid #bfd1ff;
+      border-bottom: 1px solid #bfd1ff;
+      padding: 8px 0;
+    }
+
+    .breadcrumb a {
+      color: #001161;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.25s ease;
+    }
+
+    .breadcrumb a:hover {
+      color: #001161;
+      text-decoration: underline;
+    }
+
+    .breadcrumb span {
+      margin: 0 8px;
+      color: #999;
+    }
+
+    .breadcrumb .current {
+      font-size: 16px;
+      font-weight: 500;
+      color: #7a7a7a;
+    }
+
+    @media (max-width: 640px) {
+      .breadcrumb {
+        font-size: 14px;
+      }
+      .breadcrumb span {
+        margin: 0 6px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="breadcrumb">
+    <a href="https://canstemeducation.com/">Home</a>
+    <span>/</span>
+    <a href="https://canstemeducation.com/student-services/">Student Services</a>
+    <span>/</span>
+    <a href="https://canstemeducation.com/course-mode-change-terms-policy/">Course/Mode Change Terms & Policy</a>
+    <span>/</span>
+    <span class="current">Course (Withdrawal / Change / Mode Switch) Request</span>
+  </nav>
+
+</body>
+
+</html>
