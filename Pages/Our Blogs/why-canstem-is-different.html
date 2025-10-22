@@ -1,0 +1,340 @@
+<!-- ============ CanSTEM Blog — Why We’re Different ============ -->
+<style>
+  /* ===== Scope to this article ===== */
+  #guide-tutor {
+    --blue: #00427C;
+    --green: #2FBF71;
+    --orange: #F59E0B;
+    --purple: #6D5BD0;
+    --ink: #26262B;
+    --muted: #586174;
+    --panel: #fff;
+    --line: #e6edf5;
+    --shadow: 0 10px 34px rgba(0, 0, 0, .12);
+    font-family: "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: var(--ink);
+    max-width: 1200px;
+    margin: 0 auto;
+    line-height: 1.75;
+    font-size: 18px;
+  }
+
+  #guide-tutor .h {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 1.2rem 0 1.2rem;
+    display: flex;
+    align-items: center;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, .06);
+    animation: rise .5s ease-out both;
+  }
+
+  #guide-tutor .h.black {
+    color: #000;
+  }
+
+  /* keep header color same (black) */
+  #guide-tutor .h.blue {
+    color: var(--orange);
+  }
+
+  #guide-tutor .subh {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--blue);
+    margin: 1rem 0 .6rem;
+  }
+
+  #guide-tutor p {
+    margin: 0 0 1rem;
+  }
+
+  #guide-tutor a {
+    color: var(--blue);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  #guide-tutor a:hover {
+    text-decoration: underline;
+  }
+
+  #guide-tutor .muted {
+    color: var(--muted);
+  }
+
+  #guide-tutor .sep {
+    height: 1px;
+    background: #eaf0f7;
+    margin: 22px 0;
+  }
+
+  #guide-tutor .dash {
+    border-top: 2px dashed var(--line);
+    margin: 24px 0;
+  }
+
+  /* Hero: keep it subtle, not too colorful */
+  #guide-tutor .hero {
+    background: #F8FBFF;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 26px 24px;
+    box-shadow: var(--shadow);
+    margin: 18px 0 28px;
+    animation: fade .6s ease-out both;
+  }
+
+  #guide-tutor .badge {
+    display: inline-block;
+    background: #000;
+    color: #fff;
+    border-radius: 999px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    margin-bottom: 8px;
+  }
+
+  /* Grid (collapses to 1 column on mobile) */
+  #guide-tutor .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    margin: 26px 0;
+  }
+
+  #guide-tutor .card {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: var(--shadow);
+    transition: transform .25s ease, box-shadow .25s ease;
+    animation: rise .6s ease-out both;
+  }
+
+  #guide-tutor .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .16);
+  }
+
+  #guide-tutor .card .n {
+    display: inline-block;
+    font-weight: 700;
+    color: var(--586174);
+    letter-spacing: .2px;
+    margin-bottom: .25rem;
+  }
+
+  #guide-tutor .ico {
+    font-size: 26px;
+    color: var(--orange);
+    margin-right: 12px;
+  }
+
+  /* CTA */
+  #guide-tutor .cta {
+    text-align: center;
+    margin: 34px 0;
+  }
+
+  #guide-tutor .btn {
+    display: inline-block;
+    padding: 14px 34px;
+    border-radius: 12px;
+    font-weight: 900;
+    letter-spacing: .2px;
+    background: linear-gradient(135deg, var(--green), var(--blue));
+    color: #fff;
+    text-decoration: none;
+    box-shadow: var(--shadow);
+    transition: transform .2s ease, filter .2s ease;
+  }
+
+  #guide-tutor .btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(.96);
+  }
+
+  /* Mobile */
+  @media (max-width:1024px) {
+    #guide-tutor .h {
+      font-size: 20px;
+    }
+
+    #guide-tutor {
+      font-size: 16px;
+    }
+
+    #guide-tutor .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @keyframes fade {
+    from {
+      opacity: 0
+    }
+
+    to {
+      opacity: 1
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(14px)
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0)
+    }
+  }
+</style>
+
+<!-- ======= META ======= -->
+<title>Why CanSTEM Is Different from Other Schools</title>
+<meta name="description"
+  content="Real teachers 5 days a week, 7-day support, same-week report cards, fast grading, flexible payments, Brampton campus, proctor-free exams, 1,370+ five-star reviews.">
+<link rel="canonical" href="https://canstemeducation.com/blog/why-canstem-is-different" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<!-- ======= BLOG ======= -->
+<div id="guide-tutor" role="article" aria-label="Why CanSTEM Is Different from Other Private & Online Schools">
+
+  <!-- Hero -->
+  <div class="hero">
+    <span class="badge"><i class="fa-solid fa-graduation-cap"></i> CanSTEM Advantage</span>
+    <p class="h black" style="align-items:flex-start;">What is the difference between CanSTEM and other private schools, online and in-person schools?</p>
+    <p class="muted">A clear, side-by-side explanation—kept simple, accurate, and student-focused.</p>
+  </div>
+
+  <!-- Intro -->
+  <p>
+    At <a href="https://canstemeducation.com/">CanSTEM Education Private School</a>, we combine the reliability of an
+    Ontario private school with the flexibility of an
+    <a href="https://canstemeducation.com/online-high-school/">online high school</a>. Below are the exact ways we’re
+    different, compared with other private and public schools in Ontario.
+  </p>
+
+  <div class="sep"></div>
+
+  <!-- Points (faithful to your list) -->
+  <div class="grid" aria-label="Why CanSTEM is different">
+    <div class="card">
+      <div class="n"><i class="fa-solid fa-chalkboard-user ico"></i>Real-time teachers, 5 days a week</div>
+      <p>Students get live teacher support to ask questions and discuss the course in real time. Many other schools rely
+        on prerecorded classes or just upload PowerPoints/notes—leaving students without a teacher to turn to.</p>
+    </div>
+
+    <div class="card">
+      <div class="n"><i class="fa-solid fa-headset ico"></i>7-day customer support</div>
+      <p>Call, text, or email—our team replies quickly, <strong>7 days a week</strong>.</p>
+    </div>
+
+    <div class="card">
+      <div class="n"><i class="fa-solid fa-file-circle-check ico"></i>Same-week report cards</div>
+      <p>We process and release report cards the <strong>same week</strong> you complete your final exam—in some cases,
+        the <strong>same day</strong>.</p>
+    </div>
+
+    <div class="card">
+      <div class="n"><i class="fa-solid fa-clipboard-check ico"></i>Fast grading</div>
+      <p>Grading typically happens the same week—often within <strong>1–2 business days</strong>. Report cards go out as
+        soon as grading is done (same day or within ~1–2 days).</p>
+    </div>
+
+    <div class="card">
+      <div class="n"><i class="fa-solid fa-upload ico"></i>OUAC/OCAS uploads & transcripts</div>
+      <p>We upload grades to <a href="https://canstemeducation.com/student-services/ouac/">OUAC</a>, <a
+          href="https://canstemeducation.com/student-services/ocas/">OCAS</a>, and send transcripts/report cards to
+        universities and colleges within <strong>2–4 business days</strong>. Other schools often take weeks.</p>
+    </div>
+
+    <div class="card">
+      <div class="n"><i class="fa-solid fa-credit-card ico"></i>Flexible payments</div>
+      <p>Installment options + e-transfer, in-person, debit, credit, PayPal, cash, and account transfers. Many schools
+        don’t offer installments or PayPal/in-person options.</p>
+    </div>
+
+    <div class="card">
+      <div class="n"><i class="fa-solid fa-school ico"></i>Brampton campus—walk in for help</div>
+      <p>Students can walk in during business hours for extra teaching support—<strong>no charge, no
+          appointment</strong>. We also arrange on-demand Zoom teaching sessions.</p>
+    </div>
+
+    <div class="card">
+      <div class="n"><i class="fa-solid fa-pencil ico"></i>Final exams on campus (free) or online</div>
+      <p>Write your final exam at our campus <strong>without a proctor</strong> and at no cost—or choose our secure
+        online, no-proctor exam option.</p>
+    </div>
+
+    <div class="card">
+      <div class="n"><i class="fa-solid fa-user-graduate ico"></i>Real in-person support</div>
+      <p>We have a real campus where students and families can visit for help, guidance, and support. Some schools don’t
+        allow in-person visits and take weeks to respond.</p>
+    </div>
+
+    <div class="card">
+      <div class="n"><i class="fa-solid fa-star ico"></i>1,370 five-star reviews (4.9 Google rating)</div>
+      <p>We’re a 10-year-old school with a strong reputation for consistent, reliable service and student support—<a
+          href="https://canstemeducation.com/google-reviews/">see our reviews</a>.</p>
+    </div>
+
+    <div class="card">
+      <div class="n"><i class="fa-solid fa-book-open ico"></i>More courses than other schools</div>
+      <p>We offer a wider selection than most online or in-person private/public schools in Ontario—explore <a
+          href="https://canstemeducation.com/high-school-credits/">High School Credits</a>, <a
+          href="https://canstemeducation.com/stem-programs/">STEM Programs</a>, <a
+          href="https://canstemeducation.com/healthcare-programs/">Healthcare Programs</a>, <a
+          href="https://canstemeducation.com/adult-education/">Adult Education</a>, and more.</p>
+    </div>
+  </div>
+
+  <div class="dash"></div>
+
+  <!-- Helpful Links -->
+  <p class="h blue"><i class="fa-solid fa-route ico"></i> Helpful pages</p>
+  <ul>
+    <li><a href="https://canstemeducation.com/online-high-school/">Online High School</a></li>
+    <li><a href="https://canstemeducation.com/tutoring/">Tutoring</a> </li>
+    <li> <a href="https://canstemeducation.com/competitive-exam-prep/">IELTS/CELPIP/PTE</a></li>
+    <li><a href="https://canstemeducation.com/high-school-credits/">High School Credits</a> </li>
+    <li><a href="https://canstemeducation.com/student-services/ossd/">OSSD Requirements</a></li>
+    <li><a href="https://canstemeducation.com/final-exam-and-report-card-information/">Exams & Report Cards</a></li>
+    <li><a href="https://canstemeducation.com/international-student/">International Students</a></li>
+    <li><a href="https://canstemeducation.com/adult-education/">Adult Education</a></li>
+  </ul>
+
+  <!-- Contact -->
+  <div class="sep"></div>
+  <p class="h black" style="justify-content:center;"><i class="fa-solid fa-envelope ico"></i> Contact us</p>
+  <p class="muted" style="text-align:center;">
+    Visit <a href="https://canstemeducation.com/">canstemeducation.com</a>, email <a
+      href="mailto:inquiry@canstemeducation.com">inquiry@canstemeducation.com</a>, or send a message via our <a
+      href="https://canstemeducation.com/contact-us/">Contact page</a>.
+  </p>
+
+  <div class="cta">
+    <a class="btn" href="https://canstemeducation.com/registration/">Enroll or Book a Consultation</a>
+  </div>
+</div>
+
+<!-- ======= Structured Data (optional) ======= -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Article",
+  "headline":"Why CanSTEM Is Different from Other Schools",
+  "description":"Real teachers 5 days a week, 7-day support, same-week report cards, fast grading, flexible payments, Brampton campus, proctor-free exams, 1,370+ five-star reviews.",
+  "author":{"@type":"Organization","name":"CanSTEM Education"},
+  "publisher":{"@type":"Organization","name":"CanSTEM Education"},
+  "mainEntityOfPage":{"@type":"WebPage","@id":"https://canstemeducation.com/blog/why-canstem-is-different"},
+  "articleSection":"Education",
+  "keywords":"CanSTEM Education, private school Ontario, online high school, OUAC OCAS uploads, fast report cards, Brampton campus"
+}
+</script>
