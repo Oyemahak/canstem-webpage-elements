@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Final Exam Request</title>
+    <title>Online Final Exam Request</title>
+
     <style>
         /* Force a white page background ONLY on pages that include our forms */
         html:has(#cs-exam),
@@ -14,13 +15,11 @@
             background-color: #fff !important;
         }
 
-        /* If an Elementor section around the form has a background, neutralize it */
         .elementor-section:has(#cs-exam),
         .elementor-section:has(#cs-req) {
             background-color: #fff !important;
         }
 
-        /* (styles unchanged) */
         #cs-exam,
         #cs-exam * {
             box-sizing: border-box;
@@ -161,6 +160,22 @@
             color: #0b1324;
         }
 
+        #cs-exam .cs-subnote {
+            font-size: 16px;
+            color: #475569;
+            margin-top: 6px;
+        }
+
+        #cs-exam .cs-notice {
+            margin: 8px 0 16px;
+            padding: 12px 14px;
+            border: 1px dashed var(--cs-line);
+            border-radius: 12px;
+            background: #f8fafc;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
         #cs-exam .cs-checks {
             display: flex;
             flex-direction: column;
@@ -214,27 +229,24 @@
             font-weight: 700;
         }
 
+        /* helper message just under date/time */
+        #cs-exam .cs-inline-msg {
+            font-size: 14px;
+            color: #b91c1c;
+        }
+
         /* Kill Elementor field shadows ONLY inside our forms, keep our focus ring */
         #cs-exam input.cs-input,
         #cs-exam select.cs-input,
         #cs-exam textarea.cs-input,
-        #cs-exam input[type="file"].cs-input,
-        #cs-req input.cs-input,
-        #cs-req select.cs-input,
-        #cs-req textarea.cs-input,
-        #cs-req input[type="file"].cs-input {
+        #cs-exam input[type="file"].cs-input {
             box-shadow: none;
         }
 
-        /* Preserve our intended focus state */
         #cs-exam input.cs-input:focus,
         #cs-exam select.cs-input:focus,
         #cs-exam textarea.cs-input:focus,
-        #cs-exam input[type="file"].cs-input:focus,
-        #cs-req input.cs-input:focus,
-        #cs-req select.cs-input:focus,
-        #cs-req textarea.cs-input:focus,
-        #cs-req input[type="file"].cs-input:focus {
+        #cs-exam input[type="file"].cs-input:focus {
             box-shadow: 0 0 0 3px color-mix(in srgb, #4169e1 25%, transparent);
         }
     </style>
@@ -243,9 +255,9 @@
 <body>
     <div class="cs-wrap" id="cs-exam" role="form" aria-labelledby="exam-title">
         <section class="cs-card">
-            <span class="cs-chip" id="exam-title">Final Exam — Request Form</span>
+            <span class="cs-chip" id="exam-title">Online Final Exam — Request Form</span>
 
-            <!-- Row: name/email/phone/date/mode -->
+            <!-- Row: name/email/phone/date/time -->
             <div class="cs-row">
                 <div class="cs-field">
                     <label class="cs-label cs-req" for="fname">First Name</label>
@@ -269,14 +281,34 @@
                 <div class="cs-field">
                     <label class="cs-label cs-req" for="date">Preferred Exam Date</label>
                     <input class="cs-input" id="date" name="preferredDate" type="date" required>
+                    <div id="dateMsg" class="cs-inline-msg" aria-live="polite"></div>
                 </div>
                 <div class="cs-field">
-                    <label class="cs-label cs-req" for="mode">Select Mode</label>
-                    <select class="cs-input" id="mode" name="mode" required>
-                        <option value="">Select mode…</option>
-                        <option>Online</option>
-                        <option>In-Person</option>
+                    <label class="cs-label cs-req" for="timeSlot">Select Time Slot</label>
+                    <select class="cs-input" id="timeSlot" name="preferredTime" required>
+                        <option value="">Select time…</option>
                     </select>
+                </div>
+            </div>
+
+            <hr class="cs-sep" />
+            <span class="cs-chip">Online Exam — Distance &amp; Fee</span>
+            <div class="cs-notice">
+                This form is for <strong>online exams only</strong>.<br><br>
+                If you live <strong>within 100 km</strong> of our Brampton campus and want to write your exam online, a
+                <strong>$150 fee per subject</strong> applies.
+                If you live <strong>beyond 100 km</strong>, there is <strong>no extra fee</strong>.
+                <br><br>
+                For payment, please visit our
+                <a href="https://canstemeducation.com/payment/" target="_blank" rel="noopener noreferrer">
+                    Payment page
+                </a>.
+            </div>
+            <div class="cs-field">
+                <label class="cs-label" for="paymentProof">Payment Screenshot</label>
+                <input class="cs-input" id="paymentProof" type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.heif">
+                <div class="cs-subnote">
+                    Upload if you are within 100 km and paying the online exam fee.
                 </div>
             </div>
 
@@ -314,7 +346,7 @@
 
             <hr class="cs-sep" />
 
-            <!-- Row:signature/transcript -->
+            <!-- Row: signature/transcript -->
             <div class="cs-row">
                 <div class="cs-field">
                     <label class="cs-label cs-req" for="stusig">Student Signature</label>
@@ -333,14 +365,15 @@
             <!-- Terms -->
             <span class="cs-chip">Terms &amp; Conditions</span>
             <ul class="cs-terms">
-                <li>I completed all coursework for the selected course.</li>
-                <li>All payments are complete and I understand my exam will be scheduled after payment is verified.</li>
+                <li>I confirm that I have completed all coursework for the selected course.</li>
+                <li>All payments have been made in full, and I understand that my exam will be scheduled only after
+                    payment is verified.</li>
                 <li>I have provided my guidance counsellor’s official school email and I authorize the school to send my
                     final report card and official transcript to that address.</li>
-                <li>I have completed the required prerequisite(s) for this course and will provide proof (report
-                    card/transcript) if requested before scheduling.</li>
-                <li>I will follow the exam rules and academic integrity policy; I understand identity verification may
-                    be required.</li>
+                <li>I confirm that I have completed the required prerequisite(s) for this course and will provide proof
+                    (report card or transcript) if requested prior to exam scheduling.</li>
+                <li>I agree to comply with all exam rules and the school’s academic integrity policy. I understand that
+                    identity verification may be required.</li>
                 <li>If you are applying for <strong>university</strong> this year, see
                     <a href="https://canstemeducation.com/student-services/ouac/" target="_blank" rel="noopener">OUAC –
                         Steps &amp; Important Dates</a>.
@@ -370,6 +403,171 @@
     <script>
         (function () {
             const WEB_APP_URL = '/wp-admin/admin-ajax.php?action=canstem_form_email';
+
+            // Canadian public holidays (core, recurring) — YYYY-MM-DD will be generated per selected year
+            function getCanadianHolidays(year) {
+                const fixed = [
+                    `${year}-01-01`, // New Year
+                    `${year}-07-01`, // Canada Day
+                    `${year}-11-11`, // Remembrance Day
+                    `${year}-12-25`, // Christmas
+                    `${year}-12-26`, // Boxing Day
+                ];
+                // Good Friday: 2 days before Easter — we cheat with a simple calc for modern years
+                const easter = calcEaster(year); // returns Date
+                const goodFriday = new Date(easter); goodFriday.setDate(easter.getDate() - 2);
+
+                // Victoria Day: Monday before May 25
+                const victoria = (function () {
+                    const d = new Date(year, 4, 25); // May 25
+                    // go back to Monday
+                    const day = d.getDay(); // 0 Sun ... 1 Mon
+                    const diff = (day + 6) % 7 + 1; // days to go back to Monday
+                    d.setDate(d.getDate() - diff);
+                    return d;
+                })();
+
+                // Labour Day: first Monday of September
+                const labour = (function () {
+                    const d = new Date(year, 8, 1); // Sept 1
+                    const day = d.getDay();
+                    const diff = (8 - day) % 7;
+                    d.setDate(d.getDate() + diff);
+                    return d;
+                })();
+
+                // Thanksgiving: second Monday of October
+                const thanksgiving = (function () {
+                    const d = new Date(year, 9, 1); // Oct 1
+                    const day = d.getDay();
+                    const firstMondayOffset = (8 - day) % 7;
+                    d.setDate(d.getDate() + firstMondayOffset + 7); // second Monday
+                    return d;
+                })();
+
+                return [
+                    ...fixed,
+                    formatDate(goodFriday),
+                    formatDate(victoria),
+                    formatDate(labour),
+                    formatDate(thanksgiving),
+                    // Family Day (3rd Monday Feb)
+                    (function () {
+                        const d = new Date(year, 1, 1); // Feb 1
+                        const day = d.getDay();
+                        const firstMon = (8 - day) % 7;
+                        d.setDate(d.getDate() + firstMon + 14); // 3rd Monday
+                        return formatDate(d);
+                    })(),
+                ];
+            }
+
+            // Easter calculation (Anonymous Gregorian algorithm)
+            function calcEaster(y) {
+                const a = y % 19;
+                const b = Math.floor(y / 100);
+                const c = y % 100;
+                const d = Math.floor(b / 4);
+                const e = b % 4;
+                const f = Math.floor((b + 8) / 25);
+                const g = Math.floor((b - f + 1) / 3);
+                const h = (19 * a + b - d - g + 15) % 30;
+                const i = Math.floor(c / 4);
+                const k = c % 4;
+                const l = (32 + 2 * e + 2 * i - h - k) % 7;
+                const m = Math.floor((a + 11 * h + 22 * l) / 451);
+                const month = Math.floor((h + l - 7 * m + 114) / 31);
+                const day = ((h + l - 7 * m + 114) % 31) + 1;
+                return new Date(y, month - 1, day);
+            }
+
+            function formatDate(d) {
+                const y = d.getFullYear();
+                const m = (d.getMonth() + 1).toString().padStart(2, '0');
+                const day = d.getDate().toString().padStart(2, '0');
+                return `${y}-${m}-${day}`;
+            }
+
+            // ===== time slot generators =====
+            function buildSlots(startHour, startMin, endHour, endMin) {
+                const slots = [];
+                let start = startHour * 60 + startMin;
+                const end = endHour * 60 + endMin;
+                while (start <= end) {
+                    const h24 = Math.floor(start / 60);
+                    const mm = start % 60;
+                    const ampm = h24 >= 12 ? 'PM' : 'AM';
+                    const h12 = h24 % 12 === 0 ? 12 : h24 % 12;
+                    slots.push(`${h12}:${mm.toString().padStart(2, '0')} ${ampm}`);
+                    start += 15;
+                }
+                return slots;
+            }
+
+            const WEEKDAY_SLOTS = buildSlots(12, 0, 18, 30);  // Mon–Fri → 12:00–6:30
+            const SAT_SLOTS = buildSlots(12, 0, 16, 30);  // Sat → 12:00–4:30
+
+            const dateInput = document.getElementById('date');
+            const timeSel = document.getElementById('timeSlot');
+            const dateMsg = document.getElementById('dateMsg');
+
+            // min date = today
+            const today = new Date();
+            dateInput.min = formatDate(today);
+
+            function resetTimeSelect() {
+                timeSel.innerHTML = '';
+                timeSel.appendChild(new Option('Select time…', ''));
+            }
+
+            function fillTimeSelect(slots) {
+                resetTimeSelect();
+                slots.forEach(s => timeSel.appendChild(new Option(s, s)));
+            }
+
+            dateInput.addEventListener('change', () => {
+                const val = dateInput.value;
+                resetTimeSelect();
+                dateMsg.textContent = '';
+
+                if (!val) return;
+
+                const sel = new Date(val + 'T00:00:00');
+                const now = new Date();
+                now.setHours(0, 0, 0, 0);
+
+                if (sel < now) {
+                    dateMsg.textContent = 'Please select a future date.';
+                    dateInput.value = '';
+                    return;
+                }
+
+                const year = sel.getFullYear();
+                const holidays = getCanadianHolidays(year);
+                const f = formatDate(sel);
+
+                // Sunday (0)
+                if (sel.getDay() === 0) {
+                    dateMsg.textContent = 'School is closed on Sundays. Please choose another date.';
+                    dateInput.value = '';
+                    return;
+                }
+
+                // Holiday
+                if (holidays.includes(f)) {
+                    dateMsg.textContent = 'School is closed on this public holiday. Choose another date.';
+                    dateInput.value = '';
+                    return;
+                }
+
+                // Saturday
+                if (sel.getDay() === 6) {
+                    fillTimeSelect(SAT_SLOTS);
+                    dateMsg.textContent = 'Saturday slots: 12:00 PM – 4:30 PM only.';
+                } else {
+                    fillTimeSelect(WEEKDAY_SLOTS);
+                }
+            });
 
             /* ===== Course datasets ===== */
             const D9 = [
@@ -595,13 +793,20 @@
             ];
 
             const GRADES = ["Select grade…", "Grade 9", "Grade 10", "Grade 11", "Grade 12", "ESL/ELD Courses"];
-            const listFor = g => ({ "Grade 9": D9, "Grade 10": D10, "Grade 11": D11, "Grade 12": D12, "ESL/ELD Courses": DESL }[g] || []);
+            const listFor = g => ({
+                "Grade 9": D9,
+                "Grade 10": D10,
+                "Grade 11": D11,
+                "Grade 12": D12,
+                "ESL/ELD Courses": DESL
+            }[g] || []);
 
             const gSel = document.getElementById('grade');
+            const cSel = document.getElementById('course');
+
             GRADES.forEach(g => gSel.appendChild(new Option(g, g)));
             gSel.value = GRADES[0];
 
-            const cSel = document.getElementById('course');
             gSel.addEventListener('change', () => {
                 cSel.innerHTML = '';
                 const grade = gSel.value;
@@ -621,17 +826,19 @@
                 const el = document.getElementById('status');
                 el.className = 'cs-status';
                 el.textContent = msg;
-                if (ok === true) el.classList.add('cs-ok');
-                else if (ok === false) el.classList.add('cs-err');
+                if (ok === true) el.classList.add('cs-ok'); else if (ok === false) el.classList.add('cs-err');
             }
 
             function isValid() {
-                const req = ['fname', 'lname', 'email', 'phone', 'date', 'grade', 'course', 'mode', 'stusig', 'gcEmail', 'ack'];
+                const req = ['fname', 'lname', 'email', 'phone', 'date', 'timeSlot', 'grade', 'course', 'stusig', 'gcEmail', 'ack'];
                 for (const k of req) {
                     const el = document.getElementById(k);
                     if (!el) continue;
-                    if (el.type === 'checkbox') { if (!el.checked) { el.focus(); return false; } }
-                    else if (!el.value) { el.focus(); return false; }
+                    if (el.type === 'checkbox') {
+                        if (!el.checked) { el.focus(); return false; }
+                    } else if (!el.value) {
+                        el.focus(); return false;
+                    }
                 }
                 if (gSel.value === GRADES[0]) { gSel.focus(); return false; }
                 if (!cSel.value) { cSel.focus(); return false; }
@@ -651,26 +858,30 @@
                 });
             }
 
-            async function collectTranscript() {
-                const input = document.getElementById('transcript');
-                if (input && input.files && input.files.length) {
-                    const f = input.files[0];
-                    return [await fileToBase64(f)];
+            async function collectAttachments() {
+                const ids = ['transcript', 'paymentProof'];
+                const out = [];
+                for (const id of ids) {
+                    const el = document.getElementById(id);
+                    if (el && el.files && el.files.length) {
+                        out.push(await fileToBase64(el.files[0]));
+                    }
                 }
-                return [];
+                return out;
             }
 
             async function submitForm() {
                 if (!isValid()) { setStatus('Please fill all required fields.', false); return; }
                 setStatus('Submitting…');
 
-                const attachments = await collectTranscript();
-                const ack = document.getElementById('ack').checked;
+                const attachments = await collectAttachments();
                 const fullName = `${val('fname')} ${val('lname')}`.trim();
+                const hasPaymentProof = !!(document.getElementById('paymentProof')?.files?.length);
 
                 const payload = {
                     type: 'Final Exam',
-                    name: fullName,              // backward compatibility
+                    mode: 'Online',                       // fixed → online only
+                    name: fullName,
                     firstName: val('fname'),
                     lastName: val('lname'),
                     email: val('email'),
@@ -678,17 +889,15 @@
                     grade: val('grade'),
                     courseCode: val('course'),
                     preferredDate: val('date'),
-                    mode: val('mode'),
+                    preferredTime: val('timeSlot'),
                     studentSig: val('stusig'),
                     schoolName: val('school'),
                     guidanceEmail: val('gcEmail'),
-                    acceptTerms: ack,
-                    confirmations: {
-                        acceptTerms: ack,
-                        termsListAck: ack
-                    },
+                    acceptTerms: document.getElementById('ack').checked,
+                    onlineFeeNoteShown: true,
+                    paymentProofProvided: hasPaymentProof,
                     attachments,
-                    hasTranscript: attachments.length > 0
+                    hasTranscript: attachments.some(a => (a.name || '').toLowerCase().includes('transcript'))
                 };
 
                 try {
@@ -703,10 +912,9 @@
                         document.querySelectorAll('#cs-exam .cs-card input, #cs-exam .cs-card textarea, #cs-exam .cs-card select')
                             .forEach(x => { if (x.type === 'checkbox') x.checked = false; else x.value = ''; });
                         gSel.value = GRADES[0];
-                        cSel.innerHTML = '';
-                        cSel.disabled = true;
-                        cSel.appendChild(new Option('Select grade first…', ''));
-                        setStatus('Success! Your request has been emailed to the front desk.', true);
+                        cSel.innerHTML = ''; cSel.disabled = true; cSel.appendChild(new Option('Select grade first…', ''));
+                        resetTimeSelect();
+                        setStatus('Success! Your online exam request has been emailed to the front desk.', true);
                     } else {
                         setStatus(data.error || 'Error sending your request. Please try again.', false);
                     }
