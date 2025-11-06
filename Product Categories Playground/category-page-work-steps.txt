@@ -1,0 +1,161 @@
+<?php
+/**
+ * Template for WooCommerce Product Category Pages with Grade Filter
+ * Make sure your theme has this file inside your child theme: woocommerce/template-parts/category-page.php
+ * Or override via: wp-content/themes/your-child-theme/woocommerce/archive-product.php
+ */
+
+get_header();
+
+?>
+<style>
+  .category-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding: 2rem;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .filter-sidebar {
+    flex: 1 1 250px;
+    max-width: 250px;
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    position: sticky;
+    top: 100px;
+  }
+  .product-grid {
+    flex: 1 1 70%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  .filter-title {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 20px;
+  }
+  .filter-option {
+    margin-bottom: 0.75rem;
+  }
+  .filter-option input {
+    margin-right: 0.5rem;
+  }
+</style>
+
+<div class="category-container">
+  <aside class="filter-sidebar">
+    <div class="filter-title">Filter by Grade</div>
+    <?php
+    // Fetch WooCommerce attribute terms for 'grade'
+    $grades = get_terms( array(
+      'taxonomy' => 'pa_grade',
+      'hide_empty' => true,
+    ) );
+    if ( ! empty( $grades ) && ! is_wp_error( $grades ) ) :
+      foreach ( $grades as $grade ) :
+        $checked = isset($_GET['filter_grade']) && $_GET['filter_grade'] === $grade->slug ? 'checked' : '';
+        echo '<div class="filter-option">';
+        echo '<label><input type="radio" name="filter_grade" value="' . esc_attr( $grade->slug ) . '" ' . $checked . '> ' . esc_html( $grade->name ) . '</label>';
+        echo '</div>';
+      endforeach;
+    endif;
+    ?>
+    <button onclick="applyFilter()" style="margin-top: 1rem; padding: 10px 20px; background-color: #00427C; color: white; border: none; border-radius: 8px; cursor: pointer;">Apply</button>
+  </aside>
+
+  <div class="product-grid">
+    <?php
+      if ( have_posts() ) :
+        woocommerce_product_loop_start();
+
+        while ( have_posts() ) :
+          the_post();
+          wc_get_template_part( 'content', 'product' );
+        endwhile;
+
+        woocommerce_product_loop_end();
+      else :
+        echo '<p>No products found.</p>';
+      endif;
+    ?>
+  </div>
+</div>
+
+<script>
+  function applyFilter() {
+    const selected = document.querySelector('input[name="filter_grade"]:checked');
+    if (selected) {
+      const param = selected.value;
+      const url = new URL(window.location.href);
+      url.searchParams.set('filter_grade', param);
+      window.location.href = url.toString();
+    }
+  }
+</script>
+
+<?php get_footer(); ?>
+
+✅ Here’s your final implementation for the WooCommerce Product Category Page with Grade Filter (based on the attribute pa_grade you already use on your main shop page):
+
+⸻
+
+✅ What this PHP code does:
+	•	Displays category page layout with a sidebar filter for “Grades” (using the pa_grade attribute).
+	•	Filters products by selected grade via the filter_grade query parameter.
+	•	Uses WooCommerce’s default content-product.php template.
+	•	Fully responsive, clean, and styled to match your site.
+
+⸻
+
+🔧 Steps to Safely Update Category Pages Without Breaking the Site
+
+✅ Prerequisites:
+	•	You have a working child theme (e.g., canstem-child).
+	•	The grade attribute exists as pa_grade (check under Products > Attributes).
+	•	WooCommerce is active.
+
+⸻
+
+🪜 STEP-BY-STEP INSTRUCTIONS
+
+1. ✅ Create the Template File
+Create a new file in your child theme:
+
+/wp-content/themes/your-child-theme/woocommerce/archive-product.php
+
+Or if your theme allows overriding specific taxonomies:
+
+/wp-content/themes/your-child-theme/woocommerce/taxonomy-product-cat.php
+
+You can use either one, but if you’re customizing just the category pages, taxonomy-product-cat.php is more precise.
+
+2. ✅ Paste the Full PHP Code (from above)
+Replace everything inside that file with the code I just provided.
+
+3. ✅ Ensure Attribute is Enabled for Filtering
+	•	Go to Products > Attributes > Grade
+	•	Ensure:
+	•	Enable archives is checked.
+	•	Slug is grade or whatever your filter slug is.
+	•	Terms are assigned to products.
+
+4. ✅ Flush Permalinks
+	•	Go to Settings → Permalinks
+	•	Just click “Save Changes” (no need to change anything)
+
+This will refresh rewrite rules.
+
+5. ✅ Test Filter Functionality
+	•	Visit any category page (e.g., /product-category/drama/)
+	•	You should see a filter sidebar with Grade terms
+	•	Selecting a grade should refresh and show matching products only
+
+⸻
+
+🛡️ This Won’t Break Your Site If:
+	•	You’re placing the file in a child theme
+	•	You didn’t touch any WooCommerce core files
+	•	You tested on staging (or enable Safe Updates if using Cloudways)
