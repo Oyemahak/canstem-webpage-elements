@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Credit Courses — Compact List (G9–G12 + ESL/ELD)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0e1116;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --ink: #111827;
+      --accent: #1a73e8;
+      --pill: #eef2ff;
+      --ring: #e5e7eb;
+      --grad-1: #22c55e;
+      --grad-2: #16a34a;
+      --grad-3: #0ea5e9;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1000px 600px at 120% -10%, rgba(14, 165, 233, .08), transparent 70%),
+        radial-gradient(900px 600px at -20% 110%, rgba(34, 197, 94, .08), transparent 70%),
+        #f6f7fb;
+    }
+
+    /* pattern ONLY for this section */
+    .course-section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><g fill="none" stroke="%239CA3AF" stroke-width="2" opacity=".12"><path d="M30 70l50-20 50 20-50 20-50-20zm50 25v35"/><circle cx="130" cy="30" r="18"/><path d="M122 28h16M122 32h16"/></g></svg>');
+      background-size: 160px 160px;
+      background-repeat: repeat;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header + quick nav */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: saturate(1.2) blur(6px);
+      background: linear-gradient(to right, rgba(255, 255, 255, .85), rgba(255, 255, 255, .8));
+      border-bottom: 1px solid var(--ring);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-weight: 700
+    }
+
+    .brand svg {
+      width: 28px;
+      height: 28px
+    }
+
+    .jumpnav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--ring);
+      background: #fff;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .chip:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .06)
+    }
+
+    /* Search */
+    .searchbar {
+      position: relative;
+      margin: 16px 0 8px
+    }
+
+    .searchbar input {
+      width: 100%;
+      padding: 12px 44px;
+      border-radius: 12px;
+      border: 1px solid var(--ring);
+      outline: none;
+      background: #fff;
+      font-size: 16px;
+    }
+
+    .searchbar svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      opacity: .7;
+    }
+
+    .searchbar .count {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    /* Sections */
+    .section {
+      margin: 28px 0
+    }
+
+    .section-title {
+      color: #fff;
+      font-weight: 800;
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin: 8px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(90deg, var(--grad-1), var(--grad-2));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25);
+    }
+
+    .section-title.badge-blue {
+      background: linear-gradient(90deg, #60a5fa, #3b82f6)
+    }
+
+    .section-title svg {
+      width: 22px;
+      height: 22px;
+      opacity: .95
+    }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px
+    }
+
+    @media(min-width:700px) {
+      .grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(min-width:1024px) {
+      .grid {
+        grid-template-columns: 1fr 1fr 1fr
+      }
+    }
+
+    .card {
+      position: relative;
+      background: rgba(255, 255, 255, .88);
+      border: 1px solid var(--ring);
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .04);
+      overflow: hidden;
+    }
+
+    .card-body {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .code {
+      background: var(--pill);
+      color: #3730a3;
+      font-weight: 800;
+      border: 1px solid #c7d2fe;
+      border-radius: 10px;
+      padding: 6px 10px;
+      letter-spacing: .2px;
+    }
+
+    .name {
+      font-weight: 700
+    }
+
+    .row {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .label {
+      color: #374151;
+      font-weight: 600;
+      margin-right: 2px
+    }
+
+    .prereq {
+      white-space: normal
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      width: 22px;
+      height: 22px;
+      opacity: .10;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23000000" d="M12 2 1 7l11 5 9-4.09V17h2V7L12 2Zm0 7.18L5.97 6.6 12 4l6.03 2.6L12 9.18ZM4 18v2h8v-2H4Z"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .foot {
+      margin: 30px 0 50px;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center
+    }
+
+    .fail {
+      color: #b91c1c;
+      font-size: 13px;
+      margin-top: 8px
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Keep this whole block inside a single Elementor HTML widget -->
+  <section class="course-section">
+    <header class="header">
+      <div class="header-inner">
+        <div class="brand">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 3 2 8l10 5 10-5-10-5Z" />
+            <path d="M12 13v8" />
+            <path d="M5 10v6a7 7 0 0 0 14 0v-6" />
+          </svg>
+          <span>All Credit Courses</span>
+        </div>
+        <nav class="jumpnav">
+          <a class="chip" href="#grade-9">Grade 9</a>
+          <a class="chip" href="#grade-10">Grade 10</a>
+          <a class="chip" href="#grade-11">Grade 11</a>
+          <a class="chip" href="#grade-12">Grade 12</a>
+          <a class="chip" href="#esl-eld">ESL/ELD</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="searchbar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="11" cy="11" r="7" />
+          <path d="M20 20 17 17" />
+        </svg>
+        <input id="q" type="search" placeholder="Search by code or course name… (e.g., MHF4U, Biology, French)" />
+        <div class="count" id="count">0</div>
+      </div>
+
+      <div id="mount"></div>
+      <div id="error" class="fail" style="display:none;"></div>
+
+      <div class="foot">© CanSTEM Education — compact catalog view</div>
+    </div>
+  </section>
+
+  <script>
+    const courses = {
+      grade9: [
+        { code: "AVI1O", name: "Visual Arts", prerequisite: "None" },
+        { code: "ADA1O", name: "Drama", prerequisite: "None" },
+        { code: "BEM1O", name: "Building The Entrepreneurial Mindset", prerequisite: "None" },
+        { code: "CGC1W", name: "Issues in Canadian Geography (De-Streamed)", prerequisite: "None" },
+        { code: "ENL1W", name: "English (De-Streamed)", prerequisite: "None" },
+        { code: "EAE1W", name: "English (French OSSD), De-Streamed", prerequisite: "None" },
+        { code: "ENG1L", name: "English (LDCC)", prerequisite: "None" },
+        { code: "FSF1D", name: "French (De-Streamed)", prerequisite: "Minimum of 600 hours of French instruction or equivalent" },
+        { code: "FSF1O", name: "Core French (Open)", prerequisite: "None" },
+        { code: "GLS1O", name: "Learning Strategies 1: Skills for Success", prerequisite: "None" },
+        { code: "GLE1O", name: "Learning Strategies 1: Skills for Success", prerequisite: "None" },
+        { code: "HFN1O", name: "Food and Nutrition", prerequisite: "None" },
+        { code: "HIF1O", name: "Exploring Family Studies", prerequisite: "None" },
+        { code: "PPL1O", name: "Healthy Active Living Education", prerequisite: "None" },
+        { code: "MTH1W", name: "Mathematics (De-Streamed)", prerequisite: "None" },
+        { code: "MAT1L", name: "Mathematics (LDCC)", prerequisite: "None" },
+        { code: "SNC1W", name: "Science (De-Streamed)", prerequisite: "None" },
+        { code: "SNC1L", name: "Science (LDCC)", prerequisite: "None" },
+        { code: "TIJ1O", name: "Exploring Technologies", prerequisite: "None" },
+        { code: "TAS1O", name: "Technology and the Skilled Trades", prerequisite: "None" },
+      ],
+
+      grade10: [
+        { code: "AVI2O", name: "Visual Arts (G10)", prerequisite: "None" },
+        { code: "ADA2O", name: "Drama (G10)", prerequisite: "None" },
+        { code: "ASM2O", name: "Media Arts (G10)", prerequisite: "None" },
+        { code: "BEP2O", name: "Launching and Leading a Business (G10)", prerequisite: "None" },
+        { code: "CHC2D", name: "Canadian History Since WWI (Academic)", prerequisite: "None" },
+        { code: "CHC2P", name: "Canadian History Since WWI (Applied)", prerequisite: "None" },
+        { code: "CHV2O", name: "Civics and Citizenship", prerequisite: "None" },
+        { code: "ENG2D", name: "English (Academic)", prerequisite: "Grade 9 English or equivalent" },
+        { code: "ENG2P", name: "English (Applied)", prerequisite: "Grade 9 English or equivalent" },
+        { code: "ENG2L", name: "English (LDCC)", prerequisite: "Grade 9 English (LDCC) or equivalent" },
+        { code: "EAE2D", name: "English (French OSSD, Academic)", prerequisite: "EAE1W or equivalent" },
+        { code: "FSF2D", name: "French (Academic)", prerequisite: "FSF1D or equivalent" },
+        { code: "FSF2O", name: "Core French (Open)", prerequisite: "FSF1O or equivalent" },
+        { code: "FSF2P", name: "Core French (Applied)", prerequisite: "FSF1O or equivalent" },
+        { code: "GLC2O", name: "Career Studies", prerequisite: "None" },
+        { code: "HIF2O", name: "Individual and Family Living", prerequisite: "None" },
+        { code: "HFN2O", name: "Food and Nutrition (G10)", prerequisite: "None" },
+        { code: "ICS2O", name: "Introduction to Computer Studies", prerequisite: "None" },
+        { code: "ICD2O", name: "Digital Technology & Innovations", prerequisite: "None" },
+        { code: "MPM2D", name: "Principles of Mathematics (Academic)", prerequisite: "Grade 9 Mathematics (Academic or De-Streamed)" },
+        { code: "MFM2P", name: "Foundations of Mathematics (Applied)", prerequisite: "Grade 9 Mathematics (Applied or De-Streamed)" },
+        { code: "MAT2L", name: "Mathematics (LDCC)", prerequisite: "MAT1L or equivalent" },
+        { code: "PPL2O", name: "Healthy Active Living Education (G10)", prerequisite: "None" },
+        { code: "SNC2D", name: "Science (Academic)", prerequisite: "Grade 9 Science (Academic or De-Streamed)" },
+        { code: "SNC2P", name: "Science (Applied)", prerequisite: "Grade 9 Science (Applied or De-Streamed)" },
+        { code: "SNC2L", name: "Science (LDCC)", prerequisite: "SNC1L or equivalent" },
+        { code: "RGJ2O", name: "Communications Technology (G10)", prerequisite: "None" },
+        { code: "TEJ2O", name: "Computer Technology (G10)", prerequisite: "None" },
+        { code: "TFJ2O", name: "Hospitality and Tourism (G10)", prerequisite: "None" },
+        { code: "TDJ2O", name: "Technological Design (G10)", prerequisite: "None" },
+        { code: "TAS2O", name: "Technology and the Skilled Trades (G10)", prerequisite: "None" },
+      ],
+
+      grade11: [
+        { code: "AVI3M", name: "Visual Arts (U/C)", prerequisite: "AVI2O or AVI1O" },
+        { code: "AVI3O", name: "Visual Arts (Open)", prerequisite: "None" },
+        { code: "ADA3M", name: "Drama (U/C)", prerequisite: "ADA2O or ADA1O" },
+        { code: "ADA3O", name: "Drama (Open)", prerequisite: "None" },
+        { code: "ASM3M", name: "Media Arts (U/C)", prerequisite: "ASM2O or equivalent" },
+        { code: "ASM3O", name: "Media Arts (Open)", prerequisite: "None" },
+        { code: "BAF3M", name: "Financial Accounting Fundamentals", prerequisite: "None" },
+        { code: "BAI3E", name: "Accounting Essentials (Workplace)", prerequisite: "None" },
+        { code: "BDI3C", name: "Entrepreneurship: The Venture", prerequisite: "None" },
+        { code: "BDP3O", name: "Entrepreneurship: The Enterprising Person", prerequisite: "None" },
+        { code: "BTA3O", name: "ICT: The Digital Environment", prerequisite: "None" },
+        { code: "BMI3C", name: "Marketing: Goods, Services, Events", prerequisite: "None" },
+        { code: "CIE3M", name: "The Individual and the Economy", prerequisite: "CHC2D or CHC2P" },
+        { code: "CGD3M", name: "Regional Geography", prerequisite: "CGC1W, CGC1D or CGC1P" },
+        { code: "CGF3M", name: "Forces of Nature", prerequisite: "CGC1W, CGC1D or CGC1P, or SNC2D or SNC2P" },
+        { code: "CGT3O", name: "Intro to Spatial Technologies (Open)", prerequisite: "None" },
+        { code: "CGG3O", name: "Travel & Tourism", prerequisite: "None" },
+        { code: "CHA3U", name: "American History", prerequisite: "CHC2D or CHC2P" },
+        { code: "CHW3U", name: "World History to 15th Century", prerequisite: "CHC2D or CHC2P" },
+        { code: "CHT3O", name: "World History since 1900 (Open)", prerequisite: "None" },
+        { code: "CLU3M", name: "Understanding Canadian Law", prerequisite: "CHC2D or CHC2P" },
+        { code: "CPC3O", name: "Politics in Action: Making Change", prerequisite: "None" },
+        { code: "ENG3C", name: "English (College)", prerequisite: "ENG2D or ENG2P" },
+        { code: "ENG3U", name: "English (University)", prerequisite: "ENG2D" },
+        { code: "ENG3E", name: "English (Workplace)", prerequisite: "ENG2P or ENG2L" },
+        { code: "EAE3U", name: "English (French OSSD, University)", prerequisite: "EAE2D" },
+        { code: "EPS3O", name: "Presentation and Speaking Skills", prerequisite: "ENG2D or ENG2P" },
+        { code: "EMS3O", name: "Media Studies (Open)", prerequisite: "ENG2D or ENG2P" },
+        { code: "FSF3U", name: "Core French (University)", prerequisite: "FSF2D" },
+        { code: "FSF3O", name: "Core French (Open)", prerequisite: "FSF2O or FSF2P" },
+        { code: "FEF3U", name: "Extended French (University)", prerequisite: "Extended French, Grade 10" },
+        { code: "FIF3U", name: "French Immersion (University)", prerequisite: "French Immersion, Grade 10" },
+        { code: "FIF3O", name: "French Immersion (Open)", prerequisite: "French Immersion, Grade 10" },
+        { code: "GWL3O", name: "Designing Your Future", prerequisite: "None" },
+        { code: "HSG3M", name: "Gender Studies", prerequisite: "CHC2D or CHC2P or CHV2O" },
+        { code: "HSE3E", name: "Equity & Social Justice (Workplace)", prerequisite: "None" },
+        { code: "HFC3M", name: "Food and Culture", prerequisite: "None" },
+        { code: "HPW3C", name: "Working with Infants & Young Children", prerequisite: "None" },
+        { code: "HZB3M", name: "Philosophy: The Big Questions", prerequisite: "None" },
+        { code: "HRT3M", name: "World Religions", prerequisite: "None" },
+        { code: "HPC3O", name: "Raising Healthy Children", prerequisite: "None" },
+        { code: "HSP3U", name: "Intro to Anthropology (University)", prerequisite: "ENG2D" },
+        { code: "HSP3C", name: "Anthro/Psych/Soc (College)", prerequisite: "ENG2D or ENG2P" },
+        { code: "ICS3C", name: "Intro to Computer Programming (College)", prerequisite: "None" },
+        { code: "ICS3U", name: "Intro to Computer Science (University)", prerequisite: "None" },
+        { code: "IDC3O", name: "Sports & Entertainment Marketing (Open)", prerequisite: "None" },
+        { code: "MBF3C", name: "Foundations for College Mathematics", prerequisite: "MFM2P or MPM2D" },
+        { code: "MCF3M", name: "Functions and Applications", prerequisite: "MPM2D or MFM2P" },
+        { code: "MCR3U", name: "Functions", prerequisite: "MPM2D" },
+        { code: "MEL3E", name: "Math for Work & Everyday Life (Workplace)", prerequisite: "MFM2P or MAT2L" },
+        { code: "PPL3O", name: "Healthy Active Living Education", prerequisite: "None" },
+        { code: "PPZ3C", name: "Health for Life", prerequisite: "None" },
+        { code: "SBI3C", name: "Biology (College)", prerequisite: "SNC2D or SNC2P" },
+        { code: "SBI3U", name: "Biology (University)", prerequisite: "SNC2D" },
+        { code: "SCH3U", name: "Chemistry (University)", prerequisite: "SNC2D" },
+        { code: "SPH3U", name: "Physics (University)", prerequisite: "SNC2D" },
+        { code: "SVN3M", name: "Environmental Science (U/C)", prerequisite: "SNC2D or SNC2P" },
+        { code: "SVN3E", name: "Environmental Science (Workplace)", prerequisite: "SNC1W, SNC1D, SNC1P or SNC2L" },
+        { code: "TEI3M", name: "Computer Eng. Tech: Interfacing (U/C)", prerequisite: "None" },
+        { code: "TEJ3M", name: "Computer Engineering Technology (U/C)", prerequisite: "None" },
+        { code: "TEL3M", name: "Computer Eng. Tech: Electronics (U/C)", prerequisite: "None" },
+        { code: "TEN3M", name: "Computer Eng. Tech: Networking (U/C)", prerequisite: "None" },
+        { code: "TET3E", name: "Computer Technology: IT Support", prerequisite: "None" },
+        { code: "TEW3E", name: "Computer Technology: Network Support", prerequisite: "None" },
+        { code: "TGJ3M", name: "Communications Technology (U/C)", prerequisite: "None" },
+        { code: "TFE3E", name: "Hospitality & Tourism: Event Planning (W)", prerequisite: "None" },
+        { code: "TFJ3E", name: "Hospitality & Tourism (Workplace)", prerequisite: "None" },
+        { code: "TFJC", name: "Hospitality & Tourism (College)", prerequisite: "None" },
+        { code: "TDJ3M", name: "Technological Design (U/C)", prerequisite: "None" },
+        { code: "TGJ3O", name: "Communications Tech: Broadcast/Print", prerequisite: "None" },
+        { code: "TDJ3O", name: "Technological Design and the Environment", prerequisite: "None" },
+        { code: "TGI3M", name: "Interactive New Media & Animation (U/C)", prerequisite: "None" },
+        { code: "TGP3M", name: "Photography & Digital Imaging (U/C)", prerequisite: "None" },
+        { code: "TPD3M", name: "Health Care: Dental Services (U/C)", prerequisite: "None" },
+        { code: "TPL3M", name: "Health Care: Laboratory Services (U/C)", prerequisite: "None" },
+        { code: "TPM3M", name: "Health Care: Nursing/Medical Services (U/C)", prerequisite: "None" },
+        { code: "TPJ3C", name: "Health Care (College)", prerequisite: "None" },
+        { code: "TPJ3M", name: "Health Care (U/C)", prerequisite: "None" },
+      ],
+
+      grade12: [
+        { code: "ADA4E", name: "Drama (Workplace)", prerequisite: "ADA3M or ADA3O" },
+        { code: "ADA4M", name: "Drama (U/C)", prerequisite: "ADA3M" },
+        { code: "AEA4O", name: "Exploring & Creating in the Arts", prerequisite: "None" },
+        { code: "ASM4M", name: "Media Arts (U/C)", prerequisite: "ASM3M" },
+        { code: "ASM4E", name: "Media Arts (Workplace)", prerequisite: "ASM3M or ASM3O" },
+        { code: "AVI4M", name: "Visual Arts (U/C)", prerequisite: "AVI3M" },
+        { code: "BAT4M", name: "Financial Accounting Principles", prerequisite: "BAF3M" },
+        { code: "BDV4C", name: "Entrepreneurship: Venture Planning (C)", prerequisite: "BDI3C" },
+        { code: "BTX4C", name: "ICT: Multimedia Solutions (C)", prerequisite: "BTA3O" },
+        { code: "BBB4M", name: "International Business Fundamentals", prerequisite: "None" },
+        { code: "BOH4M", name: "Business Leadership", prerequisite: "Any U/M course in Business Studies, Canadian & World Studies, or Social Sciences" },
+        { code: "CIA4U", name: "Analysing Current Economic Issues", prerequisite: "CIE3M or any University or U/C course in Canadian & World Studies, English, or Social Sciences" },
+        { code: "CGW4U", name: "World Issues (University)", prerequisite: "Any University or U/C course in Canadian & World Studies, English, or Social Sciences" },
+        { code: "CGW4C", name: "World Issues (College)", prerequisite: "Any College or U/C course in Canadian & World Studies, English, or Social Sciences" },
+        { code: "CGR4M", name: "Environment & Resource Management", prerequisite: "Any University, U/C or College course in Canadian & World Studies, English, or Social Sciences" },
+        { code: "CGO4M", name: "Spatial Technologies in Action", prerequisite: "Any University, U/C or College course in Canadian & World Studies, English, or Social Sciences" },
+        { code: "CGU4M", name: "World Geography: Urban Patterns", prerequisite: "Any University, U/C or College course in Canadian & World Studies, English, or Social Sciences" },
+        { code: "CHY4U", name: "World History since 15th Century (U)", prerequisite: "Any University or U/C course in Canadian & World Studies, English, or Social Sciences" },
+        { code: "CHY4C", name: "World History since 15th Century (C)", prerequisite: "Any College or U/C course in Canadian & World Studies, English, or Social Sciences" },
+        { code: "CHI4U", name: "Canada: History, Identity & Culture", prerequisite: "Any University or U/C course in Canadian & World Studies, English, or Social Sciences" },
+        { code: "CLN4U", name: "Canadian & International Law (U)", prerequisite: "Any University or U/C course in Canadian & World Studies, English, or Social Sciences" },
+        { code: "CLN4C", name: "Legal Studies (College)", prerequisite: "Any College or U/C course in Canadian & World Studies, English, or Social Sciences" },
+        { code: "CPW4U", name: "Canadian & International Politics", prerequisite: "Any University or U/C course in Canadian & World Studies, English, or Social Sciences" },
+        { code: "ENG4U", name: "English (University)", prerequisite: "ENG3U" },
+        { code: "ENG4C", name: "English (College)", prerequisite: "ENG3C or ENG3U" },
+        { code: "ENG4E", name: "English (Workplace)", prerequisite: "ENG3E" },
+        { code: "EAE4U", name: "English (French OSSD, University)", prerequisite: "EAE3U" },
+        { code: "EWC4U", name: "The Writer's Craft (University)", prerequisite: "ENG3U" },
+        { code: "EWC4C", name: "The Writer's Craft (College)", prerequisite: "ENG3C or ENG3U" },
+        { code: "FSF4U", name: "Core French (University)", prerequisite: "FSF3U" },
+        { code: "FSF4O", name: "Core French (Open)", prerequisite: "FSF3O or FSF3U" },
+        { code: "HSE4M", name: "Equity & Social Justice", prerequisite: "Any University, U/C or College course in Social Sciences or English" },
+        { code: "HSC4M", name: "World Cultures", prerequisite: "Any University, U/C or College course in Social Sciences or English" },
+        { code: "HFA4U", name: "Nutrition & Health (University)", prerequisite: "Any University or U/C course in Science or Social Sciences" },
+        { code: "HFA4C", name: "Nutrition & Health (College)", prerequisite: "Any College or U/C course in Science or Social Sciences" },
+        { code: "HHS4U", name: "Families in Canada (University)", prerequisite: "Any University or U/C course in Social Sciences or English" },
+        { code: "HHS4C", name: "Families in Canada (College)", prerequisite: "Any College or U/C course in Social Sciences or English" },
+        { code: "HHG4M", name: "Human Development Through the Life Span", prerequisite: "Any University, U/C or College course in Social Sciences or English" },
+        { code: "HIP4O", name: "Personal Life Management", prerequisite: "None" },
+        { code: "HPD4C", name: "Working with School-Age Children & Adolescents", prerequisite: "HPW3C" },
+        { code: "HSB4U", name: "Challenge & Change in Society", prerequisite: "Any University or U/C course in Social Sciences or English" },
+        { code: "HZT4U", name: "Philosophy: Questions & Theories", prerequisite: "Any University or U/C course in Social Sciences or English" },
+        { code: "ICS4U", name: "Computer Science (University)", prerequisite: "ICS3U" },
+        { code: "ICS4C", name: "Computer Programming (College)", prerequisite: "ICS3C or ICS3U" },
+        { code: "IDC4U", name: "Sports & Entertainment Marketing (U)", prerequisite: "Any University or U/C course in Business Studies or Canadian & World Studies" },
+        { code: "IDC4O", name: "Sports & Entertainment Marketing (Open)", prerequisite: "None" },
+        { code: "MHF4U", name: "Advanced Functions", prerequisite: "MCR3U or MCF3M" },
+        { code: "MCV4U", name: "Calculus and Vectors", prerequisite: "MHF4U (can be taken concurrently)" },
+        { code: "MDM4U", name: "Mathematics of Data Management", prerequisite: "MCR3U or MCF3M" },
+        { code: "MCT4C", name: "Mathematics for College Technology", prerequisite: "MCF3M or MCR3U" },
+        { code: "MAP4C", name: "Foundations for College Mathematics", prerequisite: "MBF3C or MCF3M" },
+        { code: "MEL4E", name: "Math for Work & Everyday Life (Workplace)", prerequisite: "MEL3E" },
+        { code: "OLC4O", name: "Ontario Secondary School Literacy Course", prerequisite: "Students who have been eligible to write the OSSLT at least twice and who have been unsuccessful at least once" },
+        { code: "PPL4O", name: "Healthy Active Living Education", prerequisite: "None" },
+        { code: "PLF4M", name: "Recreation & Healthy Active Living Leadership", prerequisite: "Any Grade 11 or 12 course in Health & Physical Education" },
+        { code: "PSK4U", name: "Introductory Kinesiology", prerequisite: "Any Grade 11 or 12 course in Health & Physical Education or Science" },
+        { code: "SBI4U", name: "Biology (University)", prerequisite: "SBI3U" },
+        { code: "SCH4C", name: "Chemistry (College)", prerequisite: "SNC2D or SNC2P" },
+        { code: "SCH4U", name: "Chemistry (University)", prerequisite: "SCH3U" },
+        { code: "SPH4U", name: "Physics (University)", prerequisite: "SPH3U" },
+        { code: "SES4U", name: "Earth and Space Science", prerequisite: "SNC2D or any Grade 11 University course in Science" },
+        { code: "SNC4M", name: "Science (U/C)", prerequisite: "Any Grade 11 University or U/C course in Science" },
+        { code: "SNC4E", name: "Science (Workplace)", prerequisite: "SNC3E or any Grade 11 Workplace course in Science" },
+        { code: "TGJ4M", name: "Communications Technology (U/C)", prerequisite: "TGJ3M" },
+        { code: "TGJ4O", name: "Communications Tech: Digital Imagery & Web", prerequisite: "None" },
+        { code: "TEJ4M", name: "Computer Engineering Technology (U/C)", prerequisite: "TEJ3M" },
+        { code: "TFJ4E", name: "Hospitality & Tourism (Workplace)", prerequisite: "TFJ3E" },
+        { code: "TFJ4C", name: "Hospitality & Tourism (College)", prerequisite: "TFJC or TFJ3E" },
+        { code: "TDJ4M", name: "Technological Design (U/C)", prerequisite: "TDJ3M" },
+        { code: "TDJ4O", name: "Technological Design in the 21st Century", prerequisite: "None" },
+        { code: "TEI4M", name: "Computer Eng. Tech: Interfacing (U/C)", prerequisite: "TEI3M" },
+        { code: "TEN4M", name: "Computer Eng. Tech: Networking", prerequisite: "TEN3M" },
+        { code: "TET4E", name: "Computer Technology: IT Support", prerequisite: "TET3E" },
+        { code: "TEW4E", name: "Computer Technology: Network Support", prerequisite: "TEW3E" },
+        { code: "TGI4M", name: "Interactive New Media & Animation", prerequisite: "TGI3M" },
+        { code: "TGP4M", name: "Photography & Digital Imaging", prerequisite: "TGP3M" },
+        { code: "TOC4C", name: "Child Development", prerequisite: "HPW3C" },
+        { code: "TOG4C", name: "Gerontology", prerequisite: "Any Grade 11 or 12 course in Social Sciences or Guidance & Career Education" },
+        { code: "TPD4M", name: "Health Care: Dental Services", prerequisite: "TPD3M" },
+        { code: "TPL4M", name: "Health Care: Laboratory Services", prerequisite: "TPL3M" },
+        { code: "TPM4M", name: "Health Care: Nursing/Medical Services", prerequisite: "TPM3M" },
+        { code: "TPP4M", name: "Health Services: Pharmacy", prerequisite: "Any Grade 11 or 12 U/C course in Health Care or Science" },
+        { code: "TPT4M", name: "Health Care: Therapy Services", prerequisite: "Any Grade 11 or 12 U/C course in Health Care" },
+        { code: "TPJ4C", name: "Health Care (College)", prerequisite: "TPJ3C or TPJ3M" },
+        { code: "TPJ4E", name: "Health Care (Workplace)", prerequisite: "Any Grade 11 or 12 Workplace course in Health Care" },
+        { code: "TPJ4M", name: "Health Care (U/C)", prerequisite: "TPJ3M" },
+      ],
+
+      esl: [
+        { code: "ESLAO", name: "ESL Level 1", prerequisite: "None - For students new to learning English" },
+        { code: "ESLBO", name: "ESL Level 2", prerequisite: "ESLAO or equivalent assessment" },
+        { code: "ESLCO", name: "ESL Level 3", prerequisite: "ESLBO or equivalent assessment" },
+        { code: "ESLDO", name: "ESL Level 4", prerequisite: "ESLCO or equivalent assessment" },
+        { code: "ESLEO", name: "ESL Level 5", prerequisite: "ESLDO or equivalent assessment" },
+        { code: "ELDAO", name: "ELD Level 1", prerequisite: "None - For students with limited prior schooling" },
+        { code: "ELDBO", name: "ELD Level 2", prerequisite: "ELDAO or equivalent assessment" },
+        { code: "ELDCO", name: "ELD Level 3", prerequisite: "ELDBO or equivalent assessment" },
+        { code: "ELDDO", name: "ELD Level 4", prerequisite: "ELDCO or equivalent assessment" },
+        { code: "ELDEO", name: "ELD Level 5", prerequisite: "ELDDO or equivalent assessment" },
+      ],
+    };
+
+    const mount = document.getElementById('mount');
+    const countEl = document.getElementById('count');
+
+    function sectionTitle(text, blue = false) {
+      return `<div class="section-title ${blue ? 'badge-blue' : ''}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M12 13v8"/><path d="M5 10v6a7 7 0 0 0 14 0v-6"/>
+        </svg>
+        <h2 style="margin:0;font-size:18px;letter-spacing:.2px">${text}</h2>
+      </div>`;
+    }
+
+    function card({ code, name, prerequisite }) {
+      return `<article class="card">
+        <div class="card-body">
+          <div class="meta"><span class="code">${code}</span><span class="name">${name}</span></div>
+          <div class="row"><span class="label">Prerequisite:</span><span class="prereq">${prerequisite}</span></div>
+        </div>
+      </article>`;
+    }
+
+    const blocks = [
+      ['grade-9', 'Grade 9 Courses', 'grade9', false],
+      ['grade-10', 'Grade 10 Courses', 'grade10', false],
+      ['grade-11', 'Grade 11 Courses', 'grade11', true],
+      ['grade-12', 'Grade 12 Courses', 'grade12', true],
+      ['esl-eld', 'ESL/ELD Courses', 'esl', false],
+    ];
+
+    function render(filter = "") {
+      mount.innerHTML = "";
+      let total = 0;
+      for (const [id, title, key, blue] of blocks) {
+        const list = courses[key].filter(c => {
+          if (!filter) return true;
+          const q = filter.toLowerCase();
+          return (c.code + c.name + c.prerequisite).toLowerCase().includes(q);
+        });
+        total += list.length;
+        const section = document.createElement('section');
+        section.className = 'section';
+        section.id = id;
+        section.innerHTML = sectionTitle(title, blue) + `<div class="grid">${list.map(card).join('')}</div>`;
+        mount.appendChild(section);
+      }
+      countEl.textContent = total + " courses";
+    }
+
+    const input = document.getElementById('q');
+    input.addEventListener('input', e => render(e.target.value.trim()));
+    render();
+  </script>
+</body>
+
+</html>
