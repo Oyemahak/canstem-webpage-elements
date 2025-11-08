@@ -183,6 +183,21 @@
     border-bottom-color: #003566;
   }
 
+  /* CTA button for “Contact Us” */
+  .cta {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 700;
+    background: var(--sub);
+    color: #fff !important;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--sub);
+    transition: background-color .2s ease, border-color .2s ease, transform .06s ease;
+  }
+  .cta:hover { background: #003566; border-color: #003566; }
+  .cta:active { transform: scale(.98); }
+
   @media (max-width: 768px) {
     .fees-container {
       font-size: 16px;
@@ -274,7 +289,7 @@
     <a class="chip" href="#tutoring">New Tutoring Fees</a>
   </nav>
 
-  <!-- NEW: Payment Confirmation section (placed before Full-Time) -->
+  <!-- Payment Confirmation -->
   <details class="section" id="payment-confirmation">
     <summary class="section-head">Payment Confirmation</summary>
     <div class="section-body">
@@ -334,16 +349,12 @@
     </div>
   </details>
 
-  <!-- International Students — Fee Structure -->
+  <!-- INTERNATIONAL STUDENTS — MODIFIED -->
   <details class="section" id="international-students">
-    <summary class="section-head">International Student Tuition & Enrollment Fees</summary>
+    <summary class="section-head">International Student Tuition & Enrollment</summary>
     <div class="section-body">
-
       <p>
-        Below is the fee structure for <strong>International Students</strong> enrolling in individual high school
-        credit
-        courses or the full-time Ontario Secondary School Diploma (OSSD) program.
-        For admission requirements and process, please visit our
+        For international student admissions, application process, and program details, please visit our
         <a href="https://canstemeducation.com/international-student/" target="_blank" rel="noopener">
           International Student page
         </a>.
@@ -351,132 +362,16 @@
 
       <div class="sep"></div>
 
-      <p class="accent">Individual Credit Courses (Online or In-Person)</p>
-      <p>If you would like to take only a few Ontario high school credit courses, please review the applicable fees
-        below.</p>
-
-      <table class="rtable">
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Amount</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-label="Item">Transcript Fee</td>
-            <td data-label="Amount">$250 (one-time)</td>
-            <td data-label="Notes">Applies once, regardless of number of courses selected.</td>
-          </tr>
-          <tr>
-            <td data-label="Item">PLAR Fee (Prior Learning Assessment)</td>
-            <td data-label="Amount">$150 per course stream</td>
-            <td data-label="Notes">
-              One PLAR per subject stream (English, Math, Science, etc.). Once approved, no additional PLAR fee for that
-              stream.
-            </td>
-          </tr>
-          <tr>
-            <td data-label="Item">Assessment Charges</td>
-            <td data-label="Amount">$450</td>
-            <td data-label="Notes">Required for evaluation and academic placement.</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Admin Fee</td>
-            <td data-label="Amount">$95</td>
-            <td data-label="Notes">One-time processing fee.</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Documentation Processing Fee</td>
-            <td data-label="Amount">$250</td>
-            <td data-label="Notes">Covers verification of international academic documents.</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Consultation Fee</td>
-            <td data-label="Amount">$100</td>
-            <td data-label="Notes">Includes academic guidance and planning support.</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Course Fee — Grades 9–10</td>
-            <td data-label="Amount">$449 per course</td>
-            <td data-label="Notes">Ontario high school credit course.</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Course Fee — Grades 11–12</td>
-            <td data-label="Amount">$499 per course</td>
-            <td data-label="Notes">University / college preparation course.</td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div class="sep"></div>
-
-      <p class="accent">Full-Time OSSD Program (Online or In-Person)</p>
+      <!-- Fees removed; replace with CTA -->
+      <p class="accent">Fees & Tuition</p>
+      <p>For the latest tuition and fee details for international students, please contact our admissions team.</p>
       <p>
-        The following fees apply to international students enrolling full-time in the Ontario Secondary School Diploma
-        (OSSD) program.
+        <a href="https://canstemeducation.com/contact-us/" class="cta" target="_blank" rel="noopener">Contact Us</a>
       </p>
 
-      <table class="rtable">
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Amount</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-label="Item">One-Time Registration Fee</td>
-            <td data-label="Amount">$850</td>
-            <td data-label="Notes">Required at the time of admission.</td>
-          </tr>
-          <tr>
-            <td data-label="Item">PLAR (Credit Transfer)</td>
-            <td data-label="Amount">$450 per subject</td>
-            <td data-label="Notes">Assessment and transfer of prior learning from previous education.</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Grades 1–8</td>
-            <td data-label="Amount">$6,350 per year</td>
-            <td data-label="Notes">Full-time tuition for elementary grades.</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Grade 9</td>
-            <td data-label="Amount">$7,350 per year</td>
-            <td data-label="Notes">Full-time tuition for secondary school students.</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Grade 10</td>
-            <td data-label="Amount">$7,350 per year</td>
-            <td data-label="Notes">Full-time tuition for secondary school students.</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Grade 11</td>
-            <td data-label="Amount">$7,850 per year</td>
-            <td data-label="Notes">Full-time tuition for secondary school students.</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Grade 12</td>
-            <td data-label="Amount">$7,850 per year</td>
-            <td data-label="Notes">Full-time tuition for secondary school students.</td>
-          </tr>
-        </tbody>
-      </table>
-
       <div class="sep"></div>
 
-      <p class="accent">Additional Charges</p>
-      <ul class="bullets">
-        <li>Assessment Charges: <strong>$450</strong></li>
-        <li>Admin Fee: <strong>$95</strong></li>
-        <li>Documentation Processing Fee: <strong>$250</strong></li>
-        <li>Consultation Fee: <strong>$100</strong></li>
-      </ul>
-
-      <div class="sep"></div>
-
+      <!-- Keeping helpful non-fee resource -->
       <ul class="list">
         <li class="accent">
           Document Checklist:
@@ -484,7 +379,6 @@
             target="_blank" rel="noopener">Download here</a>
         </li>
       </ul>
-
     </div>
   </details>
 
@@ -575,60 +469,27 @@
     </div>
   </details>
 
+  <!-- IMMIGRATION LOA — MODIFIED -->
   <details class="section" id="immigration-loa">
     <summary class="section-head">Letter of Acceptance for Immigration (Full Time Student)</summary>
     <div class="section-body">
-      <table class="rtable">
-        <thead>
-          <tr>
-            <th>LOI for Immigration (Full Time Student)</th>
-            <th>Amount</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td data-label="Item">One-time Registration Fee</td>
-            <td data-label="Amount">$850</td>
-          </tr>
-          <tr>
-            <td data-label="Item">PLAR</td>
-            <td data-label="Amount">$450</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Grade 1-8</td>
-            <td data-label="Amount">$6,350</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Grade 9</td>
-            <td data-label="Amount">$7,350</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Grade 10</td>
-            <td data-label="Amount">$7,350</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Grade 11</td>
-            <td data-label="Amount">$7,850</td>
-          </tr>
-          <tr>
-            <td data-label="Item">Grade 12</td>
-            <td data-label="Amount">$7,850</td>
-          </tr>
-          <tr>
-            <td data-label="Item"><strong> Letter of Acceptance for Immigration Requirement</strong></td>
-            <td data-label="Amount">One year fee should be paid upfront</td>
-          </tr>
-      </table>
+      <!-- Fees removed; replace with CTA -->
+      <p>
+        If you require a Letter of Acceptance (LOA) for immigration purposes, our admissions team can guide you through
+        the steps and documentation.
+      </p>
+      <p class="accent">Fees & Tuition</p>
+      <p>
+        For LOA-related tuition and fee requirements (including any upfront payments), please contact our team for the
+        most up-to-date information.
+      </p>
+      <p>
+        <a href="https://canstemeducation.com/contact-us/" class="cta" target="_blank" rel="noopener">Contact Us</a>
+      </p>
+
       <div class="sep"></div>
 
-      <ul class="bullets">
-        <li>Assessment charges: $450</li>
-        <li>Admin fee: $95</li>
-        <li>Documentation processing fee: $250</li>
-        <li>Consultation fee: $100</li>
-      </ul>
-      <div class="sep"></div>
-
+      <!-- Keeping helpful non-fee resource -->
       <ul class="list">
         <li class="accent">Document Checklist: <a
             href="https://canstemeducation.com/wp-content/uploads/2025/10/document-checklist-full-time-student.pdf"
