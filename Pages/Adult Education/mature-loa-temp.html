@@ -1,0 +1,56 @@
+<style>
+    /* Scoped: Immigration LOA contact block (no headings, left aligned, small) */
+    #immigration-loa-faq {
+        --sub: #00427c;
+        --ink: #26262B;
+        --border: #e2e8f0;
+
+        font-family: "Open Sans", sans-serif;
+        color: var(--ink);
+        line-height: 1.8;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    #immigration-loa-faq p {
+        margin: 0 0 .9rem;
+    }
+
+    #immigration-loa-faq .cta {
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 600;
+        background: var(--sub);
+        color: #fff;
+        padding: 10px 24px;
+        border-radius: 8px;
+        border: 1px solid var(--sub);
+        transition: transform .1s ease, background-color .2s ease, border-color .2s ease;
+    }
+
+    #immigration-loa-faq .cta:hover {
+        background: #003566;
+        border-color: #003566;
+    }
+
+    #immigration-loa-faq .cta:focus-visible {
+        outline: 2px solid #003566;
+        outline-offset: 2px;
+    }
+
+    @media (max-width: 480px) {
+        #immigration-loa-faq {
+            font-size: 16px;
+        }
+
+        #immigration-loa-faq .cta {
+            padding: 9px 14px;
+            border-radius: 7px;
+        }
+    }
+</style>
+
+<div id="immigration-loa-faq">
+    <p>For the latest fees, requirements, and help with your LOA, please contact our admissions team.</p>
+    <p><a href="https://canstemeducation.com/contact-us/" class="cta" target="_blank" rel="noopener">Contact Us</a></p>
+</div>
