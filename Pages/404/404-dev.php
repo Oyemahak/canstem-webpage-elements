@@ -434,7 +434,7 @@ echo do_shortcode("[hfe_template id='1642']");
     const PRODUCT_BASE="https://canstemeducation.com/product/";
     const productURL=code=>PRODUCT_BASE+String(code||"").toLowerCase()+"/";
 
-/* ---------------- FULL SITE INDEX (Pages + Blogs) ---------------- */
+    /* ---------------- FULL SITE INDEX (Pages + Blogs) ---------------- */
         const SITE_ITEMS = [
             /* PAGES (83) */
             { title: "About Us", url: "/about-2/", category: "Page", keywords: ["about canstem", "school info", "contact team"] },
@@ -448,6 +448,7 @@ echo do_shortcode("[hfe_template id='1642']");
             { title: "Code of Conduct", url: "/code-of-conduct/", category: "Page", keywords: ["rules", "behavior", "conduct"] },
             { title: "Competitive Exam Prep", url: "/competitive-exam-prep/", category: "Page", keywords: ["sat", "gre", "ielts", "pte", "prep"] },
             { title: "Computer Usage Policy", url: "/computer-usage-policy/", category: "Page", keywords: ["technology policy", "device", "acceptable use"] },
+            { title: "Course (Withdrawal / Change / Mode Switch) Request", url: "/change-request/", category: "Page", keywords: ["withdrawal request", "course change request", "course mode change request"] },
             { title: "Contact Us", url: "/contact-us/", category: "Page", keywords: ["contact", "email", "phone"] },
             { title: "Course Coding System", url: "/course-coding-system/", category: "Page", keywords: ["course code", "mhf4u", "mcv4u", "mapping"] },
             { title: "Course/Mode Change Terms & Policy", url: "/course-mode-change-terms-policy/", category: "Page", keywords: ["mode change", "online", "in-class", "terms"] },
@@ -455,6 +456,7 @@ echo do_shortcode("[hfe_template id='1642']");
             { title: "FAQ – Frequently Asked Questions", url: "/faq/", category: "Page", keywords: ["faq", "help", "answers"] },
             { title: "Fee Structure 2025–26", url: "/fee-structure/", category: "Page", keywords: ["fees", "tuition", "price"] },
             { title: "Final Exam and Report Card Information", url: "/final-exam-and-report-card-information/", category: "Page", keywords: ["final exam", "report card", "transcript"] },
+            { title: "Final Exam Request Form", url: "/final-exam-request/", category: "Page", keywords: ["final exam request", "online final exam request form", "exam request form"] },
             { title: "Full-Time School in Canada (Grades 1–12)", url: "/full-time-school/", category: "Page", keywords: ["full time", "in-class", "private school"] },
             { title: "Gallery", url: "/gallery/", category: "Page", keywords: ["photos", "campus", "events"] },
             { title: "High School Credits", url: "/high-school-credits/", category: "Page", keywords: ["credit courses", "grade 9-12", "online", "in-class"] },
@@ -499,6 +501,8 @@ echo do_shortcode("[hfe_template id='1642']");
             { title: "University Open House", url: "/university-open-house/", category: "Page", keywords: ["open house", "university"] },
 
             /* BLOGS (60) */
+            { title: "CanSTEM Principal Shortlisted Among Top 10 School Principals in Canada 2026 | Education Insider Canada", url: "/top-10-school-principals-in-canada-2026/", category: "Blog", keywords: ["top 10 school", "principal", "education insider canada"] },
+            { title: "What is the difference between CanSTEM and other private schools, online and in-person schools?", url: "/why-canstem-is-different/", category: "Blog", keywords: ["canstem and other private schools", "comparison" , "online and in-person schools"] },
             { title: "7 Easy Steps to a Successful Result", url: "/7-easy-steps-to-a-successful-result/", category: "Blog", keywords: ["steps", "success guide"] },
             { title: "Adult Learners Perspective on the Shift from GED Testing", url: "/adult-learners-perspective-on-the-shift-from-ged-testing/", category: "Blog", keywords: ["adult", "ged", "caec"] },
             { title: "All-Inclusive Manual for Finishing the OUAC Application", url: "/all-inclusive-manual-for-finishing-the-ouac-application/", category: "Blog", keywords: ["ouac", "manual", "apply"] },
@@ -559,7 +563,7 @@ echo do_shortcode("[hfe_template id='1642']");
             { title: "Navigating COVID", url: "/navigating-covid/", category: "Blog", keywords: ["covid", "navigation"] },
             { title: "How Private Schools Influence Academic Success and Lifelong Outcomes", url: "/academic-success-and-lifelong-outcomes/", category: "Blog", keywords: ["private school", "success", "lifelong"] }
         ];
-        
+
     function gradeLabelForCode(code,name){const gChar=code?.[3];if(/[1-4]/.test(gChar)){const g=8+Number(gChar);return`Grade ${g}`;}if(/^(ESL|ELD)/.test(code))return name;return"";}
     const toCourseItem=c=>({kind:"course",title:`${c.code} — ${gradeLabelForCode(c.code,c.name)}`,code:c.code,name:c.name,url:productURL(c.code),chip:"Course",chipClass:"course",haystack:(c.code+" "+c.name).toLowerCase(),popular:POPULAR.has(c.code)});
     const toSiteItem=p=>({kind:"content",title:p.title,code:p.title,name:"",url:p.url,chip:p.category,chipClass:p.category==="Blog"?"blog":"page",haystack:(p.title+" "+(p.keywords||[]).join(" ")).toLowerCase()});
