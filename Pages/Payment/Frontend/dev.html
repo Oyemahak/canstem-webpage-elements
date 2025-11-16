@@ -4,228 +4,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Online Payment – CanSTEM</title>
+    <title>Secure Online Payment – CanSTEM Education</title>
 
-    <!-- Clover SDK -->
+    <!-- Clover SDK (Production) -->
     <script src="https://checkout.clover.com/sdk.js"></script>
 
     <style>
+        /* ===== GLOBAL LAYOUT ===== */
         body {
-            background: #f2f4f8;
-            padding: 40px 0;
-            font-family: "Inter", "Open Sans", sans-serif;
+            background: #f4f6f9;
+            font-family: Inter, "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            padding: 30px 0;
         }
 
+        /* Outer wrapper — match Clover mobile width */
+        #clover-wrapper {
+            max-width: 600px;
+            /* close to Clover's mobile width */
+            margin: 0 auto;
+        }
+
+        /* Card-style payment box */
         .payment-wrapper {
-            max-width: 680px;
-            margin: auto;
-            background: #fff;
-            padding: 40px;
-            border-radius: 16px;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+            background: #ffffff;
+            padding: 32px;
+            border-radius: 14px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
         }
 
-        h2 {
-            font-size: 28px;
-            font-weight: 800;
+        /* Heading + subtitle */
+        .payment-wrapper h2 {
+            font-size: 22px;
+            font-weight: 700;
             margin: 0 0 8px;
-            color: #0a1c44;
+            color: #111827;
         }
 
-        p {
-            color: #6d7584;
-            font-size: 15px;
-            margin-bottom: 24px;
-        }
-
-        label {
+        .payment-wrapper p.subtitle {
             font-size: 14px;
-            font-weight: 600;
-            color: #0a1c44;
-            margin: 16px 0 6px;
-            display: block;
+            color: #606a7a;
+            margin: 0 0 20px;
         }
 
+        /* LABELS */
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 600;
+            color: #111827;
+            margin: 16px 0 5px;
+        }
+
+        /* Basic text inputs + textarea */
         input,
         textarea {
             width: 100%;
-            padding: 14px;
-            border-radius: 12px;
-            background: #f9fbfd;
-            border: 1px solid #d4d9e3;
-            font-size: 15px;
+            padding: 12px;
+            font-size: 14px;
+            border-radius: 8px;
+            border: 1px solid #dce1e8;
+            background: #fafbfc;
+            box-sizing: border-box;
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
         }
 
+        input:focus,
+        textarea:focus {
+            background: #ffffff;
+            border-color: #0a1c44;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(10, 28, 68, 0.12);
+        }
+
+        /* Two/three-column rows */
         .row {
             display: flex;
-            gap: 16px;
+            gap: 14px;
+            margin-top: 4px;
         }
 
-        .row div {
+        .row>div {
             flex: 1;
         }
 
-        /* Fix big boxes (your issue) */
+        /* Clover iframe containers */
         .clover-field {
             width: 100%;
-            padding: 12px !important;
-            min-height: 45px !important;
-            /* FIXED */
-            border: 1px solid #d4d9e3;
-            border-radius: 12px;
-            background: #f9fbfd;
+            min-height: 44px !important;
+            padding: 10px !important;
+            border: 1px solid #dce1e8;
+            border-radius: 8px;
+            background: #fafbfc;
             display: flex;
             align-items: center;
+            box-sizing: border-box;
+            transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
         }
 
+        .clover-field:focus-within {
+            background: #ffffff;
+            border-color: #0a1c44;
+            box-shadow: 0 0 0 2px rgba(10, 28, 68, 0.12);
+        }
+
+        /* Pay button */
         .pay-btn {
-            margin-top: 30px;
             width: 100%;
-            padding: 18px;
-            background: #0a1c44;
-            color: white;
-            font-size: 17px;
-            border-radius: 12px;
+            margin-top: 22px;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
             border: none;
-            font-weight: 700;
             cursor: pointer;
+            background: #0a1c44;
+            color: #ffffff;
+            transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
         }
 
+        .pay-btn:hover {
+            background: #000000;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .pay-btn:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* Success + error alerts */
         .success-box,
         .error-box {
-            margin-top: 20px;
-            padding: 16px;
-            border-radius: 10px;
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 14px;
             font-weight: 600;
             display: none;
         }
 
         .success-box {
-            background: #e7ffe9;
-            border-left: 5px solid #2ecc71;
-            color: #1a7d3e;
+            background: #e7ffe8;
+            color: #157d3d;
+            border-left: 4px solid #19b95a;
         }
 
         .error-box {
             background: #ffeaea;
-            border-left: 5px solid #e74c3c;
-            color: #a12e2e;
+            color: #b53333;
+            border-left: 4px solid #e84343;
+        }
+
+        .fine-print {
+            margin-top: 10px;
+            font-size: 12px;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .fine-print strong {
+            font-weight: 700;
+            color: #b91c1c;
+        }
+
+        /* Make layout 1-column on small screens (like Clover hosted checkout) */
+        @media (max-width: 480px) {
+            .payment-wrapper {
+                padding: 22px;
+                border-radius: 10px;
+            }
+
+            .row {
+                flex-direction: column;
+                gap: 0;
+            }
+        }
+
+        /* Important: prevent theme transforms from breaking Clover iframes */
+        #clover-wrapper,
+        #clover-wrapper * {
+            overflow: visible !important;
+            transform: none !important;
+            perspective: none !important;
+            backface-visibility: visible !important;
         }
     </style>
 </head>
 
 <body>
+    <div id="clover-wrapper">
+        <div class="payment-wrapper">
 
-    <div class="payment-wrapper">
+            <h4>Secure card payment</h4>
+            <p class="subtitle">Pay CanSTEM Education fees with your credit or debit card.</p>
 
-        <h2>Secure card payment</h2>
-        <p>Pay CanSTEM Education fees with your credit or debit card.</p>
+            <form id="payment-form" novalidate>
 
-        <form id="payment-form">
+                <!-- Amount -->
+                <label for="amount">Enter amount (CA$)</label>
+                <input type="number" id="amount" min="0.01" step="0.01" required placeholder="CA$0.00">
 
-            <label>Amount (CA$)</label>
-            <input type="number" id="amount" min="1" step="0.01" required>
-
-            <div class="row">
-                <div>
-                    <label>First name</label>
-                    <input type="text" id="fname" required>
+                <!-- Customer info -->
+                <div class="row">
+                    <div>
+                        <label for="fname">First name *</label>
+                        <input type="text" id="fname" required autocomplete="given-name">
+                    </div>
+                    <div>
+                        <label for="lname">Last name *</label>
+                        <input type="text" id="lname" required autocomplete="family-name">
+                    </div>
                 </div>
-                <div>
-                    <label>Last name</label>
-                    <input type="text" id="lname" required>
+
+                <label for="email">Email *</label>
+                <input type="email" id="email" required autocomplete="email">
+
+                <label for="phone">Phone number *</label>
+                <input type="tel" id="phone" required autocomplete="tel">
+
+                <!-- Card info -->
+                <label>Card Number</label>
+                <div id="card-number" class="clover-field"></div>
+
+                <div class="row" style="margin-top: 14px;">
+                    <div>
+                        <label>MM/YY</label>
+                        <div id="card-date" class="clover-field"></div>
+                    </div>
+                    <div>
+                        <label>CVV</label>
+                        <div id="card-cvv" class="clover-field"></div>
+                    </div>
+                    <div>
+                        <label>Postal Code</label>
+                        <div id="card-postal" class="clover-field"></div>
+                    </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div>
-                    <label>Email</label>
-                    <input type="email" id="email" required>
+                <!-- Additional info (exact text you wanted) -->
+                <label for="purpose">Purpose of Payment, Student Name, Subject *</label>
+                <textarea id="purpose" rows="3" required
+                    placeholder="Example: Tuition fee – John Doe – MHF4U – Winter 2025"></textarea>
+
+                <p class="fine-print">
+                    <strong>NO REFUNDS.</strong> All payments are <strong>NON-REFUNDABLE</strong>.<br>
+                    Please forward this receipt to <strong>CanSTEM.education@gmail.com</strong> for school records.
+                </p>
+
+                <button type="submit" id="payBtn" class="pay-btn">Pay Now</button>
+
+                <div id="successBox" class="success-box">✔ Payment Successful! A receipt will be sent to your email.
                 </div>
-                <div>
-                    <label>Phone number</label>
-                    <input type="text" id="phone" required>
-                </div>
-            </div>
+                <div id="errorBox" class="error-box">✘ Payment failed. Please check your details and try again.</div>
 
-            <label>Card number</label>
-            <div id="card-number" class="clover-field"></div>
-
-            <div class="row">
-                <div>
-                    <label>Expiry</label>
-                    <div id="card-date" class="clover-field"></div>
-                </div>
-                <div>
-                    <label>CVV</label>
-                    <div id="card-cvv" class="clover-field"></div>
-                </div>
-                <div>
-                    <label>Postal code</label>
-                    <div id="card-postal" class="clover-field"></div>
-                </div>
-            </div>
-
-            <label>Purpose / student / course</label>
-            <textarea id="purpose" rows="3" required></textarea>
-
-            <button class="pay-btn" id="payBtn">Pay Now</button>
-
-            <div id="successBox" class="success-box">✔ Payment Successful!</div>
-            <div id="errorBox" class="error-box">✘ Payment Failed.</div>
-
-        </form>
+            </form>
+        </div>
     </div>
 
     <script>
-        /* ---- CLOVER INITIALIZE ---- */
+        // ================= CLOVER INITIALIZATION =================
         const clover = new Clover("66b2f38e56e7816ffbc05f3348995e13", {
             merchantId: "318000254739",
             locale: "en-CA"
         });
+
         const elements = clover.elements();
 
-        elements.create("CARD_NUMBER").mount("#card-number");
-        elements.create("CARD_DATE").mount("#card-date");
-        elements.create("CARD_CVV").mount("#card-cvv");
-        elements.create("CARD_POSTAL_CODE").mount("#card-postal");
+        // You can add inside-iframe styles if needed:
+        const iframeStyles = {
+            body: {
+                fontFamily: 'Inter, "Open Sans", sans-serif',
+                fontSize: '14px'
+            },
+            input: {
+                fontSize: '14px'
+            }
+        };
 
-        /* ---- SUBMIT ---- */
-        document.getElementById("payment-form").addEventListener("submit", async (e) => {
+        const cardNumber = elements.create("CARD_NUMBER", iframeStyles);
+        const cardDate = elements.create("CARD_DATE", iframeStyles);
+        const cardCvv = elements.create("CARD_CVV", iframeStyles);
+        const cardPostal = elements.create("CARD_POSTAL_CODE", iframeStyles);
+
+        cardNumber.mount("#card-number");
+        cardDate.mount("#card-date");
+        cardCvv.mount("#card-cvv");
+        cardPostal.mount("#card-postal");
+
+        // ================= FORM SUBMIT HANDLER =================
+        const form = document.getElementById("payment-form");
+        const payBtn = document.getElementById("payBtn");
+        const successEl = document.getElementById("successBox");
+        const errorEl = document.getElementById("errorBox");
+
+        form.addEventListener("submit", async (e) => {
             e.preventDefault();
+            successEl.style.display = "none";
+            errorEl.style.display = "none";
 
-            const tokenResult = await clover.createToken();
-            if (!tokenResult.token) {
-                document.getElementById("errorBox").style.display = "block";
+            const amountVal = parseFloat(document.getElementById("amount").value || "0");
+            if (isNaN(amountVal) || amountVal <= 0) {
+                errorEl.textContent = "Please enter a valid amount (minimum CA$0.01).";
+                errorEl.style.display = "block";
                 return;
             }
 
-            let payload = {
-                token: tokenResult.token,
-                amount: document.getElementById("amount").value,
-                fname: document.getElementById("fname").value,
-                lname: document.getElementById("lname").value,
-                email: document.getElementById("email").value,
-                phone: document.getElementById("phone").value,
-                purpose: document.getElementById("purpose").value,
-            };
+            payBtn.disabled = true;
+            payBtn.textContent = "Processing…";
 
-            let res = await fetch("/wp-json/canstem/charge", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload),
-            });
+            try {
+                const tokenResult = await clover.createToken();
 
-            let data = await res.json();
+                if (!tokenResult || !tokenResult.token) {
+                    let msg = "Card error. Please check your card details.";
+                    if (tokenResult && tokenResult.errors) {
+                        msg = Object.values(tokenResult.errors).join(" ");
+                    }
+                    errorEl.textContent = msg;
+                    errorEl.style.display = "block";
+                    payBtn.disabled = false;
+                    payBtn.textContent = "Pay Now";
+                    return;
+                }
 
-            if (data.success) {
-                document.getElementById("successBox").style.display = "block";
-            } else {
-                document.getElementById("errorBox").style.display = "block";
+                const payload = {
+                    token: tokenResult.token,
+                    amount: amountVal,
+                    email: document.getElementById("email").value,
+                    fname: document.getElementById("fname").value,
+                    lname: document.getElementById("lname").value,
+                    phone: document.getElementById("phone").value,
+                    purpose: document.getElementById("purpose").value
+                };
+
+                const res = await fetch("/wp-json/canstem/charge", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                const data = await res.json();
+
+                if (data && data.success) {
+                    successEl.style.display = "block";
+                    errorEl.style.display = "none";
+
+                    // Optionally clear form except amount/purpose if you want
+                    // form.reset();
+                } else {
+                    errorEl.textContent = "Payment failed on the server. Please try again or contact the school.";
+                    errorEl.style.display = "block";
+                }
+            } catch (err) {
+                console.error("Clover error:", err);
+                errorEl.textContent = "Unexpected error. Please try again.";
+                errorEl.style.display = "block";
             }
+
+            payBtn.disabled = false;
+            payBtn.textContent = "Pay Now";
         });
     </script>
-
 </body>
 
 </html>
