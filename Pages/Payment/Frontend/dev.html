@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Online Payment – CanSTEM</title>
+
+    <!-- Clover SDK -->
+    <script src="https://checkout.clover.com/sdk.js"></script>
+
+    <style>
+        body {
+            background: #f2f4f8;
+            padding: 40px 0;
+            font-family: "Inter", "Open Sans", sans-serif;
+        }
+
+        .payment-wrapper {
+            max-width: 680px;
+            margin: auto;
+            background: #fff;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        h2 {
+            font-size: 28px;
+            font-weight: 800;
+            margin: 0 0 8px;
+            color: #0a1c44;
+        }
+
+        p {
+            color: #6d7584;
+            font-size: 15px;
+            margin-bottom: 24px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0a1c44;
+            margin: 16px 0 6px;
+            display: block;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            background: #f9fbfd;
+            border: 1px solid #d4d9e3;
+            font-size: 15px;
+        }
+
+        .row {
+            display: flex;
+            gap: 16px;
+        }
+
+        .row div {
+            flex: 1;
+        }
+
+        /* Fix big boxes (your issue) */
+        .clover-field {
+            width: 100%;
+            padding: 12px !important;
+            min-height: 45px !important;
+            /* FIXED */
+            border: 1px solid #d4d9e3;
+            border-radius: 12px;
+            background: #f9fbfd;
+            display: flex;
+            align-items: center;
+        }
+
+        .pay-btn {
+            margin-top: 30px;
+            width: 100%;
+            padding: 18px;
+            background: #0a1c44;
+            color: white;
+            font-size: 17px;
+            border-radius: 12px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .success-box,
+        .error-box {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .success-box {
+            background: #e7ffe9;
+            border-left: 5px solid #2ecc71;
+            color: #1a7d3e;
+        }
+
+        .error-box {
+            background: #ffeaea;
+            border-left: 5px solid #e74c3c;
+            color: #a12e2e;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="payment-wrapper">
+
+        <h2>Secure card payment</h2>
+        <p>Pay CanSTEM Education fees with your credit or debit card.</p>
+
+        <form id="payment-form">
+
+            <label>Amount (CA$)</label>
+            <input type="number" id="amount" min="1" step="0.01" required>
+
+            <div class="row">
+                <div>
+                    <label>First name</label>
+                    <input type="text" id="fname" required>
+                </div>
+                <div>
+                    <label>Last name</label>
+                    <input type="text" id="lname" required>
+                </div>
+            </div>
+
+            <div class="row">
+                <div>
+                    <label>Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div>
+                    <label>Phone number</label>
+                    <input type="text" id="phone" required>
+                </div>
+            </div>
+
+            <label>Card number</label>
+            <div id="card-number" class="clover-field"></div>
+
+            <div class="row">
+                <div>
+                    <label>Expiry</label>
+                    <div id="card-date" class="clover-field"></div>
+                </div>
+                <div>
+                    <label>CVV</label>
+                    <div id="card-cvv" class="clover-field"></div>
+                </div>
+                <div>
+                    <label>Postal code</label>
+                    <div id="card-postal" class="clover-field"></div>
+                </div>
+            </div>
+
+            <label>Purpose / student / course</label>
+            <textarea id="purpose" rows="3" required></textarea>
+
+            <button class="pay-btn" id="payBtn">Pay Now</button>
+
+            <div id="successBox" class="success-box">✔ Payment Successful!</div>
+            <div id="errorBox" class="error-box">✘ Payment Failed.</div>
+
+        </form>
+    </div>
+
+    <script>
+        /* ---- CLOVER INITIALIZE ---- */
+        const clover = new Clover("66b2f38e56e7816ffbc05f3348995e13", {
+            merchantId: "318000254739",
+            locale: "en-CA"
+        });
+        const elements = clover.elements();
+
+        elements.create("CARD_NUMBER").mount("#card-number");
+        elements.create("CARD_DATE").mount("#card-date");
+        elements.create("CARD_CVV").mount("#card-cvv");
+        elements.create("CARD_POSTAL_CODE").mount("#card-postal");
+
+        /* ---- SUBMIT ---- */
+        document.getElementById("payment-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const tokenResult = await clover.createToken();
+            if (!tokenResult.token) {
+                document.getElementById("errorBox").style.display = "block";
+                return;
+            }
+
+            let payload = {
+                token: tokenResult.token,
+                amount: document.getElementById("amount").value,
+                fname: document.getElementById("fname").value,
+                lname: document.getElementById("lname").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                purpose: document.getElementById("purpose").value,
+            };
+
+            let res = await fetch("/wp-json/canstem/charge", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
+
+            let data = await res.json();
+
+            if (data.success) {
+                document.getElementById("successBox").style.display = "block";
+            } else {
+                document.getElementById("errorBox").style.display = "block";
+            }
+        });
+    </script>
+
+</body>
+
+</html>
