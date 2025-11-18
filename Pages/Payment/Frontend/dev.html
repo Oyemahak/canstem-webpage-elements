@@ -1,168 +1,349 @@
 <div id="canstem-payment-container">
 
     <style>
-        /* ==========================================================
-   GLOBAL + ELEMENTOR FIXES (DO NOT EDIT)
-========================================================== */
-        #canstem-payment-container * {
+        /* ============================================
+   CANSTEM PAYMENT FORM — PREMIUM UI (STYLE A)
+   Matches Online Exam Form UI exactly
+   ============================================ */
+
+        /* Force white background only on this form */
+        html:has(#cspay-wrap),
+        body:has(#cspay-wrap),
+        .elementor-section:has(#cspay-wrap) {
+            background: #fff !important;
+        }
+
+        /* Wrapper ---------------------------- */
+        #cspay-wrap {
+            --ink: #0b1324;
+            --sub: #475569;
+            --line: #dbe1e9;
+            --primary: #001161;
+            --primary-ink: #fff;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+            max-width: 650px;
+            margin: auto;
+            padding: 20px;
+            color: var(--ink);
+        }
+
+        /* Card ------------------------------ */
+        #cspay-card {
+            background: #fff;
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 10px 28px rgba(2, 6, 23, .08);
+        }
+
+        /* Chip header ------------------------ */
+        .cspay-chip {
+            display: inline-block;
+            background: #eef2ff;
+            border: 1px solid #dce3ff;
+            color: #1e1b4b;
+            padding: 6px 14px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 999px;
+            margin-bottom: 18px;
+        }
+
+        /* Labels ----------------------------- */
+        .cspay-label {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--ink);
+        }
+
+        .cspay-req::after {
+            content: " *";
+            color: #e11d48;
+        }
+
+        /* Input + textarea + select ---------- */
+        .cspay-input {
+            width: 100%;
+            min-height: 52px;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            background: #fff;
+            font-size: 18px;
+            outline: none;
+            transition: border-color .15s, box-shadow .15s;
+        }
+
+        .cspay-input::placeholder {
+            color: #94a3b8;
+        }
+
+        .cspay-input:focus {
+            border-color: #4169e1;
+            box-shadow: 0 0 0 3px color-mix(in srgb, #4169e1 25%, transparent);
+        }
+
+        /* Select dropdown arrow -------------- */
+        select.cspay-input {
+            appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="%23001161" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 18px 18px;
+            padding-right: 48px;
+        }
+
+        /* Textarea --------------------------- */
+        textarea.cspay-input {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        /* Grid system (matching exam UI) ----- */
+        .cspay-row {
+            display: grid;
+            gap: 18px;
+            grid-template-columns: repeat(2, 1fr);
+            margin-bottom: 16px;
+        }
+
+        @media(max-width:720px) {
+            .cspay-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Clover iframe containers ------------ */
+        .cspay-clover-field {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            background: #fff;
+            min-height: 52px;
+            display: flex;
+            align-items: center;
+            transition: border-color .15s, box-shadow .15s;
+        }
+
+        .cspay-clover-field:focus-within {
+            border-color: #4169e1 !important;
+            box-shadow: 0 0 0 3px color-mix(in srgb, #4169e1 25%, transparent);
+        }
+
+        /* Allow iframe to be interactive even inside Elementor */
+        #cspay-wrap iframe {
+            pointer-events: auto !important;
+        }
+
+        /* Elementor override */
+        #cspay-wrap,
+        #cspay-wrap * {
             transform: none !important;
             perspective: none !important;
             backface-visibility: visible !important;
             overflow: visible !important;
         }
 
-        /* Outer wrapper */
-        #clover-wrapper {
-            max-width: 600px;
-            margin: 0 auto;
+        /* Divider ------------------------------ */
+        .cspay-sep {
+            border: none;
+            border-top: 1px dashed #e2e8f0;
+            margin: 18px 0;
         }
 
-        /* Card box */
-        .payment-wrapper {
-            background: #ffffff;
-            padding: 32px;
-            border-radius: 14px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+        /* Fine print --------------------------- */
+        .cspay-fine {
+            font-size: 16px;
+            color: #475569;
+            margin-top: 8px;
+            line-height: 1.5;
         }
 
-        /* Labels */
-        label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            margin: 14px 0 6px;
+        .cspay-fine strong {
+            color: #b91c1c;
         }
 
-        /* Inputs */
-        input,
-        textarea {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #dce1e8;
-            background: #fafbfc;
-        }
-
-        input:focus,
-        textarea:focus,
-        .clover-field:focus-within {
-            background: #fff !important;
-            border-color: #0a1c44 !important;
-            box-shadow: 0 0 0 2px rgba(10, 28, 68, .15);
-        }
-
-        /* Rows */
-        .row {
-            display: flex;
-            gap: 14px;
-        }
-
-        .row>div {
-            flex: 1;
-        }
-
-        /* Clover iframe containers */
-        .clover-field {
-            width: 100%;
-            min-height: 50px;
-            border: 1px solid #dce1e8;
-            border-radius: 10px;
-            background: #fafbfc;
-            padding: 12px;
-            display: flex;
-            align-items: center;
-        }
-
-        /* Pay Now button */
-        .pay-btn {
+        /* Buttons ------------------------------ */
+        #cspay-btn {
             width: 100%;
             padding: 16px;
+            margin-top: 18px;
+            background: var(--primary);
+            color: var(--primary-ink);
+            font-size: 18px;
+            font-weight: 800;
             border: none;
-            border-radius: 10px;
-            background: #0a1c44;
-            color: white;
-            font-size: 16px;
-            font-weight: 600;
-            margin-top: 24px;
+            border-radius: 12px;
             cursor: pointer;
         }
 
-        /* Responsive */
-        @media (max-width: 480px) {
-            .row {
-                flex-direction: column;
-            }
+        #cspay-btn:hover {
+            filter: brightness(1.06);
+        }
+
+        #cspay-btn:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        /* Success / Error messages ----------- */
+        .cspay-msg {
+            margin-top: 16px;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 700;
+            display: none;
+        }
+
+        .cspay-success {
+            background: #ecfdf5;
+            border-left: 6px solid #059669;
+            color: #065f46;
+        }
+
+        .cspay-error {
+            background: #fef2f2;
+            border-left: 6px solid #dc2626;
+            color: #991b1b;
         }
     </style>
 
-    <div id="clover-wrapper">
-        <div class="payment-wrapper">
+    <!-- ===================== CANSTEM PAYMENT FORM ===================== -->
+    <div id="cspay-wrap">
+        <section id="cspay-card">
+            <!-- Header chip -->
+            <span class="cspay-chip">Secure card payment</span>
+            <p style="margin: 6px 0 20px; font-size: 16px; color: #475569;">
+                Pay CanSTEM Education fees securely with your credit or debit card.
+            </p>
 
-            <h5>Secure card payment</h5>
-            <p style="color:#555;">Pay CanSTEM Education fees securely.</p>
+            <!-- FORM -->
+            <form id="cspay-form" novalidate>
 
-            <form id="payment-form">
+                <!-- AMOUNT + TOTAL SUMMARY -->
+                <div style="margin-bottom: 18px;">
+                    <label class="cspay-label cspay-req" for="cspay-amount">Enter amount (CA$)</label>
+                    <input id="cspay-amount" name="amount" type="number" min="0.01" step="0.01" class="cspay-input"
+                        placeholder="0.00" required />
+                </div>
 
-                <label>Enter amount (CA$)</label>
-                <input id="amount" type="number" min="0.01" step="0.01" required>
-
-                <div class="row">
+                <div class="cspay-row" style="margin-bottom: 4px;">
                     <div>
-                        <label>First name *</label>
-                        <input id="fname" required>
+                        <div class="cspay-label" style="font-size: 16px;">Order summary</div>
+                        <p class="cspay-fine" id="cspay-summary-text">
+                            Tuition / registration / other school fees.
+                        </p>
                     </div>
-                    <div>
-                        <label>Last name *</label>
-                        <input id="lname" required>
+                    <div style="text-align: right; align-self: flex-end;">
+                        <div class="cspay-label" style="font-size: 16px;">Total</div>
+                        <div class="cspay-label" id="cspay-total-display">CA$0.00</div>
                     </div>
                 </div>
 
-                <label>Email *</label>
-                <input id="email" type="email" required>
+                <hr class="cspay-sep" />
 
-                <label>Phone number *</label>
-                <input id="phone" required>
+                <!-- CUSTOMER INFORMATION -->
+                <p class="cspay-label" style="font-size: 16px; margin-bottom: 8px;">Customer information</p>
 
-                <!-- CLOVER CARD FIELDS — FINAL, CLEAN, CORRECT -->
-                <label>Card Number</label>
-                <div id="clover-card-number" class="clover-field"></div>
-
-                <div class="row">
+                <div class="cspay-row">
                     <div>
-                        <label>Expiry</label>
-                        <div id="clover-card-date" class="clover-field"></div>
+                        <label class="cspay-label cspay-req" for="cspay-fname">First name</label>
+                        <input id="cspay-fname" name="firstName" class="cspay-input" autocomplete="given-name"
+                            placeholder="First name" required />
                     </div>
                     <div>
-                        <label>CVV</label>
-                        <div id="clover-card-cvv" class="clover-field"></div>
-                    </div>
-                    <div>
-                        <label>Postal Code</label>
-                        <div id="clover-card-postal" class="clover-field"></div>
+                        <label class="cspay-label cspay-req" for="cspay-lname">Last name</label>
+                        <input id="cspay-lname" name="lastName" class="cspay-input" autocomplete="family-name"
+                            placeholder="Last name" required />
                     </div>
                 </div>
 
-                <label>Purpose of Payment, Student Name, Subject *</label>
-                <textarea id="purpose" rows="3" required></textarea>
+                <div class="cspay-row">
+                    <div>
+                        <label class="cspay-label cspay-req" for="cspay-email">Email</label>
+                        <input id="cspay-email" name="email" type="email" class="cspay-input"
+                            placeholder="name@example.com" autocomplete="email" required />
+                    </div>
+                    <div>
+                        <label class="cspay-label cspay-req" for="cspay-phone">Phone number</label>
+                        <input id="cspay-phone" name="phone" type="tel" class="cspay-input"
+                            placeholder="+1 416 555 5555" autocomplete="tel" required />
+                    </div>
+                </div>
 
-                <p style="font-size:12px;color:#444;margin-top:10px;">
-                    <b style="color:#b91c1c;">NO REFUNDS.</b> All payments are NON-REFUNDABLE.<br>
-                    Email receipt to <b>CanSTEM.education@gmail.com</b>.
+                <hr class="cspay-sep" />
+
+                <!-- CARD INFORMATION -->
+                <p class="cspay-label" style="font-size: 16px; margin-bottom: 8px;">Card information</p>
+
+                <!-- Card number -->
+                <div style="margin-bottom: 16px;">
+                    <label class="cspay-label" for="cspay-card-number">Card Number</label>
+                    <div id="cspay-card-number" class="cspay-clover-field"></div>
+                </div>
+
+                <!-- Expiry / CVV / Postal -->
+                <div class="cspay-row">
+                    <div>
+                        <label class="cspay-label" for="cspay-card-date">Expiry (MM/YY)</label>
+                        <div id="cspay-card-date" class="cspay-clover-field"></div>
+                    </div>
+                    <div>
+                        <label class="cspay-label" for="cspay-card-cvv">CVV</label>
+                        <div id="cspay-card-cvv" class="cspay-clover-field"></div>
+                    </div>
+                    <div>
+                        <label class="cspay-label" for="cspay-card-postal">Postal Code</label>
+                        <div id="cspay-card-postal" class="cspay-clover-field"></div>
+                    </div>
+                </div>
+
+                <hr class="cspay-sep" />
+
+                <!-- ADDITIONAL INFO -->
+                <p class="cspay-label" style="font-size: 16px; margin-bottom: 8px;">Additional information</p>
+
+                <div>
+                    <label class="cspay-label cspay-req" for="cspay-purpose">
+                        Purpose of Payment, Student Name, Subject
+                    </label>
+                    <textarea id="cspay-purpose" name="purpose" class="cspay-input" required
+                        placeholder="Example: Tuition fee – John Doe – MHF4U – Winter 2025"></textarea>
+                </div>
+
+                <!-- FINE PRINT -->
+                <p class="cspay-fine">
+                    <strong>NO REFUNDS.</strong>
+                    All payments are <strong>NON-REFUNDABLE</strong>.<br />
+                    Please forward this receipt to
+                    <strong>CanSTEM.education@gmail.com</strong> for school records.
                 </p>
 
-                <button class="pay-btn" id="payBtn">Pay Now</button>
+                <!-- BUTTON -->
+                <button id="cspay-btn" type="submit">Pay Now</button>
 
-                <div id="successBox" style="display:none;color:green;margin-top:15px;">✔ Payment Successful</div>
-                <div id="errorBox" style="display:none;color:red;margin-top:15px;">✘ Payment Failed</div>
+                <!-- STATUS MESSAGES -->
+                <div id="cspay-success" class="cspay-msg cspay-success">
+                    ✅ Payment successful. A receipt will be emailed to you.
+                </div>
+                <div id="cspay-error" class="cspay-msg cspay-error">
+                    ⚠️ Payment could not be completed. Please check your details and try again.
+                </div>
 
             </form>
-
-        </div>
+        </section>
     </div>
 
     <script src="https://checkout.clover.com/sdk.js"></script>
 
     <script>
+        /* ==========================================================
+   CLOVER INITIALIZATION
+========================================================== */
+
         const clover = new Clover("66b2f38e56e7816ffbc05f3348995e13", {
             merchantId: "318000254739",
             locale: "en-CA"
@@ -170,44 +351,170 @@
 
         const elements = clover.elements();
 
-        elements.create("CARD_NUMBER").mount("#clover-card-number");
-        elements.create("CARD_DATE").mount("#clover-card-date");
-        elements.create("CARD_CVV").mount("#clover-card-cvv");
-        elements.create("CARD_POSTAL_CODE").mount("#clover-card-postal");
+        const iframeStyles = {
+            body: {
+                fontFamily: 'Inter, "Open Sans", sans-serif',
+                fontSize: "15px",
+                color: "#111"
+            },
+            input: {
+                fontSize: "15px",
+                padding: "14px"
+            }
+        };
 
-        document.getElementById("payment-form").addEventListener("submit", async (e) => {
-            e.preventDefault();
+        // Create Clover Elements
+        const cardNumber = elements.create("CARD_NUMBER", iframeStyles);
+        const cardDate = elements.create("CARD_DATE", iframeStyles);
+        const cardCvv = elements.create("CARD_CVV", iframeStyles);
+        const cardPostal = elements.create("CARD_POSTAL_CODE", iframeStyles);
 
-            document.getElementById("successBox").style.display = "none";
-            document.getElementById("errorBox").style.display = "none";
+        // Mount them
+        cardNumber.mount("#cspay-card-number");
+        cardDate.mount("#cspay-card-date");
+        cardCvv.mount("#cspay-card-cvv");
+        cardPostal.mount("#cspay-card-postal");
 
-            const token = await clover.createToken();
-            if (!token.token) {
-                document.getElementById("errorBox").innerText = "Card error";
-                document.getElementById("errorBox").style.display = "block";
+
+        /* ==========================================================
+           UI ELEMENTS
+        ========================================================== */
+
+        const form = document.getElementById("cspay-form");
+        const btn = document.getElementById("cspay-btn");
+        const amountInput = document.getElementById("cspay-amount");
+        const summaryTotal = document.getElementById("cspay-total-display");
+
+        const successMsg = document.getElementById("cspay-success");
+        const errorMsg = document.getElementById("cspay-error");
+
+
+        /* ==========================================================
+           LIVE TOTAL PRICE UPDATE
+        ========================================================== */
+
+        function updateTotal() {
+            let amt = parseFloat(amountInput.value);
+
+            if (!amt || amt <= 0) {
+                summaryTotal.textContent = "CA$0.00";
                 return;
             }
 
-            const res = await fetch("/wp-json/canstem/charge", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    token: token.token,
-                    amount: document.getElementById("amount").value,
-                    email: document.getElementById("email").value,
-                    fname: document.getElementById("fname").value,
-                    lname: document.getElementById("lname").value,
-                    phone: document.getElementById("phone").value,
-                    purpose: document.getElementById("purpose").value
-                })
-            });
+            summaryTotal.textContent = `CA$${amt.toFixed(2)}`;
+        }
 
-            const data = await res.json();
-            if (data.success) {
-                document.getElementById("successBox").style.display = "block";
-            } else {
-                document.getElementById("errorBox").style.display = "block";
+        amountInput.addEventListener("input", updateTotal);
+        updateTotal();
+
+
+        /* ==========================================================
+           HANDLE FORM SUBMISSION
+        ========================================================== */
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            successMsg.style.display = "none";
+            errorMsg.style.display = "none";
+
+            // Validate amount
+            let amountVal = parseFloat(amountInput.value);
+            if (!amountVal || amountVal <= 0) {
+                errorMsg.textContent = "Please enter a valid amount.";
+                errorMsg.style.display = "block";
+                return;
             }
+
+            // Disable button
+            btn.disabled = true;
+            btn.textContent = "Processing…";
+
+
+            /* ----------------------------------------------------------
+               STEP 1 — CREATE CLOVER TOKEN
+            ---------------------------------------------------------- */
+            let tokenResult;
+            try {
+                tokenResult = await clover.createToken();
+            } catch (e) {
+                console.error("Clover error:", e);
+                errorMsg.textContent = "Could not validate card. Try another card.";
+                errorMsg.style.display = "block";
+                btn.disabled = false;
+                btn.textContent = "Pay Now";
+                return;
+            }
+
+            if (!tokenResult || !tokenResult.token) {
+                errorMsg.textContent = "Card error. Please re-check card details.";
+                errorMsg.style.display = "block";
+                btn.disabled = false;
+                btn.textContent = "Pay Now";
+                return;
+            }
+
+
+            /* ----------------------------------------------------------
+               STEP 2 — BUILD PAYMENT PAYLOAD
+            ---------------------------------------------------------- */
+
+            const payload = {
+                token: tokenResult.token,
+                amount: amountVal,
+
+                // Customer info
+                firstName: document.getElementById("cspay-fname").value,
+                lastName: document.getElementById("cspay-lname").value,
+                email: document.getElementById("cspay-email").value,
+                phone: document.getElementById("cspay-phone").value,
+
+                // Purpose (invoice details)
+                purpose: document.getElementById("cspay-purpose").value
+            };
+
+
+            /* ----------------------------------------------------------
+               STEP 3 — SEND TO WORDPRESS API (PHP)
+            ---------------------------------------------------------- */
+            let response;
+            try {
+                response = await fetch("/wp-json/canstem/charge", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+            } catch (e) {
+                console.error("Server error:", e);
+                errorMsg.textContent = "Unable to connect to payment server.";
+                errorMsg.style.display = "block";
+                btn.disabled = false;
+                btn.textContent = "Pay Now";
+                return;
+            }
+
+            const result = await response.json();
+
+
+            /* ----------------------------------------------------------
+               STEP 4 — HANDLE RESPONSE
+            ---------------------------------------------------------- */
+
+            if (result && result.success) {
+                successMsg.style.display = "block";
+                errorMsg.style.display = "none";
+
+                // Optionally clear form
+                // form.reset();
+                // updateTotal();
+            } else {
+                errorMsg.textContent =
+                    result.error || "Payment failed. Please try again.";
+                errorMsg.style.display = "block";
+            }
+
+            btn.disabled = false;
+            btn.textContent = "Pay Now";
         });
     </script>
 
