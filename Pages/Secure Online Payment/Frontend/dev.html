@@ -40,13 +40,6 @@
             box-sizing: border-box;
         }
 
-        /* responsive padding */
-        @media (max-width: 780px) {
-            #cspay-wrap {
-                padding: 18px 14px 20px;
-            }
-        }
-
         /* chip */
         .cspay-chip {
             display: inline-flex;
@@ -74,21 +67,13 @@
             margin: 2px 0 20px;
         }
 
-        /* chip mobile */
-        @media (max-width: 780px) {
-            .cspay-chip {
-                padding: 8px 12px;
-                border-radius: 16px;
-                font-size: 16px;
-            }
-        }
-
-        /* labels */
-        .cspay-label {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: var(--ink);
+        /* labels (override Elementor + make bold/black) */
+        #cspay-wrap label,
+        #cspay-wrap .cspay-label {
+            color: #050816 !important;
+            font-weight: 700 !important;
+            font-family: "Open Sans", system-ui, sans-serif !important;
+            font-size: 16px !important;
         }
 
         /* required marker */
@@ -99,9 +84,9 @@
 
         /* section titles */
         .cspay-section-title {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 700;
-            color: #111827;
+            color: #001161;
             margin: 8px 0 14px;
         }
 
@@ -130,20 +115,22 @@
             }
         }
 
-        /* generic inputs */
+        /* generic inputs – bigger, bold, with soft shadow */
         .cspay-input {
+            margin-top:8px;
             width: 100%;
-            height: 40px !important;
-            padding: 8px 12px !important;
+            height: 48px !important;
+            padding: 10px 14px !important;
             border: 1px solid #cbd5e1 !important;
             border-radius: 12px !important;
             font-size: 16px !important;
-            line-height: 1.3 !important;
+            font-weight: 600 !important;
+            line-height: 1.4 !important;
             background: #ffffff !important;
-            color: var(--ink) !important;
+            color: #0b1324 !important;
             outline: none !important;
-            box-shadow: none !important;
-            transition: border-color 0.15s, box-shadow 0.15s;
+            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08) !important;
+            transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
         }
 
         /* placeholders */
@@ -152,10 +139,13 @@
             font-size: 15px;
         }
 
-        /* focus state */
+        /* focus state – strong glow */
         .cspay-input:focus {
-            border-color: #4169e1 !important;
-            box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.25) !important;
+            border-color: #2563eb !important;
+            box-shadow:
+                0 0 0 2px rgba(37, 99, 235, 0.3),
+                0 4px 10px rgba(15, 23, 42, 0.15) !important;
+            background: #ffffff !important;
         }
 
         /* textarea */
@@ -164,57 +154,74 @@
             resize: vertical !important;
         }
 
-        /* amount label */
+        /* amount label – slightly bigger emphasis */
         .cspay-amount-label {
-            font-size: 17px;
-            font-weight: 700;
-            color: #001161;
+            font-size: 17px !important;
+            font-weight: 800 !important;
+            color: #001161 !important;
         }
 
-        /* amount input */
+        /* amount input – bigger, bold, yellow highlight */
         .cspay-amount-input {
-            font-size: 17px !important;
-            font-weight: 600;
+            font-size: 18px !important;
+            font-weight: 700 !important;
+            height: 52px !important;
             border-width: 2px !important;
+            border-color: #eab308 !important;
+            box-shadow:
+                0 0 0 2px rgba(250, 204, 21, 0.4),
+                0 4px 10px rgba(15, 23, 42, 0.16) !important;
+        }
+
+        .cspay-amount-input:focus {
+            border-color: #facc15 !important;
+            box-shadow:
+                0 0 0 3px rgba(250, 204, 21, 0.55),
+                0 6px 14px rgba(15, 23, 42, 0.25) !important;
         }
 
         /* amount mobile */
         @media (max-width: 780px) {
             .cspay-amount-label {
-                font-size: 16px;
+                font-size: 16px !important;
             }
 
             .cspay-amount-input {
-                font-size: 16px !important;
+                font-size: 17px !important;
             }
         }
 
-        /* clover box */
+        /* clover box – match input height + shadow */
         .cspay-clover-box {
+            margin-top: 8px;
             width: 100%;
-            padding: 6px 10px;
+            padding: 8px 12px;
             border: 1px solid #cbd5e1;
             border-radius: 12px;
             background: #ffffff;
             display: flex;
             align-items: center;
-            min-height: 40px;
-            transition: border-color 0.15s, box-shadow 0.15s;
+            min-height: 48px;
+            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+            transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
         }
 
         /* clover iframe */
         .cspay-clover-box iframe {
             width: 100% !important;
-            height: 24px !important;
-            min-height: 24px !important;
+            height: 26px !important;
+            min-height: 26px !important;
             margin: 0 !important;
             padding: 0 !important;
         }
 
         /* clover focus */
         .cspay-clover-box:focus-within {
-            border-color: #4169e1;
-            box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.25);
+            border-color: #2563eb;
+            box-shadow:
+                0 0 0 2px rgba(37, 99, 235, 0.3),
+                0 4px 10px rgba(15, 23, 42, 0.15);
+            background: #ffffff;
         }
 
         /* iframe reset */
@@ -242,6 +249,7 @@
             border-radius: 14px;
             padding: 14px 18px 12px;
             margin-bottom: 10px;
+            box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
         }
 
         /* summary amount */
@@ -296,6 +304,7 @@
             font-weight: 800;
             border-radius: 12px;
             cursor: pointer;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
         }
 
         /* button hover */
@@ -307,6 +316,7 @@
         #cspay-btn:disabled {
             opacity: 0.55;
             cursor: not-allowed;
+            box-shadow: none;
         }
 
         /* override elementor button */
@@ -338,6 +348,91 @@
             background: #fef2f2;
             border-left: 6px solid #dc2626;
             color: #991b1b;
+        }
+
+        /* mobile dark theme */
+        @media (max-width: 780px) {
+            body {
+                background: #020617;
+            }
+
+            #cspay-wrap {
+                background: radial-gradient(circle at top, #0b1120, #020617);
+                border-color: #111827;
+                color: #e5e7eb;
+            }
+
+            #cspay-subtext {
+                color: #cbd5f5;
+            }
+
+            .cspay-chip {
+                background: #022c22;
+                border-color: #16a34a;
+                color: #bbf7d0;
+            }
+
+            #cspay-wrap label,
+            #cspay-wrap .cspay-label,
+            .cspay-section-title {
+                color: #e5e7eb !important;
+            }
+
+            .cspay-input {
+                margin-top: 8px;
+                background: #020617 !important;
+                border-color: #666 !important;
+                color: #e5e7eb !important;
+                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.75) !important;
+            }
+
+            .cspay-input::placeholder {
+                color: #666;
+            }
+
+            .cspay-input:focus {
+                border-color: #38bdf8 !important;
+                box-shadow:
+                    0 0 0 2px rgba(56, 189, 248, 0.4),
+                    0 4px 12px rgba(15, 23, 42, 0.9) !important;
+                background: #020617 !important;
+            }
+
+            .cspay-clover-box {
+                background: #020617;
+                border-color: #666;
+                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.8);
+            }
+
+            .cspay-clover-box:focus-within {
+                border-color: #38bdf8;
+                box-shadow:
+                    0 0 0 2px rgba(56, 189, 248, 0.4),
+                    0 4px 12px rgba(15, 23, 42, 0.9);
+            }
+
+            #cspay-summary {
+                background: #020617;
+                border-color: #1d4ed8;
+                box-shadow: 0 4px 16px rgba(15, 23, 42, 1);
+            }
+
+            .cspay-total-label {
+                color: #e5e7eb;
+            }
+
+            .cspay-total-value {
+                color: #facc15;
+            }
+
+            #cspay-btn {
+                background: #1d4ed8 !important;
+                box-shadow: 0 8px 22px rgba(15, 23, 42, 0.95);
+            }
+
+            #cspay-btn:hover {
+                filter: brightness(1.08);
+            }
         }
     </style>
 </head>
@@ -532,7 +627,7 @@
             return "CA$" + val.toFixed(2);
         }
 
-        /* total + button update */
+        /* total + button update (Finish Payment + amount) */
         function updateTotal() {
             let val = parseFloat(amountInput.value);
             if (!val || val <= 0) {
@@ -541,7 +636,7 @@
             } else {
                 const formatted = formatAmount(val);
                 totalDisplay.textContent = formatted;
-                btn.textContent = "Pay " + formatted;
+                btn.textContent = "Finish Payment (" + formatted + ")";
             }
         }
 
