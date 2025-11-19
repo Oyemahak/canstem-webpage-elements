@@ -7,19 +7,16 @@
     <title>Secure Online Payment – CanSTEM</title>
 
     <style>
-        /* base font */
         html,
         body {
             font-family: "Open Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         }
 
-        /* container */
         #cspay-container {
             width: 100%;
             max-width: 1200px;
         }
 
-        /* card wrapper */
         #cspay-wrap {
             --ink: #0b1324;
             --sub: #475569;
@@ -34,13 +31,11 @@
             color: var(--ink);
         }
 
-        /* box sizing inside card */
         #cspay-wrap,
         #cspay-wrap * {
             box-sizing: border-box;
         }
 
-        /* chip */
         .cspay-chip {
             display: inline-flex;
             align-items: center;
@@ -55,19 +50,17 @@
             margin-bottom: 16px;
         }
 
-        /* chip icon */
         .cspay-chip span.cspay-chip-icon {
             font-size: 18px;
         }
 
-        /* chip subtext */
         #cspay-subtext {
             font-size: 16px;
             color: var(--sub);
             margin: 2px 0 20px;
         }
 
-        /* labels (override Elementor + make bold/black) */
+        /* only labels that remain (amount + clover) */
         #cspay-wrap label,
         #cspay-wrap .cspay-label {
             color: #050816 !important;
@@ -76,13 +69,11 @@
             font-size: 16px !important;
         }
 
-        /* required marker */
         .cspay-req::after {
             content: " *";
             color: #d61f1f;
         }
 
-        /* section titles */
         .cspay-section-title {
             font-size: 18px;
             font-weight: 700;
@@ -90,7 +81,6 @@
             margin: 8px 0 14px;
         }
 
-        /* two-column grid */
         .cspay-row {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -98,7 +88,6 @@
             margin-bottom: 16px;
         }
 
-        /* three-column grid */
         .cspay-row-3 {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -106,7 +95,6 @@
             margin-bottom: 16px;
         }
 
-        /* grid mobile */
         @media (max-width: 780px) {
 
             .cspay-row,
@@ -115,53 +103,48 @@
             }
         }
 
-        /* generic inputs – bigger, bold, with soft shadow */
+        /* desktop/tablet generic input style */
         .cspay-input {
-            margin-top:8px;
+            margin-top: 6px;
             width: 100%;
-            height: 48px !important;
+            height: 46px !important;
             padding: 10px 14px !important;
             border: 1px solid #cbd5e1 !important;
             border-radius: 12px !important;
             font-size: 16px !important;
-            font-weight: 600 !important;
+            font-weight: 500 !important;
             line-height: 1.4 !important;
             background: #ffffff !important;
             color: #0b1324 !important;
             outline: none !important;
-            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08) !important;
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.06) !important;
             transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
         }
 
-        /* placeholders */
         .cspay-input::placeholder {
             color: #94a3b8;
             font-size: 15px;
         }
 
-        /* focus state – strong glow */
         .cspay-input:focus {
-            border-color: #2563eb !important;
+            border-color: #0f172a !important;
             box-shadow:
-                0 0 0 2px rgba(37, 99, 235, 0.3),
-                0 4px 10px rgba(15, 23, 42, 0.15) !important;
+                0 0 0 2px rgba(15, 23, 42, 0.18),
+                0 4px 8px rgba(15, 23, 42, 0.18) !important;
             background: #ffffff !important;
         }
 
-        /* textarea */
         textarea.cspay-input {
             min-height: 110px !important;
             resize: vertical !important;
         }
 
-        /* amount label – slightly bigger emphasis */
         .cspay-amount-label {
             font-size: 17px !important;
             font-weight: 800 !important;
             color: #001161 !important;
         }
 
-        /* amount input – bigger, bold, yellow highlight */
         .cspay-amount-input {
             font-size: 18px !important;
             font-weight: 700 !important;
@@ -180,20 +163,8 @@
                 0 6px 14px rgba(15, 23, 42, 0.25) !important;
         }
 
-        /* amount mobile */
-        @media (max-width: 780px) {
-            .cspay-amount-label {
-                font-size: 16px !important;
-            }
-
-            .cspay-amount-input {
-                font-size: 17px !important;
-            }
-        }
-
-        /* clover box – match input height + shadow */
         .cspay-clover-box {
-            margin-top: 8px;
+            margin-top: 6px;
             width: 100%;
             padding: 8px 12px;
             border: 1px solid #cbd5e1;
@@ -201,12 +172,11 @@
             background: #ffffff;
             display: flex;
             align-items: center;
-            min-height: 48px;
-            box-shadow: 0 2px 6px rgba(15, 23, 42, 0.08);
+            min-height: 46px;
+            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.06);
             transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
         }
 
-        /* clover iframe */
         .cspay-clover-box iframe {
             width: 100% !important;
             height: 26px !important;
@@ -215,16 +185,14 @@
             padding: 0 !important;
         }
 
-        /* clover focus */
         .cspay-clover-box:focus-within {
-            border-color: #2563eb;
+            border-color: #0f172a;
             box-shadow:
-                0 0 0 2px rgba(37, 99, 235, 0.3),
-                0 4px 10px rgba(15, 23, 42, 0.15);
+                0 0 0 2px rgba(15, 23, 42, 0.18),
+                0 4px 8px rgba(15, 23, 42, 0.18);
             background: #ffffff;
         }
 
-        /* iframe reset */
         #cspay-wrap iframe {
             width: 100% !important;
             border: none !important;
@@ -235,14 +203,12 @@
             background: transparent !important;
         }
 
-        /* dashed separator */
         .cspay-sep {
             border: none;
             border-top: 1px dashed #d9dce3;
             margin: 24px 0;
         }
 
-        /* summary block */
         #cspay-summary {
             background: #f0f6ff;
             border: 1px solid #d5e1ff;
@@ -252,12 +218,10 @@
             box-shadow: 0 4px 10px rgba(15, 23, 42, 0.06);
         }
 
-        /* summary amount */
         .cspay-summary-amount {
             margin-bottom: 10px;
         }
 
-        /* summary footer */
         .cspay-summary-footer {
             display: flex;
             justify-content: space-between;
@@ -267,32 +231,18 @@
             margin-top: 6px;
         }
 
-        /* total label */
         .cspay-total-label {
             font-size: 16px;
             font-weight: 700;
             color: #111827;
         }
 
-        /* total value */
         .cspay-total-value {
             font-size: 20px;
             font-weight: 800;
             color: #001161;
         }
 
-        /* summary mobile */
-        @media (max-width: 780px) {
-            #cspay-summary {
-                padding: 14px 12px 10px;
-            }
-
-            .cspay-total-value {
-                font-size: 18px;
-            }
-        }
-
-        /* button base */
         #cspay-btn {
             width: 100%;
             margin-top: 22px;
@@ -307,26 +257,22 @@
             box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
         }
 
-        /* button hover */
         #cspay-btn:hover {
             filter: brightness(1.05);
         }
 
-        /* button disabled */
         #cspay-btn:disabled {
             opacity: 0.55;
             cursor: not-allowed;
             box-shadow: none;
         }
 
-        /* override elementor button */
         #cspay-wrap button#cspay-btn {
             background: #001161 !important;
             color: #ffffff !important;
             border-radius: 12px !important;
         }
 
-        /* status messages */
         .cspay-msg {
             margin-top: 18px;
             padding: 14px;
@@ -336,21 +282,19 @@
             display: none;
         }
 
-        /* success */
         .cspay-success {
             background: #ecfdf5;
             border-left: 6px solid #059669;
             color: #065f46;
         }
 
-        /* error */
         .cspay-error {
             background: #fef2f2;
             border-left: 6px solid #dc2626;
             color: #991b1b;
         }
 
-        /* mobile dark theme */
+        /* MOBILE THEME */
         @media (max-width: 780px) {
             body {
                 background: #020617;
@@ -360,6 +304,7 @@
                 background: radial-gradient(circle at top, #0b1120, #020617);
                 border-color: #111827;
                 color: #e5e7eb;
+                padding: 18px 14px 20px;
             }
 
             #cspay-subtext {
@@ -372,43 +317,51 @@
                 color: #bbf7d0;
             }
 
-            #cspay-wrap label,
-            #cspay-wrap .cspay-label,
             .cspay-section-title {
                 color: #e5e7eb !important;
             }
 
             .cspay-input {
-                margin-top: 8px;
-                background: #020617 !important;
-                border-color: #666 !important;
-                color: #e5e7eb !important;
-                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.75) !important;
+                background: #ffffff !important;
+                border-color: #facc15 !important;
+                box-shadow:
+                    0 0 0 1px rgba(250, 204, 21, 0.75),
+                    0 4px 10px rgba(15, 23, 42, 0.85) !important;
+                color: #020617 !important;
             }
 
             .cspay-input::placeholder {
-                color: #666;
+                color: #6b7280;
             }
 
             .cspay-input:focus {
-                border-color: #38bdf8 !important;
+                border-color: #fbbf24 !important;
                 box-shadow:
-                    0 0 0 2px rgba(56, 189, 248, 0.4),
-                    0 4px 12px rgba(15, 23, 42, 0.9) !important;
-                background: #020617 !important;
+                    0 0 0 2px rgba(250, 204, 21, 0.85),
+                    0 6px 16px rgba(15, 23, 42, 1) !important;
+                background: #ffffff !important;
+            }
+
+            .cspay-amount-input {
+                border-color: #facc15 !important;
+                box-shadow:
+                    0 0 0 2px rgba(250, 204, 21, 0.9),
+                    0 8px 20px rgba(15, 23, 42, 1) !important;
             }
 
             .cspay-clover-box {
-                background: #020617;
-                border-color: #666;
-                box-shadow: 0 2px 8px rgba(15, 23, 42, 0.8);
+                background: #ffffff;
+                border-color: #facc15;
+                box-shadow:
+                    0 0 0 1px rgba(250, 204, 21, 0.75),
+                    0 4px 10px rgba(15, 23, 42, 0.85);
             }
 
             .cspay-clover-box:focus-within {
-                border-color: #38bdf8;
+                border-color: #fbbf24;
                 box-shadow:
-                    0 0 0 2px rgba(56, 189, 248, 0.4),
-                    0 4px 12px rgba(15, 23, 42, 0.9);
+                    0 0 0 2px rgba(250, 204, 21, 0.85),
+                    0 6px 16px rgba(15, 23, 42, 1);
             }
 
             #cspay-summary {
@@ -442,19 +395,17 @@
     <div id="cspay-container">
         <div id="cspay-wrap">
 
-            <!-- chip -->
             <div class="cspay-chip">
                 <span class="cspay-chip-icon">💳</span>
                 <span>Secure payment – Credit, Debit &amp; AMEX</span>
             </div>
 
-            <!-- subtext -->
             <p id="cspay-subtext">
                 Pay CanSTEM Education fees safely using your credit, debit, or AMEX card.
             </p>
 
             <form id="cspay-form" novalidate>
-                <!-- amount + total summary -->
+                <!-- AMOUNT + TOTAL -->
                 <div id="cspay-summary">
                     <div class="cspay-summary-amount">
                         <label class="cspay-label cspay-amount-label cspay-req" for="cspay-amount">
@@ -471,66 +422,54 @@
 
                 <hr class="cspay-sep" />
 
-                <!-- customer section -->
+                <!-- CUSTOMER INFO -->
                 <div class="cspay-section-title">Customer information</div>
 
-                <!-- name row -->
                 <div class="cspay-row">
                     <div>
-                        <label class="cspay-label cspay-req" for="cspay-fname">First name</label>
                         <input id="cspay-fname" name="firstName" class="cspay-input" placeholder="First name"
                             autocomplete="given-name" required />
                     </div>
                     <div>
-                        <label class="cspay-label cspay-req" for="cspay-lname">Last name</label>
                         <input id="cspay-lname" name="lastName" class="cspay-input" placeholder="Last name"
                             autocomplete="family-name" required />
                     </div>
                 </div>
 
-                <!-- email / phone row -->
                 <div class="cspay-row">
                     <div>
-                        <label class="cspay-label cspay-req" for="cspay-email">Email</label>
                         <input id="cspay-email" name="email" type="email" class="cspay-input"
-                            placeholder="name@example.com" autocomplete="email" required />
+                            placeholder="Email address" autocomplete="email" required />
                     </div>
                     <div>
-                        <label class="cspay-label cspay-req" for="cspay-phone">Phone number</label>
-                        <input id="cspay-phone" name="phone" type="tel" class="cspay-input"
-                            placeholder="+1 416 555 5555" autocomplete="tel" required />
+                        <input id="cspay-phone" name="phone" type="tel" class="cspay-input" placeholder="Phone number"
+                            autocomplete="tel" required />
                     </div>
                 </div>
 
                 <hr class="cspay-sep" />
 
-                <!-- card section -->
+                <!-- CARD INFO -->
                 <div class="cspay-section-title">Card information</div>
 
-                <!-- card number -->
                 <div style="margin-bottom: 16px;">
-                    <label class="cspay-label" for="cspay-card-number">Card number</label>
                     <div class="cspay-clover-box">
                         <div id="cspay-card-number"></div>
                     </div>
                 </div>
 
-                <!-- expiry / cvv / postal -->
                 <div class="cspay-row-3">
                     <div>
-                        <label class="cspay-label" for="cspay-card-date">Expiry (MM/YY)</label>
                         <div class="cspay-clover-box">
                             <div id="cspay-card-date"></div>
                         </div>
                     </div>
                     <div>
-                        <label class="cspay-label" for="cspay-card-cvv">CVV</label>
                         <div class="cspay-clover-box">
                             <div id="cspay-card-cvv"></div>
                         </div>
                     </div>
                     <div>
-                        <label class="cspay-label" for="cspay-card-postal">Postal Code</label>
                         <div class="cspay-clover-box">
                             <div id="cspay-card-postal"></div>
                         </div>
@@ -539,31 +478,24 @@
 
                 <hr class="cspay-sep" />
 
-                <!-- purpose -->
+                <!-- PURPOSE -->
                 <div style="margin-bottom: 8px;">
-                    <label class="cspay-label cspay-req" for="cspay-purpose">
-                        Purpose of Payment, Student Name, Subject
-                    </label>
                     <textarea id="cspay-purpose" name="purpose" class="cspay-input" required
-                        placeholder="Example: Tuition fee – John Doe – MHF4U – Winter 2025"></textarea>
+                        placeholder="Purpose of payment (Student Name, Subject) – Example: Tuition fee – John Doe – MHF4U – Winter 2025"></textarea>
                 </div>
 
-                <!-- note -->
                 <p style="font-size:15px; margin-top:10px; line-height:1.5;">
                     <strong style="color:#b91c1c;">NO REFUNDS.</strong>
                     All payments are <strong style="color:#b91c1c;">NON-REFUNDABLE</strong>.<br />
                     Please forward your receipt to <strong>CanSTEM.education@gmail.com</strong> for school records.
                 </p>
 
-                <!-- button -->
                 <button id="cspay-btn" type="submit">Pay Now</button>
 
-                <!-- success -->
                 <div id="cspay-success" class="cspay-msg cspay-success">
                     ✅ Payment successful. A receipt will be emailed to you.
                 </div>
 
-                <!-- error -->
                 <div id="cspay-error" class="cspay-msg cspay-error">
                     ⚠️ Payment could not be completed.
                     Please double-check your card details and try again.
@@ -578,17 +510,14 @@
         </div>
     </div>
 
-    <!-- clover sdk -->
     <script src="https://checkout.clover.com/sdk.js"></script>
 
     <script>
-        /* clover instance */
         const clover = new Clover("66b2f38e56e7816ffbc05f3348995e13", {
             merchantId: "318000254739",
             locale: "en-CA"
         });
 
-        /* clover elements */
         const elements = clover.elements();
         const iframeStyles = {
             body: {
@@ -602,19 +531,16 @@
             }
         };
 
-        /* clover fields */
         const cardNumber = elements.create("CARD_NUMBER", iframeStyles);
         const cardDate = elements.create("CARD_DATE", iframeStyles);
         const cardCvv = elements.create("CARD_CVV", iframeStyles);
         const cardPostal = elements.create("CARD_POSTAL_CODE", iframeStyles);
 
-        /* mount clover */
         cardNumber.mount("#cspay-card-number");
         cardDate.mount("#cspay-card-date");
         cardCvv.mount("#cspay-card-cvv");
         cardPostal.mount("#cspay-card-postal");
 
-        /* amount + total refs */
         const amountInput = document.getElementById("cspay-amount");
         const totalDisplay = document.getElementById("cspay-total-display");
         const btn = document.getElementById("cspay-btn");
@@ -622,12 +548,10 @@
         const successMsg = document.getElementById("cspay-success");
         const errorMsg = document.getElementById("cspay-error");
 
-        /* format helper */
         function formatAmount(val) {
             return "CA$" + val.toFixed(2);
         }
 
-        /* total + button update (Finish Payment + amount) */
         function updateTotal() {
             let val = parseFloat(amountInput.value);
             if (!val || val <= 0) {
@@ -640,11 +564,9 @@
             }
         }
 
-        /* listen for amount changes */
         amountInput.addEventListener("input", updateTotal);
         updateTotal();
 
-        /* error helper */
         function showErr(msg) {
             errorMsg.textContent = msg;
             errorMsg.style.display = "block";
@@ -652,7 +574,6 @@
             updateTotal();
         }
 
-        /* submit handler */
         form.addEventListener("submit", async (e) => {
             e.preventDefault();
 
