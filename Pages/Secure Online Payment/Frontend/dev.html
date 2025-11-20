@@ -587,6 +587,7 @@
     <script src="https://checkout.clover.com/sdk.js"></script>
 
     <script>
+        // Clover setup
         const clover = new Clover("66b2f38e56e7816ffbc05f3348995e13", {
             merchantId: "318000254739",
             locale: "en-CA"
@@ -615,6 +616,7 @@
         cardCvv.mount("#cspay-card-cvv");
         cardPostal.mount("#cspay-card-postal");
 
+        // DOM refs
         const amountInput = document.getElementById("cspay-amount");
         const totalDisplay = document.getElementById("cspay-total-display");
         const btn = document.getElementById("cspay-btn");
@@ -664,7 +666,7 @@
             updateTotal();
         }
 
-        // NEW: helper to set/clear per-field error state
+        // Helper: set/clear error state for a field
         function setFieldError(inputEl, errorEl, message) {
             if (!inputEl || !errorEl) return;
 
@@ -679,7 +681,7 @@
             }
         }
 
-        // NEW: card (Clover) error state
+        // Helper: card error across Clover boxes
         function setCardError(message) {
             cloverBoxes.forEach((box) => {
                 if (message) {
@@ -700,7 +702,7 @@
             }
         }
 
-        // NEW: validate all visible fields before hitting Clover
+        // Validate all form fields before hitting Clover
         function validateFormFields() {
             let isValid = true;
             let firstInvalid = null;
@@ -772,7 +774,7 @@
             successMsg.style.display = "none";
             errorMsg.style.display = "none";
 
-            // NEW: front-end validation first
+            // Front-end validation first
             if (!validateFormFields()) {
                 return;
             }

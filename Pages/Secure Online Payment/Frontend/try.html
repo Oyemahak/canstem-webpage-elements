@@ -430,26 +430,27 @@
             }
         }
 
-        /* ---------- NEW ERROR STYLES (added) ---------- */
+        /* ============================
+           NEW — FIELD ERROR STYLES
+           ============================ */
         .cspay-field-error {
             display: none;
             margin-top: 4px;
-            font-size: 13px;
+            font-size: 14px;
+            font-weight: 600;
             color: #b91c1c;
         }
 
-        .cspay-input.cspay-input-error {
-            border: 2px solid #dc2626 !important;
-            box-shadow:
-                0 0 0 1px rgba(220, 38, 38, 0.4),
-                0 0 0 4px rgba(248, 113, 113, 0.3) !important;
+        .cspay-error-field {
+            border-color: #dc2626 !important;
+            border-width: 2px !important;
+            box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.35) !important;
         }
 
-        .cspay-clover-box.cspay-error-clover {
-            border: 2px solid #dc2626 !important;
-            box-shadow:
-                0 0 0 1px rgba(220, 38, 38, 0.4),
-                0 0 0 4px rgba(248, 113, 113, 0.3) !important;
+        @media (max-width: 780px) {
+            .cspay-field-error {
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -525,32 +526,29 @@
                 <div class="cspay-section-title">Card Information</div>
 
                 <div style="margin-bottom: 16px;">
-                    <div class="cspay-clover-box" id="cspay-card-number-box">
+                    <div class="cspay-clover-box">
                         <div id="cspay-card-number"></div>
                     </div>
-                    <div class="cspay-field-error" id="err-card-number"></div>
                 </div>
 
                 <div class="cspay-row-3">
                     <div>
-                        <div class="cspay-clover-box" id="cspay-card-date-box">
+                        <div class="cspay-clover-box">
                             <div id="cspay-card-date"></div>
                         </div>
-                        <div class="cspay-field-error" id="err-card-date"></div>
                     </div>
                     <div>
-                        <div class="cspay-clover-box" id="cspay-card-cvv-box">
+                        <div class="cspay-clover-box">
                             <div id="cspay-card-cvv"></div>
                         </div>
-                        <div class="cspay-field-error" id="err-card-cvv"></div>
                     </div>
                     <div>
-                        <div class="cspay-clover-box" id="cspay-card-postal-box">
+                        <div class="cspay-clover-box">
                             <div id="cspay-card-postal"></div>
                         </div>
-                        <div class="cspay-field-error" id="err-card-postal"></div>
                     </div>
                 </div>
+                <div class="cspay-field-error" id="err-card"></div>
 
                 <hr class="cspay-sep" />
 
@@ -588,246 +586,263 @@
 
     <script src="https://checkout.clover.com/sdk.js"></script>
 
-<script>
-    /* -----------------------------------------------------------
-       CLOVER INITIALIZATION
-    ------------------------------------------------------------ */
-    const clover = new Clover("66b2f38e56e7816ffbc05f3348995e13", {
-        merchantId: "318000254739",
-        locale: "en-CA"
-    });
+    <script>
+        const clover = new Clover("66b2f38e56e7816ffbc05f3348995e13", {
+            merchantId: "318000254739",
+            locale: "en-CA"
+        });
 
-    const elements = clover.elements();
-    const iframeStyles = {
-        body: {
-            fontFamily: "Open Sans, system-ui, sans-serif",
-            fontSize: "15px",
-            color: "#111"
-        },
-        input: {
-            fontSize: "15px",
-            padding: "8px 10px"
-        }
-    };
-
-    const cardNumber = elements.create("CARD_NUMBER", iframeStyles);
-    const cardDate = elements.create("CARD_DATE", iframeStyles);
-    const cardCvv = elements.create("CARD_CVV", iframeStyles);
-    const cardPostal = elements.create("CARD_POSTAL_CODE", iframeStyles);
-
-    cardNumber.mount("#cspay-card-number");
-    cardDate.mount("#cspay-card-date");
-    cardCvv.mount("#cspay-card-cvv");
-    cardPostal.mount("#cspay-card-postal");
-
-    /* -----------------------------------------------
-       DOM ELEMENTS
-    ------------------------------------------------ */
-    const amountInput = document.getElementById("cspay-amount");
-    const totalDisplay = document.getElementById("cspay-total-display");
-    const form = document.getElementById("cspay-form");
-    const btn = document.getElementById("cspay-btn");
-    const successMsg = document.getElementById("cspay-success");
-    const errorMsg = document.getElementById("cspay-error");
-
-    /* Field elements */
-    const fields = [
-        { id: "cspay-amount", err: "err-amount", label: "Please enter a valid amount." },
-        { id: "cspay-fname", err: "err-fname", label: "Please enter your first name." },
-        { id: "cspay-lname", err: "err-lname", label: "Please enter your last name." },
-        { id: "cspay-email", err: "err-email", label: "Please enter a valid email address." },
-        { id: "cspay-phone", err: "err-phone", label: "Please enter your phone number." },
-        { id: "cspay-purpose", err: "err-purpose", label: "Please mention the purpose of payment." }
-    ];
-
-    /* Clover field containers */
-    const cloverFields = [
-        { box: "cspay-card-number-box", err: "err-card-number", label: "Card number is required." },
-        { box: "cspay-card-date-box", err: "err-card-date", label: "Expiry date is required." },
-        { box: "cspay-card-cvv-box", err: "err-card-cvv", label: "CVV is required." },
-        { box: "cspay-card-postal-box", err: "err-card-postal", label: "Postal code is required." }
-    ];
-
-    /* ----------------------------------------------------------
-       TOTAL UPDATE FUNCTION
-    ---------------------------------------------------------- */
-    function formatAmount(val) {
-        return "CA$" + val.toFixed(2);
-    }
-
-    function updateTotal() {
-        let val = parseFloat(amountInput.value);
-        if (!val || val <= 0) {
-            totalDisplay.textContent = "CA$0.00";
-            btn.textContent = "Pay Now";
-        } else {
-            const formatted = formatAmount(val);
-            totalDisplay.textContent = formatted;
-            btn.textContent = "Complete Payment (" + formatted + ")";
-        }
-    }
-
-    amountInput.addEventListener("input", updateTotal);
-    updateTotal();
-
-    /* ----------------------------------------------------------
-       SHOW ERROR MESSAGE
-    ---------------------------------------------------------- */
-    function showErr(msg) {
-        errorMsg.textContent = msg;
-        errorMsg.style.display = "block";
-        btn.disabled = false;
-        updateTotal();
-    }
-
-    /* ------------------------------------------------------------
-       VALIDATE TEXT INPUT FIELDS
-    ------------------------------------------------------------ */
-    function validateFields() {
-        let firstInvalid = null;
-
-        fields.forEach((f) => {
-            const el = document.getElementById(f.id);
-            const err = document.getElementById(f.err);
-
-            el.classList.remove("cspay-input-error");
-            err.style.display = "none";
-
-            if (!el.value.trim()) {
-                el.classList.add("cspay-input-error");
-                err.textContent = f.label;
-                err.style.display = "block";
-
-                if (!firstInvalid) firstInvalid = el;
+        const elements = clover.elements();
+        const iframeStyles = {
+            body: {
+                fontFamily: "Open Sans, system-ui, sans-serif",
+                fontSize: "15px",
+                color: "#111"
+            },
+            input: {
+                fontSize: "15px",
+                padding: "8px 10px"
             }
-
-            if (f.id === "cspay-email" && el.value.trim()) {
-                const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value);
-                if (!validEmail) {
-                    el.classList.add("cspay-input-error");
-                    err.textContent = "Invalid email format.";
-                    err.style.display = "block";
-                    if (!firstInvalid) firstInvalid = el;
-                }
-            }
-        });
-
-        return firstInvalid;
-    }
-
-    /* ------------------------------------------------------------
-       VALIDATE CLOVER CARD FIELDS
-    ------------------------------------------------------------ */
-    async function validateCloverToken() {
-        try {
-            const token = await clover.createToken();
-            if (token && token.token) return token;
-        } catch (err) {}
-
-        /* Show UI errors on all Clover boxes */
-        cloverFields.forEach((f) => {
-            const box = document.getElementById(f.box);
-            const err = document.getElementById(f.err);
-            box.classList.add("cspay-error-clover");
-            err.textContent = f.label;
-            err.style.display = "block";
-        });
-
-        return null;
-    }
-
-    /* ------------------------------------------------------------
-       SCROLL TO FIRST INVALID FIELD
-    ------------------------------------------------------------ */
-    function scrollToField(el) {
-        const yOffset = -100;
-        const y = el.getBoundingClientRect().top + window.pageYOffset + yOffset;
-        window.scrollTo({ top: y, behavior: "smooth" });
-    }
-
-    /* ------------------------------------------------------------
-       FORM SUBMIT
-    ------------------------------------------------------------ */
-    form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        successMsg.style.display = "none";
-        errorMsg.style.display = "none";
-
-        /* Reset all Clover errors */
-        cloverFields.forEach((f) => {
-            document.getElementById(f.box).classList.remove("cspay-error-clover");
-            document.getElementById(f.err).style.display = "none";
-        });
-
-        /* TEXT FIELD VALIDATION */
-        const firstInvalid = validateFields();
-        if (firstInvalid) {
-            scrollToField(firstInvalid);
-            return;
-        }
-
-        /* AMOUNT VALIDATION */
-        const amountVal = parseFloat(amountInput.value);
-        if (!amountVal || amountVal <= 0) {
-            const errAmount = document.getElementById("err-amount");
-            amountInput.classList.add("cspay-input-error");
-            errAmount.textContent = "Please enter a valid amount.";
-            errAmount.style.display = "block";
-            scrollToField(amountInput);
-            return;
-        }
-
-        btn.disabled = true;
-        btn.textContent = "Processing…";
-
-        /* CLOVER VALIDATION */
-        const tokenRes = await validateCloverToken();
-        if (!tokenRes) {
-            showErr("Could not validate card details.");
-            btn.disabled = false;
-            return;
-        }
-
-        /* BUILD PAYLOAD */
-        const payload = {
-            token: tokenRes.token,
-            amount: amountVal,
-            firstName: document.getElementById("cspay-fname").value,
-            lastName: document.getElementById("cspay-lname").value,
-            email: document.getElementById("cspay-email").value,
-            phone: document.getElementById("cspay-phone").value,
-            purpose: document.getElementById("cspay-purpose").value
         };
 
-        /* SEND TO WORDPRESS ENDPOINT */
-        let resp;
-        try {
-            resp = await fetch("/wp-json/canstem/charge", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
-        } catch (err) {
-            showErr("Unable to connect to payment server.");
-            return;
+        const cardNumber = elements.create("CARD_NUMBER", iframeStyles);
+        const cardDate = elements.create("CARD_DATE", iframeStyles);
+        const cardCvv = elements.create("CARD_CVV", iframeStyles);
+        const cardPostal = elements.create("CARD_POSTAL_CODE", iframeStyles);
+
+        cardNumber.mount("#cspay-card-number");
+        cardDate.mount("#cspay-card-date");
+        cardCvv.mount("#cspay-card-cvv");
+        cardPostal.mount("#cspay-card-postal");
+
+        const amountInput = document.getElementById("cspay-amount");
+        const totalDisplay = document.getElementById("cspay-total-display");
+        const btn = document.getElementById("cspay-btn");
+        const form = document.getElementById("cspay-form");
+        const successMsg = document.getElementById("cspay-success");
+        const errorMsg = document.getElementById("cspay-error");
+
+        const fnameInput = document.getElementById("cspay-fname");
+        const lnameInput = document.getElementById("cspay-lname");
+        const emailInput = document.getElementById("cspay-email");
+        const phoneInput = document.getElementById("cspay-phone");
+        const purposeInput = document.getElementById("cspay-purpose");
+
+        const errAmount = document.getElementById("err-amount");
+        const errFname = document.getElementById("err-fname");
+        const errLname = document.getElementById("err-lname");
+        const errEmail = document.getElementById("err-email");
+        const errPhone = document.getElementById("err-phone");
+        const errPurpose = document.getElementById("err-purpose");
+        const errCard = document.getElementById("err-card");
+
+        const cloverBoxes = document.querySelectorAll(".cspay-clover-box");
+
+        function formatAmount(val) {
+            return "CA$" + val.toFixed(2);
         }
 
-        const result = await resp.json().catch(() => ({}));
-
-        if (result && result.success) {
-            successMsg.style.display = "block";
-            errorMsg.style.display = "none";
-        } else {
-            showErr(result.error || "Payment failed. Please try again.");
-            btn.disabled = false;
-            return;
+        function updateTotal() {
+            let val = parseFloat(amountInput.value);
+            if (!val || val <= 0) {
+                totalDisplay.textContent = "CA$0.00";
+                btn.textContent = "Pay Now";
+            } else {
+                const formatted = formatAmount(val);
+                totalDisplay.textContent = formatted;
+                btn.textContent = "Complete Payment (" + formatted + ")";
+            }
         }
 
-        btn.disabled = false;
+        amountInput.addEventListener("input", updateTotal);
         updateTotal();
-    });
-</script>
+
+        function showErr(msg) {
+            errorMsg.textContent = msg;
+            errorMsg.style.display = "block";
+            btn.disabled = false;
+            updateTotal();
+        }
+
+        // NEW: helper to set/clear per-field error state
+        function setFieldError(inputEl, errorEl, message) {
+            if (!inputEl || !errorEl) return;
+
+            if (message) {
+                inputEl.classList.add("cspay-error-field");
+                errorEl.textContent = message;
+                errorEl.style.display = "block";
+            } else {
+                inputEl.classList.remove("cspay-error-field");
+                errorEl.textContent = "";
+                errorEl.style.display = "none";
+            }
+        }
+
+        // NEW: card (Clover) error state
+        function setCardError(message) {
+            cloverBoxes.forEach((box) => {
+                if (message) {
+                    box.classList.add("cspay-error-field");
+                } else {
+                    box.classList.remove("cspay-error-field");
+                }
+            });
+
+            if (errCard) {
+                if (message) {
+                    errCard.textContent = message;
+                    errCard.style.display = "block";
+                } else {
+                    errCard.textContent = "";
+                    errCard.style.display = "none";
+                }
+            }
+        }
+
+        // NEW: validate all visible fields before hitting Clover
+        function validateFormFields() {
+            let isValid = true;
+            let firstInvalid = null;
+
+            // clear previous field errors
+            setFieldError(amountInput, errAmount, "");
+            setFieldError(fnameInput, errFname, "");
+            setFieldError(lnameInput, errLname, "");
+            setFieldError(emailInput, errEmail, "");
+            setFieldError(phoneInput, errPhone, "");
+            setFieldError(purposeInput, errPurpose, "");
+            setCardError("");
+
+            const amountVal = parseFloat(amountInput.value);
+            if (!amountVal || amountVal <= 0) {
+                isValid = false;
+                setFieldError(amountInput, errAmount, "Please enter a valid amount.");
+                if (!firstInvalid) firstInvalid = amountInput;
+            }
+
+            if (!fnameInput.value.trim()) {
+                isValid = false;
+                setFieldError(fnameInput, errFname, "Please enter the card holder's first name.");
+                if (!firstInvalid) firstInvalid = fnameInput;
+            }
+
+            if (!lnameInput.value.trim()) {
+                isValid = false;
+                setFieldError(lnameInput, errLname, "Please enter the card holder's last name.");
+                if (!firstInvalid) firstInvalid = lnameInput;
+            }
+
+            const emailVal = emailInput.value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailVal) {
+                isValid = false;
+                setFieldError(emailInput, errEmail, "Please enter an email address.");
+                if (!firstInvalid) firstInvalid = emailInput;
+            } else if (!emailPattern.test(emailVal)) {
+                isValid = false;
+                setFieldError(emailInput, errEmail, "Please enter a valid email address.");
+                if (!firstInvalid) firstInvalid = emailInput;
+            }
+
+            const phoneVal = phoneInput.value.trim();
+            if (!phoneVal) {
+                isValid = false;
+                setFieldError(phoneInput, errPhone, "Please enter a phone number.");
+                if (!firstInvalid) firstInvalid = phoneInput;
+            }
+
+            if (!purposeInput.value.trim()) {
+                isValid = false;
+                setFieldError(purposeInput, errPurpose, "Please enter the purpose of payment.");
+                if (!firstInvalid) firstInvalid = purposeInput;
+            }
+
+            if (!isValid && firstInvalid) {
+                firstInvalid.scrollIntoView({ behavior: "smooth", block: "center" });
+                firstInvalid.focus({ preventScroll: true });
+            }
+
+            return isValid;
+        }
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            successMsg.style.display = "none";
+            errorMsg.style.display = "none";
+
+            // NEW: front-end validation first
+            if (!validateFormFields()) {
+                return;
+            }
+
+            const amountVal = parseFloat(amountInput.value);
+            if (!amountVal || amountVal <= 0) {
+                showErr("Please enter a valid amount.");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = "Processing…";
+
+            let tokenRes;
+            try {
+                tokenRes = await clover.createToken();
+            } catch (err) {
+                console.error("Clover error:", err);
+                setCardError("Please enter valid card details.");
+                showErr("Could not validate card. Try another card.");
+                return;
+            }
+
+            if (!tokenRes || !tokenRes.token) {
+                setCardError("Please enter valid card details.");
+                showErr("Card error. Please re-check card details.");
+                return;
+            } else {
+                // clear card error if Clover accepted the data
+                setCardError("");
+            }
+
+            const payload = {
+                token: tokenRes.token,
+                amount: amountVal,
+                firstName: fnameInput.value,
+                lastName: lnameInput.value,
+                email: emailInput.value,
+                phone: phoneInput.value,
+                purpose: purposeInput.value
+            };
+
+            let resp;
+            try {
+                resp = await fetch("/wp-json/canstem/charge", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+            } catch (err) {
+                console.error("Server error:", err);
+                showErr("Unable to connect to payment server.");
+                return;
+            }
+
+            const result = await resp.json().catch(() => ({}));
+
+            if (result && result.success) {
+                successMsg.style.display = "block";
+                errorMsg.style.display = "none";
+            } else {
+                showErr(result.error || "Payment failed. Please try again.");
+                return;
+            }
+
+            btn.disabled = false;
+            updateTotal();
+        });
+    </script>
 
 </body>
+
 </html>
