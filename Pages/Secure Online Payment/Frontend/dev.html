@@ -23,7 +23,10 @@
             --line: #dbe1e9;
             --primary: #001161;
             --primary-ink: #ffffff;
-            background: linear-gradient(to bottom, #ffffff, #f7f9ff);
+            background: linear-gradient(to bottom,
+                    #ffffff 0%,
+                    #e4e4e4 60%,
+                    #ffffff 100%);
             border: 1px solid #e5e7eb;
             border-radius: 16px;
             padding: 24px;
@@ -40,13 +43,13 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: #e7f9f0;
-            border: 1px solid #b6e7cf;
+            background: #fff3c2;
+            border: 1px solid #1d4ed8;
             padding: 10px 18px;
             border-radius: 16px;
             font-size: 18px;
             font-weight: 700;
-            color: #065f46;
+            color: #001161;
             margin-bottom: 16px;
         }
 
@@ -56,17 +59,18 @@
 
         #cspay-subtext {
             font-size: 16px;
-            color: var(--sub);
+            color: #000;
             margin: 2px 0 20px;
         }
 
         /* only labels that remain (amount + clover) */
         #cspay-wrap label,
         #cspay-wrap .cspay-label {
-            color: #050816 !important;
+            margin-bottom: 8px;
+            color: #000 !important;
             font-weight: 700 !important;
             font-family: "Open Sans", system-ui, sans-serif !important;
-            font-size: 16px !important;
+            font-size: 20px !important;
         }
 
         .cspay-req::after {
@@ -75,7 +79,7 @@
         }
 
         .cspay-section-title {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 700;
             color: #001161;
             margin: 8px 0 14px;
@@ -101,37 +105,42 @@
             .cspay-row-3 {
                 grid-template-columns: 1fr;
             }
+
+            /* only labels that remain (amount + clover) */
+            #cspay-wrap label,
+            #cspay-wrap .cspay-label {
+                color: #fff !important;
+            }
         }
 
-        /* desktop/tablet generic input style */
+        /* DESKTOP — Soft Glow Blue */
         .cspay-input {
             margin-top: 6px;
             width: 100%;
             height: 46px !important;
             padding: 10px 14px !important;
-            border: 1px solid #cbd5e1 !important;
-            border-radius: 12px !important;
-            font-size: 16px !important;
+            border: 1px solid #2196f3 !important;
+            border-radius: 8px !important;
+            font-size: 18px !important;
             font-weight: 500 !important;
-            line-height: 1.4 !important;
             background: #ffffff !important;
             color: #0b1324 !important;
             outline: none !important;
-            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.06) !important;
-            transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
-        }
-
-        .cspay-input::placeholder {
-            color: #94a3b8;
-            font-size: 15px;
+            box-shadow:
+                0 0 0 1px rgba(33, 150, 243, 0.5),
+                0 4px 10px rgba(33, 150, 243, 0.5) !important;
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
         }
 
         .cspay-input:focus {
-            border-color: #0f172a !important;
-            box-shadow:
-                0 0 0 2px rgba(15, 23, 42, 0.18),
-                0 4px 8px rgba(15, 23, 42, 0.18) !important;
+            border: 2px solid #001161 !important;
+            box-shadow: none !important;
             background: #ffffff !important;
+        }
+
+        .cspay-input::placeholder {
+            color: #7f8b9c;
+            font-size: 18px;
         }
 
         textarea.cspay-input {
@@ -146,9 +155,9 @@
         }
 
         .cspay-amount-input {
-            font-size: 18px !important;
+            font-size: 20px !important;
             font-weight: 700 !important;
-            height: 52px !important;
+            height: 56px !important;
             border-width: 2px !important;
             border-color: #eab308 !important;
             box-shadow:
@@ -167,13 +176,15 @@
             margin-top: 6px;
             width: 100%;
             padding: 8px 12px;
-            border: 1px solid #cbd5e1;
-            border-radius: 12px;
+            border: 1px solid #2196f3;
+            border-radius: 8px;
             background: #ffffff;
             display: flex;
             align-items: center;
             min-height: 46px;
-            box-shadow: 0 2px 4px rgba(15, 23, 42, 0.06);
+            box-shadow:
+                0 0 0 1px rgba(33, 150, 243, 0.35),
+                0 4px 10px rgba(33, 150, 243, 0.15) !important;
             transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s;
         }
 
@@ -186,10 +197,10 @@
         }
 
         .cspay-clover-box:focus-within {
-            border-color: #0f172a;
+            border-color: #1769aa !important;
             box-shadow:
-                0 0 0 2px rgba(15, 23, 42, 0.18),
-                0 4px 8px rgba(15, 23, 42, 0.18);
+                0 0 0 2px rgba(33, 150, 243, 0.45),
+                0 6px 14px rgba(33, 150, 243, 0.25) !important;
             background: #ffffff;
         }
 
@@ -252,7 +263,7 @@
             border: none;
             font-size: 18px;
             font-weight: 800;
-            border-radius: 12px;
+            border-radius: 8px;
             cursor: pointer;
             box-shadow: 0 6px 16px rgba(15, 23, 42, 0.25);
         }
@@ -270,13 +281,13 @@
         #cspay-wrap button#cspay-btn {
             background: #001161 !important;
             color: #ffffff !important;
-            border-radius: 12px !important;
+            border-radius: 8px !important;
         }
 
         .cspay-msg {
             margin-top: 18px;
             padding: 14px;
-            border-radius: 12px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: 700;
             display: none;
@@ -308,7 +319,7 @@
             }
 
             #cspay-subtext {
-                color: #cbd5f5;
+                color: #e5e7eb;
             }
 
             .cspay-chip {
@@ -383,8 +394,39 @@
                 box-shadow: 0 8px 22px rgba(15, 23, 42, 0.95);
             }
 
+            #cspay-wrap button#cspay-btn {
+                background: #1d4ed8 !important;
+                color: #fff !important;
+            }
+
             #cspay-btn:hover {
                 filter: brightness(1.08);
+            }
+        }
+
+        /* Desktop/Tablet default */
+        .cspay-refund-note {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 24px;
+            line-height: 1.8;
+            color: #000000;
+        }
+
+        .cspay-refund-note strong {
+            color: #000000;
+            font-weight: 700;
+        }
+
+        /* Mobile Version */
+        @media (max-width: 780px) {
+            .cspay-refund-note {
+                font-size: 15px;
+                color: #e5e7eb;
+            }
+
+            .cspay-refund-note strong {
+                color: #facc15 !important;
             }
         }
     </style>
@@ -402,6 +444,8 @@
 
             <p id="cspay-subtext">
                 Pay CanSTEM Education fees safely using your credit, debit, or AMEX card.
+                If you face any difficulty with the payment, please
+                <a href="https://canstemeducation.com/contact-us/" target="_blank">contact us</a>.
             </p>
 
             <form id="cspay-form" novalidate>
@@ -411,6 +455,8 @@
                         <label class="cspay-label cspay-amount-label cspay-req" for="cspay-amount">
                             Enter amount (CA$)
                         </label>
+                    </div>
+                    <div class="cspay-summary-amount">
                         <input id="cspay-amount" name="amount" type="number" min="0.01" step="0.01"
                             class="cspay-input cspay-amount-input" placeholder="0.00" required />
                     </div>
@@ -481,13 +527,12 @@
                 <!-- PURPOSE -->
                 <div style="margin-bottom: 8px;">
                     <textarea id="cspay-purpose" name="purpose" class="cspay-input" required
-                        placeholder="Purpose of payment (Student Name, Subject) – Example: Tuition fee – John Doe – MHF4U – Winter 2025"></textarea>
+                        placeholder="Please mention the purpose of payment (Student Name, Subject)"></textarea>
                 </div>
 
-                <p style="font-size:15px; margin-top:10px; line-height:1.5;">
-                    <strong style="color:#b91c1c;">NO REFUNDS.</strong>
-                    All payments are <strong style="color:#b91c1c;">NON-REFUNDABLE</strong>.<br />
-                    Please forward your receipt to <strong>CanSTEM.education@gmail.com</strong> for school records.
+                <p class="cspay-refund-note">
+                    <strong>NO REFUNDS.</strong> All payments are <strong>NON-REFUNDABLE.</strong>
+                    Please forward your receipt to <strong>canstem.education@gmail.com</strong> for school records.
                 </p>
 
                 <button id="cspay-btn" type="submit">Pay Now</button>
@@ -560,7 +605,7 @@
             } else {
                 const formatted = formatAmount(val);
                 totalDisplay.textContent = formatted;
-                btn.textContent = "Finish Payment (" + formatted + ")";
+                btn.textContent = "Complete Payment (" + formatted + ")";
             }
         }
 
