@@ -1,7 +1,7 @@
 <?php
 /**
  * CanSTEM – Clover charge endpoint
- * URL used by JS: /wp-json/canstem/charge
+ * Used by front-end form via: /wp-json/canstem/charge
  */
 add_action('rest_api_init', function () {
     register_rest_route(
@@ -36,64 +36,81 @@ function canstem_process_payment(WP_REST_Request $request)
         );
     }
 
-    // Customer fields from frontend
+    // ==========================
+    // CUSTOMER FIELDS (Frontend)
+    // ==========================
     $first_name = sanitize_text_field($data['firstName'] ?? '');
     $last_name  = sanitize_text_field($data['lastName'] ?? '');
     $email      = sanitize_email($data['email'] ?? '');
     $phone      = sanitize_text_field($data['phone'] ?? '');
     $purpose    = sanitize_text_field($data['purpose'] ?? '');
 
-    // Combine first + last name for Clover (dashboard + CSV + receipt)
+    // NEW — address fields for perfect Clover customer block
+    $country  = sanitize_text_field($data['country'] ?? 'CA'); // default CA
+    $province = sanitize_text_field($data['province'] ?? 'ON'); // default ON
+
+    // Full name for Clover
     $full_name = trim($first_name . ' ' . $last_name);
 
-    // Clover credentials
+    // ==========================
+    // CLOVER API CONFIG
+    // ==========================
     $merchant_id = '318000254739';
     $secret_key  = '97ea1413-4037-f6aa-d8aa-30fb40a75c13';
 
-    // Convert to cents
     $amount_cents = (int) round($amount_raw * 100);
 
-    // The description appears in the Clover invoice (only clean content)
+    // Clean description (no refund text)
     $description = "Purpose: {$purpose}";
 
-    // NOTE appears in Clover CSV (exactly how you want it)
+    // Note (for Clover CSV)
     $note = $purpose;
 
-    // Build Clover payload
+    // ==========================
+    // CLOVER PAYLOAD
+    // ==========================
     $payload = [
-        "merchant_id" => $merchant_id,
-        "amount"      => $amount_cents,
-        "currency"    => "CAD",
-        "source"      => $token,
+        "merchant_id"   => $merchant_id,
+        "amount"        => $amount_cents,
+        "currency"      => "CAD",
+        "source"        => $token,
 
-        // Email used for sending receipt
+        // Used for sending receipt
         "receipt_email" => $email,
 
-        // Clean receipt description (NO refund message)
-        "description" => $description,
+        // Displayed on receipt under “Description”
+        "description"   => $description,
 
-        // CSV and dashboard will display this clean note
-        "note" => $note,
+        // Displayed in CSV + Clover dashboard
+        "note"          => $note,
 
-        // Best practice: send customer object
+        // CUSTOMER BLOCK → Appears at bottom of receipt
         "customer" => [
             "name"  => $full_name,
             "email" => $email,
             "phone" => $phone
         ],
 
-        // Additional recommended structure
+        // BILLING BLOCK → Required for country/province to show
         "billing" => [
             "address" => [
                 "first_name" => $first_name,
                 "last_name"  => $last_name,
-                "phone"      => $phone,
+                "address1"   => "",       // optional
+                "address2"   => "",       // optional
+                "city"       => "",       // optional
+                "province"   => $province,
+                "postal_code"=> "",       // optional
+                "country"    => $country
             ],
-            "email" => $email
-        ]
+            "email" => $email,
+            "phone" => $phone
+        ],
     ];
 
-    // Send request
+    // ==========================
+    // SEND REQUEST TO CLOVER API
+    // ==========================
     $response = wp_remote_post(
         'https://scl.clover.com/v1/charges',
         [
