@@ -59,30 +59,36 @@ function canstem_process_payment( WP_REST_Request $request ) {
     // ==========================
     // CLOVER CREDENTIALS
     // ==========================
-    // ⚠️ In production: move these into wp-config.php or env vars.
-    $secret_key  = '97ea1413-4037-f6aa-d8aa-30fb40a75c13'; // API key with access to both v3 + v1
+    $secret_key  = '97ea1413-4037-f6aa-d8aa-30fb40a75c13'; 
     $merchant_id = '318000254739';
 
-    // ====================================
-    // STEP 1 — CREATE v3 CUSTOMER RECORD
-    // ====================================
-    // This is what populates "Customers" in Clover + CSV "Customer Name".
+    // ==========================================
+    // STEP 1 — CREATE v3 CUSTOMER (FIXED VERSION)
+    // ==========================================
+
     $customer_payload = [
         'firstName' => $first,
         'lastName'  => $last,
+
+        // FIX: Clover REQUIRES emailAddressType to be set
         'emailAddresses' => [
             [
-                'emailAddress' => $email,
-                'primaryEmail' => true,
+                'emailAddress'     => $email,
+                'emailAddressType' => 'HOME',
+                'primaryEmail'     => true,
             ],
         ],
+
+        // FIX: Clover REQUIRES phoneType to be set
         'phoneNumbers' => [
             [
                 'phoneNumber' => $phone,
+                'phoneType'   => 'MOBILE',
             ],
         ],
+
+        // Store purpose in metadata for dashboard + receipt
         'metadata' => [
-            // Mirror your widget: store purpose / student name / subject here
             'note'    => $purpose,
             'purpose' => $purpose,
         ],
@@ -121,19 +127,20 @@ function canstem_process_payment( WP_REST_Request $request ) {
 
     $customer_id = $cust_body['id'];
 
-    // ====================================
+    // ==========================================
     // STEP 2 — CREATE ECOMM CHARGE (v1)
-    // ====================================
-    // Uses token from Clover Checkout.js and attaches description + receipt email.
+    // ==========================================
     $charge_payload = [
         'ecomind'       => 'ecom',
         'amount'        => $amount_cents,
         'currency'      => 'CAD',
-        'source'        => $token,          // token created by Checkout.js (CARD iframe)
-        'receipt_email' => $email,          // student gets Clover receipt
+        'source'        => $token,
+        'receipt_email' => $email,
+
         'description'   => $purpose
             ? "Purpose: {$purpose}"
             : "Online payment – CanSTEM Education",
+
         'metadata'      => [
             'customer_id' => $customer_id,
             'firstName'   => $first,
@@ -141,8 +148,6 @@ function canstem_process_payment( WP_REST_Request $request ) {
             'phone'       => $phone,
             'purpose'     => $purpose,
         ],
-        // NOTE: there is no official "custom field" param exposed here like the hosted widget.
-        // Clover maps description/metadata internally; CSV + dashboard will show name + description.
     ];
 
     $charge_res = wp_remote_post(
