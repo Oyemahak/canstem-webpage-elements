@@ -626,11 +626,11 @@
         const iframeStyles = {
             body: {
                 fontFamily: "Open Sans, system-ui, sans-serif",
-                fontSize: "15px",
+                fontSize: "16px",
                 color: "#111",
             },
             input: {
-                fontSize: "15px",
+                fontSize: "16px",
                 padding: "8px 10px",
             },
         };
@@ -690,7 +690,7 @@
             let val = parseFloat(amountInput.value);
             if (!val || val <= 0) {
                 totalDisplay.textContent = "CA$0.00";
-                btn.textContent = "Pay Now";
+                btn.textContent = "Complete Payment";
             } else {
                 const formatted = formatAmount(val);
                 totalDisplay.textContent = formatted;

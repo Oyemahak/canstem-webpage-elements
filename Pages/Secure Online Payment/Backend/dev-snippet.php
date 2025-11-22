@@ -61,6 +61,7 @@ function canstem_process_payment( WP_REST_Request $request ) {
     // ==========================
     $secret_key  = '97ea1413-4037-f6aa-d8aa-30fb40a75c13'; 
     $merchant_id = '318000254739';
+    $public_key = 'pk_827u3823283983939293'; //dummy value right now
 
     // ==========================================
     // STEP 1 — CREATE v3 CUSTOMER (FIXED VERSION)
