@@ -23,10 +23,7 @@
             --line: #dbe1e9;
             --primary: #001161;
             --primary-ink: #ffffff;
-            background: linear-gradient(to bottom,
-                    #ffffff 0%,
-                    #e4e4e4 60%,
-                    #ffffff 100%);
+            background: linear-gradient(to bottom, #ffffff 0%, #e4e4e4 60%, #ffffff 100%);
             border: 1px solid #e5e7eb;
             border-radius: 16px;
             padding: 24px;
@@ -63,7 +60,6 @@
             margin: 2px 0 20px;
         }
 
-        /* only labels that remain (amount + clover) */
         #cspay-wrap label,
         #cspay-wrap .cspay-label {
             margin-bottom: 8px;
@@ -106,14 +102,12 @@
                 grid-template-columns: 1fr;
             }
 
-            /* only labels that remain (amount + clover) */
             #cspay-wrap label,
             #cspay-wrap .cspay-label {
                 color: #fff !important;
             }
         }
 
-        /* DESKTOP — Soft Glow Blue */
         .cspay-input {
             margin-top: 6px;
             width: 100%;
@@ -305,7 +299,6 @@
             color: #991b1b;
         }
 
-        /* MOBILE THEME */
         @media (max-width: 780px) {
             body {
                 background: #020617;
@@ -404,7 +397,6 @@
             }
         }
 
-        /* Desktop/Tablet default */
         .cspay-refund-note {
             font-size: 18px;
             text-align: center;
@@ -418,7 +410,6 @@
             font-weight: 700;
         }
 
-        /* Mobile Version */
         @media (max-width: 780px) {
             .cspay-refund-note {
                 font-size: 15px;
@@ -430,9 +421,6 @@
             }
         }
 
-        /* ============================
-           NEW — FIELD ERROR STYLES
-           ============================ */
         .cspay-field-error {
             display: none;
             margin-top: 4px;
@@ -456,10 +444,8 @@
 </head>
 
 <body>
-
     <div id="cspay-container">
         <div id="cspay-wrap">
-
             <div class="cspay-chip">
                 <span class="cspay-chip-icon">💳</span>
                 <span>Secure payment – Credit, Debit &amp; AMEX Only</span>
@@ -579,30 +565,31 @@
                     </a>
                     for assistance.
                 </div>
-
             </form>
         </div>
     </div>
 
+    <!-- Clover SDK -->
     <script src="https://checkout.clover.com/sdk.js"></script>
 
     <script>
+        // Clover Checkout.js setup – USE YOUR PUBLIC TOKEN
         const clover = new Clover("66b2f38e56e7816ffbc05f3348995e13", {
             merchantId: "318000254739",
-            locale: "en-CA"
+            locale: "en-CA",
         });
 
         const elements = clover.elements();
         const iframeStyles = {
             body: {
                 fontFamily: "Open Sans, system-ui, sans-serif",
-                fontSize: "15px",
-                color: "#111"
+                fontSize: "16px",
+                color: "#111",
             },
             input: {
-                fontSize: "15px",
-                padding: "8px 10px"
-            }
+                fontSize: "16px",
+                padding: "8px 10px",
+            },
         };
 
         const cardNumber = elements.create("CARD_NUMBER", iframeStyles);
@@ -615,6 +602,7 @@
         cardCvv.mount("#cspay-card-cvv");
         cardPostal.mount("#cspay-card-postal");
 
+        // DOM refs
         const amountInput = document.getElementById("cspay-amount");
         const totalDisplay = document.getElementById("cspay-total-display");
         const btn = document.getElementById("cspay-btn");
@@ -664,10 +652,8 @@
             updateTotal();
         }
 
-        // NEW: helper to set/clear per-field error state
         function setFieldError(inputEl, errorEl, message) {
             if (!inputEl || !errorEl) return;
-
             if (message) {
                 inputEl.classList.add("cspay-error-field");
                 errorEl.textContent = message;
@@ -679,7 +665,6 @@
             }
         }
 
-        // NEW: card (Clover) error state
         function setCardError(message) {
             cloverBoxes.forEach((box) => {
                 if (message) {
@@ -700,12 +685,11 @@
             }
         }
 
-        // NEW: validate all visible fields before hitting Clover
         function validateFormFields() {
             let isValid = true;
             let firstInvalid = null;
 
-            // clear previous field errors
+            // Clear all errors
             setFieldError(amountInput, errAmount, "");
             setFieldError(fnameInput, errFname, "");
             setFieldError(lnameInput, errLname, "");
@@ -772,7 +756,6 @@
             successMsg.style.display = "none";
             errorMsg.style.display = "none";
 
-            // NEW: front-end validation first
             if (!validateFormFields()) {
                 return;
             }
@@ -801,18 +784,17 @@
                 showErr("Card error. Please re-check card details.");
                 return;
             } else {
-                // clear card error if Clover accepted the data
                 setCardError("");
             }
 
             const payload = {
                 token: tokenRes.token,
                 amount: amountVal,
-                firstName: fnameInput.value,
-                lastName: lnameInput.value,
-                email: emailInput.value,
-                phone: phoneInput.value,
-                purpose: purposeInput.value
+                firstName: fnameInput.value.trim(),
+                lastName: lnameInput.value.trim(),
+                email: emailInput.value.trim(),
+                phone: phoneInput.value.trim(),
+                purpose: purposeInput.value.trim(),
             };
 
             let resp;
@@ -820,7 +802,7 @@
                 resp = await fetch("/wp-json/canstem/charge", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(payload)
+                    body: JSON.stringify(payload),
                 });
             } catch (err) {
                 console.error("Server error:", err);
@@ -833,6 +815,13 @@
             if (result && result.success) {
                 successMsg.style.display = "block";
                 errorMsg.style.display = "none";
+
+                if (result.chargeId || result.customerId) {
+                    console.log("Clover chargeId:", result.chargeId, "customerId:", result.customerId);
+                }
+
+                form.reset();
+                updateTotal();
             } else {
                 showErr(result.error || "Payment failed. Please try again.");
                 return;
@@ -842,7 +831,6 @@
             updateTotal();
         });
     </script>
-
 </body>
 
 </html>

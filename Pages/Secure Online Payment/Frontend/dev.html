@@ -508,46 +508,6 @@
                     </div>
                 </div>
 
-                <!-- BILLING ADDRESS -->
-                <div class="cspay-row">
-                    <div>
-                        <input id="cspay-address1" name="address1" class="cspay-input" placeholder="Street address"
-                            autocomplete="address-line1" required />
-                        <div class="cspay-field-error" id="err-address1"></div>
-                    </div>
-                    <div>
-                        <input id="cspay-address2" name="address2" class="cspay-input"
-                            placeholder="Apartment, suite, etc. (optional)" autocomplete="address-line2" />
-                        <div class="cspay-field-error" id="err-address2"></div>
-                    </div>
-                </div>
-
-                <div class="cspay-row">
-                    <div>
-                        <input id="cspay-city" name="city" class="cspay-input" placeholder="City"
-                            autocomplete="address-level2" required />
-                        <div class="cspay-field-error" id="err-city"></div>
-                    </div>
-                    <div>
-                        <input id="cspay-province" name="province" class="cspay-input" placeholder="Province"
-                            autocomplete="address-level1" required />
-                        <div class="cspay-field-error" id="err-province"></div>
-                    </div>
-                </div>
-
-                <div class="cspay-row">
-                    <div>
-                        <input id="cspay-postal" name="postalCode" class="cspay-input" placeholder="Postal code"
-                            autocomplete="postal-code" required />
-                        <div class="cspay-field-error" id="err-postal"></div>
-                    </div>
-                    <div>
-                        <input id="cspay-country" name="country" class="cspay-input" placeholder="Country"
-                            autocomplete="country-name" value="Canada" required />
-                        <div class="cspay-field-error" id="err-country"></div>
-                    </div>
-                </div>
-
                 <hr class="cspay-sep" />
 
                 <!-- CARD INFO -->
@@ -616,7 +576,9 @@
     <script src="https://checkout.clover.com/sdk.js"></script>
 
     <script>
+        // ==========================
         // Clover Checkout.js setup
+        // ==========================
         const clover = new Clover("66b2f38e56e7816ffbc05f3348995e13", {
             merchantId: "318000254739",
             locale: "en-CA",
@@ -645,7 +607,7 @@
         cardCvv.mount("#cspay-card-cvv");
         cardPostal.mount("#cspay-card-postal");
 
-        // DOM refs
+        // DOM references
         const amountInput = document.getElementById("cspay-amount");
         const totalDisplay = document.getElementById("cspay-total-display");
         const btn = document.getElementById("cspay-btn");
@@ -659,13 +621,6 @@
         const phoneInput = document.getElementById("cspay-phone");
         const purposeInput = document.getElementById("cspay-purpose");
 
-        const address1Input = document.getElementById("cspay-address1");
-        const address2Input = document.getElementById("cspay-address2");
-        const cityInput = document.getElementById("cspay-city");
-        const provinceInput = document.getElementById("cspay-province");
-        const postalInput = document.getElementById("cspay-postal");
-        const countryInput = document.getElementById("cspay-country");
-
         const errAmount = document.getElementById("err-amount");
         const errFname = document.getElementById("err-fname");
         const errLname = document.getElementById("err-lname");
@@ -673,12 +628,6 @@
         const errPhone = document.getElementById("err-phone");
         const errPurpose = document.getElementById("err-purpose");
         const errCard = document.getElementById("err-card");
-        const errAddress1 = document.getElementById("err-address1");
-        const errAddress2 = document.getElementById("err-address2");
-        const errCity = document.getElementById("err-city");
-        const errProvince = document.getElementById("err-province");
-        const errPostal = document.getElementById("err-postal");
-        const errCountry = document.getElementById("err-country");
 
         const cloverBoxes = document.querySelectorAll(".cspay-clover-box");
 
@@ -752,12 +701,6 @@
             setFieldError(emailInput, errEmail, "");
             setFieldError(phoneInput, errPhone, "");
             setFieldError(purposeInput, errPurpose, "");
-            setFieldError(address1Input, errAddress1, "");
-            setFieldError(address2Input, errAddress2, "");
-            setFieldError(cityInput, errCity, "");
-            setFieldError(provinceInput, errProvince, "");
-            setFieldError(postalInput, errPostal, "");
-            setFieldError(countryInput, errCountry, "");
             setCardError("");
 
             const amountVal = parseFloat(amountInput.value);
@@ -796,36 +739,6 @@
                 isValid = false;
                 setFieldError(phoneInput, errPhone, "Please enter a phone number.");
                 if (!firstInvalid) firstInvalid = phoneInput;
-            }
-
-            if (!address1Input.value.trim()) {
-                isValid = false;
-                setFieldError(address1Input, errAddress1, "Please enter the street address.");
-                if (!firstInvalid) firstInvalid = address1Input;
-            }
-
-            if (!cityInput.value.trim()) {
-                isValid = false;
-                setFieldError(cityInput, errCity, "Please enter the city.");
-                if (!firstInvalid) firstInvalid = cityInput;
-            }
-
-            if (!provinceInput.value.trim()) {
-                isValid = false;
-                setFieldError(provinceInput, errProvince, "Please enter the province.");
-                if (!firstInvalid) firstInvalid = provinceInput;
-            }
-
-            if (!postalInput.value.trim()) {
-                isValid = false;
-                setFieldError(postalInput, errPostal, "Please enter the postal code.");
-                if (!firstInvalid) firstInvalid = postalInput;
-            }
-
-            if (!countryInput.value.trim()) {
-                isValid = false;
-                setFieldError(countryInput, errCountry, "Please enter the country.");
-                if (!firstInvalid) firstInvalid = countryInput;
             }
 
             if (!purposeInput.value.trim()) {
@@ -886,13 +799,7 @@
                 lastName: lnameInput.value.trim(),
                 email: emailInput.value.trim(),
                 phone: phoneInput.value.trim(),
-                purpose: purposeInput.value.trim(),
-                address1: address1Input.value.trim(),
-                address2: address2Input.value.trim(),
-                city: cityInput.value.trim(),
-                province: provinceInput.value.trim(),
-                postalCode: postalInput.value.trim(),
-                country: countryInput.value.trim() || "Canada"
+                purpose: purposeInput.value.trim()
             };
 
             let resp;

@@ -1,92 +1,103 @@
 <?php
 /**
- * CanSTEM – Clover charge endpoint
- * Route used by front-end form: /wp-json/canstem/charge
+ * CanSTEM – Clover custom checkout endpoint
+ *
+ * Flow:
+ * 1) Create a v3 Customer (so they appear in Clover dashboard & CSV).
+ * 2) Create an ecomm charge (/v1/charges) using Clover Checkout.js token.
  */
+
 add_action('rest_api_init', function () {
-    register_rest_route(
-        'canstem',
-        '/charge',
-        [
-            'methods'             => 'POST',
-            'callback'            => 'canstem_process_payment',
-            'permission_callback' => '__return_true',
-        ]
-    );
+    register_rest_route('canstem', '/charge', [
+        'methods'             => 'POST',
+        'callback'            => 'canstem_process_payment',
+        'permission_callback' => '__return_true',
+    ]);
 });
 
 function canstem_process_payment( WP_REST_Request $request ) {
 
     $data = $request->get_json_params();
 
+    // ==========================
+    // BASIC VALIDATION
+    // ==========================
     if ( empty( $data['token'] ) || empty( $data['amount'] ) ) {
-        return new WP_REST_Response(
-            [ 'success' => false, 'error' => 'Missing payment data.' ],
-            400
-        );
+        return [
+            'success' => false,
+            'error'   => 'Missing token or amount.',
+        ];
     }
 
-    $token      = sanitize_text_field( $data['token'] );
-    $amount_raw = floatval( $data['amount'] );
+    $token   = sanitize_text_field( $data['token'] );
+    $amount  = floatval( $data['amount'] );
 
-    if ( $amount_raw <= 0 ) {
-        return new WP_REST_Response(
-            [ 'success' => false, 'error' => 'Invalid amount.' ],
-            400
-        );
+    // Customer fields from your form
+    $first   = sanitize_text_field( $data['firstName'] ?? '' );
+    $last    = sanitize_text_field( $data['lastName']  ?? '' );
+    $email   = sanitize_email(      $data['email']     ?? '' );
+    $phone   = sanitize_text_field( $data['phone']     ?? '' );
+    $purpose = sanitize_text_field( $data['purpose']   ?? '' );
+
+    if ( $amount <= 0 ) {
+        return [
+            'success' => false,
+            'error'   => 'Invalid amount.',
+        ];
     }
 
-    // ==========================
-    // CUSTOMER FIELDS (Frontend)
-    // ==========================
-    $first_name = sanitize_text_field( $data['firstName'] ?? '' );
-    $last_name  = sanitize_text_field( $data['lastName']  ?? '' );
-    $email      = sanitize_email(      $data['email']     ?? '' );
-    $phone      = sanitize_text_field( $data['phone']     ?? '' );
-    $purpose    = sanitize_text_field( $data['purpose']   ?? '' );
-
-    $full_name  = trim( $first_name . ' ' . $last_name );
-
-    if ( empty( $first_name ) || empty( $last_name ) || empty( $email ) ) {
-        return new WP_REST_Response(
-            [ 'success' => false, 'error' => 'Missing required customer details.' ],
-            400
-        );
+    if ( ! $first || ! $last || ! $email ) {
+        return [
+            'success' => false,
+            'error'   => 'Missing required customer details.',
+        ];
     }
 
+    $full_name    = trim( "$first $last" );
+    $amount_cents = (int) round( $amount * 100 );
+
     // ==========================
-    // CLOVER API CONFIG
+    // CLOVER CREDENTIALS (USE YOUR NEW PRIVATE TOKEN)
     // ==========================
+    $secret_key  = '0ff42f61-65ae-77f7-bb66-5fa2b94b1d86'; // PRIVATE TOKEN
     $merchant_id = '318000254739';
-    $secret_key  = '97ea1413-4037-f6aa-d8aa-30fb40a75c13'; // keep server-side only
 
-    $amount_cents = (int) round( $amount_raw * 100 );
-
-    // Clean description (no refund text)
-    $description = $purpose ? "Purpose: {$purpose}" : 'Online payment – CanSTEM Education';
-    $note        = $purpose;
-
-    // ==========================
-    // STEP 1 – CREATE CUSTOMER (card-on-file)
-    // ==========================
+    // ====================================
+    // STEP 1 — CREATE v3 CUSTOMER RECORD
+    // ====================================
     $customer_payload = [
-        'ecomind'     => 'ecom',
-        'merchant_id' => $merchant_id,
-        'email'       => $email,
-        'firstName'   => $first_name,
-        'lastName'    => $last_name,
-        'name'        => $full_name,
-        'phoneNumber' => $phone,
-        // Attach the token as card-on-file source
-        'source'      => $token,
+        'firstName' => $first,
+        'lastName'  => $last,
+
+        // Clover expects emailAddressType + primaryEmail
+        'emailAddresses' => [
+            [
+                'emailAddress'     => $email,
+                'emailAddressType' => 'HOME',
+                'primaryEmail'     => true,
+            ],
+        ],
+
+        // Clover expects phoneType
+        'phoneNumbers' => [
+            [
+                'phoneNumber' => $phone,
+                'phoneType'   => 'MOBILE',
+            ],
+        ],
+
+        // Store purpose / note so it’s visible in Customer details
+        'metadata' => [
+            'note'    => $purpose,
+            'purpose' => $purpose,
+        ],
     ];
 
-    $customer_response = wp_remote_post(
-        'https://scl.clover.com/v1/customers',
+    $customer_res = wp_remote_post(
+        "https://scl.clover.com/v3/merchants/{$merchant_id}/customers",
         [
-            'method'  => 'POST',
             'headers' => [
-                'Authorization' => 'Bearer ' . $secret_key,
+                'Authorization' => "Bearer {$secret_key}",
                 'Content-Type'  => 'application/json',
             ],
             'body'    => wp_json_encode( $customer_payload ),
@@ -94,59 +105,58 @@ function canstem_process_payment( WP_REST_Request $request ) {
         ]
     );
 
-    if ( is_wp_error( $customer_response ) ) {
-        return new WP_REST_Response(
-            [
-                'success' => false,
-                'error'   => 'Gateway error (customer): ' . $customer_response->get_error_message(),
-            ],
-            500
-        );
+    if ( is_wp_error( $customer_res ) ) {
+        return [
+            'success' => false,
+            'error'   => 'Clover error (customer create): ' . $customer_res->get_error_message(),
+        ];
     }
 
-    $customer_status = wp_remote_retrieve_response_code( $customer_response );
-    $customer_body   = json_decode( wp_remote_retrieve_body( $customer_response ), true );
+    $cust_code = wp_remote_retrieve_response_code( $customer_res );
+    $cust_body = json_decode( wp_remote_retrieve_body( $customer_res ), true );
 
-    if ( $customer_status < 200 || $customer_status >= 300 || empty( $customer_body['id'] ) ) {
-        $msg = ! empty( $customer_body['message'] )
-            ? $customer_body['message']
-            : 'Could not create customer.';
-        return new WP_REST_Response(
-            [
-                'success' => false,
-                'error'   => $msg,
-            ],
-            400
-        );
+    if ( $cust_code < 200 || $cust_code >= 300 || empty( $cust_body['id'] ) ) {
+        $msg = ! empty( $cust_body['message'] ) ? $cust_body['message'] : 'Customer could not be created.';
+        return [
+            'success' => false,
+            'error'   => $msg,
+            'raw'     => $cust_body,
+        ];
     }
 
-    $customer_id = $customer_body['id'];
+    $customer_id = $cust_body['id'];
 
-    // ==========================
-    // STEP 2 – CHARGE THAT CUSTOMER
-    // ==========================
+    // ====================================
+    // STEP 2 — CREATE ECOMM CHARGE (v1)
+    // ====================================
     $charge_payload = [
-        'ecomind'     => 'ecom',
-        'merchant_id' => $merchant_id,
-        'amount'      => $amount_cents,
-        'currency'    => 'CAD',
+        'ecomind'       => 'ecom',          // e-commerce indicator
+        'amount'        => $amount_cents,  // in cents
+        'currency'      => 'CAD',
+        'source'        => $token,         // token from Clover Checkout.js
+        'receipt_email' => $email,         // student gets Clover receipt
 
-        // Link this transaction to the saved customer
-        'customer'    => [
-            'id' => $customer_id,
+        // Text shows on receipt
+        'description'   => $purpose
+            ? "Purpose: {$purpose}"
+            : "Online payment – CanSTEM Education",
+
+        // Extra info visible in Clover (metadata)
+        'metadata'      => [
+            'customer_id' => $customer_id,
+            'name'        => $full_name,
+            'firstName'   => $first,
+            'lastName'    => $last,
+            'phone'       => $phone,
+            'purpose'     => $purpose,
         ],
-
-        'receipt_email' => $email,
-        'description'   => $description,
-        'note'          => $note,
     ];
 
-    $charge_response = wp_remote_post(
+    $charge_res = wp_remote_post(
         'https://scl.clover.com/v1/charges',
         [
-            'method'  => 'POST',
             'headers' => [
-                'Authorization' => 'Bearer ' . $secret_key,
+                'Authorization' => "Bearer {$secret_key}",
                 'Content-Type'  => 'application/json',
             ],
             'body'    => wp_json_encode( $charge_payload ),
@@ -154,35 +164,28 @@ function canstem_process_payment( WP_REST_Request $request ) {
         ]
     );
 
-    if ( is_wp_error( $charge_response ) ) {
-        return new WP_REST_Response(
-            [
-                'success' => false,
-                'error'   => 'Gateway error (charge): ' . $charge_response->get_error_message(),
-            ],
-            500
-        );
+    if ( is_wp_error( $charge_res ) ) {
+        return [
+            'success' => false,
+            'error'   => 'Clover error (charge): ' . $charge_res->get_error_message(),
+        ];
     }
 
-    $status_code = wp_remote_retrieve_response_code( $charge_response );
-    $body        = json_decode( wp_remote_retrieve_body( $charge_response ), true );
+    $charge_code = wp_remote_retrieve_response_code( $charge_res );
+    $charge_body = json_decode( wp_remote_retrieve_body( $charge_res ), true );
 
-    if ( $status_code >= 200 && $status_code < 300 && ! empty( $body['id'] ) ) {
-        // SUCCESS – charge is complete
+    if ( $charge_code >= 200 && $charge_code < 300 && ! empty( $charge_body['id'] ) ) {
         return [
             'success'    => true,
-            'chargeId'   => $body['id'],
+            'chargeId'   => $charge_body['id'],
             'customerId' => $customer_id,
         ];
     }
 
-    $error_msg = ! empty( $body['message'] ) ? $body['message'] : 'Payment declined.';
-
-    return new WP_REST_Response(
-        [
-            'success' => false,
-            'error'   => $error_msg,
-        ],
-        400
-    );
+    $msg = ! empty( $charge_body['message'] ) ? $charge_body['message'] : 'Charge failed.';
+    return [
+        'success' => false,
+        'error'   => $msg,
+        'raw'     => $charge_body,
+    ];
 }

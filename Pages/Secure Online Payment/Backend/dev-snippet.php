@@ -3,8 +3,8 @@
  * CanSTEM – Clover custom checkout endpoint
  *
  * Flow:
- * 1) Create a v3 Customer (so they appear in Clover dashboard & CSV).
- * 2) Create an ecomm charge (/v1/charges) using Clover Checkout.js token.
+ * 1) Create a v3 Customer (so they appear in Clover "Customers" + exports).
+ * 2) Create an ecomm charge (/v1/charges) using the Checkout.js token.
  */
 
 add_action('rest_api_init', function () {
@@ -32,7 +32,7 @@ function canstem_process_payment( WP_REST_Request $request ) {
     $token   = sanitize_text_field( $data['token'] );
     $amount  = floatval( $data['amount'] );
 
-    // Customer fields from your form
+    // Customer fields from the form
     $first   = sanitize_text_field( $data['firstName'] ?? '' );
     $last    = sanitize_text_field( $data['lastName']  ?? '' );
     $email   = sanitize_email(      $data['email']     ?? '' );
@@ -59,19 +59,18 @@ function canstem_process_payment( WP_REST_Request $request ) {
     // ==========================
     // CLOVER CREDENTIALS
     // ==========================
-    $secret_key  = '97ea1413-4037-f6aa-d8aa-30fb40a75c13'; 
+    // Uses your new E-commerce Payment private token
+    $secret_key  = '0ff42f61-65ae-77f7-bb66-5fa2b94b1d86';
     $merchant_id = '318000254739';
-    $public_key = 'pk_827u3823283983939293'; //dummy value right now
 
-    // ==========================================
-    // STEP 1 — CREATE v3 CUSTOMER (FIXED VERSION)
-    // ==========================================
-
+    // ====================================
+    // STEP 1 — CREATE v3 CUSTOMER RECORD
+    // ====================================
+    // This populates Clover "Customers" and lets you reuse the profile.
     $customer_payload = [
         'firstName' => $first,
         'lastName'  => $last,
 
-        // FIX: Clover REQUIRES emailAddressType to be set
         'emailAddresses' => [
             [
                 'emailAddress'     => $email,
@@ -80,7 +79,6 @@ function canstem_process_payment( WP_REST_Request $request ) {
             ],
         ],
 
-        // FIX: Clover REQUIRES phoneType to be set
         'phoneNumbers' => [
             [
                 'phoneNumber' => $phone,
@@ -88,7 +86,6 @@ function canstem_process_payment( WP_REST_Request $request ) {
             ],
         ],
 
-        // Store purpose in metadata for dashboard + receipt
         'metadata' => [
             'note'    => $purpose,
             'purpose' => $purpose,
@@ -128,24 +125,26 @@ function canstem_process_payment( WP_REST_Request $request ) {
 
     $customer_id = $cust_body['id'];
 
-    // ==========================================
+    // ====================================
     // STEP 2 — CREATE ECOMM CHARGE (v1)
-    // ==========================================
+    // ====================================
+    // Uses token from Clover Checkout.js and attaches description + receipt email.
     $charge_payload = [
         'ecomind'       => 'ecom',
         'amount'        => $amount_cents,
         'currency'      => 'CAD',
-        'source'        => $token,
-        'receipt_email' => $email,
+        'source'        => $token,       // token from Checkout.js
+        'receipt_email' => $email,       // student gets Clover receipt
 
+        // This text shows in Clover + on the payment details.
         'description'   => $purpose
             ? "Purpose: {$purpose}"
             : "Online payment – CanSTEM Education",
 
+        // Extra metadata visible in Clover exports / API
         'metadata'      => [
             'customer_id' => $customer_id,
-            'firstName'   => $first,
-            'lastName'    => $last,
+            'name'        => $full_name,
             'phone'       => $phone,
             'purpose'     => $purpose,
         ],
