@@ -2,3 +2,9 @@
 
 - I started deleting lets see, 
 how much we can freed up by deleting all students from MAP4C.
+
+- After Deletion of MCV4U ..Count is 952 now.
+
+- Started deleting MCT4C.. All Suspended students.
+
+- Now We have 938 students in total on saturday ..Let's see how much we free up by deleting 972-938= 34 Students.
