@@ -14,3 +14,7 @@ how much we can freed up by deleting all students from MAP4C.
 - Now Text Editor with paste restriction is working now with prevent copy plugin for tudent and it is working now.
 
 - I think still need to make this perfect one another whole courses to show the example of this setup so if they like this thenwe can do the sae for all courses later on.
+
+- Now today on nov 3rd I have 879 students we have right now ..
+
+- So today I almost deleted 938-879=58
