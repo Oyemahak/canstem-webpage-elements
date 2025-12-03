@@ -10,3 +10,7 @@ how much we can freed up by deleting all students from MAP4C.
 - Now We have 938 students in total on saturday ..Let's see how much we free up by deleting 972-938= 34 Students.
 
 - We got 11 GB something back after deleting even 50 students.
+
+- Now Text Editor with paste restriction is working now with prevent copy plugin for tudent and it is working now.
+
+- I think still need to make this perfect one another whole courses to show the example of this setup so if they like this thenwe can do the sae for all courses later on.
