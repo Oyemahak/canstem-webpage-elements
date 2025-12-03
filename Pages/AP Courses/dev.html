@@ -1,0 +1,1747 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AP Courses Online in Canada – Advanced Placement (AP) Classes & Exam Prep | CanSTEM Education</title>
+
+  <meta name="description" content="Take online and in-person AP courses in Canada with CanSTEM Education Private School. All 40 Advanced Placement (AP) subjects, expert teachers, small classes, and AP exam preparation for Canadian and international students.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0e1116;
+      --card: #ffffff;
+      --muted: #6b7280;
+      --ink: #111827;
+      --accent: #1a73e8;
+      --pill: #eef2ff;
+      --ring: #e5e7eb;
+      --grad-1: #22c55e;
+      --grad-2: #16a34a;
+      --grad-3: #0ea5e9;
+      --danger: #b91c1c;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      height: 100%
+    }
+
+    body {
+      margin: 0;
+      font-family: "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(1000px 600px at 120% -10%, rgba(14, 165, 233, .08), transparent 70%),
+        radial-gradient(900px 600px at -20% 110%, rgba(34, 197, 94, .08), transparent 70%),
+        #f6f7fb;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .course-section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .course-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><g fill="none" stroke="%239CA3AF" stroke-width="2" opacity=".12"><path d="M30 70l50-20 50 20-50 20-50-20zm50 25v35"/><circle cx="130" cy="30" r="18"/><path d="M122 28h16M122 32h16"/></g></svg>');
+      background-size: 160px 160px;
+      background-repeat: repeat;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Header + quick nav */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: saturate(1.2) blur(6px);
+      background: linear-gradient(to right, rgba(255, 255, 255, .92), rgba(255, 255, 255, .86));
+      border-bottom: 1px solid var(--ring);
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 10px 24px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      font-weight: 700
+    }
+
+    .brand svg {
+      width: 28px;
+      height: 28px
+    }
+
+    .brand span {
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+
+    .jumpnav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--ring);
+      background: #fff;
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 600;
+      font-size: 18px;
+      white-space: nowrap;
+    }
+
+    .chip:hover {
+      box-shadow: 0 2px 8px rgba(0, 0, 0, .06)
+    }
+
+    @media(max-width:720px) {
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .jumpnav {
+        width: 100%;
+        overflow-x: auto;
+      }
+    }
+
+    /* Hero + search */
+    .hero {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.4fr);
+      gap: 24px;
+      align-items: center;
+    }
+
+    @media(max-width:900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .hero-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: .3px;
+      margin: 0 0 10px;
+    }
+
+    .hero-sub {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      font-size: 16px;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    .pill span {
+      font-size: 18px;
+    }
+
+    .hero-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 18px;
+      color: var(--ink);
+    }
+
+    .hero-list li {
+      margin-bottom: 4px;
+    }
+
+    .hero-cta {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      border-radius: 999px;
+      padding: 10px 18px;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 18px;
+      background: linear-gradient(90deg, var(--grad-1), var(--grad-2));
+      color: #fff;
+      box-shadow: 0 10px 24px rgba(16, 185, 129, .35);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 12px 30px rgba(16, 185, 129, .45);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      border-radius: 999px;
+      padding: 9px 14px;
+      border: 1px solid var(--ring);
+      background: #fff;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--ink);
+    }
+
+    .btn-ghost svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .hero-sidecard {
+      background: rgba(255, 255, 255, .88);
+      border-radius: 18px;
+      border: 1px solid var(--ring);
+      box-shadow: 0 20px 40px rgba(15, 23, 42, .08);
+      padding: 16px 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .side-title {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0 0 4px;
+    }
+
+    .side-text {
+      font-size: 18px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .side-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .side-item {
+      font-size: 18px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+    }
+
+    .side-item strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 2px;
+    }
+
+    .side-footnote {
+      font-size: 18px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* Search bar */
+    .searchbar {
+      position: relative;
+      margin: 20px 0 8px
+    }
+
+    .searchbar input {
+      width: 100%;
+      padding: 12px 44px;
+      border-radius: 12px;
+      border: 1px solid var(--ring);
+      outline: none;
+      background: #fff;
+      font-size: 18px;
+    }
+
+    .searchbar input::placeholder {
+      color: #9ca3af;
+    }
+
+    .searchbar svg {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      opacity: .7;
+    }
+
+    .searchbar .count {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    .search-help {
+      font-size: 18px;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* Sections */
+    .section {
+      margin: 30px 0;
+    }
+
+    .section h2 {
+      margin-top: 0;
+    }
+
+    .section-title {
+      color: #fff;
+      font-weight: 800;
+      border-radius: 14px;
+      padding: 12px 16px;
+      margin: 8px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(90deg, var(--grad-1), var(--grad-2));
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25);
+    }
+
+    .section-title.badge-blue {
+      background: linear-gradient(90deg, #60a5fa, #3b82f6)
+    }
+
+    .section-title svg {
+      width: 22px;
+      height: 22px;
+      opacity: .95
+    }
+
+    .section-intro {
+      font-size: 18px;
+      color: var(--muted);
+      margin: 0 0 10px;
+      line-height: 1.6;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.2fr);
+      gap: 20px;
+    }
+
+    @media(max-width:800px) {
+      .two-col {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .checklist {
+      list-style: none;
+      padding-left: 0;
+      font-size: 18px;
+      margin: 0;
+    }
+
+    .checklist li {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 6px;
+      align-items: flex-start;
+    }
+
+    .check-icon {
+      margin-top: 3px;
+      width: 16px;
+      height: 16px;
+      border-radius: 999px;
+      border: 1px solid #bbf7d0;
+      background: #ecfdf5;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #16a34a;
+      flex: 0 0 auto;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .badge-soft {
+      font-size: 18px;
+      padding: 5px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--ring);
+      background: #f9fafb;
+      color: #4b5563;
+    }
+
+    /* Grid (AP subjects) */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px
+    }
+
+    @media(min-width:700px) {
+      .grid {
+        grid-template-columns: 1fr 1fr
+      }
+    }
+
+    @media(min-width:1024px) {
+      .grid {
+        grid-template-columns: 1fr 1fr 1fr
+      }
+    }
+
+    .card {
+      position: relative;
+      background: rgba(255, 255, 255, .9);
+      border: 1px solid var(--ring);
+      border-radius: 16px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, .04);
+      overflow: hidden;
+    }
+
+    .card-body {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px
+    }
+
+    .meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .code {
+      background: var(--pill);
+      color: #3730a3;
+      font-weight: 800;
+      border: 1px solid #c7d2fe;
+      border-radius: 10px;
+      padding: 6px 10px;
+      letter-spacing: .2px;
+      font-size: 18px;
+    }
+
+    .name {
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .row {
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+      color: var(--muted);
+      font-size: 18px
+    }
+
+    .label {
+      color: #374151;
+      font-weight: 600;
+      margin-right: 2px
+    }
+
+    .prereq {
+      white-space: normal
+    }
+
+    .tagline {
+      font-size: 18px;
+      color: #4b5563;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      right: 10px;
+      bottom: 8px;
+      width: 22px;
+      height: 22px;
+      opacity: .10;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23000000" d="M12 2 1 7l11 5 9-4.09V17h2V7L12 2Zm0 7.18L5.97 6.6 12 4l6.03 2.6L12 9.18ZM4 18v2h8v-2H4Z"/></svg>');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    /* Info cards */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    @media(max-width:900px) {
+      .info-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .info-card {
+      border-radius: 14px;
+      border: 1px solid var(--ring);
+      background: rgba(255, 255, 255, .9);
+      padding: 12px 14px;
+      font-size: 18px;
+    }
+
+    .info-card strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 18px;
+    }
+
+    /* Enrollment form look */
+    .enroll-box {
+      border-radius: 16px;
+      border: 1px solid var(--ring);
+      background: rgba(255, 255, 255, .9);
+      padding: 16px 16px 10px;
+      font-size: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    @media(max-width:900px) {
+      .enroll-box {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .enroll-fields {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    @media(max-width:700px) {
+      .enroll-fields {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .field label {
+      font-size: 18px;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      border-radius: 10px;
+      border: 1px solid var(--ring);
+      padding: 8px 10px;
+      font-size: 18px;
+      font-family: inherit;
+      outline: none;
+      background: #f9fafb;
+    }
+
+    .field textarea {
+      min-height: 70px;
+      resize: vertical;
+    }
+
+    .enroll-note {
+      font-size: 18px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* FAQ accordion */
+    .faq-list {
+      margin-top: 8px;
+      border-radius: 16px;
+      border: 1px solid var(--ring);
+      background: rgba(255, 255, 255, .9);
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--ring);
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+    }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      padding: 12px 14px;
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .faq-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 1px solid var(--ring);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--muted);
+      flex: 0 0 auto;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+      padding: 0 14px;
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    .faq-answer-inner {
+      padding-bottom: 10px;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 500px;
+      padding-top: 0;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer p {
+      margin: 8px 0 4px;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .foot {
+      margin: 30px 0 50px;
+      color: var(--muted);
+      font-size: 18px;
+      text-align: center
+    }
+
+    .fail {
+      color: var(--danger);
+      font-size: 18px;
+      margin-top: 8px;
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Put this whole block in one Elementor HTML widget -->
+  <section class="course-section">
+    <header class="header">
+      <div class="header-inner">
+        <nav class="jumpnav">
+          <a class="chip" href="#overview">Overview</a>
+          <a class="chip" href="#benefits">Why AP?</a>
+          <a class="chip" href="#subjects">AP Subjects</a>
+          <a class="chip" href="#format">Course Format</a>
+          <a class="chip" href="#who">Who Can Enroll</a>
+          <a class="chip" href="#fees">Tuition &amp; Fees</a>
+          <a class="chip" href="#enrol">Enrollment</a>
+          <a class="chip" href="#faq">AP FAQ</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="container">
+
+      <!-- HERO + SIDE INFO -->
+      <div class="hero" id="overview">
+        <div>
+          <p class="hero-title">Advanced Placement (AP) Courses Online in Canada</p>
+          <p class="hero-sub">
+            Study <strong>college-level AP courses</strong> while you are still in high school. CanSTEM Education Private School in Brampton, Ontario
+            offers <strong>online AP classes</strong> for students across Canada and worldwide, with optional in-person support in the GTA.
+            Build a stronger university application and get ready for <strong>AP Exams</strong> with expert teachers and small classes.
+          </p>
+
+          <div class="hero-badges">
+            <div class="pill"><span>🎓</span> Ontario private school (OSSD, BSID 665446)</div>
+            <div class="pill"><span>🌐</span> Online AP courses for Canadian &amp; international students</div>
+            <div class="pill"><span>📚</span> All 40 AP subjects &amp; AP exam preparation</div>
+          </div>
+
+          <ul class="hero-list">
+            <li>Take <strong>AP courses online</strong> from anywhere – join live classes or watch recorded lessons.</li>
+            <li>Get help from qualified Ontario-certified teachers with <strong>1-on-1 support</strong> and tutoring.</li>
+            <li>Prepare confidently for the official <strong>AP Exams in May</strong> and boost your university admission profile.</li>
+          </ul>
+
+          <div class="hero-cta">
+            <button class="btn-primary" onclick="document.getElementById('enrol').scrollIntoView({behavior:'smooth'})">
+              Start AP Enrollment
+            </button>
+            <button class="btn-ghost" onclick="document.getElementById('faq').scrollIntoView({behavior:'smooth'})">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.5 9a2.5 2.5 0 0 1 4.5 1.5c0 1.5-2 2-2 2" />
+                <path d="M12 16h.01" />
+              </svg>
+              AP FAQ
+            </button>
+          </div>
+        </div>
+
+        <aside class="hero-sidecard">
+          <p class="side-title">Why families choose CanSTEM for AP courses</p>
+          <p class="side-text">
+            We already help thousands of students upgrade Ontario high school credits with flexible online learning, fast completion options,
+            and personalized tutoring. Our AP program builds on the same model – just at an Advanced Placement level.
+          </p>
+          <div class="side-list">
+            <div class="side-item">
+              <strong>Flexible online schedule</strong>
+              Evenings, weekends, and self-paced options designed for busy high school students.
+            </div>
+            <div class="side-item">
+              <strong>Small classes &amp; 1-on-1 help</strong>
+              Get personal attention, feedback, and AP exam strategies from experienced teachers.
+            </div>
+            <div class="side-item">
+              <strong>Global recognition</strong>
+              AP scores are recognized by universities in Canada, the U.S., and worldwide for admission and credit.
+            </div>
+            <div class="side-item">
+              <strong>In-person support in Brampton</strong>
+              Canadian students can attend select AP support sessions on campus (subject to availability).
+            </div>
+          </div>
+          <p class="side-footnote">
+            Note: CanSTEM is currently <strong>not an official AP Exam test centre</strong>. Students will write AP Exams at a College Board–authorized
+            test centre in their region. Our role is to provide the <strong>AP course and exam preparation.</strong>
+          </p>
+        </aside>
+      </div>
+
+      <!-- SEARCH BAR -->
+      <div class="searchbar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="11" cy="11" r="7" />
+          <path d="M20 20 17 17" />
+        </svg>
+        <input id="q" type="search" placeholder="Search AP subjects, topics or questions… (e.g., Calculus, Computer Science, AP Exam, fees)" />
+        <div class="count" id="count">0 AP courses</div>
+      </div>
+      <p class="search-help">
+        Tip: This search filters <strong>AP subject cards</strong> and <strong>FAQ questions</strong>. Start typing “physics”, “engineering”, “fees”, “international student”, etc.
+      </p>
+
+      <div id="error" class="fail"></div>
+
+      <!-- WHY AP + WHY CANSTEM -->
+      <section class="section" id="benefits">
+        <div class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 3 2 8l10 5 10-5-10-5Z" />
+            <path d="M12 13v8" />
+            <path d="M5 10v6a7 7 0 0 0 14 0v-6" />
+          </svg>
+          <h2 style="margin:0;font-size:18px;letter-spacing:.2px">Why Take AP Courses – And Why With CanSTEM?</h2>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <p class="section-intro">
+              The Advanced Placement (AP) Program lets you study <strong>university-level courses</strong> during high school and write standardized
+              AP Exams. Strong AP scores can:
+            </p>
+            <ul class="checklist">
+              <li>
+                <span class="check-icon">✓</span>
+                <span>Help you stand out for <strong>competitive university programs</strong> in Canada, the U.S. and abroad.</span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span>Earn you <strong>advanced placement or university credit</strong>, so you may skip certain first-year courses.</span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span>Show admissions that you can handle a <strong>rigorous academic workload</strong> similar to first-year university.</span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span>Build real skills in reading, writing, problem solving, research, and exam-taking.</span>
+              </li>
+            </ul>
+            <div class="badge-row">
+              <span class="badge-soft">AP courses online in Canada</span>
+              <span class="badge-soft">AP classes for international students</span>
+              <span class="badge-soft">AP exam preparation</span>
+              <span class="badge-soft">AP courses for engineering, medicine, business</span>
+            </div>
+          </div>
+
+          <div>
+            <p class="section-intro">
+              CanSTEM has already built a reputation for <strong>high school credit upgrading, flexible schedules, and strong results</strong>.
+              Our AP program uses the same proven approach:
+            </p>
+            <ul class="checklist">
+              <li>
+                <span class="check-icon">✓</span>
+                <span><strong>Online AP courses + in-person support</strong> from Brampton, serving Toronto, GTA, and students worldwide.</span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span><strong>Small classes &amp; 1-on-1 support</strong> so no student gets lost in a big lecture.</span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span><strong>Fast, clear communication</strong> with parents and students about progress, grades, and exam readiness.</span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span>Academic advisors who help you choose <strong>the right AP courses</strong> for your future major.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- AP SUBJECTS -->
+      <section class="section" id="subjects">
+        <div class="section-title badge-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 3 2 8l10 5 10-5-10-5Z" />
+            <path d="M12 13v8" />
+            <path d="M5 10v6a7 7 0 0 0 14 0v-6" />
+          </svg>
+          <h2 style="margin:0;font-size:18px;letter-spacing:.2px">All 40 AP Subjects – Online AP Courses with CanSTEM</h2>
+        </div>
+        <p class="section-intro">
+          CanSTEM offers instruction and AP exam preparation for <strong>all 40 official AP subjects</strong>. Each AP course is taught at a
+          university level and is ideal for motivated high school students who want a challenge and better university options.
+        </p>
+
+        <div id="ap-mount"></div>
+      </section>
+
+      <!-- COURSE FORMAT -->
+      <section class="section" id="format">
+        <div class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 3 2 8l10 5 10-5-10-5Z" />
+            <path d="M12 13v8" />
+            <path d="M5 10v6a7 7 0 0 0 14 0v-6" />
+          </svg>
+          <h2 style="margin:0;font-size:18px;letter-spacing:.2px">AP Course Format, Schedule &amp; Support</h2>
+        </div>
+
+        <p class="section-intro">
+          Our AP courses are designed for Grade 9–12 students balancing regular school, extracurriculars, and family commitments. We run
+          <strong>online AP classes</strong> with optional in-person support from Brampton for local students.
+        </p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <strong>Online AP classes (live + recorded)</strong>
+            Join classes live from any device or watch recorded lessons when you need to review. All materials are hosted in our secure online
+            learning platform, including assignments, quizzes, and practice exams.
+          </div>
+          <div class="info-card">
+            <strong>Typical AP schedule</strong>
+            Most AP courses run from <strong>September to May</strong>, with 2–3 live classes per week plus independent work and extra help as needed.
+            We also offer <strong>AP exam review sessions</strong> before the official May AP Exam dates.
+          </div>
+          <div class="info-card">
+            <strong>In-person support in Brampton</strong>
+            Canadian students near Brampton/Toronto can attend selected AP help sessions on campus. These sessions focus on test-taking
+            strategies, problem-solving, and intensive review in math, science, and computer science.
+          </div>
+        </div>
+      </section>
+
+      <!-- WHO CAN ENROLL -->
+      <section class="section" id="who">
+        <div class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 3 2 8l10 5 10-5-10-5Z" />
+            <path d="M12 13v8" />
+            <path d="M5 10v6a7 7 0 0 0 14 0v-6" />
+          </svg>
+          <h2 style="margin:0;font-size:18px;letter-spacing:.2px">Who Can Take AP Courses with CanSTEM?</h2>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <p class="section-intro">
+              Our AP classes are open to motivated students who want to challenge themselves and improve university options.
+            </p>
+            <ul class="checklist">
+              <li>
+                <span class="check-icon">✓</span>
+                <span><strong>Ontario high school students</strong> in public, Catholic, or private schools.</span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span><strong>Students from other Canadian provinces</strong> who want AP courses online.</span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span><strong>International students</strong> planning to apply to universities in Canada, the U.S., or abroad.</span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span><strong>Existing CanSTEM students</strong> upgrading high school credits who want extra AP courses.</span>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p class="section-intro">
+              You can stay enrolled at your regular day school and take AP courses with CanSTEM <strong>after school, on weekends, or online</strong>.
+              Our advisors help you choose:
+            </p>
+            <ul class="checklist">
+              <li>
+                <span class="check-icon">✓</span>
+                <span>The best AP subjects for <strong>engineering, computer science, health sciences, or business.</strong></span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span>How many AP courses to take at once so you don’t overload your schedule.</span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span>How AP fits with your <strong>Ontario Secondary School Diploma (OSSD)</strong> requirements.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEES -->
+      <section class="section" id="fees">
+        <div class="section-title badge-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 3 2 8l10 5 10-5-10-5Z" />
+            <path d="M12 13v8" />
+            <path d="M5 10v6a7 7 0 0 0 14 0v-6" />
+          </svg>
+          <h2 style="margin:0;font-size:18px;letter-spacing:.2px">AP Course Tuition &amp; Fees</h2>
+        </div>
+
+        <p class="section-intro">
+          Our AP pricing is simple and transparent. You only pay for the AP courses you take with CanSTEM – AP Exam registration fees at the
+          external test centre are separate.
+        </p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <strong>AP Course Tuition</strong>
+            <p style="margin:4px 0 0;">Current tuition is <strong>$1,000 CAD per AP course</strong>.</p>
+            <p style="margin:4px 0 0;">This includes:</p>
+            <ul class="checklist" style="margin-top:4px;">
+              <li><span class="check-icon">✓</span><span>Live online instruction and access to recorded lessons.</span></li>
+              <li><span class="check-icon">✓</span><span>Assignments, quizzes, projects, and practice exams.</span></li>
+              <li><span class="check-icon">✓</span><span>Teacher support, office hours, and feedback.</span></li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <strong>Not included in tuition</strong>
+            <ul class="checklist" style="margin-top:4px;">
+              <li><span class="check-icon">✓</span><span>AP Exam registration fees charged by the College Board or test centre.</span></li>
+              <li><span class="check-icon">✓</span><span>Any physical textbooks (if requested, most materials are provided digitally).</span></li>
+              <li><span class="check-icon">✓</span><span>Special testing accommodations (arranged directly with the AP Exam test centre).</span></li>
+            </ul>
+          </div>
+
+          <div class="info-card">
+            <strong>Future discounts &amp; packages</strong>
+            <p style="margin:4px 0 0;">
+              Families often choose more than one AP course (for example, AP Calculus + AP Physics + AP Computer Science). Multi-course
+              packages and sibling discounts may be offered – speak to our team for the most current options.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ENROLLMENT -->
+      <section class="section" id="enrol">
+        <div class="section-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 3 2 8l10 5 10-5-10-5Z" />
+            <path d="M12 13v8" />
+            <path d="M5 10v6a7 7 0 0 0 14 0v-6" />
+          </svg>
+          <h2 style="margin:0;font-size:18px;letter-spacing:.2px">AP Course Enrollment – Simple 3-Step Process</h2>
+        </div>
+
+        <p class="section-intro">
+          We keep the AP enrollment process fast and clear. Use this form as a reference for the fields you’ll collect on your actual registration
+          system (online form or student portal).
+        </p>
+
+        <div class="enroll-box">
+          <div>
+            <p class="section-intro" style="margin-top:0;">
+              <strong>Step 1:</strong> Submit your AP interest form with your basic details and preferred AP subjects.<br />
+              <strong>Step 2:</strong> An AP Advisor will contact you to match AP courses with your goals and schedule.<br />
+              <strong>Step 3:</strong> Complete payment and receive your timetable and login for the online AP classroom.
+            </p>
+
+            <p class="enroll-note">
+              This is a sample enrollment form layout. You can connect it to your existing “Registration” and “Payment” pages once your AP
+              workflow is confirmed.
+            </p>
+          </div>
+
+          <div>
+            <div class="enroll-fields">
+              <div class="field">
+                <label for="ap-name">Student Name</label>
+                <input id="ap-name" type="text" placeholder="Full legal name" />
+              </div>
+              <div class="field">
+                <label for="ap-email">Email Address</label>
+                <input id="ap-email" type="email" placeholder="student@example.com" />
+              </div>
+              <div class="field">
+                <label for="ap-phone">Phone / WhatsApp</label>
+                <input id="ap-phone" type="text" placeholder="+1 (___) ___-____" />
+              </div>
+              <div class="field">
+                <label for="ap-grade">Current Grade / Year</label>
+                <select id="ap-grade">
+                  <option value="">Select…</option>
+                  <option>Grade 9</option>
+                  <option>Grade 10</option>
+                  <option>Grade 11</option>
+                  <option>Grade 12</option>
+                  <option>Graduate / Gap Year</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="ap-country">Country &amp; Province/State</label>
+                <input id="ap-country" type="text" placeholder="e.g., Canada – Ontario" />
+              </div>
+              <div class="field">
+                <label for="ap-school">Current School</label>
+                <input id="ap-school" type="text" placeholder="School name &amp; board" />
+              </div>
+              <div class="field">
+                <label for="ap-courses">AP Course(s) Interested In</label>
+                <input id="ap-courses" type="text" placeholder="e.g., AP Calculus AB, AP Physics 1, AP Computer Science A" />
+              </div>
+              <div class="field">
+                <label for="ap-mode">Preferred Study Mode</label>
+                <select id="ap-mode">
+                  <option value="">Select…</option>
+                  <option>Online only</option>
+                  <option>Online + in-person support (Brampton, ON)</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="ap-term">Target AP Exam Session</label>
+                <select id="ap-term">
+                  <option value="">Select…</option>
+                  <option>May 2026</option>
+                  <option>May 2027</option>
+                  <option>Undecided / need help</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="ap-notes">Questions / Notes</label>
+                <textarea id="ap-notes" placeholder="Tell us about your goals (engineering, medicine, business, etc.) and any timing preferences."></textarea>
+              </div>
+            </div>
+            <div style="margin-top:10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <button class="btn-primary" type="button">
+                Submit AP Interest (Sample Button)
+              </button>
+              <span style="font-size:11px;color:var(--muted);">In production, connect this button to your real registration / CRM process.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section" id="faq">
+        <div class="section-title badge-blue">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M12 3 2 8l10 5 10-5-10-5Z" />
+            <path d="M12 13v8" />
+            <path d="M5 10v6a7 7 0 0 0 14 0v-6" />
+          </svg>
+          <h2 style="margin:0;font-size:18px;letter-spacing:.2px">AP Courses – Frequently Asked Questions</h2>
+        </div>
+
+        <p class="section-intro">
+          These AP FAQs answer the most common questions families ask about <strong>AP courses, AP exams, online learning, and enrollment at CanSTEM</strong>.
+          Use the search bar at the top of the page to instantly filter these questions.
+        </p>
+
+        <div class="faq-list">
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              What is the Advanced Placement (AP) Program?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>
+                  The Advanced Placement (AP) Program offers <strong>college-level courses and standardized exams</strong> for high school students.
+                  AP courses follow a curriculum aligned with College Board expectations, and each course concludes with an AP Exam (scored 1–5).
+                  Many universities use AP scores to grant advanced placement or university credit.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              Is CanSTEM an official AP Exam test centre?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>
+                  At this time, <strong>CanSTEM is not an authorized AP Exam test centre</strong>. We are a Level 1 partner offering AP-aligned instruction
+                  and full exam preparation, but students will register to write their AP Exams at a <strong>College Board–approved test centre</strong>
+                  in their region (often another AP school or testing location).
+                </p>
+                <p>
+                  Our advisors will help you identify possible AP exam centres and timelines for exam registration in your area.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              How do AP courses at CanSTEM fit with the Ontario Secondary School Diploma (OSSD)?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>
+                  Your OSSD still depends on completing the required number of Ontario high school credits, literacy, and community service hours.
+                  AP courses at CanSTEM:
+                </p>
+                <ul class="checklist" style="margin-top:4px;">
+                  <li><span class="check-icon">✓</span><span>Do <strong>not replace</strong> compulsory OSSD credits.</span></li>
+                  <li><span class="check-icon">✓</span><span>Act as <strong>advanced, enrichment courses</strong> that sit on top of your regular studies.</span></li>
+                  <li><span class="check-icon">✓</span><span>Help you prove readiness for <strong>competitive university programs</strong> in Canada and abroad.</span></li>
+                </ul>
+                <p>
+                  Our team can build a joint plan that includes both <strong>OSSD credit upgrading</strong> and AP courses if needed.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              Do Canadian and U.S. universities accept AP scores from CanSTEM students?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>
+                  Universities typically do <strong>not look at where you took your AP course</strong> as long as the AP Exam is official and recognized by
+                  College Board. They will look at your AP Exam scores directly.
+                </p>
+                <p>
+                  Many universities in Canada, the U.S., and other countries grant <strong>credit or advanced standing</strong> for strong AP results.
+                  Each university has its own AP credit policy, so we encourage families to review the websites of their target universities.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              Can international students take online AP courses with CanSTEM?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>
+                  Yes. Our AP program is <strong>fully online</strong>, so international students can join from anywhere in the world. You will attend
+                  live classes in Canadian time zones or watch recordings and complete assignments through our online platform.
+                </p>
+                <p>
+                  You will then register at an AP exam centre in your own country or region to write the official AP Exams in May.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              Which AP courses are best for engineering, medicine, or business?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p><strong>For Engineering &amp; Computer Science:</strong></p>
+                <ul class="checklist" style="margin-top:4px;">
+                  <li><span class="check-icon">✓</span><span>AP Calculus AB or AP Calculus BC</span></li>
+                  <li><span class="check-icon">✓</span><span>AP Physics 1, AP Physics 2, or AP Physics C: Mechanics</span></li>
+                  <li><span class="check-icon">✓</span><span>AP Computer Science A or AP Computer Science Principles</span></li>
+                </ul>
+                <p><strong>For Health Sciences / Medicine:</strong></p>
+                <ul class="checklist" style="margin-top:4px;">
+                  <li><span class="check-icon">✓</span><span>AP Biology</span></li>
+                  <li><span class="check-icon">✓</span><span>AP Chemistry</span></li>
+                  <li><span class="check-icon">✓</span><span>AP Statistics</span></li>
+                  <li><span class="check-icon">✓</span><span>AP Psychology (for understanding human behaviour)</span></li>
+                </ul>
+                <p><strong>For Business / Economics / Commerce:</strong></p>
+                <ul class="checklist" style="margin-top:4px;">
+                  <li><span class="check-icon">✓</span><span>AP Macroeconomics &amp; AP Microeconomics</span></li>
+                  <li><span class="check-icon">✓</span><span>AP Statistics</span></li>
+                  <li><span class="check-icon">✓</span><span>AP Calculus AB (for more quantitative business programs)</span></li>
+                </ul>
+                <p>
+                  During your AP advising call, we will help you choose the <strong>best AP subjects for your target university programs</strong>.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              How many AP courses should I take at once?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>
+                  The right number depends on your current workload and goals. Many students start with <strong>1–2 AP courses</strong> in Grade 10 or 11
+                  and then add more later.
+                </p>
+                <p>
+                  We generally recommend:
+                </p>
+                <ul class="checklist" style="margin-top:4px;">
+                  <li><span class="check-icon">✓</span><span>New to AP: begin with 1 course in your strongest subject.</span></li>
+                  <li><span class="check-icon">✓</span><span>Very strong academically: 2–3 AP courses can be realistic with good time management.</span></li>
+                </ul>
+                <p>
+                  Our advisors will review your schedule (school, activities, and family responsibilities) before confirming the final AP load.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              How does online learning work for AP courses?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>
+                  You will receive a login to our online learning platform, where you can:
+                </p>
+                <ul class="checklist" style="margin-top:4px;">
+                  <li><span class="check-icon">✓</span><span>Join live virtual classes with your AP teacher and classmates.</span></li>
+                  <li><span class="check-icon">✓</span><span>Access recorded lessons, notes, and practice questions 24/7.</span></li>
+                  <li><span class="check-icon">✓</span><span>Submit assignments and receive feedback online.</span></li>
+                  <li><span class="check-icon">✓</span><span>Book extra help or office hours when you need one-on-one support.</span></li>
+                </ul>
+                <p>
+                  This format allows you to study AP courses from anywhere in the world, while still receiving the personal support CanSTEM is known for.
+                </p>
+              </div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button">
+              How do I get started with AP courses at CanSTEM?
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                <p>
+                  1. Use the <strong>AP enrollment section</strong> above to share your contact details and preferred AP subjects.<br />
+                  2. Our team will contact you to schedule an advising call, answer your questions, and confirm your courses and schedule.<br />
+                  3. Once payment is complete, we will send your login information and your AP timetable so you can begin right away.
+                </p>
+                <p>
+                  If you prefer, you can also call us directly at <strong>647-568-0258</strong> or email <strong>canstem.education@gmail.com</strong>.
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <div class="foot">© CanSTEM Education — AP Courses &amp; Exam Preparation (Online &amp; In-Person Support)</div>
+    </div>
+  </section>
+
+  <script>
+    // AP course data
+    const apCourses = {
+      capstone: [
+        {
+          code: "AP Seminar",
+          name: "AP Seminar – Research & Presentation Skills",
+          tagline: "Core course in the AP Capstone Diploma program.",
+          prerequisite: "Strong English reading and writing skills; recommended for Grade 10–11 students."
+        },
+        {
+          code: "AP Research",
+          name: "AP Research – Independent Academic Project",
+          tagline: "Second course in the AP Capstone Diploma sequence.",
+          prerequisite: "Completion of AP Seminar or equivalent experience in academic research and presentation."
+        }
+      ],
+      arts: [
+        {
+          code: "AP 2-D Art",
+          name: "AP 2-D Art and Design",
+          tagline: "Develop a portfolio of digital or traditional 2-D artwork.",
+          prerequisite: "Prior experience in visual arts or design; ability to create and refine artwork independently."
+        },
+        {
+          code: "AP 3-D Art",
+          name: "AP 3-D Art and Design",
+          tagline: "Focus on sculpture, product design, or other 3-D media.",
+          prerequisite: "Prior experience with 3-D art, sculpture, or design work is helpful."
+        },
+        {
+          code: "AP Drawing",
+          name: "AP Drawing",
+          tagline: "Advanced drawing and mark-making for portfolio development.",
+          prerequisite: "Strong foundational drawing skills and consistent practice."
+        },
+        {
+          code: "AP Art History",
+          name: "AP Art History",
+          tagline: "Study major works of art from cultures around the world.",
+          prerequisite: "Strong reading comprehension; interest in history and culture."
+        },
+        {
+          code: "AP Music Theory",
+          name: "AP Music Theory",
+          tagline: "College-level course in music notation, harmony, and analysis.",
+          prerequisite: "Ability to read music and basic knowledge of music fundamentals."
+        }
+      ],
+      english: [
+        {
+          code: "AP English Lang",
+          name: "AP English Language and Composition",
+          tagline: "Focus on nonfiction texts, argument, and rhetorical analysis.",
+          prerequisite: "Strong English skills; usually taken in Grade 11 or early Grade 12."
+        },
+        {
+          code: "AP English Lit",
+          name: "AP English Literature and Composition",
+          tagline: "In-depth study and analysis of novels, poetry, and drama.",
+          prerequisite: "Previous success in academic English and comfort with challenging literature."
+        }
+      ],
+      historySocial: [
+        {
+          code: "AP Human Geo",
+          name: "AP Human Geography",
+          tagline: "Explore patterns and processes that shape human understanding of the world.",
+          prerequisite: "Interest in geography, culture, and current events; suitable as a first AP course."
+        },
+        {
+          code: "AP World History",
+          name: "AP World History: Modern",
+          tagline: "Global history from c. 1200 CE to the present.",
+          prerequisite: "Strong reading skills and interest in world history."
+        },
+        {
+          code: "AP US History",
+          name: "AP United States History",
+          tagline: "In-depth history of the United States from pre-Columbian era to present.",
+          prerequisite: "Strong English skills and interest in U.S. politics and history."
+        },
+        {
+          code: "AP Euro",
+          name: "AP European History",
+          tagline: "Study major developments in European history from 1450 to present.",
+          prerequisite: "Strong reading and note-taking skills."
+        },
+        {
+          code: "AP Gov & Politics: US",
+          name: "AP United States Government and Politics",
+          tagline: "Examine U.S. political institutions, policies, and behaviours.",
+          prerequisite: "Basic understanding of civics; good English reading skills."
+        },
+        {
+          code: "AP Comp Gov",
+          name: "AP Comparative Government and Politics",
+          tagline: "Compare political systems and institutions across countries.",
+          prerequisite: "Interest in global politics and current events."
+        },
+        {
+          code: "AP Macro",
+          name: "AP Macroeconomics",
+          tagline: "National and global economic concepts: inflation, unemployment, growth.",
+          prerequisite: "Comfort with graphs and algebra; good for business or economics-focused students."
+        },
+        {
+          code: "AP Micro",
+          name: "AP Microeconomics",
+          tagline: "Economics of individuals, firms, and markets.",
+          prerequisite: "Basic algebra; often paired with AP Macroeconomics."
+        },
+        {
+          code: "AP Psychology",
+          name: "AP Psychology",
+          tagline: "Scientific study of behaviour and mental processes.",
+          prerequisite: "Interest in human behaviour; strong reading and memorization skills."
+        },
+        {
+          code: "AP Afr. Amer. Studies",
+          name: "AP African American Studies",
+          tagline: "Interdisciplinary course exploring the African American experience.",
+          prerequisite: "Strong reading skills and interest in history, culture, and social issues."
+        }
+      ],
+      mathCS: [
+        {
+          code: "AP Precalculus",
+          name: "AP Precalculus",
+          tagline: "Advanced algebra, functions, and modelling – ideal preparation for AP Calculus.",
+          prerequisite: "Solid understanding of Grade 11 mathematics / Functions."
+        },
+        {
+          code: "AP Calculus AB",
+          name: "AP Calculus AB",
+          tagline: "Equivalent to first-semester university calculus.",
+          prerequisite: "Successful completion of Precalculus / Advanced Functions."
+        },
+        {
+          code: "AP Calculus BC",
+          name: "AP Calculus BC",
+          tagline: "Covers the full AP Calculus AB content plus additional topics.",
+          prerequisite: "Very strong background in Precalculus; often after or instead of AP Calculus AB."
+        },
+        {
+          code: "AP Statistics",
+          name: "AP Statistics",
+          tagline: "Data analysis, probability, and statistical inference.",
+          prerequisite: "Comfort with algebra; useful for science, business, and social science pathways."
+        },
+        {
+          code: "AP CS A",
+          name: "AP Computer Science A",
+          tagline: "University-level programming in Java and problem-solving.",
+          prerequisite: "Strong math skills and interest in programming; prior coding experience recommended."
+        },
+        {
+          code: "AP CSP",
+          name: "AP Computer Science Principles",
+          tagline: "Broad introduction to computer science, data, and the internet.",
+          prerequisite: "Comfort with algebra and logical thinking; a good first AP CS course."
+        }
+      ],
+      sciences: [
+        {
+          code: "AP Biology",
+          name: "AP Biology",
+          tagline: "University-level biology with labs: cells, genetics, evolution, ecology.",
+          prerequisite: "High achievement in Grade 11 Biology and strong study habits."
+        },
+        {
+          code: "AP Chemistry",
+          name: "AP Chemistry",
+          tagline: "University-level general chemistry with quantitative problem-solving.",
+          prerequisite: "Strong background in Grade 11 Chemistry and math (especially algebra)."
+        },
+        {
+          code: "AP Environmental Science",
+          name: "AP Environmental Science",
+          tagline: "Interdisciplinary study of ecosystems, resources, and sustainability.",
+          prerequisite: "One year of high school biology and one year of physical science recommended."
+        },
+        {
+          code: "AP Physics 1",
+          name: "AP Physics 1: Algebra-Based",
+          tagline: "Mechanics and waves using algebra-based problem-solving.",
+          prerequisite: "Current or prior enrollment in advanced math; prior physics helpful."
+        },
+        {
+          code: "AP Physics 2",
+          name: "AP Physics 2: Algebra-Based",
+          tagline: "Fluids, thermodynamics, electricity, magnetism, optics, and modern physics.",
+          prerequisite: "Completion of AP Physics 1 or an equivalent introductory physics course."
+        },
+        {
+          code: "AP Physics C: Mech",
+          name: "AP Physics C: Mechanics",
+          tagline: "Calculus-based mechanics for engineering-oriented students.",
+          prerequisite: "Concurrent or prior enrollment in Calculus; strong physics background."
+        },
+        {
+          code: "AP Physics C: E&amp;M",
+          name: "AP Physics C: Electricity and Magnetism",
+          tagline: "Calculus-based electricity and magnetism.",
+          prerequisite: "Completion of AP Physics C: Mechanics or equivalent; strong calculus skills."
+        }
+      ],
+      languages: [
+        {
+          code: "AP Chinese",
+          name: "AP Chinese Language and Culture",
+          tagline: "Advanced Mandarin language proficiency and cultural understanding.",
+          prerequisite: "Several years of prior Mandarin study or strong heritage speaker proficiency."
+        },
+        {
+          code: "AP French",
+          name: "AP French Language and Culture",
+          tagline: "Advanced French communication skills and cultural themes.",
+          prerequisite: "Completion of senior-level high school French or equivalent proficiency."
+        },
+        {
+          code: "AP German",
+          name: "AP German Language and Culture",
+          tagline: "Advanced German language skills and cultural topics.",
+          prerequisite: "Several years of German study or equivalent proficiency."
+        },
+        {
+          code: "AP Italian",
+          name: "AP Italian Language and Culture",
+          tagline: "Advanced Italian language and culture course.",
+          prerequisite: "Prior Italian language study or strong interest and commitment."
+        },
+        {
+          code: "AP Japanese",
+          name: "AP Japanese Language and Culture",
+          tagline: "Advanced Japanese communication and cultural understanding.",
+          prerequisite: "Multiple years of Japanese study or strong heritage speaker skills."
+        },
+        {
+          code: "AP Latin",
+          name: "AP Latin",
+          tagline: "Reading and analysis of Latin literature in the original language.",
+          prerequisite: "Several years of Latin study with strong grammar foundation."
+        },
+        {
+          code: "AP Spanish Lang",
+          name: "AP Spanish Language and Culture",
+          tagline: "Advanced Spanish communication and cultural content.",
+          prerequisite: "Completion of senior-level Spanish or equivalent proficiency."
+        },
+        {
+          code: "AP Spanish Lit",
+          name: "AP Spanish Literature and Culture",
+          tagline: "Study of Spanish-language literature from various periods and regions.",
+          prerequisite: "Strong Spanish reading skills; often taken after AP Spanish Language."
+        }
+      ]
+    };
+
+    const apMount = document.getElementById('ap-mount');
+    const countEl = document.getElementById('count');
+    const errorEl = document.getElementById('error');
+
+    function sectionTitle(text, blue = false) {
+      return `<div class="section-title ${blue ? 'badge-blue' : ''}">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M12 13v8"/><path d="M5 10v6a7 7 0 0 0 14 0v-6"/>
+        </svg>
+        <h2 style="margin:0;font-size:16px;letter-spacing:.2px">${text}</h2>
+      </div>`;
+    }
+
+    function card({ code, name, tagline, prerequisite }) {
+      return `<article class="card ap-card">
+        <div class="card-body">
+          <div class="meta">
+            <span class="code">${code}</span>
+            <span class="name">${name}</span>
+          </div>
+          ${tagline ? `<div class="row"><span class="tagline">${tagline}</span></div>` : ''}
+          <div class="row">
+            <span class="label">Recommended background:</span>
+            <span class="prereq">${prerequisite}</span>
+          </div>
+        </div>
+      </article>`;
+    }
+
+    const blocks = [
+      ['ap-capstone', 'AP Capstone Diploma Program', 'capstone', true],
+      ['ap-arts', 'AP Arts Courses', 'arts', false],
+      ['ap-english', 'AP English Courses', 'english', false],
+      ['ap-history', 'AP History & Social Sciences', 'historySocial', true],
+      ['ap-mathcs', 'AP Math & Computer Science', 'mathCS', true],
+      ['ap-sciences', 'AP Science Courses', 'sciences', false],
+      ['ap-languages', 'AP World Languages & Cultures', 'languages', false],
+    ];
+
+    function renderAPCourses(filter = "") {
+      apMount.innerHTML = "";
+      let total = 0;
+      const q = (filter || "").toLowerCase();
+
+      for (const [id, title, key, blue] of blocks) {
+        const list = apCourses[key].filter(c => {
+          if (!q) return true;
+          const joined = (c.code + " " + c.name + " " + (c.tagline || "") + " " + c.prerequisite).toLowerCase();
+          return joined.includes(q);
+        });
+
+        total += list.length;
+
+        const section = document.createElement('section');
+        section.className = 'section';
+        section.id = id;
+        section.innerHTML = sectionTitle(title, blue) + `<div class="grid">${list.map(card).join('')}</div>`;
+        apMount.appendChild(section);
+      }
+      countEl.textContent = total + " AP courses";
+    }
+
+    // FAQ accordion
+    function initFAQ() {
+      const faqButtons = document.querySelectorAll('.faq-question');
+      faqButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = btn.closest('.faq-item');
+          const isOpen = item.classList.contains('open');
+          // Close others for cleaner UX
+          document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+          if (!isOpen) {
+            item.classList.add('open');
+          }
+        });
+      });
+    }
+
+    // Search filtering for courses + FAQ
+    function filterPage(value) {
+      try {
+        const q = (value || "").toLowerCase();
+        renderAPCourses(q);
+
+        // Filter FAQ items
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+          const text = item.textContent.toLowerCase();
+          item.style.display = (!q || text.includes(q)) ? '' : 'none';
+        });
+
+        errorEl.style.display = 'none';
+        errorEl.textContent = "";
+      } catch (e) {
+        errorEl.style.display = 'block';
+        errorEl.textContent = "Something went wrong while filtering. Please clear the search box and try again.";
+        console.error(e);
+      }
+    }
+
+    // Init
+    renderAPCourses();
+    initFAQ();
+
+    const input = document.getElementById('q');
+    input.addEventListener('input', e => filterPage(e.target.value.trim()));
+  </script>
+</body>
+
+</html>
