@@ -1,0 +1,165 @@
+<section class="caec-ossd-vs-ged">
+  <div class="caec-ossd-container">
+    <div class="caec-ossd-heading">
+      <span class="caec-ossd-main-title">CAEC vs OSSD</span>
+      <span class="caec-ossd-subtitle">
+        Side-by-side comparison of the Ontario Secondary School Diploma (OSSD) and CAEC high school equivalency.
+      </span>
+    </div>
+
+    <div class="caec-ossd-grid">
+      <!-- OSSD Column -->
+      <div class="caec-ossd-card caec-ossd-card--left">
+        <span class="caec-ossd-column-title">OSSD (Ontario Secondary School Diploma)</span>
+        <ul>
+          <li>High School Diploma accepted by all Ontario Colleges and Universities.</li>
+          <li>Accepted worldwide for study and immigration purposes.</li>
+          <li>Includes a full high school transcript with course-by-course grades.</li>
+          <li>Meets admission requirements for competitive and degree programs.</li>
+          <li>Issued by an inspected Ontario high school (Ministry-approved curriculum).</li>
+        </ul>
+      </div>
+
+      <!-- CAEC Column -->
+      <div class="caec-ossd-card caec-ossd-card--right">
+        <span class="caec-ossd-column-title">CAEC (High School Equivalency)</span>
+        <ul>
+          <li>Only a high school equivalency credential (not a full diploma).</li>
+          <li>Limited acceptance – mainly Ontario College programs and registering as an apprentice.</li>
+          <li>Accepted for many work and immigration purposes, but not all academic pathways.</li>
+          <li>No full high school transcript or detailed course history.</li>
+          <li>May not be accepted for some university or highly competitive programs.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .caec-ossd-vs-ged {
+      display: flex;
+      justify-content: center;
+      font-family: "Open Sans", sans-serif;
+      font-size: 18px; /* Desktop & tablet base font size */
+      line-height: 1.8;
+    }
+
+    .caec-ossd-container {
+      max-width: 1200px;
+      width: 100%;
+      background: linear-gradient(135deg, #f4fbff, #e6f3ff);
+      border-radius: 18px;
+      padding: 28px 24px;
+      border: 1px solid rgba(0, 125, 190, 0.25);
+      box-shadow: 0 18px 40px rgba(255, 140, 0, 0.25); /* soft orange glow */
+    }
+
+    .caec-ossd-heading {
+      text-align: center;
+      margin-bottom: 26px;
+    }
+
+    .caec-ossd-main-title {
+      display: block;
+      font-family: "Roboto Condensed", "Open Sans", sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: #003764;
+      text-transform: uppercase;
+    }
+
+    .caec-ossd-subtitle {
+      display: block;
+      margin-top: 6px;
+      font-size: 18px;
+      color: #344054;
+      font-family: "Open Sans", sans-serif;
+    }
+
+    .caec-ossd-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .caec-ossd-card {
+      flex: 1 1 300px;
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 14px;
+      padding: 20px 22px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+    }
+
+    .caec-ossd-column-title {
+      display: block;
+      font-family: "Open Sans", sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: #111827;
+    }
+
+    .caec-ossd-card ul {
+      margin: 0;
+      padding-left: 18px;
+      list-style-type: disc;
+    }
+
+    .caec-ossd-card li {
+      margin-bottom: 8px;
+      font-size: 1rem; /* Follows base: 18px desktop/tablet, 16px mobile */
+      line-height: 1.6;
+      color: #26262b;
+    }
+
+    .caec-ossd-card--left {
+      border-top: 4px solid #0073aa; /* OSSD highlight */
+    }
+
+    .caec-ossd-card--right {
+      border-top: 4px solid #ff9800; /* CAEC highlight */
+    }
+
+    @media (max-width: 1024px) {
+      .caec-ossd-vs-ged {
+        font-size: 16px; /* still 18px on tablet */
+      }
+
+      .caec-ossd-main-title {
+        font-size: 28px;
+      }
+
+      .caec-ossd-column-title {
+        font-size: 18px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .caec-ossd-vs-ged {
+        font-size: 16px; /* mobile base font size */
+        padding: 28px 16px;
+      }
+
+      .caec-ossd-container {
+        padding: 22px 18px;
+      }
+
+      .caec-ossd-main-title {
+        font-size: 24px;
+      }
+
+      .caec-ossd-subtitle {
+        font-size: 14px;
+      }
+
+      .caec-ossd-card {
+        padding: 18px;
+      }
+
+      .caec-ossd-column-title {
+        font-size: 18px;
+      }
+    }
+  </style>
+</section>
