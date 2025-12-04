@@ -18,3 +18,5 @@ how much we can freed up by deleting all students from MAP4C.
 - Now today on nov 3rd I have 879 students we have right now ..
 
 - So today I almost deleted 938-879=58
+
+- Now the count is 819.
