@@ -237,7 +237,7 @@
             cursor: pointer;
             font-weight: 700;
             font-size: 18px;
-            background: linear-gradient(90deg, var(--grad-1), var(--grad-2));
+            background: var(--accent); /* single colour instead of gradient */
             color: #fff;
             box-shadow: 0 14px 30px rgba(37, 99, 235, .35);
         }
@@ -417,20 +417,20 @@
             color: #854d0e;
         }
 
-        /* Collapsible "Why" blocks */
+        /* Collapsible "Why" blocks - styled like section titles */
         .why-item {
             border-radius: 18px;
             border: 1px solid var(--ring);
             background: rgba(255, 255, 255, .96);
-            margin-top: 10px;
+            margin-top: 16px;
             overflow: hidden;
         }
 
         .why-toggle {
             width: 100%;
             text-align: left;
-            padding: 12px 16px;
-            background: transparent;
+            padding: 12px 18px;
+            background: linear-gradient(90deg, var(--grad-1), var(--grad-2));
             border: none;
             display: flex;
             align-items: center;
@@ -438,22 +438,38 @@
             gap: 16px;
             cursor: pointer;
             font-size: 18px;
-            font-weight: 700;
-            color: #111827;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .why-toggle-label {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .why-toggle-label::before {
+            content: "";
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.15);
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .why-icon {
             width: 24px;
             height: 24px;
             border-radius: 999px;
-            border: 1px solid var(--ring);
+            border: 1px solid rgba(255, 255, 255, 0.7);
             display: inline-flex;
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            color: var(--muted);
+            color: #ffffff;
             flex: 0 0 auto;
-            background: #f9fafb;
+            background: rgba(255, 255, 255, 0.2);
         }
 
         .why-body {
@@ -463,6 +479,7 @@
             padding: 0 16px;
             font-size: 18px;
             color: var(--muted);
+            background: #ffffff;
         }
 
         .why-body-inner {
@@ -803,16 +820,7 @@
             margin: 8px 0 4px;
         }
 
-        /* Detail panel */
-        .ap-detail {
-            margin-top: 18px;
-            border-radius: 18px;
-            border: 1px solid var(--ring);
-            background: rgba(255, 255, 255, .98);
-            padding: 16px 18px 14px;
-            box-shadow: 0 18px 40px rgba(15, 23, 42, .06);
-        }
-
+        /* Detail / modal shared styles */
         .ap-detail-title {
             font-size: 20px;
             font-weight: 800;
@@ -853,7 +861,7 @@
             color: var(--muted);
         }
 
-        .ap-detail-actions {
+        .ap-modal-actions {
             margin-top: 12px;
             display: flex;
             flex-wrap: wrap;
@@ -868,9 +876,83 @@
             text-decoration: none;
         }
 
-        .ap-detail-back svg {
+        /* Modal overlay */
+        .ap-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 40;
+            display: none;
+        }
+
+        .ap-modal--open {
+            display: block;
+        }
+
+        .ap-modal-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.45);
+            backdrop-filter: blur(8px);
+        }
+
+        .ap-modal-dialog {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 640px;
+            width: min(640px, 92vw);
+            max-height: 80vh;
+            overflow: auto;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 24px 60px rgba(15, 23, 42, 0.45);
+            padding: 18px 20px 16px;
+            backdrop-filter: blur(16px);
+        }
+
+        .ap-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .ap-modal-close {
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            border: 1px solid var(--ring);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            background: #f9fafb;
+            color: #4b5563;
+            flex: 0 0 auto;
+        }
+
+        .ap-modal-close:hover {
+            background: #eef2ff;
+            color: #1e3a8a;
+        }
+
+        .ap-modal-back.btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .ap-modal-back svg {
             width: 16px;
             height: 16px;
+        }
+
+        body.ap-modal-open {
+            overflow: hidden;
         }
 
         /* Footer + error */
@@ -924,7 +1006,7 @@
 
         #canstem-course-finder .csbx-shell {
             position: relative;
-            width: 1200px;
+            width: 1120px;
             display: flex;
             align-items: center;
             height: var(--csbx-h);
@@ -1208,10 +1290,10 @@
 
                 <!-- Block 1: Why AP Courses – And Why with CanSTEM? -->
                 <article class="why-item open">
-                    <button class="why-toggle" type="button">
-                        <span>Why AP Courses – And Why with CanSTEM?</span>
+                    <div class="why-toggle" role="button" tabindex="0">
+                        <span class="why-toggle-label">Why AP Courses – And Why with CanSTEM?</span>
                         <span class="why-icon">+</span>
-                    </button>
+                    </div>
                     <div class="why-body">
                         <div class="why-body-inner">
                             <div class="two-col">
@@ -1271,10 +1353,10 @@
 
                 <!-- Block 2: Why families trust CanSTEM (1 column) -->
                 <article class="why-item">
-                    <button class="why-toggle" type="button">
-                        <span>Why families trust CanSTEM</span>
+                    <div class="why-toggle" role="button" tabindex="0">
+                        <span class="why-toggle-label">Why families trust CanSTEM</span>
                         <span class="why-icon">+</span>
-                    </button>
+                    </div>
                     <div class="why-body">
                         <div class="why-body-inner">
                             <p class="section-intro">
@@ -1339,33 +1421,44 @@
 
                 <div id="ap-mount"></div>
 
-                <div class="ap-detail" id="ap-detail">
-                    <h3 class="ap-detail-title" id="ap-detail-title">Select an AP course to see details</h3>
-                    <p class="ap-detail-sub" id="ap-detail-sub">
-                        Click any AP course card above to see how that course works at CanSTEM (who it’s for, background
-                        needed, and how it supports your goals).
-                    </p>
-                    <div class="ap-detail-body" id="ap-detail-body">
-                        <p>Use the AP Subjects list above or the search bar at the top (for example:
-                            <strong>“Calculus”</strong>, <strong>“Biology”</strong>, <strong>“Computer
-                                Science”</strong>).
+                <!-- MODAL for AP course details -->
+                <div class="ap-modal" id="ap-modal" aria-hidden="true">
+                    <div class="ap-modal-backdrop"></div>
+                    <div class="ap-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="ap-modal-title">
+                        <div class="ap-modal-header">
+                            <div>
+                                <h3 class="ap-detail-title" id="ap-modal-title">Select an AP course to see details</h3>
+                                <p class="ap-detail-sub" id="ap-modal-sub">
+                                    Click any AP course card to see how that course works at CanSTEM (who it’s for,
+                                    background needed, and how it supports your goals).
+                                </p>
+                            </div>
+                            <div class="ap-modal-close" role="button" tabindex="0" aria-label="Close course details">
+                                ×
+                            </div>
+                        </div>
+                        <div class="ap-detail-body" id="ap-modal-body">
+                            <p>Use the AP Subjects list or the search bar at the top (for example:
+                                <strong>“Calculus”</strong>, <strong>“Biology”</strong>, <strong>“Computer
+                                    Science”</strong>).
+                            </p>
+                        </div>
+                        <p class="ap-detail-cta">
+                            When you’re ready, click <strong>Enroll in this AP course</strong> below to open the AP
+                            enrollment form.
                         </p>
-                    </div>
-                    <p class="ap-detail-cta">
-                        When you’re ready, click <strong>Enroll in this AP course</strong> below to open the AP
-                        enrollment form.
-                    </p>
-                    <div class="ap-detail-actions">
-                        <a href="https://canstemeducation.com/ap-enrollment-form" target="_blank" rel="noopener"
-                            class="btn-primary ap-enroll-btn">
-                            Enroll in this AP course
-                        </a>
-                        <button type="button" class="btn-ghost ap-detail-back">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                                <path d="M15 6 9 12l6 6" />
-                            </svg>
-                            Back to all AP subjects
-                        </button>
+                        <div class="ap-modal-actions">
+                            <a href="https://canstemeducation.com/ap-enrollment-form" target="_blank" rel="noopener"
+                                class="btn-primary ap-enroll-btn">
+                                Enroll in this AP course
+                            </a>
+                            <div class="btn-ghost ap-modal-back" role="button" tabindex="0">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                                    <path d="M15 6 9 12l6 6" />
+                                </svg>
+                                Back to all AP subjects
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1435,10 +1528,10 @@
 
                 <div class="faq-list">
                     <article class="faq-item" data-faq-id="faq1">
-                        <button class="faq-question" type="button">
+                        <div class="faq-question" role="button" tabindex="0">
                             What is the Advanced Placement (AP) Program?
                             <span class="faq-icon">+</span>
-                        </button>
+                        </div>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
                                 <p>
@@ -1453,10 +1546,10 @@
                     </article>
 
                     <article class="faq-item" data-faq-id="faq2">
-                        <button class="faq-question" type="button">
+                        <div class="faq-question" role="button" tabindex="0">
                             Is CanSTEM an official AP Exam test centre?
                             <span class="faq-icon">+</span>
-                        </button>
+                        </div>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
                                 <p>
@@ -1474,10 +1567,10 @@
                     </article>
 
                     <article class="faq-item" data-faq-id="faq3">
-                        <button class="faq-question" type="button">
+                        <div class="faq-question" role="button" tabindex="0">
                             Can I stay at my current school and still take AP with CanSTEM?
                             <span class="faq-icon">+</span>
-                        </button>
+                        </div>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
                                 <p>
@@ -1494,10 +1587,10 @@
                     </article>
 
                     <article class="faq-item" data-faq-id="faq4">
-                        <button class="faq-question" type="button">
+                        <div class="faq-question" role="button" tabindex="0">
                             Can international students take AP courses with CanSTEM?
                             <span class="faq-icon">+</span>
-                        </button>
+                        </div>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
                                 <p>
@@ -1511,10 +1604,10 @@
                     </article>
 
                     <article class="faq-item" data-faq-id="faq5">
-                        <button class="faq-question" type="button">
+                        <div class="faq-question" role="button" tabindex="0">
                             Which AP courses should I choose for my future program?
                             <span class="faq-icon">+</span>
-                        </button>
+                        </div>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
                                 <p><strong>Engineering / Computer Science:</strong> AP Calculus AB or BC, AP Physics (1,
@@ -1532,10 +1625,10 @@
                     </article>
 
                     <article class="faq-item" data-faq-id="faq6">
-                        <button class="faq-question" type="button">
+                        <div class="faq-question" role="button" tabindex="0">
                             How many AP courses should I take at once?
                             <span class="faq-icon">+</span>
-                        </button>
+                        </div>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
                                 <p>
@@ -1552,10 +1645,10 @@
                     </article>
 
                     <article class="faq-item" data-faq-id="faq7">
-                        <button class="faq-question" type="button">
+                        <div class="faq-question" role="button" tabindex="0">
                             How does online learning work for AP courses?
                             <span class="faq-icon">+</span>
-                        </button>
+                        </div>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
                                 <p>
@@ -1576,10 +1669,10 @@
                     </article>
 
                     <article class="faq-item" data-faq-id="faq8">
-                        <button class="faq-question" type="button">
+                        <div class="faq-question" role="button" tabindex="0">
                             How do I get started with AP at CanSTEM?
                             <span class="faq-icon">+</span>
-                        </button>
+                        </div>
                         <div class="faq-answer">
                             <div class="faq-answer-inner">
                                 <p>
@@ -1942,19 +2035,22 @@
         const apMount = document.getElementById("ap-mount");
         const countEl = document.getElementById("ap-count");
         const errorEl = document.getElementById("error");
-        const detailEl = document.getElementById("ap-detail");
-        const detailTitleEl = document.getElementById("ap-detail-title");
-        const detailSubEl = document.getElementById("ap-detail-sub");
-        const detailBodyEl = document.getElementById("ap-detail-body");
 
-        const defaultDetailTitle = "Select an AP course to see details";
-        const defaultDetailSub = "Click any AP course card above to see how that course works at CanSTEM (who it’s for, background needed, and how it supports your goals).";
-        const defaultDetailBodyHtml = `<p>Use the AP Subjects list above or the search bar at the top (for example: <strong>“Calculus”</strong>, <strong>“Biology”</strong>, <strong>“Computer Science”</strong>).</p>`;
+        // Modal elements
+        const modalEl = document.getElementById("ap-modal");
+        const modalTitleEl = document.getElementById("ap-modal-title");
+        const modalSubEl = document.getElementById("ap-modal-sub");
+        const modalBodyEl = document.getElementById("ap-modal-body");
+
+        const defaultModalTitle = "Select an AP course to see details";
+        const defaultModalSub = "Click any AP course card to see how that course works at CanSTEM (who it’s for, background needed, and how it supports your goals).";
+        const defaultModalBodyHtml = `<p>Use the AP Subjects list or the search bar at the top (for example: <strong>“Calculus”</strong>, <strong>“Biology”</strong>, <strong>“Computer Science”</strong>).</p>`;
 
         function setDefaultCourseDetail() {
-            detailTitleEl.textContent = defaultDetailTitle;
-            detailSubEl.textContent = defaultDetailSub;
-            detailBodyEl.innerHTML = defaultDetailBodyHtml;
+            if (!modalTitleEl || !modalSubEl || !modalBodyEl) return;
+            modalTitleEl.textContent = defaultModalTitle;
+            modalSubEl.textContent = defaultModalSub;
+            modalBodyEl.innerHTML = defaultModalBodyHtml;
         }
 
         function updateCount(total, filter) {
@@ -2012,13 +2108,13 @@
                 if (!q && index === 0) category.classList.add("open");
 
                 const headerHTML = `
-          <button class="ap-header" type="button">
+          <div class="ap-header" role="button" tabindex="0">
             <div class="ap-header-left">
               <span class="ap-header-title">${title}</span>
               <span class="ap-header-sub">${subtitle}</span>
             </div>
             <span class="ap-header-icon">+</span>
-          </button>
+          </div>
         `;
 
                 const gridHTML = `<div class="grid">${filteredCourses.map(courseCard).join("")}</div>`;
@@ -2043,17 +2139,40 @@
         function initAPAccordion() {
             const headers = apMount.querySelectorAll(".ap-header");
             headers.forEach(header => {
-                header.addEventListener("click", () => {
+                const toggle = () => {
                     const cat = header.closest(".ap-category");
                     const currentlyOpen = cat.classList.contains("open");
                     apMount.querySelectorAll(".ap-category").forEach(c => c.classList.remove("open"));
                     if (!currentlyOpen) cat.classList.add("open");
+                };
+                header.addEventListener("click", toggle);
+                header.addEventListener("keydown", e => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        toggle();
+                    }
                 });
             });
         }
 
         function getCourseById(courseId) {
             return flatCourses.find(c => c.id === courseId);
+        }
+
+        function openCourseModal() {
+            if (!modalEl) return;
+            modalEl.classList.add("ap-modal--open");
+            modalEl.setAttribute("aria-hidden", "false");
+            document.body.classList.add("ap-modal-open");
+        }
+
+        function closeCourseModal() {
+            if (!modalEl) return;
+            modalEl.classList.remove("ap-modal--open");
+            modalEl.setAttribute("aria-hidden", "true");
+            document.body.classList.remove("ap-modal-open");
+            clearActiveCards();
+            setDefaultCourseDetail();
         }
 
         function showCourseDetail(courseId) {
@@ -2063,27 +2182,27 @@
             const categoryMeta = CATEGORY_META[course.categoryKey] || {};
             const isInfo = course.kind === "info";
 
-            detailTitleEl.textContent = course.name;
-            detailSubEl.textContent = course.tagline;
+            if (modalTitleEl) modalTitleEl.textContent = course.name;
+            if (modalSubEl) modalSubEl.textContent = course.tagline;
 
             const benefits = (CATEGORY_META[course.categoryKey]?.benefits || [])
                 .map(b => `<li>${b}</li>`)
                 .join("");
 
-            detailBodyEl.innerHTML = `
-        <div class="ap-detail-meta">
-          <span class="badge-soft">${categoryMeta.label || "AP Course"}</span>
-          ${isInfo ? '<span class="badge-soft info">Program overview</span>' : '<span class="badge-soft">AP course</span>'}
-        </div>
-        ${categoryMeta.description ? `<p><strong>Category overview:</strong> ${categoryMeta.description}</p>` : ""}
-        ${benefits ? `<p><strong>Why students choose this area:</strong></p><ul>${benefits}</ul>` : ""}
-        <p><strong>Recommended background for this course:</strong> ${course.prerequisite || "We’ll help you decide if this course is the right level for you."}</p>
-        <p><strong>At CanSTEM:</strong> This AP course is offered with live online classes, recordings, assignments, and exam preparation support.</p>
-      `;
-
-            if (detailEl) {
-                detailEl.scrollIntoView({ behavior: "smooth", block: "start" });
+            if (modalBodyEl) {
+                modalBodyEl.innerHTML = `
+          <div class="ap-detail-meta">
+            <span class="badge-soft">${categoryMeta.label || "AP Course"}</span>
+            ${isInfo ? '<span class="badge-soft info">Program overview</span>' : '<span class="badge-soft">AP course</span>'}
+          </div>
+          ${categoryMeta.description ? `<p><strong>Category overview:</strong> ${categoryMeta.description}</p>` : ""}
+          ${benefits ? `<p><strong>Why students choose this area:</strong></p><ul>${benefits}</ul>` : ""}
+          <p><strong>Recommended background for this course:</strong> ${course.prerequisite || "We’ll help you decide if this course is the right level for you."}</p>
+          <p><strong>At CanSTEM:</strong> This AP course is offered with live online classes, recordings, assignments, and exam preparation support.</p>
+        `;
             }
+
+            openCourseModal();
         }
 
         function clearActiveCards() {
@@ -2127,11 +2246,18 @@
         function initFAQ() {
             const faqButtons = document.querySelectorAll(".faq-question");
             faqButtons.forEach(btn => {
-                btn.addEventListener("click", () => {
+                const toggle = () => {
                     const item = btn.closest(".faq-item");
                     const isOpen = item.classList.contains("open");
                     document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("open"));
                     if (!isOpen) item.classList.add("open");
+                };
+                btn.addEventListener("click", toggle);
+                btn.addEventListener("keydown", e => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        toggle();
+                    }
                 });
             });
         }
@@ -2168,28 +2294,51 @@
         function initWhyBlocks() {
             const buttons = document.querySelectorAll(".why-toggle");
             buttons.forEach(btn => {
-                btn.addEventListener("click", () => {
+                const toggle = () => {
                     const item = btn.closest(".why-item");
                     const isOpen = item.classList.contains("open");
                     document.querySelectorAll(".why-item").forEach(i => i.classList.remove("open"));
                     if (!isOpen) item.classList.add("open");
+                };
+                btn.addEventListener("click", toggle);
+                btn.addEventListener("keydown", e => {
+                    if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        toggle();
+                    }
                 });
             });
         }
 
-        // Detail panel back button
-        function initDetailControls() {
-            const backBtn = document.querySelector(".ap-detail-back");
-            if (backBtn) {
-                backBtn.addEventListener("click", () => {
-                    clearActiveCards();
-                    setDefaultCourseDetail();
-                    const subjectsSection = document.getElementById("subjects");
-                    if (subjectsSection) {
-                        subjectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-                    }
-                });
-            }
+        // Modal controls
+        function initModalControls() {
+            if (!modalEl) return;
+            const backdrop = modalEl.querySelector(".ap-modal-backdrop");
+            const closeBtn = modalEl.querySelector(".ap-modal-close");
+            const backBtn = modalEl.querySelector(".ap-modal-back");
+
+            const attachClose = (el) => {
+                if (!el) return;
+                el.addEventListener("click", closeCourseModal);
+                if (el.getAttribute("role") === "button") {
+                    el.addEventListener("keydown", e => {
+                        if (e.key === "Enter" || e.key === " ") {
+                            e.preventDefault();
+                            closeCourseModal();
+                        }
+                    });
+                }
+            };
+
+            attachClose(backdrop);
+            attachClose(closeBtn);
+            attachClose(backBtn);
+
+            document.addEventListener("keydown", e => {
+                if (e.key === "Escape" && modalEl.classList.contains("ap-modal--open")) {
+                    closeCourseModal();
+                }
+            });
         }
 
         // ===================== SEARCH SUGGESTIONS (AP only) =====================
@@ -2404,7 +2553,7 @@
         buildAPCategories();
         initFAQ();
         initWhyBlocks();
-        initDetailControls();
+        initModalControls();
         setDefaultCourseDetail();
     </script>
 </body>
