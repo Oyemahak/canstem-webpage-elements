@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HRT3M – World Religions: Beliefs, Issues, and Religious Traditions (Grade 11)</title>
+
+  <style>
+    :root {
+      --ink: #26262B;
+      --brand: #00427C;
+      --rule: #e6e6e6;
+      --stripe: #f9f9f9;
+    }
+
+    html {
+      box-sizing: border-box;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: inherit;
+    }
+
+    body {
+      font-family: 'Lato', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: var(--ink);
+      margin: 0;
+      line-height: 1.8;
+      font-size: 18px;
+      background: #fff;
+    }
+
+    .container {
+      max-width: 1200px;
+    }
+
+    table,
+    td,
+    th {
+      border: 0;
+    }
+
+    .unit-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
+    }
+
+    .unit-table thead {
+      background: var(--brand);
+      color: #fff;
+    }
+
+    .unit-table th,
+    .unit-table td {
+      padding: 18px 20px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid transparent;
+      font-size: 18px;
+      /* match your MHF4U style */
+    }
+
+    .unit-table tbody tr:not(:last-child) td {
+      border-bottom: 1px solid #eee;
+    }
+
+    .unit-table tbody tr:nth-child(even) {
+      background: var(--stripe);
+    }
+
+    .unit-table th:last-child,
+    .unit-table td:last-child {
+      white-space: nowrap;
+    }
+
+    /* Desktop column breathing room */
+    .unit-table col:nth-child(1) {
+      width: 12%;
+    }
+
+    .unit-table col:nth-child(2) {
+      width: 34%;
+    }
+
+    .unit-table col:nth-child(3) {
+      width: 42%;
+    }
+
+    .unit-table col:nth-child(4) {
+      width: 12%;
+    }
+
+    /* Bold “Total” row */
+    .unit-table tr.total-row td {
+      font-weight: 700;
+      background: #ffffff;
+    }
+
+    /* --- Responsive Table --- */
+    @media (max-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+
+      .unit-table thead {
+        display: none;
+      }
+
+      .unit-table,
+      .unit-table tbody,
+      .unit-table tr,
+      .unit-table td {
+        display: block;
+      }
+
+      .unit-table {
+        box-shadow: none !important;
+        margin-bottom: 0 !important;
+        border-radius: 0;
+      }
+
+      .unit-table tbody tr:not(:last-child) td {
+        border-bottom: 0;
+      }
+
+      .unit-table tr {
+        margin: 16px 0;
+        border: 1px solid #00427c;
+        padding: 16px;
+        box-shadow: none;
+        border-radius: 12px;
+        background: #fff;
+      }
+
+      .unit-table tbody tr:nth-child(even) {
+        background: #fff;
+      }
+
+      .unit-table td {
+        font-size: 16px;
+        padding: 12px 0px;
+        border: none;
+        position: relative;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        hyphens: auto;
+      }
+
+      .unit-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: #00427c;
+        display: block;
+        margin-bottom: 4px;
+        line-height: 1.2;
+      }
+
+      /* Keep Total row bold on mobile cards too */
+      .unit-table tr.total-row {
+        border-width: 2px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="hrt3m-course">
+    <div class="container">
+      <table class="unit-table">
+        <colgroup>
+          <col>
+          <col>
+          <col>
+          <col>
+        </colgroup>
+
+        <thead>
+          <tr>
+            <th>Unit</th>
+            <th>Title</th>
+            <th>Expectations Summary</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td data-label="Unit">1</td>
+            <td data-label="Title">Religious Beliefs</td>
+            <td data-label="Expectations Summary">
+              Study key religious histories, compare core beliefs, explore sacred texts/oral teachings, and understand
+              rituals and symbols.
+            </td>
+            <td data-label="Time">30 Hours</td>
+          </tr>
+
+          <tr>
+            <td data-label="Unit">2</td>
+            <td data-label="Title">Social Structures</td>
+            <td data-label="Expectations Summary">
+              Explore religion’s role in civilizations, art, and gender roles, and understand religious diversity in
+              Canada.
+            </td>
+            <td data-label="Time">25 Hours</td>
+          </tr>
+
+          <tr>
+            <td data-label="Unit">3</td>
+            <td data-label="Title">Religion and the Human Experience</td>
+            <td data-label="Expectations Summary">
+              Examine why religion matters, address misconceptions, analyze historical figures, and consider religion’s
+              future impact.
+            </td>
+            <td data-label="Time">30 Hours</td>
+          </tr>
+
+          <tr>
+            <td data-label="Unit">4</td>
+            <td data-label="Title">Research and Inquiry Skills</td>
+            <td data-label="Expectations Summary">
+              Build research skills using surveys/interviews/primary sources, evaluate evidence, and communicate
+              findings clearly.
+            </td>
+            <td data-label="Time">20 Hours</td>
+          </tr>
+
+          <tr>
+            <td data-label="Unit">Final</td>
+            <td data-label="Title">Final Exam</td>
+            <td data-label="Expectations Summary">
+              Written exam (30%). Term work across Units 1–4 counts for 70% of the final grade.
+            </td>
+            <td data-label="Time">5 Hours</td>
+          </tr>
+
+          <tr class="total-row">
+            <td data-label="Unit">Total</td>
+            <td data-label="Title">Course Total</td>
+            <td data-label="Expectations Summary">
+              HRT3M (Grade 11) is a 1.00 credit Ontario course with no prerequisite.
+            </td>
+            <td data-label="Time">110 Hours</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</body>
+
+</html>
