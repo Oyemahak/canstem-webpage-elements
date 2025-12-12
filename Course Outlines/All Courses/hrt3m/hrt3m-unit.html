@@ -1,334 +1,296 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- =========================
+HRT3M Accordion Details (Readability-Optimized)
+========================= -->
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>HRT3M – World Religions: Beliefs, Issues, and Religious Traditions (Grade 11)</title>
+<style>
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: #fff;
+    color: #26262B;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    line-height: 1.8;
+  }
 
-  <style>
-    body {
-      font-family: 'Open Sans', sans-serif;
-      background: #fff;
-      color: #26262B;
-      margin: 0;
-      padding: 0;
-      font-size: 18px;
-      line-height: 1.8;
-    }
+  .container {
+    max-width: 1200px;
+  }
 
-    .container {
-      max-width: 1200px;
-    }
+  .unit-details {
+    margin: 18px 0 30px;
+  }
 
-    .unit-details {
-      margin: 18px 0 30px;
-    }
+  .unit-toggle {
+    background-color: #00427C;
+    color: #fff;
+    font-weight: 600;
+    padding: 14px 20px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 12px;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: background 0.3s ease;
+    border: 0;
+  }
 
-    .unit-toggle {
-      background-color: #00427C;
-      color: #fff;
-      font-weight: 600;
-      padding: 14px 20px;
-      width: 100%;
-      text-align: left;
-      cursor: pointer;
-      font-size: 18px;
-      border-radius: 12px;
-      margin-top: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-      transition: background 0.3s ease;
-      border: 0;
-    }
+  .unit-toggle:hover {
+    background-color: #001161;
+  }
 
-    .unit-toggle:hover {
-      background-color: #001161;
-    }
+  .unit-toggle .arrow {
+    transition: transform 0.3s ease;
+    margin-left: 10px;
+    flex: 0 0 auto;
+  }
 
-    .unit-toggle .arrow {
-      transition: transform 0.3s ease;
-      margin-left: 10px;
-      flex: 0 0 auto;
-    }
+  .unit-toggle.open .arrow {
+    transform: rotate(180deg);
+  }
 
-    .unit-toggle.open .arrow {
-      transform: rotate(180deg);
-    }
+  .unit-content {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    padding: 0 1.5rem;
+    transform: scaleY(0.98);
+    transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.4s ease, transform 0.4s ease;
+    background-color: #ffffff;
+    border-left: 4px solid #e59500;
+    border-radius: 0 0 12px 12px;
+    margin-bottom: 0.5rem;
+  }
 
-    .unit-content {
-      overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      padding: 0 1.5rem;
-      transform: scaleY(0.98);
-      transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.4s ease, transform 0.4s ease;
-      background-color: #ffffff;
-      border-left: 4px solid #e59500;
-      border-radius: 0 0 12px 12px;
-      margin-bottom: 0.5rem;
-    }
+  .unit-content.open {
+    opacity: 1;
+    transform: scaleY(1);
+    padding: 0 1.5rem;
+  }
 
-    .unit-content.open {
-      opacity: 1;
-      transform: scaleY(1);
-      padding: 0 1.5rem;
-    }
+  .unit-content .content-inner {
+    padding: 1rem 0 1.2rem;
+  }
 
-    .unit-content .content-inner {
-      padding: 1rem 0 1.2rem;
+  .unit-content h3 {
+    margin: 0.2rem 0 0.6rem;
+    font-size: 18px;
+    font-weight: 700;
+    color: #001161;
+  }
+
+  .unit-content p {
+    margin: 0.4rem 0;
+    font-size: 18px;
+  }
+
+  .unit-content ul {
+    margin: 0.4rem 0 0;
+    padding: 0.4rem 0 0 1.2rem;
+  }
+
+  .unit-content li {
+    margin-bottom: 0.5rem;
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+
+    .unit-toggle,
+    .unit-content p,
+    .unit-content li {
+      font-size: 16px;
     }
 
     .unit-content h3 {
-      margin: 0.2rem 0 0.6rem;
-      font-size: 18px;
-      font-weight: 700;
-      color: #001161;
+      font-size: 16px;
     }
 
-    .unit-content p {
-      margin: 0.4rem 0;
-      font-size: 18px;
+    .unit-content {
+      padding: 0 1rem;
     }
 
-    .unit-content ul {
-      margin: 0.4rem 0 0;
-      padding: 0.4rem 0 0 1.2rem;
+    .unit-content.open {
+      padding: 0 1rem;
     }
+  }
+</style>
 
-    .unit-content li {
-      margin-bottom: 0.5rem;
-      font-size: 18px;
-    }
+<section class="hrt3m-course">
+  <div class="container">
+    <div class="unit-details">
 
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px 22px;
-      margin-top: 10px;
-    }
-
-    .info-box {
-      background: #f9fbff;
-      border: 1px solid #e6eef8;
-      border-radius: 12px;
-      padding: 14px 16px;
-    }
-
-    .info-box strong {
-      color: #00427C;
-    }
-
-    @media (max-width: 900px) {
-      .grid-2 {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-
-      .unit-toggle,
-      .unit-content p,
-      .unit-content li {
-        font-size: 16px;
-      }
-
-      .unit-content h3 {
-        font-size: 16px;
-      }
-
-      .unit-content {
-        padding: 0 1rem;
-      }
-
-      .unit-content.open {
-        padding: 0 1rem;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <section class="hrt3m-course">
-    <div class="container">
-      <div class="unit-details">
-
-        <!-- Course Description -->
-        <div class="unit-toggle">Course Description / Rationale <span class="arrow">▼</span></div>
-        <div class="unit-content">
-          <div class="content-inner">
-            <p>
-              This course enables students to discover what others believe and how they live, and to appreciate their
-              own unique heritage. Students will learn about the teachings and traditions of a variety of religions,
-              the connections between religion and the development of civilizations, the place and function of religion
-              in human experience, and the influence of a broad range of religions on contemporary society. This course
-              also introduces students to skills used in researching and investigating world religions.
-            </p>
-          </div>
+      <div class="unit-toggle">Course Description / Rationale <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>What this course covers</h3>
+          <p>
+            Learners explore what people believe and how those beliefs shape daily life. At the same time, the course
+            supports
+            respect for different backgrounds and traditions.
+          </p>
+          <p>
+            In addition, the course connects religion to the rise of civilizations and modern society. Finally, it
+            builds practical
+            research skills for world religions inquiry.
+          </p>
         </div>
-
-        <!-- Course Content (Units + Hours) -->
-        <div class="unit-toggle">Course Content (Units &amp; Hours) <span class="arrow">▼</span></div>
-        <div class="unit-content">
-          <div class="content-inner">
-            <ul>
-              <li><strong>Unit 1: Religious Beliefs</strong> — 30 hours</li>
-              <li><strong>Unit 2: Social Structures</strong> — 25 hours</li>
-              <li><strong>Unit 3: Religion and the Human Experience</strong> — 30 hours</li>
-              <li><strong>Unit 4: Research and Inquiry Skills</strong> — 20 hours</li>
-              <li><strong>Total:</strong> 110 hours</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Overall Curriculum Expectations - Unit 1 -->
-        <div class="unit-toggle">1. Religious Beliefs — Overall Expectations <span class="arrow">▼</span></div>
-        <div class="unit-content">
-          <div class="content-inner">
-            <ul>
-              <li>Summarize the major historical influences on and events in the development of various religions.</li>
-              <li>Analyse the similarities and differences between the central beliefs of various religions.</li>
-              <li>Analyse and describe the connection between the human experience and sacred writings and oral
-                teachings.</li>
-              <li>Demonstrate how practice, ritual, and symbolism are external representations of religious beliefs and
-                principles.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Overall Curriculum Expectations - Unit 2 -->
-        <div class="unit-toggle">2. Social Structures — Overall Expectations <span class="arrow">▼</span></div>
-        <div class="unit-content">
-          <div class="content-inner">
-            <ul>
-              <li>Summarize the ways in which religions and the development of civilizations are interconnected.</li>
-              <li>Analyse the influence of religion on artistic expression.</li>
-              <li>Describe the influence that differing gender-role expectations have had on the development of
-                religion.</li>
-              <li>Demonstrate an understanding of religious pluralism as a defining feature of contemporary Canadian
-                society.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Overall Curriculum Expectations - Unit 3 -->
-        <div class="unit-toggle">3. Religion and the Human Experience — Overall Expectations <span
-            class="arrow">▼</span></div>
-        <div class="unit-content">
-          <div class="content-inner">
-            <ul>
-              <li>Identify the function of religion in human experience.</li>
-              <li>Demonstrate an ability to recognize prejudices associated with, and misconceptions about, various
-                religions, beliefs, and traditions.</li>
-              <li>Analyse the significance of religion or other belief systems in the lives of various historical
-                figures.</li>
-              <li>Speculate on the present and future roles of religion.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Overall Curriculum Expectations - Unit 4 -->
-        <div class="unit-toggle">4. Research and Inquiry Skills — Overall Expectations <span class="arrow">▼</span>
-        </div>
-        <div class="unit-content">
-          <div class="content-inner">
-            <ul>
-              <li>Use appropriate theories and analyses of religion in preparing an independent study.</li>
-              <li>Distinguish between fact and opinion, belief and religion, and theory and practice, as they apply to
-                the study of religion.</li>
-              <li>Identify the implications of different research methodologies in the study of religion.</li>
-              <li>Employ at least one research methodology in an independent study (e.g., survey, demographic study,
-                interview, database search, primary sources).</li>
-              <li>Communicate the results of these inquiries effectively.</li>
-              <li>Demonstrate effective collaborative group skills.</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Summary of Methods / Strategies / Purposes -->
-        <div class="unit-toggle">Summary of Methods, Strategies &amp; Purposes <span class="arrow">▼</span></div>
-        <div class="unit-content">
-          <div class="content-inner">
-            <p><strong>Teaching &amp; Learning Strategies (each unit):</strong> Lecture, demonstration, structured
-              discussion, practical exercise, research project.</p>
-            <p><strong>Assessment (each unit):</strong> Quiz, presentation, assignment.</p>
-            <p><strong>Evaluation (each unit):</strong> Unit test (Unit 1 Test, Unit 2 Test, Unit 3 Test, Unit 4 Test).
-            </p>
-          </div>
-        </div>
-
-        <!-- Evaluation Breakdown -->
-        <div class="unit-toggle">Assessment &amp; Evaluation Breakdown <span class="arrow">▼</span></div>
-        <div class="unit-content">
-          <div class="content-inner">
-            <ul>
-              <li><strong>Assessed Categories:</strong> Knowledge (20%), Thinking/Inquiry (30%), Communication (25%),
-                Application (25%)</li>
-              <li><strong>Term Work:</strong> 70% (Each Unit Evaluation all together)</li>
-              <li><strong>Final Exam:</strong> 30% (Written Exam)</li>
-              <li><strong>Final Mark:</strong> 70% + 30% = 100%</li>
-              <li><strong>Evidence of Learning:</strong> Products, observations, conversations</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Reference Material -->
-        <div class="unit-toggle">Resources / Reference Material <span class="arrow">▼</span></div>
-        <div class="unit-content">
-          <div class="content-inner">
-            <p><strong>Note:</strong> This course is entirely online and does not require or rely on any textbook.</p>
-            <p>If students wish to seek additional information, we recommend:</p>
-            <ul>
-              <li><strong>Exploring World Religions</strong>; Don Quinlan, Peter Lawley, Dennis DesRivieres, James
-                Ellsworth, Deo Kernahan, et al.; Oxford University Press Canada, 2001</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Program Planning Considerations (short summary) -->
-        <div class="unit-toggle">Program Planning Considerations (Summary) <span class="arrow">▼</span></div>
-        <div class="unit-content">
-          <div class="content-inner">
-            <p>
-              Social sciences and humanities courses help students develop critical and creative thinking through
-              practical experiences, discussion, debate, research, study, and reflection. Program planning also
-              considers student needs and inclusive practices, including support for exceptional students, the role of
-              technology, ESL/ELD supports, antidiscrimination education, literacy/numeracy/inquiry skills, career
-              education, cooperative education, and health &amp; safety.
-            </p>
-          </div>
-        </div>
-
       </div>
+
+      <div class="unit-toggle">Course Content (Units &amp; Hours) <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Unit time plan</h3>
+          <ul>
+            <li><strong>Unit 1: Religious Beliefs</strong> — 30 hours</li>
+            <li><strong>Unit 2: Social Structures</strong> — 25 hours</li>
+            <li><strong>Unit 3: Religion and the Human Experience</strong> — 30 hours</li>
+            <li><strong>Unit 4: Research and Inquiry Skills</strong> — 20 hours</li>
+            <li><strong>Total:</strong> 110 hours</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="unit-toggle">1. Religious Beliefs — Overall Expectations <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Key learning goals</h3>
+          <ul>
+            <li>Summarize major influences and events that shaped religions.</li>
+            <li>Compare similarities and differences in core beliefs.</li>
+            <li>Connect sacred writings and oral teachings to human experience.</li>
+            <li>Explain how rituals and symbols show religious values.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="unit-toggle">2. Social Structures — Overall Expectations <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Key learning goals</h3>
+          <ul>
+            <li>Explain how religions and civilizations influence each other.</li>
+            <li>Analyze religion’s influence on artistic expression.</li>
+            <li>Describe how gender roles have shaped religion over time.</li>
+            <li>Understand religious pluralism in Canada today.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="unit-toggle">3. Religion and the Human Experience — Overall Expectations <span class="arrow">▼</span>
+      </div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Key learning goals</h3>
+          <ul>
+            <li>Identify the function of religion in human experience.</li>
+            <li>Recognize prejudices and common misconceptions.</li>
+            <li>Analyze belief systems in the lives of historical figures.</li>
+            <li>Consider present and future roles of religion.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="unit-toggle">4. Research and Inquiry Skills — Overall Expectations <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Key learning goals</h3>
+          <ul>
+            <li>Use theories and analyses of religion for an independent study.</li>
+            <li>Distinguish fact vs opinion, and belief vs religion.</li>
+            <li>Choose an inquiry method (survey, interview, database search, or primary sources).</li>
+            <li>Communicate results clearly and collaborate effectively.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="unit-toggle">Summary of Methods, Strategies &amp; Purposes <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>How learning happens</h3>
+          <p><strong>Strategies:</strong> lecture, demonstration, structured discussion, practical tasks, and research
+            projects.</p>
+          <p><strong>Assessment:</strong> quizzes, presentations, and assignments.</p>
+          <p><strong>Evaluation:</strong> each unit ends with a unit test.</p>
+        </div>
+      </div>
+
+      <div class="unit-toggle">Assessment &amp; Evaluation Breakdown <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>How grades are calculated</h3>
+          <ul>
+            <li><strong>Assessed Categories:</strong> Knowledge (20%), Thinking/Inquiry (30%), Communication (25%),
+              Application (25%)</li>
+            <li><strong>Term Work:</strong> 70% (Units 1–4 combined)</li>
+            <li><strong>Final Exam:</strong> 30% (Written Exam)</li>
+            <li><strong>Evidence of Learning:</strong> products, observations, conversations</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="unit-toggle">Resources / Reference Material <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Resources</h3>
+          <p><strong>Note:</strong> This course is online, so no textbook is required.</p>
+          <p>
+            However, learners who want extra reading may use <strong>Exploring World Religions</strong>
+            (Oxford University Press Canada, 2001).
+          </p>
+        </div>
+      </div>
+
+      <div class="unit-toggle">Program Planning Considerations (Summary) <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Important supports</h3>
+          <p>
+            Planning includes accessibility, inclusion, and student supports. For example, teachers consider exceptional
+            learners,
+            ESL/ELD needs, technology, and safe learning practices.
+          </p>
+          <p>
+            In addition, the course supports literacy and inquiry skills. As a result, learners can research,
+            communicate clearly,
+            and prepare for future pathways.
+          </p>
+        </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
-  <script>
-    const toggles = document.querySelectorAll('.unit-toggle');
+<script>
+  const toggles = document.querySelectorAll('.unit-toggle');
 
-    toggles.forEach(toggle => {
-      toggle.addEventListener('click', () => {
-        const content = toggle.nextElementSibling;
-        const isOpen = toggle.classList.contains('open');
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const content = toggle.nextElementSibling;
+      const isOpen = toggle.classList.contains('open');
 
-        document.querySelectorAll('.unit-toggle').forEach(t => t.classList.remove('open'));
-        document.querySelectorAll('.unit-content').forEach(c => {
-          c.classList.remove('open');
-          c.style.maxHeight = null;
-          c.style.paddingTop = null;
-          c.style.paddingBottom = null;
-        });
-
-        if (!isOpen) {
-          toggle.classList.add('open');
-          content.classList.add('open');
-          content.style.maxHeight = content.scrollHeight + "px";
-        }
+      document.querySelectorAll('.unit-toggle').forEach(t => t.classList.remove('open'));
+      document.querySelectorAll('.unit-content').forEach(c => {
+        c.classList.remove('open');
+        c.style.maxHeight = null;
       });
-    });
-  </script>
-</body>
 
-</html>
+      if (!isOpen) {
+        toggle.classList.add('open');
+        content.classList.add('open');
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    const openContent = document.querySelector('.unit-content.open');
+    if (openContent) openContent.style.maxHeight = openContent.scrollHeight + "px";
+  });
+</script>
