@@ -1,1 +1,1453 @@
-Coming Soon!
+<!-- =========================
+Fee Structure (Search + Accordion)
+Search bar replaces chips/dropdown
+Only 1 accordion open at a time
+========================= -->
+
+<style>
+    :root {
+        --head: #000000;
+        --sub: #00427c;
+        --ink: #26262B;
+        --muted: #333333;
+        --panel: #ffffff;
+        --border: #e2e8f0;
+        --shadow: 0 4px 20px rgba(0, 0, 0, .08);
+        --radius: 12px;
+    }
+
+    /* Wrapper */
+    #fee-structure-wrap {
+        font-family: "Open Sans", sans-serif;
+        color: var(--ink);
+        max-width: 1200px;
+        line-height: 1.6;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+    /* =========================
+    SEARCH BAR (same as reference)
+  ========================= */
+    #canstem-fee-search {
+        --csbx-ink: #0f172a;
+        --csbx-muted: #667085;
+        --csbx-bg: #fff;
+        --csbx-border: #e6e6e6;
+        --csbx-ring: #fbb02547;
+        --csbx-brand: #001161;
+        --csbx-shadow: 0 10px 30px rgba(2, 6, 23, .10);
+        --csbx-radius: 999px;
+        --csbx-h: 52px;
+        --csbx-font: 18px;
+
+        max-width: 1200px;
+        margin: 0 auto 18px;
+        padding: 0;
+    }
+
+    #canstem-fee-search input,
+    #canstem-fee-search button,
+    #canstem-fee-search ul,
+    #canstem-fee-search li {
+        all: unset;
+    }
+
+    #canstem-fee-search input,
+    #canstem-fee-search button {
+        box-shadow: none !important;
+        background: none !important;
+    }
+
+    #canstem-fee-search .csbx-shell {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: var(--csbx-h);
+        background: var(--csbx-bg);
+        border: 1px solid var(--csbx-brand);
+        border-radius: var(--csbx-radius);
+        padding: 0 16px 0 44px;
+        box-shadow: 0 4px 28px rgba(251, 176, 37, .6), 0 0 0 0 var(--csbx-ring);
+        transition: box-shadow .18s ease, border-color .18s ease;
+    }
+
+    #canstem-fee-search .csbx-shell:focus-within {
+        border: 1px solid #000;
+        outline: 0.5px solid #000;
+    }
+
+    #canstem-fee-search .csbx-search {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        color: #9aa5b1;
+        pointer-events: none;
+    }
+
+    #canstem-fee-search .csbx-input {
+        flex: 1 1 auto;
+        min-width: 0;
+        height: 2.5rem;
+        line-height: normal;
+        padding: 0;
+        font-size: var(--csbx-font);
+        color: var(--csbx-ink) !important;
+        caret-color: var(--csbx-ink);
+    }
+
+    #canstem-fee-search .csbx-input::placeholder {
+        color: #9aa5b1;
+        opacity: 1;
+    }
+
+    #canstem-fee-search .csbx-suggest {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(100% + 10px);
+        background: #fff;
+        border: 1px solid var(--csbx-border);
+        border-radius: 18px;
+        box-shadow: var(--csbx-shadow);
+        padding: 8px;
+        max-height: 420px;
+        overflow: auto;
+        z-index: 9999;
+        display: none;
+    }
+
+    #canstem-fee-search .csbx-suggest.csbx-show {
+        display: block;
+    }
+
+    #canstem-fee-search .csbx-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px 14px;
+        align-items: center;
+        padding: 12px 14px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background .12s ease;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    #canstem-fee-search .csbx-row:hover,
+    #canstem-fee-search .csbx-row[aria-selected="true"] {
+        background: #f7fafc;
+    }
+
+    #canstem-fee-search .csbx-row:last-child {
+        border-bottom: none;
+    }
+
+    #canstem-fee-search .csbx-left {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    #canstem-fee-search .csbx-code {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--csbx-ink);
+        word-break: break-word;
+    }
+
+    #canstem-fee-search .csbx-name {
+        font-size: 14px;
+        font-weight: 500;
+        color: #475569;
+        margin-top: 2px;
+        line-height: 1.35;
+    }
+
+    #canstem-fee-search .csbx-right {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        justify-self: end;
+    }
+
+    #canstem-fee-search .csbx-chip {
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        white-space: nowrap;
+        border: 1px solid #e0e7ff;
+        background: #eef2ff;
+        color: #1e3a8a;
+    }
+
+    /* =========================
+    ACCORDION SECTIONS (your original look)
+  ========================= */
+    details.fee-section {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 1.25rem;
+        box-shadow: var(--shadow);
+    }
+
+    summary.fee-toggle {
+        list-style: none;
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+        padding: 16px;
+        font-weight: 700;
+        color: var(--head);
+        background: #fff;
+        border-left: 6px solid var(--sub);
+    }
+
+    summary.fee-toggle::-webkit-details-marker {
+        display: none;
+    }
+
+    summary.fee-toggle:after {
+        content: "▸";
+        margin-left: auto;
+        color: var(--sub);
+        font-weight: 800;
+        transition: transform .2s ease;
+    }
+
+    details[open]>summary.fee-toggle:after {
+        transform: rotate(90deg);
+    }
+
+    .fee-content {
+        padding: 18px 16px 20px;
+        border-top: 1px solid var(--border);
+        background: #fff;
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .fee-content>*+* {
+        margin-top: 14px;
+    }
+
+    .bullets {
+        margin: .25rem 0 .5rem 1.1rem;
+    }
+
+    .bullets li {
+        margin: .25rem 0;
+    }
+
+    .list {
+        margin: .25rem 0 .75rem 1.1rem;
+    }
+
+    .list li {
+        margin: .3rem 0;
+    }
+
+    .accent {
+        color: var(--sub);
+        font-weight: 700;
+        margin-top: 1.25rem;
+    }
+
+    table.rtable {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        margin: 0 0 1rem;
+    }
+
+    .rtable thead {
+        background: var(--sub);
+        color: #fff;
+    }
+
+    .rtable th,
+    .rtable td {
+        padding: 16px;
+        text-align: left;
+        font-size: 18px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+
+    .rtable tbody tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    .sep {
+        height: 1px;
+        background: #eef2f7;
+        margin: 1rem 0;
+    }
+
+    .fee-content a {
+        color: var(--sub);
+        font-weight: 700;
+        text-decoration: none;
+        border-bottom: 1px dashed var(--sub);
+    }
+
+    .fee-content a:hover {
+        color: #003566;
+        border-bottom-color: #003566;
+    }
+
+    /* Payment Confirmation highlight (same as your old) */
+    #payment-confirmation summary.fee-toggle {
+        background: #f0fdf9;
+        border-left-color: #0f766e;
+    }
+
+    #payment-confirmation.fee-section {
+        box-shadow: 0 6px 24px rgba(15, 118, 110, .12);
+    }
+
+    /* =========================
+    RESPONSIVE (your original)
+  ========================= */
+    @media (max-width: 768px) {
+        #fee-structure-wrap {
+            font-size: 16px;
+        }
+
+        .fee-content {
+            font-size: 16px;
+        }
+
+        .rtable thead {
+            display: none;
+        }
+
+        .rtable,
+        .rtable tbody,
+        .rtable tr,
+        .rtable td {
+            display: block;
+            width: 100%;
+        }
+
+        .rtable {
+            box-shadow: none !important;
+            margin-bottom: 0 !important;
+        }
+
+        .rtable tr {
+            margin-bottom: 16px;
+            border: 1px solid var(--sub);
+            padding: 16px;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        .rtable td {
+            border: none;
+            padding: 12px 0;
+            position: relative;
+            font-size: 16px;
+        }
+
+        .rtable td::before {
+            content: attr(data-label);
+            font-weight: 700;
+            color: var(--sub);
+            display: block;
+            margin-bottom: 4px;
+        }
+    }
+
+    @media (max-width: 640px) {
+        #canstem-fee-search .csbx-shell {
+            padding-right: 12px;
+        }
+
+        #canstem-fee-search .csbx-code {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        #canstem-fee-search .csbx-name {
+            font-size: 13px;
+        }
+    }
+</style>
+
+
+<section class="fees-container" id="fee-structure-wrap">
+
+    <!-- Search -->
+    <section id="canstem-fee-search" aria-label="Search fee structure sections">
+        <div class="csbx-shell" role="search">
+            <svg class="csbx-search" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2" />
+                <path d="M20 20L16.2 16.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            </svg>
+
+            <input id="csbx-q" class="csbx-input" type="search" spellcheck="false" autocomplete="off"
+                placeholder="Write search.." aria-autocomplete="list" aria-controls="csbx-suggest"
+                aria-expanded="false" />
+
+            <div id="csbx-suggest" class="csbx-suggest" role="listbox" aria-label="Suggestions"></div>
+        </div>
+    </section>
+
+    <!-- Accordions -->
+    <div class="fees-accordions">
+
+        <!-- Payment Confirmation -->
+        <details class="fee-section" id="payment-confirmation" data-title="Payment Confirmation"
+            data-keywords="payment confirmation pay tuition receipt invoice email confirmation">
+            <summary class="fee-toggle">Payment Confirmation</summary>
+            <div class="fee-content">
+                <p>We provide receipts for all payments, and you also receive e-transfer confirmations directly in your
+                    email.</p>
+                <ul class="bullets">
+                    <li>If, for any reason, you require all payment details on our official letterhead, we can provide a
+                        consolidated confirmation letter at a nominal cost.</li>
+                    <li>This cost covers the time and resources required to review your payment transactions and compile
+                        them into a single official payment confirmation document.</li>
+                    <li>The fee varies depending on the number of transactions involved, when the payments were made,
+                        and the payment methods used.</li>
+                    <li>You can contact us and submit your request with specific requirements, and we will get back to
+                        you with the applicable fee for the confirmation letter and the expected delivery timeline.</li>
+                </ul>
+            </div>
+        </details>
+
+        <!-- Full-Time Day School -->
+        <details class="fee-section" id="full-time-day-school" data-title="Full-Time Day School Fees 2025-26"
+            data-keywords="full time day school fees tuition 2025 2026 grade 1 8 9 10 11 12 in class online monthly fee">
+            <summary class="fee-toggle">Full-Time Day School Fees — Sept 2025 to Aug 2026</summary>
+            <div class="fee-content">
+                <ul class="list">
+                    <li>One-time Registration Fee: <strong>$850</strong></li>
+                    <li class="muted">(Can be paid in installments; includes all the report cards, transcripts, grade
+                        reporting, graduation ceremonies, all events celebrations)</li>
+                </ul>
+
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Grade</th>
+                            <th>Schedule (From Sept 2025)</th>
+                            <th>Monthly Fee</th>
+                            <th>Includes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Grade">Grade 1–8 (In-Class, Online)</td>
+                            <td data-label="Schedule">9am to 4pm</td>
+                            <td data-label="Monthly Fee">$600 / month</td>
+                            <td data-label="Includes">Final exam (even if online). Unlimited after school help.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Grade">Grade 9–10 (In-Class, Online)</td>
+                            <td data-label="Schedule">9am to 4pm</td>
+                            <td data-label="Monthly Fee">$700 / month</td>
+                            <td data-label="Includes">Final exam (even if online). Unlimited after school help.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Grade">Grade 11–12 (In-Class, Online)</td>
+                            <td data-label="Schedule">9am to 4pm</td>
+                            <td data-label="Monthly Fee">$750 / month</td>
+                            <td data-label="Includes">Final exam (even if online). Unlimited after school help.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </details>
+
+        <!-- International Students -->
+        <details class="fee-section" id="international-students" data-title="International Students"
+            data-keywords="international students tuition enrollment transcript fee plar admin documentation consultation assessment course fee grades 9 10 11 12 full time ossd">
+            <summary class="fee-toggle">International Student Tuition & Enrollment Fees</summary>
+            <div class="fee-content">
+                <p class="muted">
+                    For admission requirements and process, please visit:
+                    <a href="https://canstemeducation.com/international-student/" target="_blank"
+                        rel="noopener">International Students</a>
+                </p>
+
+                <div class="sep"></div>
+
+                <p class="accent">Individual Credit Courses (Online or In-Person)</p>
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Amount</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Item">Transcript Fee</td>
+                            <td data-label="Amount">$250 (one-time)</td>
+                            <td data-label="Notes">Applies once, regardless of number of courses selected.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">PLAR Fee (Prior Learning Assessment)</td>
+                            <td data-label="Amount">$150 per course stream</td>
+                            <td data-label="Notes">One PLAR per subject stream (English, Math, Science, etc.). Once
+                                approved, no additional PLAR fee for that stream.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Assessment Charges</td>
+                            <td data-label="Amount">$450</td>
+                            <td data-label="Notes">Required for evaluation and placement.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Admin Fee</td>
+                            <td data-label="Amount">$95</td>
+                            <td data-label="Notes">One-time processing fee.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Documentation Processing Fee</td>
+                            <td data-label="Amount">$250</td>
+                            <td data-label="Notes">Required for document verification.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Consultation Fee</td>
+                            <td data-label="Amount">$100</td>
+                            <td data-label="Notes">For academic planning and guidance.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Course Fee — Grades 9–10</td>
+                            <td data-label="Amount">$449 per course</td>
+                            <td data-label="Notes"></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Course Fee — Grades 11–12</td>
+                            <td data-label="Amount">$499 per course</td>
+                            <td data-label="Notes"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="sep"></div>
+
+                <p class="accent">Full-Time OSSD Program (Online or In-Person)</p>
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Amount</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Item">One-Time Registration Fee</td>
+                            <td data-label="Amount">$850</td>
+                            <td data-label="Notes">Required at the time of admission.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">PLAR</td>
+                            <td data-label="Amount">$450 per subject</td>
+                            <td data-label="Notes">Credit transfer and prior learning assessment.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Grades 1–8</td>
+                            <td data-label="Amount">$6,350 per year</td>
+                            <td data-label="Notes">Full-time tuition.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Grade 9</td>
+                            <td data-label="Amount">$7,350 per year</td>
+                            <td data-label="Notes">Full-time tuition.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Grade 10</td>
+                            <td data-label="Amount">$7,350 per year</td>
+                            <td data-label="Notes">Full-time tuition.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Grade 11</td>
+                            <td data-label="Amount">$7,850 per year</td>
+                            <td data-label="Notes">Full-time tuition.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Grade 12</td>
+                            <td data-label="Amount">$7,850 per year</td>
+                            <td data-label="Notes">Full-time tuition.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Assessment Charges</td>
+                            <td data-label="Amount">$450</td>
+                            <td data-label="Notes">Academic placement and evaluation.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Admin Fee</td>
+                            <td data-label="Amount">$95</td>
+                            <td data-label="Notes">One-time processing fee.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Documentation Processing Fee</td>
+                            <td data-label="Amount">$250</td>
+                            <td data-label="Notes">Verification of international credentials.</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Consultation Fee</td>
+                            <td data-label="Amount">$100</td>
+                            <td data-label="Notes">Individual academic planning session.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="sep"></div>
+
+                <ul class="list">
+                    <li class="accent">
+                        Document Checklist:
+                        <a href="https://canstemeducation.com/wp-content/uploads/2025/10/document-checklist-full-time-student.pdf"
+                            target="_blank" rel="noopener">Download here</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+
+        <!-- Ontario Course-by-Course -->
+        <details class="fee-section" id="ontario-course-by-course" data-title="Ontario (Course-by-Course)"
+            data-keywords="ontario education full time course by course grade 9 10 11 12 registration fee course fee online exam fee">
+            <summary class="fee-toggle">Students with Ontario Education — Full-Time Course by Course (Grade 9–12 only)
+            </summary>
+            <div class="fee-content">
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Ontario Education – Full-Time Course by Course (Grade 9–12)</th>
+                            <th>Amount</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Item">Registration Fee</td>
+                            <td data-label="Amount">$850</td>
+                            <td data-label="Notes"></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Course Fee</td>
+                            <td data-label="Amount">$499 per course</td>
+                            <td data-label="Notes"></td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Online Exam Fee</td>
+                            <td data-label="Amount">$150 per online exam</td>
+                            <td data-label="Notes">No after school help included</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </details>
+
+        <!-- Mature Full-Time -->
+        <details class="fee-section" id="mature-full-time" data-title="Mature Full-Time"
+            data-keywords="mature full time adult student plar registration course fee online exam after school help assessment admin documentation consultation transcript send">
+            <summary class="fee-toggle">Mature Full-Time</summary>
+            <div class="fee-content">
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Mature Full-Time</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Item">PLAR</td>
+                            <td data-label="Amount">$150 per course</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Registration Fee</td>
+                            <td data-label="Amount">$850</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Course Fee</td>
+                            <td data-label="Amount">$499 per course</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Online Exam Fee</td>
+                            <td data-label="Amount">$150 per online exam</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">After school help</td>
+                            <td data-label="Amount">Not included</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="sep"></div>
+
+                <ul class="bullets">
+                    <li>Sending transcripts to different guidance counselor/ university/ college : $25</li>
+                    <li>Assessment charges: $450</li>
+                    <li>Admin fee: $95</li>
+                    <li>Documentation processing fee: $250</li>
+                    <li>Consultation fee: $100</li>
+                </ul>
+
+                <div class="sep"></div>
+
+                <ul class="list">
+                    <li class="accent">Document Checklist:
+                        <a href="https://canstemeducation.com/wp-content/uploads/2025/10/document-checklist-full-time-student.pdf"
+                            target="_blank" rel="noopener">Download here</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+
+        <!-- Letter of Acceptance -->
+        <details class="fee-section" id="letter-of-acceptance" data-title="Letter of Acceptance for Immigration"
+            data-keywords="letter of acceptance immigration full time student loi loa upfront payment one year fee plar registration grades 1 8 9 10 11 12 assessment admin documentation consultation">
+            <summary class="fee-toggle">Letter of Acceptance for Immigration (Full Time Student)</summary>
+            <div class="fee-content">
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>LOI for Immigration (Full Time Student)</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Item">One-time Registration Fee</td>
+                            <td data-label="Amount">$850</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">PLAR</td>
+                            <td data-label="Amount">$450</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Grade 1-8</td>
+                            <td data-label="Amount">$6,350</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Grade 9</td>
+                            <td data-label="Amount">$7,350</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Grade 10</td>
+                            <td data-label="Amount">$7,350</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Grade 11</td>
+                            <td data-label="Amount">$7,850</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Grade 12</td>
+                            <td data-label="Amount">$7,850</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item"><strong>Letter of Acceptance for Immigration Requirement</strong></td>
+                            <td data-label="Amount">One year fee should be paid upfront</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="sep"></div>
+
+                <ul class="bullets">
+                    <li>Assessment charges: $450</li>
+                    <li>Admin fee: $95</li>
+                    <li>Documentation processing fee: $250</li>
+                    <li>Consultation fee: $100</li>
+                </ul>
+
+                <div class="sep"></div>
+
+                <ul class="list">
+                    <li class="accent">Document Checklist:
+                        <a href="https://canstemeducation.com/wp-content/uploads/2025/10/document-checklist-full-time-student.pdf"
+                            target="_blank" rel="noopener">Download here</a>
+                    </li>
+                </ul>
+            </div>
+        </details>
+
+        <!-- After School Care -->
+        <details class="fee-section" id="after-school-care" data-title="After School Care"
+            data-keywords="after school care extra hour before 9 after 4 weekly monthly 4pm 8pm 8am 9am tutoring study not included">
+            <summary class="fee-toggle">After School Care</summary>
+            <div class="fee-content">
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>After School Care</th>
+                            <th>Amount / Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Item">Extra hour (before 9am & after 4pm)</td>
+                            <td data-label="Amount / Notes">$20 per hour</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Weekly</td>
+                            <td data-label="Amount / Notes">$50 per week</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Monthly</td>
+                            <td data-label="Amount / Notes">$150 per month (4pm–8pm, 8am–9am)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Tutoring / Study</td>
+                            <td data-label="Amount / Notes">Not included</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Note</td>
+                            <td data-label="Amount / Notes">(Students can get our tutoring packages; no need to pay for
+                                after school care if tutoring package is chosen)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </details>
+
+        <!-- High School Credits -->
+        <details class="fee-section" id="high-school-credits" data-title="High School Credits"
+            data-keywords="night school individual credits grade 9 10 11 12 course fee online final exam fee in person no fee transcripts 25 fast tracking report card 100">
+            <summary class="fee-toggle">High School Night School Students (Individual Credits)</summary>
+            <div class="fee-content">
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>High School Credits</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Item">Grade 9 & 10</td>
+                            <td data-label="Amount">$449 per course</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Grade 11 & 12</td>
+                            <td data-label="Amount">$499 per course</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">
+                                Online Final Exam Fee
+                                <br>
+                                <span style="color:#b91c1c; font-size:14px; display:block; margin-top:2px;">
+                                    (There is no final exam fee for in-person students)
+                                </span>
+                            </td>
+                            <td data-label="Amount">$150 for the first course; $100 for the second course; $50 for each
+                                additional course</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Transcripts (send to counselor/university/college)</td>
+                            <td data-label="Amount">$25</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Fast tracking report card</td>
+                            <td data-label="Amount">$100 (within 24 hours)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </details>
+
+        <!-- Course Mode Change -->
+        <details class="fee-section" id="course-mode-change" data-title="Course Mode Change"
+            data-keywords="course mode change online in person change fee one week registration accessed unit fee 75 50 per unit refuse request contact 647-847-1231 frontdesk">
+            <summary class="fee-toggle">Course Mode Change</summary>
+            <div class="fee-content">
+                <ul class="list">
+                    <li>You may change your course within one week of registration, provided you have not started or
+                        accessed the course (in-class or online).</li>
+                    <li>After one week, fees will apply based on the number of units accessed:</li>
+                </ul>
+
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Access Status (after one week)</th>
+                            <th>Fee</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Access Status (after one week)">Course not accessed</td>
+                            <td data-label="Fee">$75</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Access Status (after one week)">One unit accessed</td>
+                            <td data-label="Fee">$75 + $50 (and so on for each additional unit)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="muted">We reserve the right to refuse your request for a change in course or mode of course.
+                    For more details, please contact us at 647-847-1231 or frontdesk@canstemeducation.com</p>
+            </div>
+        </details>
+
+        <!-- Language Proficiency -->
+        <details class="fee-section" id="language-proficiency" data-title="Language Proficiency"
+            data-keywords="pte ielts celpip toefl monthly 250 2 weeks 150 crash 100 4 hours trial class tcf tef package french credit courses hourly">
+            <summary class="fee-toggle">Language Proficiency</summary>
+            <div class="fee-content">
+                <p class="accent">PTE / IELTS / CELPIP / TOEFL</p>
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Plan</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Plan">Monthly</td>
+                            <td data-label="Amount">$250 per month</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Plan">2 weeks</td>
+                            <td data-label="Amount">$150</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Plan">Crash preparation</td>
+                            <td data-label="Amount">$100 for 4 hours</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="accent">Trial Class (PTE / IELTS / CELPIP / TOEFL)</p>
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Mode</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Mode">In-person</td>
+                            <td data-label="Amount">$25</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Mode">Online</td>
+                            <td data-label="Amount">$35</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="sep"></div>
+
+                <p class="accent">TCF/TEF Tutoring Package</p>
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Plan</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Plan">4 Modules</td>
+                            <td data-label="Amount">$1000</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Plan">Unlimited Teaching Support</td>
+                            <td data-label="Amount">$250</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="accent">French Tutoring Package (Credit Courses)</p>
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Plan</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Plan">4 Modules</td>
+                            <td data-label="Amount">$1200</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Plan">Unlimited Teaching Support</td>
+                            <td data-label="Amount">$450</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p class="accent">Hourly French Tutoring/Trial Class</p>
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Mode</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Mode">In-person</td>
+                            <td data-label="Amount">$40</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Mode">Online</td>
+                            <td data-label="Amount">$50</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </details>
+
+        <!-- CAEC -->
+        <details class="fee-section" id="caec" data-title="CAEC"
+            data-keywords="caec package 1 2 3 in person online zoom twice week six days 250 500">
+            <summary class="fee-toggle">CAEC</summary>
+            <div class="fee-content">
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Package</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Package">Package 1</td>
+                            <td data-label="Details">$250/month — In-person classes, twice a week</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Package">Package 2</td>
+                            <td data-label="Details">$500/month — In-person classes, six days a week</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Package">Package 3</td>
+                            <td data-label="Details">$250/month — Online program via Zoom, 2 hours/day (5 days/week)
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </details>
+
+        <!-- IB & AP -->
+        <details class="fee-section" id="ib-ap-tutoring" data-title="IB & AP Courses Tutoring"
+            data-keywords="ib ap courses tutoring hourly monthly option a option b in person online 35 45 350 600">
+            <summary class="fee-toggle">IB &amp; AP Courses Tutoring</summary>
+            <div class="fee-content">
+                <p class="accent">Option A — Hourly</p>
+                <ul class="bullets">
+                    <li>In-person: <strong>$35/hour</strong></li>
+                    <li>Online: <strong>$45/hour</strong></li>
+                </ul>
+
+                <div class="sep"></div>
+
+                <p class="accent">Option B — Monthly (Online not available)</p>
+                <ul class="bullets">
+                    <li>Twice a week (Unlimited hours for those two days): <strong>$350/month</strong></li>
+                    <li>6 days a week (Unlimited hours, any subject): <strong>$600/month</strong></li>
+                </ul>
+            </div>
+        </details>
+
+        <!-- ESL -->
+        <details class="fee-section" id="esl-tutoring" data-title="ESL Tutoring Fee Structure"
+            data-keywords="esl tutoring fee structure in person online 2 days 5 days 3pm 8pm 2 hours 250">
+            <summary class="fee-toggle">ESL Tutoring Fee Structure</summary>
+            <div class="fee-content">
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Mode of Learning</th>
+                            <th>Schedule</th>
+                            <th>Timing</th>
+                            <th>Fee</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Mode of Learning">In-Person</td>
+                            <td data-label="Schedule">2 days/week</td>
+                            <td data-label="Timing">3 PM – 8 PM</td>
+                            <td data-label="Fee">$250/month</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Mode of Learning">Online</td>
+                            <td data-label="Schedule">5 days/week</td>
+                            <td data-label="Timing">2 hours/day</td>
+                            <td data-label="Fee">$250/month</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </details>
+
+        <!-- Math Contest -->
+        <details class="fee-section" id="math-contests" data-title="Math Kangaroo / Waterloo Contests & More"
+            data-keywords="math kangaroo waterloo contests tutoring hourly monthly in person online 25 35 250 500">
+            <summary class="fee-toggle">Math Kangaroo / Waterloo Contests &amp; More..</summary>
+            <div class="fee-content">
+                <p class="accent">Option A — Hourly</p>
+                <ul class="bullets">
+                    <li>In-person: <strong>$25/hour</strong></li>
+                    <li>Online: <strong>$35/hour</strong></li>
+                </ul>
+
+                <div class="sep"></div>
+
+                <p class="accent">Option B — Monthly (Online not available)</p>
+                <ul class="bullets">
+                    <li>Twice a week (Unlimited hours for those two days): <strong>$250/month</strong></li>
+                    <li>6 days a week (Unlimited hours, any subject): <strong>$500/month</strong></li>
+                </ul>
+            </div>
+        </details>
+
+        <!-- Test Prep -->
+        <details class="fee-section" id="sat-act-tests" data-title="SAT / ACT / CELBAN / CAEL & More"
+            data-keywords="sat act celban cael tutoring hourly monthly in person online 35 45 450 700">
+            <summary class="fee-toggle">SAT / ACT / CELBAN / CAEL &amp; More..</summary>
+            <div class="fee-content">
+                <p class="accent">Option A — Hourly</p>
+                <ul class="bullets">
+                    <li>In-person: <strong>$35/hour</strong></li>
+                    <li>Online: <strong>$45/hour</strong></li>
+                </ul>
+
+                <div class="sep"></div>
+
+                <p class="accent">Option B — Monthly (Online not available)</p>
+                <ul class="bullets">
+                    <li>Twice a week (Unlimited hours for those two days): <strong>$450/month</strong></li>
+                    <li>6 days a week (Unlimited hours, any subject): <strong>$700/month</strong></li>
+                </ul>
+            </div>
+        </details>
+
+        <!-- New Tutoring Fees -->
+        <details class="fee-section" id="new-tutoring-fees" data-title="New Tutoring Fees - From September 2025"
+            data-keywords="new tutoring fees september 2025 grade 1 8 9 10 11 12 university college hourly in class online 25 35 40 package deals 5 hours 6th free">
+            <summary class="fee-toggle">New Tutoring Fees - From September 2025</summary>
+            <div class="fee-content">
+
+                <p class="accent">Grade 1 - 8 Tutoring</p>
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Tutoring Fees</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Item">One-time registration fee</td>
+                            <td data-label="Amount">$50</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">2 days/week (monthly)</td>
+                            <td data-label="Amount">$250 per month (all subjects, fixed days)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">3 days/week (monthly)</td>
+                            <td data-label="Amount">$350 per month (all subjects, fixed days)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">5 days/week (monthly)</td>
+                            <td data-label="Amount">$500 per month (any subject, all subjects)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Hourly In-Class</td>
+                            <td data-label="Amount">$25 per hour (scheduled 3 days before)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Hourly Online</td>
+                            <td data-label="Amount">$35 per hour (scheduled 3 days before)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="sep"></div>
+
+                <p class="accent">Grade 9–10 Tutoring</p>
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Grade 9–10 Tutoring</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Item">One-time registration fee</td>
+                            <td data-label="Amount">$50</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">2 days/week (monthly)</td>
+                            <td data-label="Amount">$350 per month (all subjects, fixed days)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">3 days/week (monthly)</td>
+                            <td data-label="Amount">$450 per month (all subjects, fixed days)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">5 days/week (monthly)</td>
+                            <td data-label="Amount">$500 per month (any subject, all subjects)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Hourly In-Class</td>
+                            <td data-label="Amount">$25 per hour (scheduled 3 days before)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Hourly Online</td>
+                            <td data-label="Amount">$35 per hour (scheduled 3 days before)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="sep"></div>
+
+                <p class="accent">Grade 11-12 Tutoring</p>
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>Grade 11-12 Tutoring</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Item">One-time registration fee</td>
+                            <td data-label="Amount">$50</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">2 days/week (monthly)</td>
+                            <td data-label="Amount">$400 per month (all subjects, fixed days)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">3 days/week (monthly)</td>
+                            <td data-label="Amount">$500 per month (all subjects, fixed days)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">5 days/week (monthly)</td>
+                            <td data-label="Amount">$600 per month (any subject, all subjects)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Hourly In-Class</td>
+                            <td data-label="Amount">$25 per hour (scheduled 3 days before)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Hourly Online</td>
+                            <td data-label="Amount">$35 per hour (scheduled 3 days before)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="sep"></div>
+
+                <p class="accent">University - College Subjects</p>
+                <table class="rtable">
+                    <thead>
+                        <tr>
+                            <th>University - College Subjects</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-label="Item">Hourly In - Class</td>
+                            <td data-label="Amount">$35 per hour (scheduled 3 days before)</td>
+                        </tr>
+                        <tr>
+                            <td data-label="Item">Hourly Online</td>
+                            <td data-label="Amount">$40 per hour (scheduled 3 days before)</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="sep"></div>
+
+                <p class="accent">Do you have any package deals in online tutoring?</p>
+                <ul class="bullets">
+                    <li>If you are a <strong>new student</strong>, you can pay for <strong>5 hours</strong> of tutoring
+                        and we will <strong>waive your one-time registration fee</strong>.</li>
+                    <li>If you pay for <strong>5 hours again together</strong>, you will receive the <strong>6th hour
+                            free</strong>.</li>
+                </ul>
+            </div>
+        </details>
+
+    </div>
+</section>
+
+<script>
+    (function () {
+        var sections = Array.prototype.slice.call(document.querySelectorAll(".fee-section"));
+
+        var input = document.querySelector("#csbx-q");
+        var suggest = document.querySelector("#csbx-suggest");
+
+        function setOpen(on) {
+            input.setAttribute("aria-expanded", on ? "true" : "false");
+            suggest.classList.toggle("csbx-show", on);
+        }
+
+        function normalize(s) {
+            return String(s || "").toLowerCase().trim();
+        }
+
+        function buildIndex() {
+            return sections.map(function (sec) {
+                var summaryEl = sec.querySelector("summary");
+                var title = sec.getAttribute("data-title") || (summaryEl ? summaryEl.textContent : sec.id);
+                var keywords = sec.getAttribute("data-keywords") || "";
+                var contentText = sec.textContent || "";
+                return {
+                    id: sec.id,
+                    title: title,
+                    keywords: keywords,
+                    haystack: normalize(title + " " + keywords + " " + contentText)
+                };
+            });
+        }
+
+        var INDEX = buildIndex();
+
+        function closeOthers(openId) {
+            sections.forEach(function (s) {
+                if (s.id !== openId) s.removeAttribute("open");
+            });
+        }
+
+        function openSection(id, shouldScroll) {
+            var target = document.getElementById(id);
+            if (!target) return;
+
+            target.setAttribute("open", "");
+            closeOthers(id);
+
+            try { history.replaceState(null, "", "#" + id); } catch (e) { location.hash = id; }
+
+            if (shouldScroll) {
+                setTimeout(function () {
+                    try { target.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) { }
+                }, 30);
+            }
+        }
+
+        // Close others on manual open
+        sections.forEach(function (sec) {
+            sec.addEventListener("toggle", function () {
+                if (!sec.open) return;
+                closeOthers(sec.id);
+            });
+        });
+
+        function searchFees(q) {
+            var t = normalize(q);
+            if (!t) return [];
+
+            return INDEX
+                .map(function (it) {
+                    var pos = it.haystack.indexOf(t);
+                    if (pos === -1) return null;
+
+                    var titlePos = normalize(it.title).indexOf(t);
+                    var score = (titlePos === -1 ? 50 : titlePos) + pos;
+                    return { id: it.id, title: it.title, score: score };
+                })
+                .filter(Boolean)
+                .sort(function (a, b) { return a.score - b.score; })
+                .slice(0, 12);
+        }
+
+        var activeIndex = -1;
+
+        function render() {
+            var q = input.value || "";
+            var results = searchFees(q);
+
+            suggest.innerHTML = "";
+            if (!results.length) { setOpen(false); return; }
+
+            results.forEach(function (it, idx) {
+                var row = document.createElement("div");
+                row.className = "csbx-row";
+                row.role = "option";
+                row.id = "fee-row-" + idx;
+                row.setAttribute("aria-selected", "false");
+
+                row.innerHTML =
+                    '<div class="csbx-left">' +
+                    '<span class="csbx-code">' + it.title + '</span>' +
+                    '<span class="csbx-name">Open this section in Fee Structure</span>' +
+                    '</div>' +
+                    '<div class="csbx-right">' +
+                    '<span class="csbx-chip">Fee Section</span>' +
+                    '</div>';
+
+                row.addEventListener("mousedown", function (e) { e.preventDefault(); });
+                row.addEventListener("click", function () {
+                    setOpen(false);
+                    openSection(it.id, true);
+                });
+
+                suggest.appendChild(row);
+            });
+
+            activeIndex = -1;
+            setOpen(true);
+        }
+
+        input.addEventListener("input", render);
+
+        input.addEventListener("focus", function () {
+            if ((input.value || "").trim()) render();
+        });
+
+        input.addEventListener("blur", function () {
+            setTimeout(function () { setOpen(false); }, 140);
+        });
+
+        input.addEventListener("keydown", function (e) {
+            var items = Array.prototype.slice.call(suggest.querySelectorAll(".csbx-row"));
+            if (!items.length) {
+                if (e.key === "Enter") {
+                    var best = searchFees(input.value || "")[0];
+                    if (best) { e.preventDefault(); openSection(best.id, true); setOpen(false); }
+                }
+                if (e.key === "Escape") setOpen(false);
+                return;
+            }
+
+            if (e.key === "ArrowDown") { e.preventDefault(); activeIndex = Math.min(activeIndex + 1, items.length - 1); }
+            else if (e.key === "ArrowUp") { e.preventDefault(); activeIndex = Math.max(activeIndex - 1, 0); }
+            else if (e.key === "Enter") { e.preventDefault(); (items[activeIndex] || items[0]).click(); }
+            else if (e.key === "Escape") { setOpen(false); return; }
+            else { return; }
+
+            items.forEach(function (n) { n.setAttribute("aria-selected", "false"); });
+            if (activeIndex >= 0 && items[activeIndex]) {
+                items[activeIndex].setAttribute("aria-selected", "true");
+                items[activeIndex].scrollIntoView({ block: "nearest" });
+            }
+        });
+
+        // Open by hash on load
+        if (location.hash) {
+            var id = location.hash.replace("#", "");
+            if (document.getElementById(id)) openSection(id, false);
+        }
+    })();
+</script>
