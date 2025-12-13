@@ -1,216 +1,329 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- =========================
+NBE3U Accordion Details (HRT3M-style)
+No Quick Links
+========================= -->
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NBE3U - English: Understanding Contemporary First Nations, Métis, and Inuit Voices (Grade 11)</title>
-  <style>
-    body {
-      font-family: 'Open Sans', sans-serif;
-      background: #fff;
-      color: #26262B;
-      margin: 0;
-      padding: 0;
-      font-size: 18px;
-      line-height: 1.6;
+<style>
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: #fff;
+    color: #26262B;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  .container {
+    max-width: 1200px;
+  }
+
+  .unit-details {
+    margin: 18px 0 30px;
+  }
+
+  .unit-toggle {
+    background-color: #00427C;
+    color: #fff;
+    font-weight: 600;
+    padding: 14px 20px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 12px;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: background 0.3s ease;
+    border: 0;
+  }
+
+  .unit-toggle:hover {
+    background-color: #001161;
+  }
+
+  .unit-toggle .arrow {
+    transition: transform 0.3s ease;
+    margin-left: 10px;
+    flex: 0 0 auto;
+  }
+
+  .unit-toggle.open .arrow {
+    transform: rotate(180deg);
+  }
+
+  .unit-content {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    padding: 0 1.5rem;
+    transform: scaleY(0.98);
+    transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.4s ease, transform 0.4s ease;
+    background-color: #ffffff;
+    border-left: 4px solid #e59500;
+    border-radius: 0 0 12px 12px;
+    margin-bottom: 0.5rem;
+  }
+
+  .unit-content.open {
+    opacity: 1;
+    transform: scaleY(1);
+    padding: 0 1.5rem;
+  }
+
+  .unit-content .content-inner {
+    padding: 1rem 0 1.2rem;
+  }
+
+  .unit-content h3 {
+    margin: 0.2rem 0 0.6rem;
+    font-size: 18px;
+    font-weight: 700;
+    color: #001161;
+  }
+
+  .unit-content p {
+    margin: 0.4rem 0;
+    font-size: 18px;
+  }
+
+  .unit-content ul {
+    margin: 0.4rem 0 0;
+    padding: 0.4rem 0 0 1.2rem;
+  }
+
+  .unit-content li {
+    margin-bottom: 0.5rem;
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+
+    .unit-toggle,
+    .unit-content p,
+    .unit-content li {
+      font-size: 16px;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
+    .unit-content h3 {
+      font-size: 16px;
     }
-
-    .unit-details { margin-top: 1rem; }
-
-    .unit-toggle {
-      background-color: #00427C;
-      color: #fff;
-      font-weight: 600;
-      padding: 14px 20px;
-      width: 100%;
-      text-align: left;
-      cursor: pointer;
-      font-size: 18px;
-      border-radius: 12px;
-      margin-top: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-      transition: background 0.3s ease;
-    }
-    .unit-toggle:hover { background-color: #001161; }
-    .unit-toggle .arrow { transition: transform 0.3s ease; }
-    .unit-toggle.open .arrow { transform: rotate(180deg); }
 
     .unit-content {
-      overflow: hidden;
-      max-height: 0;
-      opacity: 0;
-      padding: 0 1.5rem;
-      transform: scaleY(0.98);
-      transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.4s ease, transform 0.4s ease;
-      background-color: #ffffff;
-      border-left: 4px solid #e59500;
-      border-radius: 0 0 6px 6px;
-      margin-bottom: 1rem;
+      padding: 0 1rem;
     }
-    .unit-content.open { opacity: 1; transform: scaleY(1); }
 
-    .unit-content ul { margin: 0; padding: 1rem 0 1rem 1.2rem; }
-    .unit-content li { margin-bottom: 0.5rem; font-size: 18px; }
-
-    @media (max-width: 768px) {
-      .unit-toggle, .unit-content li { font-size: 16px; }
+    .unit-content.open {
+      padding: 0 1rem;
     }
-  </style>
-</head>
+  }
+</style>
 
-<body>
-  <section class="nbe3u-course">
-    <div class="container">
-      <div class="unit-details">
+<section class="nbe3u-course">
+  <div class="container">
+    <div class="unit-details">
 
-        <!-- Units -->
-        <div class="unit-toggle">1. First Nations, Métis, and Inuit Perspectives &amp; Text Forms in Canada <span class="arrow">▼</span></div>
-        <div class="unit-content">
+      <div class="unit-toggle">Course Overview (NBE3U) <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>What you will study</h3>
+          <p>
+            <strong>NBE3U English Understanding Contemporary First Nations Métis and Inuit Voices</strong> explores
+            identity, voice, and representation through texts and media.
+          </p>
+          <p>
+            At the same time, learners build stronger reading, writing, speaking, and viewing skills. As a result, they
+            communicate with clarity and respect.
+          </p>
+        </div>
+      </div>
+
+      <div class="unit-toggle">Course Content (Units &amp; Hours) <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Unit time plan</h3>
           <ul>
-            <li>Explore Indigenous identities, relationships, self-determination, sovereignty, and self-governance in Canadian texts.</li>
-            <li>Deconstruct how historical, social, political, and cultural contexts shape representation in literature and media.</li>
-            <li>Analyze contemporary and historical texts that reflect cultural diversity and challenge colonial narratives.</li>
+            <li><strong>Unit 1:</strong> First Nations, Métis, and Inuit Perspectives — <strong>20 hours</strong></li>
+            <li><strong>Unit 2:</strong> Oral Communication — <strong>20 hours</strong></li>
+            <li><strong>Unit 3:</strong> Reading and Literature Studies — <strong>25 hours</strong></li>
+            <li><strong>Unit 4:</strong> Writing — <strong>17 hours</strong></li>
+            <li><strong>Unit 5:</strong> Media Studies — <strong>18 hours</strong></li>
+            <li><strong>Final:</strong> Review, Summative &amp; Exam — <strong>10 hours</strong></li>
+            <li><strong>Total:</strong> <strong>110 hours</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="unit-toggle">1. First Nations, Métis, and Inuit Perspectives &amp; Text Forms in Canada <span
+          class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Key learning goals</h3>
+          <ul>
+            <li>Investigate identity, relationships, and self-determination in Canadian texts.</li>
+            <li>Notice how history and context shape representation in literature and media.</li>
+            <li>Compare viewpoints and challenge stereotypes with evidence from texts.</li>
             <li><strong>Time:</strong> 20 Hours</li>
           </ul>
         </div>
+      </div>
 
-        <div class="unit-toggle">2. Oral Communication <span class="arrow">▼</span></div>
-        <div class="unit-content">
+      <div class="unit-toggle">2. Oral Communication <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Key learning goals</h3>
           <ul>
-            <li><strong>The Oral Tradition:</strong> Understand forms, figures, and practices in First Nations, Métis, and Inuit oral traditions; apply culturally appropriate listening.</li>
-            <li><strong>Listening to Understand:</strong> Interpret oral texts connected to Indigenous cultures for varied purposes and audiences.</li>
-            <li><strong>Speaking to Communicate:</strong> Use effective speaking skills to share ideas and issues with diverse audiences.</li>
-            <li><strong>Reflecting:</strong> Assess strengths and next steps as listeners/speakers in Indigenous contexts.</li>
+            <li>Learn from oral traditions and apply respectful listening practices.</li>
+            <li>Respond thoughtfully to oral texts for different purposes and audiences.</li>
+            <li>Present ideas clearly; meanwhile, adjust tone and style for your audience.</li>
             <li><strong>Time:</strong> 20 Hours</li>
           </ul>
         </div>
+      </div>
 
-        <div class="unit-toggle">3. Reading and Literature Studies <span class="arrow">▼</span></div>
-        <div class="unit-content">
+      <div class="unit-toggle">3. Reading and Literature Studies <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Key learning goals</h3>
           <ul>
-            <li>Read and interpret literary, informational, and graphic texts from First Nations, Métis, and Inuit cultures, plus relevant non-Indigenous works.</li>
-            <li>Analyze how forms, features, and style communicate meaning and reflect Indigenous worldviews.</li>
-            <li>Develop reading fluency and apply strategies for understanding and making connections.</li>
-            <li>Reflect on strengths and growth; explore contemporary Indigenous voices, contributors, and initiatives shaping modern literature in Canada.</li>
+            <li>Read Indigenous and related texts to understand meaning and perspective.</li>
+            <li>Analyze form, style, and voice; then explain how they shape the message.</li>
+            <li>Use reading strategies to make connections and support interpretations.</li>
             <li><strong>Time:</strong> 25 Hours</li>
           </ul>
         </div>
+      </div>
 
-        <div class="unit-toggle">4. Writing <span class="arrow">▼</span></div>
-        <div class="unit-content">
+      <div class="unit-toggle">4. Writing <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Key learning goals</h3>
           <ul>
-            <li><strong>Developing &amp; Organizing:</strong> Generate ideas and write with clear purpose/audience on topics connected to Indigenous cultures and perspectives.</li>
-            <li><strong>Form &amp; Style:</strong> Draft and revise literary, informational, and graphic texts using suitable forms and stylistic choices.</li>
-            <li><strong>Conventions:</strong> Edit and proofread to refine expression and accuracy.</li>
-            <li><strong>Reflecting:</strong> Assess strengths and strategies used through the writing process.</li>
+            <li>Plan writing with a clear purpose and a specific audience in mind.</li>
+            <li>Draft and revise using appropriate form and style for the task.</li>
+            <li>Edit carefully; therefore, your work is accurate and easy to follow.</li>
             <li><strong>Time:</strong> 17 Hours</li>
           </ul>
         </div>
+      </div>
 
-        <div class="unit-toggle">5. Media Studies <span class="arrow">▼</span></div>
-        <div class="unit-content">
+      <div class="unit-toggle">5. Media Studies <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Key learning goals</h3>
           <ul>
-            <li><strong>Understanding Media Texts:</strong> Analyze Indigenous and non-Indigenous media texts for meaning and perspective.</li>
-            <li><strong>Forms, Conventions &amp; Techniques:</strong> Explain how media tools convey messages and represent experiences and identities.</li>
-            <li><strong>Creating Media:</strong> Produce original media works on Indigenous topics for varied audiences and purposes.</li>
-            <li><strong>Reflecting:</strong> Evaluate strengths and areas for growth as media interpreters and creators.</li>
-            <li><strong>Contemporary Voices:</strong> Explore contributions of individuals, organizations, and technologies to Indigenous media literacy in Canada.</li>
+            <li>Interpret media texts and explain how techniques influence meaning.</li>
+            <li>Identify perspective and bias; then support claims with examples.</li>
+            <li>Create media texts for real audiences and clear purposes.</li>
             <li><strong>Time:</strong> 18 Hours</li>
           </ul>
         </div>
+      </div>
 
-        <div class="unit-toggle">Review, Summative &amp; Exam <span class="arrow">▼</span></div>
-        <div class="unit-content">
+      <div class="unit-toggle">Review, Summative &amp; Exam <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Finish strong</h3>
           <ul>
-            <li>Comprehensive review of course expectations, culminating task(s), and final exam.</li>
+            <li>Review expectations, complete the culminating task(s), and write the final evaluation.</li>
             <li><strong>Time:</strong> 10 Hours</li>
             <li><strong>Total Course Hours:</strong> 110 Hours</li>
           </ul>
         </div>
+      </div>
 
-        <!-- Evaluation -->
-        <div class="unit-toggle">Evaluation Breakdown <span class="arrow">▼</span></div>
-        <div class="unit-content">
+      <div class="unit-toggle">Evaluation Breakdown <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>How grades are calculated</h3>
           <ul>
             <li><strong>70%</strong> — Term Work (products, observations, conversations)</li>
             <li><strong>30%</strong> — Final Evaluation (summative + exam)</li>
-            <li><strong>Categories:</strong> Knowledge &amp; Understanding 20%, Thinking &amp; Inquiry 20%, Application 40%, Communication 20%</li>
+            <li><strong>Categories:</strong> Knowledge &amp; Understanding 20%, Thinking &amp; Inquiry 20%, Application
+              40%, Communication 20%</li>
           </ul>
         </div>
+      </div>
 
-        <!-- Teaching & Learning -->
-        <div class="unit-toggle">Teaching &amp; Learning Strategies <span class="arrow">▼</span></div>
-        <div class="unit-content">
+      <div class="unit-toggle">Teaching &amp; Learning Strategies <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>How learning happens</h3>
           <ul>
-            <li>Direct instruction; teacher-facilitated class, small-group, and partner discussions.</li>
-            <li>Worksheets/surveys, independent and inquiry-based activities, brainstorming, presentations.</li>
-            <li>Use of computers/Internet, video/audio materials; experiential learning; conferencing; peer/self assessment.</li>
+            <li>Teacher-led instruction plus guided class and small-group discussions.</li>
+            <li>Inquiry tasks, brainstorming, presentations, and structured practice.</li>
+            <li>Technology support, including online research and media analysis activities.</li>
           </ul>
         </div>
+      </div>
 
-        <!-- Learning Skills -->
-        <div class="unit-toggle">Learning Skills &amp; Work Habits <span class="arrow">▼</span></div>
-        <div class="unit-content">
+      <div class="unit-toggle">Learning Skills &amp; Work Habits <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Skills that support success</h3>
           <ul>
             <li><strong>Reporting:</strong> E – Excellent, G – Good, S – Satisfactory, N – Needs Improvement.</li>
-            <li><strong>Categories:</strong> Responsibility, Organization, Initiative, Independent Work, Collaboration, Self-Regulation.</li>
-            <li>Assessed through student products (quizzes, assignments, tests), observations (discussion, presentations), and conversations (peer/teacher conferences).</li>
+            <li><strong>Categories:</strong> Responsibility, Organization, Initiative, Independent Work, Collaboration,
+              Self-Regulation.</li>
+            <li>Evidence comes from products, observations, and conversations during the course.</li>
           </ul>
         </div>
-
-        <!-- Assessment & Evaluation Policy -->
-        <div class="unit-toggle">Assessment &amp; Evaluation Policy <span class="arrow">▼</span></div>
-        <div class="unit-content">
-          <ul>
-            <li><strong>Assessment for Learning:</strong> Ongoing feedback and coaching to guide next steps.</li>
-            <li><strong>Assessment as Learning:</strong> Students monitor progress, set goals, and reflect on learning.</li>
-            <li><strong>Assessment of Learning:</strong> Public/evaluative statements (marks/grades) summarizing achievement.</li>
-            <li>Tools include tests, quizzes, worksheets, exams, rubrics, projects, journals, presentations, discussions, portfolios, and observations.</li>
-          </ul>
-        </div>
-
-        <!-- Resources -->
-        <div class="unit-toggle">Resources <span class="arrow">▼</span></div>
-        <div class="unit-content">
-          <ul>
-            <li><strong>Core:</strong> Literature and Media (Nelson English) and selected Indigenous texts/media.</li>
-            <li><strong>Additional:</strong> A variety of articles, videos, and books relevant to course themes.</li>
-          </ul>
-        </div>
-
       </div>
+
+      <div class="unit-toggle">Assessment &amp; Evaluation Policy <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Assessment types</h3>
+          <ul>
+            <li><strong>For Learning:</strong> feedback that guides next steps.</li>
+            <li><strong>As Learning:</strong> reflection, goal setting, and self-monitoring.</li>
+            <li><strong>Of Learning:</strong> graded tasks that summarize achievement.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="unit-toggle">Resources <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Course resources</h3>
+          <ul>
+            <li>Selected Indigenous texts, media, and course materials provided in the LMS.</li>
+            <li>Additional articles and videos may be used to extend understanding.</li>
+          </ul>
+        </div>
+      </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
-  <script>
-    const toggles = document.querySelectorAll('.unit-toggle');
-    toggles.forEach(toggle => {
-      toggle.addEventListener('click', () => {
-        const content = toggle.nextElementSibling;
-        const isOpen = toggle.classList.contains('open');
+<script>
+  const toggles = document.querySelectorAll('.unit-toggle');
 
-        document.querySelectorAll('.unit-toggle').forEach(t => t.classList.remove('open'));
-        document.querySelectorAll('.unit-content').forEach(c => {
-          c.classList.remove('open');
-          c.style.maxHeight = null;
-        });
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const content = toggle.nextElementSibling;
+      const isOpen = toggle.classList.contains('open');
 
-        if (!isOpen) {
-          toggle.classList.add('open');
-          content.classList.add('open');
-          content.style.maxHeight = content.scrollHeight + "px";
-        }
+      document.querySelectorAll('.unit-toggle').forEach(t => t.classList.remove('open'));
+      document.querySelectorAll('.unit-content').forEach(c => {
+        c.classList.remove('open');
+        c.style.maxHeight = null;
       });
+
+      if (!isOpen) {
+        toggle.classList.add('open');
+        content.classList.add('open');
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
     });
-  </script>
-</body>
-</html>
+  });
+
+  window.addEventListener('resize', () => {
+    const openContent = document.querySelector('.unit-content.open');
+    if (openContent) openContent.style.maxHeight = openContent.scrollHeight + "px";
+  });
+</script>
