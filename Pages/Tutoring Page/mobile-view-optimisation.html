@@ -1,0 +1,530 @@
+<!-- Tutoring Fees — Desktop tables + Mobile/Tablet compact tabs (Reduced vertical height + full-row subline) -->
+<style>
+    /* Scope everything to this block only */
+    #tutoring-fees {
+        --sub: #00427c;
+        --ink: #26262B;
+        --panel: #ffffff;
+        --border: #e2e8f0;
+        --shadow: 0 4px 20px rgba(0, 0, 0, .08);
+        --radius: 12px;
+
+        font-family: "Open Sans", sans-serif;
+        color: var(--ink);
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        line-height: 1.6;
+        font-size: 18px;
+    }
+
+    #tutoring-fees .section-body {
+        background: #fff;
+        padding: 0;
+    }
+
+    #tutoring-fees .accent {
+        color: var(--sub);
+        font-weight: 700;
+        margin: 1.25rem 0 .6rem;
+    }
+
+    #tutoring-fees .sep {
+        height: 1px;
+        background: #eef2f7;
+        margin: 1rem 0;
+    }
+
+    /* ===== Desktop tables (unchanged) ===== */
+    #tutoring-fees table.rtable {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        margin: 0 0 1rem;
+        background: #fff;
+    }
+
+    #tutoring-fees .rtable thead {
+        background: var(--sub);
+        color: #fff;
+    }
+
+    #tutoring-fees .rtable th,
+    #tutoring-fees .rtable td {
+        padding: 16px;
+        text-align: left;
+        font-size: 18px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+
+    #tutoring-fees .rtable tbody tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    /* ===== Mobile/Tablet UI (hidden on desktop) ===== */
+    #tutoring-fees .tf-mobile {
+        display: none;
+    }
+
+    /* ===== Tablet & Mobile ===== */
+    @media (max-width:1024px) {
+        #tutoring-fees {
+            font-size: 16px;
+        }
+
+        /* Hide desktop tables and separators */
+        #tutoring-fees .tf-desktop {
+            display: none;
+        }
+
+        #tutoring-fees .tf-mobile {
+            display: block;
+        }
+
+        /* Ensure desktop tables are hidden */
+        #tutoring-fees table.rtable {
+            display: none;
+        }
+
+        #tutoring-fees .sep {
+            display: none;
+        }
+
+        #tutoring-fees .accent {
+            display: none;
+        }
+
+        /* Radio inputs (for CSS-only tabs) */
+        #tutoring-fees .tf-mobile input.tf-tab {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Tab bar */
+        #tutoring-fees .tf-tabbar {
+            display: flex;
+            gap: 8px;
+            background: #fff;
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 6px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+            overflow: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #tutoring-fees .tf-tabbar label {
+            flex: 1 0 auto;
+            text-align: center;
+            padding: 9px 12px;
+            border-radius: 999px;
+            font-weight: 800;
+            font-size: 16px;
+            color: var(--sub);
+            cursor: pointer;
+            user-select: none;
+            white-space: nowrap;
+            border: 1px solid transparent;
+            transition: background .2s ease, border-color .2s ease, color .2s ease;
+            min-width: 120px;
+        }
+
+        /* Active tab styles */
+        #tutoring-fees #tf-g18:checked~.tf-tabbar label[for="tf-g18"],
+        #tutoring-fees #tf-g910:checked~.tf-tabbar label[for="tf-g910"],
+        #tutoring-fees #tf-g1112:checked~.tf-tabbar label[for="tf-g1112"] {
+            background: #e6f0ff;
+            border-color: #cfe2ff;
+            color: #001a33;
+        }
+
+        /* Panels */
+        #tutoring-fees .tf-panels {
+            margin-top: 12px;
+        }
+
+        #tutoring-fees .tf-panel {
+            display: none;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            overflow: hidden;
+            background: #fff;
+            box-shadow: var(--shadow);
+        }
+
+        #tutoring-fees .tf-panel-head {
+            padding: 12px 14px;
+            /* slightly tighter */
+            background: linear-gradient(180deg, #f6f9ff 0%, #ffffff 100%);
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        #tutoring-fees .tf-panel-title {
+            display: block;
+            font-weight: 900;
+            color: #0b1220;
+            font-size: 16px;
+            margin: 0;
+        }
+
+        /* Tight fee rows (reduced height) */
+        #tutoring-fees ul.tf-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #tutoring-fees li.tf-row {
+            display: grid;
+            grid-template-columns: 1.2fr .9fr;
+            gap: 8px;
+            /* tighter */
+            padding: 10px 14px;
+            /* tighter */
+            border-top: 1px solid #eef2f7;
+            align-items: center;
+        }
+
+        #tutoring-fees li.tf-row:first-child {
+            border-top: none;
+        }
+
+        #tutoring-fees .tf-left {
+            font-weight: 600;
+            color: #000;
+            font-size: 16px;
+            line-height: 1.35;
+            /* tighter */
+        }
+
+        #tutoring-fees .tf-right {
+            text-align: right;
+            font-weight: 900;
+            color: #000;
+            font-size: 16px;
+            line-height: 1.35;
+            /* tighter */
+            white-space: nowrap;
+        }
+
+        /* NEW: Sub line spans full row (not under price column) */
+        #tutoring-fees .tf-sub {
+            grid-column: 1 / -1;
+            /* full width */
+            margin-top: 2px;
+            font-weight: 600;
+            color: #334155;
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        /* Show panel based on selected tab */
+        #tutoring-fees #tf-g18:checked~.tf-panels .p18 {
+            display: block;
+        }
+
+        #tutoring-fees #tf-g910:checked~.tf-panels .p910 {
+            display: block;
+        }
+
+        #tutoring-fees #tf-g1112:checked~.tf-panels .p1112 {
+            display: block;
+        }
+    }
+
+    @media (max-width:520px) {
+        #tutoring-fees .tf-tabbar label {
+            min-width: 110px;
+        }
+
+        #tutoring-fees li.tf-row {
+            grid-template-columns: 1.15fr .85fr;
+        }
+
+        #tutoring-fees .tf-left,
+        #tutoring-fees .tf-right {
+            font-size: 15px;
+        }
+
+        #tutoring-fees .tf-sub {
+            font-size: 12px;
+        }
+    }
+</style>
+
+<div id="tutoring-fees">
+    <div class="section-body">
+
+        <!-- ===== Desktop (unchanged tables) ===== -->
+        <div class="tf-desktop">
+
+            <p class="accent">Grade 1–8 Tutoring</p>
+            <table class="rtable">
+                <thead>
+                    <tr>
+                        <th>Package</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>One-time registration fee</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>2 days/week (monthly)</td>
+                        <td>$250 per month (all subjects, fixed days)</td>
+                    </tr>
+                    <tr>
+                        <td>3 days/week (monthly)</td>
+                        <td>$350 per month (all subjects, fixed days)</td>
+                    </tr>
+                    <tr>
+                        <td>5 days/week (monthly)</td>
+                        <td>$500 per month (any subject, all subjects)</td>
+                    </tr>
+                    <tr>
+                        <td>Hourly In-Class</td>
+                        <td>$25 per hour (scheduled 3 days before)</td>
+                    </tr>
+                    <tr>
+                        <td>Hourly Online</td>
+                        <td>$35 per hour (scheduled 3 days before)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="sep"></div>
+
+            <p class="accent">Grade 9–10 Tutoring</p>
+            <table class="rtable">
+                <thead>
+                    <tr>
+                        <th>Package</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>One-time registration fee</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>2 days/week (monthly)</td>
+                        <td>$350 per month (all subjects, fixed days)</td>
+                    </tr>
+                    <tr>
+                        <td>3 days/week (monthly)</td>
+                        <td>$450 per month (all subjects, fixed days)</td>
+                    </tr>
+                    <tr>
+                        <td>5 days/week (monthly)</td>
+                        <td>$500 per month (any subject, all subjects)</td>
+                    </tr>
+                    <tr>
+                        <td>Hourly In-Class</td>
+                        <td>$25 per hour (scheduled 3 days before)</td>
+                    </tr>
+                    <tr>
+                        <td>Hourly Online</td>
+                        <td>$35 per hour (scheduled 3 days before)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="sep"></div>
+
+            <p class="accent">Grade 11–12 Tutoring</p>
+            <table class="rtable">
+                <thead>
+                    <tr>
+                        <th>Package</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>One-time registration fee</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>2 days/week (monthly)</td>
+                        <td>$400 per month (all subjects, fixed days)</td>
+                    </tr>
+                    <tr>
+                        <td>3 days/week (monthly)</td>
+                        <td>$500 per month (all subjects, fixed days)</td>
+                    </tr>
+                    <tr>
+                        <td>5 days/week (monthly)</td>
+                        <td>$600 per month (any subject, all subjects)</td>
+                    </tr>
+                    <tr>
+                        <td>Hourly In-Class</td>
+                        <td>$25 per hour (scheduled 3 days before)</td>
+                    </tr>
+                    <tr>
+                        <td>Hourly Online</td>
+                        <td>$35 per hour (scheduled 3 days before)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <!-- ===== Tablet/Mobile (compact tabs + tight list) ===== -->
+        <div class="tf-mobile">
+
+            <!-- Radios -->
+            <input class="tf-tab" type="radio" name="tf-grade" id="tf-g18" checked>
+            <input class="tf-tab" type="radio" name="tf-grade" id="tf-g910">
+            <input class="tf-tab" type="radio" name="tf-grade" id="tf-g1112">
+
+            <!-- Tab buttons -->
+            <div class="tf-tabbar" role="tablist" aria-label="Tutoring fees by grade">
+                <label for="tf-g18" role="tab">Grade 1–8</label>
+                <label for="tf-g910" role="tab">Grade 9–10</label>
+                <label for="tf-g1112" role="tab">Grade 11–12</label>
+            </div>
+
+            <!-- Panels -->
+            <div class="tf-panels">
+
+                <!-- 1–8 -->
+                <section class="tf-panel p18" role="tabpanel">
+                    <div class="tf-panel-head">
+                        <span class="tf-panel-title">Grade 1–8 Tutoring</span>
+                    </div>
+                    <ul class="tf-list">
+                        <li class="tf-row">
+                            <div class="tf-left">One-time registration fee</div>
+                            <div class="tf-right">$50</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">2 days/week (monthly)</div>
+                            <div class="tf-right">$250</div>
+                            <div class="tf-sub">per month (all subjects, fixed days)</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">3 days/week (monthly)</div>
+                            <div class="tf-right">$350</div>
+                            <div class="tf-sub">per month (all subjects, fixed days)</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">5 days/week (monthly)</div>
+                            <div class="tf-right">$500</div>
+                            <div class="tf-sub">per month (any subject, all subjects)</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">Hourly In-Class</div>
+                            <div class="tf-right">$25</div>
+                            <div class="tf-sub">per hour (scheduled 3 days before)</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">Hourly Online</div>
+                            <div class="tf-right">$35</div>
+                            <div class="tf-sub">per hour (scheduled 3 days before)</div>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- 9–10 -->
+                <section class="tf-panel p910" role="tabpanel">
+                    <div class="tf-panel-head">
+                        <span class="tf-panel-title">Grade 9–10 Tutoring</span>
+                    </div>
+                    <ul class="tf-list">
+                        <li class="tf-row">
+                            <div class="tf-left">One-time registration fee</div>
+                            <div class="tf-right">$50</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">2 days/week (monthly)</div>
+                            <div class="tf-right">$350</div>
+                            <div class="tf-sub">per month (all subjects, fixed days)</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">3 days/week (monthly)</div>
+                            <div class="tf-right">$450</div>
+                            <div class="tf-sub">per month (all subjects, fixed days)</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">5 days/week (monthly)</div>
+                            <div class="tf-right">$500</div>
+                            <div class="tf-sub">per month (any subject, all subjects)</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">Hourly In-Class</div>
+                            <div class="tf-right">$25</div>
+                            <div class="tf-sub">per hour (scheduled 3 days before)</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">Hourly Online</div>
+                            <div class="tf-right">$35</div>
+                            <div class="tf-sub">per hour (scheduled 3 days before)</div>
+                        </li>
+                    </ul>
+                </section>
+
+                <!-- 11–12 -->
+                <section class="tf-panel p1112" role="tabpanel">
+                    <div class="tf-panel-head">
+                        <span class="tf-panel-title">Grade 11–12 Tutoring</span>
+                    </div>
+                    <ul class="tf-list">
+                        <li class="tf-row">
+                            <div class="tf-left">One-time registration fee</div>
+                            <div class="tf-right">$50</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">2 days/week (monthly)</div>
+                            <div class="tf-right">$400</div>
+                            <div class="tf-sub">per month (all subjects, fixed days)</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">3 days/week (monthly)</div>
+                            <div class="tf-right">$500</div>
+                            <div class="tf-sub">per month (all subjects, fixed days)</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">5 days/week (monthly)</div>
+                            <div class="tf-right">$600</div>
+                            <div class="tf-sub">per month (any subject, all subjects)</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">Hourly In-Class</div>
+                            <div class="tf-right">$25</div>
+                            <div class="tf-sub">per hour (scheduled 3 days before)</div>
+                        </li>
+
+                        <li class="tf-row">
+                            <div class="tf-left">Hourly Online</div>
+                            <div class="tf-right">$35</div>
+                            <div class="tf-sub">per hour (scheduled 3 days before)</div>
+                        </li>
+                    </ul>
+                </section>
+
+            </div>
+        </div>
+
+    </div>
+</div>
