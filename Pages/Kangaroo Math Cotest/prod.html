@@ -1,0 +1,1234 @@
+<!-- ==========================================================
+Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
+- Styling inspired by your Fee Structure (Search + Accordion)
+- Includes: Hero, SEO content, Benefits, Coaching plan, Testing Centre,
+  Fees, FAQs, and your image text EXACTLY as provided
+========================================================== -->
+
+<!-- Optional SEO (keep if you can add in page header; WordPress SEO plugins may override) -->
+<!--
+<title>Math Kangaroo Contest Coaching in Brampton | Official Testing Centre | CanSTEM</title>
+<meta name="description" content="Math Kangaroo contest coaching for Grades 1–12 in Brampton & online. Contest-style problem solving, mock tests, and official in-person test centre support at CanSTEM." />
+-->
+
+<style>
+    :root {
+        --head: #000000;
+        --sub: #00427c;
+        --ink: #26262B;
+        --muted: #333333;
+        --panel: #ffffff;
+        --border: #e2e8f0;
+        --shadow: 0 4px 20px rgba(0, 0, 0, .08);
+        --radius: 12px;
+
+        --brand: #001161;
+        /* CanSTEM deep navy */
+        --soft: #f7fafc;
+        --ring: rgba(251, 176, 37, .28);
+        --gold: #fbb025;
+    }
+
+    /* Wrapper */
+    #kangaroo-page-wrap {
+        font-family: "Open Sans", sans-serif;
+        color: var(--ink);
+        max-width: 1200px;
+        line-height: 1.6;
+        font-size: 18px;
+        margin: 0 auto;
+    }
+
+    /* Basic spacing helpers */
+    #kangaroo-page-wrap * {
+        box-sizing: border-box;
+    }
+
+    #kangaroo-page-wrap .cs-row {
+        display: flex;
+        gap: 18px;
+    }
+
+    #kangaroo-page-wrap .cs-col {
+        flex: 1 1 0;
+        min-width: 0;
+    }
+
+    #kangaroo-page-wrap .mt-8 {
+        margin-top: 28px;
+    }
+
+    #kangaroo-page-wrap .mt-6 {
+        margin-top: 22px;
+    }
+
+    #kangaroo-page-wrap .mt-4 {
+        margin-top: 16px;
+    }
+
+    #kangaroo-page-wrap .muted {
+        color: #475569;
+    }
+
+    #kangaroo-page-wrap .small {
+        font-size: 15px;
+    }
+
+    #kangaroo-page-wrap .pill {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: #eef2ff;
+        border: 1px solid #e0e7ff;
+        color: #1e3a8a;
+        font-size: 13px;
+        font-weight: 700;
+        margin-right: 8px;
+        margin-top: 8px;
+    }
+
+    /* Hero */
+    #kangaroo-hero {
+        background: linear-gradient(135deg, #ffffff 0%, #f5f8ff 55%, #ffffff 100%);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 22px 18px;
+        overflow: hidden;
+    }
+
+    #kangaroo-hero h1 {
+        margin: 0;
+        font-size: 30px;
+        line-height: 1.25;
+        color: #0f172a;
+        letter-spacing: -0.2px;
+    }
+
+    #kangaroo-hero p {
+        margin: 10px 0 0;
+        color: #334155;
+        font-size: 18px;
+    }
+
+    #kangaroo-hero .hero-badges {
+        margin-top: 10px;
+    }
+
+    #kangaroo-hero .hero-cta {
+        margin-top: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    #kangaroo-page-wrap .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px 16px;
+        border-radius: 999px;
+        font-weight: 800;
+        text-decoration: none;
+        border: 1px solid #0b1b5a;
+        cursor: pointer;
+        transition: transform .08s ease, box-shadow .18s ease, background .18s ease;
+        user-select: none;
+    }
+
+    #kangaroo-page-wrap .btn-primary {
+        background: var(--brand);
+        color: #fff;
+        box-shadow: 0 10px 30px rgba(2, 6, 23, .10);
+    }
+
+    #kangaroo-page-wrap .btn-primary:hover {
+        box-shadow: 0 12px 34px rgba(2, 6, 23, .16);
+        transform: translateY(-1px);
+    }
+
+    #kangaroo-page-wrap .btn-ghost {
+        background: #fff;
+        color: #0b1b5a;
+        border: 1px solid #c7d2fe;
+    }
+
+    #kangaroo-page-wrap .btn-ghost:hover {
+        background: #f3f6ff;
+        transform: translateY(-1px);
+    }
+
+    /* Cards */
+    .cs-card {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 18px 16px;
+    }
+
+    .cs-card h2,
+    .cs-card h3 {
+        margin: 0 0 10px;
+        color: #0f172a;
+        letter-spacing: -0.2px;
+    }
+
+    .cs-card h2 {
+        font-size: 22px;
+    }
+
+    .cs-card h3 {
+        font-size: 18px;
+    }
+
+    .cs-grid3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+    }
+
+    .cs-mini {
+        border: 1px solid var(--border);
+        background: #fff;
+        border-radius: 16px;
+        padding: 14px 14px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+    }
+
+    .cs-mini b {
+        color: #0f172a;
+    }
+
+    .cs-mini p {
+        margin: 8px 0 0;
+        color: #475569;
+        font-size: 16px;
+    }
+
+    /* =========================
+     SEARCH BAR (same style as reference)
+  ========================= */
+    #canstem-page-search {
+        --csbx-ink: #0f172a;
+        --csbx-muted: #667085;
+        --csbx-bg: #fff;
+        --csbx-border: #e6e6e6;
+        --csbx-ring: #fbb02547;
+        --csbx-brand: #001161;
+        --csbx-shadow: 0 10px 30px rgba(2, 6, 23, .10);
+        --csbx-radius: 999px;
+        --csbx-h: 52px;
+        --csbx-font: 18px;
+
+        max-width: 1200px;
+        margin: 0 auto 18px;
+        padding: 0;
+    }
+
+    #canstem-page-search input,
+    #canstem-page-search button,
+    #canstem-page-search ul,
+    #canstem-page-search li {
+        all: unset;
+    }
+
+    #canstem-page-search input,
+    #canstem-page-search button {
+        box-shadow: none !important;
+        background: none !important;
+    }
+
+    #canstem-page-search .csbx-shell {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: var(--csbx-h);
+        background: var(--csbx-bg);
+        border: 1px solid var(--csbx-brand);
+        border-radius: var(--csbx-radius);
+        padding: 0 16px 0 44px;
+        box-shadow: 0 4px 28px rgba(251, 176, 37, .6), 0 0 0 0 var(--csbx-ring);
+        transition: box-shadow .18s ease, border-color .18s ease;
+    }
+
+    #canstem-page-search .csbx-shell:focus-within {
+        border: 1px solid #000;
+        outline: 0.5px solid #000;
+    }
+
+    #canstem-page-search .csbx-search {
+        position: absolute;
+        left: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        color: #9aa5b1;
+        pointer-events: none;
+    }
+
+    #canstem-page-search .csbx-input {
+        flex: 1 1 auto;
+        min-width: 0;
+        height: 2.5rem;
+        line-height: normal;
+        padding: 0;
+        font-size: var(--csbx-font);
+        color: var(--csbx-ink) !important;
+        caret-color: var(--csbx-ink);
+    }
+
+    #canstem-page-search .csbx-input::placeholder {
+        color: #9aa5b1;
+        opacity: 1;
+    }
+
+    #canstem-page-search .csbx-suggest {
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: calc(100% + 10px);
+        background: #fff;
+        border: 1px solid var(--csbx-border);
+        border-radius: 18px;
+        box-shadow: var(--csbx-shadow);
+        padding: 8px;
+        max-height: 420px;
+        overflow: auto;
+        z-index: 9999;
+        display: none;
+    }
+
+    #canstem-page-search .csbx-suggest.csbx-show {
+        display: block;
+    }
+
+    #canstem-page-search .csbx-row {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 10px 14px;
+        align-items: center;
+        padding: 12px 14px;
+        border-radius: 12px;
+        cursor: pointer;
+        transition: background .12s ease;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    #canstem-page-search .csbx-row:hover,
+    #canstem-page-search .csbx-row[aria-selected="true"] {
+        background: #f7fafc;
+    }
+
+    #canstem-page-search .csbx-row:last-child {
+        border-bottom: none;
+    }
+
+    #canstem-page-search .csbx-left {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    #canstem-page-search .csbx-code {
+        font-size: 16px;
+        font-weight: 800;
+        color: var(--csbx-ink);
+        word-break: break-word;
+    }
+
+    #canstem-page-search .csbx-name {
+        font-size: 14px;
+        font-weight: 600;
+        color: #475569;
+        margin-top: 2px;
+        line-height: 1.35;
+    }
+
+    #canstem-page-search .csbx-right {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        justify-self: end;
+    }
+
+    #canstem-page-search .csbx-chip {
+        font-size: 12px;
+        padding: 4px 10px;
+        border-radius: 999px;
+        white-space: nowrap;
+        border: 1px solid #fde68a;
+        background: #fffbeb;
+        color: #92400e;
+        font-weight: 800;
+    }
+
+    /* =========================
+     ACCORDION (same look as your reference)
+  ========================= */
+    details.fee-section {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 1.25rem;
+        box-shadow: var(--shadow);
+    }
+
+    summary.fee-toggle {
+        list-style: none;
+        cursor: pointer;
+        user-select: none;
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+        padding: 16px;
+        font-weight: 900;
+        color: var(--head);
+        background: #fff;
+        border-left: 6px solid var(--sub);
+    }
+
+    summary.fee-toggle::-webkit-details-marker {
+        display: none;
+    }
+
+    summary.fee-toggle:after {
+        content: "▸";
+        margin-left: auto;
+        color: var(--sub);
+        font-weight: 900;
+        transition: transform .2s ease;
+    }
+
+    details[open]>summary.fee-toggle:after {
+        transform: rotate(90deg);
+    }
+
+    .fee-content {
+        padding: 18px 16px 20px;
+        border-top: 1px solid var(--border);
+        background: #fff;
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .fee-content>*+* {
+        margin-top: 14px;
+    }
+
+    .bullets {
+        margin: .25rem 0 .5rem 1.1rem;
+    }
+
+    .bullets li {
+        margin: .25rem 0;
+    }
+
+    .list {
+        margin: .25rem 0 .75rem 1.1rem;
+    }
+
+    .list li {
+        margin: .3rem 0;
+    }
+
+    .accent {
+        color: var(--sub);
+        font-weight: 900;
+        margin-top: 1.25rem;
+    }
+
+    table.rtable {
+        width: 100%;
+        border-collapse: collapse;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        margin: 0 0 1rem;
+    }
+
+    .rtable thead {
+        background: var(--sub);
+        color: #fff;
+    }
+
+    .rtable th,
+    .rtable td {
+        padding: 16px;
+        text-align: left;
+        font-size: 18px;
+        border-bottom: 1px solid #eee;
+        vertical-align: top;
+    }
+
+    .rtable tbody tr:nth-child(even) {
+        background: #f9f9f9;
+    }
+
+    .sep {
+        height: 1px;
+        background: #eef2f7;
+        margin: 1rem 0;
+    }
+
+    .fee-content a {
+        color: var(--sub);
+        font-weight: 900;
+        text-decoration: none;
+        border-bottom: 1px dashed var(--sub);
+    }
+
+    .fee-content a:hover {
+        color: #003566;
+        border-bottom-color: #003566;
+    }
+
+    /* Special highlight for Fees */
+    #fees-and-packages summary.fee-toggle {
+        background: #fffbeb;
+        border-left-color: #f59e0b;
+    }
+
+    #fees-and-packages.fee-section {
+        box-shadow: 0 6px 24px rgba(245, 158, 11, .16);
+    }
+
+    /* Snapshot block (your image text) */
+    .snapshot {
+        background: #fff;
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        padding: 18px 16px;
+    }
+
+    .snapshot h2 {
+        margin: 0 0 10px;
+        font-size: 22px;
+        color: #0f172a;
+    }
+
+    .snapshot h3 {
+        margin: 16px 0 6px;
+        font-size: 16px;
+        color: #0f172a;
+    }
+
+    .snapshot ul {
+        margin: 6px 0 0 1.1rem;
+    }
+
+    .snapshot li {
+        margin: 6px 0;
+    }
+
+    .snapshot em {
+        font-style: italic;
+    }
+
+    /* Image card (optional) */
+    .image-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        display: block;
+    }
+
+    .image-card .small {
+        margin-top: 10px;
+        color: #64748b;
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+        #kangaroo-page-wrap .cs-row {
+            flex-direction: column;
+        }
+
+        .cs-grid3 {
+            grid-template-columns: 1fr;
+        }
+
+        #kangaroo-hero h1 {
+            font-size: 26px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        #kangaroo-page-wrap {
+            font-size: 16px;
+        }
+
+        .fee-content {
+            font-size: 16px;
+        }
+
+        .rtable thead {
+            display: none;
+        }
+
+        .rtable,
+        .rtable tbody,
+        .rtable tr,
+        .rtable td {
+            display: block;
+            width: 100%;
+        }
+
+        .rtable {
+            box-shadow: none !important;
+            margin-bottom: 0 !important;
+        }
+
+        .rtable tr {
+            margin-bottom: 16px;
+            border: 1px solid var(--sub);
+            padding: 16px;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        .rtable td {
+            border: none;
+            padding: 12px 0;
+            position: relative;
+            font-size: 16px;
+        }
+
+        .rtable td::before {
+            content: attr(data-label);
+            font-weight: 900;
+            color: var(--sub);
+            display: block;
+            margin-bottom: 4px;
+        }
+    }
+
+    @media (max-width: 640px) {
+        #canstem-page-search .csbx-shell {
+            padding-right: 12px;
+        }
+
+        #canstem-page-search .csbx-code {
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        #canstem-page-search .csbx-name {
+            font-size: 13px;
+        }
+    }
+
+    /* Right-side snapshot accordion (PTE-like) */
+    .snapshot-accordion {
+        padding: 16px !important;
+    }
+
+    .snap-sec {
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+        margin-bottom: 14px;
+    }
+
+    .snap-sec:last-child {
+        margin-bottom: 0;
+    }
+
+    .snap-toggle {
+        list-style: none;
+        cursor: pointer;
+        user-select: none;
+        padding: 14px 14px;
+        font-weight: 800;
+        color: #0f172a;
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .snap-toggle::-webkit-details-marker {
+        display: none;
+    }
+
+    /* plus icon left like screenshot */
+    .snap-toggle::before {
+        content: "+";
+        font-weight: 900;
+        font-size: 18px;
+        line-height: 1;
+        color: #0f172a;
+        width: 18px;
+        display: inline-flex;
+        justify-content: center;
+    }
+
+    /* when open, show minus */
+    .snap-sec[open]>.snap-toggle::before {
+        content: "−";
+    }
+
+    .snap-content {
+        border-top: 1px solid #eef2f7;
+        padding: 14px 14px 16px;
+        color: #334155;
+        font-size: 17px;
+        line-height: 1.65;
+    }
+
+    .snap-list {
+        margin: 0 0 0 1.1rem;
+    }
+
+    .snap-list li {
+        margin: 6px 0;
+    }
+
+    @media (max-width: 768px) {
+        .snap-content {
+            font-size: 16px;
+        }
+    }
+</style>
+
+<!-- SEARCH -->
+<section id="canstem-page-search" class="mt-6" aria-label="Search page sections">
+    <div class="csbx-shell" role="search">
+        <svg class="csbx-search" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2" />
+            <path d="M20 20L16.2 16.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+        </svg>
+
+        <input id="csbx-q-k" class="csbx-input" type="search" spellcheck="false" autocomplete="off"
+            placeholder="Search this page (fees, testing centre, coaching, FAQ...)" aria-autocomplete="list"
+            aria-controls="csbx-suggest-k" aria-expanded="false" />
+
+        <div id="csbx-suggest-k" class="csbx-suggest" role="listbox" aria-label="Suggestions"></div>
+    </div>
+</section>
+
+
+<section id="kangaroo-page-wrap" aria-label="Math Kangaroo coaching page">
+
+    <!-- HERO -->
+    <section id="kangaroo-hero">
+        <div class="cs-row">
+            <div class="cs-col">
+                <div class="cs-card snapshot-accordion" aria-label="Canadian Kangaroo Math Tutoring snapshot accordion">
+
+                    <details class="snap-sec" open>
+                        <summary class="snap-toggle">What We Offer?</summary>
+                        <div class="snap-content">
+                            <ul class="snap-list">
+                                <li>Tutoring for Canadian Kangaroo Math Tutoring for Grades 1–12</li>
+                                <li>Focused preparation</li>
+                                <li>Engaging practice with contest-style problems</li>
+                                <li>Support for logical reasoning, creative problem solving, and mathematical thinking
+                                </li>
+                                <li>Tailored lessons that build confidence and sharpen skills for competition success
+                                    (Competitive exam coaching is an exclusive tutoring offerings).</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details class="snap-sec">
+                        <summary class="snap-toggle">How We Deliver?</summary>
+                        <div class="snap-content">
+                            <ul class="snap-list">
+                                <li>In-Class and Online Tutoring via live, interactive sessions</li>
+                                <li>Flexible Scheduling with hourly or monthly packages</li>
+                                <li>Q&amp;A Support Sessions with experienced instructors</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details class="snap-sec">
+                        <summary class="snap-toggle">Why Choose CanSTEM?</summary>
+                        <div class="snap-content">
+                            <ul class="snap-list">
+                                <li>Official testing centre in Brampton</li>
+                                <li>Highly Rated &amp; Trusted - Over 1,350 five-star reviews from families and students
+                                </li>
+                                <li>Expert Qualified teachers</li>
+                                <li>Personalized Attention: One-on-one guidance tailored to each learner.</li>
+                                <li>Affordable Pricing: Competitive tutoring rates with options that suit your budget.
+                                </li>
+                            </ul>
+                        </div>
+                    </details>
+
+                    <details class="snap-sec">
+                        <summary class="snap-toggle">Accreditation</summary>
+                        <div class="snap-content">
+                            <ul class="snap-list">
+                                <li>We are the only Official Testing Centre in Brampton</li>
+                                <li>We are a Ministry of Education, Ontario – approved &amp; inspected private school
+                                    (BSID 665446),</li>
+                            </ul>
+                        </div>
+                    </details>
+
+                </div>
+
+            </div>
+
+            <!-- RIGHT SIDE (REPLACEMENT): Accordion Card (no image) -->
+            <div class="cs-col">
+
+                <p>
+                    Prepare with contest-style problems, logical reasoning, and step-by-step strategies that build
+                    confidence.
+                    CanSTEM also hosts in-person Math Kangaroo testing for students registering at our site.
+                </p>
+
+                <div class="hero-badges">
+                    <span class="pill">Math Contest Prep</span>
+                    <span class="pill">Problem Solving</span>
+                    <span class="pill">Official Test Site (Brampton)</span>
+                    <span class="pill">In-Person & Online Options</span>
+                </div>
+
+                <div class="hero-cta">
+                    <a class="btn btn-primary" href="#fees-and-packages">View Fees & Packages</a>
+                    <a class="btn btn-ghost" href="#how-to-start">How to Start</a>
+                    <a class="btn btn-ghost" href="mailto:inquiry@canstemeducation.com">Email Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK VALUE CARDS -->
+    <section class="cs-card mt-6">
+        <h2>Why families choose Math Kangaroo coaching</h2>
+        <div class="cs-grid3 mt-4">
+            <div class="cs-mini">
+                <b>Contest-style thinking</b>
+                <p>Students learn how to read tricky questions, eliminate choices, and solve efficiently—without panic.
+                </p>
+            </div>
+            <div class="cs-mini">
+                <b>Confidence + speed</b>
+                <p>Timed drills, mock tests, and common “trap” patterns help students become faster and more accurate.
+                </p>
+            </div>
+            <div class="cs-mini">
+                <b>Stronger math foundation</b>
+                <p>Number sense, logic, patterns, geometry, and reasoning skills improve—helpful for school and future
+                    contests.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACCORDIONS -->
+    <div class="fees-accordions mt-4">
+
+        <details class="fee-section" id="about-math-kangaroo" data-title="About the Math Kangaroo Contest"
+            data-keywords="about math kangaroo contest canada canadian math kangaroo grades 1-12 multiple choice problem solving logical reasoning fun challenging">
+            <summary class="fee-toggle">About the Math Kangaroo Contest</summary>
+            <div class="fee-content">
+                <p>
+                    The Canadian Math Kangaroo Contest is known for <strong>fun and challenging</strong> questions that
+                    reward
+                    creative thinking—not just memorized formulas. Students typically face multiple-choice problems
+                    designed to
+                    build confidence in <strong>logic, patterns, and problem-solving</strong>.
+                </p>
+
+                <ul class="bullets">
+                    <li><strong>Grades:</strong> 1–12</li>
+                    <li><strong>Skills tested:</strong> logical reasoning, number sense, geometry, and smart strategies
+                    </li>
+                    <li><strong>Great for:</strong> students who love puzzles, want a first contest experience, or aim
+                        for awards</li>
+                </ul>
+
+                <p class="muted small">
+                    We can also prepare students for related contests such as Waterloo math contests and other school
+                    math/science competitions.
+                </p>
+            </div>
+        </details>
+
+        <details class="fee-section" id="benefits" data-title="Benefits of Math Kangaroo Preparation"
+            data-keywords="benefits math kangaroo preparation confidence problem solving logical reasoning math enrichment awards medals certificates school performance">
+            <summary class="fee-toggle">Benefits of Math Kangaroo Preparation</summary>
+            <div class="fee-content">
+                <p class="accent">What students gain (beyond the contest)</p>
+                <ul class="bullets">
+                    <li><strong>Sharper thinking:</strong> Learn how to break down unfamiliar questions quickly.</li>
+                    <li><strong>Better school performance:</strong> Stronger foundations in number sense, geometry, and
+                        reasoning.</li>
+                    <li><strong>Confidence under time:</strong> Practice with timed sets and mock tests.</li>
+                    <li><strong>Healthy challenge:</strong> Students build resilience and learn from mistakes.</li>
+                    <li><strong>Recognition:</strong> Many students aim for certificates, ribbons, and medals through
+                        strong performance.</li>
+                </ul>
+
+                <div class="sep"></div>
+
+                <p class="muted">
+                    Parents often tell us the biggest difference is not just higher scores—it's how students start
+                    enjoying
+                    challenging questions and become comfortable with “contest-style” thinking.
+                </p>
+            </div>
+        </details>
+
+        <details class="fee-section" id="coaching-program" data-title="Our Coaching Program"
+            data-keywords="coaching program math kangaroo tutoring contest math coaching practice tests mock exams solution strategies weekly classes brampton online">
+            <summary class="fee-toggle">Our Coaching Program (How we teach)</summary>
+            <div class="fee-content">
+                <p>
+                    Our coaching is structured around <strong>contest-style problem sets</strong>, guided solutions, and
+                    weekly progress support. Students learn both <strong>strategy</strong> and
+                    <strong>accuracy</strong>.
+                </p>
+
+                <p class="accent">What’s included</p>
+                <ul class="bullets">
+                    <li>Level-appropriate topic review (without over-teaching)</li>
+                    <li>Contest-style worksheets + timed mini tests</li>
+                    <li>Step-by-step solution methods and shortcuts</li>
+                    <li>Error analysis: “why this answer is wrong” training</li>
+                    <li>Q&amp;A support with experienced instructors</li>
+                </ul>
+
+                <div class="sep"></div>
+
+                <p class="accent">Class options</p>
+                <ul class="bullets">
+                    <li><strong>In-person</strong> coaching in Brampton</li>
+                    <li><strong>Online</strong> live, interactive coaching (1-on-1 or small group)</li>
+                    <li>Flexible scheduling for hourly or monthly packages</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="fee-section" id="testing-centre" data-title="Official Testing Centre in Brampton"
+            data-keywords="official testing centre brampton math kangaroo test site in person exam location canstem host contest registration">
+            <summary class="fee-toggle">Official Testing Centre in Brampton (We host the contest)</summary>
+            <div class="fee-content">
+                <p>
+                    CanSTEM is an <strong>official testing centre in Brampton</strong>. If you register for an in-person
+                    sitting
+                    and choose our site, your child can write the contest here in a supervised, student-friendly
+                    environment.
+                </p>
+
+                <ul class="bullets">
+                    <li>Comfortable testing setting</li>
+                    <li>Clear check-in process and on-site support</li>
+                    <li>Families can combine <strong>coaching + in-person testing</strong> at one location</li>
+                </ul>
+
+                <p class="muted small">
+                    Note: Exact contest dates, rules, and registration steps may change by year. We can guide you based
+                    on the current cycle.
+                </p>
+            </div>
+        </details>
+
+        <details class="fee-section" id="fees-and-packages"
+            data-title="Fees & Packages (Math Kangaroo / Waterloo & Other Contests)"
+            data-keywords="fees packages math kangaroo tutoring waterloo contest tutoring hourly monthly in person online 25 35 250 500">
+            <summary class="fee-toggle">Fees & Packages (Math Kangaroo / Waterloo & Other Contests)</summary>
+            <div class="fee-content">
+                <p>
+                    <strong>Competitive Exam Tutoring (Math Kangaroo, Waterloo &amp; Other School Science/Math
+                        Contests)</strong>
+                </p>
+
+                <div class="sep"></div>
+
+                <p class="accent">Option A – Hourly</p>
+                <p class="muted small">(The fee for all hours in a month must be paid before the schedule is created)
+                </p>
+                <ul class="bullets">
+                    <li>In-person: <strong>$25/hour</strong></li>
+                    <li>Online: <strong>$35/hour</strong></li>
+                </ul>
+
+                <div class="sep"></div>
+
+                <p class="accent">Option B – Monthly (Online not available)</p>
+                <ul class="bullets">
+                    <li>Twice a week (Unlimited hours for those two days): <strong>$250/month</strong></li>
+                    <li>6 days a week (Unlimited hours, any subject): <strong>$500/month</strong></li>
+                </ul>
+
+                <div class="sep"></div>
+
+                <p class="muted">
+                    Want the fastest improvement? We’ll recommend the best option after a quick level check (grade +
+                    current comfort with contest questions).
+                </p>
+
+                <div class="mt-4">
+                    <a class="btn btn-primary" href="#how-to-start">Start Now</a>
+                    <a class="btn btn-ghost" href="tel:+16478471231">Call: 647-847-1231</a>
+                </div>
+            </div>
+        </details>
+
+        <details class="fee-section" id="how-to-start" data-title="How to Start (Step-by-step)"
+            data-keywords="how to start math kangaroo coaching register book assessment schedule classes brampton online">
+            <summary class="fee-toggle">How to Start (Step-by-step)</summary>
+            <div class="fee-content">
+                <ol class="list">
+                    <li><strong>Message us</strong> with your child’s grade and goals (first-time participant vs aiming
+                        for awards).</li>
+                    <li><strong>Quick level check</strong> (optional) to choose the right difficulty and plan.</li>
+                    <li><strong>Pick a package</strong> (hourly or monthly) and confirm your schedule.</li>
+                    <li><strong>Weekly training</strong> with practice sets, solutions, and progress support.</li>
+                    <li><strong>Mock test / revision</strong> closer to contest day for timing + accuracy.</li>
+                </ol>
+
+                <div class="sep"></div>
+
+                <p class="accent">Contact</p>
+                <ul class="bullets">
+                    <li>Email: <a href="mailto:inquiry@canstemeducation.com">inquiry@canstemeducation.com</a></li>
+                    <li>Phone: <a href="tel:+16478471231">647-847-1231</a></li>
+                    <li>Location: Brampton (in-person) + Online live classes</li>
+                </ul>
+            </div>
+        </details>
+
+        <details class="fee-section" id="faq" data-title="FAQ (Math Kangaroo Coaching & Test Site)"
+            data-keywords="faq math kangaroo coaching how many questions multiple choice time limit awards medals certificates ribbons practice papers sample questions">
+            <summary class="fee-toggle">FAQ</summary>
+            <div class="fee-content">
+                <p class="accent">Is Math Kangaroo good for beginners?</p>
+                <p>Yes—many students start with Math Kangaroo because it’s designed to be fun and accessible while still
+                    challenging.</p>
+
+                <p class="accent">Do you offer practice questions?</p>
+                <p>Yes. We use contest-style sets and can guide families to official sample resources as well.</p>
+
+                <p class="accent">Can my child join late?</p>
+                <p>Usually yes. We’ll place them at the right level and focus on the highest-impact strategies first.
+                </p>
+
+                <p class="accent">Do you help with Waterloo contests too?</p>
+                <p>Yes—this tutoring category covers Math Kangaroo, Waterloo, and other school math/science contests.
+                </p>
+
+                <p class="muted small">
+                    If you want, we can add a longer FAQ section tailored to the exact grade bands you see most (Grades
+                    1–2, 3–4, 5–6, etc.).
+                </p>
+            </div>
+        </details>
+
+    </div>
+
+
+
+    <!-- Optional JSON-LD (FAQ + Service). Keep or remove -->
+    <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "CanSTEM Education Private School",
+    "url": "https://canstemeducation.com/",
+    "email": "inquiry@canstemeducation.com",
+    "telephone": "+1-647-847-1231",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Brampton",
+      "addressRegion": "ON",
+      "addressCountry": "CA"
+    },
+    "makesOffer": [{
+      "@type": "Offer",
+      "name": "Math Kangaroo Contest Coaching",
+      "category": "Math Contest Tutoring",
+      "priceCurrency": "CAD"
+    }]
+  }
+  </script>
+
+</section>
+
+<script>
+    (function () {
+        var wrap = document.getElementById("kangaroo-page-wrap");
+        if (!wrap) return;
+
+        var sections = Array.prototype.slice.call(wrap.querySelectorAll(".fee-section"));
+
+        var input = wrap.querySelector("#csbx-q-k");
+        var suggest = wrap.querySelector("#csbx-suggest-k");
+
+        function setOpen(on) {
+            input.setAttribute("aria-expanded", on ? "true" : "false");
+            suggest.classList.toggle("csbx-show", on);
+        }
+
+        function normalize(s) { return String(s || "").toLowerCase().trim(); }
+
+        function buildIndex() {
+            return sections.map(function (sec) {
+                var summaryEl = sec.querySelector("summary");
+                var title = sec.getAttribute("data-title") || (summaryEl ? summaryEl.textContent : sec.id);
+                var keywords = sec.getAttribute("data-keywords") || "";
+                var contentText = sec.textContent || "";
+                return {
+                    id: sec.id,
+                    title: title,
+                    keywords: keywords,
+                    haystack: normalize(title + " " + keywords + " " + contentText)
+                };
+            });
+        }
+
+        var INDEX = buildIndex();
+
+        function closeOthers(openId) {
+            sections.forEach(function (s) {
+                if (s.id !== openId) s.removeAttribute("open");
+            });
+        }
+
+        function openSection(id, shouldScroll) {
+            var target = document.getElementById(id);
+            if (!target) return;
+
+            target.setAttribute("open", "");
+            closeOthers(id);
+
+            try { history.replaceState(null, "", "#" + id); } catch (e) { location.hash = id; }
+
+            if (shouldScroll) {
+                setTimeout(function () {
+                    try { target.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) { }
+                }, 30);
+            }
+        }
+
+        // Only 1 accordion open at a time on manual open
+        sections.forEach(function (sec) {
+            sec.addEventListener("toggle", function () {
+                if (!sec.open) return;
+                closeOthers(sec.id);
+            });
+        });
+
+        function searchSections(q) {
+            var t = normalize(q);
+            if (!t) return [];
+
+            return INDEX
+                .map(function (it) {
+                    var pos = it.haystack.indexOf(t);
+                    if (pos === -1) return null;
+
+                    var titlePos = normalize(it.title).indexOf(t);
+                    var score = (titlePos === -1 ? 50 : titlePos) + pos;
+                    return { id: it.id, title: it.title, score: score };
+                })
+                .filter(Boolean)
+                .sort(function (a, b) { return a.score - b.score; })
+                .slice(0, 12);
+        }
+
+        var activeIndex = -1;
+
+        function render() {
+            var q = input.value || "";
+            var results = searchSections(q);
+
+            suggest.innerHTML = "";
+            if (!results.length) { setOpen(false); return; }
+
+            results.forEach(function (it, idx) {
+                var row = document.createElement("div");
+                row.className = "csbx-row";
+                row.role = "option";
+                row.id = "k-row-" + idx;
+                row.setAttribute("aria-selected", "false");
+
+                row.innerHTML =
+                    '<div class="csbx-left">' +
+                    '<span class="csbx-code">' + it.title + '</span>' +
+                    '<span class="csbx-name">Open this section</span>' +
+                    '</div>' +
+                    '<div class="csbx-right">' +
+                    '<span class="csbx-chip">Section</span>' +
+                    '</div>';
+
+                row.addEventListener("mousedown", function (e) { e.preventDefault(); });
+                row.addEventListener("click", function () {
+                    setOpen(false);
+                    openSection(it.id, true);
+                });
+
+                suggest.appendChild(row);
+            });
+
+            activeIndex = -1;
+            setOpen(true);
+        }
+
+        input.addEventListener("input", render);
+
+        input.addEventListener("focus", function () {
+            if ((input.value || "").trim()) render();
+        });
+
+        input.addEventListener("blur", function () {
+            setTimeout(function () { setOpen(false); }, 140);
+        });
+
+        input.addEventListener("keydown", function (e) {
+            var items = Array.prototype.slice.call(suggest.querySelectorAll(".csbx-row"));
+            if (!items.length) {
+                if (e.key === "Enter") {
+                    var best = searchSections(input.value || "")[0];
+                    if (best) { e.preventDefault(); openSection(best.id, true); setOpen(false); }
+                }
+                if (e.key === "Escape") setOpen(false);
+                return;
+            }
+
+            if (e.key === "ArrowDown") { e.preventDefault(); activeIndex = Math.min(activeIndex + 1, items.length - 1); }
+            else if (e.key === "ArrowUp") { e.preventDefault(); activeIndex = Math.max(activeIndex - 1, 0); }
+            else if (e.key === "Enter") { e.preventDefault(); (items[activeIndex] || items[0]).click(); }
+            else if (e.key === "Escape") { setOpen(false); return; }
+            else { return; }
+
+            items.forEach(function (n) { n.setAttribute("aria-selected", "false"); });
+            if (activeIndex >= 0 && items[activeIndex]) {
+                items[activeIndex].setAttribute("aria-selected", "true");
+                items[activeIndex].scrollIntoView({ block: "nearest" });
+            }
+        });
+
+        // Open by hash on load
+        if (location.hash) {
+            var id = location.hash.replace("#", "");
+            if (document.getElementById(id)) openSection(id, false);
+        }
+    })();
+
+    (function () {
+        var box = document.querySelector(".snapshot-accordion");
+        if (!box) return;
+        var items = Array.prototype.slice.call(box.querySelectorAll("details.snap-sec"));
+
+        items.forEach(function (d) {
+            d.addEventListener("toggle", function () {
+                if (!d.open) return;
+                items.forEach(function (x) { if (x !== d) x.removeAttribute("open"); });
+            });
+        });
+    })();
+</script>
