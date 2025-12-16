@@ -1,0 +1,207 @@
+<!-- CAEC Tutoring Fees — Desktop table + Mobile/Tablet compact (same layout style as tutoring-fees) -->
+<style>
+  /* Scope to this block only */
+  #caec-fees{
+    --sub:#00427c;
+    --ink:#26262B;
+    --panel:#ffffff;
+    --border:#e2e8f0;
+    --shadow:0 4px 20px rgba(0,0,0,.08);
+    --radius:12px;
+
+    font-family:"Open Sans",sans-serif;
+    color:var(--ink);
+    max-width:1200px;
+    width:100%;
+    margin:0 auto;
+    line-height:1.8;
+    font-size:18px;
+  }
+
+  #caec-fees .section-body{ background:#fff; padding:0; }
+
+  #caec-fees .muted{
+    color:#333333;
+    margin:12px 0 0;
+    font-size:16px;
+  }
+
+  /* ===== Desktop table (unchanged look) ===== */
+  #caec-fees table.rtable{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    margin:0;
+    background:#fff;
+  }
+
+  #caec-fees .rtable thead{
+    background:var(--sub);
+    color:#fff;
+  }
+
+  #caec-fees .rtable th,
+  #caec-fees .rtable td{
+    padding:16px;
+    text-align:left;
+    font-size:18px;
+    border-bottom:1px solid #eee;
+    vertical-align:top;
+  }
+
+  #caec-fees .rtable tbody tr:nth-child(even){
+    background:#f9f9f9;
+  }
+
+  /* ===== Mobile/Tablet view (same compact list layout) ===== */
+  #caec-fees .cf-mobile{ display:none; }
+
+  @media (max-width:1024px){
+    #caec-fees{ font-size:16px; }
+
+    /* Hide desktop table */
+    #caec-fees table.rtable{ display:none; }
+    #caec-fees .cf-mobile{ display:block; }
+
+    /* Panel wrapper */
+    #caec-fees .cf-panel{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:#fff;
+      box-shadow:var(--shadow);
+    }
+
+    #caec-fees .cf-panel-head{
+      padding:12px 14px;
+      background:linear-gradient(180deg,#f6f9ff 0%,#ffffff 100%);
+      border-bottom:1px solid #eef2f7;
+    }
+
+    #caec-fees .cf-panel-title{
+      display:block;
+      font-weight:900;
+      color:#0b1220;
+      font-size:16px;
+      margin:0;
+    }
+
+    /* Tight list rows */
+    #caec-fees ul.cf-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+    }
+
+    /* 3-div structure like your tutoring block:
+       left + right + full-row subline */
+    #caec-fees li.cf-row{
+      display:grid;
+      grid-template-columns:1.2fr .9fr;
+      gap:8px;
+      padding:10px 14px;
+      border-top:1px solid #eef2f7;
+      align-items:center;
+    }
+    #caec-fees li.cf-row:first-child{ border-top:none; }
+
+    #caec-fees .cf-left{
+      font-weight:600;
+      color:#000;
+      font-size:16px;
+      line-height:1.35;
+    }
+
+    #caec-fees .cf-right{
+      text-align:right;
+      font-weight:900;
+      color:#000;
+      font-size:16px;
+      line-height:1.35;
+      white-space:nowrap;
+    }
+
+    #caec-fees .cf-sub{
+      grid-column:1 / -1;
+      margin-top:2px;
+      font-weight:600;
+      color:#334155;
+      font-size:13px;
+      line-height:1.35;
+    }
+
+    #caec-fees .muted{ font-size:14px; }
+  }
+
+  @media (max-width:520px){
+    #caec-fees .cf-left,
+    #caec-fees .cf-right{ font-size:15px; }
+    #caec-fees .cf-sub{ font-size:12px; }
+  }
+</style>
+
+<div id="caec-fees">
+  <div class="section-body">
+
+    <!-- ===== Desktop (table) ===== -->
+    <table class="rtable">
+      <thead>
+        <tr>
+          <th>Package</th>
+          <th>Details</th>
+          <th>Monthly Fee</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Package 1</td>
+          <td>In-person classes, twice a week</td>
+          <td><strong>$250 / month</strong></td>
+        </tr>
+        <tr>
+          <td>Package 2</td>
+          <td>In-person classes, six days a week</td>
+          <td><strong>$500 / month</strong></td>
+        </tr>
+        <tr>
+          <td>Package 3</td>
+          <td>Online program (Zoom), 2 hours/day, 5 days/week</td>
+          <td><strong>$250 / month</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ===== Tablet/Mobile (compact list) ===== -->
+    <div class="cf-mobile">
+      <div class="cf-panel">
+        <div class="cf-panel-head">
+          <span class="cf-panel-title">CAEC Tutoring Fees</span>
+        </div>
+
+        <ul class="cf-list">
+          <li class="cf-row">
+            <div class="cf-left">Package 1</div>
+            <div class="cf-right">$250 / month</div>
+            <div class="cf-sub">In-person classes, twice a week</div>
+          </li>
+
+          <li class="cf-row">
+            <div class="cf-left">Package 2</div>
+            <div class="cf-right">$500 / month</div>
+            <div class="cf-sub">In-person classes, six days a week</div>
+          </li>
+
+          <li class="cf-row">
+            <div class="cf-left">Package 3</div>
+            <div class="cf-right">$250 / month</div>
+            <div class="cf-sub">Online program (Zoom), 2 hours/day, 5 days/week</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="muted">Note: Scheduling is subject to availability. Please contact us to confirm class times.</p>
+  </div>
+</div>

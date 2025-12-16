@@ -1,0 +1,278 @@
+<!-- Language Proficiency (Tutoring) — Desktop tables + Mobile/Tablet compact panels (same style system) -->
+<style>
+  /* Scope everything to this block only */
+  #language-fees{
+    --sub:#00427c;
+    --ink:#26262B;
+    --panel:#ffffff;
+    --border:#e2e8f0;
+    --shadow:0 4px 20px rgba(0,0,0,.08);
+    --radius:12px;
+
+    font-family:"Open Sans",sans-serif;
+    color:var(--ink);
+    max-width:1200px;
+    width:100%;
+    margin:0 auto;
+    line-height:1.8;
+    font-size:18px;
+  }
+
+  #language-fees .section-body{ background:#fff; padding:0; }
+
+  /* Desktop titles above tables */
+  #language-fees .accent{
+    color:var(--sub);
+    font-weight:700;
+    margin:1rem 0 .5rem;
+  }
+
+  #language-fees .sep{
+    height:1px;
+    background:#eef2f7;
+    margin:1rem 0;
+  }
+
+  /* ===== Desktop tables (unchanged look) ===== */
+  #language-fees table.rtable{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    margin:0 0 1.5rem;
+    background:#fff;
+  }
+
+  #language-fees .rtable thead{
+    background:var(--sub);
+    color:#fff;
+  }
+
+  #language-fees .rtable th,
+  #language-fees .rtable td{
+    padding:16px;
+    text-align:left;
+    font-size:18px;
+    border-bottom:1px solid #eee;
+    vertical-align:top;
+  }
+
+  #language-fees .rtable tbody tr:nth-child(even){
+    background:#f9f9f9;
+  }
+
+  /* ===== Mobile/Tablet compact panels (hidden on desktop) ===== */
+  #language-fees .lf-mobile{ display:none; }
+
+  @media (max-width:1024px){
+    #language-fees{ font-size:16px; }
+
+    /* Hide desktop tables + headings */
+    #language-fees table.rtable,
+    #language-fees .accent,
+    #language-fees .sep{ display:none; }
+
+    #language-fees .lf-mobile{ display:block; }
+
+    /* Panel wrapper */
+    #language-fees .lf-panel{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:#fff;
+      box-shadow:var(--shadow);
+      margin-bottom:12px;
+    }
+
+    #language-fees .lf-panel-head{
+      padding:12px 14px;
+      background:linear-gradient(180deg,#f6f9ff 0%,#ffffff 100%);
+      border-bottom:1px solid #eef2f7;
+    }
+
+    #language-fees .lf-panel-title{
+      display:block;
+      font-weight:900;
+      color:#0b1220;
+      font-size:16px;
+      margin:0;
+    }
+
+    /* Tight list rows (same pattern: left + right + full-row subline) */
+    #language-fees ul.lf-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+    }
+
+    #language-fees li.lf-row{
+      display:grid;
+      grid-template-columns:1.2fr .9fr;
+      gap:8px;
+      padding:10px 14px;
+      border-top:1px solid #eef2f7;
+      align-items:center;
+    }
+    #language-fees li.lf-row:first-child{ border-top:none; }
+
+    #language-fees .lf-left{
+      font-weight:600;
+      color:#000;
+      font-size:16px;
+      line-height:1.35;
+    }
+
+    #language-fees .lf-right{
+      text-align:right;
+      font-weight:900;
+      color:#000;
+      font-size:16px;
+      line-height:1.35;
+      white-space:nowrap;
+    }
+
+    #language-fees .lf-sub{
+      grid-column:1 / -1;
+      margin-top:2px;
+      font-weight:600;
+      color:#334155;
+      font-size:13px;
+      line-height:1.35;
+    }
+  }
+
+  @media (max-width:520px){
+    #language-fees .lf-left,
+    #language-fees .lf-right{ font-size:15px; }
+    #language-fees .lf-sub{ font-size:12px; }
+  }
+</style>
+
+<div id="language-fees">
+  <div class="section-body">
+
+    <!-- ===== Desktop (as-is tables) ===== -->
+    <p class="accent">PTE / IELTS / CELPIP / TOEFL</p>
+    <table class="rtable">
+      <thead><tr><th>Plan</th><th>Amount</th></tr></thead>
+      <tbody>
+        <tr><td>Monthly</td><td>$250 per month</td></tr>
+        <tr><td>2 weeks</td><td>$150</td></tr>
+        <tr><td>Crash preparation</td><td>$100 for 4 hours</td></tr>
+      </tbody>
+    </table>
+
+    <p class="accent">Trial Class (PTE / IELTS / CELPIP / TOEFL)</p>
+    <table class="rtable">
+      <thead><tr><th>Mode</th><th>Amount</th></tr></thead>
+      <tbody>
+        <tr><td>In-person</td><td>$25</td></tr>
+        <tr><td>Online</td><td>$35</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sep"></div>
+
+    <p class="accent">French Tutoring Package (TCF/TEF)</p>
+    <table class="rtable">
+      <thead><tr><th>Plan</th><th>Amount</th></tr></thead>
+      <tbody>
+        <tr><td>4 Modules</td><td>$1000</td></tr>
+        <tr><td>Unlimited Teaching Support</td><td>$250</td></tr>
+      </tbody>
+    </table>
+
+    <p class="accent">Hourly French Tutoring/Trial Class</p>
+    <table class="rtable">
+      <thead><tr><th>Mode</th><th>Amount</th></tr></thead>
+      <tbody>
+        <tr><td>In-person</td><td>$40</td></tr>
+        <tr><td>Online</td><td>$50</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ===== Tablet/Mobile (compact panels) ===== -->
+    <div class="lf-mobile">
+
+      <div class="lf-panel">
+        <div class="lf-panel-head">
+          <span class="lf-panel-title">PTE / IELTS / CELPIP / TOEFL</span>
+        </div>
+        <ul class="lf-list">
+          <li class="lf-row">
+            <div class="lf-left">Monthly</div>
+            <div class="lf-right">$250</div>
+            <div class="lf-sub">per month</div>
+          </li>
+          <li class="lf-row">
+            <div class="lf-left">2 weeks</div>
+            <div class="lf-right">$150</div>
+            <div class="lf-sub"></div>
+          </li>
+          <li class="lf-row">
+            <div class="lf-left">Crash preparation</div>
+            <div class="lf-right">$100</div>
+            <div class="lf-sub">for 4 hours</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lf-panel">
+        <div class="lf-panel-head">
+          <span class="lf-panel-title">Trial Class (PTE / IELTS / CELPIP / TOEFL)</span>
+        </div>
+        <ul class="lf-list">
+          <li class="lf-row">
+            <div class="lf-left">In-person</div>
+            <div class="lf-right">$25</div>
+            <div class="lf-sub"></div>
+          </li>
+          <li class="lf-row">
+            <div class="lf-left">Online</div>
+            <div class="lf-right">$35</div>
+            <div class="lf-sub"></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lf-panel">
+        <div class="lf-panel-head">
+          <span class="lf-panel-title">French Tutoring Package (TCF/TEF)</span>
+        </div>
+        <ul class="lf-list">
+          <li class="lf-row">
+            <div class="lf-left">4 Modules</div>
+            <div class="lf-right">$1000</div>
+            <div class="lf-sub"></div>
+          </li>
+          <li class="lf-row">
+            <div class="lf-left">Unlimited Teaching Support</div>
+            <div class="lf-right">$250</div>
+            <div class="lf-sub"></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lf-panel">
+        <div class="lf-panel-head">
+          <span class="lf-panel-title">Hourly French Tutoring/Trial Class</span>
+        </div>
+        <ul class="lf-list">
+          <li class="lf-row">
+            <div class="lf-left">In-person</div>
+            <div class="lf-right">$40</div>
+            <div class="lf-sub"></div>
+          </li>
+          <li class="lf-row">
+            <div class="lf-left">Online</div>
+            <div class="lf-right">$50</div>
+            <div class="lf-sub"></div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</div>
