@@ -1,188 +1,255 @@
 <!-- ==========================================================
-Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
-- Styling inspired by your Fee Structure (Search + Accordion)
-- Includes: Hero, SEO content, Benefits, Coaching plan, Testing Centre,
-  Fees, FAQs, and your image text EXACTLY as provided
+Math Kangaroo Contest Coaching Page
 ========================================================== -->
-
-<!-- Optional SEO (keep if you can add in page header; WordPress SEO plugins may override) -->
-<!--
-<title>Math Kangaroo Contest Coaching in Brampton | Official Testing Centre | CanSTEM</title>
-<meta name="description" content="Math Kangaroo contest coaching for Grades 1–12 in Brampton & online. Contest-style problem solving, mock tests, and official in-person test centre support at CanSTEM." />
--->
 
 <style>
     :root {
-        --head: #000000;
-        --sub: #00427c;
-        --ink: #26262B;
-        --muted: #333333;
-        --panel: #ffffff;
-        --border: #e2e8f0;
-        --shadow: 0 4px 20px rgba(0, 0, 0, .08);
-        --radius: 12px;
-
         --brand: #001161;
         /* CanSTEM deep navy */
-        --soft: #f7fafc;
-        --ring: rgba(251, 176, 37, .28);
+        --sub: #00427c;
+        /* accent blue */
+        --ink: #0f172a;
+        --text: #26262B;
+        --muted: #475569;
+        --border: #e2e8f0;
+        --panel: #ffffff;
+
         --gold: #fbb025;
+        --ring: rgba(251, 176, 37, .28);
+
+        --radius: 18px;
+        --radius-sm: 12px;
+
+        --shadow: 0 10px 30px rgba(2, 6, 23, .08);
+        --shadow-soft: 0 6px 20px rgba(2, 6, 23, .06);
+
+        --space-1: 8px;
+        --space-2: 12px;
+        --space-3: 16px;
+        --space-4: 20px;
+        --space-5: 28px;
+
+        --line: 1.65;
     }
 
-    /* Wrapper */
+    /* ==========================================================
+     WRAPPER + TYPOGRAPHY
+  ========================================================== */
     #kangaroo-page-wrap {
         font-family: "Open Sans", sans-serif;
-        color: var(--ink);
+        color: var(--text);
         max-width: 1200px;
-        line-height: 1.6;
-        font-size: 18px;
         margin: 0 auto;
+        line-height: var(--line);
+        font-size: 18px;
+        /* Desktop default */
     }
 
-    /* Basic spacing helpers */
     #kangaroo-page-wrap * {
         box-sizing: border-box;
     }
 
-    #kangaroo-page-wrap .cs-row {
-        display: flex;
-        gap: 18px;
+    /* Tablet stays 18px */
+    @media (max-width: 1024px) {
+        #kangaroo-page-wrap {
+            font-size: 18px;
+        }
     }
 
-    #kangaroo-page-wrap .cs-col {
+    /* Mobile 16px */
+    @media (max-width: 768px) {
+        #kangaroo-page-wrap {
+            font-size: 16px;
+        }
+    }
+
+    /* Small mobile 14px */
+    @media (max-width: 420px) {
+        #kangaroo-page-wrap {
+            font-size: 14px;
+        }
+    }
+
+    /* Smooth text rendering */
+    #kangaroo-page-wrap {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+    }
+
+    /* ==========================================================
+     LAYOUT HELPERS (kept same structure)
+  ========================================================== */
+    .cs-row {
+        display: flex;
+        gap: 18px;
+        align-items: stretch;
+    }
+
+    .cs-col {
         flex: 1 1 0;
         min-width: 0;
     }
 
-    #kangaroo-page-wrap .mt-8 {
-        margin-top: 28px;
-    }
-
-    #kangaroo-page-wrap .mt-6 {
-        margin-top: 22px;
-    }
-
-    #kangaroo-page-wrap .mt-4 {
+    .mt-4 {
         margin-top: 16px;
     }
 
-    #kangaroo-page-wrap .muted {
-        color: #475569;
+    .mt-6 {
+        margin-top: 22px;
     }
 
-    #kangaroo-page-wrap .small {
-        font-size: 15px;
+    .mt-8 {
+        margin-top: 28px;
     }
 
-    #kangaroo-page-wrap .pill {
-        display: inline-flex;
-        gap: 8px;
-        align-items: center;
-        padding: 6px 12px;
-        border-radius: 999px;
-        background: #eef2ff;
-        border: 1px solid #e0e7ff;
-        color: #1e3a8a;
-        font-size: 13px;
-        font-weight: 700;
-        margin-right: 8px;
-        margin-top: 8px;
+    .muted {
+        color: var(--muted);
     }
 
-    /* Hero */
-    #kangaroo-hero {
-        background: linear-gradient(135deg, #ffffff 0%, #f5f8ff 55%, #ffffff 100%);
+    .small {
+        font-size: .9em;
+    }
+
+    /* ==========================================================
+     CARDS + DIVIDERS
+  ========================================================== */
+    .cs-card {
+        background: var(--panel);
         border: 1px solid var(--border);
-        border-radius: 18px;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 18px 16px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* subtle gradient glow */
+    .cs-card::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        pointer-events: none;
+        background:
+            radial-gradient(600px 180px at 12% 10%, rgba(0, 17, 97, .10), transparent 55%),
+            radial-gradient(520px 160px at 95% 35%, rgba(251, 176, 37, .14), transparent 50%);
+        opacity: .9;
+    }
+
+    .cs-card>* {
+        position: relative;
+    }
+
+    .sep {
+        height: 1px;
+        background: linear-gradient(90deg, transparent, #e9eef6, transparent);
+        margin: 18px 0;
+    }
+
+    /* ==========================================================
+     HERO (kept same block, improved aesthetics)
+  ========================================================== */
+    #kangaroo-hero {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
         box-shadow: var(--shadow);
         padding: 22px 18px;
         overflow: hidden;
+        background:
+            radial-gradient(800px 240px at 20% 0%, rgba(0, 17, 97, .12), transparent 55%),
+            radial-gradient(700px 220px at 85% 20%, rgba(251, 176, 37, .16), transparent 55%),
+            linear-gradient(135deg, #ffffff 0%, #f6f9ff 55%, #ffffff 100%);
     }
 
     #kangaroo-hero h1 {
         margin: 0;
-        font-size: 30px;
-        line-height: 1.25;
-        color: #0f172a;
+        font-size: 32px;
+        line-height: 1.8;
+        color: var(--ink);
         letter-spacing: -0.2px;
     }
 
     #kangaroo-hero p {
         margin: 10px 0 0;
         color: #334155;
-        font-size: 18px;
+        font-size: 1em;
     }
 
-    #kangaroo-hero .hero-badges {
-        margin-top: 10px;
+    .hero-badges {
+        margin-top: 12px;
     }
 
-    #kangaroo-hero .hero-cta {
+    .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-size: .78em;
+        font-weight: 800;
+        border: 1px solid rgba(0, 17, 97, .14);
+        color: #1e3a8a;
+        background: linear-gradient(180deg, #eef2ff, #f8fbff);
+        margin-right: 8px;
+        margin-top: 8px;
+        box-shadow: 0 6px 16px rgba(2, 6, 23, .06);
+    }
+
+    .hero-cta {
         margin-top: 16px;
         display: flex;
         flex-wrap: wrap;
         gap: 10px;
     }
 
-    #kangaroo-page-wrap .btn {
+    .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
         gap: 10px;
         padding: 12px 16px;
         border-radius: 999px;
-        font-weight: 800;
+        font-weight: 900;
         text-decoration: none;
-        border: 1px solid #0b1b5a;
         cursor: pointer;
-        transition: transform .08s ease, box-shadow .18s ease, background .18s ease;
         user-select: none;
+        border: 1px solid rgba(11, 27, 90, .45);
+        transition: transform .18s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease;
+        will-change: transform;
     }
 
-    #kangaroo-page-wrap .btn-primary {
-        background: var(--brand);
+    .btn-primary {
+        background: linear-gradient(180deg, var(--brand), #000a45);
         color: #fff;
-        box-shadow: 0 10px 30px rgba(2, 6, 23, .10);
+        box-shadow: 0 12px 28px rgba(0, 17, 97, .20);
+        border-color: rgba(0, 17, 97, .25);
     }
 
-    #kangaroo-page-wrap .btn-primary:hover {
-        box-shadow: 0 12px 34px rgba(2, 6, 23, .16);
+    .btn-primary:hover {
         transform: translateY(-1px);
+        box-shadow: 0 14px 34px rgba(0, 17, 97, .26);
     }
 
-    #kangaroo-page-wrap .btn-ghost {
-        background: #fff;
+    .btn-ghost {
+        background: linear-gradient(180deg, #ffffff, #f7faff);
         color: #0b1b5a;
-        border: 1px solid #c7d2fe;
+        border: 1px solid rgba(199, 210, 254, .95);
+        box-shadow: 0 10px 24px rgba(2, 6, 23, .06);
     }
 
-    #kangaroo-page-wrap .btn-ghost:hover {
-        background: #f3f6ff;
+    .btn-ghost:hover {
         transform: translateY(-1px);
+        background: #f3f6ff;
     }
 
-    /* Cards */
-    .cs-card {
-        background: #fff;
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        box-shadow: var(--shadow);
-        padding: 18px 16px;
-    }
-
-    .cs-card h2,
-    .cs-card h3 {
-        margin: 0 0 10px;
-        color: #0f172a;
-        letter-spacing: -0.2px;
-    }
-
+    /* ==========================================================
+     VALUE CARDS (kept same, improved spacing)
+  ========================================================== */
     .cs-card h2 {
+        margin: 0 0 10px;
+        color: var(--ink);
+        letter-spacing: -0.2px;
         font-size: 22px;
-    }
-
-    .cs-card h3 {
-        font-size: 18px;
     }
 
     .cs-grid3 {
@@ -193,40 +260,46 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
 
     .cs-mini {
         border: 1px solid var(--border);
-        background: #fff;
         border-radius: 16px;
-        padding: 14px 14px;
-        box-shadow: 0 6px 18px rgba(0, 0, 0, .06);
+        padding: 14px;
+        background:
+            radial-gradient(420px 140px at 20% 10%, rgba(0, 17, 97, .08), transparent 60%),
+            linear-gradient(180deg, #fff, #fbfdff);
+        box-shadow: var(--shadow-soft);
+        transition: transform .18s ease, box-shadow .22s ease;
+    }
+
+    .cs-mini:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(2, 6, 23, .10);
     }
 
     .cs-mini b {
-        color: #0f172a;
+        color: var(--ink);
     }
 
     .cs-mini p {
         margin: 8px 0 0;
-        color: #475569;
-        font-size: 16px;
+        color: var(--muted);
+        font-size: 0.95em;
     }
 
-    /* =========================
-     SEARCH BAR (same style as reference)
-  ========================= */
+    /* ==========================================================
+     SEARCH BAR (kept, refined visuals + focus)
+  ========================================================== */
     #canstem-page-search {
         --csbx-ink: #0f172a;
         --csbx-muted: #667085;
         --csbx-bg: #fff;
         --csbx-border: #e6e6e6;
-        --csbx-ring: #fbb02547;
         --csbx-brand: #001161;
-        --csbx-shadow: 0 10px 30px rgba(2, 6, 23, .10);
+        --csbx-shadow: 0 16px 40px rgba(2, 6, 23, .10);
         --csbx-radius: 999px;
-        --csbx-h: 52px;
+        --csbx-h: 54px;
         --csbx-font: 18px;
 
         max-width: 1200px;
         margin: 0 auto 18px;
-        padding: 0;
     }
 
     #canstem-page-search input,
@@ -236,28 +309,23 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
         all: unset;
     }
 
-    #canstem-page-search input,
-    #canstem-page-search button {
-        box-shadow: none !important;
-        background: none !important;
-    }
-
     #canstem-page-search .csbx-shell {
         position: relative;
         display: flex;
         align-items: center;
         height: var(--csbx-h);
         background: var(--csbx-bg);
-        border: 1px solid var(--csbx-brand);
+        border: 1px solid rgba(0, 17, 97, .85);
         border-radius: var(--csbx-radius);
         padding: 0 16px 0 44px;
-        box-shadow: 0 4px 28px rgba(251, 176, 37, .6), 0 0 0 0 var(--csbx-ring);
-        transition: box-shadow .18s ease, border-color .18s ease;
+        box-shadow: 0 6px 26px rgba(251, 176, 37, .35);
+        transition: box-shadow .18s ease, border-color .18s ease, transform .18s ease;
     }
 
     #canstem-page-search .csbx-shell:focus-within {
-        border: 1px solid #000;
-        outline: 0.5px solid #000;
+        border-color: #000;
+        box-shadow: 0 10px 34px rgba(251, 176, 37, .45), 0 0 0 4px var(--ring);
+        transform: translateY(-1px);
     }
 
     #canstem-page-search .csbx-search {
@@ -275,8 +343,6 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
         flex: 1 1 auto;
         min-width: 0;
         height: 2.5rem;
-        line-height: normal;
-        padding: 0;
         font-size: var(--csbx-font);
         color: var(--csbx-ink) !important;
         caret-color: var(--csbx-ink);
@@ -293,7 +359,7 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
         right: 0;
         top: calc(100% + 10px);
         background: #fff;
-        border: 1px solid var(--csbx-border);
+        border: 1px solid var(--border);
         border-radius: 18px;
         box-shadow: var(--csbx-shadow);
         padding: 8px;
@@ -315,13 +381,14 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
         padding: 12px 14px;
         border-radius: 12px;
         cursor: pointer;
-        transition: background .12s ease;
+        transition: background .12s ease, transform .12s ease;
         border-bottom: 1px solid #f1f5f9;
     }
 
     #canstem-page-search .csbx-row:hover,
     #canstem-page-search .csbx-row[aria-selected="true"] {
         background: #f7fafc;
+        transform: translateY(-1px);
     }
 
     #canstem-page-search .csbx-row:last-child {
@@ -336,47 +403,49 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
 
     #canstem-page-search .csbx-code {
         font-size: 16px;
-        font-weight: 800;
+        font-weight: 900;
         color: var(--csbx-ink);
-        word-break: break-word;
     }
 
     #canstem-page-search .csbx-name {
         font-size: 14px;
-        font-weight: 600;
+        font-weight: 700;
         color: #475569;
         margin-top: 2px;
-        line-height: 1.35;
     }
 
     #canstem-page-search .csbx-right {
         display: flex;
         gap: 6px;
         align-items: center;
-        justify-self: end;
     }
 
     #canstem-page-search .csbx-chip {
         font-size: 12px;
         padding: 4px 10px;
         border-radius: 999px;
-        white-space: nowrap;
         border: 1px solid #fde68a;
         background: #fffbeb;
         color: #92400e;
-        font-weight: 800;
+        font-weight: 900;
     }
 
-    /* =========================
-     ACCORDION (same look as your reference)
-  ========================= */
+    /* ==========================================================
+     MAIN ACCORDIONS (fee-section)
+  ========================================================== */
     details.fee-section {
         background: var(--panel);
         border: 1px solid var(--border);
-        border-radius: 12px;
+        border-radius: var(--radius-sm);
         overflow: hidden;
         margin-bottom: 1.25rem;
-        box-shadow: var(--shadow);
+        box-shadow: var(--shadow-soft);
+        transition: transform .18s ease, box-shadow .22s ease;
+    }
+
+    details.fee-section:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 30px rgba(2, 6, 23, .08);
     }
 
     summary.fee-toggle {
@@ -388,8 +457,9 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
         gap: .75rem;
         padding: 16px;
         font-weight: 900;
-        color: var(--head);
-        background: #fff;
+        color: #0b1220;
+        background:
+            linear-gradient(180deg, #ffffff, #fbfdff);
         border-left: 6px solid var(--sub);
     }
 
@@ -413,8 +483,8 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
         padding: 18px 16px 20px;
         border-top: 1px solid var(--border);
         background: #fff;
-        font-size: 18px;
-        line-height: 1.6;
+        font-size: 1em;
+        line-height: var(--line);
     }
 
     .fee-content>*+* {
@@ -434,53 +504,20 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
     }
 
     .list li {
-        margin: .3rem 0;
+        margin: .35rem 0;
     }
 
     .accent {
         color: var(--sub);
         font-weight: 900;
-        margin-top: 1.25rem;
-    }
-
-    table.rtable {
-        width: 100%;
-        border-collapse: collapse;
-        overflow: hidden;
-        border-radius: 12px;
-        box-shadow: var(--shadow);
-        margin: 0 0 1rem;
-    }
-
-    .rtable thead {
-        background: var(--sub);
-        color: #fff;
-    }
-
-    .rtable th,
-    .rtable td {
-        padding: 16px;
-        text-align: left;
-        font-size: 18px;
-        border-bottom: 1px solid #eee;
-        vertical-align: top;
-    }
-
-    .rtable tbody tr:nth-child(even) {
-        background: #f9f9f9;
-    }
-
-    .sep {
-        height: 1px;
-        background: #eef2f7;
-        margin: 1rem 0;
+        margin-top: 1.1rem;
     }
 
     .fee-content a {
         color: var(--sub);
         font-weight: 900;
         text-decoration: none;
-        border-bottom: 1px dashed var(--sub);
+        border-bottom: 1px dashed rgba(0, 66, 124, .65);
     }
 
     .fee-content a:hover {
@@ -488,66 +525,98 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
         border-bottom-color: #003566;
     }
 
-    /* Special highlight for Fees */
+    /* Highlight Fees section */
     #fees-and-packages summary.fee-toggle {
-        background: #fffbeb;
+        background: linear-gradient(180deg, #fffbeb, #ffffff);
         border-left-color: #f59e0b;
     }
 
     #fees-and-packages.fee-section {
-        box-shadow: 0 6px 24px rgba(245, 158, 11, .16);
+        box-shadow: 0 10px 26px rgba(245, 158, 11, .12);
     }
 
-    /* Snapshot block (your image text) */
-    .snapshot {
+    /* ==========================================================
+     RIGHT SIDE SNAPSHOT ACCORDION (PTE-like)
+  ========================================================== */
+    .snapshot-accordion {
+        padding: 16px !important;
+    }
+
+    .snapshot-accordion .snap-sec {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        overflow: hidden;
         background: #fff;
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        box-shadow: var(--shadow);
-        padding: 18px 16px;
+        margin-bottom: 14px;
+        box-shadow: 0 8px 22px rgba(2, 6, 23, .06);
+        transition: transform .18s ease, box-shadow .22s ease;
     }
 
-    .snapshot h2 {
-        margin: 0 0 10px;
-        font-size: 22px;
-        color: #0f172a;
+    .snapshot-accordion .snap-sec:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 30px rgba(2, 6, 23, .10);
     }
 
-    .snapshot h3 {
-        margin: 16px 0 6px;
-        font-size: 16px;
-        color: #0f172a;
+    .snapshot-accordion .snap-sec:last-child {
+        margin-bottom: 0;
     }
 
-    .snapshot ul {
-        margin: 6px 0 0 1.1rem;
+    .snap-toggle {
+        list-style: none;
+        cursor: pointer;
+        user-select: none;
+        padding: 14px 14px;
+        font-weight: 900;
+        color: var(--ink);
+        background: linear-gradient(180deg, #ffffff, #fbfdff);
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
 
-    .snapshot li {
+    .snap-toggle::-webkit-details-marker {
+        display: none;
+    }
+
+    .snap-toggle::before {
+        content: "+";
+        font-weight: 900;
+        font-size: 18px;
+        line-height: 1;
+        color: var(--ink);
+        width: 18px;
+        display: inline-flex;
+        justify-content: center;
+    }
+
+    .snap-sec[open]>.snap-toggle::before {
+        content: "−";
+    }
+
+    .snap-content {
+        border-top: 1px solid #eef2f7;
+        padding: 14px 14px 16px;
+        color: #334155;
+        font-size: .95em;
+        line-height: 1.65;
+        background:
+            radial-gradient(420px 140px at 12% 10%, rgba(0, 17, 97, .06), transparent 60%),
+            linear-gradient(180deg, #ffffff, #fbfdff);
+    }
+
+    .snap-list {
+        margin: 0 0 0 1.1rem;
+    }
+
+    .snap-list li {
         margin: 6px 0;
     }
 
-    .snapshot em {
-        font-style: italic;
-    }
-
-    /* Image card (optional) */
-    .image-card img {
-        width: 100%;
-        height: auto;
-        border-radius: 14px;
-        border: 1px solid var(--border);
-        display: block;
-    }
-
-    .image-card .small {
-        margin-top: 10px;
-        color: #64748b;
-    }
-
-    /* Responsive */
+    /* ==========================================================
+     RESPONSIVE LAYOUT (keep same structure)
+  ========================================================== */
     @media (max-width: 980px) {
-        #kangaroo-page-wrap .cs-row {
+        .cs-row {
             flex-direction: column;
         }
 
@@ -560,146 +629,26 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
         }
     }
 
-    @media (max-width: 768px) {
-        #kangaroo-page-wrap {
-            font-size: 16px;
+    /* ==========================================================
+     MOTION PREFERENCES
+  ========================================================== */
+    @media (prefers-reduced-motion: reduce) {
+        * {
+            scroll-behavior: auto !important;
         }
 
-        .fee-content {
-            font-size: 16px;
-        }
-
-        .rtable thead {
-            display: none;
-        }
-
-        .rtable,
-        .rtable tbody,
-        .rtable tr,
-        .rtable td {
-            display: block;
-            width: 100%;
-        }
-
-        .rtable {
-            box-shadow: none !important;
-            margin-bottom: 0 !important;
-        }
-
-        .rtable tr {
-            margin-bottom: 16px;
-            border: 1px solid var(--sub);
-            padding: 16px;
-            border-radius: 12px;
-            background: #fff;
-        }
-
-        .rtable td {
-            border: none;
-            padding: 12px 0;
-            position: relative;
-            font-size: 16px;
-        }
-
-        .rtable td::before {
-            content: attr(data-label);
-            font-weight: 900;
-            color: var(--sub);
-            display: block;
-            margin-bottom: 4px;
-        }
-    }
-
-    @media (max-width: 640px) {
-        #canstem-page-search .csbx-shell {
-            padding-right: 12px;
-        }
-
-        #canstem-page-search .csbx-code {
-            font-weight: 800;
-            font-size: 14px;
-        }
-
-        #canstem-page-search .csbx-name {
-            font-size: 13px;
-        }
-    }
-
-    /* Right-side snapshot accordion (PTE-like) */
-    .snapshot-accordion {
-        padding: 16px !important;
-    }
-
-    .snap-sec {
-        border: 1px solid #e5e7eb;
-        border-radius: 10px;
-        overflow: hidden;
-        background: #fff;
-        margin-bottom: 14px;
-    }
-
-    .snap-sec:last-child {
-        margin-bottom: 0;
-    }
-
-    .snap-toggle {
-        list-style: none;
-        cursor: pointer;
-        user-select: none;
-        padding: 14px 14px;
-        font-weight: 800;
-        color: #0f172a;
-        background: #ffffff;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .snap-toggle::-webkit-details-marker {
-        display: none;
-    }
-
-    /* plus icon left like screenshot */
-    .snap-toggle::before {
-        content: "+";
-        font-weight: 900;
-        font-size: 18px;
-        line-height: 1;
-        color: #0f172a;
-        width: 18px;
-        display: inline-flex;
-        justify-content: center;
-    }
-
-    /* when open, show minus */
-    .snap-sec[open]>.snap-toggle::before {
-        content: "−";
-    }
-
-    .snap-content {
-        border-top: 1px solid #eef2f7;
-        padding: 14px 14px 16px;
-        color: #334155;
-        font-size: 17px;
-        line-height: 1.65;
-    }
-
-    .snap-list {
-        margin: 0 0 0 1.1rem;
-    }
-
-    .snap-list li {
-        margin: 6px 0;
-    }
-
-    @media (max-width: 768px) {
-        .snap-content {
-            font-size: 16px;
+        .cs-mini,
+        details.fee-section,
+        .snapshot-accordion .snap-sec,
+        .btn,
+        #canstem-page-search .csbx-shell,
+        #canstem-page-search .csbx-row {
+            transition: none !important;
         }
     }
 </style>
 
-<!-- SEARCH -->
+<!-- SEARCH (kept exact feature, improved aesthetics above) -->
 <section id="canstem-page-search" class="mt-6" aria-label="Search page sections">
     <div class="csbx-shell" role="search">
         <svg class="csbx-search" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -715,16 +664,37 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
     </div>
 </section>
 
-
 <section id="kangaroo-page-wrap" aria-label="Math Kangaroo coaching page">
 
     <!-- HERO -->
     <section id="kangaroo-hero">
         <div class="cs-row">
             <div class="cs-col">
-                <div class="cs-card snapshot-accordion" aria-label="Canadian Kangaroo Math Tutoring snapshot accordion">
+                <h1>Math Kangaroo Contest Coaching (Grades 1–12) — Brampton &amp; Online</h1>
+                <p>
+                    Prepare with contest-style problems, logical reasoning, and step-by-step strategies that build
+                    confidence.
+                    CanSTEM also hosts in-person Math Kangaroo testing for students registering at our site.
+                </p>
 
-                    <details class="snap-sec" open>
+                <div class="hero-badges" aria-label="Key highlights">
+                    <span class="pill">Math Contest Prep</span>
+                    <span class="pill">Problem Solving</span>
+                    <span class="pill">Official Test Site (Brampton)</span>
+                    <span class="pill">In-Person &amp; Online Options</span>
+                </div>
+
+                <div class="hero-cta">
+                    <a class="btn btn-primary" href="#fees-and-packages">View Fees &amp; Packages</a>
+                    <a class="btn btn-ghost" href="#how-to-start">How to Start</a>
+                    <a class="btn btn-ghost" href="mailto:inquiry@canstemeducation.com">Email Us</a>
+                </div>
+            </div>
+
+            <!-- RIGHT SIDE (Accordion Card, no image) -->
+            <div class="cs-col">
+                <div class="cs-card snapshot-accordion" aria-label="Canadian Kangaroo Math Tutoring snapshot accordion">
+                    <details class="snap-sec">
                         <summary class="snap-toggle">What We Offer?</summary>
                         <div class="snap-content">
                             <ul class="snap-list">
@@ -775,38 +745,13 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
                             </ul>
                         </div>
                     </details>
-
-                </div>
-
-            </div>
-
-            <!-- RIGHT SIDE (REPLACEMENT): Accordion Card (no image) -->
-            <div class="cs-col">
-
-                <p>
-                    Prepare with contest-style problems, logical reasoning, and step-by-step strategies that build
-                    confidence.
-                    CanSTEM also hosts in-person Math Kangaroo testing for students registering at our site.
-                </p>
-
-                <div class="hero-badges">
-                    <span class="pill">Math Contest Prep</span>
-                    <span class="pill">Problem Solving</span>
-                    <span class="pill">Official Test Site (Brampton)</span>
-                    <span class="pill">In-Person & Online Options</span>
-                </div>
-
-                <div class="hero-cta">
-                    <a class="btn btn-primary" href="#fees-and-packages">View Fees & Packages</a>
-                    <a class="btn btn-ghost" href="#how-to-start">How to Start</a>
-                    <a class="btn btn-ghost" href="mailto:inquiry@canstemeducation.com">Email Us</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- QUICK VALUE CARDS -->
-    <section class="cs-card mt-6">
+    <section class="cs-card mt-6" aria-label="Why choose our coaching">
         <h2>Why families choose Math Kangaroo coaching</h2>
         <div class="cs-grid3 mt-4">
             <div class="cs-mini">
@@ -841,7 +786,6 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
                     designed to
                     build confidence in <strong>logic, patterns, and problem-solving</strong>.
                 </p>
-
                 <ul class="bullets">
                     <li><strong>Grades:</strong> 1–12</li>
                     <li><strong>Skills tested:</strong> logical reasoning, number sense, geometry, and smart strategies
@@ -849,7 +793,6 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
                     <li><strong>Great for:</strong> students who love puzzles, want a first contest experience, or aim
                         for awards</li>
                 </ul>
-
                 <p class="muted small">
                     We can also prepare students for related contests such as Waterloo math contests and other school
                     math/science competitions.
@@ -871,9 +814,7 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
                     <li><strong>Recognition:</strong> Many students aim for certificates, ribbons, and medals through
                         strong performance.</li>
                 </ul>
-
                 <div class="sep"></div>
-
                 <p class="muted">
                     Parents often tell us the biggest difference is not just higher scores—it's how students start
                     enjoying
@@ -888,10 +829,9 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
             <div class="fee-content">
                 <p>
                     Our coaching is structured around <strong>contest-style problem sets</strong>, guided solutions, and
-                    weekly progress support. Students learn both <strong>strategy</strong> and
-                    <strong>accuracy</strong>.
+                    weekly progress support.
+                    Students learn both <strong>strategy</strong> and <strong>accuracy</strong>.
                 </p>
-
                 <p class="accent">What’s included</p>
                 <ul class="bullets">
                     <li>Level-appropriate topic review (without over-teaching)</li>
@@ -922,13 +862,11 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
                     and choose our site, your child can write the contest here in a supervised, student-friendly
                     environment.
                 </p>
-
                 <ul class="bullets">
                     <li>Comfortable testing setting</li>
                     <li>Clear check-in process and on-site support</li>
                     <li>Families can combine <strong>coaching + in-person testing</strong> at one location</li>
                 </ul>
-
                 <p class="muted small">
                     Note: Exact contest dates, rules, and registration steps may change by year. We can guide you based
                     on the current cycle.
@@ -939,12 +877,10 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
         <details class="fee-section" id="fees-and-packages"
             data-title="Fees & Packages (Math Kangaroo / Waterloo & Other Contests)"
             data-keywords="fees packages math kangaroo tutoring waterloo contest tutoring hourly monthly in person online 25 35 250 500">
-            <summary class="fee-toggle">Fees & Packages (Math Kangaroo / Waterloo & Other Contests)</summary>
+            <summary class="fee-toggle">Fees &amp; Packages (Math Kangaroo / Waterloo &amp; Other Contests)</summary>
             <div class="fee-content">
-                <p>
-                    <strong>Competitive Exam Tutoring (Math Kangaroo, Waterloo &amp; Other School Science/Math
-                        Contests)</strong>
-                </p>
+                <p><strong>Competitive Exam Tutoring (Math Kangaroo, Waterloo &amp; Other School Science/Math
+                        Contests)</strong></p>
 
                 <div class="sep"></div>
 
@@ -1020,19 +956,12 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
                 <p class="accent">Do you help with Waterloo contests too?</p>
                 <p>Yes—this tutoring category covers Math Kangaroo, Waterloo, and other school math/science contests.
                 </p>
-
-                <p class="muted small">
-                    If you want, we can add a longer FAQ section tailored to the exact grade bands you see most (Grades
-                    1–2, 3–4, 5–6, etc.).
-                </p>
             </div>
         </details>
 
     </div>
 
-
-
-    <!-- Optional JSON-LD (FAQ + Service). Keep or remove -->
+    <!-- JSON-LD (kept) -->
     <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -1063,39 +992,59 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
         var wrap = document.getElementById("kangaroo-page-wrap");
         if (!wrap) return;
 
+        /* -------------------------
+           Main accordion: only one open
+        ------------------------- */
         var sections = Array.prototype.slice.call(wrap.querySelectorAll(".fee-section"));
+        function closeOthers(openId) {
+            sections.forEach(function (s) { if (s.id !== openId) s.removeAttribute("open"); });
+        }
+        sections.forEach(function (sec) {
+            sec.addEventListener("toggle", function () {
+                if (!sec.open) return;
+                closeOthers(sec.id);
+            });
+        });
 
-        var input = wrap.querySelector("#csbx-q-k");
-        var suggest = wrap.querySelector("#csbx-suggest-k");
+        /* -------------------------
+           Search for sections
+        ------------------------- */
+        var input = document.querySelector("#csbx-q-k");
+        var suggest = document.querySelector("#csbx-suggest-k");
+        if (!input || !suggest) return;
 
         function setOpen(on) {
             input.setAttribute("aria-expanded", on ? "true" : "false");
             suggest.classList.toggle("csbx-show", on);
         }
-
         function normalize(s) { return String(s || "").toLowerCase().trim(); }
 
-        function buildIndex() {
-            return sections.map(function (sec) {
-                var summaryEl = sec.querySelector("summary");
-                var title = sec.getAttribute("data-title") || (summaryEl ? summaryEl.textContent : sec.id);
-                var keywords = sec.getAttribute("data-keywords") || "";
-                var contentText = sec.textContent || "";
-                return {
-                    id: sec.id,
-                    title: title,
-                    keywords: keywords,
-                    haystack: normalize(title + " " + keywords + " " + contentText)
-                };
-            });
-        }
+        var INDEX = sections.map(function (sec) {
+            var summaryEl = sec.querySelector("summary");
+            var title = sec.getAttribute("data-title") || (summaryEl ? summaryEl.textContent : sec.id);
+            var keywords = sec.getAttribute("data-keywords") || "";
+            var contentText = sec.textContent || "";
+            return {
+                id: sec.id,
+                title: title,
+                haystack: normalize(title + " " + keywords + " " + contentText)
+            };
+        });
 
-        var INDEX = buildIndex();
-
-        function closeOthers(openId) {
-            sections.forEach(function (s) {
-                if (s.id !== openId) s.removeAttribute("open");
-            });
+        function searchSections(q) {
+            var t = normalize(q);
+            if (!t) return [];
+            return INDEX
+                .map(function (it) {
+                    var pos = it.haystack.indexOf(t);
+                    if (pos === -1) return null;
+                    var titlePos = normalize(it.title).indexOf(t);
+                    var score = (titlePos === -1 ? 50 : titlePos) + pos;
+                    return { id: it.id, title: it.title, score: score };
+                })
+                .filter(Boolean)
+                .sort(function (a, b) { return a.score - b.score; })
+                .slice(0, 12);
         }
 
         function openSection(id, shouldScroll) {
@@ -1112,32 +1061,6 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
                     try { target.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) { }
                 }, 30);
             }
-        }
-
-        // Only 1 accordion open at a time on manual open
-        sections.forEach(function (sec) {
-            sec.addEventListener("toggle", function () {
-                if (!sec.open) return;
-                closeOthers(sec.id);
-            });
-        });
-
-        function searchSections(q) {
-            var t = normalize(q);
-            if (!t) return [];
-
-            return INDEX
-                .map(function (it) {
-                    var pos = it.haystack.indexOf(t);
-                    if (pos === -1) return null;
-
-                    var titlePos = normalize(it.title).indexOf(t);
-                    var score = (titlePos === -1 ? 50 : titlePos) + pos;
-                    return { id: it.id, title: it.title, score: score };
-                })
-                .filter(Boolean)
-                .sort(function (a, b) { return a.score - b.score; })
-                .slice(0, 12);
         }
 
         var activeIndex = -1;
@@ -1179,11 +1102,9 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
         }
 
         input.addEventListener("input", render);
-
         input.addEventListener("focus", function () {
             if ((input.value || "").trim()) render();
         });
-
         input.addEventListener("blur", function () {
             setTimeout(function () { setOpen(false); }, 140);
         });
@@ -1212,7 +1133,7 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
             }
         });
 
-        // Open by hash on load
+        /* Open by hash on load */
         if (location.hash) {
             var id = location.hash.replace("#", "");
             if (document.getElementById(id)) openSection(id, false);
@@ -1220,10 +1141,10 @@ Math Kangaroo Contest Coaching Page — CanSTEM (Full Code)
     })();
 
     (function () {
+        /* Right snapshot accordion: only one open */
         var box = document.querySelector(".snapshot-accordion");
         if (!box) return;
         var items = Array.prototype.slice.call(box.querySelectorAll("details.snap-sec"));
-
         items.forEach(function (d) {
             d.addEventListener("toggle", function () {
                 if (!d.open) return;

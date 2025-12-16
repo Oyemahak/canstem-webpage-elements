@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AP Courses Online in Canada – Advanced Placement Classes | CanSTEM Education</title>
+  <meta name="description" content="Online AP courses in Canada with CanSTEM Education Private School. All 40 AP subjects, expert teachers, small classes, and AP exam preparation for Canadian and international students." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <style>
+    :root{
+      --ink:#0f172a;
+      --muted:#475569;
+      --line:#e5e7eb;
+      --card:#ffffff;
+      --soft:#f8fafc;
+
+      --brand:#001161;
+      --brand2:#2563eb;
+
+      --bg1:#fff7ed;   /* bright */
+      --bg2:#eff6ff;   /* bright */
+      --bg3:#ecfeff;   /* bright */
+      --bg4:#f5f3ff;   /* bright */
+
+      --radius:18px;
+      --shadow:0 18px 60px rgba(15,23,42,.08);
+      --shadow2:0 10px 30px rgba(15,23,42,.08);
+      --focus:0 0 0 4px rgba(37,99,235,.18);
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family:"Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+      color:var(--ink);
+      font-size:18px;          /* desktop + tablet minimum 18px */
+      line-height:1.75;
+      background:
+        radial-gradient(1000px 450px at 10% 0%, rgba(37,99,235,.10), transparent 60%),
+        radial-gradient(900px 420px at 90% 10%, rgba(0,17,97,.10), transparent 60%),
+        linear-gradient(180deg, #ffffff 0%, #ffffff 60%, #ffffff 100%);
+    }
+
+    /* Mobile font sizes */
+    @media (max-width: 768px){
+      body{ font-size:16px; }
+    }
+    @media (max-width: 420px){
+      body{ font-size:14px; }
+    }
+
+    a{ color:var(--brand2); text-decoration:none; }
+    a:hover{ text-decoration:underline; }
+
+    .wrap{
+      max-width:1180px;
+      margin:0 auto;
+      padding:22px 22px 46px;
+    }
+
+    /* Sticky header */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:30;
+      background:linear-gradient(to right, rgba(255,255,255,.92), rgba(255,255,255,.88));
+      backdrop-filter:saturate(1.4) blur(10px);
+      border-bottom:1px solid rgba(229,231,235,.85);
+    }
+    .topbar-inner{
+      max-width:1180px;
+      margin:0 auto;
+      padding:14px 22px 16px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+
+    /* Jump chips */
+    .navchips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+    }
+    .chiplink{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 14px;
+      border-radius:999px;
+      border:1px solid rgba(229,231,235,.95);
+      background:rgba(255,255,255,.96);
+      color:var(--ink);
+      font-weight:700;
+      transition:transform .08s ease, box-shadow .16s ease, border-color .16s ease;
+      white-space:nowrap;
+      user-select:none;
+      cursor:pointer;
+    }
+    .chiplink:hover{
+      transform:translateY(-1px);
+      box-shadow:0 10px 22px rgba(15,23,42,.06);
+      border-color:rgba(191,219,254,.9);
+      text-decoration:none;
+    }
+    .chipdot{
+      width:10px;height:10px;border-radius:999px;flex:0 0 auto;
+      background:linear-gradient(180deg, var(--brand), var(--brand2));
+      box-shadow:0 0 0 4px rgba(37,99,235,.10);
+    }
+
+    /* Search */
+    .finder{
+      position:relative;
+      max-width:1040px;
+      margin:0 auto;
+    }
+    .finder-shell{
+      position:relative;
+      display:flex;
+      align-items:center;
+      height:54px;
+      border-radius:999px;
+      padding:0 16px 0 46px;
+      border:1px solid rgba(0,17,97,.90);
+      background:rgba(255,255,255,.97);
+      box-shadow:0 10px 34px rgba(251,176,37,.18), 0 0 0 0 rgba(37,99,235,.08);
+      transition:box-shadow .18s ease, border-color .18s ease;
+    }
+    .finder-shell:focus-within{
+      outline:none;
+      box-shadow:0 10px 34px rgba(37,99,235,.16), var(--focus);
+      border-color:#000;
+    }
+    .finder-ico{
+      position:absolute; left:16px; top:50%;
+      transform:translateY(-50%);
+      width:20px;height:20px;
+      color:#94a3b8;
+      pointer-events:none;
+    }
+    .finder-input{
+      width:100%;
+      border:0;
+      outline:none;
+      background:transparent;
+      color:var(--ink);
+      font-size:18px;
+    }
+    .finder-input::placeholder{ color:#94a3b8; opacity:1; }
+    @media (max-width: 768px){
+      .finder-input{ font-size:16px; }
+    }
+    @media (max-width: 420px){
+      .finder-input{ font-size:14px; }
+    }
+
+    .suggest{
+      position:absolute;
+      left:0; right:0;
+      top:calc(100% + 10px);
+      background:#fff;
+      border:1px solid rgba(229,231,235,.95);
+      border-radius:18px;
+      box-shadow:var(--shadow2);
+      padding:10px;
+      max-height:420px;
+      overflow:auto;
+      display:none;
+      z-index:40;
+    }
+    .suggest.show{ display:block; }
+    .s-section{
+      margin:6px 0 10px;
+    }
+    .s-title{
+      font-size:12px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      color:#64748b;
+      padding:10px 12px;
+      border-radius:12px;
+      background:linear-gradient(90deg, rgba(239,246,255,.9), rgba(255,247,237,.9));
+      border:1px solid rgba(226,232,240,.9);
+      font-weight:800;
+    }
+    .s-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px 14px;
+      align-items:center;
+      padding:12px 12px;
+      border-radius:14px;
+      cursor:pointer;
+      border:1px solid transparent;
+      transition:background .12s ease, border-color .12s ease;
+      margin-top:8px;
+    }
+    .s-row:hover,
+    .s-row[aria-selected="true"]{
+      background:rgba(248,250,252,.92);
+      border-color:rgba(191,219,254,.85);
+    }
+    .s-left{ min-width:0; display:flex; flex-direction:column; gap:2px; }
+    .s-main{ font-weight:800; font-size:16px; color:var(--ink); }
+    .s-sub{ font-weight:600; font-size:13px; color:#64748b; line-height:1.35; }
+    .s-chip{
+      font-size:12px;
+      font-weight:900;
+      padding:4px 10px;
+      border-radius:999px;
+      white-space:nowrap;
+      border:1px solid transparent;
+    }
+    .s-chip.course{ background:#ecfdf5; border-color:#a7f3d0; color:#065f46; }
+    .s-chip.info{ background:#fefce8; border-color:#facc15; color:#854d0e; }
+    .s-chip.category{ background:#eef2ff; border-color:#e0e7ff; color:#1e3a8a; }
+    .s-chip.faq{ background:#ecfeff; border-color:#a5f3fc; color:#0e7490; }
+
+    /* Section wrappers */
+    .section{
+      margin:30px 0;
+    }
+
+    /* “No h tags” headings */
+    .t-hero{
+      font-size:32px;
+      font-weight:900;
+      letter-spacing:-.3px;
+      margin:0;
+      line-height:1.2;
+    }
+    @media (max-width: 768px){
+      .t-hero{ font-size:28px; }
+    }
+
+    .t-sub{
+      margin:10px 0 0;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    .divider{
+      height:1px;
+      background:linear-gradient(90deg, transparent, rgba(226,232,240,.9), transparent);
+      margin:18px 0;
+    }
+
+    /* Hero */
+    .hero{
+      margin-top:18px;
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid rgba(229,231,235,.95);
+      box-shadow:var(--shadow);
+      background:
+        radial-gradient(1200px 520px at 10% 0%, rgba(255,247,237,.95), transparent 60%),
+        radial-gradient(1200px 520px at 90% 0%, rgba(239,246,255,.95), transparent 60%),
+        linear-gradient(180deg, #ffffff, #ffffff);
+    }
+
+    .hero-inner{
+      display:grid;
+      grid-template-columns:minmax(0, 2.6fr) minmax(0, 1.8fr);
+      gap:26px;
+      padding:26px 24px;
+      align-items:center;
+    }
+    @media (max-width: 980px){
+      .hero-inner{ grid-template-columns:1fr; }
+    }
+
+    .badge-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(224,237,255,.9);
+      border:1px solid rgba(191,219,254,.9);
+      color:#1e3a8a;
+      font-weight:800;
+      font-size:14px;
+      user-select:none;
+    }
+    .pill .miniico{
+      width:10px;height:10px;border-radius:999px;flex:0 0 auto;
+      background:linear-gradient(180deg, var(--brand), var(--brand2));
+      box-shadow:0 0 0 4px rgba(37,99,235,.10);
+    }
+
+    .hero-list{
+      margin:14px 0 0;
+      padding-left:22px;
+      color:#334155;
+      font-weight:600;
+    }
+    .hero-list li{ margin:6px 0; }
+
+    /* “Buttons” using div only */
+    .cta-row{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      margin-top:18px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border-radius:999px;
+      padding:12px 18px;
+      font-weight:900;
+      user-select:none;
+      cursor:pointer;
+      transition:transform .08s ease, box-shadow .16s ease, background .16s ease, border-color .16s ease;
+      border:1px solid rgba(15,23,42,.15);
+      background:rgba(255,255,255,.96);
+      color:var(--ink);
+    }
+    .btn:focus{ outline:none; box-shadow:var(--focus); }
+    .btn:hover{ transform:translateY(-1px); box-shadow:0 14px 30px rgba(15,23,42,.10); }
+
+    .btn.primary{
+      border-color:rgba(0,17,97,.85);
+      background:linear-gradient(90deg, var(--brand), var(--brand2));
+      color:#fff;
+      box-shadow:0 16px 40px rgba(37,99,235,.22);
+    }
+    .btn.primary:hover{ box-shadow:0 18px 46px rgba(37,99,235,.28); }
+
+    .btn.soft{
+      background:linear-gradient(90deg, rgba(255,247,237,.95), rgba(239,246,255,.95));
+      border-color:rgba(226,232,240,.95);
+    }
+
+    .btn .ico{
+      width:18px;height:18px;flex:0 0 auto;
+      display:inline-flex; align-items:center; justify-content:center;
+    }
+    .btn svg{ width:18px;height:18px; }
+
+    /* Side card */
+    .sidecard{
+      border-radius:22px;
+      border:1px solid rgba(229,231,235,.95);
+      background:rgba(255,255,255,.95);
+      box-shadow:0 18px 50px rgba(15,23,42,.10);
+      padding:18px;
+      overflow:hidden;
+      position:relative;
+    }
+    .sidecard::before{
+      content:"";
+      position:absolute;
+      inset:-120px -120px auto auto;
+      width:240px;height:240px;
+      background:radial-gradient(circle at 30% 30%, rgba(251,176,37,.26), transparent 60%);
+      transform:rotate(8deg);
+      pointer-events:none;
+    }
+    .side-visual{
+      width:100%;
+      border-radius:18px;
+      border:1px solid rgba(229,231,235,.95);
+      display:block;
+      background:#fff;
+    }
+    .side-meta{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns:1fr;
+      gap:10px;
+    }
+    .side-mini{
+      border-radius:16px;
+      border:1px solid rgba(229,231,235,.95);
+      background:linear-gradient(90deg, rgba(255,247,237,.92), rgba(239,246,255,.92));
+      padding:12px 12px;
+      font-weight:800;
+      color:#0f172a;
+    }
+    .side-mini span{
+      display:block;
+      margin-top:4px;
+      color:#475569;
+      font-weight:700;
+      font-size:14px;
+      line-height:1.4;
+    }
+
+    /* Feature cards */
+    .grid3{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:16px;
+      margin-top:16px;
+    }
+    @media (max-width: 980px){
+      .grid3{ grid-template-columns:1fr; }
+    }
+    .card{
+      border-radius:18px;
+      border:1px solid rgba(229,231,235,.95);
+      background:rgba(255,255,255,.96);
+      box-shadow:0 14px 34px rgba(15,23,42,.06);
+      padding:16px 16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .card::after{
+      content:"";
+      position:absolute;
+      inset:auto -90px -90px auto;
+      width:180px;height:180px;
+      background:radial-gradient(circle at 30% 30%, rgba(37,99,235,.14), transparent 62%);
+      pointer-events:none;
+    }
+    .card-top{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      font-weight:900;
+    }
+    .bico{
+      width:36px;height:36px;border-radius:14px;
+      background:linear-gradient(180deg, rgba(239,246,255,.95), rgba(255,247,237,.95));
+      border:1px solid rgba(226,232,240,.95);
+      display:inline-flex; align-items:center; justify-content:center;
+      box-shadow:0 10px 20px rgba(15,23,42,.06);
+      flex:0 0 auto;
+    }
+    .bico svg{ width:20px;height:20px; color:var(--brand2); }
+    .card p{
+      margin:10px 0 0;
+      color:#475569;
+      font-weight:600;
+    }
+
+    /* “Section title bar” */
+    .bar{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 16px;
+      border-radius:16px;
+      color:#fff;
+      font-weight:900;
+      background:linear-gradient(90deg, var(--brand), var(--brand2));
+      box-shadow:inset 0 0 0 1px rgba(255,255,255,.20);
+      margin-bottom:14px;
+    }
+    .bar .bar-ico{
+      width:34px;height:34px;border-radius:14px;
+      background:rgba(255,255,255,.16);
+      border:1px solid rgba(255,255,255,.22);
+      display:inline-flex; align-items:center; justify-content:center;
+    }
+    .bar svg{ width:18px;height:18px; }
+
+    .intro{
+      margin:0 0 12px;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    /* Accordions using details */
+    .acc{
+      border-radius:18px;
+      border:1px solid rgba(229,231,235,.95);
+      background:rgba(255,255,255,.96);
+      box-shadow:0 14px 34px rgba(15,23,42,.06);
+      overflow:hidden;
+      margin:14px 0;
+    }
+    .acc summary{
+      list-style:none;
+      cursor:pointer;
+      user-select:none;
+      padding:14px 16px;
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:14px;
+      font-weight:900;
+      color:#0f172a;
+      background:linear-gradient(90deg, rgba(255,247,237,.92), rgba(239,246,255,.92));
+      border-left:6px solid rgba(0,17,97,.9);
+    }
+    .acc summary::-webkit-details-marker{ display:none; }
+
+    .acc .acc-left{
+      display:flex;
+      flex-direction:column;
+      gap:4px;
+      min-width:0;
+    }
+    .acc .acc-sub{
+      font-size:14px;
+      color:#64748b;
+      font-weight:700;
+      line-height:1.35;
+    }
+    .acc .acc-ico{
+      width:28px;height:28px;border-radius:999px;
+      border:1px solid rgba(229,231,235,.95);
+      background:#fff;
+      display:inline-flex; align-items:center; justify-content:center;
+      font-size:18px;
+      color:#475569;
+      flex:0 0 auto;
+      transition:transform .14s ease;
+      margin-top:2px;
+    }
+    details[open] .acc-ico{
+      transform:rotate(45deg);
+      background:#eff6ff;
+      border-color:#bfdbfe;
+      color:#1d4ed8;
+    }
+    .acc .acc-body{
+      padding:14px 16px 16px;
+      border-top:1px solid rgba(229,231,235,.95);
+      color:#334155;
+      background:#fff;
+      font-weight:600;
+    }
+    .acc .acc-body ul{ margin:8px 0 0 18px; padding:0; }
+    .acc .acc-body li{ margin:6px 0; }
+    .acc .acc-body .note{
+      margin-top:10px;
+      color:#64748b;
+      font-size:14px;
+      font-weight:700;
+    }
+
+    /* AP course cards inside categories */
+    .coursegrid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:16px;
+      margin-top:10px;
+    }
+    @media (max-width: 1040px){
+      .coursegrid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 700px){
+      .coursegrid{ grid-template-columns:1fr; }
+    }
+
+    .course{
+      border-radius:16px;
+      border:1px solid rgba(229,231,235,.95);
+      background:rgba(255,255,255,.98);
+      box-shadow:0 12px 26px rgba(15,23,42,.05);
+      padding:14px 14px;
+      cursor:pointer;
+      transition:transform .08s ease, box-shadow .16s ease, border-color .16s ease, background .16s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .course::after{
+      content:"";
+      position:absolute;
+      inset:auto -80px -80px auto;
+      width:160px;height:160px;
+      background:radial-gradient(circle at 30% 30%, rgba(251,176,37,.16), transparent 62%);
+      pointer-events:none;
+    }
+    .course:hover{
+      transform:translateY(-1px);
+      box-shadow:0 16px 38px rgba(15,23,42,.10);
+      border-color:rgba(191,219,254,.95);
+    }
+    .course.active{
+      border-color:rgba(0,17,97,.9);
+      box-shadow:0 18px 46px rgba(0,17,97,.20);
+      background:linear-gradient(180deg, rgba(239,246,255,.92), rgba(255,255,255,.98));
+    }
+    .course-title{
+      font-weight:900;
+      margin:0;
+    }
+    .course-tag{
+      margin-top:6px;
+      color:#475569;
+      font-weight:700;
+      font-size:14px;
+      line-height:1.45;
+    }
+    .course-meta{
+      margin-top:10px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      align-items:center;
+    }
+    .badge{
+      font-size:12px;
+      font-weight:900;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid rgba(229,231,235,.95);
+      background:#f8fafc;
+      color:#475569;
+      white-space:nowrap;
+    }
+    .badge.info{ background:#fefce8; border-color:#facc15; color:#854d0e; }
+    .badge.course{ background:#ecfdf5; border-color:#a7f3d0; color:#065f46; }
+    .badge.cat{ background:#eef2ff; border-color:#e0e7ff; color:#1e3a8a; }
+
+    /* Info + fees */
+    .infogrid{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0, 1fr));
+      gap:16px;
+      margin-top:16px;
+    }
+    @media (max-width: 1024px){
+      .infogrid{ grid-template-columns:1fr; }
+    }
+    .infobox{
+      border-radius:18px;
+      border:1px solid rgba(229,231,235,.95);
+      background:rgba(255,255,255,.96);
+      box-shadow:0 14px 34px rgba(15,23,42,.06);
+      padding:16px;
+      overflow:hidden;
+      position:relative;
+    }
+    .infobox::before{
+      content:"";
+      position:absolute;
+      inset:-120px auto auto -120px;
+      width:240px;height:240px;
+      background:radial-gradient(circle at 30% 30%, rgba(37,99,235,.12), transparent 62%);
+      pointer-events:none;
+    }
+    .infotitle{
+      font-weight:900;
+      margin:0;
+    }
+    .infobox p{
+      margin:10px 0 0;
+      color:#475569;
+      font-weight:600;
+    }
+    .infobox ul{ margin:10px 0 0 18px; padding:0; }
+    .infobox li{ margin:6px 0; color:#475569; font-weight:600; }
+
+    /* FAQ */
+    .faq-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .faq-title{
+      font-weight:900;
+      color:#0f172a;
+    }
+    .faq-note{
+      color:#64748b;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    /* Modal (course detail) */
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      z-index:60;
+    }
+    .modal.open{ display:block; }
+    .modal-bg{
+      position:absolute;
+      inset:0;
+      background:rgba(15,23,42,.48);
+      backdrop-filter:blur(10px);
+    }
+    .modal-box{
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%, -50%);
+      width:min(760px, 92vw);
+      max-height:82vh;
+      overflow:auto;
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(255,255,255,.70);
+      border-radius:24px;
+      box-shadow:0 30px 80px rgba(15,23,42,.45);
+      padding:18px 18px 16px;
+    }
+    .modal-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .modal-title{
+      font-weight:900;
+      font-size:20px;
+      margin:0;
+    }
+    .modal-sub{
+      margin:6px 0 0;
+      color:#475569;
+      font-weight:700;
+      font-size:14px;
+      line-height:1.5;
+    }
+    .x{
+      width:36px;height:36px;border-radius:999px;
+      border:1px solid rgba(229,231,235,.95);
+      background:#fff;
+      display:inline-flex; align-items:center; justify-content:center;
+      cursor:pointer;
+      user-select:none;
+      font-weight:900;
+      color:#334155;
+      transition:transform .08s ease, box-shadow .16s ease;
+    }
+    .x:hover{ transform:translateY(-1px); box-shadow:0 12px 22px rgba(15,23,42,.12); }
+    .modal-body{
+      margin-top:12px;
+      color:#334155;
+      font-weight:600;
+    }
+    .modal-body p{ margin:10px 0; }
+    .modal-body ul{ margin:10px 0 0 18px; padding:0; }
+    .modal-body li{ margin:6px 0; }
+    .modal-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      margin-top:14px;
+      align-items:center;
+    }
+
+    .foot{
+      margin:30px 0 6px;
+      text-align:center;
+      color:#64748b;
+      font-weight:700;
+      font-size:14px;
+    }
+
+    /* Smooth reveal */
+    @media (prefers-reduced-motion: no-preference){
+      .fadein{
+        opacity:0;
+        transform:translateY(8px);
+        transition:opacity .35s ease, transform .35s ease;
+      }
+      .fadein.in{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar" aria-label="Page navigation and search">
+    <div class="topbar-inner">
+
+      <div class="navchips" aria-label="Jump links">
+        <div class="chiplink" role="button" tabindex="0" data-scroll="#overview"><span class="chipdot"></span>Overview</div>
+        <div class="chiplink" role="button" tabindex="0" data-scroll="#why"><span class="chipdot"></span>Why AP &amp; Why CanSTEM</div>
+        <div class="chiplink" role="button" tabindex="0" data-scroll="#subjects"><span class="chipdot"></span>AP Subjects</div>
+        <div class="chiplink" role="button" tabindex="0" data-scroll="#format"><span class="chipdot"></span>Format &amp; Fees</div>
+        <div class="chiplink" role="button" tabindex="0" data-href="https://canstemeducation.com/ap-enrollment-form" data-newtab="1"><span class="chipdot"></span>AP Enrollment</div>
+        <div class="chiplink" role="button" tabindex="0" data-scroll="#faq"><span class="chipdot"></span>FAQ</div>
+      </div>
+
+      <div class="finder" aria-label="Search AP courses, categories, and FAQs">
+        <div class="finder-shell" role="search">
+          <svg class="finder-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2" />
+            <path d="M20 20L16.2 16.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+
+          <input id="q" class="finder-input" type="search" spellcheck="false" autocomplete="off"
+                 placeholder="Search AP courses, categories, or questions…" aria-autocomplete="list"
+                 aria-controls="suggest" aria-expanded="false" />
+
+          <div id="suggest" class="suggest" role="listbox" aria-label="Suggestions"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <main class="wrap" id="page">
+
+    <!-- HERO -->
+    <section id="overview" class="hero fadein" aria-label="AP overview">
+      <div class="hero-inner">
+
+        <div>
+          <div class="t-hero" role="heading" aria-level="1">Advanced Placement (AP) Courses Online in Canada</div>
+          <div class="t-sub">
+            Take <strong>college-level AP courses</strong> while you are still in high school — with clear teaching, small groups, recordings, and exam prep.
+            CanSTEM supports students across Canada and internationally, with optional in-person support in the GTA.
+          </div>
+
+          <div class="badge-row" aria-label="Highlights">
+            <div class="pill"><span class="miniico"></span>Ontario private school · OSSD &amp; AP</div>
+            <div class="pill"><span class="miniico"></span>All 40 AP subjects</div>
+            <div class="pill"><span class="miniico"></span>AP exam preparation</div>
+            <div class="pill"><span class="miniico"></span>Online + optional in-person help</div>
+          </div>
+
+          <ul class="hero-list" aria-label="Quick benefits">
+            <li>Learn with experienced teachers and a structured weekly plan.</li>
+            <li>Build a stronger profile for Canadian &amp; international universities.</li>
+            <li>Get guided practice, timed work, and review support for AP Exams.</li>
+          </ul>
+
+          <div class="cta-row" aria-label="Primary actions">
+            <div class="btn primary" role="button" tabindex="0"
+                 data-href="https://canstemeducation.com/ap-enrollment-form" data-newtab="1">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+              </span>
+              Start AP Enrollment
+            </div>
+
+            <div class="btn soft" role="button" tabindex="0" data-scroll="#subjects">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M5 10v6a7 7 0 0 0 14 0v-6"/></svg>
+              </span>
+              View AP Subjects
+            </div>
+
+            <div class="btn" role="button" tabindex="0"
+                 data-href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=Student%20Inquiry%20via%20Website%20Email%3A&body=Hello%2C%0A%0AStudent%20Name%3A%0A%0ADescribe%20what%20kind%20of%20help%20you%20want%20from%20us%3A%0A%0AYou%20can%20expect%20a%20response%20within%2024%20hours%20from%20us%20during%20business%20days.%0A%0AThank%20you."
+                 data-newtab="1">
+              <span class="ico" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="m22 6-10 7L2 6"/></svg>
+              </span>
+              Email Us
+            </div>
+          </div>
+        </div>
+
+        <aside class="sidecard" aria-label="Program visual and highlights">
+          <img class="side-visual" loading="lazy"
+               src="https://canstemeducation.com/wp-content/uploads/2023/02/ced7d5ad-layer-12-1.png"
+               alt="Student studying online with CanSTEM Education AP courses" />
+          <div class="side-meta">
+            <div class="side-mini">Flexible schedule <span>Evening/weekend options + recordings to review anytime.</span></div>
+            <div class="side-mini">Small groups + support <span>Clear instruction, Q&amp;A help, and exam practice.</span></div>
+            <div class="side-mini">University-focused <span>Plan courses that match your target programs.</span></div>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section id="why" class="section fadein" aria-label="Why AP and why CanSTEM">
+      <div class="bar">
+        <div class="bar-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1 3-7z"/></svg>
+        </div>
+        <div role="heading" aria-level="2">Why AP &amp; Why CanSTEM</div>
+      </div>
+
+      <div class="intro">Open the sections you care about. Everything is spaced for easier reading.</div>
+
+      <details class="acc" id="why-1" data-title="Why AP Courses – And Why with CanSTEM" data-keywords="why ap why canstem benefits credit advanced standing university prep">
+        <summary>
+          <div class="acc-left">
+            <div>Why AP Courses – And Why with CanSTEM?</div>
+            <div class="acc-sub">University-level learning, stronger profile, guided support.</div>
+          </div>
+          <div class="acc-ico" aria-hidden="true">+</div>
+        </summary>
+        <div class="acc-body">
+          AP (Advanced Placement) courses are official College Board courses that follow a <strong>university-level curriculum</strong>. Students usually write an AP Exam in May.
+          <ul>
+            <li><strong>Stand out</strong> for competitive programs (engineering, computer science, health, business).</li>
+            <li><strong>Show readiness</strong> for advanced academic work before university.</li>
+            <li>At many universities, strong AP scores can lead to <strong>advanced standing or course credit</strong>.</li>
+          </ul>
+          <div class="divider"></div>
+          CanSTEM’s AP program is built for students who want clear teaching and strong support.
+          <ul>
+            <li>Online AP classes (with recordings) that fit around your schedule.</li>
+            <li>Small groups, 1-on-1 help, and consistent communication with families.</li>
+            <li>Help choosing the <strong>right AP courses</strong> for your goals and target universities.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details class="acc" id="why-2" data-title="Why families trust CanSTEM" data-keywords="why trust canstem support communication flexible schedule">
+        <summary>
+          <div class="acc-left">
+            <div>Why families trust CanSTEM</div>
+            <div class="acc-sub">Clear teaching, fast support, flexible options.</div>
+          </div>
+          <div class="acc-ico" aria-hidden="true">+</div>
+        </summary>
+        <div class="acc-body">
+          Families choose CanSTEM because we combine <strong>clear teaching</strong>, <strong>fast communication</strong>, and <strong>flexible options</strong> for busy students.
+          <ul>
+            <li><strong>Flexible scheduling</strong> planned around school and activities.</li>
+            <li><strong>1-on-1 support</strong> for homework questions and exam preparation.</li>
+            <li><strong>Clear progress updates</strong> through feedback and communication.</li>
+            <li>Support for <strong>Canadian &amp; international students</strong>.</li>
+            <li>Optional <strong>Brampton &amp; GTA</strong> in-person help when available.</li>
+          </ul>
+        </div>
+      </details>
+
+      <div class="grid3" aria-label="Quick value">
+        <div class="card">
+          <div class="card-top">
+            <div class="bico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5"/><path d="M4 5h16"/><path d="M20 5v14"/><path d="M8 9h8"/><path d="M8 13h8"/></svg>
+            </div>
+            Clear weekly structure
+          </div>
+          <p>Live lessons + recordings + practice — so students always know what to do next.</p>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <div class="bico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20s7-4.5 7-10a4 4 0 0 0-7-2 4 4 0 0 0-7 2c0 5.5 7 10 7 10z"/></svg>
+            </div>
+            Support that feels human
+          </div>
+          <p>Students can ask questions, get feedback, and build confidence without feeling lost.</p>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <div class="bico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z"/></svg>
+            </div>
+            Exam-ready practice
+          </div>
+          <p>Timed questions, review sessions, and strategy coaching aligned to AP Exams.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SUBJECTS -->
+    <section id="subjects" class="section fadein" aria-label="AP subjects">
+      <div class="bar">
+        <div class="bar-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 2 8l10 5 10-5-10-5Z"/><path d="M5 10v6a7 7 0 0 0 14 0v-6"/></svg>
+        </div>
+        <div role="heading" aria-level="2">All 40 AP Subjects</div>
+      </div>
+
+      <div class="intro">
+        Open a category to explore courses. Click a course card to see details in a clean popup.
+        Using search above? Selecting a result will <strong>open the right category/FAQ automatically</strong>.
+      </div>
+
+      <div id="ap-mount" aria-label="AP categories list"></div>
+    </section>
+
+    <!-- FORMAT -->
+    <section id="format" class="section fadein" aria-label="Format and fees">
+      <div class="bar">
+        <div class="bar-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>
+        </div>
+        <div role="heading" aria-level="2">Format, Schedule &amp; Tuition</div>
+      </div>
+
+      <div class="infogrid">
+        <div class="infobox">
+          <div class="infotitle" role="heading" aria-level="3">How classes run</div>
+          <p>AP courses are delivered <strong>online</strong> with live classes and recordings. Students get lessons, notes, practice questions, and mock AP exams through our learning platform.</p>
+          <p>Most students join alongside their day school timetable (Ontario, across Canada, and internationally).</p>
+        </div>
+
+        <div class="infobox">
+          <div class="infotitle" role="heading" aria-level="3">Schedule &amp; timing</div>
+          <p>AP courses typically follow the school year (for example, September to May), with 2–3 live classes per week plus independent work.</p>
+          <p>Before the AP Exam window, we run focused review sessions and timed practice.</p>
+        </div>
+
+        <div class="infobox">
+          <div class="infotitle" role="heading" aria-level="3">Tuition &amp; fees</div>
+          <p><strong>$1,000 CAD per AP course</strong></p>
+          <ul>
+            <li>Includes online teaching, resources, assignments, and practice exams.</li>
+            <li>AP Exam registration fees at test centres are paid separately.</li>
+            <li>Multi-course or sibling discounts may be available (ask us).</li>
+          </ul>
+          <div class="divider"></div>
+          <div class="cta-row">
+            <div class="btn primary" role="button" tabindex="0" data-href="https://canstemeducation.com/ap-enrollment-form" data-newtab="1">Enroll Now</div>
+            <div class="btn" role="button" tabindex="0" data-href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=Student%20Inquiry%20via%20Website%20Email%3A&body=Hello%2C%0A%0AStudent%20Name%3A%0A%0ADescribe%20what%20kind%20of%20help%20you%20want%20from%20us%3A%0A%0AYou%20can%20expect%20a%20response%20within%2024%20hours%20from%20us%20during%20business%20days.%0A%0AThank%20you." data-newtab="1">Email Us</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ (title + separate accordions) -->
+    <section id="faq" class="section fadein" aria-label="Frequently asked questions">
+      <div class="bar">
+        <div class="bar-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 18h.01"/><path d="M9 9a3 3 0 1 1 5 2c-.9.6-1.5 1-1.5 2.5"/><circle cx="12" cy="12" r="10"/></svg>
+        </div>
+        <div role="heading" aria-level="2">Frequently Asked Questions</div>
+      </div>
+
+      <div class="faq-head">
+        <div class="faq-title" role="heading" aria-level="3">AP Courses – Questions students &amp; parents ask most</div>
+        <div class="faq-note">Tip: Search also opens the right FAQ automatically.</div>
+      </div>
+
+      <details class="acc" id="faq1" data-title="What is the Advanced Placement (AP) Program?" data-keywords="what is ap program college board exams scores 1-5 credit advanced standing">
+        <summary>
+          <div class="acc-left">
+            <div>What is the Advanced Placement (AP) Program?</div>
+            <div class="acc-sub">University-level courses + official exams scored 1–5.</div>
+          </div>
+          <div class="acc-ico" aria-hidden="true">+</div>
+        </summary>
+        <div class="acc-body">
+          The AP Program offers official <strong>university-level courses and exams</strong> for high school students. Each AP course follows a College Board outline and is linked to an AP Exam (scored 1–5). Many universities use AP scores to grant advanced standing or credit.
+        </div>
+      </details>
+
+      <details class="acc" id="faq2" data-title="Is CanSTEM an official AP Exam test centre?" data-keywords="ap exam test centre canstem official partner write exam location">
+        <summary>
+          <div class="acc-left">
+            <div>Is CanSTEM an official AP Exam test centre?</div>
+            <div class="acc-sub">Courses + prep at CanSTEM; exams at authorized centres.</div>
+          </div>
+          <div class="acc-ico" aria-hidden="true">+</div>
+        </summary>
+        <div class="acc-body">
+          Not at this time. CanSTEM provides <strong>AP-aligned courses and full exam preparation</strong>. Students write AP Exams at a <strong>College Board–authorized test centre</strong> in their region. We guide families on when and where to register locally.
+        </div>
+      </details>
+
+      <details class="acc" id="faq3" data-title="Can I stay at my current school and still take AP with CanSTEM?" data-keywords="stay at school take ap online with canstem evening schedule">
+        <summary>
+          <div class="acc-left">
+            <div>Can I stay at my current school and still take AP with CanSTEM?</div>
+            <div class="acc-sub">Yes — most students do.</div>
+          </div>
+          <div class="acc-ico" aria-hidden="true">+</div>
+        </summary>
+        <div class="acc-body">
+          Yes. Most students remain at their current school and take AP courses online with CanSTEM on a schedule that fits (often evenings/weekends). You do not need to transfer schools to benefit from AP classes and exam prep with us.
+        </div>
+      </details>
+
+      <details class="acc" id="faq4" data-title="Can international students take AP courses with CanSTEM?" data-keywords="international students ap courses online join anywhere">
+        <summary>
+          <div class="acc-left">
+            <div>Can international students take AP courses with CanSTEM?</div>
+            <div class="acc-sub">Fully online, accessible worldwide.</div>
+          </div>
+          <div class="acc-ico" aria-hidden="true">+</div>
+        </summary>
+        <div class="acc-body">
+          Yes. Our AP courses are fully online, so international students can join from anywhere. You attend virtual classes, complete work on our platform, and register for AP Exams at a test centre in your country/region.
+        </div>
+      </details>
+
+      <details class="acc" id="faq5" data-title="Which AP courses should I choose for my future program?" data-keywords="which ap courses choose engineering computer science health business economics">
+        <summary>
+          <div class="acc-left">
+            <div>Which AP courses should I choose for my future program?</div>
+            <div class="acc-sub">Common combinations by pathway.</div>
+          </div>
+          <div class="acc-ico" aria-hidden="true">+</div>
+        </summary>
+        <div class="acc-body">
+          <ul>
+            <li><strong>Engineering / Computer Science:</strong> AP Calculus AB/BC, AP Physics, AP Computer Science A/CSP.</li>
+            <li><strong>Health sciences / medicine:</strong> AP Biology, AP Chemistry, AP Statistics, AP Psychology.</li>
+            <li><strong>Business / economics:</strong> AP Macro, AP Micro, AP Statistics, AP Calculus AB.</li>
+          </ul>
+          We can help you build the best AP plan for your goals and schedule.
+        </div>
+      </details>
+
+      <details class="acc" id="faq6" data-title="How many AP courses should I take at once?" data-keywords="how many ap courses at once workload one two three">
+        <summary>
+          <div class="acc-left">
+            <div>How many AP courses should I take at once?</div>
+            <div class="acc-sub">Start with one, then scale if comfortable.</div>
+          </div>
+          <div class="acc-ico" aria-hidden="true">+</div>
+        </summary>
+        <div class="acc-body">
+          Many students start with <strong>one AP course</strong> in their strongest subject. Strong students may handle two or three depending on their other courses and activities. We review your timetable and recommend a realistic AP load.
+        </div>
+      </details>
+
+      <details class="acc" id="faq7" data-title="How does online learning work for AP courses?" data-keywords="how online learning works ap live classes recordings assignments platform">
+        <summary>
+          <div class="acc-left">
+            <div>How does online learning work for AP courses?</div>
+            <div class="acc-sub">Live teaching + recordings + platform support.</div>
+          </div>
+          <div class="acc-ico" aria-hidden="true">+</div>
+        </summary>
+        <div class="acc-body">
+          Students receive a login to our online classroom to join live AP classes, watch recordings for review, submit assignments, see feedback, and ask questions or book extra help when needed.
+        </div>
+      </details>
+
+      <details class="acc" id="faq8" data-title="How do I get started with AP at CanSTEM?" data-keywords="how to start ap enrollment form contact">
+        <summary>
+          <div class="acc-left">
+            <div>How do I get started with AP at CanSTEM?</div>
+            <div class="acc-sub">Enroll online or email us with your plan.</div>
+          </div>
+          <div class="acc-ico" aria-hidden="true">+</div>
+        </summary>
+        <div class="acc-body">
+          Use the AP enrollment form:
+          <div class="divider"></div>
+          <div class="cta-row">
+            <div class="btn primary" role="button" tabindex="0" data-href="https://canstemeducation.com/ap-enrollment-form" data-newtab="1">Open AP Enrollment</div>
+            <div class="btn" role="button" tabindex="0"
+                 data-href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=Student%20Inquiry%20via%20Website%20Email%3A&body=Hello%2C%0A%0AStudent%20Name%3A%0A%0ADescribe%20what%20kind%20of%20help%20you%20want%20from%20us%3A%0A%0AYou%20can%20expect%20a%20response%20within%2024%20hours%20from%20us%20during%20business%20days.%0A%0AThank%20you."
+                 data-newtab="1">Email Us</div>
+          </div>
+        </div>
+      </details>
+
+      <div class="foot">© CanSTEM Education Private School — AP Courses &amp; Exam Preparation</div>
+    </section>
+
+  </main>
+
+  <!-- MODAL -->
+  <div class="modal" id="modal" aria-hidden="true">
+    <div class="modal-bg" data-close="1"></div>
+    <div class="modal-box" role="dialog" aria-modal="true" aria-label="AP course details">
+      <div class="modal-top">
+        <div>
+          <div class="modal-title" id="m-title">Select an AP course</div>
+          <div class="modal-sub" id="m-sub">Click any course card to see details.</div>
+        </div>
+        <div class="x" role="button" tabindex="0" data-close="1" aria-label="Close">×</div>
+      </div>
+
+      <div class="modal-body" id="m-body">
+        <p>Use the search bar to jump to a course, category, or FAQ.</p>
+      </div>
+
+      <div class="modal-actions">
+        <div class="btn primary" role="button" tabindex="0" data-href="https://canstemeducation.com/ap-enrollment-form" data-newtab="1">Enroll</div>
+        <div class="btn" role="button" tabindex="0" data-close="1">Back</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* =============================
+       Utilities
+    ============================== */
+    function $(sel, root=document){ return root.querySelector(sel); }
+    function $all(sel, root=document){ return Array.prototype.slice.call(root.querySelectorAll(sel)); }
+
+    function normalize(s){ return String(s || "").toLowerCase().trim(); }
+
+    function safeFocus(el){
+      try{ el && el.focus && el.focus({preventScroll:true}); }catch(e){}
+    }
+
+    function openUrl(url, newTab){
+      if(!url) return;
+      if(newTab){
+        window.open(url, "_blank", "noopener");
+      } else {
+        window.location.href = url;
+      }
+    }
+
+    function scrollToSel(sel){
+      var el = $(sel);
+      if(!el) return;
+      el.scrollIntoView({behavior:"smooth", block:"start"});
+      // slight highlight
+      el.style.scrollMarginTop = "96px";
+      el.style.outline = "none";
+      el.animate([{boxShadow:"0 0 0 0 rgba(37,99,235,0)"},{boxShadow:"0 0 0 6px rgba(37,99,235,.16)"},{boxShadow:"0 0 0 0 rgba(37,99,235,0)"}], {duration:700, easing:"ease-out"});
+    }
+
+    function bindClickableDiv(el){
+      if(!el) return;
+      el.addEventListener("keydown", function(e){
+        if(e.key === "Enter" || e.key === " "){
+          e.preventDefault();
+          el.click();
+        }
+      });
+    }
+
+    /* =============================
+       Nav chips + buttons (div only)
+    ============================== */
+    $all("[data-scroll]").forEach(function(n){
+      bindClickableDiv(n);
+      n.addEventListener("click", function(){
+        scrollToSel(n.getAttribute("data-scroll"));
+      });
+    });
+
+    $all("[data-href]").forEach(function(n){
+      bindClickableDiv(n);
+      n.addEventListener("click", function(){
+        openUrl(n.getAttribute("data-href"), n.getAttribute("data-newtab") === "1");
+      });
+    });
+
+    /* =============================
+       Accordions: close others within same group
+       - For WHY: only one open
+       - For AP categories: only one open
+       - For FAQ: only one open (clean UX)
+    ============================== */
+    function makeSingleOpen(scopeSelector){
+      var scopes = $all(scopeSelector);
+      scopes.forEach(function(scope){
+        var items = $all("details.acc", scope);
+        items.forEach(function(d){
+          d.addEventListener("toggle", function(){
+            if(!d.open) return;
+            items.forEach(function(x){ if(x !== d) x.removeAttribute("open"); });
+          });
+        });
+      });
+    }
+    makeSingleOpen("#why");
+    makeSingleOpen("#faq");
+
+    /* =============================
+       AP Course Data
+    ============================== */
+    const apCoursesByCategory = {
+      capstone: [
+        { kind:"info", name:"About the AP Capstone Diploma Program", tagline:"Overview of AP Seminar and AP Research.", prerequisite:"Usually taken with or after strong core courses in English and social sciences." },
+        { name:"AP Seminar", tagline:"Research, discussion, and presentation skills built around real-world issues.", prerequisite:"Strong English skills; recommended from Grade 10–11." },
+        { name:"AP Research", tagline:"Design and complete your own year-long academic research project.", prerequisite:"Completion of AP Seminar or similar research experience." }
+      ],
+      arts: [
+        { kind:"info", name:"About the AP Art and Design Program", tagline:"Portfolio-based AP Art and Design courses (2-D, 3-D, Drawing).", prerequisite:"Comfortable with art-making and building a portfolio over time." },
+        { name:"AP 2-D Art and Design", tagline:"Portfolio-based course for drawing, painting, photography, or digital 2-D work.", prerequisite:"Prior experience in visual arts or design." },
+        { name:"AP 3-D Art and Design", tagline:"Portfolio in sculpture, product design, or other 3-D media.", prerequisite:"Experience with 3-D art, sculpture, or design." },
+        { name:"AP Drawing", tagline:"Advanced drawing and mark-making for portfolio development.", prerequisite:"Strong foundational drawing skills." },
+        { name:"AP Art History", tagline:"Study major artworks from different cultures and time periods.", prerequisite:"Strong reading skills and interest in history." },
+        { name:"AP Music Theory", tagline:"College-level music theory: notation, harmony, and analysis.", prerequisite:"Ability to read music and basic music knowledge." }
+      ],
+      english: [
+        { name:"AP English Language and Composition", tagline:"Nonfiction reading, argument, and rhetorical analysis.", prerequisite:"Strong English reading and writing skills." },
+        { name:"AP English Literature and Composition", tagline:"In-depth study of novels, plays, and poetry.", prerequisite:"Success in advanced high school English." }
+      ],
+      historySocial: [
+        { name:"AP African American Studies", tagline:"Interdisciplinary study of African American history, culture, and contributions.", prerequisite:"Strong reading skills and interest in social issues." },
+        { name:"AP Comparative Government and Politics", tagline:"Compare political systems and institutions in several countries.", prerequisite:"Interest in global politics and current events." },
+        { name:"AP European History", tagline:"Political, social, and cultural history of Europe from 1450 to the present.", prerequisite:"Comfort with heavy reading and analysis." },
+        { name:"AP Human Geography", tagline:"Great first AP: population, culture, cities, and human use of space.", prerequisite:"Interest in geography and current events." },
+        { name:"AP Macroeconomics", tagline:"National and global economics: growth, inflation, and policy.", prerequisite:"Comfort with graphs and algebra." },
+        { name:"AP Microeconomics", tagline:"How markets work: supply, demand, firms, and consumer behaviour.", prerequisite:"Basic algebra; often paired with AP Macroeconomics." },
+        { name:"AP Psychology", tagline:"Scientific study of behaviour and mental processes.", prerequisite:"Interest in human behaviour; strong memorization skills." },
+        { name:"AP United States Government and Politics", tagline:"U.S. institutions, political processes, and public policy.", prerequisite:"Basic understanding of civics and current events." },
+        { name:"AP United States History", tagline:"In-depth survey of U.S. history from pre-Columbian times to today.", prerequisite:"Strong English skills and interest in history." },
+        { name:"AP World History: Modern", tagline:"Global history from c. 1200 CE to the present.", prerequisite:"Strong reading and note-taking skills." }
+      ],
+      mathCS: [
+        { name:"AP Calculus AB", tagline:"First-semester university calculus (limits, derivatives, integrals).", prerequisite:"Precalculus or Advanced Functions completed." },
+        { name:"AP Calculus BC", tagline:"Calculus AB plus series, parametrics, and more.", prerequisite:"Very strong precalculus and algebra." },
+        { kind:"info", name:"About the AP Computer Science Courses", tagline:"Overview of AP Computer Science A and AP CSP.", prerequisite:"Interest in programming and problem-solving; basic algebra." },
+        { name:"AP Computer Science A", tagline:"Programming in Java and CS1-style problem solving.", prerequisite:"Strong math; prior coding preferred." },
+        { name:"AP Computer Science Principles", tagline:"Intro to computing, data, algorithms, and the internet.", prerequisite:"Logical thinking and algebra; great first CS course." },
+        { name:"AP Precalculus", tagline:"Advanced functions and modelling, ideal before AP Calculus.", prerequisite:"Strong Grade 11 math / Functions." },
+        { name:"AP Statistics", tagline:"Data analysis, probability, and statistical inference.", prerequisite:"Comfort with algebra and graphs." }
+      ],
+      sciences: [
+        { name:"AP Biology", tagline:"College-level biology: cells, genetics, evolution, ecology.", prerequisite:"High achievement in Grade 11 Biology." },
+        { name:"AP Chemistry", tagline:"University-level chemistry with labs and problem solving.", prerequisite:"Strong Grade 11 Chemistry and math." },
+        { name:"AP Environmental Science", tagline:"Ecosystems, resources, pollution, climate, sustainability.", prerequisite:"Background in biology and physical science recommended." },
+        { name:"AP Physics 1: Algebra-Based", tagline:"Mechanics and basic waves using algebra-based math.", prerequisite:"Strong math; prior physics helpful." },
+        { name:"AP Physics 2: Algebra-Based", tagline:"Fluids, thermo, E&amp;M, optics, and more.", prerequisite:"AP Physics 1 or equivalent." },
+        { name:"AP Physics C: Electricity and Magnetism", tagline:"Calculus-based E&amp;M for future engineers.", prerequisite:"AP Physics C: Mechanics (recommended) + calculus." },
+        { name:"AP Physics C: Mechanics", tagline:"Calculus-based mechanics: forces, energy, rotation.", prerequisite:"Concurrent/prior calculus and strong physics." }
+      ],
+      languages: [
+        { name:"AP Chinese Language and Culture", tagline:"Advanced Mandarin communication and culture.", prerequisite:"Several years of Mandarin or heritage level." },
+        { name:"AP French Language and Culture", tagline:"Advanced French reading, writing, listening, speaking.", prerequisite:"Senior high school French or equivalent." },
+        { name:"AP German Language and Culture", tagline:"Advanced German language and culture.", prerequisite:"Several years of German study." },
+        { name:"AP Italian Language and Culture", tagline:"Advanced Italian language skills and cultural topics.", prerequisite:"Prior Italian study or strong motivation." },
+        { name:"AP Japanese Language and Culture", tagline:"Advanced Japanese communication and culture.", prerequisite:"Multiple years of Japanese study or heritage skills." },
+        { name:"AP Latin", tagline:"Read and analyse Latin literature.", prerequisite:"Several years of Latin and solid grammar." },
+        { name:"AP Spanish Language and Culture", tagline:"Advanced Spanish language and communication.", prerequisite:"Senior high school Spanish or equivalent." },
+        { name:"AP Spanish Literature and Culture", tagline:"Study of Spanish-language literature.", prerequisite:"Strong Spanish reading; often after AP Spanish Language." }
+      ]
+    };
+
+    const CATEGORY_META = {
+      capstone: { label:"AP Capstone Diploma Program", subtitle:"AP Seminar and AP Research." },
+      arts: { label:"Arts", subtitle:"Art & Design, Art History, Music Theory." },
+      english: { label:"English", subtitle:"Language & Composition, Literature & Composition." },
+      historySocial: { label:"History and Social Sciences", subtitle:"History, politics, psychology, economics." },
+      mathCS: { label:"Math and Computer Science", subtitle:"Calculus, statistics, computer science." },
+      sciences: { label:"Sciences", subtitle:"Biology, chemistry, physics, environmental science." },
+      languages: { label:"World Languages and Cultures", subtitle:"French, Spanish, Chinese, and more." }
+    };
+
+    function slugify(str){
+      return String(str||"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"");
+    }
+
+    // Flatten
+    const flat = [];
+    Object.keys(apCoursesByCategory).forEach(function(k){
+      apCoursesByCategory[k].forEach(function(c){
+        c.id = c.id || slugify(c.name);
+        c.categoryKey = k;
+        flat.push(c);
+      });
+    });
+
+    const apMount = $("#ap-mount");
+
+    function courseCardHTML(course){
+      const isInfo = course.kind === "info";
+      const badge = isInfo
+        ? '<span class="badge info">Program overview</span>'
+        : '<span class="badge course">AP course</span>';
+
+      return `
+        <div class="course" role="button" tabindex="0" data-course="${course.id}">
+          <div class="course-title">${course.name}</div>
+          <div class="course-tag">${course.tagline}</div>
+          <div class="course-meta">
+            ${badge}
+            <span class="badge cat">${CATEGORY_META[course.categoryKey].label}</span>
+          </div>
+        </div>
+      `;
+    }
+
+    function categoryHTML(key){
+      const meta = CATEGORY_META[key];
+      const courses = apCoursesByCategory[key] || [];
+      const grid = courses.map(courseCardHTML).join("");
+
+      return `
+        <details class="acc ap-cat" id="cat-${key}" data-title="${meta.label}" data-keywords="${meta.label} ${meta.subtitle}">
+          <summary>
+            <div class="acc-left">
+              <div>${meta.label}</div>
+              <div class="acc-sub">${meta.subtitle}</div>
+            </div>
+            <div class="acc-ico" aria-hidden="true">+</div>
+          </summary>
+          <div class="acc-body">
+            <div class="coursegrid">${grid}</div>
+            <div class="note">Tip: Click any course for details. Search will also jump here.</div>
+          </div>
+        </details>
+      `;
+    }
+
+    function buildCategories(filterText){
+      const q = normalize(filterText);
+      apMount.innerHTML = "";
+
+      Object.keys(CATEGORY_META).forEach(function(key){
+        // filter: show category if any course matches OR category title matches
+        const meta = CATEGORY_META[key];
+        const courses = apCoursesByCategory[key] || [];
+        if(!q){
+          apMount.insertAdjacentHTML("beforeend", categoryHTML(key));
+          return;
+        }
+
+        const catHay = normalize(meta.label + " " + meta.subtitle);
+        const filtered = courses.filter(function(c){
+          const hay = normalize((c.name||"") + " " + (c.tagline||"") + " " + (c.prerequisite||"") + " " + meta.label);
+          return hay.includes(q);
+        });
+
+        if(catHay.includes(q) || filtered.length){
+          // render with filtered cards only
+          const grid = filtered.map(courseCardHTML).join("");
+          apMount.insertAdjacentHTML("beforeend", `
+            <details class="acc ap-cat" id="cat-${key}" open data-title="${meta.label}" data-keywords="${meta.label} ${meta.subtitle}">
+              <summary>
+                <div class="acc-left">
+                  <div>${meta.label}</div>
+                  <div class="acc-sub">${meta.subtitle}</div>
+                </div>
+                <div class="acc-ico" aria-hidden="true">+</div>
+              </summary>
+              <div class="acc-body">
+                <div class="coursegrid">${grid || '<div class="note">No direct course match, but this category is relevant.</div>'}</div>
+              </div>
+            </details>
+          `);
+        }
+      });
+
+      // single-open for categories
+      makeSingleOpen("#subjects");
+      bindCourseCards();
+    }
+
+    function bindCourseCards(){
+      $all(".course", apMount).forEach(function(card){
+        bindClickableDiv(card);
+        card.addEventListener("click", function(){
+          const id = card.getAttribute("data-course");
+          showCourse(id);
+          $all(".course.active", apMount).forEach(function(x){ x.classList.remove("active"); });
+          card.classList.add("active");
+        });
+      });
+    }
+
+    /* =============================
+       Modal logic
+    ============================== */
+    const modal = $("#modal");
+    const mTitle = $("#m-title");
+    const mSub = $("#m-sub");
+    const mBody = $("#m-body");
+
+    function openModal(){
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+    }
+    function closeModal(){
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+      $all(".course.active", apMount).forEach(function(x){ x.classList.remove("active"); });
+    }
+
+    function showCourse(courseId){
+      const c = flat.find(function(x){ return x.id === courseId; });
+      if(!c) return;
+
+      const meta = CATEGORY_META[c.categoryKey] || {};
+      mTitle.textContent = c.name;
+      mSub.textContent = c.tagline || "";
+
+      const kindLabel = (c.kind === "info") ? "Program overview" : "AP course";
+
+      mBody.innerHTML = `
+        <div class="course-meta" style="margin-top:0;">
+          <span class="badge ${c.kind === "info" ? "info" : "course"}">${kindLabel}</span>
+          <span class="badge cat">${meta.label || "AP"}</span>
+        </div>
+        <p><strong>Recommended background:</strong> ${c.prerequisite || "We’ll help you decide if this is the right level."}</p>
+        <p><strong>At CanSTEM:</strong> Live online teaching + recordings, assignments, and exam preparation support.</p>
+        <p style="color:#64748b;font-weight:700;font-size:14px;margin-top:10px;">
+          Want help choosing the best AP combination for your target programs? Use the Enrollment form or Email Us.
+        </p>
+      `;
+
+      openModal();
+    }
+
+    $all("[data-close]").forEach(function(x){
+      bindClickableDiv(x);
+      x.addEventListener("click", closeModal);
+    });
+    document.addEventListener("keydown", function(e){
+      if(e.key === "Escape" && modal.classList.contains("open")) closeModal();
+    });
+
+    /* =============================
+       Search (opens correct accordion on selection)
+    ============================== */
+    const input = $("#q");
+    const suggest = $("#suggest");
+    let activeIndex = -1;
+
+    // Build searchable items
+    const FAQ_ITEMS = [
+      { kind:"faq", id:"faq1", title:"What is the Advanced Placement (AP) Program?", sub:"AP FAQ", chip:"FAQ", chipClass:"faq" },
+      { kind:"faq", id:"faq2", title:"Is CanSTEM an official AP Exam test centre?", sub:"AP FAQ", chip:"FAQ", chipClass:"faq" },
+      { kind:"faq", id:"faq3", title:"Can I stay at my current school and still take AP with CanSTEM?", sub:"AP FAQ", chip:"FAQ", chipClass:"faq" },
+      { kind:"faq", id:"faq4", title:"Can international students take AP courses with CanSTEM?", sub:"AP FAQ", chip:"FAQ", chipClass:"faq" },
+      { kind:"faq", id:"faq5", title:"Which AP courses should I choose for my future program?", sub:"AP FAQ", chip:"FAQ", chipClass:"faq" },
+      { kind:"faq", id:"faq6", title:"How many AP courses should I take at once?", sub:"AP FAQ", chip:"FAQ", chipClass:"faq" },
+      { kind:"faq", id:"faq7", title:"How does online learning work for AP courses?", sub:"AP FAQ", chip:"FAQ", chipClass:"faq" },
+      { kind:"faq", id:"faq8", title:"How do I get started with AP at CanSTEM?", sub:"AP FAQ", chip:"FAQ", chipClass:"faq" }
+    ];
+
+    const CATEGORY_ITEMS = Object.keys(CATEGORY_META).map(function(key){
+      return {
+        kind:"category",
+        key:key,
+        title:CATEGORY_META[key].label,
+        sub:CATEGORY_META[key].subtitle,
+        chip:"Category",
+        chipClass:"category",
+        hay: normalize(CATEGORY_META[key].label + " " + CATEGORY_META[key].subtitle)
+      };
+    });
+
+    const COURSE_ITEMS = flat.map(function(c){
+      const chip = (c.kind === "info") ? "Info" : "Course";
+      const chipClass = (c.kind === "info") ? "info" : "course";
+      return {
+        kind: (c.kind === "info") ? "info" : "course",
+        id: c.id,
+        categoryKey: c.categoryKey,
+        title: c.name,
+        sub: CATEGORY_META[c.categoryKey]?.label || "",
+        chip: chip,
+        chipClass: chipClass,
+        hay: normalize(c.name + " " + (c.tagline||"") + " " + (c.prerequisite||"") + " " + (CATEGORY_META[c.categoryKey]?.label||""))
+      };
+    });
+
+    const ALL_ITEMS = []
+      .concat(COURSE_ITEMS)
+      .concat(CATEGORY_ITEMS)
+      .concat(FAQ_ITEMS.map(function(f){ return Object.assign({hay: normalize(f.title)}, f); }));
+
+    function setSuggestOpen(on){
+      input.setAttribute("aria-expanded", on ? "true" : "false");
+      suggest.classList.toggle("show", !!on);
+    }
+
+    function searchItems(q){
+      const t = normalize(q);
+      if(!t) return [];
+      const out = [];
+
+      ALL_ITEMS.forEach(function(it){
+        const title = normalize(it.title);
+        const hay = it.hay || title;
+        let score = null;
+
+        if(title.startsWith(t)) score = 0;
+        else if(title.includes(t)) score = 1;
+        else if(hay.includes(t)) score = 2;
+
+        if(score === null) return;
+        if(it.kind === "category") score += 0.4;
+        if(it.kind === "faq") score += 0.8;
+
+        out.push(Object.assign({score: score}, it));
+      });
+
+      const order = { course:0, info:1, category:2, faq:3 };
+      out.sort(function(a,b){
+        if(a.score !== b.score) return a.score - b.score;
+        const ak = order[a.kind] ?? 10;
+        const bk = order[b.kind] ?? 10;
+        if(ak !== bk) return ak - bk;
+        return (a.title||"").localeCompare(b.title||"");
+      });
+
+      return out.slice(0, 24);
+    }
+
+    function renderSuggest(){
+      const qv = input.value || "";
+      const results = searchItems(qv);
+      suggest.innerHTML = "";
+
+      if(!results.length){ setSuggestOpen(false); return; }
+
+      function makeSection(label, items){
+        if(!items.length) return;
+        const sec = document.createElement("div");
+        sec.className = "s-section";
+        sec.innerHTML = '<div class="s-title">'+label+'</div>';
+        items.forEach(function(it, idx){
+          const row = document.createElement("div");
+          row.className = "s-row";
+          row.role = "option";
+          row.id = "srow-" + label.replace(/\s+/g,"-").toLowerCase() + "-" + idx;
+          row.setAttribute("aria-selected","false");
+          row.innerHTML =
+            '<div class="s-left">' +
+              '<div class="s-main">'+ it.title +'</div>' +
+              '<div class="s-sub">'+ (it.sub || "") +'</div>' +
+            '</div>' +
+            '<div><span class="s-chip '+it.chipClass+'">'+it.chip+'</span></div>';
+
+          row.addEventListener("mousedown", function(e){ e.preventDefault(); });
+          row.addEventListener("click", function(){
+            setSuggestOpen(false);
+            input.blur();
+
+            if(it.kind === "category"){
+              buildAPCategoriesAndOpenCategory(it.key);
+              return;
+            }
+
+            if(it.kind === "course" || it.kind === "info"){
+              buildAPCategoriesAndOpenCourse(it.id, it.categoryKey);
+              return;
+            }
+
+            if(it.kind === "faq"){
+              openFAQ(it.id);
+              return;
+            }
+          });
+
+          sec.appendChild(row);
+        });
+        suggest.appendChild(sec);
+      }
+
+      makeSection("AP Courses", results.filter(r => r.kind === "course"));
+      makeSection("AP Overviews", results.filter(r => r.kind === "info"));
+      makeSection("AP Categories", results.filter(r => r.kind === "category"));
+      makeSection("AP FAQs", results.filter(r => r.kind === "faq"));
+
+      activeIndex = -1;
+      setSuggestOpen(true);
+    }
+
+    function closeAllOpenIn(rootSel){
+      $all(rootSel + " details.acc").forEach(function(d){ d.removeAttribute("open"); });
+    }
+
+    function buildAPCategoriesAndOpenCategory(categoryKey){
+      // show all categories, open the target
+      input.value = "";
+      buildCategories("");
+
+      const target = $("#cat-" + categoryKey);
+      if(target){
+        // close others + open target
+        $all("#subjects details.ap-cat").forEach(function(d){ d.removeAttribute("open"); });
+        target.setAttribute("open","");
+        scrollToSel("#subjects");
+        setTimeout(function(){
+          target.scrollIntoView({behavior:"smooth", block:"start"});
+        }, 80);
+      }
+    }
+
+    function buildAPCategoriesAndOpenCourse(courseId, categoryKey){
+      input.value = "";
+      buildCategories("");
+
+      const cat = $("#cat-" + categoryKey);
+      if(cat){
+        $all("#subjects details.ap-cat").forEach(function(d){ d.removeAttribute("open"); });
+        cat.setAttribute("open","");
+      }
+
+      scrollToSel("#subjects");
+
+      setTimeout(function(){
+        const card = apMount.querySelector('.course[data-course="'+courseId+'"]');
+        if(card){
+          $all(".course.active", apMount).forEach(function(x){ x.classList.remove("active"); });
+          card.classList.add("active");
+          card.scrollIntoView({behavior:"smooth", block:"center"});
+          showCourse(courseId);
+        }
+      }, 140);
+    }
+
+    function openFAQ(faqId){
+      // close other FAQs, open the requested one
+      $all("#faq details.acc").forEach(function(d){
+        if(d.id !== faqId) d.removeAttribute("open");
+      });
+      const target = $("#"+faqId);
+      if(target){
+        target.setAttribute("open","");
+        scrollToSel("#"+faqId);
+      }
+    }
+
+    // Filter as you type: filters categories + FAQs visibility (lightweight)
+    function liveFilter(qv){
+      const q = normalize(qv);
+      // categories: rebuild with filter
+      buildCategories(q);
+
+      // FAQs: hide non-matching
+      $all("#faq details.acc").forEach(function(d){
+        const hay = normalize(d.getAttribute("data-title") + " " + d.getAttribute("data-keywords") + " " + d.textContent);
+        d.style.display = (!q || hay.includes(q)) ? "" : "none";
+        if(q && d.open) d.removeAttribute("open");
+      });
+    }
+
+    input.addEventListener("input", function(){
+      renderSuggest();
+      liveFilter(input.value);
+    });
+
+    input.addEventListener("focus", function(){
+      if((input.value||"").trim()) renderSuggest();
+    });
+
+    input.addEventListener("blur", function(){
+      setTimeout(function(){ setSuggestOpen(false); }, 140);
+    });
+
+    input.addEventListener("keydown", function(e){
+      const items = $all(".s-row", suggest);
+      if(!items.length) return;
+
+      if(e.key === "ArrowDown"){
+        e.preventDefault();
+        activeIndex = Math.min(activeIndex + 1, items.length - 1);
+      } else if(e.key === "ArrowUp"){
+        e.preventDefault();
+        activeIndex = Math.max(activeIndex - 1, 0);
+      } else if(e.key === "Enter"){
+        e.preventDefault();
+        (items[activeIndex] || items[0]).click();
+        return;
+      } else if(e.key === "Escape"){
+        setSuggestOpen(false);
+        return;
+      } else {
+        return;
+      }
+
+      items.forEach(function(n){ n.setAttribute("aria-selected","false"); });
+      if(activeIndex >= 0 && items[activeIndex]){
+        items[activeIndex].setAttribute("aria-selected","true");
+        items[activeIndex].scrollIntoView({block:"nearest"});
+      }
+    });
+
+    /* =============================
+       Build categories initially (no default open)
+    ============================== */
+    function buildInitial(){
+      buildCategories("");
+      // ensure none open at first load
+      $all("#subjects details.ap-cat").forEach(function(d){ d.removeAttribute("open"); });
+    }
+
+    buildInitial();
+
+    /* =============================
+       Fade-in on view
+    ============================== */
+    (function(){
+      if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      const els = $all(".fadein");
+      if(!("IntersectionObserver" in window)){
+        els.forEach(e => e.classList.add("in"));
+        return;
+      }
+      const io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(en.isIntersecting){
+            en.target.classList.add("in");
+            io.unobserve(en.target);
+          }
+        });
+      }, {threshold:0.12});
+      els.forEach(function(e){ io.observe(e); });
+    })();
+
+    /* =============================
+       Make all div-buttons keyboard accessible
+    ============================== */
+    $all(".btn, .chiplink, .x, .modal-bg").forEach(bindClickableDiv);
+
+    /* =============================
+       Open accordion by hash (optional)
+    ============================== */
+    (function(){
+      if(!location.hash) return;
+      const id = location.hash.replace("#","");
+      const t = document.getElementById(id);
+      if(!t) return;
+
+      // if it’s a FAQ, open it
+      if(id.startsWith("faq")){
+        openFAQ(id);
+        return;
+      }
+      // if it’s a category
+      if(id.startsWith("cat-")){
+        const key = id.replace("cat-","");
+        buildAPCategoriesAndOpenCategory(key);
+        return;
+      }
+      // otherwise just scroll
+      scrollToSel("#"+id);
+    })();
+  </script>
+
+  <!-- Optional JSON-LD (kept small) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "EducationalOrganization",
+    "name": "CanSTEM Education Private School",
+    "url": "https://canstemeducation.com/",
+    "email": "inquiry@canstemeducation.com",
+    "address": { "@type": "PostalAddress", "addressLocality": "Brampton", "addressRegion": "ON", "addressCountry": "CA" }
+  }
+  </script>
+</body>
+</html>
