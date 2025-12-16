@@ -1,13 +1,10 @@
-<!-- ==========================================================
-Math Kangaroo Contest Coaching Page
-========================================================== -->
+<!--
+Math Kangaroo Contest Coaching Page -->
 
 <style>
     :root {
         --brand: #001161;
-        /* CanSTEM deep navy */
         --sub: #00427c;
-        /* accent blue */
         --ink: #0f172a;
         --text: #26262B;
         --muted: #475569;
@@ -15,7 +12,6 @@ Math Kangaroo Contest Coaching Page
         --panel: #ffffff;
 
         --gold: #fbb025;
-        --ring: rgba(251, 176, 37, .28);
 
         --radius: 18px;
         --radius-sm: 12px;
@@ -23,18 +19,10 @@ Math Kangaroo Contest Coaching Page
         --shadow: 0 10px 30px rgba(2, 6, 23, .08);
         --shadow-soft: 0 6px 20px rgba(2, 6, 23, .06);
 
-        --space-1: 8px;
-        --space-2: 12px;
-        --space-3: 16px;
-        --space-4: 20px;
-        --space-5: 28px;
-
-        --line: 1.65;
+        --line: 1.8;
     }
 
-    /* ==========================================================
-     WRAPPER + TYPOGRAPHY
-  ========================================================== */
+    /* Wrapper */
     #kangaroo-page-wrap {
         font-family: "Open Sans", sans-serif;
         color: var(--text);
@@ -42,48 +30,40 @@ Math Kangaroo Contest Coaching Page
         margin: 0 auto;
         line-height: var(--line);
         font-size: 18px;
-        /* Desktop default */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        text-rendering: optimizeLegibility;
+        padding: 18px 0 44px;
     }
 
     #kangaroo-page-wrap * {
         box-sizing: border-box;
     }
 
-    /* Tablet stays 18px */
-    @media (max-width: 1024px) {
+    @media (max-width:1024px) {
         #kangaroo-page-wrap {
             font-size: 18px;
         }
     }
 
-    /* Mobile 16px */
-    @media (max-width: 768px) {
+    @media (max-width:768px) {
         #kangaroo-page-wrap {
             font-size: 16px;
+            padding: 14px 0 38px;
         }
     }
 
-    /* Small mobile 14px */
-    @media (max-width: 420px) {
+    @media (max-width:420px) {
         #kangaroo-page-wrap {
             font-size: 14px;
         }
     }
 
-    /* Smooth text rendering */
-    #kangaroo-page-wrap {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        text-rendering: optimizeLegibility;
-    }
-
-    /* ==========================================================
-     LAYOUT HELPERS (kept same structure)
-  ========================================================== */
+    /* Helpers */
     .cs-row {
         display: flex;
-        gap: 18px;
-        align-items: stretch;
+        gap: 26px;
+        align-items: flex-start;
     }
 
     .cs-col {
@@ -96,11 +76,15 @@ Math Kangaroo Contest Coaching Page
     }
 
     .mt-6 {
-        margin-top: 22px;
+        margin-top: 24px;
     }
 
     .mt-8 {
-        margin-top: 28px;
+        margin-top: 34px;
+    }
+
+    .mt-10 {
+        margin-top: 46px;
     }
 
     .muted {
@@ -108,163 +92,368 @@ Math Kangaroo Contest Coaching Page
     }
 
     .small {
-        font-size: .9em;
-    }
-
-    /* ==========================================================
-     CARDS + DIVIDERS
-  ========================================================== */
-    .cs-card {
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        padding: 18px 16px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    /* subtle gradient glow */
-    .cs-card::before {
-        content: "";
-        position: absolute;
-        inset: -1px;
-        pointer-events: none;
-        background:
-            radial-gradient(600px 180px at 12% 10%, rgba(0, 17, 97, .10), transparent 55%),
-            radial-gradient(520px 160px at 95% 35%, rgba(251, 176, 37, .14), transparent 50%);
-        opacity: .9;
-    }
-
-    .cs-card>* {
-        position: relative;
+        font-size: .92em;
     }
 
     .sep {
         height: 1px;
         background: linear-gradient(90deg, transparent, #e9eef6, transparent);
-        margin: 18px 0;
+        margin: 26px 0;
     }
 
-    /* ==========================================================
-     HERO (kept same block, improved aesthetics)
-  ========================================================== */
-    #kangaroo-hero {
+    /* Top tabs (NOT sticky now) */
+    .kang-topbar {
+        position: relative;
+        /* was sticky */
+        top: auto;
+        /* was 0 */
+        z-index: 5;
+        background: rgba(255, 255, 255, .92);
+        backdrop-filter: saturate(1.2) blur(10px);
+        border-bottom: 1px solid rgba(226, 232, 240, .95);
+        font-family: "Open Sans", sans-serif;
+    }
+
+    .kang-topbar-inner {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 12px 12px 14px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .kang-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .kang-tab {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(226, 232, 240, .95);
+        background: #fff;
+        color: var(--ink);
+        font-weight: 900;
+        cursor: pointer;
+        user-select: none;
+        transition: transform .12s ease, box-shadow .18s ease, border-color .18s ease;
+        white-space: nowrap;
+        font-size: 16px;
+        /* responsive base */
+        line-height: 1.2;
+    }
+
+    .kang-tab:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 30px rgba(2, 6, 23, .10);
+        border-color: rgba(191, 219, 254, .95);
+    }
+
+    .kang-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        flex: 0 0 auto;
+        background: linear-gradient(180deg, var(--brand), #2563eb);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, .10);
+    }
+
+    /* Tabs font sizing for tablet/mobile */
+    @media (max-width: 768px) {
+        .kang-topbar-inner {
+            padding: 10px 10px 12px;
+        }
+
+        .kang-tab {
+            font-size: 14px;
+            padding: 8px 12px;
+            gap: 8px;
+        }
+    }
+
+    @media (max-width: 420px) {
+        .kang-tab {
+            font-size: 13px;
+            padding: 7px 11px;
+        }
+    }
+
+    /* Cards (unchanged) */
+    .cs-card {
+        background: var(--panel);
         border: 1px solid var(--border);
         border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        padding: 22px 18px;
-        overflow: hidden;
-        background:
-            radial-gradient(800px 240px at 20% 0%, rgba(0, 17, 97, .12), transparent 55%),
-            radial-gradient(700px 220px at 85% 20%, rgba(251, 176, 37, .16), transparent 55%),
-            linear-gradient(135deg, #ffffff 0%, #f6f9ff 55%, #ffffff 100%);
+        box-shadow: var(--shadow-soft);
+        padding: 18px 16px;
     }
 
-    #kangaroo-hero h1 {
-        margin: 0;
-        font-size: 32px;
-        line-height: 1.8;
+    /* Section title */
+    .title-sec {
+        font-size: 24px;
+        font-weight: 900;
+        letter-spacing: -.2px;
         color: var(--ink);
-        letter-spacing: -0.2px;
+        margin: 32px 0px 32px 0px;
     }
 
-    #kangaroo-hero p {
-        margin: 10px 0 0;
-        color: #334155;
-        font-size: 1em;
+    @media (max-width:980px) {
+        .cs-row {
+            flex-direction: column;
+            gap: 18px;
+        }
     }
 
-    .hero-badges {
-        margin-top: 12px;
+    /* Hero (NO border/box now) */
+    #kangaroo-hero {
+        border-radius: 0;
+        overflow: visible;
+        background: transparent;
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        position: relative;
+    }
+
+    #kangaroo-hero::after {
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        bottom: 10px;
+        color: rgba(15, 23, 42, .14);
+        font-weight: 700;
+        letter-spacing: .10em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        pointer-events: none;
+        font-size: 18px;
+    }
+
+    /* Snapshot accordion (left) */
+    .snapshot-accordion {
+        padding: 6px !important;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+    }
+
+    .snapshot-accordion .snap-sec {
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+        margin-bottom: 14px;
+        box-shadow: 0 6px 18px rgba(2, 6, 23, .06);
+        transition: transform .18s ease, box-shadow .22s ease;
+    }
+
+    .snapshot-accordion .snap-sec:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 26px rgba(2, 6, 23, .10);
+    }
+
+    .snapshot-accordion .snap-sec:last-child {
+        margin-bottom: 0;
+    }
+
+    .snap-toggle {
+        list-style: none;
+        cursor: pointer;
+        user-select: none;
+        font-size: 20px;
+        padding: 16px;
+        font-weight: 700;
+        color: var(--ink);
+        background: #fff;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .snap-toggle::-webkit-details-marker {
+        display: none;
+    }
+
+    .snap-toggle::before {
+        content: "+";
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 1;
+        color: var(--ink);
+        width: 18px;
+        display: inline-flex;
+        justify-content: center;
+    }
+
+    .snap-sec[open]>.snap-toggle::before {
+        content: "−";
+    }
+
+    .snap-content {
+        border-top: 1px solid #eef2f7;
+        padding: 16px;
+        color: #000;
+        font-size: 18px;
+        line-height: 1.8;
+        background: #fff;
+    }
+
+    .snap-list {
+        margin: 0 0 0 1.1rem;
+    }
+
+    .snap-list li {
+        margin: 7px 0;
+    }
+
+    /* Pills */
+    .hero-pills {
+        margin-top: 16px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0 2px;
     }
 
     .pill {
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        padding: 6px 12px;
+        padding: 7px 12px;
         border-radius: 999px;
-        font-size: .78em;
-        font-weight: 800;
-        border: 1px solid rgba(0, 17, 97, .14);
+        font-size: .82em;
+        font-weight: 700;
+        border: 1px solid rgba(191, 219, 254, .95);
         color: #1e3a8a;
-        background: linear-gradient(180deg, #eef2ff, #f8fbff);
-        margin-right: 8px;
-        margin-top: 8px;
+        background: #fff;
         box-shadow: 0 6px 16px rgba(2, 6, 23, .06);
+        user-select: none;
     }
 
-    .hero-cta {
-        margin-top: 16px;
+    .pill-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        flex: 0 0 auto;
+        background: linear-gradient(180deg, var(--brand), #2563eb);
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, .10);
+    }
+
+    /* Image (70% width) */
+    .hero-media {
+        border: none;
+        background: transparent;
+        box-shadow: none;
+        border-radius: 0;
+        overflow: visible;
+    }
+
+    .hero-img-wrap {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .hero-img {
+        width: 70%;
+        max-width: none;
+        height: auto;
+        display: block;
+        border-radius: 14px;
+        box-shadow: 0 10px 26px rgba(2, 6, 23, .10);
+        background: #fff;
+    }
+
+    @media (max-width:768px) {
+        .hero-img {
+            width: 90%;
+        }
+    }
+
+    /* CTA strip */
+    .cta-strip {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-soft);
+        background: #fff;
+        padding: 18px 16px;
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 12px 14px;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .cta-q {
+        font-size: 24px;
+        font-weight: 900;
+        color: var(--brand);
+        letter-spacing: 1.8;
+    }
+
+    .cta-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        align-items: center;
     }
 
     .btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
+        gap: 12px;
         padding: 12px 16px;
         border-radius: 999px;
-        font-weight: 900;
-        text-decoration: none;
+        font-weight: 700;
         cursor: pointer;
         user-select: none;
         border: 1px solid rgba(11, 27, 90, .45);
-        transition: transform .18s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease;
+        transition: transform .18s ease, box-shadow .22s ease;
         will-change: transform;
     }
 
-    .btn-primary {
-        background: linear-gradient(180deg, var(--brand), #000a45);
-        color: #fff;
-        box-shadow: 0 12px 28px rgba(0, 17, 97, .20);
-        border-color: rgba(0, 17, 97, .25);
-    }
-
-    .btn-primary:hover {
+    .btn:hover {
         transform: translateY(-1px);
-        box-shadow: 0 14px 34px rgba(0, 17, 97, .26);
+        box-shadow: 0 14px 34px rgba(2, 6, 23, .12);
     }
 
-    .btn-ghost {
-        background: linear-gradient(180deg, #ffffff, #f7faff);
+    .btn.primary {
+        background: linear-gradient(90deg, var(--brand), #2563eb);
+        color: #fff;
+        border-color: rgba(0, 17, 97, .25);
+        box-shadow: 0 12px 28px rgba(0, 17, 97, .18);
+    }
+
+    .btn.ghost {
+        background: #fff;
         color: #0b1b5a;
         border: 1px solid rgba(199, 210, 254, .95);
-        box-shadow: 0 10px 24px rgba(2, 6, 23, .06);
     }
 
-    .btn-ghost:hover {
-        transform: translateY(-1px);
-        background: #f3f6ff;
+    .btn.warm {
+        background: linear-gradient(180deg, #fffbeb, #ffffff);
+        color: #7c2d12;
+        border: 1px solid rgba(245, 158, 11, .55);
     }
 
-    /* ==========================================================
-     VALUE CARDS (kept same, improved spacing)
-  ========================================================== */
-    .cs-card h2 {
-        margin: 0 0 10px;
-        color: var(--ink);
-        letter-spacing: -0.2px;
-        font-size: 22px;
-    }
-
+    /* Value cards */
     .cs-grid3 {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 14px;
+        gap: 16px;
     }
 
     .cs-mini {
         border: 1px solid var(--border);
         border-radius: 16px;
-        padding: 14px;
-        background:
-            radial-gradient(420px 140px at 20% 10%, rgba(0, 17, 97, .08), transparent 60%),
-            linear-gradient(180deg, #fff, #fbfdff);
+        padding: 16px;
+        background: #fff;
         box-shadow: var(--shadow-soft);
         transition: transform .18s ease, box-shadow .22s ease;
     }
@@ -279,160 +468,23 @@ Math Kangaroo Contest Coaching Page
     }
 
     .cs-mini p {
-        margin: 8px 0 0;
+        margin: 10px 0 0;
         color: var(--muted);
-        font-size: 0.95em;
+        font-size: .95em;
     }
 
-    /* ==========================================================
-     SEARCH BAR (kept, refined visuals + focus)
-  ========================================================== */
-    #canstem-page-search {
-        --csbx-ink: #0f172a;
-        --csbx-muted: #667085;
-        --csbx-bg: #fff;
-        --csbx-border: #e6e6e6;
-        --csbx-brand: #001161;
-        --csbx-shadow: 0 16px 40px rgba(2, 6, 23, .10);
-        --csbx-radius: 999px;
-        --csbx-h: 54px;
-        --csbx-font: 18px;
+    @media (max-width:980px) {
+        .cs-grid3 {
+            grid-template-columns: 1fr;
+        }
 
-        max-width: 1200px;
-        margin: 0 auto 18px;
+        .cta-strip {
+            flex-direction: column;
+            align-items: flex-start;
+        }
     }
 
-    #canstem-page-search input,
-    #canstem-page-search button,
-    #canstem-page-search ul,
-    #canstem-page-search li {
-        all: unset;
-    }
-
-    #canstem-page-search .csbx-shell {
-        position: relative;
-        display: flex;
-        align-items: center;
-        height: var(--csbx-h);
-        background: var(--csbx-bg);
-        border: 1px solid rgba(0, 17, 97, .85);
-        border-radius: var(--csbx-radius);
-        padding: 0 16px 0 44px;
-        box-shadow: 0 6px 26px rgba(251, 176, 37, .35);
-        transition: box-shadow .18s ease, border-color .18s ease, transform .18s ease;
-    }
-
-    #canstem-page-search .csbx-shell:focus-within {
-        border-color: #000;
-        box-shadow: 0 10px 34px rgba(251, 176, 37, .45), 0 0 0 4px var(--ring);
-        transform: translateY(-1px);
-    }
-
-    #canstem-page-search .csbx-search {
-        position: absolute;
-        left: 16px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 20px;
-        height: 20px;
-        color: #9aa5b1;
-        pointer-events: none;
-    }
-
-    #canstem-page-search .csbx-input {
-        flex: 1 1 auto;
-        min-width: 0;
-        height: 2.5rem;
-        font-size: var(--csbx-font);
-        color: var(--csbx-ink) !important;
-        caret-color: var(--csbx-ink);
-    }
-
-    #canstem-page-search .csbx-input::placeholder {
-        color: #9aa5b1;
-        opacity: 1;
-    }
-
-    #canstem-page-search .csbx-suggest {
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: calc(100% + 10px);
-        background: #fff;
-        border: 1px solid var(--border);
-        border-radius: 18px;
-        box-shadow: var(--csbx-shadow);
-        padding: 8px;
-        max-height: 420px;
-        overflow: auto;
-        z-index: 9999;
-        display: none;
-    }
-
-    #canstem-page-search .csbx-suggest.csbx-show {
-        display: block;
-    }
-
-    #canstem-page-search .csbx-row {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 10px 14px;
-        align-items: center;
-        padding: 12px 14px;
-        border-radius: 12px;
-        cursor: pointer;
-        transition: background .12s ease, transform .12s ease;
-        border-bottom: 1px solid #f1f5f9;
-    }
-
-    #canstem-page-search .csbx-row:hover,
-    #canstem-page-search .csbx-row[aria-selected="true"] {
-        background: #f7fafc;
-        transform: translateY(-1px);
-    }
-
-    #canstem-page-search .csbx-row:last-child {
-        border-bottom: none;
-    }
-
-    #canstem-page-search .csbx-left {
-        display: flex;
-        flex-direction: column;
-        min-width: 0;
-    }
-
-    #canstem-page-search .csbx-code {
-        font-size: 16px;
-        font-weight: 900;
-        color: var(--csbx-ink);
-    }
-
-    #canstem-page-search .csbx-name {
-        font-size: 14px;
-        font-weight: 700;
-        color: #475569;
-        margin-top: 2px;
-    }
-
-    #canstem-page-search .csbx-right {
-        display: flex;
-        gap: 6px;
-        align-items: center;
-    }
-
-    #canstem-page-search .csbx-chip {
-        font-size: 12px;
-        padding: 4px 10px;
-        border-radius: 999px;
-        border: 1px solid #fde68a;
-        background: #fffbeb;
-        color: #92400e;
-        font-weight: 900;
-    }
-
-    /* ==========================================================
-     MAIN ACCORDIONS (fee-section)
-  ========================================================== */
+    /* Main accordions */
     details.fee-section {
         background: var(--panel);
         border: 1px solid var(--border);
@@ -456,10 +508,9 @@ Math Kangaroo Contest Coaching Page
         align-items: center;
         gap: .75rem;
         padding: 16px;
-        font-weight: 900;
+        font-weight: 700;
         color: #0b1220;
-        background:
-            linear-gradient(180deg, #ffffff, #fbfdff);
+        background: #fff;
         border-left: 6px solid var(--sub);
     }
 
@@ -471,7 +522,7 @@ Math Kangaroo Contest Coaching Page
         content: "▸";
         margin-left: auto;
         color: var(--sub);
-        font-weight: 900;
+        font-weight: 700;
         transition: transform .2s ease;
     }
 
@@ -509,7 +560,7 @@ Math Kangaroo Contest Coaching Page
 
     .accent {
         color: var(--sub);
-        font-weight: 900;
+        font-weight: 700;
         margin-top: 1.1rem;
     }
 
@@ -525,9 +576,8 @@ Math Kangaroo Contest Coaching Page
         border-bottom-color: #003566;
     }
 
-    /* Highlight Fees section */
     #fees-and-packages summary.fee-toggle {
-        background: linear-gradient(180deg, #fffbeb, #ffffff);
+        background: #fffbeb;
         border-left-color: #f59e0b;
     }
 
@@ -535,165 +585,80 @@ Math Kangaroo Contest Coaching Page
         box-shadow: 0 10px 26px rgba(245, 158, 11, .12);
     }
 
-    /* ==========================================================
-     RIGHT SIDE SNAPSHOT ACCORDION (PTE-like)
-  ========================================================== */
-    .snapshot-accordion {
-        padding: 16px !important;
-    }
-
-    .snapshot-accordion .snap-sec {
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        overflow: hidden;
-        background: #fff;
+    /* FAQ styling */
+    .faq-head {
+        border: none;
+        border-radius: 16px;
+        box-shadow: none;
+        background: transparent;
+        padding: 0;
         margin-bottom: 14px;
+    }
+
+    .faq-note {
+        margin-top: 8px;
+        color: #64748b;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 1.8;
+    }
+
+    details.fee-section.faq-item {
+        border: 1px solid rgba(191, 219, 254, .75);
         box-shadow: 0 8px 22px rgba(2, 6, 23, .06);
-        transition: transform .18s ease, box-shadow .22s ease;
     }
 
-    .snapshot-accordion .snap-sec:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 14px 30px rgba(2, 6, 23, .10);
+    details.fee-section.faq-item summary.fee-toggle {
+        border-left-color: #2563eb;
+        background: linear-gradient(180deg, #eff6ff, #ffffff);
     }
 
-    .snapshot-accordion .snap-sec:last-child {
-        margin-bottom: 0;
-    }
-
-    .snap-toggle {
-        list-style: none;
-        cursor: pointer;
-        user-select: none;
-        padding: 14px 14px;
-        font-weight: 900;
-        color: var(--ink);
-        background: linear-gradient(180deg, #ffffff, #fbfdff);
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .snap-toggle::-webkit-details-marker {
-        display: none;
-    }
-
-    .snap-toggle::before {
-        content: "+";
-        font-weight: 900;
-        font-size: 18px;
-        line-height: 1;
-        color: var(--ink);
-        width: 18px;
-        display: inline-flex;
-        justify-content: center;
-    }
-
-    .snap-sec[open]>.snap-toggle::before {
-        content: "−";
-    }
-
-    .snap-content {
-        border-top: 1px solid #eef2f7;
-        padding: 14px 14px 16px;
-        color: #334155;
-        font-size: .95em;
-        line-height: 1.65;
-        background:
-            radial-gradient(420px 140px at 12% 10%, rgba(0, 17, 97, .06), transparent 60%),
-            linear-gradient(180deg, #ffffff, #fbfdff);
-    }
-
-    .snap-list {
-        margin: 0 0 0 1.1rem;
-    }
-
-    .snap-list li {
-        margin: 6px 0;
-    }
-
-    /* ==========================================================
-     RESPONSIVE LAYOUT (keep same structure)
-  ========================================================== */
-    @media (max-width: 980px) {
-        .cs-row {
-            flex-direction: column;
-        }
-
-        .cs-grid3 {
-            grid-template-columns: 1fr;
-        }
-
-        #kangaroo-hero h1 {
-            font-size: 26px;
-        }
-    }
-
-    /* ==========================================================
-     MOTION PREFERENCES
-  ========================================================== */
+    /* Motion */
     @media (prefers-reduced-motion: reduce) {
         * {
             scroll-behavior: auto !important;
         }
 
+        .kang-tab,
         .cs-mini,
         details.fee-section,
         .snapshot-accordion .snap-sec,
-        .btn,
-        #canstem-page-search .csbx-shell,
-        #canstem-page-search .csbx-row {
+        .btn {
             transition: none !important;
         }
     }
 </style>
 
-<!-- SEARCH (kept exact feature, improved aesthetics above) -->
-<section id="canstem-page-search" class="mt-6" aria-label="Search page sections">
-    <div class="csbx-shell" role="search">
-        <svg class="csbx-search" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2" />
-            <path d="M20 20L16.2 16.2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-
-        <input id="csbx-q-k" class="csbx-input" type="search" spellcheck="false" autocomplete="off"
-            placeholder="Search this page (fees, testing centre, coaching, FAQ...)" aria-autocomplete="list"
-            aria-controls="csbx-suggest-k" aria-expanded="false" />
-
-        <div id="csbx-suggest-k" class="csbx-suggest" role="listbox" aria-label="Suggestions"></div>
+<!-- Tabs -->
+<div class="kang-topbar" aria-label="Math Kangaroo page tabs">
+    <div class="kang-topbar-inner">
+        <div class="kang-tabs">
+            <div class="kang-tab" role="button" tabindex="0" data-target="kangaroo-hero"><span
+                    class="kang-dot"></span>Overview</div>
+            <div class="kang-tab" role="button" tabindex="0" data-target="coaching-program"><span
+                    class="kang-dot"></span>Coaching Details</div>
+            <div class="kang-tab" role="button" tabindex="0" data-target="testing-centre"><span
+                    class="kang-dot"></span>Test Site</div>
+            <div class="kang-tab" role="button" tabindex="0" data-target="fees-and-packages"><span
+                    class="kang-dot"></span>Fees</div>
+            <div class="kang-tab" role="button" tabindex="0" data-target="how-to-start"><span
+                    class="kang-dot"></span>How to Start</div>
+            <div class="kang-tab" role="button" tabindex="0" data-target="faq-wrap"><span class="kang-dot"></span>FAQ
+            </div>
+        </div>
     </div>
-</section>
+</div>
 
 <section id="kangaroo-page-wrap" aria-label="Math Kangaroo coaching page">
 
-    <!-- HERO -->
-    <section id="kangaroo-hero">
-        <div class="cs-row">
+    <!-- Hero -->
+    <section id="kangaroo-hero" aria-label="Math Kangaroo hero">
+        <div class="cs-row mt-6">
+
+            <!-- Left: snapshot accordion + pills -->
             <div class="cs-col">
-                <h1>Math Kangaroo Contest Coaching (Grades 1–12) — Brampton &amp; Online</h1>
-                <p>
-                    Prepare with contest-style problems, logical reasoning, and step-by-step strategies that build
-                    confidence.
-                    CanSTEM also hosts in-person Math Kangaroo testing for students registering at our site.
-                </p>
+                <div class="snapshot-accordion" aria-label="Snapshot accordion">
 
-                <div class="hero-badges" aria-label="Key highlights">
-                    <span class="pill">Math Contest Prep</span>
-                    <span class="pill">Problem Solving</span>
-                    <span class="pill">Official Test Site (Brampton)</span>
-                    <span class="pill">In-Person &amp; Online Options</span>
-                </div>
-
-                <div class="hero-cta">
-                    <a class="btn btn-primary" href="#fees-and-packages">View Fees &amp; Packages</a>
-                    <a class="btn btn-ghost" href="#how-to-start">How to Start</a>
-                    <a class="btn btn-ghost" href="mailto:inquiry@canstemeducation.com">Email Us</a>
-                </div>
-            </div>
-
-            <!-- RIGHT SIDE (Accordion Card, no image) -->
-            <div class="cs-col">
-                <div class="cs-card snapshot-accordion" aria-label="Canadian Kangaroo Math Tutoring snapshot accordion">
                     <details class="snap-sec">
                         <summary class="snap-toggle">What We Offer?</summary>
                         <div class="snap-content">
@@ -745,14 +710,47 @@ Math Kangaroo Contest Coaching Page
                             </ul>
                         </div>
                     </details>
+
+                    <div class="hero-pills" aria-label="Key highlights">
+                        <div class="pill"><span class="pill-dot"></span>Math Contest Prep</div>
+                        <div class="pill"><span class="pill-dot"></span>Problem Solving</div>
+                        <div class="pill"><span class="pill-dot"></span>Official Test Site (Brampton)</div>
+                        <div class="pill"><span class="pill-dot"></span>In-Person &amp; Online Options</div>
+                    </div>
+
                 </div>
             </div>
+
+            <!-- Right: image -->
+            <div class="cs-col">
+                <div class="hero-media" aria-label="Math Kangaroo image">
+                    <div class="hero-img-wrap">
+                        <img class="hero-img" loading="lazy"
+                            src="https://canstemeducation.com/wp-content/uploads/2025/12/kangaroo-math-contest.png"
+                            alt="Math Kangaroo contest coaching at CanSTEM" />
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- QUICK VALUE CARDS -->
-    <section class="cs-card mt-6" aria-label="Why choose our coaching">
-        <h2>Why families choose Math Kangaroo coaching</h2>
+    <!-- CTA -->
+    <section class="cta-strip mt-8" aria-label="Quick actions">
+        <div class="cta-q">What would you like to do next?</div>
+        <div class="cta-actions">
+            <div class="btn primary" role="button" tabindex="0" data-go="fees-and-packages">View Fees &amp; Packages
+            </div>
+            <div class="btn ghost" role="button" tabindex="0" data-go="how-to-start">How to Start</div>
+            <div class="btn warm" role="button" tabindex="0"
+                data-href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=Student%20Inquiry%20via%20Website%20Email%3A&body=Hello%2C%0A%0AStudent%20Name%3A%0A%0ADescribe%20what%20kind%20of%20help%20you%20want%20from%20us%3A%0A%0AYou%20can%20expect%20a%20response%20within%2024%20hours%20from%20us%20during%20business%20days.%0A%0AThank%20you."
+                data-newtab="1">Email Us</div>
+        </div>
+    </section>
+
+    <!-- Value cards -->
+    <section class="cs-card mt-8" aria-label="Why choose our coaching">
+        <div class="title-sec" role="heading" aria-level="2">Why families choose Math Kangaroo coaching</div>
         <div class="cs-grid3 mt-4">
             <div class="cs-mini">
                 <b>Contest-style thinking</b>
@@ -772,11 +770,12 @@ Math Kangaroo Contest Coaching Page
         </div>
     </section>
 
-    <!-- ACCORDIONS -->
-    <div class="fees-accordions mt-4">
+    <div class="sep"></div>
 
-        <details class="fee-section" id="about-math-kangaroo" data-title="About the Math Kangaroo Contest"
-            data-keywords="about math kangaroo contest canada canadian math kangaroo grades 1-12 multiple choice problem solving logical reasoning fun challenging">
+    <!-- Main sections -->
+    <div class="fees-accordions mt-4" aria-label="Page sections">
+
+        <details class="fee-section" id="about-math-kangaroo" data-title="About the Math Kangaroo Contest">
             <summary class="fee-toggle">About the Math Kangaroo Contest</summary>
             <div class="fee-content">
                 <p>
@@ -800,8 +799,7 @@ Math Kangaroo Contest Coaching Page
             </div>
         </details>
 
-        <details class="fee-section" id="benefits" data-title="Benefits of Math Kangaroo Preparation"
-            data-keywords="benefits math kangaroo preparation confidence problem solving logical reasoning math enrichment awards medals certificates school performance">
+        <details class="fee-section" id="benefits" data-title="Benefits of Math Kangaroo Preparation">
             <summary class="fee-toggle">Benefits of Math Kangaroo Preparation</summary>
             <div class="fee-content">
                 <p class="accent">What students gain (beyond the contest)</p>
@@ -817,14 +815,13 @@ Math Kangaroo Contest Coaching Page
                 <div class="sep"></div>
                 <p class="muted">
                     Parents often tell us the biggest difference is not just higher scores—it's how students start
-                    enjoying
-                    challenging questions and become comfortable with “contest-style” thinking.
+                    enjoying challenging questions
+                    and become comfortable with “contest-style” thinking.
                 </p>
             </div>
         </details>
 
-        <details class="fee-section" id="coaching-program" data-title="Our Coaching Program"
-            data-keywords="coaching program math kangaroo tutoring contest math coaching practice tests mock exams solution strategies weekly classes brampton online">
+        <details class="fee-section" id="coaching-program" data-title="Our Coaching Program">
             <summary class="fee-toggle">Our Coaching Program (How we teach)</summary>
             <div class="fee-content">
                 <p>
@@ -852,15 +849,13 @@ Math Kangaroo Contest Coaching Page
             </div>
         </details>
 
-        <details class="fee-section" id="testing-centre" data-title="Official Testing Centre in Brampton"
-            data-keywords="official testing centre brampton math kangaroo test site in person exam location canstem host contest registration">
+        <details class="fee-section" id="testing-centre" data-title="Official Testing Centre in Brampton">
             <summary class="fee-toggle">Official Testing Centre in Brampton (We host the contest)</summary>
             <div class="fee-content">
                 <p>
                     CanSTEM is an <strong>official testing centre in Brampton</strong>. If you register for an in-person
-                    sitting
-                    and choose our site, your child can write the contest here in a supervised, student-friendly
-                    environment.
+                    sitting and choose our site,
+                    your child can write the contest here in a supervised, student-friendly environment.
                 </p>
                 <ul class="bullets">
                     <li>Comfortable testing setting</li>
@@ -875,8 +870,7 @@ Math Kangaroo Contest Coaching Page
         </details>
 
         <details class="fee-section" id="fees-and-packages"
-            data-title="Fees & Packages (Math Kangaroo / Waterloo & Other Contests)"
-            data-keywords="fees packages math kangaroo tutoring waterloo contest tutoring hourly monthly in person online 25 35 250 500">
+            data-title="Fees & Packages (Math Kangaroo / Waterloo & Other Contests)">
             <summary class="fee-toggle">Fees &amp; Packages (Math Kangaroo / Waterloo &amp; Other Contests)</summary>
             <div class="fee-content">
                 <p><strong>Competitive Exam Tutoring (Math Kangaroo, Waterloo &amp; Other School Science/Math
@@ -907,15 +901,15 @@ Math Kangaroo Contest Coaching Page
                     current comfort with contest questions).
                 </p>
 
-                <div class="mt-4">
-                    <a class="btn btn-primary" href="#how-to-start">Start Now</a>
-                    <a class="btn btn-ghost" href="tel:+16478471231">Call: 647-847-1231</a>
+                <div class="mt-4" style="display:flex;flex-wrap:wrap;gap:10px;">
+                    <div class="btn primary" role="button" tabindex="0" data-go="how-to-start">Start Now</div>
+                    <div class="btn ghost" role="button" tabindex="0" data-href="tel:+16478471231">Call: 647-847-1231
+                    </div>
                 </div>
             </div>
         </details>
 
-        <details class="fee-section" id="how-to-start" data-title="How to Start (Step-by-step)"
-            data-keywords="how to start math kangaroo coaching register book assessment schedule classes brampton online">
+        <details class="fee-section" id="how-to-start" data-title="How to Start (Step-by-step)">
             <summary class="fee-toggle">How to Start (Step-by-step)</summary>
             <div class="fee-content">
                 <ol class="list">
@@ -931,37 +925,57 @@ Math Kangaroo Contest Coaching Page
 
                 <p class="accent">Contact</p>
                 <ul class="bullets">
-                    <li>Email: <a href="mailto:inquiry@canstemeducation.com">inquiry@canstemeducation.com</a></li>
+                    <li>Email:
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=Student%20Inquiry%20via%20Website%20Email%3A&body=Hello%2C%0A%0AStudent%20Name%3A%0A%0ADescribe%20what%20kind%20of%20help%20you%20want%20from%20us%3A%0A%0AYou%20can%20expect%20a%20response%20within%2024%20hours%20from%20us%20during%20business%20days.%0A%0AThank%20you."
+                            target="_blank" rel="noopener">inquiry@canstemeducation.com</a>
+                    </li>
                     <li>Phone: <a href="tel:+16478471231">647-847-1231</a></li>
                     <li>Location: Brampton (in-person) + Online live classes</li>
                 </ul>
             </div>
         </details>
 
-        <details class="fee-section" id="faq" data-title="FAQ (Math Kangaroo Coaching & Test Site)"
-            data-keywords="faq math kangaroo coaching how many questions multiple choice time limit awards medals certificates ribbons practice papers sample questions">
-            <summary class="fee-toggle">FAQ</summary>
+    </div>
+
+    <!-- FAQ -->
+    <section id="faq-wrap" class="mt-4" aria-label="FAQ section">
+        <div class="faq-head">
+            <div class="title-sec" role="heading" aria-level="2">Frequently asked questions (FAQs)</div>
+        </div>
+
+        <details class="fee-section faq-item" id="faq-beginners">
+            <summary class="fee-toggle">Is Math Kangaroo good for beginners?</summary>
             <div class="fee-content">
-                <p class="accent">Is Math Kangaroo good for beginners?</p>
                 <p>Yes—many students start with Math Kangaroo because it’s designed to be fun and accessible while still
                     challenging.</p>
+            </div>
+        </details>
 
-                <p class="accent">Do you offer practice questions?</p>
+        <details class="fee-section faq-item" id="faq-practice">
+            <summary class="fee-toggle">Do you offer practice questions?</summary>
+            <div class="fee-content">
                 <p>Yes. We use contest-style sets and can guide families to official sample resources as well.</p>
+            </div>
+        </details>
 
-                <p class="accent">Can my child join late?</p>
+        <details class="fee-section faq-item" id="faq-late">
+            <summary class="fee-toggle">Can my child join late?</summary>
+            <div class="fee-content">
                 <p>Usually yes. We’ll place them at the right level and focus on the highest-impact strategies first.
-                </p>
-
-                <p class="accent">Do you help with Waterloo contests too?</p>
-                <p>Yes—this tutoring category covers Math Kangaroo, Waterloo, and other school math/science contests.
                 </p>
             </div>
         </details>
 
-    </div>
+        <details class="fee-section faq-item" id="faq-waterloo">
+            <summary class="fee-toggle">Do you help with Waterloo contests too?</summary>
+            <div class="fee-content">
+                <p>Yes—this tutoring category covers Math Kangaroo, Waterloo, and other school math/science contests.
+                </p>
+            </div>
+        </details>
+    </section>
 
-    <!-- JSON-LD (kept) -->
+    <!-- JSON-LD -->
     <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -992,164 +1006,126 @@ Math Kangaroo Contest Coaching Page
         var wrap = document.getElementById("kangaroo-page-wrap");
         if (!wrap) return;
 
-        /* -------------------------
-           Main accordion: only one open
-        ------------------------- */
-        var sections = Array.prototype.slice.call(wrap.querySelectorAll(".fee-section"));
-        function closeOthers(openId) {
-            sections.forEach(function (s) { if (s.id !== openId) s.removeAttribute("open"); });
+        function byId(id) { return document.getElementById(id); }
+        function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+        function bindKeyClick(el) {
+            if (!el) return;
+            el.addEventListener("keydown", function (e) {
+                if (e.key === "Enter" || e.key === " ") { e.preventDefault(); el.click(); }
+            });
         }
-        sections.forEach(function (sec) {
+
+        function scrollToEl(el) {
+            if (!el) return;
+            try { el.scrollIntoView({ behavior: "smooth", block: "start" }); }
+            catch (e) { el.scrollIntoView(true); }
+        }
+
+        function openDetailsIfNeeded(el) {
+            if (el && el.tagName && el.tagName.toLowerCase() === "details") el.setAttribute("open", "");
+        }
+
+        /* Tabs */
+        var mainAcc = $all("details.fee-section", wrap).filter(function (d) { return !d.classList.contains("faq-item"); });
+        var faqAcc = $all("details.faq-item", wrap);
+
+        $all(".kang-tab").forEach(function (tab) {
+            bindKeyClick(tab);
+            tab.addEventListener("click", function () {
+                var id = tab.getAttribute("data-target");
+                var target = byId(id);
+                if (!target) return;
+
+                openDetailsIfNeeded(target);
+
+                if (target.classList.contains("fee-section") && !target.classList.contains("faq-item")) {
+                    mainAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); });
+                }
+                if (target.classList.contains("faq-item")) {
+                    faqAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); });
+                }
+
+                scrollToEl(target);
+                try { history.replaceState(null, "", "#" + id); } catch (e) { location.hash = id; }
+            });
+        });
+
+        /* CTA buttons */
+        $all("[data-go]").forEach(function (btn) {
+            bindKeyClick(btn);
+            btn.addEventListener("click", function () {
+                var id = btn.getAttribute("data-go");
+                var target = byId(id);
+                if (!target) return;
+
+                openDetailsIfNeeded(target);
+                if (target.classList.contains("fee-section") && !target.classList.contains("faq-item")) {
+                    mainAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); });
+                }
+                scrollToEl(target);
+            });
+        });
+
+        /* External links for DIV buttons */
+        $all("[data-href]").forEach(function (el) {
+            bindKeyClick(el);
+            el.addEventListener("click", function () {
+                var href = el.getAttribute("data-href");
+                if (!href) return;
+                var newtab = el.getAttribute("data-newtab") === "1";
+                if (newtab) window.open(href, "_blank", "noopener");
+                else window.location.href = href;
+            });
+        });
+
+        /* Main accordions: only one open */
+        function closeMainOthers(openId) {
+            mainAcc.forEach(function (s) { if (s.id !== openId) s.removeAttribute("open"); });
+        }
+        mainAcc.forEach(function (sec) {
             sec.addEventListener("toggle", function () {
                 if (!sec.open) return;
-                closeOthers(sec.id);
+                closeMainOthers(sec.id);
             });
         });
 
-        /* -------------------------
-           Search for sections
-        ------------------------- */
-        var input = document.querySelector("#csbx-q-k");
-        var suggest = document.querySelector("#csbx-suggest-k");
-        if (!input || !suggest) return;
-
-        function setOpen(on) {
-            input.setAttribute("aria-expanded", on ? "true" : "false");
-            suggest.classList.toggle("csbx-show", on);
-        }
-        function normalize(s) { return String(s || "").toLowerCase().trim(); }
-
-        var INDEX = sections.map(function (sec) {
-            var summaryEl = sec.querySelector("summary");
-            var title = sec.getAttribute("data-title") || (summaryEl ? summaryEl.textContent : sec.id);
-            var keywords = sec.getAttribute("data-keywords") || "";
-            var contentText = sec.textContent || "";
-            return {
-                id: sec.id,
-                title: title,
-                haystack: normalize(title + " " + keywords + " " + contentText)
-            };
+        /* FAQ: only one open */
+        faqAcc.forEach(function (d) {
+            d.addEventListener("toggle", function () {
+                if (!d.open) return;
+                faqAcc.forEach(function (x) { if (x !== d) x.removeAttribute("open"); });
+            });
         });
 
-        function searchSections(q) {
-            var t = normalize(q);
-            if (!t) return [];
-            return INDEX
-                .map(function (it) {
-                    var pos = it.haystack.indexOf(t);
-                    if (pos === -1) return null;
-                    var titlePos = normalize(it.title).indexOf(t);
-                    var score = (titlePos === -1 ? 50 : titlePos) + pos;
-                    return { id: it.id, title: it.title, score: score };
-                })
-                .filter(Boolean)
-                .sort(function (a, b) { return a.score - b.score; })
-                .slice(0, 12);
-        }
-
-        function openSection(id, shouldScroll) {
-            var target = document.getElementById(id);
-            if (!target) return;
-
-            target.setAttribute("open", "");
-            closeOthers(id);
-
-            try { history.replaceState(null, "", "#" + id); } catch (e) { location.hash = id; }
-
-            if (shouldScroll) {
-                setTimeout(function () {
-                    try { target.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) { }
-                }, 30);
-            }
-        }
-
-        var activeIndex = -1;
-
-        function render() {
-            var q = input.value || "";
-            var results = searchSections(q);
-
-            suggest.innerHTML = "";
-            if (!results.length) { setOpen(false); return; }
-
-            results.forEach(function (it, idx) {
-                var row = document.createElement("div");
-                row.className = "csbx-row";
-                row.role = "option";
-                row.id = "k-row-" + idx;
-                row.setAttribute("aria-selected", "false");
-
-                row.innerHTML =
-                    '<div class="csbx-left">' +
-                    '<span class="csbx-code">' + it.title + '</span>' +
-                    '<span class="csbx-name">Open this section</span>' +
-                    '</div>' +
-                    '<div class="csbx-right">' +
-                    '<span class="csbx-chip">Section</span>' +
-                    '</div>';
-
-                row.addEventListener("mousedown", function (e) { e.preventDefault(); });
-                row.addEventListener("click", function () {
-                    setOpen(false);
-                    openSection(it.id, true);
+        /* Snapshot: only one open */
+        var box = wrap.querySelector(".snapshot-accordion");
+        if (box) {
+            var snaps = $all("details.snap-sec", box);
+            snaps.forEach(function (d) {
+                d.addEventListener("toggle", function () {
+                    if (!d.open) return;
+                    snaps.forEach(function (x) { if (x !== d) x.removeAttribute("open"); });
                 });
-
-                suggest.appendChild(row);
             });
-
-            activeIndex = -1;
-            setOpen(true);
         }
-
-        input.addEventListener("input", render);
-        input.addEventListener("focus", function () {
-            if ((input.value || "").trim()) render();
-        });
-        input.addEventListener("blur", function () {
-            setTimeout(function () { setOpen(false); }, 140);
-        });
-
-        input.addEventListener("keydown", function (e) {
-            var items = Array.prototype.slice.call(suggest.querySelectorAll(".csbx-row"));
-            if (!items.length) {
-                if (e.key === "Enter") {
-                    var best = searchSections(input.value || "")[0];
-                    if (best) { e.preventDefault(); openSection(best.id, true); setOpen(false); }
-                }
-                if (e.key === "Escape") setOpen(false);
-                return;
-            }
-
-            if (e.key === "ArrowDown") { e.preventDefault(); activeIndex = Math.min(activeIndex + 1, items.length - 1); }
-            else if (e.key === "ArrowUp") { e.preventDefault(); activeIndex = Math.max(activeIndex - 1, 0); }
-            else if (e.key === "Enter") { e.preventDefault(); (items[activeIndex] || items[0]).click(); }
-            else if (e.key === "Escape") { setOpen(false); return; }
-            else { return; }
-
-            items.forEach(function (n) { n.setAttribute("aria-selected", "false"); });
-            if (activeIndex >= 0 && items[activeIndex]) {
-                items[activeIndex].setAttribute("aria-selected", "true");
-                items[activeIndex].scrollIntoView({ block: "nearest" });
-            }
-        });
 
         /* Open by hash on load */
         if (location.hash) {
             var id = location.hash.replace("#", "");
-            if (document.getElementById(id)) openSection(id, false);
-        }
-    })();
+            var target = byId(id);
+            if (target) {
+                openDetailsIfNeeded(target);
 
-    (function () {
-        /* Right snapshot accordion: only one open */
-        var box = document.querySelector(".snapshot-accordion");
-        if (!box) return;
-        var items = Array.prototype.slice.call(box.querySelectorAll("details.snap-sec"));
-        items.forEach(function (d) {
-            d.addEventListener("toggle", function () {
-                if (!d.open) return;
-                items.forEach(function (x) { if (x !== d) x.removeAttribute("open"); });
-            });
-        });
+                if (target.classList.contains("fee-section") && !target.classList.contains("faq-item")) {
+                    mainAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); });
+                }
+                if (target.classList.contains("faq-item")) {
+                    faqAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); });
+                }
+
+                scrollToEl(target);
+            }
+        }
     })();
 </script>
