@@ -180,7 +180,7 @@ Math Kangaroo Contest Coaching Page -->
         }
     }
 
-    /* Cards (unchanged) */
+    /* Cards */
     .cs-card {
         background: var(--panel);
         border: 1px solid var(--border);
@@ -191,10 +191,11 @@ Math Kangaroo Contest Coaching Page -->
 
     /* Section title */
     .title-sec {
+        text-align: center;
         font-size: 24px;
-        font-weight: 900;
+        font-weight: 800;
         letter-spacing: -.2px;
-        color: var(--ink);
+        color: var(--brand);
         margin: 32px 0px 32px 0px;
     }
 
@@ -372,33 +373,97 @@ Math Kangaroo Contest Coaching Page -->
         }
     }
 
-    /* Registration notice (NEW) */
+    /* 2026 Registration Notice */
     .reg-card {
-        border: 1px solid var(--border);
         border-radius: var(--radius);
-        box-shadow: var(--shadow-soft);
-        background: #fff;
         padding: 18px 16px;
+        border: 1px solid rgba(226, 232, 240, .95);
+        border-left: 8px solid var(--gold);
+        box-shadow: 0 14px 34px rgba(2, 6, 23, .10);
+        background:
+            radial-gradient(900px 220px at 10% 0%, rgba(239, 246, 255, .92), transparent 60%),
+            radial-gradient(900px 240px at 90% 20%, rgba(255, 247, 237, .92), transparent 60%),
+            #ffffff;
     }
 
     .reg-title {
-        font-size: 22px;
-        font-weight: 900;
-        color: var(--brand);
-        letter-spacing: -.2px;
         margin: 0 0 10px;
+        color: var(--brand);
+        font-size: 24px;
+        font-weight: 900;
+        letter-spacing: -.2px;
+    }
+
+    .reg-sub {
+        margin: 0 0 12px;
+        color: #0b1220;
+        font-weight: 700;
     }
 
     .reg-list {
         margin: 0 0 0 1.2rem;
         padding: 0;
-        font-size: 18px;
-        line-height: 1.85;
         color: #000;
+        font-size: 18px;
+        line-height: 1.9;
     }
 
     .reg-list li {
-        margin: 8px 0;
+        margin: 10px 0;
+    }
+
+    .hl {
+        display: inline-block;
+        padding: 0 .35em;
+        border-radius: 8px;
+        background: rgba(251, 176, 37, .18);
+        border: 1px solid rgba(245, 158, 11, .30);
+    }
+
+    .reg-actions {
+        margin-top: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .reg-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 999px;
+        font-weight: 800;
+        cursor: pointer;
+        user-select: none;
+        text-decoration: none;
+        border: 1px solid rgba(11, 27, 90, .45);
+        transition: transform .18s ease, box-shadow .22s ease;
+        line-height: 1.2;
+    }
+
+    .reg-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 34px rgba(2, 6, 23, .12);
+    }
+
+    .reg-btn.primary {
+        background: linear-gradient(90deg, var(--brand), #2563eb);
+        color: #fff;
+        border-color: rgba(0, 17, 97, .25);
+        box-shadow: 0 12px 28px rgba(0, 17, 97, .18);
+    }
+
+    .reg-btn.primary:hover {
+        color: #fff;
+    }
+
+    .reg-btn.ghost {
+        background: #fff;
+        color: #0b1b5a;
+        border: 1px solid rgba(199, 210, 254, .95);
     }
 
     @media (max-width:768px) {
@@ -409,6 +474,10 @@ Math Kangaroo Contest Coaching Page -->
         .reg-list {
             font-size: 16px;
         }
+
+        .reg-btn {
+            width: 100%;
+        }
     }
 
     /* CTA strip */
@@ -417,10 +486,10 @@ Math Kangaroo Contest Coaching Page -->
         border-radius: var(--radius);
         box-shadow: var(--shadow-soft);
         background: #fff;
-        padding: 18px 16px;
+        padding: 32px 16px;
         display: flex;
         flex-wrap: wrap;
-        gap: 12px 14px;
+        gap: 10px 14px;
         align-items: center;
         justify-content: space-between;
     }
@@ -435,7 +504,7 @@ Math Kangaroo Contest Coaching Page -->
     .cta-actions {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
+        gap: 12px;
         align-items: center;
     }
 
@@ -478,7 +547,7 @@ Math Kangaroo Contest Coaching Page -->
         border: 1px solid rgba(245, 158, 11, .55);
     }
 
-    /* Value cards */
+    /* Value cards (NO outer box now) */
     .cs-grid3 {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -488,7 +557,7 @@ Math Kangaroo Contest Coaching Page -->
     .cs-mini {
         border: 1px solid var(--border);
         border-radius: 16px;
-        padding: 16px;
+        padding: 18px 16px;
         background: #fff;
         box-shadow: var(--shadow-soft);
         transition: transform .18s ease, box-shadow .22s ease;
@@ -499,24 +568,57 @@ Math Kangaroo Contest Coaching Page -->
         box-shadow: 0 14px 30px rgba(2, 6, 23, .10);
     }
 
+    .mini-head {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .mini-ico {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--brand);
+        background: rgba(37, 99, 235, .08);
+        border: 1px solid rgba(191, 219, 254, .85);
+        flex: 0 0 auto;
+    }
+
+    .mini-ico svg {
+        width: 22px;
+        height: 22px;
+        display: block;
+    }
+
     .cs-mini b {
         color: var(--ink);
+        font-size: 22px;
+        font-weight: 900;
     }
 
     .cs-mini p {
         margin: 10px 0 0;
         color: var(--muted);
-        font-size: .95em;
+        font-size: 1.05em;
+        line-height: 1.75;
     }
 
     @media (max-width:980px) {
         .cs-grid3 {
             grid-template-columns: 1fr;
         }
+    }
 
-        .cta-strip {
-            flex-direction: column;
-            align-items: flex-start;
+    @media (max-width:768px) {
+        .cs-mini b {
+            font-size: 20px;
+        }
+
+        .cs-mini p {
+            font-size: 1em;
         }
     }
 
@@ -631,14 +733,6 @@ Math Kangaroo Contest Coaching Page -->
         margin-bottom: 14px;
     }
 
-    .faq-note {
-        margin-top: 8px;
-        color: #64748b;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 1.8;
-    }
-
     details.fee-section.faq-item {
         border: 1px solid rgba(191, 219, 254, .75);
         box-shadow: 0 8px 22px rgba(2, 6, 23, .06);
@@ -659,7 +753,8 @@ Math Kangaroo Contest Coaching Page -->
         .cs-mini,
         details.fee-section,
         .snapshot-accordion .snap-sec,
-        .btn {
+        .btn,
+        .reg-btn {
             transition: none !important;
         }
     }
@@ -771,22 +866,97 @@ Math Kangaroo Contest Coaching Page -->
         </div>
     </section>
 
-    <!-- 2026 Registration Notice (NEW) -->
+    <!-- 2026 Registration Notice -->
     <section class="reg-card mt-8" aria-label="2026 Canadian Math Kangaroo Contest registration notice">
         <div class="reg-title">2026 Canadian Math Kangaroo Contest registration is open!</div>
+        <div class="reg-sub">Key dates, fees, and registration details:</div>
         <ol class="reg-list">
             <li>Registration for the 2026 Canadian Math Kangaroo Contest is now <strong>open</strong>.</li>
             <li>It will be held both <strong>online</strong> (March 23-25, 2026) and <strong>in-person</strong> (March
                 22, 2026).</li>
-            <li>The early bird fee is <strong>$20</strong> if registered by <strong>February 9</strong>.</li>
-            <li>The regular fee is <strong>$25</strong> from <strong>February 10</strong> to the registration deadline
-                on <strong>February 23rd</strong>.</li>
+            <li>The early bird fee is <span class="hl"><strong>$20</strong></span> if registered by <span
+                    class="hl"><strong>February 9</strong></span>.</li>
+            <li>The regular fee is <span class="hl"><strong>$25</strong></span> from <strong>February 10</strong> to the
+                registration deadline on <strong>February 23rd</strong>.</li>
             <li>Participants who register by <strong>February 21st</strong> will be invited to a free 60-minute training
                 class.</li>
             <li>Discounts for bulk registrations will apply to teacher accounts automatically during check-out ($1
                 discount per student for 10 participants, $2 discount per student for 20 participants, $3 discount for
                 30 and more).</li>
         </ol>
+
+        <div class="reg-actions" aria-label="Registration contact and inquiry form">
+            <a class="reg-btn primary"
+                href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                target="_blank" rel="noopener">Inquiry Form</a>
+            <a class="reg-btn ghost"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=Student%20Inquiry%20via%20Website%20Email%3A&body=Hello%2C%0A%0AStudent%20Name%3A%0A%0ADescribe%20what%20kind%20of%20help%20you%20want%20from%20us%3A%0A%0AYou%20can%20expect%20a%20response%20within%2024%20hours%20from%20us%20during%20business%20days.%0A%0AThank%20you.">Email:
+                inquiry@canstemeducation.com</a>
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <!-- Value cards (HEADER SEPARATE + ICONS + NO OUTER BOX) -->
+    <section class="mt-8" aria-label="Why choose our coaching">
+        <div class="title-sec" role="heading" aria-level="2">Why families choose Math Kangaroo coaching</div>
+
+        <div class="cs-grid3 mt-4">
+            <div class="cs-mini">
+                <div class="mini-head">
+                    <span class="mini-ico" aria-hidden="true">
+                        <!-- Trophy -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8 21h8"></path>
+                            <path d="M12 17v4"></path>
+                            <path d="M7 4h10v3a5 5 0 0 1-10 0V4Z"></path>
+                            <path d="M5 6H3v2a4 4 0 0 0 4 4"></path>
+                            <path d="M19 6h2v2a4 4 0 0 1-4 4"></path>
+                        </svg>
+                    </span>
+                    <b>Contest-style thinking</b>
+                </div>
+                <p>Students learn how to read tricky questions, eliminate choices, and solve efficiently—without panic.
+                </p>
+            </div>
+
+            <div class="cs-mini">
+                <div class="mini-head">
+                    <span class="mini-ico" aria-hidden="true">
+                        <!-- Speed -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 13a8 8 0 1 0-16 0"></path>
+                            <path d="M12 13l3-3"></path>
+                            <path d="M4 13h2"></path>
+                            <path d="M18 13h2"></path>
+                        </svg>
+                    </span>
+                    <b>Confidence + speed</b>
+                </div>
+                <p>Timed drills, mock tests, and common “trap” patterns help students become faster and more accurate.
+                </p>
+            </div>
+
+            <div class="cs-mini">
+                <div class="mini-head">
+                    <span class="mini-ico" aria-hidden="true">
+                        <!-- Book -->
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 19a2 2 0 0 0 2 2h12"></path>
+                            <path d="M6 3h12v18H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"></path>
+                            <path d="M8 7h8"></path>
+                            <path d="M8 11h8"></path>
+                        </svg>
+                    </span>
+                    <b>Stronger math foundation</b>
+                </div>
+                <p>Number sense, logic, patterns, geometry, and reasoning skills improve—helpful for school and future
+                    contests.</p>
+            </div>
+        </div>
     </section>
 
     <!-- CTA -->
@@ -799,28 +969,6 @@ Math Kangaroo Contest Coaching Page -->
             <div class="btn warm" role="button" tabindex="0"
                 data-href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=Student%20Inquiry%20via%20Website%20Email%3A&body=Hello%2C%0A%0AStudent%20Name%3A%0A%0ADescribe%20what%20kind%20of%20help%20you%20want%20from%20us%3A%0A%0AYou%20can%20expect%20a%20response%20within%2024%20hours%20from%20us%20during%20business%20days.%0A%0AThank%20you."
                 data-newtab="1">Email Us</div>
-        </div>
-    </section>
-
-    <!-- Value cards -->
-    <section class="cs-card mt-8" aria-label="Why choose our coaching">
-        <div class="title-sec" role="heading" aria-level="2">Why families choose Math Kangaroo coaching</div>
-        <div class="cs-grid3 mt-4">
-            <div class="cs-mini">
-                <b>Contest-style thinking</b>
-                <p>Students learn how to read tricky questions, eliminate choices, and solve efficiently—without panic.
-                </p>
-            </div>
-            <div class="cs-mini">
-                <b>Confidence + speed</b>
-                <p>Timed drills, mock tests, and common “trap” patterns help students become faster and more accurate.
-                </p>
-            </div>
-            <div class="cs-mini">
-                <b>Stronger math foundation</b>
-                <p>Number sense, logic, patterns, geometry, and reasoning skills improve—helpful for school and future
-                    contests.</p>
-            </div>
         </div>
     </section>
 
@@ -908,8 +1056,8 @@ Math Kangaroo Contest Coaching Page -->
             <div class="fee-content">
                 <p>
                     CanSTEM is an <strong>official testing centre in Brampton</strong>. If you register for an in-person
-                    sitting and choose our site, your child can write the contest here in a supervised, student-friendly
-                    environment.
+                    sitting and choose our site,
+                    your child can write the contest here in a supervised, student-friendly environment.
                 </p>
                 <ul class="bullets">
                     <li>Comfortable testing setting</li>
@@ -929,6 +1077,20 @@ Math Kangaroo Contest Coaching Page -->
             <div class="fee-content">
                 <p><strong>Competitive Exam Tutoring (Math Kangaroo, Waterloo &amp; Other School Science/Math
                         Contests)</strong></p>
+
+                <div class="sep"></div>
+
+                <p class="accent">Contest registration fees (2026)</p>
+                <ul class="bullets">
+                    <li>The early bird fee is <strong>$20</strong> if registered by <strong>February 9</strong>.</li>
+                    <li>The regular fee is <strong>$25</strong> from <strong>February 10</strong> to the registration
+                        deadline on <strong>February 23rd</strong>.</li>
+                </ul>
+                <p class="muted small">
+                    Registration help: <strong>inquiry@canstemeducation.com</strong> or submit the inquiry form:
+                    <a href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                        target="_blank" rel="noopener">Click here</a>
+                </p>
 
                 <div class="sep"></div>
 
@@ -1025,6 +1187,132 @@ Math Kangaroo Contest Coaching Page -->
             <div class="fee-content">
                 <p>Yes—this tutoring category covers Math Kangaroo, Waterloo, and other school math/science contests.
                 </p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-grades">
+            <summary class="fee-toggle">What grades do you support for Math Kangaroo coaching?</summary>
+            <div class="fee-content">
+                <p>We support students in Grades 1–12, and we place them based on grade level and current comfort with
+                    contest-style questions.</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-online-inperson">
+            <summary class="fee-toggle">Do you offer in-person and online coaching?</summary>
+            <div class="fee-content">
+                <p>Yes. We offer in-person coaching in Brampton and online live, interactive sessions.</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-coaching-fees">
+            <summary class="fee-toggle">What are your coaching fees?</summary>
+            <div class="fee-content">
+                <p>Coaching fees depend on the plan you choose:</p>
+                <ul class="bullets">
+                    <li><strong>Hourly:</strong> In-person $25/hour, Online $35/hour</li>
+                    <li><strong>Monthly (Online not available):</strong> Twice a week $250/month, 6 days a week
+                        $500/month</li>
+                </ul>
+                <p class="muted small">We can recommend the best plan after a quick level check.</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-contest-fees">
+            <summary class="fee-toggle">What is the Math Kangaroo contest registration fee (2026)?</summary>
+            <div class="fee-content">
+                <ul class="bullets">
+                    <li><strong>$20</strong> early bird fee if registered by <strong>February 9</strong></li>
+                    <li><strong>$25</strong> regular fee from <strong>February 10</strong> to the registration deadline
+                        on <strong>February 23rd</strong></li>
+                </ul>
+                <p class="muted small">Contest registration fees are separate from coaching fees.</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-registration-help">
+            <summary class="fee-toggle">How can I register or ask questions about registration?</summary>
+            <div class="fee-content">
+                <p>You can email <strong>inquiry@canstemeducation.com</strong> or submit the inquiry form:</p>
+                <p><a href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                        target="_blank"
+                        rel="noopener">https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en</a>
+                </p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-bulk-discount">
+            <summary class="fee-toggle">Do you offer bulk registration discounts?</summary>
+            <div class="fee-content">
+                <p>Discounts for bulk registrations will apply to teacher accounts automatically during check-out ($1
+                    discount per student for 10 participants, $2 discount per student for 20 participants, $3 discount
+                    for 30 and more).</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-training-invite">
+            <summary class="fee-toggle">Is there any free training offer with registration?</summary>
+            <div class="fee-content">
+                <p>Participants who register by <strong>February 21st</strong> will be invited to a free 60-minute
+                    training class.</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-test-date">
+            <summary class="fee-toggle">When is the Math Kangaroo contest in 2026?</summary>
+            <div class="fee-content">
+                <p>It will be held both online (March 23-25, 2026) and in-person (March 22, 2026).</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-test-site">
+            <summary class="fee-toggle">Are you an official testing centre?</summary>
+            <div class="fee-content">
+                <p>Yes—CanSTEM is an official testing centre in Brampton. If you register for an in-person sitting and
+                    choose our site, your child can write the contest here.</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-what-included">
+            <summary class="fee-toggle">What’s included in the coaching program?</summary>
+            <div class="fee-content">
+                <p>Coaching typically includes contest-style worksheets, timed mini tests, guided solutions, error
+                    analysis, and Q&amp;A support.</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-schedule">
+            <summary class="fee-toggle">How does scheduling work for tutoring?</summary>
+            <div class="fee-content">
+                <p>We offer flexible scheduling. For hourly plans, the fee for all hours in a month must be paid before
+                    the schedule is created.</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-1on1-group">
+            <summary class="fee-toggle">Do you offer 1-on-1 or group sessions?</summary>
+            <div class="fee-content">
+                <p>Yes—online coaching can be done as 1-on-1 or small group sessions, depending on student needs and
+                    availability.</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-placement">
+            <summary class="fee-toggle">How do you place a student at the right level?</summary>
+            <div class="fee-content">
+                <p>We use the student’s grade plus a quick level check (optional) to choose the right difficulty and
+                    plan.</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-contact">
+            <summary class="fee-toggle">How can I contact CanSTEM for coaching?</summary>
+            <div class="fee-content">
+                <ul class="bullets">
+                    <li>Email: <strong>inquiry@canstemeducation.com</strong></li>
+                    <li>Phone: <a href="tel:+16478471231">647-847-1231</a></li>
+                    <li>Location: Brampton (in-person) + Online live classes</li>
+                </ul>
             </div>
         </details>
     </section>
