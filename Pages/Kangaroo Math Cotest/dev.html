@@ -180,7 +180,7 @@ Math Kangaroo Contest Coaching Page -->
         }
     }
 
-    /* Cards (unchanged) */
+    /* Cards */
     .cs-card {
         background: var(--panel);
         border: 1px solid var(--border);
@@ -372,33 +372,93 @@ Math Kangaroo Contest Coaching Page -->
         }
     }
 
-    /* Registration notice (NEW) */
+    /* 2026 Registration Notice (visually appealing + readable) */
     .reg-card {
-        border: 1px solid var(--border);
         border-radius: var(--radius);
-        box-shadow: var(--shadow-soft);
-        background: #fff;
         padding: 18px 16px;
+        border: 1px solid rgba(226, 232, 240, .95);
+        border-left: 8px solid var(--gold);
+        box-shadow: 0 14px 34px rgba(2, 6, 23, .10);
+        background:
+            radial-gradient(900px 220px at 10% 0%, rgba(239, 246, 255, .92), transparent 60%),
+            radial-gradient(900px 240px at 90% 20%, rgba(255, 247, 237, .92), transparent 60%),
+            #ffffff;
     }
 
     .reg-title {
-        font-size: 22px;
-        font-weight: 900;
-        color: var(--brand);
-        letter-spacing: -.2px;
         margin: 0 0 10px;
+        color: var(--brand);
+        font-size: 24px;
+        font-weight: 900;
+        letter-spacing: -.2px;
+    }
+
+    .reg-sub {
+        margin: 0 0 12px;
+        color: #0b1220;
+        font-weight: 700;
     }
 
     .reg-list {
         margin: 0 0 0 1.2rem;
         padding: 0;
-        font-size: 18px;
-        line-height: 1.85;
         color: #000;
+        font-size: 18px;
+        line-height: 1.9;
     }
 
     .reg-list li {
-        margin: 8px 0;
+        margin: 10px 0;
+    }
+
+    .hl {
+        display: inline-block;
+        padding: 0 .35em;
+        border-radius: 8px;
+        background: rgba(251, 176, 37, .18);
+        border: 1px solid rgba(245, 158, 11, .30);
+    }
+
+    .reg-actions {
+        margin-top: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .reg-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px 14px;
+        border-radius: 999px;
+        font-weight: 800;
+        cursor: pointer;
+        user-select: none;
+        text-decoration: none;
+        border: 1px solid rgba(11, 27, 90, .45);
+        transition: transform .18s ease, box-shadow .22s ease;
+        line-height: 1.2;
+    }
+
+    .reg-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 14px 34px rgba(2, 6, 23, .12);
+    }
+
+    .reg-btn.primary {
+        background: linear-gradient(90deg, var(--brand), #2563eb);
+        color: #fff;
+        border-color: rgba(0, 17, 97, .25);
+        box-shadow: 0 12px 28px rgba(0, 17, 97, .18);
+    }
+
+    .reg-btn.ghost {
+        background: #fff;
+        color: #0b1b5a;
+        border: 1px solid rgba(199, 210, 254, .95);
     }
 
     @media (max-width:768px) {
@@ -408,6 +468,10 @@ Math Kangaroo Contest Coaching Page -->
 
         .reg-list {
             font-size: 16px;
+        }
+
+        .reg-btn {
+            width: 100%;
         }
     }
 
@@ -631,14 +695,6 @@ Math Kangaroo Contest Coaching Page -->
         margin-bottom: 14px;
     }
 
-    .faq-note {
-        margin-top: 8px;
-        color: #64748b;
-        font-weight: 600;
-        font-size: 14px;
-        line-height: 1.8;
-    }
-
     details.fee-section.faq-item {
         border: 1px solid rgba(191, 219, 254, .75);
         box-shadow: 0 8px 22px rgba(2, 6, 23, .06);
@@ -659,7 +715,8 @@ Math Kangaroo Contest Coaching Page -->
         .cs-mini,
         details.fee-section,
         .snapshot-accordion .snap-sec,
-        .btn {
+        .btn,
+        .reg-btn {
             transition: none !important;
         }
     }
@@ -771,22 +828,33 @@ Math Kangaroo Contest Coaching Page -->
         </div>
     </section>
 
-    <!-- 2026 Registration Notice (NEW) -->
+    <!-- 2026 Registration Notice (Front + highlighted) -->
     <section class="reg-card mt-8" aria-label="2026 Canadian Math Kangaroo Contest registration notice">
         <div class="reg-title">2026 Canadian Math Kangaroo Contest registration is open!</div>
+        <div class="reg-sub">Key dates, fees, and registration details:</div>
         <ol class="reg-list">
             <li>Registration for the 2026 Canadian Math Kangaroo Contest is now <strong>open</strong>.</li>
             <li>It will be held both <strong>online</strong> (March 23-25, 2026) and <strong>in-person</strong> (March
                 22, 2026).</li>
-            <li>The early bird fee is <strong>$20</strong> if registered by <strong>February 9</strong>.</li>
-            <li>The regular fee is <strong>$25</strong> from <strong>February 10</strong> to the registration deadline
-                on <strong>February 23rd</strong>.</li>
+            <li>The early bird fee is <span class="hl"><strong>$20</strong></span> if registered by <span
+                    class="hl"><strong>February 9</strong></span>.</li>
+            <li>The regular fee is <span class="hl"><strong>$25</strong></span> from <strong>February 10</strong> to the
+                registration deadline on <strong>February 23rd</strong>.</li>
             <li>Participants who register by <strong>February 21st</strong> will be invited to a free 60-minute training
                 class.</li>
             <li>Discounts for bulk registrations will apply to teacher accounts automatically during check-out ($1
                 discount per student for 10 participants, $2 discount per student for 20 participants, $3 discount for
                 30 and more).</li>
         </ol>
+
+        <div class="reg-actions" aria-label="Registration contact and inquiry form">
+            <a class="reg-btn primary"
+                href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                target="_blank" rel="noopener">Inquiry Form</a>
+            <a class="reg-btn ghost"
+                href="mailto:inquiry@canstemeducation.com?subject=Canadian%20Math%20Kangaroo%202026%20Registration">Email:
+                inquiry@canstemeducation.com</a>
+        </div>
     </section>
 
     <!-- CTA -->
@@ -908,8 +976,8 @@ Math Kangaroo Contest Coaching Page -->
             <div class="fee-content">
                 <p>
                     CanSTEM is an <strong>official testing centre in Brampton</strong>. If you register for an in-person
-                    sitting and choose our site, your child can write the contest here in a supervised, student-friendly
-                    environment.
+                    sitting and choose our site,
+                    your child can write the contest here in a supervised, student-friendly environment.
                 </p>
                 <ul class="bullets">
                     <li>Comfortable testing setting</li>
@@ -929,6 +997,20 @@ Math Kangaroo Contest Coaching Page -->
             <div class="fee-content">
                 <p><strong>Competitive Exam Tutoring (Math Kangaroo, Waterloo &amp; Other School Science/Math
                         Contests)</strong></p>
+
+                <div class="sep"></div>
+
+                <p class="accent">Contest registration fees (2026)</p>
+                <ul class="bullets">
+                    <li>The early bird fee is <strong>$20</strong> if registered by <strong>February 9</strong>.</li>
+                    <li>The regular fee is <strong>$25</strong> from <strong>February 10</strong> to the registration
+                        deadline on <strong>February 23rd</strong>.</li>
+                </ul>
+                <p class="muted small">
+                    Registration help: <strong>inquiry@canstemeducation.com</strong> or submit the inquiry form:
+                    <a href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                        target="_blank" rel="noopener">Click here</a>
+                </p>
 
                 <div class="sep"></div>
 
@@ -1027,6 +1109,84 @@ Math Kangaroo Contest Coaching Page -->
                 </p>
             </div>
         </details>
+
+        <!-- NEW FAQS (fees + registration + coaching) -->
+        <details class="fee-section faq-item" id="faq-coaching-vs-contest-fee">
+            <summary class="fee-toggle">What’s the difference between coaching fees and contest registration fees?
+            </summary>
+            <div class="fee-content">
+                <p><strong>Coaching fees</strong> are for tutoring and preparation classes. <strong>Contest registration
+                        fees</strong> are paid to register for the actual contest sitting (online or in-person).</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-contest-fee-amount">
+            <summary class="fee-toggle">How much is the contest registration fee for 2026?</summary>
+            <div class="fee-content">
+                <p>The early bird fee is <strong>$20</strong> if registered by <strong>February 9</strong>. The regular
+                    fee is <strong>$25</strong> from <strong>February 10</strong> to the registration deadline on
+                    <strong>February 23rd</strong>.</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-bulk-discount">
+            <summary class="fee-toggle">Do you offer discounts for bulk registrations?</summary>
+            <div class="fee-content">
+                <p>Discounts for bulk registrations will apply to teacher accounts automatically during check-out ($1
+                    discount per student for 10 participants, $2 discount per student for 20 participants, $3 discount
+                    for 30 and more).</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-training-class">
+            <summary class="fee-toggle">Is there a free training class included with registration?</summary>
+            <div class="fee-content">
+                <p>Participants who register by <strong>February 21st</strong> will be invited to a free 60-minute
+                    training class.</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-online-inperson-dates">
+            <summary class="fee-toggle">When is the online vs in-person contest date for 2026?</summary>
+            <div class="fee-content">
+                <p>It will be held both <strong>online</strong> (March 23-25, 2026) and <strong>in-person</strong>
+                    (March 22, 2026).</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-online-availability">
+            <summary class="fee-toggle">Do you offer online coaching and monthly packages online?</summary>
+            <div class="fee-content">
+                <p>Online coaching is available as hourly tutoring. Monthly package option is listed as “Online not
+                    available” under Option B.</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-payment-before-schedule">
+            <summary class="fee-toggle">Do I need to pay before scheduling tutoring?</summary>
+            <div class="fee-content">
+                <p>Yes—(The fee for all hours in a month must be paid before the schedule is created).</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-which-package">
+            <summary class="fee-toggle">Which tutoring option is better: hourly or monthly?</summary>
+            <div class="fee-content">
+                <p>Hourly is best for flexible support and targeted practice. Monthly is best for consistent training
+                    and fast improvement (especially close to contest time).</p>
+            </div>
+        </details>
+
+        <details class="fee-section faq-item" id="faq-registration-help">
+            <summary class="fee-toggle">How can I contact you for registration help?</summary>
+            <div class="fee-content">
+                <p>Email <strong>inquiry@canstemeducation.com</strong> or submit the inquiry form:
+                    <a href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                        target="_blank" rel="noopener">Click here</a>.
+                </p>
+            </div>
+        </details>
+
     </section>
 
     <!-- JSON-LD -->
