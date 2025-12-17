@@ -104,9 +104,7 @@ Math Kangaroo Contest Coaching Page -->
     /* Top tabs (NOT sticky now) */
     .kang-topbar {
         position: relative;
-        /* was sticky */
         top: auto;
-        /* was 0 */
         z-index: 5;
         background: rgba(255, 255, 255, .92);
         backdrop-filter: saturate(1.2) blur(10px);
@@ -144,7 +142,6 @@ Math Kangaroo Contest Coaching Page -->
         transition: transform .12s ease, box-shadow .18s ease, border-color .18s ease;
         white-space: nowrap;
         font-size: 16px;
-        /* responsive base */
         line-height: 1.2;
     }
 
@@ -372,6 +369,45 @@ Math Kangaroo Contest Coaching Page -->
     @media (max-width:768px) {
         .hero-img {
             width: 90%;
+        }
+    }
+
+    /* Registration notice (NEW) */
+    .reg-card {
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-soft);
+        background: #fff;
+        padding: 18px 16px;
+    }
+
+    .reg-title {
+        font-size: 22px;
+        font-weight: 900;
+        color: var(--brand);
+        letter-spacing: -.2px;
+        margin: 0 0 10px;
+    }
+
+    .reg-list {
+        margin: 0 0 0 1.2rem;
+        padding: 0;
+        font-size: 18px;
+        line-height: 1.85;
+        color: #000;
+    }
+
+    .reg-list li {
+        margin: 8px 0;
+    }
+
+    @media (max-width:768px) {
+        .reg-title {
+            font-size: 20px;
+        }
+
+        .reg-list {
+            font-size: 16px;
         }
     }
 
@@ -735,6 +771,24 @@ Math Kangaroo Contest Coaching Page -->
         </div>
     </section>
 
+    <!-- 2026 Registration Notice (NEW) -->
+    <section class="reg-card mt-8" aria-label="2026 Canadian Math Kangaroo Contest registration notice">
+        <div class="reg-title">2026 Canadian Math Kangaroo Contest registration is open!</div>
+        <ol class="reg-list">
+            <li>Registration for the 2026 Canadian Math Kangaroo Contest is now <strong>open</strong>.</li>
+            <li>It will be held both <strong>online</strong> (March 23-25, 2026) and <strong>in-person</strong> (March
+                22, 2026).</li>
+            <li>The early bird fee is <strong>$20</strong> if registered by <strong>February 9</strong>.</li>
+            <li>The regular fee is <strong>$25</strong> from <strong>February 10</strong> to the registration deadline
+                on <strong>February 23rd</strong>.</li>
+            <li>Participants who register by <strong>February 21st</strong> will be invited to a free 60-minute training
+                class.</li>
+            <li>Discounts for bulk registrations will apply to teacher accounts automatically during check-out ($1
+                discount per student for 10 participants, $2 discount per student for 20 participants, $3 discount for
+                30 and more).</li>
+        </ol>
+    </section>
+
     <!-- CTA -->
     <section class="cta-strip mt-8" aria-label="Quick actions">
         <div class="cta-q">What would you like to do next?</div>
@@ -854,8 +908,8 @@ Math Kangaroo Contest Coaching Page -->
             <div class="fee-content">
                 <p>
                     CanSTEM is an <strong>official testing centre in Brampton</strong>. If you register for an in-person
-                    sitting and choose our site,
-                    your child can write the contest here in a supervised, student-friendly environment.
+                    sitting and choose our site, your child can write the contest here in a supervised, student-friendly
+                    environment.
                 </p>
                 <ul class="bullets">
                     <li>Comfortable testing setting</li>
