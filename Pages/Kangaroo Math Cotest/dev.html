@@ -850,6 +850,119 @@ Math Kangaroo Contest Coaching Page
             transition: none !important;
         }
     }
+
+    /* ILO Highlight Card */
+    .ilo-card {
+        border: 1px solid rgba(226, 232, 240, .95);
+        border-radius: 18px;
+        box-shadow: 0 10px 28px rgba(2, 6, 23, .08);
+        background:
+            radial-gradient(900px 220px at 10% 0%, rgba(239, 246, 255, .88), transparent 60%),
+            radial-gradient(900px 240px at 90% 20%, rgba(255, 247, 237, .88), transparent 60%),
+            #fff;
+        padding: 18px 16px;
+    }
+
+    .ilo-grid {
+        display: grid;
+        grid-template-columns: 1fr 320px;
+        /* LEFT text, RIGHT image */
+        gap: 18px;
+        align-items: center;
+    }
+
+    .ilo-body {
+        min-width: 0;
+    }
+
+    .ilo-title {
+        margin: 0 0 10px;
+        color: #001161;
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: -.2px;
+        line-height: 1.2;
+    }
+
+    .ilo-text {
+        margin: 0;
+        color: #0b1220;
+        font-size: 18px;
+        line-height: 1.85;
+    }
+
+    .ilo-text+.ilo-text {
+        margin-top: 10px;
+    }
+
+    .ilo-bullets {
+        margin: 12px 0 0 1.1rem;
+        padding: 0;
+        color: #0b1220;
+        font-size: 18px;
+        line-height: 1.8;
+    }
+
+    .ilo-bullets li {
+        margin: 6px 0;
+    }
+
+    .ilo-actions {
+        margin-top: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+    }
+
+    .ilo-media {
+        display: flex;
+        justify-content: center;
+        /* keeps it neat */
+        align-items: center;
+    }
+
+    /* Force image size 320px for desktop + tablet */
+    .ilo-img {
+        width: 320px;
+        max-width: 320px;
+        height: auto;
+        display: block;
+        border-radius: 14px;
+        box-shadow: 0 10px 26px rgba(2, 6, 23, .12);
+        background: #fff;
+    }
+
+    /* Mobile: stack (image on top for better UX) */
+    @media (max-width: 768px) {
+        .ilo-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .ilo-media {
+            order: -1;
+        }
+
+        .ilo-img {
+            width: 100%;
+            max-width: 420px;
+            /* still reasonable on mobile */
+        }
+
+        .ilo-actions a {
+            width: 100%;
+            text-align: center;
+        }
+
+        .ilo-title {
+            font-size: 20px;
+        }
+
+        .ilo-text,
+        .ilo-bullets {
+            font-size: 16px;
+        }
+    }
 </style>
 
 <!-- Tabs -->
@@ -1004,6 +1117,52 @@ Math Kangaroo Contest Coaching Page
             <a class="reg-btn ghost"
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=Student%20Inquiry%20via%20Website%20Email%3A&body=Hello%2C%0A%0AStudent%20Name%3A%0A%0ADescribe%20what%20kind%20of%20help%20you%20want%20from%20us%3A%0A%0AYou%20can%20expect%20a%20response%20within%2024%20hours%20from%20us%20during%20business%20days.%0A%0AThank%20you.">Email:
                 inquiry@canstemeducation.com</a>
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <!-- =========================
+International Logic Olympiad 2026 Highlight (HTML)
+========================= -->
+    <section class="ilo-card mt-8" aria-label="International Logic Olympiad 2026 highlight">
+        <div class="ilo-grid">
+
+            <!-- LEFT: Text -->
+            <div class="ilo-body">
+                <div class="ilo-title">International Logic Olympiad 2026 (Brampton)</div>
+
+                <p class="ilo-text">
+                    Looking for <strong>logic olympiad preparation in Brampton</strong>? CanSTEM supports students with
+                    <strong>logic, reasoning, patterns, and problem-solving</strong>—skills that also strengthen
+                    <strong>Math Kangaroo</strong> and other contest-style learning.
+                </p>
+
+                <ul class="ilo-bullets">
+                    <li><strong>Build:</strong> critical thinking, logic, accuracy, and speed</li>
+                    <li><strong>Great for:</strong> students who enjoy puzzles and challenge questions</li>
+                    <li><strong>Options:</strong> in-person in Brampton or online live support</li>
+                </ul>
+
+                <div class="ilo-actions" aria-label="International Logic Olympiad contact">
+                    <a class="reg-btn primary"
+                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                        target="_blank" rel="noopener">Inquiry Form</a>
+
+                    <a class="reg-btn ghost"
+                        href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=International%20Logic%20Olympiad%202026%20Inquiry&body=Hello%2C%0A%0AStudent%20Name%3A%0AGrade%3A%0A%0AI%20want%20help%20with%20International%20Logic%20Olympiad%202026%20preparation%20in%20Brampton.%0A%0APreferred%20mode%3A%20In-person%20%2F%20Online%0A%0AThank%20you.">
+                        Email: inquiry@canstemeducation.com
+                    </a>
+                </div>
+            </div>
+
+            <!-- RIGHT: Image -->
+            <div class="ilo-media">
+                <img class="ilo-img" loading="lazy"
+                    src="https://canstemeducation.com/wp-content/uploads/2025/12/Internatinal-Logic-Olympiad-2026.png"
+                    alt="International Logic Olympiad 2026 preparation in Brampton — CanSTEM Education" />
+            </div>
+
         </div>
     </section>
 
