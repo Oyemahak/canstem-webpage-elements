@@ -176,6 +176,13 @@
       padding: 10px 12px;
     }
 
+    /* HIDE TOP NAV ON MOBILE (as requested) */
+    @media (max-width:768px) {
+      .ilo-topbar {
+        display: none !important;
+      }
+    }
+
     .ilo-topbar-inner {
       max-width: var(--max);
       margin: 0 auto;
@@ -186,37 +193,11 @@
       flex-wrap: wrap;
     }
 
-    .brandmark {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 900;
-      color: var(--ink);
-      letter-spacing: -.2px;
-      white-space: nowrap;
-      flex: 0 0 auto;
-      font-size: 18px;
-    }
-
-    @media (max-width:768px) {
-      .brandmark {
-        font-size: 16px;
-      }
-    }
-
-    .brandmark .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 999px;
-      background: linear-gradient(180deg, var(--brand), var(--sub));
-      box-shadow: 0 0 0 5px rgba(0, 66, 124, .10);
-    }
-
     .ilo-tabs {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      justify-content: flex-end;
+      justify-content: center;
       flex: 1 1 auto;
       min-width: 260px;
     }
@@ -1378,18 +1359,40 @@
         font-size: 16px;
       }
     }
+
+    /* =========================
+      FIX: Coaching "What we practice" + "Coaching delivery"
+      - Remove inline styles
+      - Keep 2-column on desktop
+      - Stack (display:block) on mobile
+    ========================= */
+    .ilo-coaching-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width:768px) {
+      .ilo-coaching-split {
+        display: block;
+      }
+
+      .ilo-coaching-split>* {
+        margin-bottom: 14px;
+      }
+
+      .ilo-coaching-split>*:last-child {
+        margin-bottom: 0;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- Sticky Top Bar -->
+  <!--Top Bar -->
   <header class="ilo-topbar" aria-label="International Logic Olympiad navigation">
     <div class="ilo-topbar-inner">
-      <div class="brandmark" aria-label="CanSTEM ILO page">
-        <span class="dot" aria-hidden="true"></span>
-        <span>CanSTEM × ILO</span>
-      </div>
 
       <nav class="ilo-tabs" aria-label="Page sections">
         <div class="ilo-tab clickable" role="button" tabindex="0" data-target="hero" aria-current="true">
@@ -1723,7 +1726,8 @@
         </div>
       </div>
 
-      <div class="mt-6" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+      <!-- REMOVED INLINE CSS HERE + MOBILE STACK FIX -->
+      <div class="mt-6 ilo-coaching-split">
         <div class="card">
           <p class="card-title" role="heading" aria-level="3">
             <span class="ico" aria-hidden="true">
@@ -2066,7 +2070,7 @@
     <!-- FINAL CTA -->
     <section class="panel reveal" aria-label="Final call to action">
       <div class="footer-cta">
-        <p class="title-lg" role="heading" aria-level="2">Ready to start ILO preparation?</p>
+        <p class="title-lg" role="heading" aria-level="2">Ready to start Internatinal Logic Olympiad (ILO) 2026 preparation?</p>
         <p>
           A strong ILO score comes from consistent training: clean methods, smart pacing, and confidence under time.
           Start with the official sample test, then book coaching so your child improves fast and feels ready.
