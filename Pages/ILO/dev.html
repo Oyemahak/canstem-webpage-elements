@@ -5,11 +5,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <title>International Logic Olympiad (ILO) Coaching Canada | Official Regional Partner (Ontario) | CanSTEM Education</title>
+  <title>International Logic Olympiad (ILO) Coaching Canada | Official Regional Partner (Ontario) | CanSTEM Education
+  </title>
 
   <!-- SEO -->
   <meta name="description"
-    content="Prepare for the International Logic Olympiad (ILO) with CanSTEM Education—official ILO Regional Partner (Ontario, Canada). Coaching for Junior & Senior divisions, official resources, dates, fees, sample test, and a clear step-by-step plan." />
+    content="Official ILO Regional Partner in Ontario. Coaching for Junior & Senior students in Canada—mock tests, strategy, key dates, fees & resources. Book now." />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#001161" />
 
@@ -17,7 +18,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:title" content="International Logic Olympiad (ILO) Coaching Canada | CanSTEM Education" />
   <meta property="og:description"
-    content="Official ILO Regional Partner (Ontario, Canada). Coaching, dates, fees, sample test, and a complete preparation plan for Junior & Senior divisions." />
+    content="Official ILO Regional Partner (Ontario, Canada). Coaching, key dates, fees, sample test, and a complete preparation plan." />
   <meta property="og:image"
     content="https://canstemeducation.com/wp-content/uploads/2025/12/Internatinal-Logic-Olympiad-2026.png" />
 
@@ -25,16 +26,17 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="International Logic Olympiad (ILO) Coaching Canada | CanSTEM Education" />
   <meta name="twitter:description"
-    content="Official ILO Regional Partner (Ontario, Canada). Coaching, dates, fees, sample test, and a complete preparation plan." />
+    content="Official ILO Regional Partner (Ontario, Canada). Coaching, key dates, fees, sample test, and a complete preparation plan." />
   <meta name="twitter:image"
     content="https://canstemeducation.com/wp-content/uploads/2025/12/Internatinal-Logic-Olympiad-2026.png" />
 
   <style>
     /* =========================
       ILO Page — Premium Aesthetic + Motion (WP-safe: NO h-tags, NO button tags)
-      - Mobile minimum font-size: 16px everywhere
-      - Desktop base: 18px
-      - Mobile: force "block" layout for grids (clean single column)
+      Fixes:
+      - Card titles were not bold because .card p overrode .card-title
+      - Section titles in footer CTA were overridden by .footer-cta p
+      - Topbar sticky missing position: sticky
     ========================= */
 
     :root {
@@ -72,14 +74,7 @@
       font-family: "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color: var(--text);
 
-      /* Warm, glassy background (no dark corner) */
-      background:
-        radial-gradient(980px 560px at 10% 10%, rgba(251, 176, 37, .14), transparent 62%),
-        radial-gradient(900px 520px at 22% 20%, rgba(181, 18, 27, .08), transparent 64%),
-        radial-gradient(900px 520px at 92% 12%, rgba(0, 66, 124, .055), transparent 64%),
-        radial-gradient(980px 620px at 55% 100%, rgba(251, 176, 37, .09), transparent 62%),
-        linear-gradient(180deg, #ffffff 0%, #fffaf2 50%, #f4f7fb 100%);
-
+      background: #fff;
       line-height: var(--line);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -90,10 +85,11 @@
     }
 
     @media (max-width: 768px) {
-      body { font-size: var(--fs-mobile); }
+      body {
+        font-size: var(--fs-mobile);
+      }
     }
 
-    /* Subtle dotted pattern overlay */
     body:before {
       content: "";
       position: fixed;
@@ -106,33 +102,57 @@
       z-index: 0;
     }
 
-    /* Wrapper */
     #ilo-page-wrap {
       position: relative;
       z-index: 1;
       max-width: var(--max);
       margin: 0 auto;
-      padding: 18px 12px 58px;
+      padding-top: 24px;
     }
 
-    #ilo-page-wrap * { box-sizing: border-box; }
+    #ilo-page-wrap * {
+      box-sizing: border-box;
+    }
 
     @media (max-width: 768px) {
-      #ilo-page-wrap { padding: 14px 10px 48px; }
+      #ilo-page-wrap {
+        padding-top: 24px;
+      }
     }
 
-    /* Helpers */
-    .mt-2 { margin-top: 10px; }
-    .mt-4 { margin-top: 16px; }
-    .mt-6 { margin-top: 24px; }
-    .mt-8 { margin-top: 34px; }
-    .mt-10 { margin-top: 46px; }
+    .mt-2 {
+      margin-top: 10px;
+    }
 
-    .muted { color: var(--muted); }
+    .mt-4 {
+      margin-top: 16px;
+    }
 
-    /* keep small readable (>= 16px on mobile) */
-    .small { font-size: .95em; }
-    @media (max-width: 768px) { .small { font-size: 1em; } }
+    .mt-6 {
+      margin-top: 24px;
+    }
+
+    .mt-8 {
+      margin-top: 34px;
+    }
+
+    .mt-10 {
+      margin-top: 46px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .small {
+      font-size: .95em;
+    }
+
+    @media (max-width: 768px) {
+      .small {
+        font-size: 1em;
+      }
+    }
 
     .sep {
       height: 1px;
@@ -140,7 +160,6 @@
       margin: 26px 0;
     }
 
-    /* WP-safe "clickables" (divs) */
     .clickable {
       cursor: pointer;
       user-select: none;
@@ -155,7 +174,6 @@
 
     /* Top nav (sticky) */
     .ilo-topbar {
-      position: sticky;
       top: 0;
       z-index: 50;
       background: rgba(255, 255, 255, .74);
@@ -189,7 +207,9 @@
     }
 
     @media (max-width: 768px) {
-      .brandmark { font-size: 16px; }
+      .brandmark {
+        font-size: 16px;
+      }
     }
 
     .brandmark .dot {
@@ -221,8 +241,8 @@
       font-weight: 900;
       transition: transform .14s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
       white-space: nowrap;
-      font-size: 16px;
-      line-height: 1.2;
+      font-size: 18px;
+      line-height: 1.8;
       position: relative;
       overflow: hidden;
     }
@@ -236,7 +256,7 @@
       transition: opacity .22s ease;
     }
 
-    .ilo-tab > span {
+    .ilo-tab>span {
       width: 10px;
       height: 10px;
       border-radius: 999px;
@@ -247,7 +267,7 @@
       z-index: 1;
     }
 
-    .ilo-tab > em {
+    .ilo-tab>em {
       font-style: normal;
       position: relative;
       z-index: 1;
@@ -259,7 +279,9 @@
       border-color: rgba(251, 176, 37, .55);
     }
 
-    .ilo-tab:hover:before { opacity: 1; }
+    .ilo-tab:hover:before {
+      opacity: 1;
+    }
 
     .ilo-tab[aria-current="true"] {
       border-color: rgba(181, 18, 27, .35);
@@ -273,59 +295,65 @@
         padding: 10px;
       }
 
-      .ilo-topbar-inner { justify-content: center; }
-      .ilo-tabs { justify-content: center; min-width: 0; }
-      .ilo-tab { font-size: 16px; padding: 8px 12px; }
+      .ilo-topbar-inner {
+        justify-content: center;
+      }
+
+      .ilo-tabs {
+        justify-content: center;
+        min-width: 0;
+      }
+
+      .ilo-tab {
+        font-size: 20px;
+        padding: 8px 12px;
+      }
     }
 
     @media (max-width: 520px) {
-      .ilo-tabs { width: 100%; }
-      .ilo-tab { width: 100%; justify-content: center; }
+      .ilo-tabs {
+        width: 100%;
+      }
+
+      .ilo-tab {
+        width: 100%;
+        justify-content: center;
+      }
     }
 
-    /* Glass boost */
     .hero,
     .panel,
     .ilo-topbar {
       backdrop-filter: blur(14px) saturate(1.25);
     }
 
-    /* Typography (NO H TAGS) */
-    .title-xl {
-      margin: 10px 0 10px;
-      color: var(--ink);
-      font-size: 40px;
-      line-height: 1.12;
-      font-weight: 950;
-      letter-spacing: -.4px;
-    }
-
-    @media (max-width: 768px) {
-      .title-xl { font-size: 30px; }
-    }
-
-    .title-lg {
+    /* SECTION TITLES (p tags) — stronger specificity to beat theme rules */
+    #ilo-page-wrap .title-lg {
       margin: 0;
       text-align: center;
-      font-size: 30px;
-      font-weight: 950;
+      font-size: 28px;
+      font-weight: 900;
       letter-spacing: -.2px;
       color: var(--brand);
     }
 
     @media (max-width: 768px) {
-      .title-lg { font-size: 24px; }
+      #ilo-page-wrap .title-lg {
+        font-size: 24px;
+      }
     }
 
-    .card-title {
+    /* Card title (p tag) — FIXED (beats .card p) */
+    #ilo-page-wrap .card .card-title {
       margin: 0 0 10px;
       color: var(--ink);
       font-size: 20px;
-      font-weight: 950;
+      font-weight: 900;
       letter-spacing: -.15px;
       display: flex;
       align-items: center;
       gap: 10px;
+      line-height: 1.8;
     }
 
     /* Badge */
@@ -367,7 +395,6 @@
       padding: 22px 20px;
     }
 
-    /* Floating shapes */
     .floaters {
       position: absolute;
       inset: 0;
@@ -408,8 +435,13 @@
     }
 
     @keyframes drift {
-      0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
-      100% { transform: translate3d(18px, -10px, 0) rotate(6deg) scale(1.04); }
+      0% {
+        transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+      }
+
+      100% {
+        transform: translate3d(18px, -10px, 0) rotate(6deg) scale(1.04);
+      }
     }
 
     .hero-grid {
@@ -422,19 +454,22 @@
     }
 
     @media (max-width: 980px) {
-      .hero-grid { grid-template-columns: 1fr; }
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    /* Normal description text */
     .lede {
       margin: 0;
       color: #0b1220;
       font-size: 1em;
-      line-height: 1.9;
-      font-weight: 400;
+      line-height: 2;
+      font-weight: 500;
     }
 
-    .lede + .lede { margin-top: 10px; }
+    .lede+.lede {
+      margin-top: 10px;
+    }
 
     .hero-actions {
       margin-top: 14px;
@@ -444,7 +479,6 @@
       align-items: center;
     }
 
-    /* Buttons (anchors only) */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -458,12 +492,12 @@
       border: 1px solid rgba(11, 27, 90, .22);
       transition: transform .18s ease, box-shadow .24s ease, background .24s ease, border-color .24s ease;
       will-change: transform;
-      line-height: 1.2;
+      line-height: 1.8;
       position: relative;
       overflow: hidden;
       background: #fff;
       color: #0b1b5a !important;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .btn:before {
@@ -475,7 +509,10 @@
       transition: opacity .22s ease;
     }
 
-    .btn > span { position: relative; z-index: 1; }
+    .btn>span {
+      position: relative;
+      z-index: 1;
+    }
 
     .btn:hover {
       transform: translateY(-2px);
@@ -483,7 +520,9 @@
       border-color: rgba(251, 176, 37, .55);
     }
 
-    .btn:hover:before { opacity: 1; }
+    .btn:hover:before {
+      opacity: 1;
+    }
 
     .btn.primary {
       background: linear-gradient(90deg, var(--brand), var(--sub));
@@ -492,7 +531,9 @@
       box-shadow: 0 16px 44px rgba(0, 17, 97, .18);
     }
 
-    .btn.primary:before { opacity: .14; }
+    .btn.primary:before {
+      opacity: .14;
+    }
 
     .btn.warm {
       background: linear-gradient(180deg, #fffbeb, #ffffff);
@@ -501,10 +542,11 @@
     }
 
     @media (max-width: 768px) {
-      .hero-actions .btn { width: 100%; }
+      .hero-actions .btn {
+        width: 100%;
+      }
     }
 
-    /* Proof tiles */
     .proof-row {
       margin-top: 16px;
       display: grid;
@@ -513,11 +555,15 @@
     }
 
     @media (max-width: 980px) {
-      .proof-row { grid-template-columns: repeat(2, 1fr); }
+      .proof-row {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 520px) {
-      .proof-row { grid-template-columns: 1fr; }
+      .proof-row {
+        grid-template-columns: 1fr;
+      }
     }
 
     .proof {
@@ -556,19 +602,18 @@
     .proof b {
       display: block;
       color: var(--ink);
-      font-size: 16px;
-      font-weight: 950;
+      font-size: 18px;
+      font-weight: 900;
     }
 
     .proof p {
       margin: 6px 0 0;
       color: var(--muted);
-      font-size: 16px;
-      line-height: 1.6;
-      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.8;
+      font-weight: 500;
     }
 
-    /* Media card */
     .media-card {
       border-radius: 20px;
       border: 1px solid rgba(226, 232, 240, .95);
@@ -604,13 +649,15 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      font-weight: 950;
+      font-weight: 900;
       color: var(--ink);
       font-size: 18px;
     }
 
     @media (max-width: 768px) {
-      .media-top .k { font-size: 16px; }
+      .media-top .k {
+        font-size: 16px;
+      }
     }
 
     .spark {
@@ -631,7 +678,7 @@
     }
 
     .tag {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 900;
       padding: 7px 10px;
       border-radius: 999px;
@@ -660,19 +707,18 @@
     .media-foot p {
       margin: 0;
       color: #0b1220;
-      font-weight: 400;
-      line-height: 1.6;
-      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.8;
+      font-size: 18px;
     }
 
     .media-foot .sub {
       margin-top: 8px;
       color: var(--muted);
-      font-weight: 400;
-      font-size: 16px;
+      font-weight: 500;
+      font-size: 18px;
     }
 
-    /* Panel */
     .panel {
       border: 1px solid rgba(226, 232, 240, .95);
       border-radius: 22px;
@@ -694,9 +740,11 @@
       pointer-events: none;
     }
 
-    .panel > * { position: relative; z-index: 1; }
+    .panel>* {
+      position: relative;
+      z-index: 1;
+    }
 
-    /* Grids */
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -705,10 +753,11 @@
     }
 
     @media (max-width: 980px) {
-      .grid-3 { grid-template-columns: 1fr; }
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
     }
 
-    /* Cards */
     .card {
       border: 1px solid rgba(226, 232, 240, .95);
       border-radius: 18px;
@@ -738,7 +787,9 @@
       border-color: rgba(245, 158, 11, .45);
     }
 
-    .card:hover:before { opacity: 1; }
+    .card:hover:before {
+      opacity: 1;
+    }
 
     .ico {
       width: 42px;
@@ -759,26 +810,28 @@
       color: var(--brand);
     }
 
-    .card p {
+    /* FIX: Only body text in card, NOT card titles */
+    .card p:not(.card-title) {
       margin: 0;
       color: var(--muted);
-      font-size: 16px;
-      line-height: 1.75;
-      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.8;
+      font-weight: 500;
     }
 
     .card ul {
       margin: 12px 0 0 1.1rem;
       padding: 0;
       color: #0b1220;
-      font-size: 16px;
+      font-size: 18px;
       line-height: 1.8;
-      font-weight: 400;
+      font-weight: 500;
     }
 
-    .card li { margin: 6px 0; }
+    .card li {
+      margin: 6px 0;
+    }
 
-    /* Timeline */
     .timeline {
       margin-top: 14px;
       display: grid;
@@ -787,7 +840,9 @@
     }
 
     @media (max-width: 980px) {
-      .timeline { grid-template-columns: 1fr; }
+      .timeline {
+        grid-template-columns: 1fr;
+      }
     }
 
     .titem {
@@ -816,9 +871,9 @@
     }
 
     .tdate {
-      font-weight: 950;
+      font-weight: 900;
       color: var(--ilo-red);
-      font-size: 16px;
+      font-size: 18px;
       background: rgba(181, 18, 27, .06);
       border: 1px solid rgba(181, 18, 27, .16);
       padding: 8px 10px;
@@ -828,7 +883,7 @@
 
     .titem b {
       font-size: 18px;
-      font-weight: 950;
+      font-weight: 900;
       color: var(--ink);
       letter-spacing: -.1px;
     }
@@ -836,12 +891,11 @@
     .titem p {
       margin: 10px 0 0;
       color: var(--muted);
-      font-size: 16px;
-      line-height: 1.75;
-      font-weight: 400;
+      font-size: 18px;
+      line-height: 1.8;
+      font-weight: 500;
     }
 
-    /* Stats */
     .stats {
       margin-top: 14px;
       display: grid;
@@ -850,7 +904,9 @@
     }
 
     @media (max-width: 980px) {
-      .stats { grid-template-columns: repeat(2, 1fr); }
+      .stats {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     .stat {
@@ -872,21 +928,20 @@
 
     .stat .num {
       font-size: 32px;
-      font-weight: 950;
+      font-weight: 900;
       color: var(--ink);
       letter-spacing: -.3px;
-      line-height: 1.1;
+      line-height: 1.8;
     }
 
     .stat .lab {
       margin-top: 8px;
       color: var(--muted);
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 1.5;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.8;
     }
 
-    /* Pricing */
     .pricing {
       margin-top: 14px;
       display: grid;
@@ -895,7 +950,9 @@
     }
 
     @media (max-width: 980px) {
-      .pricing { grid-template-columns: 1fr; }
+      .pricing {
+        grid-template-columns: 1fr;
+      }
     }
 
     .price-card {
@@ -924,14 +981,14 @@
     }
 
     .price-card .name {
-      font-weight: 950;
+      font-weight: 900;
       color: var(--ink);
       font-size: 20px;
       letter-spacing: -.15px;
     }
 
     .price-card .pill {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 900;
       padding: 7px 10px;
       border-radius: 999px;
@@ -945,14 +1002,14 @@
     .price {
       margin-top: 10px;
       font-size: 34px;
-      font-weight: 950;
+      font-weight: 900;
       color: var(--brand);
       letter-spacing: -.35px;
     }
 
     .price small {
-      font-size: 16px;
-      font-weight: 400;
+      font-size: 18px;
+      font-weight: 500;
       color: var(--muted);
     }
 
@@ -960,9 +1017,9 @@
       margin: 12px 0 0 1.1rem;
       padding: 0;
       color: #0b1220;
-      font-size: 16px;
+      font-size: 18px;
       line-height: 1.8;
-      font-weight: 400;
+      font-weight: 500;
     }
 
     .price-actions {
@@ -973,10 +1030,11 @@
     }
 
     @media (max-width: 768px) {
-      .price-actions .btn { width: 100%; }
+      .price-actions .btn {
+        width: 100%;
+      }
     }
 
-    /* FAQ */
     .faq {
       margin-top: 14px;
       display: grid;
@@ -985,7 +1043,9 @@
     }
 
     @media (max-width: 980px) {
-      .faq { grid-template-columns: 1fr; }
+      .faq {
+        grid-template-columns: 1fr;
+      }
     }
 
     .qa {
@@ -1004,7 +1064,6 @@
 
     .qbtn {
       width: 100%;
-      border: none;
       background: linear-gradient(180deg, rgba(255, 247, 237, .75), #ffffff);
       color: #0b1220;
       font-weight: 900;
@@ -1013,7 +1072,7 @@
       gap: 10px;
       align-items: flex-start;
       justify-content: space-between;
-      font-size: 16px;
+      font-size: 18px;
     }
 
     .qbtn span {
@@ -1049,12 +1108,12 @@
       background: #fff;
     }
 
-    .ans > div {
+    .ans>div {
       padding: 14px 14px 16px;
       color: #0b1220;
-      font-size: 16px;
+      font-size: 18px;
       line-height: 1.8;
-      font-weight: 400;
+      font-weight: 500;
     }
 
     .ans a {
@@ -1069,21 +1128,26 @@
       border-bottom-color: #003566;
     }
 
-    .qa[data-open="1"] .qbtn i { transform: rotate(45deg); }
-    .qa[data-open="1"] .ans { max-height: 520px; }
+    .qa[data-open="1"] .qbtn i {
+      transform: rotate(45deg);
+    }
 
-    /* Footer CTA */
+    .qa[data-open="1"] .ans {
+      max-height: 520px;
+    }
+
     .footer-cta {
       text-align: center;
       padding: 22px 18px;
     }
 
-    .footer-cta p {
+    /* FIX: don't override title-lg inside footer */
+    .footer-cta p:not(.title-lg) {
       margin: 10px auto 0;
       max-width: 820px;
       color: var(--muted);
-      font-weight: 400;
-      font-size: 16px;
+      font-weight: 500;
+      font-size: 18px;
       line-height: 1.8;
     }
 
@@ -1097,10 +1161,11 @@
     }
 
     @media (max-width: 768px) {
-      .footer-actions .btn { width: 100%; }
+      .footer-actions .btn {
+        width: 100%;
+      }
     }
 
-    /* Back to top (NO button tag) */
     .toTop {
       position: fixed;
       right: 16px;
@@ -1124,8 +1189,8 @@
       justify-content: center;
       border-radius: 999px;
       padding: 12px 14px;
-      font-weight: 950;
-      font-size: 16px;
+      font-weight: 900;
+      font-size: 18px;
       color: #fff;
       background: linear-gradient(90deg, var(--brand), var(--sub));
       box-shadow: 0 18px 50px rgba(0, 17, 97, .22);
@@ -1137,7 +1202,6 @@
       box-shadow: 0 22px 60px rgba(0, 17, 97, .28);
     }
 
-    /* Scroll reveal */
     .reveal {
       opacity: 0;
       transform: translateY(14px);
@@ -1150,10 +1214,8 @@
       transform: translateY(0);
     }
 
-    /* =========================
-      MOBILE: "display:block for everything"
-    ========================= */
     @media (max-width: 768px) {
+
       .grid-3,
       .timeline,
       .stats,
@@ -1163,28 +1225,30 @@
         display: block !important;
       }
 
-      .grid-3 > *,
-      .timeline > *,
-      .stats > *,
-      .pricing > *,
-      .faq > *,
-      .proof-row > * {
+      .grid-3>*,
+      .timeline>*,
+      .stats>*,
+      .pricing>*,
+      .faq>*,
+      .proof-row>* {
         margin-bottom: 14px;
       }
 
-      .grid-3 > *:last-child,
-      .timeline > *:last-child,
-      .stats > *:last-child,
-      .pricing > *:last-child,
-      .faq > *:last-child,
-      .proof-row > *:last-child {
+      .grid-3>*:last-child,
+      .timeline>*:last-child,
+      .stats>*:last-child,
+      .pricing>*:last-child,
+      .faq>*:last-child,
+      .proof-row>*:last-child {
         margin-bottom: 0;
       }
     }
 
-    /* Reduce motion */
     @media (prefers-reduced-motion: reduce) {
-      * { scroll-behavior: auto !important; }
+      * {
+        scroll-behavior: auto !important;
+      }
+
       .floater,
       .reveal,
       .btn,
@@ -1198,7 +1262,10 @@
         animation: none !important;
         transition: none !important;
       }
-      .ans { transition: none !important; }
+
+      .ans {
+        transition: none !important;
+      }
     }
   </style>
 </head>
@@ -1214,7 +1281,6 @@
       </div>
 
       <nav class="ilo-tabs" aria-label="Page sections">
-        <!-- NO buttons: using divs -->
         <div class="ilo-tab clickable" role="button" tabindex="0" data-target="hero" aria-current="true">
           <span aria-hidden="true"></span><em>Overview</em>
         </div>
@@ -1255,22 +1321,23 @@
         <div>
           <div class="badge"><i aria-hidden="true"></i> Official ILO Regional Partner (Ontario, Canada)</div>
 
-          <!-- NO h1: using p with heading role -->
-          <p class="title-xl" role="heading" aria-level="1">International Logic Olympiad (ILO) Coaching in Canada</p>
-
           <p class="lede">
-            CanSTEM Education supports students preparing for the <strong>International Logic Olympiad (ILO)</strong>—a global competition focused on
-            <strong>logic, critical thinking, and structured reasoning</strong>. If your child loves puzzles, patterns, and deep-thinking questions,
+            CanSTEM Education supports students preparing for the <strong>International Logic Olympiad (ILO)</strong>—a
+            global competition focused on
+            <strong>logic, critical thinking, and structured reasoning</strong>. If your child loves puzzles, patterns,
+            and deep-thinking questions,
             this is the perfect challenge.
           </p>
 
           <p class="lede muted small">
-            We provide a complete experience: official-style training, mock exams, pacing strategy, and clear next steps—plus guidance for families across Canada.
+            We provide a complete experience: official-style training, mock exams, pacing strategy, and clear next
+            steps—plus guidance for families across Canada.
           </p>
 
           <div class="hero-actions" aria-label="Primary actions">
             <a class="btn primary"
-              href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en" target="_blank" rel="noopener">
+              href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+              target="_blank" rel="noopener">
               <span>Inquiry Form</span>
             </a>
             <a class="btn" href="https://portal.logicolympiad.org/sample" target="_blank" rel="noopener">
@@ -1333,8 +1400,10 @@
       <p class="title-lg" role="heading" aria-level="2">What is ILO, and what is CanSTEM’s role?</p>
 
       <p class="mt-4" style="margin-bottom:0; color:#0b1220; font-weight:400;">
-        The <strong>International Logic Olympiad (ILO)</strong> is a global logic competition designed to promote logic education and celebrate high-level reasoning.
-        CanSTEM Education is an <strong>official ILO Regional Partner (Ontario, Canada)</strong>—supporting students with coaching, planning, and local guidance.
+        The <strong>International Logic Olympiad (ILO)</strong> is a global logic competition designed to promote logic
+        education and celebrate high-level reasoning.
+        CanSTEM Education is an <strong>official ILO Regional Partner (Ontario, Canada)</strong>—supporting students
+        with coaching, planning, and local guidance.
       </p>
 
       <div class="grid-3" aria-label="About ILO and CanSTEM highlights">
@@ -1351,7 +1420,8 @@
             </span>
             What ILO tests
           </p>
-          <p>Logical deduction, careful reading, patterns, sets, and multi-step reasoning—designed to reward clarity over memorization.</p>
+          <p>Logical deduction, careful reading, patterns, sets, and multi-step reasoning—designed to reward clarity
+            over memorization.</p>
           <ul>
             <li>Logic puzzles &amp; constraints</li>
             <li>Pattern recognition</li>
@@ -1371,7 +1441,8 @@
             </span>
             CanSTEM &amp; ILO
           </p>
-          <p>As an official Regional Partner (Ontario, Canada), CanSTEM supports families with a clear pathway from practice to performance.</p>
+          <p>As an official Regional Partner (Ontario, Canada), CanSTEM supports families with a clear pathway from
+            practice to performance.</p>
           <ul>
             <li>Coaching + mock tests</li>
             <li>Division placement guidance</li>
@@ -1391,7 +1462,8 @@
             </span>
             Why students love it
           </p>
-          <p>ILO is exciting because it feels like “smart puzzles” with a competitive edge—perfect for students who like challenges.</p>
+          <p>ILO is exciting because it feels like “smart puzzles” with a competitive edge—perfect for students who like
+            challenges.</p>
           <ul>
             <li>Fun, brainy problem sets</li>
             <li>Confidence with unfamiliar tasks</li>
@@ -1530,8 +1602,7 @@
             <span class="ico" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                 stroke-linejoin="round">
-                <path
-                  d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-3.4-3.4 2.7-2.3Z">
+                <path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.3 2.3-3.4-3.4 2.7-2.3Z">
                 </path>
               </svg>
             </span>
@@ -1588,8 +1659,9 @@
       </div>
 
       <div class="mt-6" style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
-        <a class="btn primary" href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
-          target="_blank" rel="noopener">
+        <a class="btn primary"
+          href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en" target="_blank"
+          rel="noopener">
           <span>Start with Inquiry Form</span>
         </a>
         <a class="btn"
@@ -1606,7 +1678,8 @@
       <p class="title-lg" role="heading" aria-level="2">Official sample test &amp; learning resources</p>
 
       <p class="mt-4" style="margin-bottom:0; color:#0b1220; font-weight:400;">
-        Start with the official sample, then train with structured coaching so students improve speed, accuracy, and confidence.
+        Start with the official sample, then train with structured coaching so students improve speed, accuracy, and
+        confidence.
       </p>
 
       <div class="grid-3" aria-label="Resource cards">
@@ -1622,8 +1695,9 @@
           </p>
           <p>Try an official sample to understand the style, pacing, and difficulty.</p>
           <p class="mt-4" style="margin-bottom:0;">
-            <a class="btn primary" style="padding:10px 14px;display:inline-flex;" href="https://portal.logicolympiad.org/sample"
-              target="_blank" rel="noopener"><span>Open Sample Test</span></a>
+            <a class="btn primary" style="padding:10px 14px;display:inline-flex;"
+              href="https://portal.logicolympiad.org/sample" target="_blank" rel="noopener"><span>Open Sample
+                Test</span></a>
           </p>
         </div>
 
@@ -1641,8 +1715,9 @@
           </p>
           <p>Registration and official steps happen through the ILO portal.</p>
           <p class="mt-4" style="margin-bottom:0;">
-            <a class="btn" style="padding:10px 14px;display:inline-flex;" href="https://portal.logicolympiad.org/signup-start"
-              target="_blank" rel="noopener"><span>Go to Portal</span></a>
+            <a class="btn" style="padding:10px 14px;display:inline-flex;"
+              href="https://portal.logicolympiad.org/signup-start" target="_blank" rel="noopener"><span>Go to
+                Portal</span></a>
           </p>
         </div>
 
@@ -1661,15 +1736,17 @@
           </p>
           <p>A structured logic lesson library referenced by ILO resources (great for fundamentals).</p>
           <p class="mt-4" style="margin-bottom:0;">
-            <a class="btn warm" style="padding:10px 14px;display:inline-flex;" href="https://intrologic.stanford.edu/public/lessons.php"
-              target="_blank" rel="noopener"><span>Open Lessons</span></a>
+            <a class="btn warm" style="padding:10px 14px;display:inline-flex;"
+              href="https://intrologic.stanford.edu/public/lessons.php" target="_blank" rel="noopener"><span>Open
+                Lessons</span></a>
           </p>
         </div>
       </div>
 
       <div class="mt-6" style="text-align:center;">
         <p class="muted small" style="margin:0; font-weight:400;">
-          Tip: Start with the sample test, then book coaching so the student learns the “why” behind solutions and gains speed with real practice.
+          Tip: Start with the sample test, then book coaching so the student learns the “why” behind solutions and gains
+          speed with real practice.
         </p>
       </div>
     </section>
@@ -1693,7 +1770,8 @@
             <li>We can guide the steps</li>
           </ul>
           <div class="price-actions">
-            <a class="btn" style="padding:10px 14px;" href="https://portal.logicolympiad.org/signup-start" target="_blank" rel="noopener">
+            <a class="btn" style="padding:10px 14px;" href="https://portal.logicolympiad.org/signup-start"
+              target="_blank" rel="noopener">
               <span>Open Portal</span>
             </a>
           </div>
@@ -1712,7 +1790,8 @@
             <li>Mock tests + error analysis</li>
           </ul>
           <div class="price-actions">
-            <a class="btn primary" style="padding:10px 14px;" href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+            <a class="btn primary" style="padding:10px 14px;"
+              href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
               target="_blank" rel="noopener"><span>Start Inquiry</span></a>
             <a class="btn" style="padding:10px 14px;" href="tel:+16478471231"><span>Call</span></a>
           </div>
@@ -1739,7 +1818,8 @@
 
       <div class="mt-6" style="text-align:center;">
         <p class="muted small" style="margin:0; font-weight:400;">
-          We recommend the best plan after a quick check (grade + comfort with logic questions). You won’t overpay or overcommit.
+          We recommend the best plan after a quick check (grade + comfort with logic questions). You won’t overpay or
+          overcommit.
         </p>
       </div>
     </section>
@@ -1752,11 +1832,11 @@
 
       <div class="faq" aria-label="FAQ items">
         <div class="qa" data-open="1">
-          <!-- NO button: div toggle -->
           <div class="qbtn clickable" role="button" tabindex="0" aria-expanded="true">
             <span>Are you an official ILO Regional Partner?</span>
             <i aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M12 5v14"></path>
                 <path d="M5 12h14"></path>
               </svg>
@@ -1764,7 +1844,8 @@
           </div>
           <div class="ans">
             <div>
-              Yes. CanSTEM Education supports ILO as an <strong>official Regional Partner (Ontario, Canada)</strong>. We help students prepare with coaching and guide families through official steps and readiness.
+              Yes. CanSTEM Education supports ILO as an <strong>official Regional Partner (Ontario, Canada)</strong>. We
+              help students prepare with coaching and guide families through official steps and readiness.
             </div>
           </div>
         </div>
@@ -1773,7 +1854,8 @@
           <div class="qbtn clickable" role="button" tabindex="0" aria-expanded="false">
             <span>Where can we try official ILO-style questions?</span>
             <i aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M12 5v14"></path>
                 <path d="M5 12h14"></path>
               </svg>
@@ -1782,7 +1864,8 @@
           <div class="ans">
             <div>
               Use the <strong>official sample test</strong> here:
-              <a href="https://portal.logicolympiad.org/sample" target="_blank" rel="noopener">portal.logicolympiad.org/sample</a>.
+              <a href="https://portal.logicolympiad.org/sample" target="_blank"
+                rel="noopener">portal.logicolympiad.org/sample</a>.
               We also train students using sample-style sets with timing and strategy.
             </div>
           </div>
@@ -1792,7 +1875,8 @@
           <div class="qbtn clickable" role="button" tabindex="0" aria-expanded="false">
             <span>What are the key dates for 2026?</span>
             <i aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M12 5v14"></path>
                 <path d="M5 12h14"></path>
               </svg>
@@ -1811,7 +1895,8 @@
           <div class="qbtn clickable" role="button" tabindex="0" aria-expanded="false">
             <span>What is the registration fee?</span>
             <i aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M12 5v14"></path>
                 <path d="M5 12h14"></path>
               </svg>
@@ -1819,7 +1904,8 @@
           </div>
           <div class="ans">
             <div>
-              The official ILO registration fee is <strong>$50</strong> (paid through the official portal). Coaching fees are separate.
+              The official ILO registration fee is <strong>$50</strong> (paid through the official portal). Coaching
+              fees are separate.
             </div>
           </div>
         </div>
@@ -1828,7 +1914,8 @@
           <div class="qbtn clickable" role="button" tabindex="0" aria-expanded="false">
             <span>Do you offer online coaching across Canada?</span>
             <i aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M12 5v14"></path>
                 <path d="M5 12h14"></path>
               </svg>
@@ -1836,7 +1923,8 @@
           </div>
           <div class="ans">
             <div>
-              Yes. We provide live, interactive online sessions for students across Canada, plus in-person coaching in Brampton.
+              Yes. We provide live, interactive online sessions for students across Canada, plus in-person coaching in
+              Brampton.
             </div>
           </div>
         </div>
@@ -1845,7 +1933,8 @@
           <div class="qbtn clickable" role="button" tabindex="0" aria-expanded="false">
             <span>How do we start?</span>
             <i aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
                 <path d="M12 5v14"></path>
                 <path d="M5 12h14"></path>
               </svg>
@@ -1853,7 +1942,8 @@
           </div>
           <div class="ans">
             <div>
-              Submit the inquiry form with the student’s grade and goals. We’ll recommend a plan and schedule, then start weekly training and mock exams closer to the preliminaries.
+              Submit the inquiry form with the student’s grade and goals. We’ll recommend a plan and schedule, then
+              start weekly training and mock exams closer to the preliminaries.
             </div>
           </div>
         </div>
@@ -1872,9 +1962,11 @@
         </p>
 
         <div class="footer-actions" aria-label="Final actions">
-          <a class="btn primary" href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+          <a class="btn primary"
+            href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
             target="_blank" rel="noopener"><span>Inquiry Form</span></a>
-          <a class="btn" href="https://portal.logicolympiad.org/sample" target="_blank" rel="noopener"><span>Official Sample Test</span></a>
+          <a class="btn" href="https://portal.logicolympiad.org/sample" target="_blank" rel="noopener"><span>Official
+              Sample Test</span></a>
           <a class="btn warm" href="tel:+16478471231"><span>Call: 647-847-1231</span></a>
           <a class="btn"
             href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=International%20Logic%20Olympiad%20(ILO)%20Inquiry&body=Hello%2C%0A%0AStudent%20Name%3A%0A%0AGrade%3A%0A%0ACity%2FProvince%3A%0A%0AI%20want%20to%20ask%20about%20ILO%202026%20coaching%20and%20registration%20steps.%0A%0AThank%20you."
@@ -1962,7 +2054,6 @@
 
   <script>
     (function () {
-      /* Smooth section navigation + active tab highlight (div tabs) */
       const tabs = Array.from(document.querySelectorAll(".ilo-tab"));
       const sections = tabs.map(t => document.getElementById(t.getAttribute("data-target"))).filter(Boolean);
 
@@ -1998,7 +2089,6 @@
         });
       });
 
-      /* Active tab as you scroll */
       const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) setActive(entry.target.id);
@@ -2007,7 +2097,6 @@
 
       sections.forEach(sec => sectionObserver.observe(sec));
 
-      /* Scroll reveal */
       const revealEls = Array.from(document.querySelectorAll(".reveal"));
       const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -2020,7 +2109,6 @@
 
       revealEls.forEach(el => revealObserver.observe(el));
 
-      /* Animated counters */
       const counters = Array.from(document.querySelectorAll("[data-count]"));
       const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -2053,7 +2141,6 @@
 
       counters.forEach(c => counterObserver.observe(c));
 
-      /* FAQ accordion (div toggles) */
       const qas = Array.from(document.querySelectorAll(".qa"));
       function setOpen(qa, open) {
         qa.setAttribute("data-open", open ? "1" : "0");
@@ -2061,7 +2148,6 @@
         if (btn) btn.setAttribute("aria-expanded", open ? "true" : "false");
       }
 
-      // init aria states
       qas.forEach(qa => setOpen(qa, qa.getAttribute("data-open") === "1"));
 
       qas.forEach(qa => {
@@ -2083,7 +2169,6 @@
         });
       });
 
-      /* Back to top (div) */
       const toTop = document.getElementById("toTop");
       const toTopBtn = document.getElementById("toTopBtn");
 
@@ -2106,7 +2191,6 @@
         }
       });
 
-      /* Tilt effect on hero media card */
       const tiltCard = document.getElementById("tiltCard");
       if (tiltCard && window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
         const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
@@ -2132,7 +2216,6 @@
         tiltCard.addEventListener("touchend", onLeave, { passive: true });
       }
 
-      /* Open by hash */
       if (location.hash) {
         const id = location.hash.replace("#", "");
         const target = document.getElementById(id);
@@ -2145,4 +2228,5 @@
   </script>
 
 </body>
+
 </html>
