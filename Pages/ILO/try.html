@@ -33,22 +33,31 @@
     <style>
         /* =========================
       ILO Page — Premium Aesthetic + Motion
-      - Rich visuals (animated gradients, floating shapes, pattern overlay)
+      - Rich visuals (animated gradients, floating shapes, subtle pattern)
       - Scroll reveal + counters + timeline
-      - Interactive nav + section progress bar
-      - SEO-friendly structure + schema
+      - Interactive sticky nav + nice hover effects
+      - NO top progress bar (removed)
+      - Clean typography: headings bold, descriptions normal
+      - Mobile min font 16px, desktop base 18px
+      - ILO accents (red/gold) + CanSTEM (blue)
     ========================= */
 
         :root {
+            /* CanSTEM */
             --brand: #001161;
             --sub: #00427c;
+
+            /* ILO accents */
+            --ilo-red: #b5121b;
+            --ilo-gold: #fbb025;
+
+            /* Neutrals */
             --ink: #0f172a;
             --text: #26262B;
             --muted: #475569;
             --border: #e2e8f0;
-            --panel: #ffffff;
 
-            --gold: #fbb025;
+            /* Soft accents */
             --teal: #1dd6c3;
             --violet: #7c3aed;
             --blue: #2563eb;
@@ -64,7 +73,7 @@
             --max: 1200px;
         }
 
-        /* Page base */
+        /* Base */
         html,
         body {
             margin: 0;
@@ -75,9 +84,9 @@
             font-family: "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
             color: var(--text);
             background:
-                radial-gradient(1100px 520px at 12% 8%, rgba(37, 99, 235, .14), transparent 60%),
-                radial-gradient(900px 420px at 92% 12%, rgba(124, 58, 237, .10), transparent 60%),
-                radial-gradient(900px 480px at 70% 80%, rgba(29, 214, 195, .10), transparent 60%),
+                radial-gradient(1100px 520px at 10% 10%, rgba(0, 17, 97, .12), transparent 60%),
+                radial-gradient(900px 420px at 92% 12%, rgba(181, 18, 27, .10), transparent 60%),
+                radial-gradient(900px 480px at 70% 80%, rgba(251, 176, 37, .10), transparent 60%),
                 #ffffff;
             line-height: var(--line);
             -webkit-font-smoothing: antialiased;
@@ -86,39 +95,17 @@
             overflow-x: hidden;
         }
 
-        /* Subtle dotted pattern overlay */
+        /* Subtle dotted overlay (very light) */
         body:before {
             content: "";
             position: fixed;
             inset: 0;
             pointer-events: none;
-            opacity: .55;
-            background-image: radial-gradient(rgba(2, 6, 23, .09) 1px, transparent 1px);
+            opacity: .38;
+            background-image: radial-gradient(rgba(2, 6, 23, .10) 1px, transparent 1px);
             background-size: 18px 18px;
             mask-image: radial-gradient(1200px 600px at 20% 10%, #000 45%, transparent 75%);
             z-index: 0;
-        }
-
-        /* Top progress bar */
-        .ilo-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 4px;
-            width: 100%;
-            z-index: 9999;
-            background: transparent;
-            pointer-events: none;
-        }
-
-        .ilo-progress>span {
-            display: block;
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--brand), var(--blue), var(--teal));
-            box-shadow: 0 6px 20px rgba(37, 99, 235, .35);
-            border-radius: 999px;
-            transition: width .06s linear;
         }
 
         /* Wrapper */
@@ -129,28 +116,18 @@
             margin: 0 auto;
             padding: 18px 12px 58px;
             font-size: 18px;
+            /* desktop base */
         }
 
         #ilo-page-wrap * {
             box-sizing: border-box;
         }
 
-        @media (max-width:1024px) {
-            #ilo-page-wrap {
-                font-size: 18px;
-            }
-        }
-
         @media (max-width:768px) {
             #ilo-page-wrap {
                 font-size: 16px;
+                /* mobile minimum */
                 padding: 14px 10px 48px;
-            }
-        }
-
-        @media (max-width:420px) {
-            #ilo-page-wrap {
-                font-size: 14px;
             }
         }
 
@@ -180,7 +157,7 @@
         }
 
         .small {
-            font-size: .92em;
+            font-size: 18px;
         }
 
         .sep {
@@ -189,7 +166,26 @@
             margin: 26px 0;
         }
 
-        /* Chip / badge */
+        /* Typography rules: headings bold, body normal */
+        p {
+            margin: 0;
+            font-weight: 500;
+            /* normal body */
+            color: #111827;
+        }
+
+        .muted p,
+        p.muted {
+            color: var(--muted);
+        }
+
+        strong,
+        b {
+            font-weight: 800;
+            /* keywords bold */
+        }
+
+        /* Badge */
         .badge {
             display: inline-flex;
             align-items: center;
@@ -197,9 +193,9 @@
             padding: 8px 12px;
             border-radius: 999px;
             font-weight: 900;
-            font-size: 14px;
+            font-size: 18px;
             letter-spacing: .02em;
-            border: 1px solid rgba(199, 210, 254, .95);
+            border: 1px solid rgba(191, 219, 254, .92);
             background: rgba(255, 255, 255, .88);
             color: #0b1b5a;
             box-shadow: var(--shadow-tiny);
@@ -210,20 +206,20 @@
             width: 10px;
             height: 10px;
             border-radius: 999px;
-            background: linear-gradient(180deg, var(--brand), var(--blue));
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, .12);
+            background: linear-gradient(180deg, var(--ilo-red), var(--ilo-gold));
+            box-shadow: 0 0 0 4px rgba(181, 18, 27, .12);
         }
 
-        /* Top nav (smart sticky) */
+        /* Sticky Top Bar */
         .ilo-topbar {
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(255, 255, 255, .74);
+            background: rgba(255, 255, 255, .78);
             backdrop-filter: saturate(1.35) blur(14px);
             border-bottom: 1px solid rgba(226, 232, 240, .92);
             box-shadow: 0 10px 28px rgba(2, 6, 23, .06);
-            margin: 0 -12px;
+            margin: 0;
             padding: 10px 12px;
         }
 
@@ -241,7 +237,7 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            font-weight: 900;
+            font-weight: 950;
             color: var(--ink);
             letter-spacing: -.2px;
             white-space: nowrap;
@@ -251,8 +247,13 @@
             width: 12px;
             height: 12px;
             border-radius: 999px;
-            background: linear-gradient(180deg, var(--brand), var(--blue));
-            box-shadow: 0 0 0 5px rgba(37, 99, 235, .10);
+            background: linear-gradient(180deg, var(--brand), var(--sub));
+            box-shadow: 0 0 0 5px rgba(0, 66, 124, .10);
+        }
+
+        .brandmark .x {
+            color: var(--ilo-red);
+            font-weight: 950;
         }
 
         .ilo-tabs {
@@ -276,7 +277,7 @@
             user-select: none;
             transition: transform .14s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
             white-space: nowrap;
-            font-size: 14px;
+            font-size: 18px;
             line-height: 1.2;
             position: relative;
             overflow: hidden;
@@ -286,7 +287,10 @@
             content: "";
             position: absolute;
             inset: -1px;
-            background: linear-gradient(120deg, rgba(37, 99, 235, .18), rgba(29, 214, 195, .18), rgba(124, 58, 237, .12));
+            background: linear-gradient(120deg,
+                    rgba(0, 17, 97, .14),
+                    rgba(181, 18, 27, .10),
+                    rgba(251, 176, 37, .12));
             opacity: 0;
             transition: opacity .22s ease;
         }
@@ -296,8 +300,8 @@
             height: 10px;
             border-radius: 999px;
             flex: 0 0 auto;
-            background: linear-gradient(180deg, var(--brand), var(--blue));
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, .10);
+            background: linear-gradient(180deg, var(--brand), var(--ilo-red));
+            box-shadow: 0 0 0 4px rgba(251, 176, 37, .14);
             position: relative;
             z-index: 1;
         }
@@ -311,7 +315,7 @@
         .ilo-tab:hover {
             transform: translateY(-1px);
             box-shadow: 0 16px 40px rgba(2, 6, 23, .10);
-            border-color: rgba(191, 219, 254, .95);
+            border-color: rgba(251, 176, 37, .40);
         }
 
         .ilo-tab:hover:before {
@@ -319,35 +323,30 @@
         }
 
         .ilo-tab[aria-current="true"] {
-            border-color: rgba(37, 99, 235, .55);
-            box-shadow: 0 12px 30px rgba(37, 99, 235, .18);
-            background: linear-gradient(180deg, #eff6ff, #ffffff);
+            border-color: rgba(181, 18, 27, .40);
+            box-shadow: 0 12px 30px rgba(181, 18, 27, .14);
+            background: linear-gradient(180deg, rgba(255, 247, 237, .9), #ffffff);
         }
 
         @media (max-width:768px) {
             .ilo-topbar {
-                margin: 0 -10px;
                 padding: 10px 10px;
             }
 
             .ilo-tab {
-                font-size: 13px;
+                font-size: 16px;
                 padding: 8px 12px;
             }
         }
 
-        /* Intro / Hero */
+        /* Hero */
         .hero {
             position: relative;
             border-radius: 22px;
             overflow: hidden;
             border: 1px solid rgba(226, 232, 240, .95);
             box-shadow: var(--shadow-soft);
-            background:
-                radial-gradient(900px 420px at 12% 10%, rgba(37, 99, 235, .22), transparent 60%),
-                radial-gradient(900px 420px at 90% 18%, rgba(124, 58, 237, .14), transparent 60%),
-                radial-gradient(900px 520px at 70% 95%, rgba(29, 214, 195, .12), transparent 60%),
-                linear-gradient(180deg, rgba(255, 255, 255, .92), rgba(255, 255, 255, .86));
+            background: #fff;
             padding: 22px 20px;
         }
 
@@ -364,31 +363,30 @@
             width: 280px;
             height: 280px;
             border-radius: 80px;
-            filter: blur(0px);
-            opacity: .35;
+            opacity: .32;
             transform: translate3d(0, 0, 0);
             animation: drift 12s ease-in-out infinite alternate;
             mix-blend-mode: multiply;
         }
 
         .floater.one {
-            left: -80px;
-            top: -70px;
-            background: radial-gradient(circle at 30% 30%, rgba(37, 99, 235, .6), rgba(37, 99, 235, 0));
+            left: -200px;
+            top: -200px;
+            background: #ffe3b0;
             animation-duration: 15s;
         }
 
         .floater.two {
             right: -110px;
             top: 30px;
-            background: radial-gradient(circle at 35% 35%, rgba(124, 58, 237, .55), rgba(124, 58, 237, 0));
+            background: radial-gradient(circle at 35% 35%, rgba(181, 18, 27, .52), rgba(181, 18, 27, 0));
             animation-duration: 18s;
         }
 
         .floater.three {
             left: 55%;
             bottom: -160px;
-            background: radial-gradient(circle at 45% 45%, rgba(29, 214, 195, .55), rgba(29, 214, 195, 0));
+            background: radial-gradient(circle at 45% 45%, rgba(251, 176, 37, .52), rgba(251, 176, 37, 0));
             animation-duration: 16s;
         }
 
@@ -418,7 +416,7 @@
         }
 
         .h1 {
-            margin: 8px 0 8px;
+            margin: 8px 0 10px;
             color: var(--ink);
             font-size: 36px;
             line-height: 1.12;
@@ -434,15 +432,24 @@
 
         .lede {
             margin: 0;
-            color: #0b1220;
             font-size: 18px;
             line-height: 1.9;
+            font-weight: 500;
+            /* normal */
+            color: #0b1220;
+        }
+
+        @media (max-width:768px) {
+            .lede {
+                font-size: 18px;
+            }
         }
 
         .lede+.lede {
             margin-top: 10px;
         }
 
+        /* Buttons */
         .hero-actions {
             margin-top: 14px;
             display: flex;
@@ -476,7 +483,10 @@
             content: "";
             position: absolute;
             inset: -1px;
-            background: linear-gradient(120deg, rgba(37, 99, 235, .18), rgba(29, 214, 195, .18), rgba(124, 58, 237, .12));
+            background: linear-gradient(120deg,
+                    rgba(0, 17, 97, .14),
+                    rgba(181, 18, 27, .10),
+                    rgba(251, 176, 37, .12));
             opacity: 0;
             transition: opacity .22s ease;
         }
@@ -489,7 +499,7 @@
         .btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 18px 48px rgba(2, 6, 23, .12);
-            border-color: rgba(191, 219, 254, .95);
+            border-color: rgba(251, 176, 37, .45);
         }
 
         .btn:hover:before {
@@ -497,18 +507,14 @@
         }
 
         .btn.primary {
-            background: linear-gradient(90deg, var(--brand), var(--blue));
+            background: linear-gradient(90deg, var(--brand), var(--sub));
             color: #fff;
             border-color: rgba(0, 17, 97, .22);
             box-shadow: 0 16px 44px rgba(0, 17, 97, .18);
         }
 
         .btn.primary:before {
-            opacity: .18;
-        }
-
-        .btn.primary:hover {
-            color: #fff;
+            opacity: .10;
         }
 
         .btn.warm {
@@ -517,7 +523,7 @@
             border-color: rgba(245, 158, 11, .50);
         }
 
-        /* Hero “proof” tiles */
+        /* Proof tiles */
         .proof-row {
             margin-top: 16px;
             display: grid;
@@ -552,8 +558,10 @@
             content: "";
             position: absolute;
             inset: -2px;
-            background: radial-gradient(260px 160px at 30% 0%, rgba(37, 99, 235, .12), transparent 60%),
-                radial-gradient(240px 160px at 90% 30%, rgba(124, 58, 237, .10), transparent 60%);
+            background:
+                radial-gradient(260px 160px at 15% 0%, rgba(0, 17, 97, .12), transparent 60%),
+                radial-gradient(240px 160px at 92% 30%, rgba(181, 18, 27, .10), transparent 60%),
+                radial-gradient(220px 160px at 60% 120%, rgba(251, 176, 37, .10), transparent 60%);
             opacity: .9;
             pointer-events: none;
         }
@@ -572,22 +580,24 @@
         .proof b {
             display: block;
             color: var(--ink);
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 950;
         }
 
         .proof p {
-            margin: 4px 0 0;
+            margin: 6px 0 0;
             color: var(--muted);
-            font-size: 14px;
+            font-size: 16px;
             line-height: 1.55;
+            font-weight: 500;
+            /* normal */
         }
 
-        /* Right hero media card (tilt + glow) */
+        /* Media card */
         .media-card {
             border-radius: 20px;
             border: 1px solid rgba(226, 232, 240, .95);
-            background: rgba(255, 255, 255, .88);
+            background: rgba(255, 255, 255, .90);
             box-shadow: var(--shadow);
             overflow: hidden;
             position: relative;
@@ -599,7 +609,10 @@
             content: "";
             position: absolute;
             inset: -1px;
-            background: linear-gradient(120deg, rgba(37, 99, 235, .18), rgba(29, 214, 195, .16), rgba(124, 58, 237, .12));
+            background: linear-gradient(120deg,
+                    rgba(0, 17, 97, .16),
+                    rgba(181, 18, 27, .10),
+                    rgba(251, 176, 37, .12));
             opacity: .65;
             pointer-events: none;
         }
@@ -629,7 +642,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: rgba(37, 99, 235, .10);
+            background: rgba(0, 66, 124, .10);
             border: 1px solid rgba(191, 219, 254, .85);
         }
 
@@ -669,16 +682,18 @@
         .media-foot p {
             margin: 0;
             color: #0b1220;
-            font-weight: 800;
+            font-weight: 500;
+            /* normal body */
             line-height: 1.6;
-            font-size: 14px;
+            font-size: 18px;
         }
 
         .media-foot .sub {
             margin-top: 6px;
             color: var(--muted);
-            font-weight: 700;
-            font-size: 13px;
+            font-weight: 500;
+            /* normal body */
+            font-size: 16px;
         }
 
         /* Section title */
@@ -697,7 +712,7 @@
             }
         }
 
-        /* Premium “card section” wrapper */
+        /* Panel */
         .panel {
             border: 1px solid rgba(226, 232, 240, .95);
             border-radius: 22px;
@@ -753,8 +768,10 @@
             content: "";
             position: absolute;
             inset: -1px;
-            background: radial-gradient(260px 160px at 20% 0%, rgba(37, 99, 235, .12), transparent 60%),
-                radial-gradient(260px 160px at 90% 30%, rgba(124, 58, 237, .10), transparent 60%);
+            background:
+                radial-gradient(260px 160px at 15% 0%, rgba(0, 17, 97, .12), transparent 60%),
+                radial-gradient(260px 160px at 92% 30%, rgba(181, 18, 27, .10), transparent 60%),
+                radial-gradient(260px 160px at 60% 120%, rgba(251, 176, 37, .10), transparent 60%);
             opacity: 0;
             transition: opacity .22s ease;
             pointer-events: none;
@@ -763,7 +780,7 @@
         .card:hover {
             transform: translateY(-3px);
             box-shadow: 0 20px 48px rgba(2, 6, 23, .12);
-            border-color: rgba(191, 219, 254, .95);
+            border-color: rgba(251, 176, 37, .45);
         }
 
         .card:hover:before {
@@ -788,7 +805,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: rgba(37, 99, 235, .08);
+            background: rgba(0, 66, 124, .08);
             border: 1px solid rgba(191, 219, 254, .85);
             flex: 0 0 auto;
             box-shadow: var(--shadow-tiny);
@@ -803,16 +820,20 @@
         .card p {
             margin: 0;
             color: var(--muted);
-            font-size: 15px;
+            font-size: 18px;
             line-height: 1.7;
+            font-weight: 500;
+            /* normal */
         }
 
         .card ul {
             margin: 10px 0 0 1.1rem;
             padding: 0;
             color: #0b1220;
-            font-size: 15px;
+            font-size: 18px;
             line-height: 1.75;
+            font-weight: 500;
+            /* normal */
         }
 
         .card li {
@@ -847,7 +868,7 @@
         .titem:hover {
             transform: translateY(-2px);
             box-shadow: 0 18px 44px rgba(2, 6, 23, .10);
-            border-color: rgba(191, 219, 254, .95);
+            border-color: rgba(251, 176, 37, .45);
         }
 
         .titem .top {
@@ -859,17 +880,17 @@
 
         .tdate {
             font-weight: 950;
-            color: var(--brand);
-            font-size: 14px;
-            background: rgba(37, 99, 235, .08);
-            border: 1px solid rgba(191, 219, 254, .85);
+            color: #7c2d12;
+            font-size: 18px;
+            background: rgba(251, 176, 37, .16);
+            border: 1px solid rgba(245, 158, 11, .25);
             padding: 8px 10px;
             border-radius: 999px;
             white-space: nowrap;
         }
 
         .titem b {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 950;
             color: var(--ink);
             letter-spacing: -.1px;
@@ -878,11 +899,13 @@
         .titem p {
             margin: 8px 0 0;
             color: var(--muted);
-            font-size: 14px;
+            font-size: 18px;
             line-height: 1.7;
+            font-weight: 500;
+            /* normal */
         }
 
-        /* Stats (animated counters) */
+        /* Stats counters */
         .stats {
             margin-top: 14px;
             display: grid;
@@ -917,8 +940,9 @@
             content: "";
             position: absolute;
             inset: -1px;
-            background: radial-gradient(260px 160px at 20% 0%, rgba(29, 214, 195, .12), transparent 60%),
-                radial-gradient(260px 160px at 90% 30%, rgba(245, 158, 11, .10), transparent 60%);
+            background:
+                radial-gradient(260px 160px at 15% 0%, rgba(0, 66, 124, .10), transparent 60%),
+                radial-gradient(260px 160px at 92% 30%, rgba(181, 18, 27, .10), transparent 60%);
             opacity: 0;
             transition: opacity .22s ease;
             pointer-events: none;
@@ -927,7 +951,7 @@
         .stat:hover {
             transform: translateY(-2px);
             box-shadow: 0 18px 44px rgba(2, 6, 23, .10);
-            border-color: rgba(191, 219, 254, .95);
+            border-color: rgba(251, 176, 37, .45);
         }
 
         .stat:hover:before {
@@ -944,8 +968,9 @@
         .stat .lab {
             margin-top: 4px;
             color: var(--muted);
-            font-weight: 800;
-            font-size: 13px;
+            font-weight: 600;
+            /* normal-ish */
+            font-size: 18px;
             line-height: 1.4;
         }
 
@@ -978,7 +1003,10 @@
             content: "";
             position: absolute;
             inset: -1px;
-            background: linear-gradient(140deg, rgba(37, 99, 235, .12), rgba(29, 214, 195, .10), rgba(124, 58, 237, .10));
+            background: linear-gradient(140deg,
+                    rgba(0, 17, 97, .10),
+                    rgba(181, 18, 27, .10),
+                    rgba(251, 176, 37, .10));
             opacity: 0;
             transition: opacity .22s ease;
             pointer-events: none;
@@ -987,7 +1015,7 @@
         .price-card:hover {
             transform: translateY(-3px);
             box-shadow: 0 22px 54px rgba(2, 6, 23, .14);
-            border-color: rgba(191, 219, 254, .95);
+            border-color: rgba(251, 176, 37, .45);
         }
 
         .price-card:hover:before {
@@ -1009,7 +1037,7 @@
         }
 
         .price-card .pill {
-            font-size: 12px;
+            font-size: 16px;
             font-weight: 950;
             padding: 7px 10px;
             border-radius: 999px;
@@ -1029,8 +1057,9 @@
         }
 
         .price small {
-            font-size: 13px;
-            font-weight: 900;
+            font-size: 16px;
+            font-weight: 600;
+            /* normal-ish */
             color: var(--muted);
         }
 
@@ -1038,8 +1067,10 @@
             margin: 12px 0 0 1.1rem;
             padding: 0;
             color: #0b1220;
-            font-size: 15px;
+            font-size: 18px;
             line-height: 1.75;
+            font-weight: 500;
+            /* normal */
         }
 
         .price-card li {
@@ -1053,7 +1084,7 @@
             gap: 10px;
         }
 
-        /* FAQ Accordion (animated) */
+        /* FAQ */
         .faq {
             margin-top: 14px;
             display: grid;
@@ -1068,26 +1099,28 @@
         }
 
         .qa {
-            border: 1px solid rgba(191, 219, 254, .75);
+            border: 1px solid rgba(226, 232, 240, .95);
             border-radius: 18px;
             background: #fff;
             box-shadow: var(--shadow-tiny);
             overflow: hidden;
-            transition: transform .18s ease, box-shadow .22s ease;
+            transition: transform .18s ease, box-shadow .22s ease, border-color .22s ease;
         }
 
         .qa:hover {
             transform: translateY(-2px);
             box-shadow: 0 20px 48px rgba(2, 6, 23, .12);
+            border-color: rgba(251, 176, 37, .45);
         }
 
         .qbtn {
             width: 100%;
             text-align: left;
             border: none;
-            background: linear-gradient(180deg, #eff6ff, #ffffff);
+            font-size: 18px;
+            background: linear-gradient(180deg, #fff7ed, #ffffff);
             color: #0b1220;
-            font-weight: 950;
+            font-weight: 900;
             padding: 14px 14px;
             cursor: pointer;
             display: flex;
@@ -1108,8 +1141,8 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background: rgba(37, 99, 235, .10);
-            border: 1px solid rgba(191, 219, 254, .85);
+            background: rgba(251, 176, 37, .16);
+            border: 1px solid rgba(245, 158, 11, .25);
             flex: 0 0 auto;
             margin-top: 1px;
             transition: transform .2s ease;
@@ -1118,7 +1151,7 @@
         .qbtn svg {
             width: 14px;
             height: 14px;
-            color: var(--brand);
+            color: #7c2d12;
         }
 
         .ans {
@@ -1132,8 +1165,10 @@
         .ans>div {
             padding: 14px 14px 16px;
             color: #0b1220;
-            font-size: 15px;
+            font-size: 18px;
             line-height: 1.75;
+            font-weight: 500;
+            /* normal */
         }
 
         .qa[data-open="1"] .qbtn i {
@@ -1162,8 +1197,9 @@
             margin: 10px auto 0;
             max-width: 820px;
             color: var(--muted);
-            font-weight: 800;
-            font-size: 15px;
+            font-weight: 500;
+            /* normal */
+            font-size: 18px;
             line-height: 1.75;
         }
 
@@ -1201,7 +1237,7 @@
             padding: 12px 14px;
             font-weight: 950;
             color: #fff;
-            background: linear-gradient(90deg, var(--brand), var(--blue));
+            background: linear-gradient(90deg, var(--brand), var(--sub));
             box-shadow: 0 18px 50px rgba(0, 17, 97, .22);
             transition: transform .18s ease, box-shadow .22s ease;
         }
@@ -1248,18 +1284,34 @@
                 transition: none !important;
             }
         }
+
+        /* Better anchor offset for sticky nav */
+        section[id] {
+            scroll-margin-top: 92px;
+        }
+
+        /* Small link styling (no raw URL display required) */
+        a.inline-link {
+            color: var(--sub);
+            font-weight: 800;
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(0, 66, 124, .55);
+        }
+
+        a.inline-link:hover {
+            border-bottom-color: rgba(181, 18, 27, .55);
+            color: var(--ilo-red);
+        }
     </style>
 </head>
 
 <body>
-    <div class="ilo-progress" aria-hidden="true"><span id="iloProgressBar"></span></div>
-
     <!-- Sticky Top Bar -->
     <header class="ilo-topbar" aria-label="International Logic Olympiad navigation">
         <div class="ilo-topbar-inner">
             <div class="brandmark" aria-label="CanSTEM ILO page">
                 <span class="dot" aria-hidden="true"></span>
-                <span>CanSTEM × ILO</span>
+                <span>CanSTEM <span class="x">×</span> ILO</span>
             </div>
 
             <nav class="ilo-tabs" aria-label="Page sections">
@@ -1353,8 +1405,6 @@
                         <span class="tag">Logic • Critical Thinking</span>
                     </div>
 
-                    <!-- Replace/expand with MORE ILO visuals:
-               Upload additional ILO images to your Media Library and swap URLs below. -->
                     <img class="media-img" loading="lazy"
                         src="https://canstemeducation.com/wp-content/uploads/2025/12/Internatinal-Logic-Olympiad-2026.png"
                         alt="International Logic Olympiad (ILO) 2026 — CanSTEM Coaching Canada" />
@@ -1372,7 +1422,8 @@
         <!-- ABOUT -->
         <section id="about" class="panel reveal" aria-label="About the International Logic Olympiad and CanSTEM role">
             <h2 class="section-title">What is ILO, and what is CanSTEM’s role?</h2>
-            <p class="mt-4" style="margin-bottom:0; color:#0b1220; font-weight:800;">
+
+            <p class="mt-4" style="color:#0b1220;">
                 The <strong>International Logic Olympiad (ILO)</strong> is a global logic competition designed to
                 promote logic education and celebrate high-level reasoning.
                 CanSTEM Education is an <strong>official ILO Regional Partner (Ontario, Canada)</strong>—supporting
@@ -1383,7 +1434,6 @@
                 <div class="card">
                     <h3>
                         <span class="ico" aria-hidden="true">
-                            <!-- Globe -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
@@ -1407,7 +1457,6 @@
                 <div class="card">
                     <h3>
                         <span class="ico" aria-hidden="true">
-                            <!-- Shield / official -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 2l7 4v6c0 5-3 9-7 10C8 21 5 17 5 12V6l7-4Z"></path>
@@ -1429,7 +1478,6 @@
                 <div class="card">
                     <h3>
                         <span class="ico" aria-hidden="true">
-                            <!-- Spark -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 2l1.5 5L19 9l-5 2.2L12 17l-2-5.8L5 9l5.5-2L12 2z"></path>
@@ -1438,8 +1486,8 @@
                         </span>
                         Why students love it
                     </h3>
-                    <p>ILO is exciting because it feels like “smart puzzles” with a competitive edge—perfect for
-                        students who like challenges.</p>
+                    <p>ILO feels like “smart puzzles” with a competitive edge—perfect for students who enjoy challenges.
+                    </p>
                     <ul>
                         <li>Fun, brainy problem sets</li>
                         <li>Confidence with unfamiliar tasks</li>
@@ -1513,7 +1561,7 @@
                     <div class="lab">Divisions<br />Junior &amp; Senior</div>
                 </div>
                 <div class="stat">
-                    <div class="num" data-count="50" data-suffix="$">$0</div>
+                    <div class="num" data-count="50" data-prefix="$" data-suffix="">$0</div>
                     <div class="lab">Official registration fee<br />paid via portal</div>
                 </div>
                 <div class="stat">
@@ -1545,7 +1593,6 @@
                 <div class="card">
                     <h3>
                         <span class="ico" aria-hidden="true">
-                            <!-- Target -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="9"></circle>
@@ -1562,7 +1609,6 @@
                 <div class="card">
                     <h3>
                         <span class="ico" aria-hidden="true">
-                            <!-- Stopwatch -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M10 2h4"></path>
@@ -1579,7 +1625,6 @@
                 <div class="card">
                     <h3>
                         <span class="ico" aria-hidden="true">
-                            <!-- Wrench / improvement -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path
@@ -1597,7 +1642,6 @@
                 <div class="card">
                     <h3>
                         <span class="ico" aria-hidden="true">
-                            <!-- Book -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 19a2 2 0 0 0 2 2h12"></path>
@@ -1620,7 +1664,6 @@
                 <div class="card">
                     <h3>
                         <span class="ico" aria-hidden="true">
-                            <!-- Users -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
@@ -1645,9 +1688,11 @@
                 <a class="btn primary"
                     href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
                     target="_blank" rel="noopener"><span>Start with Inquiry Form</span></a>
+
                 <a class="btn"
                     href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=International%20Logic%20Olympiad%20(ILO)%20Coaching%20Inquiry&body=Hello%2C%0A%0AStudent%20Name%3A%0A%0AGrade%3A%0A%0ACity%2FProvince%3A%0A%0AI%20want%20to%20ask%20about%20ILO%20coaching%20and%20the%20best%20plan%20for%202026.%0A%0AThank%20you."
                     target="_blank" rel="noopener"><span>Email: inquiry@canstemeducation.com</span></a>
+
                 <a class="btn warm" href="tel:+16478471231"><span>Call Now</span></a>
             </div>
         </section>
@@ -1657,7 +1702,8 @@
         <!-- RESOURCES -->
         <section id="resources" class="panel reveal" aria-label="Official sample and resources">
             <h2 class="section-title">Official sample test &amp; learning resources</h2>
-            <p class="mt-4" style="margin-bottom:0; color:#0b1220; font-weight:800;">
+
+            <p class="mt-4" style="color:#0b1220;">
                 Start with the official sample, then train with structured coaching so students improve speed, accuracy,
                 and confidence.
             </p>
@@ -1666,7 +1712,6 @@
                 <div class="card">
                     <h3>
                         <span class="ico" aria-hidden="true">
-                            <!-- Play -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <polygon points="7 4 20 12 7 20 7 4"></polygon>
@@ -1686,7 +1731,6 @@
                 <div class="card">
                     <h3>
                         <span class="ico" aria-hidden="true">
-                            <!-- Portal -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M12 3v18"></path>
@@ -1708,7 +1752,6 @@
                 <div class="card">
                     <h3>
                         <span class="ico" aria-hidden="true">
-                            <!-- Lessons -->
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M4 19a2 2 0 0 0 2 2h12"></path>
@@ -1849,9 +1892,9 @@
                     </button>
                     <div class="ans">
                         <div>
-                            Use the <strong>official sample test</strong> here:
-                            <a href="https://portal.logicolympiad.org/sample" target="_blank"
-                                rel="noopener">portal.logicolympiad.org/sample</a>.
+                            Use the <strong>official sample test</strong>:
+                            <a class="inline-link" href="https://portal.logicolympiad.org/sample" target="_blank"
+                                rel="noopener">Open sample test</a>.
                             We also train students using sample-style sets with timing and strategy.
                         </div>
                     </div>
@@ -1872,8 +1915,7 @@
                         <div>
                             Registration opens <strong>Jan 14, 2026</strong> and closes <strong>Mar 18, 2026</strong>.
                             Preliminary rounds are in April (Junior <strong>Apr 18</strong>, Senior <strong>Apr
-                                25</strong>).
-                            Finals are <strong>July 1–3, 2026</strong>.
+                                25</strong>). Finals are <strong>July 1–3, 2026</strong>.
                         </div>
                     </div>
                 </div>
@@ -1934,13 +1976,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="mt-6" style="text-align:center;">
-                <p class="muted small" style="margin:0;">
-                    Want more FAQs (eligibility, test site, finals planning)? Tell me what you want to emphasize and
-                    I’ll expand this FAQ section.
-                </p>
             </div>
         </section>
 
@@ -2086,24 +2121,10 @@
                 });
             });
 
-            /* Scroll progress bar */
-            const bar = document.getElementById("iloProgressBar");
-            function updateProgress() {
-                const doc = document.documentElement;
-                const scrollTop = doc.scrollTop || document.body.scrollTop;
-                const scrollHeight = doc.scrollHeight - doc.clientHeight;
-                const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
-                bar.style.width = pct.toFixed(2) + "%";
-            }
-            window.addEventListener("scroll", updateProgress, { passive: true });
-            updateProgress();
-
             /* Active tab as you scroll */
             const sectionObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        setActive(entry.target.id);
-                    }
+                    if (entry.isIntersecting) setActive(entry.target.id);
                 });
             }, { root: null, threshold: 0.35 });
 
@@ -2163,8 +2184,7 @@
 
                 btn.addEventListener("click", () => {
                     const isOpen = qa.getAttribute("data-open") === "1";
-                    // Close others (nice interaction)
-                    qas.forEach(x => x.setAttribute("data-open", "0"));
+                    qas.forEach(x => x.setAttribute("data-open", "0")); // close others
                     qa.setAttribute("data-open", isOpen ? "0" : "1");
                 });
 
@@ -2179,13 +2199,16 @@
             /* Back to top */
             const toTop = document.getElementById("toTop");
             const toTopBtn = document.getElementById("toTopBtn");
+
             function toggleToTop() {
                 const y = window.scrollY || document.documentElement.scrollTop;
                 if (y > 600) toTop.classList.add("show");
                 else toTop.classList.remove("show");
             }
+
             window.addEventListener("scroll", toggleToTop, { passive: true });
             toggleToTop();
+
             toTopBtn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 
             /* Tilt effect on hero media card */
