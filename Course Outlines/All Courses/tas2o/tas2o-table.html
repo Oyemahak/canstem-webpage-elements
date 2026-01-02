@@ -1,0 +1,205 @@
+<!-- =========================
+TAS2O Units Table (HRT3M-style)
+========================= -->
+
+<style>
+  :root {
+    --ink: #26262B;
+    --brand: #00427C;
+    --rule: #e6e6e6;
+    --stripe: #f9f9f9;
+  }
+
+  .tas2o-table-wrap {
+    max-width: 1200px;
+    font-family: 'Lato', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: var(--ink);
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  table,
+  td,
+  th {
+    border: 0;
+  }
+
+  .unit-table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, .1);
+  }
+
+  .unit-table thead {
+    background: var(--brand);
+    color: #fff;
+  }
+
+  .unit-table th,
+  .unit-table td {
+    padding: 18px 20px;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid transparent;
+    font-size: 18px;
+  }
+
+  .unit-table tbody tr:not(:last-child) td {
+    border-bottom: 1px solid #eee;
+  }
+
+  .unit-table tbody tr:nth-child(even) {
+    background: var(--stripe);
+  }
+
+  .unit-table th:last-child,
+  .unit-table td:last-child {
+    white-space: nowrap;
+  }
+
+  .unit-table col:nth-child(1) {
+    width: 12%;
+  }
+
+  .unit-table col:nth-child(2) {
+    width: 34%;
+  }
+
+  .unit-table col:nth-child(3) {
+    width: 42%;
+  }
+
+  .unit-table col:nth-child(4) {
+    width: 12%;
+  }
+
+  .unit-table tr.total-row td {
+    font-weight: 800;
+    background: #ffffff;
+  }
+
+  @media (max-width:768px) {
+    .tas2o-table-wrap {
+      font-size: 16px;
+    }
+
+    .unit-table thead {
+      display: none;
+    }
+
+    .unit-table,
+    .unit-table tbody,
+    .unit-table tr,
+    .unit-table td {
+      display: block;
+    }
+
+    .unit-table {
+      box-shadow: none !important;
+      border-radius: 0;
+    }
+
+    .unit-table tbody tr:not(:last-child) td {
+      border-bottom: 0;
+    }
+
+    .unit-table tr {
+      margin: 16px 0;
+      border: 1px solid #00427c;
+      padding: 16px;
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .unit-table tbody tr:nth-child(even) {
+      background: #fff;
+    }
+
+    .unit-table td {
+      font-size: 16px;
+      padding: 12px 0px;
+      border: none;
+      position: relative;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+      hyphens: auto;
+    }
+
+    .unit-table td::before {
+      content: attr(data-label);
+      font-weight: 700;
+      color: #00427c;
+      display: block;
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .unit-table tr.total-row {
+      border-width: 2px;
+    }
+  }
+</style>
+
+<div class="tas2o-table-wrap" aria-label="TAS2O course content table">
+  <table class="unit-table">
+    <colgroup>
+      <col>
+      <col>
+      <col>
+      <col>
+    </colgroup>
+
+    <thead>
+      <tr>
+        <th>Strand</th>
+        <th>Title</th>
+        <th>Expectations Summary</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td data-label="Strand">A</td>
+        <td data-label="Title">Design Processes and Related Skills</td>
+        <td data-label="Expectations Summary">
+          Plan more complex projects, design and build prototypes, track progress, refine solutions, and apply advanced
+          health and safety practices when using tools and equipment.
+        </td>
+        <td data-label="Time">50 Hours</td>
+      </tr>
+
+      <tr>
+        <td data-label="Strand">B</td>
+        <td data-label="Title">Technological Development, Impacts, and Careers</td>
+        <td data-label="Expectations Summary">
+          Investigate how technology evolves, analyze real-world impacts, and explore skilled trades pathways,
+          certifications, and career options in technology-focused fields.
+        </td>
+        <td data-label="Time">50 Hours</td>
+      </tr>
+
+      <tr>
+        <td data-label="Strand">Final</td>
+        <td data-label="Title">Summative Task</td>
+        <td data-label="Expectations Summary">
+          Complete an advanced design challenge that demonstrates planning, safe construction, testing, iteration, and
+          professional communication of results.
+        </td>
+        <td data-label="Time">10 Hours</td>
+      </tr>
+
+      <tr class="total-row">
+        <td data-label="Strand">Total</td>
+        <td data-label="Title">Course Total</td>
+        <td data-label="Expectations Summary">
+          TAS2O Technology and the Skilled Trades is a Grade 10 Ontario de-streamed course (1.0 credit) with no
+          prerequisite.
+        </td>
+        <td data-label="Time">110 Hours</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,325 @@
+<!-- =========================
+TAS1O Accordion Details (HRT3M-style, Readability-Optimized)
+========================= -->
+
+<style>
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background: #fff;
+    color: #26262B;
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    line-height: 1.8;
+  }
+
+  .container {
+    max-width: 1200px;
+  }
+
+  .unit-details {
+    margin: 18px 0 30px;
+  }
+
+  .unit-toggle {
+    background-color: #00427C;
+    color: #fff;
+    font-weight: 600;
+    padding: 14px 20px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-size: 18px;
+    border-radius: 12px;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: background 0.3s ease;
+    border: 0;
+  }
+
+  .unit-toggle:hover {
+    background-color: #001161;
+  }
+
+  .unit-toggle .arrow {
+    transition: transform 0.3s ease;
+    margin-left: 10px;
+    flex: 0 0 auto;
+  }
+
+  .unit-toggle.open .arrow {
+    transform: rotate(180deg);
+  }
+
+  .unit-content {
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    padding: 0 1.5rem;
+    transform: scaleY(0.98);
+    transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.4s ease, transform 0.4s ease;
+    background-color: #ffffff;
+    border-left: 4px solid #e59500;
+    border-radius: 0 0 12px 12px;
+    margin-bottom: 0.5rem;
+  }
+
+  .unit-content.open {
+    opacity: 1;
+    transform: scaleY(1);
+    padding: 0 1.5rem;
+  }
+
+  .unit-content .content-inner {
+    padding: 1rem 0 1.2rem;
+  }
+
+  .unit-content h3 {
+    margin: 0.2rem 0 0.6rem;
+    font-size: 18px;
+    font-weight: 700;
+    color: #001161;
+  }
+
+  .unit-content p {
+    margin: 0.4rem 0;
+    font-size: 18px;
+  }
+
+  .unit-content ul {
+    margin: 0.4rem 0 0;
+    padding: 0.4rem 0 0 1.2rem;
+  }
+
+  .unit-content li {
+    margin-bottom: 0.5rem;
+    font-size: 18px;
+  }
+
+  @media (max-width: 768px) {
+
+    .unit-toggle,
+    .unit-content p,
+    .unit-content li {
+      font-size: 16px;
+    }
+
+    .unit-content h3 {
+      font-size: 16px;
+    }
+
+    .unit-content {
+      padding: 0 1rem;
+    }
+
+    .unit-content.open {
+      padding: 0 1rem;
+    }
+  }
+</style>
+
+<section class="tas1o-course" aria-label="TAS1O course details">
+  <div class="container">
+    <div class="unit-details">
+
+      <!-- Course Description -->
+      <div class="unit-toggle">Course Description / Rationale <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>What this course covers</h3>
+          <p>
+            TAS1O is a hands-on course where students explore technology and the skilled trades through real projects.
+            In particular, learners practise the engineering design process and build practical skills with tools,
+            materials, and industry-style techniques.
+          </p>
+          <p>
+            At the same time, students focus on precision measurement and safe work habits. As projects grow in
+            complexity, they also learn how to test ideas, improve prototypes, and communicate results clearly.
+          </p>
+          <p>
+            Finally, the course introduces job skills programs, training pathways, and trade-related careers. Therefore,
+            students can make informed choices about future education and workplace options.
+          </p>
+        </div>
+      </div>
+
+      <!-- Course Snapshot -->
+      <div class="unit-toggle">Course Information (TAS1O) <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Quick course facts</h3>
+          <ul>
+            <li><strong>Course title:</strong> Technology and the Skilled Trades</li>
+            <li><strong>Ministry course code:</strong> TAS1O</li>
+            <li><strong>Grade:</strong> 9 &amp; 10 (De-Streamed)</li>
+            <li><strong>Credit value:</strong> 1.0</li>
+            <li><strong>Prerequisite:</strong> None</li>
+            <li><strong>Curriculum:</strong> The Ontario Curriculum, Grade 9 (Technology)</li>
+            <li><strong>School:</strong> CanSTEM Education Private School Inc.</li>
+            <li><strong>Department:</strong> Technology</li>
+            <li><strong>Course developer:</strong> Mrs. Sajjala P. Sankhe</li>
+            <li><strong>Development date:</strong> September 2025</li>
+            <li><strong>Revision date:</strong> September 1, 2025</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Course Content -->
+      <div class="unit-toggle">Course Content (Strands &amp; Hours) <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Time plan</h3>
+          <ul>
+            <li><strong>Strand A: Design Processes and Related Skills</strong> — 50 hours</li>
+            <li><strong>Strand B: Technological Development, Impacts, and Careers</strong> — 50 hours</li>
+            <li><strong>Summative Task</strong> — 10 hours</li>
+            <li><strong>Total:</strong> 110 hours</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Strand A Expectations -->
+      <div class="unit-toggle">Strand A — Overall Expectations <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Design processes and related skills</h3>
+          <ul>
+            <li><strong>A1. Initiating and Planning:</strong> demonstrate an understanding of fundamental technological
+              concepts by initiating and planning projects.</li>
+            <li><strong>A2. Designing and Performing:</strong> develop projects that create products and/or services
+              using a variety of resources and techniques, while recording development.</li>
+            <li><strong>A3. Analyzing and Refining:</strong> evaluate and refine processes, products, and/or services.
+            </li>
+            <li><strong>A4. Health and Safety:</strong> apply health and safety practices and procedures when using
+              materials, tools, and equipment.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Strand B Expectations -->
+      <div class="unit-toggle">Strand B — Overall Expectations <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Technology development, impacts, and careers</h3>
+          <ul>
+            <li><strong>B1. Fundamentals of Technological Development:</strong> explain how needs and social, economic,
+              and environmental factors drive technological change.</li>
+            <li><strong>B2. Impacts of Technology:</strong> analyze impacts of technologies on individuals, society, the
+              economy, and the environment.</li>
+            <li><strong>B3. Careers and Pathways:</strong> explore careers in technology and skilled trades, and
+              describe education and training pathways.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Teaching & Learning -->
+      <div class="unit-toggle">Teaching &amp; Learning Strategies <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>How learning happens</h3>
+          <p>
+            Learning is active and project-based. For example, students plan designs, build prototypes, test outcomes,
+            and then refine their work.
+            In addition, discussion and reflection support stronger decision-making.
+          </p>
+          <ul>
+            <li>Direct instruction and teacher-facilitated class activities</li>
+            <li>Experiential learning (learn by doing)</li>
+            <li>Class, small-group, and partner discussions</li>
+            <li>Worksheets/surveys, brainstorming, and inquiry tasks</li>
+            <li>Independent work and group work with guidance</li>
+            <li>Use of computers/Internet where appropriate</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Assessment -->
+      <div class="unit-toggle">Assessment &amp; Evaluation Breakdown <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>How grades are calculated</h3>
+          <p>
+            Assessment supports improvement throughout the course. Therefore, students receive feedback and coaching,
+            monitor progress, and reflect on next steps.
+            Meanwhile, evaluation summarizes achievement using consistent criteria.
+          </p>
+          <ul>
+            <li><strong>Categories weighting:</strong> Knowledge &amp; Understanding (20%), Thinking (30%),
+              Communication (20%), Application (30%)</li>
+            <li><strong>Term work:</strong> 70% (evaluations across the course)</li>
+            <li><strong>Final evaluation:</strong> 30% (end-of-course summative evaluation)</li>
+            <li><strong>Evidence of learning:</strong> products, observations, and conversations</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Program Planning -->
+      <div class="unit-toggle">Program Planning Considerations (Summary) <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Important supports</h3>
+          <p>
+            Program planning builds accessibility, inclusion, and student success into every stage of learning. For
+            instance, instruction may include visual supports, modeling, hands-on practice, and step-by-step routines.
+          </p>
+          <p>
+            In addition, students practise collaboration and problem solving through iterative design. As a result, they
+            learn that technology often has multiple correct solutions and requires perseverance.
+          </p>
+          <p>
+            Safety is also essential. Therefore, students follow clear procedures when using tools, equipment, and
+            materials in learning activities.
+          </p>
+        </div>
+      </div>
+
+      <!-- Resources -->
+      <div class="unit-toggle">Resources <span class="arrow">▼</span></div>
+      <div class="unit-content">
+        <div class="content-inner">
+          <h3>Learning resources</h3>
+          <p>
+            Students use teacher-provided materials and selected online references to support research, design planning,
+            and documentation.
+            In addition, students may use manuals, datasheets, and industry examples to strengthen understanding.
+          </p>
+          <ul>
+            <li>Various Internet resources (including search-based research tools)</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<script>
+  const toggles = document.querySelectorAll('.tas1o-course .unit-toggle');
+
+  toggles.forEach(toggle => {
+    toggle.addEventListener('click', () => {
+      const content = toggle.nextElementSibling;
+      const isOpen = toggle.classList.contains('open');
+
+      document.querySelectorAll('.tas1o-course .unit-toggle').forEach(t => t.classList.remove('open'));
+      document.querySelectorAll('.tas1o-course .unit-content').forEach(c => {
+        c.classList.remove('open');
+        c.style.maxHeight = null;
+      });
+
+      if (!isOpen) {
+        toggle.classList.add('open');
+        content.classList.add('open');
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  });
+
+  window.addEventListener('resize', () => {
+    const openContent = document.querySelector('.tas1o-course .unit-content.open');
+    if (openContent) openContent.style.maxHeight = openContent.scrollHeight + "px";
+  });
+</script>
