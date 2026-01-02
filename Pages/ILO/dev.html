@@ -31,11 +31,11 @@
 
   <style>
     /* ==========================================================
-   ILO Page - Premium (tabs + effects)
-   - Hero: NO outer box, NO proof boxes
-   - Sections: NO outer panel box
-   - Inner items: keep boxes (cards, titems, stats, pricing, faq)
-   ========================================================== */
+      ILO Page - Premium (tabs + effects)
+      - Hero: NO outer box, NO proof boxes
+      - Sections: NO outer panel box
+      - Inner items: keep boxes (cards, titems, stats, pricing, faq)
+    ========================================================== */
 
     :root {
       --brand: #001161;
@@ -66,7 +66,6 @@
     body {
       margin: 0;
       padding: 0;
-      max-width: 1200px;
     }
 
     body {
@@ -177,8 +176,18 @@
     }
 
     /* ==========================================================
-   TOP NAV (Tabs)
-   ========================================================== */
+      WP DEFAULT OVERRIDE (your request)
+      Wordpress theme adds: ol, ul { margin: 0 0 1.5em 3em; }
+      We override ONLY inside this page wrapper.
+    ========================================================== */
+    #ilo-page-wrap ol,
+    #ilo-page-wrap ul {
+      margin: 24px 0 0 16px !important;
+    }
+
+    /* ==========================================================
+      TOP NAV (Tabs)
+    ========================================================== */
     .ilo-topbar {
       position: relative;
       top: 0;
@@ -282,14 +291,13 @@
       }
     }
 
-    /* Scroll offset for sticky tabs */
     section[id] {
       scroll-margin-top: 90px;
     }
 
     /* ==========================================================
-   TITLES
-   ========================================================== */
+      TITLES
+    ========================================================== */
     #ilo-page-wrap .title-lg {
       text-align: center;
       font-size: 28px;
@@ -357,8 +365,8 @@
     }
 
     /* ==========================================================
-   HERO (NO outer box)
-   ========================================================== */
+      HERO (NO outer box)
+    ========================================================== */
     .hero {
       position: relative;
       padding: 6px 0 0;
@@ -536,9 +544,9 @@
 
     /* Hero highlights: nice bordered box + premium list items */
     .hero-points {
+      margin-top: 14px;
       padding: 14px 14px;
       list-style: none;
-      /* keep inner spacing consistent */
       border: 1px solid rgba(226, 232, 240, .95);
       border-radius: 16px;
       background: linear-gradient(180deg, rgba(255, 247, 237, .60), #ffffff);
@@ -547,7 +555,6 @@
       overflow: hidden;
     }
 
-    /* subtle premium glow */
     .hero-points:before {
       content: "";
       position: absolute;
@@ -559,24 +566,20 @@
       pointer-events: none;
     }
 
-    /* list items as “soft rows” */
     .hero-points li {
       position: relative;
       z-index: 1;
       margin: 0;
       padding: 10px 12px 10px 42px;
-      /* space for icon */
       border-radius: 16px;
-      line-height: 1.2;
-      transition: transform .18s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease;
+      line-height: 1.4;
+      transition: transform .18s ease, box-shadow .22s ease, background .22s ease;
     }
 
-    /* spacing between rows */
     .hero-points li+li {
       margin-top: 4px;
     }
 
-    /* check icon bubble */
     .hero-points li:before {
       content: "✓";
       position: absolute;
@@ -595,14 +598,12 @@
       border: 1px solid rgba(245, 158, 11, .35);
     }
 
-    /* nice hover (desktop only feel) */
     .hero-points li:hover {
       background: rgba(255, 255, 255, .75);
       box-shadow: 0 14px 36px rgba(2, 6, 23, .08);
       transform: translateY(-1px);
     }
 
-    /* keep strong text bold/clean */
     .hero-points strong {
       font-weight: 900;
       color: var(--ink);
@@ -622,15 +623,9 @@
       }
     }
 
-    /* Optional: make all lists inside the ILO page wrapper controlled by your CSS */
-    #ilo-page-wrap ul,
-    #ilo-page-wrap ol {
-      margin: 24px 0 0 16px;
-    }
-
     /* ==========================================================
-          MEDIA CARD (keep box + tilt)
-       ========================================================== */
+      MEDIA CARD (keep box + tilt)
+    ========================================================== */
     .media-card {
       border-radius: 20px;
       border: 1px solid rgba(226, 232, 240, .95);
@@ -721,10 +716,8 @@
       display: block;
       width: 100%;
       max-width: 320px;
-      /* requested */
       height: auto;
       margin: 0 auto;
-      /* center */
       background: #fff;
       position: relative;
       z-index: 1;
@@ -763,16 +756,16 @@
     }
 
     /* ==========================================================
-   SECTIONS (NO outer panel box)
-   ========================================================== */
+      SECTIONS (NO outer panel box)
+    ========================================================== */
     .section {
       padding: 0;
       background: transparent;
     }
 
     /* ==========================================================
-   INNER BOX ITEMS (keep)
-   ========================================================== */
+      INNER BOX ITEMS (keep)
+    ========================================================== */
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -871,6 +864,7 @@
       font-weight: 500;
       position: relative;
       z-index: 1;
+      list-style: disc;
     }
 
     .card li {
@@ -1097,6 +1091,7 @@
       font-size: 18px;
       line-height: 1.8;
       font-weight: 500;
+      list-style: disc;
     }
 
     .price-actions {
@@ -1218,7 +1213,7 @@
     }
 
     .qa[data-open="1"] .ans {
-      max-height: 520px;
+      max-height: 999px;
     }
 
     @media (max-width:768px) {
@@ -1432,7 +1427,7 @@
 
   <main id="ilo-page-wrap">
 
-    <!-- HERO (NO outer box + NO proof boxes) -->
+    <!-- HERO -->
     <section id="hero" class="hero reveal" aria-label="International Logic Olympiad (ILO) hero">
       <div class="floaters" aria-hidden="true">
         <div class="floater one"></div>
@@ -1451,20 +1446,14 @@
         <div>
           <h2 class="title-md">What is CanSTEM’s role in the ILO exam process?</h2>
 
+          <!-- REQUIRED WORDING (exact as provided) -->
           <p class="lede mt-4">
-            CanSTEM Education helps students prepare for the <strong>International Logic Olympiad (ILO)</strong>, a
-            global contest focused on logic and clear thinking.
-          </p>
-
-          <p class="lede">
-            <strong>In other words</strong>, students learn how to solve puzzle-style questions using step-by-step
-            reasoning. <strong>As a result</strong>, they become faster, more accurate, and more confident.
-          </p>
-
-          <p class="lede muted small">
-            <strong>Also</strong>, we host the ILO preliminary round at our campus for students across Canada.
-            <strong>If a student qualifies</strong>, they may earn a chance to attend the final round at
-            <strong>Stanford University, USA</strong>.
+            CanSTEM Education Private School is the Official Regional Representative for the entire region of Canada,
+            and
+            the host for the preliminary round of International Logic Olympiad (ILO) for students across Canada. We help
+            students prepare for the global Math contest focused on logic and clear thinking and solving puzzle-style
+            questions using step-by-step reasoning. Students who qualify in the preliminary round will attend the final
+            round at Stanford University, USA.
           </p>
 
           <div class="hero-actions" aria-label="Primary actions">
@@ -1479,7 +1468,7 @@
             <a class="btn warm" href="tel:+16478471231"><span>Call: 647-847-1231</span></a>
           </div>
 
-          <!-- Clean highlights list (NO boxes in hero) -->
+          <!-- Clean highlights list -->
           <ul class="hero-points" aria-label="Quick highlights">
             <li><strong>Junior + Senior divisions</strong> - placement and pacing support.</li>
             <li><strong>Contest-style reasoning</strong> - logic grids, sets, patterns, multi-step solutions.</li>
@@ -1487,9 +1476,63 @@
             <li><strong>Finals opportunity</strong> - qualifiers may attend finals at <strong>Stanford University,
                 USA</strong>.</li>
           </ul>
+
+          <!-- Add the long content in collapsible FAQ-style accordion (wording kept exactly) -->
+          <div class="mt-6" aria-label="About ILO and Luminas accordions">
+            <div class="faq" style="grid-template-columns: 1fr; margin-top:0;">
+              <div class="qa" data-open="0">
+                <div class="qbtn clickable" role="button" tabindex="0" aria-expanded="false">
+                  <span>About ILO</span>
+                  <i aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M12 5v14"></path>
+                      <path d="M5 12h14"></path>
+                    </svg>
+                  </i>
+                </div>
+                <div class="ans">
+                  <div>
+                    The International Logic Olympiad started in 2024 as a partnership between Stanford
+                    University and Luminas, a 501(c)(3) non-profit organization.
+                    <br><br>
+                    Just like math and language, logic exists in the foundational fabric of society and is utilized
+                    perhaps even more so. However, logic is still severely underrepresented in modern education. Due to
+                    this gap, we started the ILO to highlight the importance of logical reasoning and problem-solving.
+                  </div>
+                </div>
+              </div>
+
+              <div class="qa" data-open="0">
+                <div class="qbtn clickable" role="button" tabindex="0" aria-expanded="false">
+                  <span>About Luminas</span>
+                  <i aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M12 5v14"></path>
+                      <path d="M5 12h14"></path>
+                    </svg>
+                  </i>
+                </div>
+                <div class="ans">
+                  <div>
+                    Luminas is a 501(c)(3) non-profit organization dedicated to providing experiential learning
+                    opportunities to students worldwide.
+                    <br><br>
+                    Our mission is create transformative experiences where students can showcase their unique skills and
+                    brilliant minds on the global stage.
+                    <br><br>
+                    Through promoting leadership, problem-solving, and collaboration, Luminas ensures that students from
+                    all backgrounds have equal access to educational opportunities based on their merits.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
-        <!-- RIGHT: MEDIA (boxed + tilt) -->
+        <!-- RIGHT: MEDIA -->
         <aside class="media-card" id="tiltCard" aria-label="ILO visual card">
           <div class="media-top">
             <div class="k">
@@ -1504,7 +1547,6 @@
             <span class="tag">Logic • Critical Thinking</span>
           </div>
 
-          <!-- clickable image -->
           <a class="media-link" href="https://www.logicolympiad.org/about/boa/" target="_blank" rel="noopener"
             aria-label="Open ILO Board of Advisors page">
             <img class="media-img" loading="lazy"
@@ -1514,7 +1556,8 @@
 
           <div class="media-foot">
             <p><strong>Official resources</strong>, a coaching plan, and local guidance in Canada.</p>
-            <div class="sub">Preliminary round: CanSTEM campus (Canada-wide testing) • Finals: Stanford University, USA (for qualifiers)</div>
+            <div class="sub">Preliminary round: CanSTEM campus (Canada-wide testing) • Finals: Stanford University, USA
+              (for qualifiers)</div>
           </div>
         </aside>
       </div>
@@ -1522,7 +1565,7 @@
 
     <div class="sep"></div>
 
-    <!-- ABOUT (NO outer box, keep inner cards) -->
+    <!-- ABOUT (kept) -->
     <section id="about" class="section reveal" aria-label="About the International Logic Olympiad and CanSTEM role">
       <h2 class="title-lg">What is ILO, and what is CanSTEM’s role?</h2>
       <p class="title-sub"><em>A simple overview for families</em></p>
@@ -2088,7 +2131,7 @@
 
     <div class="sep"></div>
 
-    <!-- FINAL CTA (NO outer box, still premium) -->
+    <!-- FINAL CTA -->
     <section class="section reveal" aria-label="Final call to action">
       <div class="footer-cta">
         <h2 class="title-lg">Ready to start International Logic Olympiad (ILO) 2026 preparation?</h2>
@@ -2120,73 +2163,73 @@
 
     <!-- JSON-LD (SEO) -->
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "EducationalOrganization",
-          "name": "CanSTEM Education Private School",
-          "url": "https://canstemeducation.com/",
-          "email": "inquiry@canstemeducation.com",
-          "telephone": "+1-647-847-1231",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "Plaza 1, 350 Rutherford Rd S #10",
-            "addressLocality": "Brampton",
-            "addressRegion": "ON",
-            "postalCode": "L6W 4N6",
-            "addressCountry": "CA"
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "EducationalOrganization",
+            "name": "CanSTEM Education Private School",
+            "url": "https://canstemeducation.com/",
+            "email": "inquiry@canstemeducation.com",
+            "telephone": "+1-647-847-1231",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "Plaza 1, 350 Rutherford Rd S #10",
+              "addressLocality": "Brampton",
+              "addressRegion": "ON",
+              "postalCode": "L6W 4N6",
+              "addressCountry": "CA"
+            },
+            "makesOffer": [
+              {
+                "@type": "Offer",
+                "name": "International Logic Olympiad (ILO) Coaching",
+                "category": "Logic & Critical Thinking Tutoring",
+                "priceCurrency": "CAD"
+              }
+            ],
+            "areaServed": "CA"
           },
-          "makesOffer": [
-            {
-              "@type": "Offer",
-              "name": "International Logic Olympiad (ILO) Coaching",
-              "category": "Logic & Critical Thinking Tutoring",
-              "priceCurrency": "CAD"
-            }
-          ],
-          "areaServed": "CA"
-        },
-        {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Are you an official ILO Regional Partner?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. CanSTEM Education supports ILO as an official Regional Partner & Testing Center (Canada) and provides coaching and guidance for families."
+          {
+            "@type": "FAQPage",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Are you an official ILO Regional Partner?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Yes. CanSTEM Education supports ILO as an official Regional Partner & Testing Center (Canada) and provides coaching and guidance for families."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Where can we try official ILO-style questions?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "You can try the official sample test at https://portal.logicolympiad.org/sample."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What are the key dates for 2026?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Registration opens Jan 14, 2026 and closes Mar 18, 2026. Preliminary rounds are in April (Junior Apr 18 and Senior Apr 25). Finals are July 1–3, 2026 at Stanford University, USA (for qualifiers)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "What is the registration fee?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "The official registration fee is $50 paid through the official portal. Coaching fees are separate."
+                }
               }
-            },
-            {
-              "@type": "Question",
-              "name": "Where can we try official ILO-style questions?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "You can try the official sample test at https://portal.logicolympiad.org/sample."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What are the key dates for 2026?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Registration opens Jan 14, 2026 and closes Mar 18, 2026. Preliminary rounds are in April (Junior Apr 18 and Senior Apr 25). Finals are July 1–3, 2026 at Stanford University, USA (for qualifiers)."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What is the registration fee?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "The official registration fee is $50 paid through the official portal. Coaching fees are separate."
-              }
-            }
-          ]
-        }
-      ]
-    }
-  </script>
+            ]
+          }
+        ]
+      }
+    </script>
 
   </main>
 
@@ -2284,6 +2327,7 @@
 
       counters.forEach(c => counterObserver.observe(c));
 
+      /* FAQ accordion logic (works for both main FAQ + hero accordions) */
       const qas = Array.from(document.querySelectorAll(".qa"));
       function setOpen(qa, open) {
         qa.setAttribute("data-open", open ? "1" : "0");
@@ -2299,7 +2343,9 @@
 
         const toggle = () => {
           const isOpen = qa.getAttribute("data-open") === "1";
-          qas.forEach(x => setOpen(x, false));
+          const group = qa.parentElement ? Array.from(qa.parentElement.querySelectorAll(".qa")) : qas;
+
+          group.forEach(x => setOpen(x, false));
           setOpen(qa, !isOpen);
         };
 
