@@ -31,7 +31,7 @@
 
   <style>
     /* ==========================================================
-   ILO Page — Premium (tabs + effects)
+   ILO Page - Premium (tabs + effects)
    - Hero: NO outer box, NO proof boxes
    - Sections: NO outer panel box
    - Inner items: keep boxes (cards, titems, stats, pricing, faq)
@@ -66,6 +66,7 @@
     body {
       margin: 0;
       padding: 0;
+      max-width: 1200px;
     }
 
     body {
@@ -179,7 +180,7 @@
    TOP NAV (Tabs)
    ========================================================== */
     .ilo-topbar {
-      position: sticky;
+      position: relative;
       top: 0;
       z-index: 50;
       background: #fff;
@@ -307,7 +308,7 @@
       margin: 8px auto 0;
       text-align: center;
       max-width: 1000px;
-      color: var(--muted);
+      color: #002fff;
       font-weight: 700;
       font-size: 18px;
       line-height: 1.8;
@@ -341,11 +342,10 @@
     }
 
     .title-md:before {
-      content: "";
       width: 10px;
       height: 10px;
       border-radius: 999px;
-      background: linear-gradient(180deg, var(--ilo-red), var(--ilo-blue));
+      background: #fff;
       box-shadow: 0 0 0 4px rgba(251, 176, 37, .12);
       flex: 0 0 auto;
     }
@@ -387,21 +387,21 @@
     .floater.one {
       left: -80px;
       top: -70px;
-      background: radial-gradient(circle at 30% 30%, rgba(204, 216, 255, .85), rgba(204, 216, 255, 0));
+      background: #fff;
       animation-duration: 15s;
     }
 
     .floater.two {
       right: -110px;
       top: 30px;
-      background: radial-gradient(circle at 35% 35%, rgba(181, 18, 27, .55), rgba(181, 18, 27, 0));
+      background: #fff;
       animation-duration: 18s;
     }
 
     .floater.three {
       left: 55%;
       top: 130px;
-      background: radial-gradient(circle at 45% 45%, rgba(0, 66, 124, .35), rgba(0, 66, 124, 0));
+      background: #fff;
       animation-duration: 16s;
     }
 
@@ -534,15 +534,98 @@
       }
     }
 
-    /* Hero highlights: NO boxes, clean list */
+    /* Hero highlights: nice bordered box + premium list items */
     .hero-points {
-      margin-top: 14px;
-      padding-left: 0px;
-      color: #0b1220;
+      padding: 14px 14px;
+      list-style: none;
+      /* keep inner spacing consistent */
+      border: 1px solid rgba(226, 232, 240, .95);
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255, 247, 237, .60), #ffffff);
+      box-shadow: var(--shadow-tiny);
+      position: relative;
+      overflow: hidden;
     }
 
+    /* subtle premium glow */
+    .hero-points:before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background:
+        radial-gradient(320px 200px at 12% 0%, rgba(251, 176, 37, .18), transparent 60%),
+        radial-gradient(320px 200px at 92% 30%, rgba(181, 18, 27, .10), transparent 60%);
+      opacity: .75;
+      pointer-events: none;
+    }
+
+    /* list items as “soft rows” */
     .hero-points li {
-      margin: 8px 0;
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      padding: 10px 12px 10px 42px;
+      /* space for icon */
+      border-radius: 16px;
+      line-height: 1.2;
+      transition: transform .18s ease, box-shadow .22s ease, background .22s ease, border-color .22s ease;
+    }
+
+    /* spacing between rows */
+    .hero-points li+li {
+      margin-top: 4px;
+    }
+
+    /* check icon bubble */
+    .hero-points li:before {
+      content: "✓";
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 14px;
+      color: var(--ilo-red);
+      background: rgba(251, 176, 37, .14);
+      border: 1px solid rgba(245, 158, 11, .35);
+    }
+
+    /* nice hover (desktop only feel) */
+    .hero-points li:hover {
+      background: rgba(255, 255, 255, .75);
+      box-shadow: 0 14px 36px rgba(2, 6, 23, .08);
+      transform: translateY(-1px);
+    }
+
+    /* keep strong text bold/clean */
+    .hero-points strong {
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    @media (max-width:768px) {
+      .hero-points {
+        padding: 12px 12px;
+      }
+
+      .hero-points li {
+        padding: 10px 10px 10px 40px;
+      }
+
+      .hero-points li:before {
+        top: 11px;
+      }
+    }
+
+    /* Optional: make all lists inside the ILO page wrapper controlled by your CSS */
+    #ilo-page-wrap ul,
+    #ilo-page-wrap ol {
+      margin: 24px 0 0 16px;
     }
 
     /* ==========================================================
@@ -1358,7 +1441,8 @@
       </div>
 
       <div class="hero-head">
-        <p class="title-sub"><em>CanSTEM Education Private School is Official Regional Partner & Testing Center for entire Canada</em></p>
+        <p class="title-sub"><em>CanSTEM Education Private School is Official Regional Partner & Testing Center for
+            entire Canada</em></p>
         <div class="mini-sep" aria-hidden="true"></div>
       </div>
 
@@ -1378,7 +1462,7 @@
           </p>
 
           <p class="lede muted small">
-            <strong>Also</strong>, we support students through the preliminary round process.
+            <strong>Also</strong>, we host the ILO preliminary round at our campus for students across Canada.
             <strong>If a student qualifies</strong>, they may earn a chance to attend the final round at
             <strong>Stanford University, USA</strong>.
           </p>
@@ -1397,10 +1481,10 @@
 
           <!-- Clean highlights list (NO boxes in hero) -->
           <ul class="hero-points" aria-label="Quick highlights">
-            <li><strong>Junior + Senior divisions</strong> — placement and pacing support.</li>
-            <li><strong>Contest-style reasoning</strong> — logic grids, sets, patterns, multi-step solutions.</li>
-            <li><strong>Mock exams + timing</strong> — so test day feels familiar and calm.</li>
-            <li><strong>Finals opportunity</strong> — qualifiers may attend finals at <strong>Stanford University,
+            <li><strong>Junior + Senior divisions</strong> - placement and pacing support.</li>
+            <li><strong>Contest-style reasoning</strong> - logic grids, sets, patterns, multi-step solutions.</li>
+            <li><strong>Mock exams + timing</strong> - so test day feels familiar and calm.</li>
+            <li><strong>Finals opportunity</strong> - qualifiers may attend finals at <strong>Stanford University,
                 USA</strong>.</li>
           </ul>
         </div>
@@ -1425,12 +1509,12 @@
             aria-label="Open ILO Board of Advisors page">
             <img class="media-img" loading="lazy"
               src="https://canstemeducation.com/wp-content/uploads/2025/12/Internatinal-Logic-Olympiad-2026.png"
-              alt="International Logic Olympiad (ILO) 2026 — CanSTEM Coaching Canada" />
+              alt="International Logic Olympiad (ILO) 2026 - CanSTEM Coaching Canada" />
           </a>
 
           <div class="media-foot">
             <p><strong>Official resources</strong>, a coaching plan, and local guidance in Canada.</p>
-            <div class="sub">Prelims in Canada • Finals at Stanford University, USA (for qualifiers)</div>
+            <div class="sub">Preliminary round: CanSTEM campus (Canada-wide testing) • Finals: Stanford University, USA (for qualifiers)</div>
           </div>
         </aside>
       </div>
@@ -1543,12 +1627,12 @@
         </div>
 
         <div class="titem">
-          <div class="top"><b>Preliminary Round — Junior</b><span class="tdate">Apr 18, 2026</span></div>
+          <div class="top"><b>Preliminary Round - Junior</b><span class="tdate">Apr 18, 2026</span></div>
           <p>Use timed sets and a review week. <strong>As a result</strong>, students feel ready on exam day.</p>
         </div>
 
         <div class="titem">
-          <div class="top"><b>Preliminary Round — Senior</b><span class="tdate">Apr 25, 2026</span></div>
+          <div class="top"><b>Preliminary Round - Senior</b><span class="tdate">Apr 25, 2026</span></div>
           <p>We train accuracy under time. <strong>In addition</strong>, we focus on tricky multi-step questions.</p>
         </div>
 
