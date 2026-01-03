@@ -427,7 +427,6 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      padding: 10px 0 8px;
     }
 
     .hero-grid {
@@ -1392,6 +1391,174 @@
         transition: none !important;
       }
     }
+
+    /* ==========================================================
+      OFFICIAL LINKS HUB (Junior + Senior)  ✅ ADDED
+    ========================================================== */
+    .links-hub {
+      margin-top: 14px;
+    }
+
+    .links-hub .hub-head {
+      margin-top: 18px;
+      text-align: center;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .hub-grid {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    @media (max-width:980px) {
+      .hub-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hub-card {
+      border: 1px solid rgba(226, 232, 240, .95);
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: var(--shadow-tiny);
+      padding: 16px 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hub-card:before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background:
+        radial-gradient(280px 170px at 18% 0%, rgba(251, 176, 37, .14), transparent 60%),
+        radial-gradient(280px 170px at 92% 28%, rgba(181, 18, 27, .10), transparent 60%);
+      opacity: .65;
+      pointer-events: none;
+    }
+
+    .hub-title {
+      margin: 0 0 6px;
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--ink);
+      letter-spacing: -.15px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .hub-title .badge {
+      font-size: 16px;
+      font-weight: 900;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(226, 232, 240, .95);
+      background: #fff;
+      box-shadow: var(--shadow-tiny);
+      white-space: nowrap;
+    }
+
+    @media (max-width:768px) {
+      .hub-title {
+        font-size: 18px;
+      }
+
+      .hub-title .badge {
+        font-size: 14px;
+      }
+    }
+
+    .hub-desc {
+      margin: 0;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.8;
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width:768px) {
+      .hub-desc {
+        font-size: 16px;
+      }
+    }
+
+    .hub-links {
+      margin: 12px 0 0 !important;
+      padding: 0 !important;
+      list-style: none !important;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 10px;
+    }
+
+    .hub-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(226, 232, 240, .95);
+      background: linear-gradient(180deg, rgba(255, 247, 237, .55), #fff);
+      text-decoration: none !important;
+      color: #0b1220;
+      font-weight: 800;
+      font-size: 18px;
+      line-height: 1.4;
+      box-shadow: var(--shadow-tiny);
+      transition: transform .18s ease, box-shadow .22s ease, border-color .22s ease;
+    }
+
+    .hub-links a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 48px rgba(2, 6, 23, .12);
+      border-color: rgba(245, 158, 11, .45);
+    }
+
+    .hub-links a small {
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 16px;
+    }
+
+    @media (max-width:768px) {
+      .hub-links a {
+        font-size: 16px;
+      }
+
+      .hub-links a small {
+        font-size: 14px;
+      }
+    }
+
+    .hub-links .arrow {
+      flex: 0 0 auto;
+      width: 28px;
+      height: 28px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 66, 124, .08);
+      border: 1px solid rgba(0, 66, 124, .16);
+    }
+
+    .hub-links .arrow svg {
+      width: 16px;
+      height: 16px;
+      color: var(--brand);
+    }
   </style>
 </head>
 
@@ -1421,6 +1588,11 @@
         <div class="ilo-tab clickable" role="button" tabindex="0" data-target="faq" aria-current="false">
           <span aria-hidden="true"></span><em>FAQ</em>
         </div>
+
+        <!-- ✅ ADDED TAB -->
+        <div class="ilo-tab clickable" role="button" tabindex="0" data-target="official-links" aria-current="false">
+          <span aria-hidden="true"></span><em>Official Links</em>
+        </div>
       </nav>
     </div>
   </header>
@@ -1446,31 +1618,18 @@
         <!-- LEFT -->
         <div>
           <h2 class="title-md">What is CanSTEM’s role in the ILO exam process?</h2>
-
           <!-- REQUIRED WORDING (exact as provided) -->
           <p class="lede mt-4">
-            CanSTEM Education Private School is the Official Regional Representative for the entire region of Canada,
-            and the host for the preliminary round of International Logic Olympiad (ILO) for students across Canada.
+            CanSTEM Education Private School is the <strong>Official Regional Representative for the entire region of Canada</strong>,
+            and <strong>the host</strong> for the preliminary round of International Logic Olympiad (ILO) for students <strong>across Canada</strong>.
           </p>
 
           <p class="lede mt-4">
             We help students prepare for the global Math contest focused on logic and clear thinking and solving
             puzzle-style
-            questions using step-by-step reasoning. Students who qualify in the preliminary round will attend the final
-            round at Stanford University, USA.
+            questions using step-by-step reasoning. Students who <strong>qualify in the preliminary round</strong> will attend the final
+            round at <strong>Stanford University, USA</strong>.
           </p>
-
-          <div class="hero-actions" aria-label="Primary actions">
-            <a class="btn primary"
-              href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
-              target="_blank" rel="noopener"><span>Inquiry Form</span></a>
-
-            <a class="btn" href="https://portal.logicolympiad.org/sample" target="_blank" rel="noopener">
-              <span>Try Official Sample Test</span>
-            </a>
-
-            <a class="btn warm" href="tel:+16478471231"><span>Call: 647-847-1231</span></a>
-          </div>
 
           <!-- Clean highlights list -->
           <ul class="hero-points" aria-label="Quick highlights">
@@ -1504,8 +1663,10 @@
                     perhaps even more so. However, logic is still severely underrepresented in modern education. Due to
                     this gap, we started the ILO to highlight the importance of logical reasoning and problem-solving.
                     <br><br>
-                    The International Logic Olympiad is the leading logic competition hosted annually in partnership with Stanford University to promote and internationalize logic education.
-                    Offering high school students worldwide a chance to showcase excellence in logic and problem-solving, 
+                    The International Logic Olympiad is the leading logic competition hosted annually in partnership
+                    with Stanford University to promote and internationalize logic education.
+                    Offering high school students worldwide a chance to showcase excellence in logic and
+                    problem-solving,
                     The ILO culminates in an on-campus final round at Stanford University during the summer of 2025.
                   </div>
                 </div>
@@ -1537,7 +1698,17 @@
               </div>
             </div>
           </div>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="btn primary"
+              href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+              target="_blank" rel="noopener"><span>Inquiry Form</span></a>
 
+            <a class="btn" href="https://portal.logicolympiad.org/sample" target="_blank" rel="noopener">
+              <span>Try Official Sample Test</span>
+            </a>
+
+            <a class="btn warm" href="tel:+16478471231"><span>Call: 647-847-1231</span></a>
+          </div>
         </div>
 
         <!-- RIGHT: MEDIA -->
@@ -1932,6 +2103,217 @@
 
     <div class="sep"></div>
 
+    <!-- ✅ ADDED: OFFICIAL LINKS HUB SECTION (Before CTA) -->
+    <section id="official-links" class="section reveal" aria-label="Official ILO Junior and Senior pages hub">
+      <h2 class="title-lg">Official ILO pages (Junior &amp; Senior)</h2>
+      <p class="title-sub"><em>All key links in one place — overview, registration, exam structure, curriculum, awards,
+          rules</em></p>
+      <div class="mini-sep" aria-hidden="true"></div>
+
+      <div class="links-hub">
+        <p class="hub-head">
+          Use these official pages to confirm the latest details. If you’re unsure where to start, open
+          <strong>Overview</strong> first.
+        </p>
+
+        <div class="hub-grid" aria-label="Junior and Senior official links">
+          <!-- JUNIOR -->
+          <div class="hub-card">
+            <div class="hub-title">
+              <span>Junior Division</span>
+              <span class="badge">Official pages</span>
+            </div>
+            <p class="hub-desc">Quick access to everything for Junior: registration steps, format, curriculum topics,
+              awards, and rules.</p>
+
+            <ul class="hub-links">
+              <li>
+                <a href="https://www.logicolympiad.org/junior/overview" target="_blank" rel="noopener">
+                  <span>Overview <small>(start here)</small></span>
+                  <span class="arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M5 12h12"></path>
+                      <path d="M13 6l6 6-6 6"></path>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.logicolympiad.org/junior/overview/registration" target="_blank" rel="noopener">
+                  <span>Registration</span>
+                  <span class="arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M5 12h12"></path>
+                      <path d="M13 6l6 6-6 6"></path>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.logicolympiad.org/junior/overview/exam-structure" target="_blank" rel="noopener">
+                  <span>Exam Structure</span>
+                  <span class="arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M5 12h12"></path>
+                      <path d="M13 6l6 6-6 6"></path>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.logicolympiad.org/junior/overview/curriculum" target="_blank" rel="noopener">
+                  <span>Curriculum</span>
+                  <span class="arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M5 12h12"></path>
+                      <path d="M13 6l6 6-6 6"></path>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.logicolympiad.org/junior/overview/finalists-and-awards" target="_blank"
+                  rel="noopener">
+                  <span>Finalists &amp; Awards</span>
+                  <span class="arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M5 12h12"></path>
+                      <path d="M13 6l6 6-6 6"></path>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.logicolympiad.org/junior/overview/rules-and-policy" target="_blank" rel="noopener">
+                  <span>Rules &amp; Policy</span>
+                  <span class="arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M5 12h12"></path>
+                      <path d="M13 6l6 6-6 6"></path>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- SENIOR -->
+          <div class="hub-card">
+            <div class="hub-title">
+              <span>Senior Division</span>
+              <span class="badge">Official pages</span>
+            </div>
+            <p class="hub-desc">Quick access to everything for Senior: registration steps, format, curriculum topics,
+              awards, and rules.</p>
+
+            <ul class="hub-links">
+              <li>
+                <a href="https://www.logicolympiad.org/senior/overview" target="_blank" rel="noopener">
+                  <span>Overview <small>(start here)</small></span>
+                  <span class="arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M5 12h12"></path>
+                      <path d="M13 6l6 6-6 6"></path>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.logicolympiad.org/senior/overview/registration" target="_blank" rel="noopener">
+                  <span>Registration</span>
+                  <span class="arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M5 12h12"></path>
+                      <path d="M13 6l6 6-6 6"></path>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.logicolympiad.org/senior/overview/exam-structure" target="_blank" rel="noopener">
+                  <span>Exam Structure</span>
+                  <span class="arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M5 12h12"></path>
+                      <path d="M13 6l6 6-6 6"></path>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.logicolympiad.org/senior/overview/curriculum" target="_blank" rel="noopener">
+                  <span>Curriculum</span>
+                  <span class="arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M5 12h12"></path>
+                      <path d="M13 6l6 6-6 6"></path>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.logicolympiad.org/senior/overview/finalists-and-awards" target="_blank"
+                  rel="noopener">
+                  <span>Finalists &amp; Awards</span>
+                  <span class="arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M5 12h12"></path>
+                      <path d="M13 6l6 6-6 6"></path>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://www.logicolympiad.org/senior/overview/rules-and-policy" target="_blank" rel="noopener">
+                  <span>Rules &amp; Policy</span>
+                  <span class="arrow" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <path d="M5 12h12"></path>
+                      <path d="M13 6l6 6-6 6"></path>
+                    </svg>
+                  </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="center-actions">
+        <a class="btn primary" href="https://portal.logicolympiad.org/signup-start" target="_blank" rel="noopener">
+          <span>Official Portal (Register)</span>
+        </a>
+        <a class="btn" href="https://portal.logicolympiad.org/sample" target="_blank" rel="noopener">
+          <span>Official Sample Test</span>
+        </a>
+        <a class="btn warm" href="#faq"><span>See FAQs</span></a>
+      </div>
+    </section>
+
+    <div class="sep"></div>
+
     <!-- FEES -->
     <section id="fees" class="section reveal" aria-label="Fees and packages">
       <h2 class="title-lg">Fees &amp; packages (official ILO + coaching)</h2>
@@ -2208,6 +2590,81 @@
             </div>
           </div>
         </div>
+
+        <!-- ✅ ADDED FAQ #1 -->
+        <div class="qa" data-open="0">
+          <div class="qbtn clickable" role="button" tabindex="0" aria-expanded="false">
+            <span>Where can I find all official ILO links (Junior &amp; Senior) in one place?</span>
+            <i aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 5v14"></path>
+                <path d="M5 12h14"></path>
+              </svg>
+            </i>
+          </div>
+          <div class="ans">
+            <div>
+              We added a quick “Official Links” hub right on this page.
+              <strong>Scroll to:</strong> <a href="#official-links">Official ILO pages (Junior &amp; Senior)</a>.
+              <strong>It includes:</strong> Overview, Registration, Exam Structure, Curriculum, Awards, and Rules for
+              both divisions.
+            </div>
+          </div>
+        </div>
+
+        <!-- ✅ ADDED FAQ #2 -->
+        <div class="qa" data-open="0">
+          <div class="qbtn clickable" role="button" tabindex="0" aria-expanded="false">
+            <span>Where do I see the official rules &amp; policies for my division?</span>
+            <i aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 5v14"></path>
+                <path d="M5 12h14"></path>
+              </svg>
+            </i>
+          </div>
+          <div class="ans">
+            <div>
+              Use the official Rules &amp; Policy pages:
+              <ul style="margin-top:10px; padding-left:18px; list-style:disc;">
+                <li><strong>Junior:</strong> <a href="https://www.logicolympiad.org/junior/overview/rules-and-policy"
+                    target="_blank" rel="noopener">Junior Rules &amp; Policy</a></li>
+                <li><strong>Senior:</strong> <a href="https://www.logicolympiad.org/senior/overview/rules-and-policy"
+                    target="_blank" rel="noopener">Senior Rules &amp; Policy</a></li>
+              </ul>
+              <strong>Tip:</strong> Review rules early so you don’t miss any format or eligibility details.
+            </div>
+          </div>
+        </div>
+
+        <!-- ✅ ADDED FAQ #3 -->
+        <div class="qa" data-open="0">
+          <div class="qbtn clickable" role="button" tabindex="0" aria-expanded="false">
+            <span>Which official pages should we read first before preparing?</span>
+            <i aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 5v14"></path>
+                <path d="M5 12h14"></path>
+              </svg>
+            </i>
+          </div>
+          <div class="ans">
+            <div>
+              A strong order is:
+              <ol style="margin-top:10px; padding-left:18px;">
+                <li><strong>Overview</strong> (to confirm division details)</li>
+                <li><strong>Exam Structure</strong> (to understand format + timing)</li>
+                <li><strong>Curriculum</strong> (to build your weekly practice plan)</li>
+                <li><strong>Rules &amp; Policy</strong> (so nothing surprises you later)</li>
+              </ol>
+              Then use the <a href="https://portal.logicolympiad.org/sample" target="_blank"
+                rel="noopener"><strong>official sample test</strong></a> to experience the question style.
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2305,6 +2762,30 @@
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "The official registration fee is $50 paid through the official portal. Coaching fees are separate."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Where can I find all official ILO links (Junior and Senior) in one place?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Use the Official Links section on this page for Junior and Senior: Overview, Registration, Exam Structure, Curriculum, Awards, and Rules."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Where do I see the official rules and policies for my division?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Junior rules: https://www.logicolympiad.org/junior/overview/rules-and-policy. Senior rules: https://www.logicolympiad.org/senior/overview/rules-and-policy."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Which official pages should we read first before preparing?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Start with Overview, then Exam Structure, then Curriculum, then Rules and Policy. After that, try the official sample test at https://portal.logicolympiad.org/sample."
                 }
               }
             ]
