@@ -32,7 +32,7 @@
         /* ==========================================================
       ILO BLOG (Single-block) — No H tags, No button tags
       - Uses div/p only with classes
-      - Zig-zag structure with media placeholders
+      - Zig-zag structure with media
       - Red used ONLY for date chips & accents (not as background)
     ========================================================== */
 
@@ -54,7 +54,7 @@
             --shadow-soft: 0 10px 28px rgba(2, 6, 23, .08);
             --shadow-tiny: 0 6px 18px rgba(2, 6, 23, .06);
 
-            --line: 1.9;
+            --line: 1.8;
             --max: 1200px;
 
             --fs-desktop: 18px;
@@ -99,7 +99,6 @@
         #ilo-blog-wrap {
             max-width: var(--max);
             margin: 0 auto;
-            padding: 18px 16px 60px;
         }
 
         /* Global helpers */
@@ -221,22 +220,6 @@
             letter-spacing: -.1px;
         }
 
-        .ilo-hero-title {
-            margin: 14px auto 0;
-            font-size: 30px;
-            font-weight: 900;
-            color: var(--brand);
-            letter-spacing: -.3px;
-            line-height: 1.35;
-            max-width: 980px;
-        }
-
-        @media (max-width:768px) {
-            .ilo-hero-title {
-                font-size: 24px;
-            }
-        }
-
         .ilo-hero-sub {
             margin: 10px auto 0;
             max-width: 980px;
@@ -262,7 +245,7 @@
         /* Hero media row */
         .ilo-hero-media {
             margin: 18px auto 0;
-            max-width: 980px;
+            max-width: 1200px;
             border-radius: 20px;
             border: 1px solid rgba(226, 232, 240, .95);
             background: linear-gradient(180deg, rgba(255, 247, 237, .65), #fff);
@@ -321,7 +304,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 14px;
         }
 
         .ilo-hero-media-box:before {
@@ -335,25 +317,22 @@
             pointer-events: none;
         }
 
-        .ilo-media-placeholder {
+        .ilo-hero-video {
             position: relative;
             z-index: 1;
-            text-align: center;
             width: 100%;
+            height: 100%;
+            display: block;
         }
 
-        .ilo-media-placeholder .ilo-media-label {
-            font-weight: 900;
-            color: var(--ink);
-            font-size: 18px;
-        }
-
-        .ilo-media-placeholder .ilo-media-help {
-            margin-top: 6px;
-            color: var(--muted);
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 1.8;
+        .ilo-hero-video video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border-radius: 18px;
+            aspect-ratio: 16 / 9;
+            object-fit: scale-down;
+            background: #0b1220;
         }
 
         /* ==========================================================
@@ -475,7 +454,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
-            padding: 14px;
+            padding: 12px;
         }
 
         .ilo-section-media:before {
@@ -494,26 +473,21 @@
             text-align: center;
         }
 
-        .ilo-media-frame {
+        .ilo-media-img {
             width: 100%;
-            border-radius: 18px;
-            border: 1px dashed rgba(0, 17, 97, .22);
-            background: linear-gradient(180deg, rgba(0, 66, 124, .04), rgba(255, 255, 255, 1));
-            padding: 18px 14px;
+            display: block;
+            border-radius: 16px;
+            border: 1px solid rgba(226, 232, 240, .95);
+            box-shadow: var(--shadow-tiny);
+            object-fit: cover;
+            aspect-ratio: 16 / 10;
+            background: #f8fafc;
         }
 
-        .ilo-media-frame .ilo-media-label {
-            font-weight: 900;
-            color: var(--ink);
-            font-size: 18px;
-        }
-
-        .ilo-media-frame .ilo-media-help {
-            margin-top: 6px;
-            color: var(--muted);
-            font-weight: 600;
-            font-size: 16px;
-            line-height: 1.8;
+        @media (max-width:980px) {
+            .ilo-media-img {
+                aspect-ratio: 16 / 9;
+            }
         }
 
         /* ==========================================================
@@ -776,6 +750,7 @@
 
 <body>
     <main id="ilo-blog-wrap" aria-label="ILO blog post">
+
         <!-- HERO -->
         <div class="ilo-blog-hero ilo-reveal" aria-label="Blog hero">
             <div class="ilo-hero-floaters" aria-hidden="true">
@@ -787,21 +762,19 @@
             <div class="ilo-hero-inner">
                 <div class="ilo-hero-kicker">News • Student Opportunity • ILO 2026</div>
 
-                <div class="ilo-hero-title">
-                    International Logic Olympiad (ILO) 2026: A Global Opportunity for Students in Canada
-                </div>
 
-                <div class="ilo-hero-sub">
-                    A fast-growing international logic contest where strong performers may earn the chance to attend the
-                    final round at
-                    <strong>Stanford University, USA</strong>.
+                <div class="ilo-hero-note">
+                    CanSTEM Education Private School is the <strong>Official Regional Representative & Testing Center
+                        for Canada</strong>.
                 </div>
 
                 <div class="ilo-mini-sep" aria-hidden="true"></div>
 
-                <div class="ilo-hero-note">
-                    CanSTEM Education Private School is the <strong>Official Regional Representative & Testing Center
-                        for the entire region of Canada</strong>.
+                <div class="ilo-hero-sub">
+                    International Logic Olympiad (ILO) 2026: A Global Opportunity for Students in Canada. A fast-growing international logic contest where strong performers may earn the chance to attend the
+                    final
+                    round at
+                    <strong>Stanford University, USA</strong>.
                 </div>
 
                 <div class="ilo-dates-strip" aria-label="Key dates quick glance">
@@ -820,28 +793,34 @@
                 <div class="ilo-hero-media ilo-mt-6" aria-label="Hero feature media block">
                     <div class="ilo-hero-media-inner">
                         <div class="ilo-hero-media-text">
-                            <div class="ilo-hero-media-title">Why families are paying attention</div>
+                            <div class="ilo-hero-media-title">What this means for students (and why it matters)</div>
                             <div class="ilo-hero-media-desc">
-                                Logic is everywhere — in puzzles, games, and everyday schoolwork. ILO turns that skill
-                                into a meaningful global challenge.
-                                It rewards <strong>clear reasoning</strong>, not memorization, and builds confidence
-                                under time.
+                                The <strong>International Logic Olympiad (ILO) 2026</strong> builds the most valuable
+                                academic skill:
+                                <strong>clear, structured thinking</strong>. It is not about memorization. It is about
+                                solving smart
+                                puzzles, reading carefully, and staying calm under time.
                             </div>
                             <div class="ilo-hero-media-desc ilo-mt-2">
-                                This is the kind of early experience that can shape a student’s mindset: structured
-                                thinking, calm decision-making,
-                                and pride in solving tough problems.
+                                Students compete internationally, and strong performers may qualify for the final round
+                                at
+                                <strong>Stanford University, USA</strong>. This is a meaningful global achievement at an
+                                early stage of education.
                             </div>
                         </div>
 
-                        <div class="ilo-hero-media-box" aria-label="Hero image/video placeholder">
-                            <div class="ilo-media-placeholder">
-                                <div class="ilo-media-label">Add a hero image or short video here</div>
-                                <div class="ilo-media-help">
-                                    Recommended: ILO 2026 banner / student solving puzzle / short montage video.
-                                </div>
+                        <div class="ilo-hero-media-box" aria-label="Hero video">
+                            <div class="ilo-hero-video">
+                                <video controls preload="metadata"
+                                    poster="https://canstemeducation.com/wp-content/uploads/2026/01/ilo1.png">
+                                    <source
+                                        src="https://canstemeducation.com/wp-content/uploads/2026/01/International_Logic_Olympiad.mp4"
+                                        type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -856,26 +835,27 @@
                 <div class="ilo-section-text">
                     <div class="ilo-sec-title">What is the International Logic Olympiad (ILO)?</div>
                     <p class="ilo-sec-para">
-                        The International Logic Olympiad (ILO) is a global competition that challenges students with
-                        puzzle-style questions,
-                        careful reading, and structured reasoning. Students work through sets, patterns, constraints,
-                        and multi-step logic —
-                        the same kind of thinking used in advanced academics and real-world problem solving.
+                        The <strong>International Logic Olympiad (ILO)</strong> is a global logic competition where
+                        students solve
+                        reasoning-based questions such as logic grids, patterns, sets, and step-by-step deduction.
                     </p>
                     <p class="ilo-sec-para">
-                        If your child enjoys “smart puzzles,” strategic games, or solving tricky questions with clean
-                        steps, ILO is one of the best
-                        contests to build that skill in a serious and exciting way.
+                        It helps students improve focus, accuracy, and structured problem-solving. These skills support
+                        performance in
+                        Math, Science, and even reading comprehension because students learn to think clearly and avoid
+                        careless mistakes.
+                    </p>
+                    <p class="ilo-sec-para ilo-muted ilo-small">
+                        Popular search keywords: International Logic Olympiad Canada, ILO 2026 exam, logic olympiad
+                        coaching, Stanford finals competition.
                     </p>
                 </div>
 
-                <div class="ilo-section-media">
+                <div class="ilo-section-media" aria-label="ILO student solving puzzle image">
                     <div class="ilo-section-media-inner">
-                        <div class="ilo-media-frame">
-                            <div class="ilo-media-label">Place image/video here (ILO overview visual)</div>
-                            <div class="ilo-media-help">Example: puzzle graphic, competition theme visual, or a short
-                                teaser clip.</div>
-                        </div>
+                        <img class="ilo-media-img"
+                            src="https://canstemeducation.com/wp-content/uploads/2026/01/ilo1.png"
+                            alt="International Logic Olympiad Canada 2026 student solving logic puzzle and reasoning worksheet" />
                     </div>
                 </div>
             </div>
@@ -887,26 +867,27 @@
         <div class="ilo-blog-section ilo-reveal" aria-label="Section 2">
             <div class="ilo-section-row reverse">
                 <div class="ilo-section-text">
-                    <div class="ilo-sec-title">What makes ILO different from typical contests?</div>
+                    <div class="ilo-sec-title">What does the ILO exam look like?</div>
                     <p class="ilo-sec-para">
-                        Many competitions focus on speed or memorized methods. ILO is different. It rewards students who
-                        can stay calm,
-                        read carefully, and build a solution step-by-step.
+                        The ILO exam usually includes logic puzzle formats like grids, pattern recognition, checkbox
+                        reasoning,
+                        and “if–then” deduction. Students must stay organized and work carefully.
                     </p>
                     <p class="ilo-sec-para">
-                        Students don’t need to “be perfect at math” to do well. With the right practice, they learn how
-                        to break complex questions
-                        into smaller steps — and that skill transfers into Math, Science, English, and beyond.
+                        This is why preparation matters. With practice, students learn faster strategies, clean working
+                        steps,
+                        and time management for competition-style questions.
+                    </p>
+                    <p class="ilo-sec-para ilo-muted ilo-small">
+                        Tip: Start with a sample test, then practice weekly timed sets. Consistency improves confidence.
                     </p>
                 </div>
 
-                <div class="ilo-section-media">
+                <div class="ilo-section-media" aria-label="Logic worksheet example image">
                     <div class="ilo-section-media-inner">
-                        <div class="ilo-media-frame">
-                            <div class="ilo-media-label">Place image/video here (logic grid / set reasoning)</div>
-                            <div class="ilo-media-help">Example: logic grid image, set operation diagram, or student
-                                workbook photo.</div>
-                        </div>
+                        <img class="ilo-media-img"
+                            src="https://canstemeducation.com/wp-content/uploads/2026/01/ilo2.png"
+                            alt="ILO 2026 logic puzzle sheet with grid reasoning patterns and checkbox deduction example" />
                     </div>
                 </div>
             </div>
@@ -920,26 +901,27 @@
                 <div class="ilo-section-text">
                     <div class="ilo-sec-title">Canada-wide support: CanSTEM’s role</div>
                     <p class="ilo-sec-para">
-                        CanSTEM Education Private School is the <strong>Official Regional Representative for the entire
-                            region of Canada</strong>,
-                        and the <strong>host</strong> for the preliminary round of International Logic Olympiad (ILO)
-                        for students
-                        <strong>across Canada</strong>.
+                        CanSTEM Education Private School is the <strong>Official Regional Representative & Testing
+                            Center for Canada</strong>.
+                        This means students across Canada can receive clear guidance and local support for the ILO
+                        process.
                     </p>
                     <p class="ilo-sec-para">
-                        For families, this matters because it brings local guidance and a clear preparation path —
-                        including coaching options and
-                        support for students who want to take the contest seriously.
+                        We help families understand the exam, timelines, and preparation plan. We also support students
+                        through the
+                        preliminary round journey and preparation for higher stages.
+                    </p>
+                    <p class="ilo-sec-para ilo-muted ilo-small">
+                        Important: CanSTEM supports registration guidance and coaching. The Olympiad is organized and
+                        administered by the official ILO platform.
                     </p>
                 </div>
 
-                <div class="ilo-section-media">
+                <div class="ilo-section-media" aria-label="Coaching session image">
                     <div class="ilo-section-media-inner">
-                        <div class="ilo-media-frame">
-                            <div class="ilo-media-label">Place image/video here (Canada partner / CanSTEM)</div>
-                            <div class="ilo-media-help">Example: CanSTEM campus photo, coaching session, or “Canada-wide
-                                support” visual.</div>
-                        </div>
+                        <img class="ilo-media-img"
+                            src="https://canstemeducation.com/wp-content/uploads/2026/01/ilo3.png"
+                            alt="Small group coaching session for International Logic Olympiad preparation in Canada" />
                     </div>
                 </div>
             </div>
@@ -951,26 +933,29 @@
         <div class="ilo-blog-section ilo-reveal" aria-label="Section 4">
             <div class="ilo-section-row reverse">
                 <div class="ilo-section-text">
-                    <div class="ilo-sec-title">The Stanford finals: why this is a big deal</div>
+                    <div class="ilo-sec-title">Stanford finals: the global competition stage</div>
                     <p class="ilo-sec-para">
-                        The most exciting part of ILO is the global stage. Strong performers in the preliminary round
-                        may qualify for the final round at
-                        <strong>Stanford University, USA</strong>.
+                        One of the most exciting parts of ILO is the global journey. High-performing students may
+                        qualify for the final round
+                        at <strong>Stanford University, USA</strong>, competing with international students from around
+                        the world.
                     </p>
                     <p class="ilo-sec-para">
-                        For students in early education, this kind of goal is powerful. It motivates disciplined
-                        practice and gives students a meaningful
-                        reason to build advanced thinking skills — early.
+                        For students, being an ILO finalist is a major academic milestone. It builds confidence,
+                        discipline, and global exposure —
+                        and it becomes a powerful achievement story for future opportunities.
+                    </p>
+                    <p class="ilo-sec-para ilo-muted ilo-small">
+                        Global keywords: Stanford University finals, international student competition, world logic
+                        olympiad winners.
                     </p>
                 </div>
 
-                <div class="ilo-section-media">
+                <div class="ilo-section-media" aria-label="Campus inspiration image">
                     <div class="ilo-section-media-inner">
-                        <div class="ilo-media-frame">
-                            <div class="ilo-media-label">Place image/video here (Stanford / finals inspiration)</div>
-                            <div class="ilo-media-help">Example: Stanford campus image, travel-inspired visual, student
-                                celebration photo.</div>
-                        </div>
+                        <img class="ilo-media-img"
+                            src="https://canstemeducation.com/wp-content/uploads/2026/01/ilo4.png"
+                            alt="Inspiring university campus walkway representing Stanford finals journey for ILO 2026" />
                     </div>
                 </div>
             </div>
@@ -982,30 +967,28 @@
         <div class="ilo-blog-section ilo-reveal" aria-label="Section 5">
             <div class="ilo-section-row">
                 <div class="ilo-section-text">
-                    <div class="ilo-sec-title">How students should prepare (simple, realistic plan)</div>
+                    <div class="ilo-sec-title">How to prepare for ILO 2026 (simple plan)</div>
                     <p class="ilo-sec-para">
-                        The fastest improvements usually come from two things: a clear method and timed practice.
-                        Students who practice with structure
-                        become quicker and more confident — especially when they start early.
+                        The best preparation is consistent and structured. Students improve fastest when they practice a
+                        little every week,
+                        review mistakes, and gradually add timed practice.
                     </p>
                     <p class="ilo-sec-para">
-                        A strong routine looks like: sample test → skill practice → timed sets → review mistakes →
-                        repeat. Coaching helps students understand
-                        the “why” behind solutions, fix patterns of errors, and build calm exam-day execution.
+                        A realistic weekly routine looks like: sample test → skill practice → timed sets → review errors
+                        → repeat.
+                        Coaching can speed up progress because students learn the right reasoning method early.
                     </p>
-                    <p class="ilo-sec-para ilo-muted ilo-small">
-                        Tip: Start with the official sample test first to understand the question style, then build your
-                        weekly plan.
+                    <p class="ilo-sec-para">
+                        Coaching Enrollment Fee: <strong>CAD $50</strong>. This helps students begin with guided
+                        preparation and a clear plan.
                     </p>
                 </div>
 
-                <div class="ilo-section-media">
+                <div class="ilo-section-media" aria-label="Study planning image">
                     <div class="ilo-section-media-inner">
-                        <div class="ilo-media-frame">
-                            <div class="ilo-media-label">Place image/video here (coaching plan / routine)</div>
-                            <div class="ilo-media-help">Example: weekly schedule graphic, practice worksheet photo,
-                                online class screenshot.</div>
-                        </div>
+                        <img class="ilo-media-img"
+                            src="https://canstemeducation.com/wp-content/uploads/2026/01/ilo5.png"
+                            alt="Organized study desk with weekly plan and logic practice worksheets for ILO 2026 preparation" />
                     </div>
                 </div>
             </div>
@@ -1015,11 +998,12 @@
 
         <!-- CTA -->
         <div class="ilo-cta ilo-reveal" aria-label="Blog call to action">
-            <div class="ilo-cta-title">Ready to explore ILO 2026 and start preparing?</div>
+            <div class="ilo-cta-title">Want to start the ILO 2026 journey?</div>
             <p class="ilo-cta-sub">
-                If your child enjoys logic and wants a real challenge, ILO is a powerful opportunity. Start with the
-                sample test,
-                then build a weekly routine — and aim for confident performance in the preliminary round.
+                If your child enjoys smart puzzles and wants a serious academic challenge, the <strong>International
+                    Logic Olympiad (ILO) 2026</strong>
+                is a great opportunity. Start early, practice consistently, and aim for confident performance in the
+                preliminary round.
             </p>
 
             <div class="ilo-cta-actions" aria-label="Links">
@@ -1039,8 +1023,8 @@
             </div>
 
             <p class="ilo-mt-4 ilo-muted ilo-small" style="margin-bottom:0;font-weight:600;">
-                For families in Canada: CanSTEM provides guidance and coaching support for Junior and Senior divisions.
-                Qualifiers may earn a chance to attend finals at Stanford University, USA.
+                CanSTEM provides Canada-wide guidance, testing support, and coaching pathways. Strong performers may
+                qualify for finals at Stanford University, USA.
             </p>
         </div>
 
@@ -1050,8 +1034,12 @@
         "@context": "https://schema.org",
         "@type": "BlogPosting",
         "headline": "International Logic Olympiad (ILO) 2026: A Global Opportunity for Students in Canada",
-        "description": "News-style guide to International Logic Olympiad (ILO) 2026 — what it is, why it matters, key dates, and how Canadian students can prepare for Stanford finals.",
-        "image": "https://canstemeducation.com/wp-content/uploads/2025/12/Internatinal-Logic-Olympiad-2026.png",
+        "description": "International Logic Olympiad (ILO) 2026 Canada guide — what it is, key dates, Stanford finals pathway, and how to prepare with coaching support.",
+        "image": [
+          "https://canstemeducation.com/wp-content/uploads/2026/01/ilo1.png",
+          "https://canstemeducation.com/wp-content/uploads/2026/01/ilo3.png",
+          "https://canstemeducation.com/wp-content/uploads/2026/01/ilo4.png"
+        ],
         "author": {
           "@type": "Organization",
           "name": "CanSTEM Education Private School"
