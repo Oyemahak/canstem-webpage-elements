@@ -1,0 +1,457 @@
+<!-- ===== CanSTEM Footer Bar (Desktop 3 columns, Mobile/Tablet stacked) ===== -->
+<div class="csf" aria-label="Footer bar">
+
+    <!-- 1) Copyright (LEFT on desktop, LAST on mobile/tablet) -->
+    <div class="csf__copy" aria-label="Copyright">
+        <p class="csf__copyText">© 2025 CanSTEM Education Inc. All Rights Reserved.</p>
+    </div>
+
+    <!-- 2) Land Acknowledgement (CENTER on desktop, FIRST on mobile/tablet) -->
+    <div class="csf__land">
+        <!-- CanSTEM Land Acknowledgement (DIV/P only) -->
+        <div class="csla" aria-label="Land Acknowledgement">
+            <div class="csla__bar">
+                <div class="csla__left">
+                    <p class="csla__title">Land Acknowledgement</p>
+                </div>
+
+                <div class="csla__action csf__click" id="cslaOpen" role="button" tabindex="0"
+                    aria-label="Open Land Acknowledgement">
+                    <p class="csla__link">Read full acknowledgement <span class="csla__arrow"
+                            aria-hidden="true">→</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3) Policy links (RIGHT on desktop, SECOND on mobile/tablet) -->
+    <div class="csf__links" aria-label="Footer links">
+        <div class="csf__linksRow">
+            <div class="csf__link csf__click" role="link" tabindex="0"
+                data-href="https://canstemeducation.com/privacy-policy/" aria-label="Privacy Policy">
+                <p class="csf__linkText">Privacy Policy</p>
+            </div>
+
+            <div class="csf__link csf__click" role="link" tabindex="0"
+                data-href="https://canstemeducation.com/terms-and-conditions/" aria-label="Terms &amp; Conditions">
+                <p class="csf__linkText">Terms &amp; Conditions</p>
+            </div>
+
+            <div class="csf__link csf__click" role="link" tabindex="0"
+                data-href="https://canstemeducation.com/accessibility/" aria-label="Accessibility">
+                <p class="csf__linkText">Accessibility</p>
+            </div>
+
+            <div class="csf__link csf__click" role="link" tabindex="0" data-href="https://canstemeducation.com/sitemap/"
+                aria-label="Sitemap">
+                <p class="csf__linkText">Sitemap</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- Modal (Land Acknowledgement) -->
+<div class="csla__modal" id="cslaModal" aria-hidden="true">
+    <div class="csla__overlay" id="cslaOverlay"></div>
+
+    <div class="csla__panel" role="dialog" aria-modal="true" aria-label="Land Acknowledgement dialog" tabindex="-1">
+        <div class="csla__head">
+            <p class="csla__headTitle">Land Acknowledgement</p>
+            <div class="csla__close csf__click" id="cslaClose" role="button" tabindex="0" aria-label="Close">×</div>
+        </div>
+
+        <div class="csla__body">
+            <p>
+                The City of Brampton is located on the traditional territories of the Mississaugas of the Credit,
+                Haudenosaunee and Wendat Nations who have called this land home since time immemorial.
+            </p>
+            <p>
+                We recognize the Mississaugas of the Credit as the original rights holders and the signatories of
+                Treaty 19—the Ajetance Purchase of 1818—and that the agreements made therein are foundational to
+                our nation-to-nation relationship.
+            </p>
+            <p>
+                As a City, we are committed to our ongoing role in reconciliation through meaningful action rooted
+                in truth, justice and respect.
+            </p>
+            <p>
+                We are grateful to the original caretakers of this land who have ensured we are able to work, play
+                and live in Brampton now and in the future.
+            </p>
+        </div>
+
+        <div class="csla__foot">
+            <div class="csla__ok csf__click" id="cslaOk" role="button" tabindex="0" aria-label="Close dialog">
+                <p class="csla__okText">Close</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* ===== Footer layout wrapper (scoped) ===== */
+    .csf {
+        width: 100%;
+        box-sizing: border-box;
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        padding-right: 24px;
+        padding-left: 24px;
+        /* left | center | right */
+        align-items: center;
+        gap: 16px;
+        /* keep compact like your bar */
+    }
+
+    /* Desktop alignment */
+    .csf__copy {
+        justify-self: start;
+    }
+
+    .csf__land {
+        justify-self: center;
+    }
+
+    .csf__links {
+        justify-self: end;
+    }
+
+    /* Copyright */
+    .csf__copyText {
+        margin: 0 !important;
+        color: #fff;
+        font-size: 15px;
+        opacity: 1;
+        /* matches your current bar size */
+        font-weight: 400;
+        line-height: 1;
+        white-space: nowrap;
+    }
+
+    /* Mobile/Tablet: thin separator above copyright */
+    .csf__copy {
+        border-top: none;
+        padding: 0px;
+    }
+
+    /* Links row */
+    .csf__linksRow {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        flex-wrap: wrap;
+        /* safe if narrow desktop */
+        justify-content: flex-end;
+    }
+
+    .csf__linkText {
+        margin: 0 !important;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1;
+        opacity: .95;
+        transition: opacity .15s ease, text-decoration-color .15s ease;
+        text-decoration: none;
+    }
+
+    /* Make div links feel like links */
+    .csf__link:hover .csf__linkText {
+        opacity: 1;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+
+    /* Clickable affordance */
+    .csf__click {
+        cursor: pointer;
+        user-select: none;
+    }
+
+    /* ===== Your existing Land Acknowledgement CSS (kept same sizing) ===== */
+    .csla {
+        --csla-navy: #001161;
+        --csla-text: #0f172a;
+        --csla-muted: rgba(255, 255, 255, .85);
+        --csla-border: rgba(255, 255, 255, .18);
+        width: 100%;
+    }
+
+    .csla__bar {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px 16px;
+        backdrop-filter: blur(2px);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+    }
+
+    .csla__left {
+        min-width: 0;
+    }
+
+    .csla__title {
+        margin: 0 0 4px 0 !important;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        line-height: 1;
+    }
+
+    .csla__action {
+        flex: 0 0 auto;
+        border: 1px solid rgba(255, 255, 255, .28);
+        border-radius: 999px;
+        padding: 12px 16px;
+        background: rgba(255, 255, 255, .10);
+        transition: transform .08s ease, box-shadow .18s ease, background .18s ease;
+        white-space: nowrap;
+    }
+
+    .csla__action:hover {
+        background: rgba(255, 255, 255, .14);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .18);
+    }
+
+    .csla__action:active {
+        transform: translateY(1px);
+    }
+
+    .csla__link {
+        margin: 0 !important;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 800;
+        line-height: 1;
+    }
+
+    .csla__arrow {
+        font-size: 18px;
+        margin-left: 6px;
+    }
+
+    /* ===== Modal styles (same as your working version) ===== */
+    .csla__modal {
+        position: fixed;
+        inset: 0;
+        display: none;
+        z-index: 99999;
+    }
+
+    .csla__modal.is-open {
+        display: block;
+    }
+
+    .csla__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(2, 6, 23, 0.60);
+    }
+
+    .csla__panel {
+        position: relative;
+        width: min(780px, calc(100% - 26px));
+        margin: 7vh auto;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 18px 55px rgba(0, 0, 0, .30);
+        overflow: hidden;
+        outline: none;
+    }
+
+    .csla__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        padding: 14px 16px;
+        border-bottom: 1px solid rgba(15, 23, 42, .12);
+    }
+
+    .csla__headTitle {
+        margin: 0 !important;
+        color: var(--csla-text);
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 1.8;
+    }
+
+    .csla__close {
+        width: 38px;
+        height: 38px;
+        border-radius: 10px;
+        border: 1px solid rgba(15, 23, 42, .14);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: var(--csla-text);
+        background: #fff;
+    }
+
+    .csla__body {
+        padding: 14px 16px;
+        max-height: 60vh;
+        overflow: auto;
+    }
+
+    .csla__body p {
+        margin: 0 0 12px 0 !important;
+        color: var(--csla-text);
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .csla__foot {
+        padding: 12px 16px;
+        border-top: 1px solid rgba(15, 23, 42, .12);
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .csla__ok {
+        border-radius: 10px;
+        background: var(--csla-navy);
+        padding: 10px 14px;
+    }
+
+    .csla__okText {
+        margin: 0 !important;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 900;
+        line-height: 1;
+    }
+
+    /* ===== Tablet + Mobile stacking order (LandAck first, Links second, Copyright last) ===== */
+    @media (max-width: 1024px) {
+        .csf {
+            grid-template-columns: 1fr;
+            gap: 12px;
+            padding: 14px 4px;
+            text-align: center;
+        }
+
+        .csf__land {
+            order: 1;
+            justify-self: center;
+            width: 100%;
+        }
+
+        .csf__links {
+            order: 2;
+            justify-self: center;
+            width: 100%;
+        }
+
+        .csf__copy {
+            order: 3;
+            justify-self: center;
+            width: 100%;
+        }
+
+        /* Mobile/Tablet: thin separator above copyright */
+        .csf__copy {
+            border-top: 1px solid rgba(255, 255, 255, .25);
+            padding-top: 12px;
+            margin-top: 8px;
+        }
+
+        .csf__linksRow {
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .csf__copyText {
+            font-size: 14px;
+            opacity: .8;
+            white-space: normal;
+            /* allow wrap on smaller screens */
+        }
+
+        .csla__title {
+            line-height: 1.4;
+            font-weight: 700;
+            font-size: 17px;
+        }
+
+        /* Make LandAck centered and not left-aligned on mobile/tablet */
+        .csla__bar {
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 0px 12px 12px 12px;
+        }
+    }
+</style>
+
+<script>
+    (function () {
+        // ----- LAND ACK MODAL -----
+        const open = document.getElementById("cslaOpen");
+        const modal = document.getElementById("cslaModal");
+        const overlay = document.getElementById("cslaOverlay");
+        const close = document.getElementById("cslaClose");
+        const ok = document.getElementById("cslaOk");
+        const panel = modal ? modal.querySelector(".csla__panel") : null;
+
+        // ----- CLICKABLE DIV LINKS -----
+        const linkEls = document.querySelectorAll(".csf [data-href]");
+
+        function goHref(el) {
+            const href = el.getAttribute("data-href");
+            if (href) window.location.href = href;
+        }
+
+        function onEnterSpace(el, cb) {
+            el.addEventListener("keydown", function (e) {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    cb();
+                }
+            });
+        }
+
+        linkEls.forEach(function (el) {
+            el.addEventListener("click", function () { goHref(el); });
+            onEnterSpace(el, function () { goHref(el); });
+        });
+
+        if (!open || !modal || !overlay || !close || !ok || !panel) return;
+
+        let lastFocus = null;
+
+        function openModal() {
+            lastFocus = document.activeElement;
+            modal.classList.add("is-open");
+            modal.setAttribute("aria-hidden", "false");
+            document.documentElement.style.overflow = "hidden";
+            setTimeout(() => panel.focus(), 0);
+        }
+
+        function closeModal() {
+            modal.classList.remove("is-open");
+            modal.setAttribute("aria-hidden", "true");
+            document.documentElement.style.overflow = "";
+            if (lastFocus && typeof lastFocus.focus === "function") lastFocus.focus();
+        }
+
+        open.addEventListener("click", openModal);
+        overlay.addEventListener("click", closeModal);
+        close.addEventListener("click", closeModal);
+        ok.addEventListener("click", closeModal);
+
+        onEnterSpace(open, openModal);
+        onEnterSpace(close, closeModal);
+        onEnterSpace(ok, closeModal);
+
+        document.addEventListener("keydown", function (e) {
+            if (!modal.classList.contains("is-open")) return;
+            if (e.key === "Escape") closeModal();
+        });
+    })();
+</script>
