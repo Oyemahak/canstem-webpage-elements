@@ -111,7 +111,6 @@
       color: inherit;
     }
 
-    #ilo-page-wrap p,
     #ilo-page-wrap li {
       font-weight: 500;
     }
@@ -336,8 +335,8 @@
       margin: 8px auto 0;
       text-align: center;
       max-width: 1000px;
-      color: #b5121b;
-      font-weight: 700;
+      color: rgb(216, 0, 0);
+      font-weight: 800;
       font-size: 24px;
       line-height: 1.8;
     }
@@ -356,8 +355,9 @@
       .title-sub {
         font-size: 16px;
       }
+
       .title-sub-first {
-        font-size: 20px;
+        font-size: 18px;
       }
     }
 
@@ -1582,6 +1582,97 @@
       height: 16px;
       color: var(--brand);
     }
+
+    /* ==========================================================
+  ABOUT (Support + Video)  ✅ NEW
+========================================================== */
+    .ilo-about-grid {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    @media (max-width: 980px) {
+      .ilo-about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ilo-video-card {
+      border: 1px solid rgba(226, 232, 240, .95);
+      border-radius: 20px;
+      background: #fff;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ilo-video-card:before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(120deg, rgba(251, 176, 37, .12), rgba(181, 18, 27, .10), rgba(0, 66, 124, .08));
+      opacity: .65;
+      pointer-events: none;
+    }
+
+    .ilo-video-card .head {
+      padding: 14px 14px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ilo-video-card .head .k {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+      color: var(--ink);
+      font-size: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .ilo-video-card .head .k {
+        font-size: 16px;
+      }
+    }
+
+    .ilo-video {
+      width: 100%;
+      display: block;
+      position: relative;
+      z-index: 1;
+      background: #000;
+      aspect-ratio: 16 / 9;
+      /* keeps it clean & responsive */
+    }
+
+    .ilo-video-card .foot {
+      padding: 12px 14px 14px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .ilo-video-card .foot p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 1.8;
+    }
+
+    @media (max-width: 768px) {
+      .ilo-video-card .foot p {
+        font-size: 16px;
+      }
+    }
   </style>
 </head>
 
@@ -1631,7 +1722,8 @@
       </div>
 
       <div class="hero-head">
-        <p class="title-sub-first"><em>CanSTEM Education Private School is Official Regional Representative & Testing Center
+        <p class="title-sub-first"><em>CanSTEM Education Private School is Official Regional Representative & Testing
+            Center
             for
             entire Canada</em></p>
         <div class="mini-sep" aria-hidden="true"></div>
@@ -1643,14 +1735,17 @@
           <h2 class="title-md">What is CanSTEM’s role in the ILO exam process?</h2>
           <!-- REQUIRED WORDING (exact as provided) -->
           <p class="lede mt-4">
-            CanSTEM Education Private School is the <strong>Official Regional Representative for the entire region of Canada</strong>,
-            and <strong>the host</strong> for the preliminary round of International Logic Olympiad (ILO) for students <strong>across Canada</strong>.
+            CanSTEM Education Private School is the <strong>Official Regional Representative for the entire region of
+              Canada</strong>,
+            and <strong>the host</strong> for the preliminary round of International Logic Olympiad (ILO) for students
+            <strong>across Canada</strong>.
           </p>
 
           <p class="lede mt-4">
             We help students prepare for the global Math contest focused on logic and clear thinking and solving
             puzzle-style
-            questions using step-by-step reasoning. Students who <strong>qualify in the preliminary round</strong> will attend the final
+            questions using step-by-step reasoning. Students who <strong>qualify in the preliminary round</strong> will
+            attend the final
             round at <strong>Stanford University, USA</strong>.
           </p>
 
@@ -1767,7 +1862,123 @@
 
     <div class="sep"></div>
 
-    
+    <!-- ABOUT (UPDATED: CanSTEM Support + Video) -->
+    <section id="about" class="section reveal"
+      aria-label="CanSTEM support for International Logic Olympiad (ILO) students in Canada">
+      <h2 class="title-lg">CanSTEM support for ILO students in Canada</h2>
+      <p class="title-sub"><em>Coaching + testing centre guidance + a clear weekly plan</em></p>
+      <div class="mini-sep" aria-hidden="true"></div>
+
+      <div class="ilo-about-grid" aria-label="CanSTEM support overview and video">
+        <!-- LEFT: Support copy -->
+        <div>
+          <p class="mt-6" style="margin-bottom:0; color:#0b1220; font-weight:600;">
+            We guide you through the complete process—from choosing the right
+            division to exam-day readiness.
+          </p>
+          <!-- Reuse your premium checklist style -->
+          <ul class="hero-points" aria-label="What CanSTEM helps with">
+            <li><strong>Registration + division guidance</strong> (Junior/Senior placement, next steps, timelines).</li>
+            <li><strong>Weekly coaching plan</strong> (skill-building + homework + steady progress checks).</li>
+            <li><strong>Mock tests + pacing</strong> (timed practice so exam day feels familiar and calm).</li>
+            <li><strong>Testing-day support</strong> for the preliminary round (Canada-wide students).</li>
+          </ul>
+        </div>
+
+        <!-- RIGHT: Video -->
+        <aside class="ilo-video-card" aria-label="International Logic Olympiad video overview">
+          <div class="head">
+            <div class="k">
+              <span class="spark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <polygon points="7 4 20 12 7 20 7 4"></polygon>
+                </svg>
+              </span>
+              <span>Video overview</span>
+            </div>
+            <span class="tag">ILO • CanSTEM</span>
+          </div>
+
+          <video class="ilo-video" controls preload="metadata" playsinline
+            poster="https://canstemeducation.com/wp-content/uploads/2025/12/Internatinal-Logic-Olympiad-2026.png">
+            <source src="https://canstemeducation.com/wp-content/uploads/2026/01/International_Logic_Olympiad.mp4"
+              type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+
+          <div class="foot">
+            <p>Watch a quick overview of ILO and how CanSTEM supports students across Canada.</p>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Support cards (only CanSTEM support) -->
+      <div class="grid-3" aria-label="CanSTEM support highlights">
+        <div class="card">
+          <h3 class="card-title">
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M12 2l7 4v6c0 5-3 9-7 10C8 21 5 17 5 12V6l7-4Z"></path>
+                <path d="M9 12l2 2 4-5"></path>
+              </svg>
+            </span>
+            Registration &amp; planning support
+          </h3>
+          <p>We help you pick the right division and follow the correct steps. <strong>Then</strong>, we map a clear
+            weekly plan to stay on track.</p>
+          <ul>
+            <li>Division placement guidance</li>
+            <li>Timeline &amp; checklist</li>
+            <li>Study plan aligned to dates</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"></circle>
+                <circle cx="12" cy="12" r="5"></circle>
+                <path d="M12 12l3-3"></path>
+              </svg>
+            </span>
+            Coaching + mock tests
+          </h3>
+          <p>Students learn step-by-step reasoning and test strategy. <strong>As a result</strong>, they get faster and
+            more accurate with practice.</p>
+          <ul>
+            <li>Logic puzzle methods</li>
+            <li>Timed sets &amp; pacing strategy</li>
+            <li>Mock exams + review</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3 class="card-title">
+            <span class="ico" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M4 19a2 2 0 0 0 2 2h12"></path>
+                <path d="M6 3h12v18H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"></path>
+                <path d="M8 7h8"></path>
+                <path d="M8 11h8"></path>
+              </svg>
+            </span>
+            Test-day readiness
+          </h3>
+          <p>We reduce stress by making expectations clear. <strong>In addition</strong>, students learn how to manage
+            time and stay calm.</p>
+          <ul>
+            <li>Exam-day checklist</li>
+            <li>Time management routines</li>
+            <li>Confidence under pressure</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
     <div class="sep"></div>
 
