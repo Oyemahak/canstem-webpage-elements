@@ -11,13 +11,9 @@
         <!-- CanSTEM Land Acknowledgement (DIV/P only) -->
         <div class="csla" aria-label="Land Acknowledgement">
             <div class="csla__bar">
-                <div class="csla__left">
-                    <p class="csla__title">Land Acknowledgement</p>
-                </div>
-
                 <div class="csla__action csf__click" id="cslaOpen" role="button" tabindex="0"
                     aria-label="Open Land Acknowledgement">
-                    <p class="csla__link">Read full acknowledgement <span class="csla__arrow"
+                    <p class="csla__link">Land Acknowledgement <span class="csla__arrow"
                             aria-hidden="true">→</span></p>
                 </div>
             </div>
@@ -98,13 +94,10 @@
         grid-template-columns: 1fr auto 1fr;
         padding-right: 24px;
         padding-left: 24px;
-        /* left | center | right */
         align-items: center;
         gap: 16px;
-        /* keep compact like your bar */
     }
 
-    /* Desktop alignment */
     .csf__copy {
         justify-self: start;
     }
@@ -117,31 +110,26 @@
         justify-self: end;
     }
 
-    /* Copyright */
     .csf__copyText {
         margin: 0 !important;
         color: #fff;
         font-size: 15px;
         opacity: 1;
-        /* matches your current bar size */
         font-weight: 400;
         line-height: 1;
         white-space: nowrap;
     }
 
-    /* Mobile/Tablet: thin separator above copyright */
     .csf__copy {
         border-top: none;
         padding: 0px;
     }
 
-    /* Links row */
     .csf__linksRow {
         display: flex;
         align-items: center;
         gap: 18px;
         flex-wrap: wrap;
-        /* safe if narrow desktop */
         justify-content: flex-end;
     }
 
@@ -156,20 +144,18 @@
         text-decoration: none;
     }
 
-    /* Make div links feel like links */
     .csf__link:hover .csf__linkText {
         opacity: 1;
         text-decoration: underline;
         text-underline-offset: 4px;
     }
 
-    /* Clickable affordance */
     .csf__click {
         cursor: pointer;
         user-select: none;
     }
 
-    /* ===== Your existing Land Acknowledgement CSS (kept same sizing) ===== */
+    /* ===== Land Acknowledgement styles (your existing) ===== */
     .csla {
         --csla-navy: #001161;
         --csla-text: #0f172a;
@@ -187,18 +173,6 @@
         align-items: center;
         justify-content: space-between;
         gap: 14px;
-    }
-
-    .csla__left {
-        min-width: 0;
-    }
-
-    .csla__title {
-        margin: 0 0 4px 0 !important;
-        color: #fff;
-        font-size: 15px;
-        font-weight: 600;
-        line-height: 1;
     }
 
     .csla__action {
@@ -233,16 +207,21 @@
         margin-left: 6px;
     }
 
-    /* ===== Modal styles (same as your working version) ===== */
+    /* ===== Modal styles (UPDATED: true fullscreen + centered) ===== */
     .csla__modal {
         position: fixed;
         inset: 0;
         display: none;
         z-index: 99999;
+
+        /* NEW: center the panel in viewport */
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
     }
 
     .csla__modal.is-open {
-        display: block;
+        display: flex;
     }
 
     .csla__overlay {
@@ -254,12 +233,15 @@
     .csla__panel {
         position: relative;
         width: min(780px, calc(100% - 26px));
-        margin: 7vh auto;
+        margin: 0;
+        /* NEW: remove 7vh auto so it centers properly */
         background: #fff;
         border-radius: 14px;
         box-shadow: 0 18px 55px rgba(0, 0, 0, .30);
         overflow: hidden;
         outline: none;
+        z-index: 1;
+        /* sits above overlay */
     }
 
     .csla__head {
@@ -326,7 +308,7 @@
         line-height: 1;
     }
 
-    /* ===== Tablet + Mobile stacking order (LandAck first, Links second, Copyright last) ===== */
+    /* ===== Tablet + Mobile stacking order ===== */
     @media (max-width: 1024px) {
         .csf {
             grid-template-columns: 1fr;
@@ -343,7 +325,7 @@
 
         .csf__links {
             order: 2;
-            justify-self: center;
+            justify-self: left;
             width: 100%;
         }
 
@@ -353,7 +335,6 @@
             width: 100%;
         }
 
-        /* Mobile/Tablet: thin separator above copyright */
         .csf__copy {
             border-top: 1px solid rgba(255, 255, 255, .25);
             padding-top: 12px;
@@ -369,16 +350,8 @@
             font-size: 14px;
             opacity: .8;
             white-space: normal;
-            /* allow wrap on smaller screens */
         }
 
-        .csla__title {
-            line-height: 1.4;
-            font-weight: 700;
-            font-size: 17px;
-        }
-
-        /* Make LandAck centered and not left-aligned on mobile/tablet */
         .csla__bar {
             justify-content: center;
             flex-direction: column;
@@ -394,6 +367,12 @@
         // ----- LAND ACK MODAL -----
         const open = document.getElementById("cslaOpen");
         const modal = document.getElementById("cslaModal");
+
+        // NEW: Move modal to <body> so overlay/popup cover the full page (Elementor transform fix)
+        if (modal && modal.parentElement !== document.body) {
+            document.body.appendChild(modal);
+        }
+
         const overlay = document.getElementById("cslaOverlay");
         const close = document.getElementById("cslaClose");
         const ok = document.getElementById("cslaOk");
