@@ -332,9 +332,32 @@
       box-shadow: var(--shadow-tiny);
     }
 
+    .title-sub-first {
+      margin: 8px auto 0;
+      text-align: center;
+      max-width: 1000px;
+      color: #b5121b;
+      font-weight: 700;
+      font-size: 24px;
+      line-height: 1.8;
+    }
+
+    .title-sub-first em {
+      font-style: normal;
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(226, 232, 240, .95);
+      background: rgba(255, 255, 255, .85);
+      box-shadow: var(--shadow-tiny);
+    }
+
     @media (max-width:768px) {
       .title-sub {
         font-size: 16px;
+      }
+      .title-sub-first {
+        font-size: 20px;
       }
     }
 
@@ -1582,9 +1605,9 @@
         <div class="ilo-tab clickable" role="button" tabindex="0" data-target="resources" aria-current="false">
           <span aria-hidden="true"></span><em>Sample &amp; Resources</em>
         </div>
-        <div class="ilo-tab clickable" role="button" tabindex="0" data-target="fees" aria-current="false">
+        <!-- <div class="ilo-tab clickable" role="button" tabindex="0" data-target="fees" aria-current="false">
           <span aria-hidden="true"></span><em>Fees</em>
-        </div>
+        </div> -->
         <div class="ilo-tab clickable" role="button" tabindex="0" data-target="faq" aria-current="false">
           <span aria-hidden="true"></span><em>FAQ</em>
         </div>
@@ -1608,7 +1631,7 @@
       </div>
 
       <div class="hero-head">
-        <p class="title-sub"><em>CanSTEM Education Private School is Official Regional Representative & Testing Center
+        <p class="title-sub-first"><em>CanSTEM Education Private School is Official Regional Representative & Testing Center
             for
             entire Canada</em></p>
         <div class="mini-sep" aria-hidden="true"></div>
@@ -1744,89 +1767,7 @@
 
     <div class="sep"></div>
 
-    <!-- ABOUT (kept) -->
-    <section id="about" class="section reveal" aria-label="About the International Logic Olympiad and CanSTEM role">
-      <h2 class="title-lg">What is ILO, and what is CanSTEM’s role?</h2>
-      <p class="title-sub"><em>A simple overview for families</em></p>
-      <div class="mini-sep" aria-hidden="true"></div>
-
-      <p class="mt-6" style="margin-bottom:0; color:#0b1220; font-weight:600;">
-        The <strong>International Logic Olympiad (ILO)</strong> is a global logic competition that builds reasoning and
-        problem-solving. <strong>Because of that</strong>, it is a great fit for students who enjoy thinking challenges.
-      </p>
-
-      <p class="mt-4" style="margin-bottom:0; color:#0b1220; font-weight:600;">
-        CanSTEM Education is an <strong>official ILO Regional Partner &amp; Testing Center (Canada)</strong>.
-        <strong>Therefore</strong>, we help students train and stay on track with clear weekly goals.
-      </p>
-
-      <div class="grid-3" aria-label="About ILO and CanSTEM highlights">
-        <div class="card">
-          <h3 class="card-title">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M2 12h20"></path>
-                <path d="M12 2a15 15 0 0 1 0 20"></path>
-                <path d="M12 2a15 15 0 0 0 0 20"></path>
-              </svg>
-            </span>
-            What ILO tests
-          </h3>
-          <p>ILO focuses on logic, careful reading, patterns, and sets. <strong>However</strong>, it rewards clear steps
-            more than memorization.</p>
-          <ul>
-            <li>Logic puzzles &amp; constraints</li>
-            <li>Pattern recognition</li>
-            <li>Set reasoning (union/intersection/complement)</li>
-            <li>Step-by-step solutions</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3 class="card-title">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M12 2l7 4v6c0 5-3 9-7 10C8 21 5 17 5 12V6l7-4Z"></path>
-                <path d="M9 12l2 2 4-5"></path>
-              </svg>
-            </span>
-            CanSTEM support
-          </h3>
-          <p>We help families plan from start to finish. <strong>In addition</strong>, we train students with mock exams
-            and pacing.</p>
-          <ul>
-            <li>Coaching + mock tests</li>
-            <li>Division placement guidance</li>
-            <li>Test-day readiness support</li>
-            <li>Online coaching across Canada</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3 class="card-title">
-            <span class="ico" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M12 2l1.5 5L19 9l-5 2.2L12 17l-2-5.8L5 9l5.5-2L12 2z"></path>
-                <path d="M4 14l1 3 3 1-3 1-1 3-1-3-3-1 3-1 1-3z"></path>
-              </svg>
-            </span>
-            Why students enjoy it
-          </h3>
-          <p>It feels like smart puzzles with a goal. <strong>Therefore</strong>, many students stay motivated and
-            improve quickly.</p>
-          <ul>
-            <li>Fun problem sets</li>
-            <li>Confidence with new question types</li>
-            <li>Stronger thinking skills</li>
-            <li>Better calm under time</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    
 
     <div class="sep"></div>
 
@@ -1892,7 +1833,7 @@
         <a class="btn" href="https://portal.logicolympiad.org/sample" target="_blank" rel="noopener">
           <span>Official Sample Test</span>
         </a>
-        <a class="btn warm" href="#fees"><span>See Coaching Fees</span></a>
+        <!-- <a class="btn warm" href="#fees"><span>See Coaching Fees</span></a> -->
       </div>
     </section>
 
@@ -2314,7 +2255,7 @@
 
     <div class="sep"></div>
 
-    <!-- FEES -->
+    <!-- FEES
     <section id="fees" class="section reveal" aria-label="Fees and packages">
       <h2 class="title-lg">Fees &amp; packages (official ILO + coaching)</h2>
       <p class="title-sub"><em>Choose the option that fits your schedule</em></p>
@@ -2387,12 +2328,12 @@
       </div>
     </section>
 
-    <div class="sep"></div>
+    <div class="sep"></div> -->
 
     <!-- FAQ -->
     <section id="faq" class="section reveal" aria-label="Frequently asked questions">
       <h2 class="title-lg">Frequently asked questions (FAQs)</h2>
-      <p class="title-sub"><em>Common questions from families</em></p>
+      <p class="title-sub"><em>Common questions from prents & students</em></p>
       <div class="mini-sep" aria-hidden="true"></div>
 
       <div class="faq" aria-label="FAQ items">
