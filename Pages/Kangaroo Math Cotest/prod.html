@@ -854,7 +854,7 @@ Math Kangaroo Contest Coaching Page
     /* =========================
 International Logic Olympiad (ILO) - Clean Standard Layout
 Left text (full width) + Right image (320px)
-No inner boxes / no small fonts
+No inner boxes / no font reduction
 ========================= */
 
     .ilo-section {
@@ -872,7 +872,6 @@ No inner boxes / no small fonts
     .ilo-wrap {
         display: grid;
         grid-template-columns: 1fr 320px;
-        /* text + fixed image */
         gap: 18px;
         align-items: start;
     }
@@ -881,7 +880,6 @@ No inner boxes / no small fonts
         margin: 0 0 10px;
         color: var(--brand);
         font-size: 24px;
-        /* match your page section titles */
         font-weight: 900;
         letter-spacing: -.2px;
         line-height: 1.2;
@@ -899,34 +897,16 @@ No inner boxes / no small fonts
         color: #0b1220;
         line-height: 1.85;
         font-size: 18px;
-        /* keep same as your base */
     }
 
     .ilo-text+.ilo-text {
         margin-top: 10px;
     }
 
-    .ilo-list {
-        margin: 12px 0 0 1.15rem;
-        padding: 0;
-        color: #0b1220;
-        font-size: 18px;
-        /* same as page */
-        line-height: 1.85;
-    }
-
-    .ilo-list li {
-        margin: 6px 0;
-    }
-
     .ilo-kv {
         margin-top: 12px;
         display: grid;
         gap: 8px;
-    }
-
-    .ilo-kv strong {
-        color: #0b1220;
     }
 
     .ilo-actions {
@@ -945,7 +925,6 @@ No inner boxes / no small fonts
 
     .ilo-img {
         width: 320px;
-        /* requested */
         height: auto;
         display: block;
         border-radius: 14px;
@@ -953,18 +932,15 @@ No inner boxes / no small fonts
         box-shadow: 0 12px 28px rgba(2, 6, 23, .12);
     }
 
-    /* Tablet + Mobile */
     @media (max-width: 980px) {
         .ilo-wrap {
             grid-template-columns: 1fr 320px;
-            /* still 2-col on tablet */
         }
     }
 
     @media (max-width: 768px) {
         .ilo-wrap {
             grid-template-columns: 1fr;
-            /* stack on mobile */
         }
 
         .ilo-media {
@@ -978,6 +954,97 @@ No inner boxes / no small fonts
 
         .ilo-actions .reg-btn {
             width: 100%;
+        }
+    }
+
+    /* =========================
+       Fees layout
+    ========================= */
+    .fee-plans {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        margin-top: 16px;
+    }
+
+    .fee-plan {
+        border: 1px solid rgba(226, 232, 240, .95);
+        border-radius: 18px;
+        background: #fff;
+        box-shadow: 0 10px 26px rgba(2, 6, 23, .06);
+        padding: 18px 18px 16px;
+    }
+
+    .fee-plan-top {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 14px;
+    }
+
+    .fee-plan-title {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 900;
+        color: #0b1220;
+        line-height: 1.15;
+    }
+
+    .fee-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 14px;
+        border-radius: 999px;
+        font-weight: 900;
+        border: 1px solid rgba(226, 232, 240, .95);
+        background: #fff;
+        color: #0b1220;
+        white-space: nowrap;
+    }
+
+    .fee-price {
+        display: inline-block;
+        font-weight: 900;
+        font-size: 44px;
+        line-height: 1.05;
+        margin: 6px 0 14px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(251, 176, 37, .18);
+        border: 1px solid rgba(245, 158, 11, .30);
+        color: #0b1220;
+    }
+
+    .fee-price small {
+        font-size: .55em;
+        font-weight: 900;
+    }
+
+    .fee-plan ul {
+        margin: 0 0 0 1.1rem;
+        padding: 0;
+        line-height: 1.85;
+        font-size: 18px;
+        color: #0b1220;
+    }
+
+    .fee-plan li {
+        margin: 10px 0;
+    }
+
+    .fee-plan li strong {
+        font-weight: 900;
+    }
+
+    @media (max-width: 980px) {
+        .fee-plans {
+            grid-template-columns: 1fr;
+        }
+
+        .fee-price {
+            font-size: 40px;
         }
     }
 </style>
@@ -1004,9 +1071,8 @@ No inner boxes / no small fonts
 
 <section id="kangaroo-page-wrap" aria-label="Math Kangaroo coaching page">
 
-    <!-- INTRO (Yoast: keyphrase in first paragraph + transition words) -->
+    <!-- INTRO -->
     <section class="cs-intro" aria-label="Math Kangaroo Contest (Grades 1–12) - Brampton introduction">
-
         <p class="intro-p">
             Math Kangaroo Contest (Grades 1–12) - Brampton coaching at CanSTEM helps students build contest
             problem-solving,
@@ -1077,7 +1143,7 @@ No inner boxes / no small fonts
                         <summary class="snap-toggle">Accreditation</summary>
                         <div class="snap-content">
                             <ul class="snap-list">
-                                <li>We are the only Official Testing Centre in Brampton</li>
+                                <li>We are the Official Testing Centre in Brampton</li>
                                 <li>We are a Ministry of Education, Ontario - approved &amp; inspected private school
                                     (BSID 665446),</li>
                             </ul>
@@ -1136,11 +1202,10 @@ No inner boxes / no small fonts
 
     <div class="sep"></div>
 
-    <!-- International Logic Olympiad 2026 (Brampton) - Standard section -->
+    <!-- International Logic Olympiad 2026 (Brampton) -->
     <section class="ilo-section" aria-label="International Logic Olympiad 2026 Brampton">
         <div class="ilo-wrap">
 
-            <!-- LEFT: Text content (full width beside the image) -->
             <div class="ilo-content">
                 <div class="ilo-title">International Logic Olympiad 2026 (Brampton)</div>
 
@@ -1158,7 +1223,8 @@ No inner boxes / no small fonts
 
                 <div class="ilo-kv" aria-label="International Logic Olympiad key dates">
                     <div class="ilo-text"><strong>Registration opens:</strong> January 14, 2026 &nbsp;|&nbsp;
-                        <strong>Registration closes:</strong> March 18, 2026</div>
+                        <strong>Registration closes:</strong> March 18, 2026
+                    </div>
                     <div class="ilo-text"><strong>Preliminary round:</strong> Junior (April 18, 2026) &nbsp;|&nbsp;
                         Senior (April 25, 2026)</div>
                     <div class="ilo-text"><strong>Finals:</strong> July 1–3, 2026 (Stanford University, USA)</div>
@@ -1177,7 +1243,6 @@ No inner boxes / no small fonts
                 </div>
             </div>
 
-            <!-- RIGHT: Image (fixed 320px desktop/tablet) -->
             <div class="ilo-media" aria-label="International Logic Olympiad 2026 image">
                 <img class="ilo-img" loading="lazy"
                     src="https://canstemeducation.com/wp-content/uploads/2025/12/Internatinal-Logic-Olympiad-2026.png"
@@ -1189,7 +1254,7 @@ No inner boxes / no small fonts
 
     <div class="sep"></div>
 
-    <!-- Value cards (HEADER SEPARATE + ICONS + NO OUTER BOX) -->
+    <!-- Value cards -->
     <section class="mt-8" aria-label="Why choose our coaching">
         <div class="title-sec" role="heading" aria-level="2">Why families choose Math Kangaroo coaching</div>
 
@@ -1197,7 +1262,6 @@ No inner boxes / no small fonts
             <div class="cs-mini">
                 <div class="mini-head">
                     <span class="mini-ico" aria-hidden="true">
-                        <!-- Trophy -->
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
                             <path d="M8 21h8"></path>
@@ -1216,7 +1280,6 @@ No inner boxes / no small fonts
             <div class="cs-mini">
                 <div class="mini-head">
                     <span class="mini-ico" aria-hidden="true">
-                        <!-- Speed -->
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
                             <path d="M20 13a8 8 0 1 0-16 0"></path>
@@ -1234,7 +1297,6 @@ No inner boxes / no small fonts
             <div class="cs-mini">
                 <div class="mini-head">
                     <span class="mini-ico" aria-hidden="true">
-                        <!-- Book -->
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
                             <path d="M4 19a2 2 0 0 0 2 2h12"></path>
@@ -1375,6 +1437,7 @@ No inner boxes / no small fonts
         <details class="fee-section" id="fees-and-packages"
             data-title="Fees & Packages (Math Kangaroo / Waterloo & Other Contests)">
             <summary class="fee-toggle">Fees &amp; Packages (Math Kangaroo / Waterloo &amp; Other Contests)</summary>
+
             <div class="fee-content">
                 <p><strong>Competitive Exam Tutoring (Math Kangaroo, Waterloo &amp; Other School Science/Math
                         Contests)</strong></p>
@@ -1396,27 +1459,18 @@ No inner boxes / no small fonts
 
                 <div class="sep"></div>
 
-                <h3 class="subhead">Option A - Hourly</h3>
-                <p class="muted small">(The fee for all hours in a month must be paid before the schedule is created)
-                </p>
+                <h3 class="subhead">Coaching fees (2 options)</h3>
                 <ul class="bullets">
-                    <li>In-person: <strong>$25/hour</strong></li>
-                    <li>Online: <strong>$35/hour</strong></li>
+                    <li><strong>Option 1:</strong> <span class="hl"><strong>$250</strong></span> — <strong>2
+                            days/week</strong>, <strong>2 hours/day</strong> (Total: <strong>4 hours/week</strong>)</li>
+                    <li><strong>Option 2:</strong> <span class="hl"><strong>$350</strong></span> — <strong>3
+                            days/week</strong>, <strong>2 hours/day</strong> (Total: <strong>6 hours/week</strong>)</li>
                 </ul>
-
-                <div class="sep"></div>
-
-                <h3 class="subhead">Option B - Monthly (Online not available)</h3>
-                <ul class="bullets">
-                    <li>Twice a week (Unlimited hours for those two days): <strong>$250/month</strong></li>
-                    <li>6 days a week (Unlimited hours, any subject): <strong>$500/month</strong></li>
-                </ul>
-
-                <div class="sep"></div>
 
                 <p class="muted">
-                    Want the fastest improvement? We’ll recommend the best option after a quick level check (grade +
-                    current comfort with contest questions). Therefore, you don’t overpay or overcommit.
+                    We’ll recommend the best option after a quick level check (grade + current comfort with contest
+                    questions).
+                    Therefore, you choose the right plan without overpaying.
                 </p>
 
                 <div class="mt-4" style="display:flex;flex-wrap:wrap;gap:10px;">
@@ -1426,42 +1480,44 @@ No inner boxes / no small fonts
                 </div>
             </div>
         </details>
+    </div>
+    </details>
 
-        <details class="fee-section" id="how-to-start" data-title="How to Start (Step-by-step)">
-            <summary class="fee-toggle">How to Start (Step-by-step)</summary>
-            <div class="fee-content">
-                <h3 class="subhead">Step-by-step checklist</h3>
-                <ol class="list">
-                    <li><strong>Message us</strong> with your child’s grade and goals (first-time participant vs aiming
-                        for awards).</li>
-                    <li><strong>Quick level check</strong> (optional) to choose the right difficulty and plan.</li>
-                    <li><strong>Pick a package</strong> (hourly or monthly) and confirm your schedule.</li>
-                    <li><strong>Weekly training</strong> with practice sets, solutions, and progress support.</li>
-                    <li><strong>Mock test / revision</strong> closer to contest day for timing + accuracy.</li>
-                </ol>
+    <details class="fee-section" id="how-to-start" data-title="How to Start (Step-by-step)">
+        <summary class="fee-toggle">How to Start (Step-by-step)</summary>
+        <div class="fee-content">
+            <h3 class="subhead">Step-by-step checklist</h3>
+            <ol class="list">
+                <li><strong>Message us</strong> with your child’s grade and goals (first-time participant vs aiming
+                    for awards).</li>
+                <li><strong>Quick level check</strong> (optional) to choose the right difficulty and plan.</li>
+                <li><strong>Pick a package</strong> (hourly or monthly) and confirm your schedule.</li>
+                <li><strong>Weekly training</strong> with practice sets, solutions, and progress support.</li>
+                <li><strong>Mock test / revision</strong> closer to contest day for timing + accuracy.</li>
+            </ol>
 
-                <div class="sep"></div>
+            <div class="sep"></div>
 
-                <h3 class="subhead">Contact</h3>
-                <ul class="bullets">
-                    <li>Email:
-                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=Student%20Inquiry%20via%20Website%20Email%3A&body=Hello%2C%0A%0AStudent%20Name%3A%0A%0ADescribe%20what%20kind%20of%20help%20you%20want%20from%20us%3A%0A%0AYou%20can%20expect%20a%20response%20within%2024%20hours%20from%20us%20during%20business%20days.%0A%0AThank%20you."
-                            target="_blank" rel="noopener">inquiry@canstemeducation.com</a>
-                    </li>
-                    <li>Phone: <a href="tel:+16478471231">647-847-1231</a></li>
-                    <li>Location: Brampton (in-person) + Online live classes</li>
-                </ul>
+            <h3 class="subhead">Contact</h3>
+            <ul class="bullets">
+                <li>Email:
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=Student%20Inquiry%20via%20Website%20Email%3A&body=Hello%2C%0A%0AStudent%20Name%3A%0A%0ADescribe%20what%20kind%20of%20help%20you%20want%20from%20us%3A%0A%0AYou%20can%20expect%20a%20response%20within%2024%20hours%20from%20us%20during%20business%20days.%0A%0AThank%20you."
+                        target="_blank" rel="noopener">inquiry@canstemeducation.com</a>
+                </li>
+                <li>Phone: <a href="tel:+16478471231">647-847-1231</a></li>
+                <li>Location: Brampton (in-person) + Online live classes</li>
+            </ul>
 
-                <p class="muted small">
-                    Also, if you’re unsure which plan to choose, we can recommend one quickly. Then you can start
-                    without delay.
-                </p>
-            </div>
-        </details>
+            <p class="muted small">
+                Also, if you’re unsure which plan to choose, we can recommend one quickly. Then you can start
+                without delay.
+            </p>
+        </div>
+    </details>
 
     </div>
 
-    <!-- FAQ -->
+    <!-- ✅ UPDATED FAQ (fees updated everywhere) -->
     <section id="faq-wrap" class="mt-4" aria-label="FAQ section">
         <div class="faq-head">
             <div class="title-sec" role="heading" aria-level="2">Frequently asked questions (FAQs)</div>
@@ -1501,13 +1557,12 @@ No inner boxes / no small fonts
         <details class="fee-section faq-item" id="faq-coaching-fees">
             <summary class="fee-toggle">What are your coaching fees?</summary>
             <div class="fee-content">
-                <p>Coaching fees depend on the plan you choose:</p>
+                <p>We offer two coaching options for Math Kangaroo and similar contests:</p>
                 <ul class="bullets">
-                    <li><strong>Hourly:</strong> In-person $25/hour, Online $35/hour</li>
-                    <li><strong>Monthly (Online not available):</strong> Twice a week $250/month, 6 days a week
-                        $500/month</li>
+                    <li><strong>$250:</strong> 2 days/week, 2 hours/day (Total: 4 hours/week)</li>
+                    <li><strong>$350:</strong> 3 days/week, 2 hours/day (Total: 6 hours/week)</li>
                 </ul>
-                <p class="muted small">Also, we can recommend the best plan after a quick level check.</p>
+                <p class="muted small">Also, we can recommend the best option after a quick level check.</p>
             </div>
         </details>
 
@@ -1562,18 +1617,26 @@ No inner boxes / no small fonts
         </details>
 
         <details class="fee-section faq-item" id="faq-schedule">
-            <summary class="fee-toggle">How does scheduling work for tutoring?</summary>
-            <div class="fee-content">
-                <p>We offer flexible scheduling. For hourly plans, the fee for all hours in a month must be paid before
-                    the schedule is created. Then we confirm the timetable.</p>
-            </div>
-        </details>
+    <summary class="fee-toggle">How does scheduling work for tutoring?</summary>
+    <div class="fee-content">
+        <p>
+            We schedule based on the option you choose:
+        </p>
+        <ul class="bullets">
+            <li><strong>Option 1:</strong> 2 days/week, 2 hours/day</li>
+            <li><strong>Option 2:</strong> 3 days/week, 2 hours/day</li>
+        </ul>
+        <p class="muted small">
+            After you confirm the plan, we finalize the weekly schedule and start the coaching.
+        </p>
+    </div>
+</details>
 
         <details class="fee-section faq-item" id="faq-1on1-group">
             <summary class="fee-toggle">Do you offer 1-on-1 or group sessions?</summary>
             <div class="fee-content">
-                <p>Yes—online coaching can be done as 1-on-1 or small group sessions, depending on student needs and
-                    availability.</p>
+                <p>Yes—hourly online coaching can be done as 1-on-1 or small group sessions, depending on student needs
+                    and availability.</p>
             </div>
         </details>
 
