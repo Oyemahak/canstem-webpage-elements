@@ -991,45 +991,6 @@
       }
     }
 
-    .stat {
-      border: 1px solid rgba(226, 232, 240, .95);
-      border-radius: 18px;
-      background: #fff;
-      box-shadow: var(--shadow-tiny);
-      padding: 14px 14px;
-      position: relative;
-      overflow: hidden;
-      transition: transform .18s ease, box-shadow .22s ease, border-color .22s ease;
-    }
-
-    .stat:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 44px rgba(2, 6, 23, .10);
-      border-color: rgba(245, 158, 11, .45);
-    }
-
-    .stat .num {
-      font-size: 32px;
-      font-weight: 900;
-      color: var(--ink);
-      letter-spacing: -.3px;
-      line-height: 1.3;
-    }
-
-    .stat .lab {
-      margin-top: 8px;
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 18px;
-      line-height: 1.8;
-    }
-
-    @media (max-width:768px) {
-      .stat .lab {
-        font-size: 16px;
-      }
-    }
-
     .pricing {
       margin-top: 14px;
       display: grid;
@@ -1388,7 +1349,6 @@
       .ilo-tab,
       .card,
       .titem,
-      .stat,
       .price-card,
       .qa,
       .toTop .toTopBtn {
@@ -1880,7 +1840,7 @@
 
           <video class="ilo-video" controls preload="metadata" playsinline
             poster="https://canstemeducation.com/wp-content/uploads/2025/12/Internatinal-Logic-Olympiad-2026.png">
-            <source src="https://canstemeducation.com/wp-content/uploads/2026/01/International_Logic_Olympiad.mp4"
+            <source src="https://canstemeducation.com/wp-content/uploads/2026/01/International_Logic_Olympiad_ILO.mp4"
               type="video/mp4">
             Your browser does not support the video tag.
           </video>
@@ -1905,7 +1865,7 @@
               <div class="name">Official ILO Fee</div>
               <div class="pill">Paid to ILO</div>
             </div>
-            <div class="price">$50 <small>registration</small></div>
+            <div class="price">$50 (USD) <small>registration</small></div>
             <ul>
               <li>Paid via the official portal</li>
               <li>Separate from coaching fees</li>
@@ -2128,18 +2088,7 @@
         </div>
 
         <div class="stats" aria-label="Fast facts">
-          <div class="stat">
-            <div class="num" data-count="2" data-suffix="">2</div>
-            <div class="lab">Divisions<br />Junior &amp; Senior</div>
-          </div>
-          <div class="stat">
-            <div class="num" data-count="50" data-prefix="$" data-suffix="">$50</div>
-            <div class="lab">Official registration fee<br />paid via portal</div>
-          </div>
-          <div class="stat">
-            <div class="num" data-count="3" data-suffix=" days">3 days</div>
-            <div class="lab">Finals window (qualifiers)<br />Stanford University, USA</div>
-          </div>
+      
         </div>
 
         <div class="center-actions">
@@ -2530,7 +2479,7 @@
             </div>
             <div class="ans">
               <div>
-                The official ILO registration fee is <strong>$50</strong> (paid through the official portal).
+                The official ILO registration fee is <strong>$50 (USD)</strong> (paid through the official portal).
                 <strong>However</strong>, coaching fees are separate.
               </div>
             </div>
@@ -2818,7 +2767,7 @@
                 "name": "What is the registration fee?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "The official registration fee is $50 paid through the official portal. Coaching fees are separate."
+                  "text": "The official registration fee is $50 (USD) paid through the official portal. Coaching fees are separate."
                 }
               },
               {

@@ -32,9 +32,10 @@
   <style>
     /* ==========================================================
       ILO Page - Premium (tabs + effects)
-      - Hero: NO outer box, NO proof boxes
-      - Sections: NO outer panel box
-      - Inner items: keep boxes (cards, titems, stats, pricing, faq)
+      FIXES APPLIED:
+      1) NO "reveal" hiding content by default (prevents blank page if other JS errors happen)
+      2) Counters show correct values even if JS fails (no "0" stuck)
+      3) JS below has fallbacks if IntersectionObserver isn't available
     ========================================================== */
 
     :root {
@@ -175,9 +176,7 @@
     }
 
     /* ==========================================================
-      WP DEFAULT OVERRIDE (your request)
-      Wordpress theme adds: ol, ul { margin: 0 0 1.5em 3em; }
-      We override ONLY inside this page wrapper.
+      WP DEFAULT OVERRIDE
     ========================================================== */
     #ilo-page-wrap ol,
     #ilo-page-wrap ul {
@@ -388,7 +387,7 @@
     }
 
     /* ==========================================================
-      HERO (NO outer box)
+      HERO
     ========================================================== */
     .hero {
       position: relative;
@@ -564,7 +563,6 @@
       }
     }
 
-    /* Hero highlights: nice bordered box + premium list items */
     .hero-points {
       margin-top: 14px;
       padding: 14px 14px;
@@ -646,7 +644,7 @@
     }
 
     /* ==========================================================
-      MEDIA CARD (keep box + tilt)
+      MEDIA CARD
     ========================================================== */
     .media-card {
       border-radius: 20px;
@@ -778,7 +776,7 @@
     }
 
     /* ==========================================================
-      SECTIONS (NO outer panel box)
+      SECTIONS
     ========================================================== */
     .section {
       padding: 0;
@@ -901,7 +899,6 @@
       }
     }
 
-    /* Timeline boxes */
     .timeline {
       margin-top: 14px;
       display: grid;
@@ -975,7 +972,6 @@
       }
     }
 
-    /* Stats boxes */
     .stats {
       margin-top: 14px;
       display: grid;
@@ -995,46 +991,6 @@
       }
     }
 
-    .stat {
-      border: 1px solid rgba(226, 232, 240, .95);
-      border-radius: 18px;
-      background: #fff;
-      box-shadow: var(--shadow-tiny);
-      padding: 14px 14px;
-      position: relative;
-      overflow: hidden;
-      transition: transform .18s ease, box-shadow .22s ease, border-color .22s ease;
-    }
-
-    .stat:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 18px 44px rgba(2, 6, 23, .10);
-      border-color: rgba(245, 158, 11, .45);
-    }
-
-    .stat .num {
-      font-size: 32px;
-      font-weight: 900;
-      color: var(--ink);
-      letter-spacing: -.3px;
-      line-height: 1.3;
-    }
-
-    .stat .lab {
-      margin-top: 8px;
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 18px;
-      line-height: 1.8;
-    }
-
-    @media (max-width:768px) {
-      .stat .lab {
-        font-size: 16px;
-      }
-    }
-
-    /* Pricing boxes */
     .pricing {
       margin-top: 14px;
       display: grid;
@@ -1136,7 +1092,6 @@
       }
     }
 
-    /* FAQ boxes */
     .faq {
       margin-top: 14px;
       display: grid;
@@ -1248,7 +1203,6 @@
       }
     }
 
-    /* Coaching split */
     .ilo-coaching-split {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -1269,7 +1223,6 @@
       }
     }
 
-    /* CTA area */
     .footer-cta {
       text-align: center;
       padding: 4px 0 0;
@@ -1306,7 +1259,6 @@
       }
     }
 
-    /* Back to top */
     .toTop {
       position: fixed;
       right: 16px;
@@ -1349,20 +1301,17 @@
       }
     }
 
-    /* Reveal */
+    /* ✅ IMPORTANT FIX:
+       DO NOT hide content by default. (Your old .reveal used opacity:0 until JS ran.)
+       If any other plugin throws a JS error before your script, the page stayed blank.
+    */
     .reveal {
-      opacity: 0;
-      transform: translateY(14px);
-      transition: opacity .6s ease, transform .6s ease;
-      will-change: opacity, transform;
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+      will-change: auto !important;
     }
 
-    .reveal.show {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Mobile stack safety */
     @media (max-width:768px) {
 
       .grid-3,
@@ -1390,19 +1339,16 @@
       }
     }
 
-    /* Reduced motion */
     @media (prefers-reduced-motion:reduce) {
       * {
         scroll-behavior: auto !important;
       }
 
       .floater,
-      .reveal,
       .btn,
       .ilo-tab,
       .card,
       .titem,
-      .stat,
       .price-card,
       .qa,
       .toTop .toTopBtn {
@@ -1416,7 +1362,7 @@
     }
 
     /* ==========================================================
-      OFFICIAL LINKS HUB (Junior + Senior)  ✅ ADDED
+      OFFICIAL LINKS HUB
     ========================================================== */
     .links-hub {
       margin-top: 14px;
@@ -1584,7 +1530,7 @@
     }
 
     /* ==========================================================
-      ABOUT (Support + Video)  ✅ NEW
+      ABOUT (Support + Video)
     ========================================================== */
     .ilo-about-grid {
       margin-top: 14px;
@@ -1695,17 +1641,12 @@
         <div class="ilo-tab clickable" role="button" tabindex="0" data-target="resources" aria-current="false">
           <span aria-hidden="true"></span><em>Sample &amp; Resources</em>
         </div>
-
-        <!-- ✅ UNCOMMENTED FEES TAB -->
         <div class="ilo-tab clickable" role="button" tabindex="0" data-target="fees" aria-current="false">
           <span aria-hidden="true"></span><em>Fees</em>
         </div>
-
         <div class="ilo-tab clickable" role="button" tabindex="0" data-target="faq" aria-current="false">
           <span aria-hidden="true"></span><em>FAQ</em>
         </div>
-
-        <!-- ✅ ADDED TAB -->
         <div class="ilo-tab clickable" role="button" tabindex="0" data-target="official-links" aria-current="false">
           <span aria-hidden="true"></span><em>Official Links</em>
         </div>
@@ -1846,7 +1787,7 @@
 
           <a class="media-link" href="https://www.logicolympiad.org/about/boa/" target="_blank" rel="noopener"
             aria-label="Open ILO Board of Advisors page">
-            <img class="media-img" loading="lazy"
+            <img class="media-img" loading="eager" fetchpriority="high"
               src="https://canstemeducation.com/wp-content/uploads/2025/12/Internatinal-Logic-Olympiad-2026.png"
               alt="International Logic Olympiad (ILO) 2026 - CanSTEM Coaching Canada" />
           </a>
@@ -1862,7 +1803,7 @@
 
     <div class="sep"></div>
 
-    <!-- ABOUT (UPDATED: CanSTEM Support + Video) -->
+    <!-- ABOUT -->
     <section id="about" class="section reveal"
       aria-label="CanSTEM support for International Logic Olympiad (ILO) students in Canada">
       <h2 class="title-lg">CanSTEM support for ILO students in Canada</h2>
@@ -1899,7 +1840,7 @@
 
           <video class="ilo-video" controls preload="metadata" playsinline
             poster="https://canstemeducation.com/wp-content/uploads/2025/12/Internatinal-Logic-Olympiad-2026.png">
-            <source src="https://canstemeducation.com/wp-content/uploads/2026/01/International_Logic_Olympiad.mp4"
+            <source src="https://canstemeducation.com/wp-content/uploads/2026/01/International_Logic_Olympiad_ILO.mp4"
               type="video/mp4">
             Your browser does not support the video tag.
           </video>
@@ -1912,7 +1853,7 @@
 
       <div class="sep"></div>
 
-      <!-- ✅ FEES (UNCOMMENTED + UPDATED PRICES) -->
+      <!-- FEES -->
       <section id="fees" class="section reveal" aria-label="Fees and packages">
         <h2 class="title-lg">Fees &amp; packages (official ILO + coaching)</h2>
         <p class="title-sub"><em>Choose the option that fits your schedule</em></p>
@@ -1924,7 +1865,7 @@
               <div class="name">Official ILO Fee</div>
               <div class="pill">Paid to ILO</div>
             </div>
-            <div class="price">$50 <small>registration</small></div>
+            <div class="price">$50 (USD) <small>registration</small></div>
             <ul>
               <li>Paid via the official portal</li>
               <li>Separate from coaching fees</li>
@@ -2147,18 +2088,7 @@
         </div>
 
         <div class="stats" aria-label="Fast facts">
-          <div class="stat">
-            <div class="num" data-count="2" data-suffix="">0</div>
-            <div class="lab">Divisions<br />Junior &amp; Senior</div>
-          </div>
-          <div class="stat">
-            <div class="num" data-count="50" data-prefix="$" data-suffix="">$0</div>
-            <div class="lab">Official registration fee<br />paid via portal</div>
-          </div>
-          <div class="stat">
-            <div class="num" data-count="3" data-suffix=" days">0</div>
-            <div class="lab">Finals window (qualifiers)<br />Stanford University, USA</div>
-          </div>
+      
         </div>
 
         <div class="center-actions">
@@ -2264,7 +2194,7 @@
 
       <div class="sep"></div>
 
-      <!-- ✅ ADDED: OFFICIAL LINKS HUB SECTION (Before FEES / CTA) -->
+      <!-- OFFICIAL LINKS -->
       <section id="official-links" class="section reveal" aria-label="Official ILO Junior and Senior pages hub">
         <h2 class="title-lg">Official ILO pages (Junior &amp; Senior)</h2>
         <p class="title-sub"><em>All key links in one place — overview, registration, exam structure, curriculum,
@@ -2549,7 +2479,7 @@
             </div>
             <div class="ans">
               <div>
-                The official ILO registration fee is <strong>$50</strong> (paid through the official portal).
+                The official ILO registration fee is <strong>$50 (USD)</strong> (paid through the official portal).
                 <strong>However</strong>, coaching fees are separate.
               </div>
             </div>
@@ -2837,7 +2767,7 @@
                 "name": "What is the registration fee?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "The official registration fee is $50 paid through the official portal. Coaching fees are separate."
+                  "text": "The official registration fee is $50 (USD) paid through the official portal. Coaching fees are separate."
                 }
               },
               {
@@ -2879,8 +2809,13 @@
 
   <script>
     (function () {
+      // -----------------------------
+      // Tabs
+      // -----------------------------
       const tabs = Array.from(document.querySelectorAll(".ilo-tab"));
-      const sections = tabs.map(t => document.getElementById(t.getAttribute("data-target"))).filter(Boolean);
+      const sections = tabs
+        .map(t => document.getElementById(t.getAttribute("data-target")))
+        .filter(Boolean);
 
       function setActive(id) {
         tabs.forEach(btn => {
@@ -2914,59 +2849,78 @@
         });
       });
 
-      const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        });
-      }, { root: null, threshold: 0.35 });
+      // Highlight active tab on scroll (with IntersectionObserver fallback)
+      if ("IntersectionObserver" in window) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) setActive(entry.target.id);
+          });
+        }, { root: null, threshold: 0.35 });
+        sections.forEach(sec => sectionObserver.observe(sec));
+      } else {
+        // Fallback: simple scroll check
+        const onScroll = () => {
+          const y = (window.scrollY || document.documentElement.scrollTop) + 110;
+          let current = sections[0] ? sections[0].id : "";
+          sections.forEach(sec => {
+            if (sec.offsetTop <= y) current = sec.id;
+          });
+          if (current) setActive(current);
+        };
+        window.addEventListener("scroll", onScroll, { passive: true });
+        onScroll();
+      }
 
-      sections.forEach(sec => sectionObserver.observe(sec));
-
-      const revealEls = Array.from(document.querySelectorAll(".reveal"));
-      const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("show");
-            revealObserver.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.16 });
-
-      revealEls.forEach(el => revealObserver.observe(el));
-
+      // -----------------------------
+      // Counters (optional animation; never blocks rendering)
+      // -----------------------------
       const counters = Array.from(document.querySelectorAll("[data-count]"));
-      const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (!entry.isIntersecting) return;
-          const el = entry.target;
-          counterObserver.unobserve(el);
 
-          const target = parseFloat(el.getAttribute("data-count") || "0");
-          const suffix = el.getAttribute("data-suffix") || "";
-          const prefix = el.getAttribute("data-prefix") || "";
-          const duration = 900;
-          const start = performance.now();
-          const from = 0;
+      function animateCounter(el) {
+        const target = parseFloat(el.getAttribute("data-count") || "0");
+        const suffix = el.getAttribute("data-suffix") || "";
+        const prefix = el.getAttribute("data-prefix") || "";
 
-          function tick(now) {
-            const t = Math.min(1, (now - start) / duration);
-            const eased = 1 - Math.pow(1 - t, 3);
-            const val = from + (target - from) * eased;
+        // If already correct text (we set correct defaults), only animate if you want.
+        // Keep super safe: if requestAnimationFrame isn't there, do nothing.
+        if (!window.requestAnimationFrame || !window.performance) return;
 
-            let display;
-            if (Number.isInteger(target)) display = Math.round(val).toString();
-            else display = val.toFixed(1);
+        const duration = 900;
+        const start = performance.now();
+        const from = 0;
 
-            el.textContent = prefix + display + suffix;
-            if (t < 1) requestAnimationFrame(tick);
-          }
-          requestAnimationFrame(tick);
-        });
-      }, { threshold: 0.35 });
+        function tick(now) {
+          const t = Math.min(1, (now - start) / duration);
+          const eased = 1 - Math.pow(1 - t, 3);
+          const val = from + (target - from) * eased;
 
-      counters.forEach(c => counterObserver.observe(c));
+          let display;
+          if (Number.isInteger(target)) display = Math.round(val).toString();
+          else display = val.toFixed(1);
 
-      /* FAQ accordion logic (works for both main FAQ + hero accordions) */
+          el.textContent = prefix + display + suffix;
+          if (t < 1) requestAnimationFrame(tick);
+          else el.textContent = prefix + (Number.isInteger(target) ? target.toString() : target.toFixed(1)) + suffix;
+        }
+        requestAnimationFrame(tick);
+      }
+
+      if ("IntersectionObserver" in window) {
+        const counterObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            counterObserver.unobserve(el);
+            animateCounter(el);
+          });
+        }, { threshold: 0.35 });
+
+        counters.forEach(c => counterObserver.observe(c));
+      }
+
+      // -----------------------------
+      // FAQ accordion
+      // -----------------------------
       const qas = Array.from(document.querySelectorAll(".qa"));
       function setOpen(qa, open) {
         qa.setAttribute("data-open", open ? "1" : "0");
@@ -2997,6 +2951,9 @@
         });
       });
 
+      // -----------------------------
+      // Back to top
+      // -----------------------------
       const toTop = document.getElementById("toTop");
       const toTopBtn = document.getElementById("toTopBtn");
 
@@ -3009,7 +2966,8 @@
       toggleToTop();
 
       function goTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        try { window.scrollTo({ top: 0, behavior: "smooth" }); }
+        catch (e) { window.scrollTo(0, 0); }
       }
       toTopBtn.addEventListener("click", goTop);
       toTopBtn.addEventListener("keydown", (e) => {
@@ -3019,6 +2977,9 @@
         }
       });
 
+      // -----------------------------
+      // Tilt Card (safe)
+      // -----------------------------
       const tiltCard = document.getElementById("tiltCard");
       if (tiltCard && window.matchMedia("(prefers-reduced-motion: no-preference)").matches) {
         const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
@@ -3044,6 +3005,7 @@
         tiltCard.addEventListener("touchend", onLeave, { passive: true });
       }
 
+      // Hash navigation on load
       if (location.hash) {
         const id = location.hash.replace("#", "");
         const target = document.getElementById(id);
