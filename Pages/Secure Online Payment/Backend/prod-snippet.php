@@ -1,6 +1,6 @@
 <?php
 /**
- * CanSTEM – Clover charge endpoint (FINAL CLEAN VERSION)
+ * CanSTEM - Clover charge endpoint (FINAL CLEAN VERSION)
  * URL: /wp-json/canstem/charge
  */
 

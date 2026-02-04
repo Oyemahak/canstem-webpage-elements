@@ -35,7 +35,7 @@
 
   <div class="cs-wrap">
     <div class="cs-header">
-      <h2>CanSTEM Education – Course Request Forms</h2>
+      <h2>CanSTEM Education - Course Request Forms</h2>
       <p>Select the request type below. Submitting opens Gmail with your details pre-filled and addressed to <strong>frontdesk@canstemeducation.com</strong>.</p>
     </div>
 
@@ -64,7 +64,7 @@
         </div>
         <div class="cs-field">
           <label>Current Course Name & Code *</label>
-          <input required id="w-course" type="text" placeholder="e.g., MHF4U – Advanced Functions">
+          <input required id="w-course" type="text" placeholder="e.g., MHF4U - Advanced Functions">
         </div>
       </div>
       <div class="cs-field">
@@ -180,7 +180,7 @@
     function sendWithdraw(){
       const name = val('w-name'), email = val('w-email'), phone = val('w-phone'), course = val('w-course'), reason = val('w-reason');
       if(!name||!email||!phone||!course||!reason){alert('Please fill all required fields.');return}
-      const subject = `Course Withdrawal Request – ${name}`;
+      const subject = `Course Withdrawal Request - ${name}`;
       const body = [
         'Hello,',
         '',
@@ -203,7 +203,7 @@
     function sendChange(){
       const name = val('c-name'), email = val('c-email'), phone = val('c-phone'), course = val('c-course'), newc = val('c-newcourse'), reason = val('c-reason');
       if(!name||!email||!phone||!course||!newc||!reason){alert('Please fill all required fields.');return}
-      const subject = `Course Change Request – ${name}`;
+      const subject = `Course Change Request - ${name}`;
       const body = [
         'Hello,',
         '',
@@ -227,7 +227,7 @@
     function sendMode(){
       const name = val('m-name'), email = val('m-email'), phone = val('m-phone'), course = val('m-course'), mode = val('m-mode'), reason = val('m-reason');
       if(!name||!email||!phone||!course||!mode||!reason){alert('Please fill all required fields.');return}
-      const subject = `Mode Switch Request – ${name}`;
+      const subject = `Mode Switch Request - ${name}`;
       const body = [
         'Hello,',
         '',

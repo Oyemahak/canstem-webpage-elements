@@ -20,7 +20,7 @@ function sendToFrontDesk(payload) {
   var GROUP = 'frontdesk@canstemeducation.com';
 
   var subjectPrefix = payload.type || 'Course Request';
-  var subject = subjectPrefix + (payload.name ? (' – ' + payload.name) : '');
+  var subject = subjectPrefix + (payload.name ? (' - ' + payload.name) : '');
 
   var lines = [];
   lines.push('A new request has been submitted:');

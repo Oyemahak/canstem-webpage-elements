@@ -1,5 +1,5 @@
 /*********************************
- * CanSTEM Course Requests – Code.gs
+ * CanSTEM Course Requests - Code.gs
  * Works with Index.html you provided
  *********************************/
 
@@ -10,7 +10,7 @@ const CC_STUDENT = true; // set to false if you don't want to CC the student
 function doGet() {
   return HtmlService
     .createHtmlOutputFromFile('Index') // <-- your HTML file must be named "Index.html"
-    .setTitle('CanSTEM Education – Course Requests');
+    .setTitle('CanSTEM Education - Course Requests');
 }
 
 /** Main entrypoint called from client */
@@ -85,7 +85,7 @@ function makeSubject_(p) {
   const safeName = oneLine_(p.name);
   const safeCode = oneLine_(p.courseCode);
   const t = String(p.type || '').trim();
-  return `[CanSTEM Request] ${t} – ${safeName} – ${safeCode}`;
+  return `[CanSTEM Request] ${t} - ${safeName} - ${safeCode}`;
 }
 
 function makeHtmlBody_(p) {

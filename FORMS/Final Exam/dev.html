@@ -319,7 +319,7 @@
                     <select class="cs-input" id="grade" name="grade" required></select>
                 </div>
                 <div class="cs-field">
-                    <label class="cs-label cs-req" for="course">Course (code – name)</label>
+                    <label class="cs-label cs-req" for="course">Course (code - name)</label>
                     <select class="cs-input" id="course" name="courseCode" required disabled>
                         <option value="">Select grade first…</option>
                     </select>
@@ -370,11 +370,11 @@
                 <li>I agree to comply with all exam rules and the school’s academic integrity policy. I understand that
                     identity verification may be required.</li>
                 <li>If you are applying for <strong>university</strong> this year, see
-                    <a href="https://canstemeducation.com/student-services/ouac/" target="_blank" rel="noopener">OUAC –
+                    <a href="https://canstemeducation.com/student-services/ouac/" target="_blank" rel="noopener">OUAC -
                         Steps &amp; Important Dates</a>.
                 </li>
                 <li>If you are applying for <strong>college</strong> this year, see
-                    <a href="https://canstemeducation.com/student-services/ocas/" target="_blank" rel="noopener">OCAS –
+                    <a href="https://canstemeducation.com/student-services/ocas/" target="_blank" rel="noopener">OCAS -
                         Steps &amp; Key Dates</a>.
                 </li>
                 <li><strong style="color:#e11d48;">Your request will be emailed to our Student Support Department. This
@@ -549,7 +549,7 @@
 
                 if (sel.getDay() === 6) {
                     fillTimeSelect(SAT_SLOTS);
-                    dateMsg.textContent = 'Saturday slots: 12:00 PM – 4:30 PM only.';
+                    dateMsg.textContent = 'Saturday slots: 12:00 PM - 4:30 PM only.';
                 } else {
                     fillTimeSelect(WEEKDAY_SLOTS);
                 }
@@ -803,7 +803,7 @@
                 }
                 cSel.disabled = false;
                 cSel.appendChild(new Option('Select course…', ''));
-                listFor(grade).forEach(({ code, name }) => cSel.appendChild(new Option(`${code} – ${name}`, code)));
+                listFor(grade).forEach(({ code, name }) => cSel.appendChild(new Option(`${code} - ${name}`, code)));
             });
 
             const val = id => (document.getElementById(id)?.value || '').trim();

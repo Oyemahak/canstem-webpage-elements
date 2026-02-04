@@ -1,5 +1,5 @@
 /*********************************
- * CanSTEM Change Requests – Code.gs
+ * CanSTEM Change Requests - Code.gs
  *********************************/
 
 const FRONTDESK_EMAIL = 'frontdesk@canstemeducation.com';
@@ -81,7 +81,7 @@ function requestLabel_(p) {
 function makeSubject_(p) {
   const safeName = oneLine_(p.name);
   const safeCode = oneLine_(p.courseCode);
-  return `${requestLabel_(p)} – ${safeName} – ${safeCode}`;
+  return `${requestLabel_(p)} - ${safeName} - ${safeCode}`;
 }
 
 function makeHtmlBody_(p) {

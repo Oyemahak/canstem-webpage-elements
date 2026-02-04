@@ -5,7 +5,7 @@
     <base target="_top">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>CanSTEM Education – Course Requests</title>
+    <title>CanSTEM Education - Course Requests</title>
 
     <style>
         :root {
@@ -536,7 +536,7 @@
                 </div>
 
                 <!-- New requested course -->
-                <div class="field"><label class="req" for="c-grade2">New Requested Course – Grade</label><select
+                <div class="field"><label class="req" for="c-grade2">New Requested Course - Grade</label><select
                         id="c-grade2" required></select></div>
                 <div class="field ac-wrap">
                     <label class="req" for="c-newcode">New Requested Course (search by code or name)</label>
@@ -818,7 +818,7 @@
             if (!validateCourseCode(gradeCur, codeCur)) { alert('Please pick a valid Current Course for the selected grade.'); return; }
             if (!validateCourseCode(gradeNew, codeNew)) { alert('Please pick a valid NEW course code for the selected grade.'); return; }
             document.getElementById('c-status').textContent = 'Submitting...';
-            const payload = { type: 'Change Course', name: val('c-name'), email: val('c-email'), phone: val('c-phone'), grade: gradeCur, courseCode: codeCur, newcourse: `${codeNew} – ${nameFor(gradeNew, codeNew)}`, isAdult: (val('c-age') === 'yes'), studentSig: val('c-stusig'), parentSig: val('c-parentsig'), reason: val('c-reason'), attachments: await collectAttachments('c-files') };
+            const payload = { type: 'Change Course', name: val('c-name'), email: val('c-email'), phone: val('c-phone'), grade: gradeCur, courseCode: codeCur, newcourse: `${codeNew} - ${nameFor(gradeNew, codeNew)}`, isAdult: (val('c-age') === 'yes'), studentSig: val('c-stusig'), parentSig: val('c-parentsig'), reason: val('c-reason'), attachments: await collectAttachments('c-files') };
             google.script.run.withSuccessHandler(() => showStatus('c-status', 'Success! Your request has been emailed to the front desk.', true)).withFailureHandler(() => showStatus('c-status', 'Error sending your request. Please try again.', false)).sendToFrontDesk(payload);
         }
 

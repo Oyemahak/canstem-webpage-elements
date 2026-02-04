@@ -1,5 +1,5 @@
 /*********************************
- * CanSTEM Change Requests – Code.gs
+ * CanSTEM Change Requests - Code.gs
  * Works with your current index.html
  *********************************/
 
@@ -87,7 +87,7 @@ function validatePayload_(p) {
   }
 }
 
-/** Subject exactly like: "Change Request : Withdrawal Course Submission – Name – Code" */
+/** Subject exactly like: "Change Request : Withdrawal Course Submission - Name - Code" */
 function makeSubject_(p) {
   const safeName = oneLine_(p.name);
   const safeCode = oneLine_(p.courseCode);
@@ -98,7 +98,7 @@ function makeSubject_(p) {
       ? 'Change Course Submission'
       : 'Mode Switch Submission';
 
-  return `Change Request : ${middle} – ${safeName} – ${safeCode}`;
+  return `Change Request : ${middle} - ${safeName} - ${safeCode}`;
 }
 
 function makeHtmlBody_(p) {

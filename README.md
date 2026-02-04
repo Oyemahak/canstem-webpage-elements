@@ -4,11 +4,11 @@ This repository contains HTML, CSS, and JavaScript code for the **Canstem Educat
 
 ## 📁 Files Included (So far)
 
-- `PTEPriceBanner.html` – Banner component for PTE pricing.
-- `PTETestSelector.html` – Section for selecting PTE test options.
-- `celpip.html` – Webpage element related to CELPIP test offerings.
-- `mainContent.html` – Core content section template for web pages.
-- `README.md` – Project overview and usage instructions.
+- `PTEPriceBanner.html` - Banner component for PTE pricing.
+- `PTETestSelector.html` - Section for selecting PTE test options.
+- `celpip.html` - Webpage element related to CELPIP test offerings.
+- `mainContent.html` - Core content section template for web pages.
+- `README.md` - Project overview and usage instructions.
 
 > More elements will be added regularly as the website evolves.
 

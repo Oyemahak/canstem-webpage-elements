@@ -25,7 +25,7 @@ function sendToFrontDesk(payload) {
   var GROUP = 'frontdesk@canstemeducation.com';
 
   var subjectPrefix = payload && payload.type ? payload.type : 'Course Request';
-  var subject = subjectPrefix + (payload && payload.name ? (' – ' + payload.name) : '');
+  var subject = subjectPrefix + (payload && payload.name ? (' - ' + payload.name) : '');
 
   var lines = [];
   lines.push('A new request has been submitted:');
@@ -39,7 +39,7 @@ function sendToFrontDesk(payload) {
   if (payload.courseCode) lines.push('Current Course Code: ' + payload.courseCode);
 
   if (payload.type === 'Change Course') {
-    // In your front-end, newcourse is sent as "CODE – Name"
+    // In your front-end, newcourse is sent as "CODE - Name"
     lines.push('New Requested Course: ' + (payload.newcourse || ''));
   }
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * CanSTEM – Clover custom checkout endpoint
+ * CanSTEM - Clover custom checkout endpoint
  *
  * Flow:
  * 1) Create a v3 Customer (so they appear in Clover dashboard & CSV).
@@ -139,7 +139,7 @@ function canstem_process_payment( WP_REST_Request $request ) {
         // Text shows on receipt
         'description'   => $purpose
             ? "Purpose: {$purpose}"
-            : "Online payment – CanSTEM Education",
+            : "Online payment - CanSTEM Education",
 
         // Extra info visible in Clover (metadata)
         'metadata'      => [
