@@ -229,7 +229,6 @@
             font-weight: 700;
         }
 
-        /* helper message just under date/time */
         #cs-exam .cs-inline-msg {
             font-size: 14px;
             color: #b91c1c;
@@ -257,7 +256,6 @@
         <section class="cs-card">
             <span class="cs-chip" id="exam-title">Online Final Exam — Request Form</span>
 
-            <!-- Row: name/email/phone/date/time -->
             <div class="cs-row">
                 <div class="cs-field">
                     <label class="cs-label cs-req" for="fname">First Name</label>
@@ -300,13 +298,14 @@
                 If you live <strong>beyond 100 km</strong>, there is <strong>no extra fee</strong>.
                 <br><br>
                 For payment, please visit our
-                <a href="https://canstemeducation.com/payment/" target="_blank" rel="noopener noreferrer">
-                    Payment page
-                </a>.
+                <a href="https://canstemeducation.com/payment/" target="_blank" rel="noopener noreferrer">Payment
+                    page</a>.
             </div>
+
             <div class="cs-field">
                 <label class="cs-label" for="paymentProof">Payment Screenshot</label>
-                <input class="cs-input" id="paymentProof" type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.heif">
+                <input class="cs-input" id="paymentProof" name="paymentProof" type="file"
+                    accept=".pdf,.jpg,.jpeg,.png,.heic,.heif">
                 <div class="cs-subnote">
                     Upload if you are within 100 km and paying the online exam fee.
                 </div>
@@ -314,7 +313,6 @@
 
             <hr class="cs-sep" />
 
-            <!-- Row: grade/course -->
             <div class="cs-row">
                 <div class="cs-field">
                     <label class="cs-label cs-req" for="grade">Select Grade</label>
@@ -330,7 +328,6 @@
 
             <hr class="cs-sep" />
 
-            <!-- Row: school/gc email -->
             <div class="cs-row">
                 <div class="cs-field">
                     <label class="cs-label" for="school">School name</label>
@@ -346,7 +343,6 @@
 
             <hr class="cs-sep" />
 
-            <!-- Row: signature/transcript -->
             <div class="cs-row">
                 <div class="cs-field">
                     <label class="cs-label cs-req" for="stusig">Student Signature</label>
@@ -362,7 +358,6 @@
 
             <hr class="cs-sep" />
 
-            <!-- Terms -->
             <span class="cs-chip">Terms &amp; Conditions</span>
             <ul class="cs-terms">
                 <li>I confirm that I have completed all coursework for the selected course.</li>
@@ -382,10 +377,11 @@
                     <a href="https://canstemeducation.com/student-services/ocas/" target="_blank" rel="noopener">OCAS –
                         Steps &amp; Key Dates</a>.
                 </li>
-                <li><strong style="color: #e11d48;">Your request will be emailed to our Student Support Department. This
+                <li><strong style="color:#e11d48;">Your request will be emailed to our Student Support Department. This
                         request is subject to approval. Once your request is confirmed, you will receive an email
                         confirmation from our Student Support Department after you submit the form.</strong></li>
             </ul>
+
             <div class="cs-checks">
                 <label class="cs-check">
                     <input id="ack" type="checkbox" required>
@@ -395,7 +391,6 @@
 
             <hr class="cs-sep" />
 
-            <!-- Actions -->
             <div class="cs-actions">
                 <button class="cs-btn" id="submitBtn" type="button">Submit</button>
                 <span class="cs-status" id="status" aria-live="polite"></span>
@@ -405,46 +400,43 @@
 
     <script>
         (function () {
-            const WEB_APP_URL = '/wp-admin/admin-ajax.php?action=canstem_form_email';
+            // IMPORTANT:
+            // Use admin-ajax.php WITHOUT action here, because FormData will include action=...
+            const AJAX_URL = '/wp-admin/admin-ajax.php';
 
-            // Canadian public holidays (core, recurring) — YYYY-MM-DD will be generated per selected year
+            // ===== Canadian holidays helpers (unchanged) =====
             function getCanadianHolidays(year) {
                 const fixed = [
-                    `${year}-01-01`, // New Year
-                    `${year}-07-01`, // Canada Day
-                    `${year}-11-11`, // Remembrance Day
-                    `${year}-12-25`, // Christmas
-                    `${year}-12-26`, // Boxing Day
+                    `${year}-01-01`,
+                    `${year}-07-01`,
+                    `${year}-11-11`,
+                    `${year}-12-25`,
+                    `${year}-12-26`,
                 ];
-                // Good Friday: 2 days before Easter — we cheat with a simple calc for modern years
-                const easter = calcEaster(year); // returns Date
+                const easter = calcEaster(year);
                 const goodFriday = new Date(easter); goodFriday.setDate(easter.getDate() - 2);
 
-                // Victoria Day: Monday before May 25
                 const victoria = (function () {
-                    const d = new Date(year, 4, 25); // May 25
-                    // go back to Monday
-                    const day = d.getDay(); // 0 Sun ... 1 Mon
-                    const diff = (day + 6) % 7 + 1; // days to go back to Monday
+                    const d = new Date(year, 4, 25);
+                    const day = d.getDay();
+                    const diff = (day + 6) % 7 + 1;
                     d.setDate(d.getDate() - diff);
                     return d;
                 })();
 
-                // Labour Day: first Monday of September
                 const labour = (function () {
-                    const d = new Date(year, 8, 1); // Sept 1
+                    const d = new Date(year, 8, 1);
                     const day = d.getDay();
                     const diff = (8 - day) % 7;
                     d.setDate(d.getDate() + diff);
                     return d;
                 })();
 
-                // Thanksgiving: second Monday of October
                 const thanksgiving = (function () {
-                    const d = new Date(year, 9, 1); // Oct 1
+                    const d = new Date(year, 9, 1);
                     const day = d.getDay();
                     const firstMondayOffset = (8 - day) % 7;
-                    d.setDate(d.getDate() + firstMondayOffset + 7); // second Monday
+                    d.setDate(d.getDate() + firstMondayOffset + 7);
                     return d;
                 })();
 
@@ -454,18 +446,16 @@
                     formatDate(victoria),
                     formatDate(labour),
                     formatDate(thanksgiving),
-                    // Family Day (3rd Monday Feb)
                     (function () {
-                        const d = new Date(year, 1, 1); // Feb 1
+                        const d = new Date(year, 1, 1);
                         const day = d.getDay();
                         const firstMon = (8 - day) % 7;
-                        d.setDate(d.getDate() + firstMon + 14); // 3rd Monday
+                        d.setDate(d.getDate() + firstMon + 14);
                         return formatDate(d);
                     })(),
                 ];
             }
 
-            // Easter calculation (Anonymous Gregorian algorithm)
             function calcEaster(y) {
                 const a = y % 19;
                 const b = Math.floor(y / 100);
@@ -491,7 +481,6 @@
                 return `${y}-${m}-${day}`;
             }
 
-            // ===== time slot generators =====
             function buildSlots(startHour, startMin, endHour, endMin) {
                 const slots = [];
                 let start = startHour * 60 + startMin;
@@ -507,14 +496,13 @@
                 return slots;
             }
 
-            const WEEKDAY_SLOTS = buildSlots(12, 0, 18, 30);  // Mon–Fri → 12:00–6:30
-            const SAT_SLOTS = buildSlots(12, 0, 16, 30);  // Sat → 12:00–4:30
+            const WEEKDAY_SLOTS = buildSlots(12, 0, 18, 30);
+            const SAT_SLOTS = buildSlots(12, 0, 16, 30);
 
             const dateInput = document.getElementById('date');
             const timeSel = document.getElementById('timeSlot');
             const dateMsg = document.getElementById('dateMsg');
 
-            // min date = today
             const today = new Date();
             dateInput.min = formatDate(today);
 
@@ -532,7 +520,6 @@
                 const val = dateInput.value;
                 resetTimeSelect();
                 dateMsg.textContent = '';
-
                 if (!val) return;
 
                 const sel = new Date(val + 'T00:00:00');
@@ -545,25 +532,21 @@
                     return;
                 }
 
-                const year = sel.getFullYear();
-                const holidays = getCanadianHolidays(year);
+                const holidays = getCanadianHolidays(sel.getFullYear());
                 const f = formatDate(sel);
 
-                // Sunday (0)
                 if (sel.getDay() === 0) {
                     dateMsg.textContent = 'School is closed on Sundays. Please choose another date.';
                     dateInput.value = '';
                     return;
                 }
 
-                // Holiday
                 if (holidays.includes(f)) {
                     dateMsg.textContent = 'School is closed on this public holiday. Choose another date.';
                     dateInput.value = '';
                     return;
                 }
 
-                // Saturday
                 if (sel.getDay() === 6) {
                     fillTimeSelect(SAT_SLOTS);
                     dateMsg.textContent = 'Saturday slots: 12:00 PM – 4:30 PM only.';
@@ -829,7 +812,8 @@
                 const el = document.getElementById('status');
                 el.className = 'cs-status';
                 el.textContent = msg;
-                if (ok === true) el.classList.add('cs-ok'); else if (ok === false) el.classList.add('cs-err');
+                if (ok === true) el.classList.add('cs-ok');
+                else if (ok === false) el.classList.add('cs-err');
             }
 
             function isValid() {
@@ -848,42 +832,37 @@
                 return true;
             }
 
-            function fileToBase64(file) {
-                return new Promise((res, rej) => {
-                    const r = new FileReader();
-                    r.onload = () => {
-                        const out = r.result || '';
-                        const b64 = (out.split('base64,')[1] || '').trim();
-                        res({ name: file.name, mimeType: file.type || 'application/octet-stream', dataBase64: b64 });
-                    };
-                    r.onerror = () => rej(r.error);
-                    r.readAsDataURL(file);
-                });
+            function clearForm() {
+                document.querySelectorAll('#cs-exam .cs-card input, #cs-exam .cs-card textarea, #cs-exam .cs-card select')
+                    .forEach(x => {
+                        if (x.type === 'checkbox') x.checked = false;
+                        else x.value = '';
+                    });
+                gSel.value = GRADES[0];
+                cSel.innerHTML = '';
+                cSel.disabled = true;
+                cSel.appendChild(new Option('Select grade first…', ''));
+                resetTimeSelect();
             }
 
-            async function collectAttachments() {
-                const ids = ['transcript', 'paymentProof'];
-                const out = [];
-                for (const id of ids) {
-                    const el = document.getElementById(id);
-                    if (el && el.files && el.files.length) {
-                        out.push(await fileToBase64(el.files[0]));
-                    }
-                }
-                return out;
+            function appendFileIfAny(fd, inputId, fieldName) {
+                const el = document.getElementById(inputId);
+                if (!el || !el.files || !el.files.length) return false;
+                // Only one file for FE inputs (your UI is single)
+                fd.append(fieldName, el.files[0], el.files[0].name);
+                return true;
             }
 
             async function submitForm() {
                 if (!isValid()) { setStatus('Please fill all required fields.', false); return; }
                 setStatus('Submitting…');
 
-                const attachments = await collectAttachments();
                 const fullName = `${val('fname')} ${val('lname')}`.trim();
-                const hasPaymentProof = !!(document.getElementById('paymentProof')?.files?.length);
 
+                // Build payload WITHOUT attachments
                 const payload = {
                     type: 'Final Exam',
-                    mode: 'Online',                       // fixed → online only
+                    mode: 'Online',
                     name: fullName,
                     firstName: val('fname'),
                     lastName: val('lname'),
@@ -896,30 +875,44 @@
                     studentSig: val('stusig'),
                     schoolName: val('school'),
                     guidanceEmail: val('gcEmail'),
-                    acceptTerms: document.getElementById('ack').checked,
-                    onlineFeeNoteShown: true,
-                    paymentProofProvided: hasPaymentProof,
-                    attachments,
-                    hasTranscript: attachments.some(a => (a.name || '').toLowerCase().includes('transcript'))
+                    acceptTerms: document.getElementById('ack').checked ? 'Yes' : 'No',
+                    onlineFeeNoteShown: true
                 };
 
+                // Send as multipart FormData
+                const fd = new FormData();
+                fd.append('action', 'canstem_form_email');
+                fd.append('payload', JSON.stringify(payload));
+
+                // Files (direct upload, supports HEIC too)
+                const payAdded = appendFileIfAny(fd, 'paymentProof', 'paymentProof');
+                const trAdded = appendFileIfAny(fd, 'transcript', 'transcript');
+
+                // Send explicit flag for your email rows
+                fd.append('paymentProofProvided', payAdded ? 'Yes' : 'No');
+
                 try {
-                    const resp = await fetch(WEB_APP_URL, {
+                    const resp = await fetch(AJAX_URL, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload),
+                        body: fd,
                         credentials: 'same-origin'
                     });
-                    const data = await resp.json().catch(() => ({ ok: false, error: 'Invalid server response' }));
+
+                    // Read text first so we can detect HTML block pages too
+                    const raw = await resp.text();
+                    let data = {};
+                    try { data = JSON.parse(raw); } catch (e) { data = { ok: false, error: 'Invalid server response' }; }
+
                     if (resp.ok && data.ok) {
-                        document.querySelectorAll('#cs-exam .cs-card input, #cs-exam .cs-card textarea, #cs-exam .cs-card select')
-                            .forEach(x => { if (x.type === 'checkbox') x.checked = false; else x.value = ''; });
-                        gSel.value = GRADES[0];
-                        cSel.innerHTML = ''; cSel.disabled = true; cSel.appendChild(new Option('Select grade first…', ''));
-                        resetTimeSelect();
+                        clearForm();
                         setStatus('Success! Your online exam request has been emailed to the front desk.', true);
                     } else {
-                        setStatus(data.error || 'Error sending your request. Please try again.', false);
+                        // If Cloudflare/WAF returns HTML, show a better message
+                        const looksLikeHtml = /<html|<!doctype/i.test(raw || '');
+                        const msg = looksLikeHtml
+                            ? 'Upload failed (server blocked the request). Please try again or upload a smaller file.'
+                            : (data.error || 'Error sending your request. Please try again.');
+                        setStatus(msg, false);
                     }
                 } catch {
                     setStatus('Network error. Please try again.', false);
