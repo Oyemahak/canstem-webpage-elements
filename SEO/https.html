@@ -1,0 +1,1050 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CanSTEM URL Progress Tracker</title>
+    <style>
+        :root {
+            --bg: #0b1220;
+            --card: #0f1a30;
+            --muted: #9db0d0;
+            --text: #eaf0ff;
+            --line: rgba(255, 255, 255, .10);
+            --ok: #22c55e;
+            --warn: #f59e0b;
+            --bad: #ef4444;
+            --chip: #122449;
+            --chip2: #162e5a;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+            background: radial-gradient(900px 600px at 20% 10%, rgba(59, 130, 246, .18), transparent 60%),
+                radial-gradient(900px 600px at 80% 0%, rgba(34, 197, 94, .14), transparent 60%),
+                var(--bg);
+            color: var(--text);
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: rgba(11, 18, 32, .85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px 16px
+        }
+
+        .title {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 18px;
+            letter-spacing: .2px
+        }
+
+        .pill {
+            font-size: 12px;
+            color: var(--muted);
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .04);
+            padding: 6px 10px;
+            border-radius: 999px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+            align-items: center;
+        }
+
+        input[type="search"] {
+            flex: 1;
+            min-width: 240px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid var(--line);
+            color: var(--text);
+            padding: 10px 12px;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        button,
+        .btn {
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .06);
+            color: var(--text);
+            padding: 10px 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        button:hover {
+            background: rgba(255, 255, 255, .10)
+        }
+
+        .grid {
+            display: grid;
+            gap: 14px;
+            grid-template-columns: 1fr;
+            margin-top: 16px;
+        }
+
+        @media (min-width: 980px) {
+            .grid {
+                grid-template-columns: 360px 1fr;
+            }
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .03));
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, .25);
+        }
+
+        .card .hd {
+            padding: 14px 14px 10px 14px;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .card .bd {
+            padding: 14px
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .tab {
+            padding: 8px 10px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .04);
+            color: var(--muted);
+            font-size: 12px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .tab.active {
+            background: rgba(59, 130, 246, .20);
+            color: var(--text);
+            border-color: rgba(59, 130, 246, .35);
+        }
+
+        .progressBox {
+            display: grid;
+            gap: 8px
+        }
+
+        .bar {
+            width: 100%;
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            overflow: hidden;
+            height: 12px;
+        }
+
+        .fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, rgba(34, 197, 94, .9), rgba(59, 130, 246, .9));
+        }
+
+        .miniFill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, rgba(34, 197, 94, .9), rgba(34, 197, 94, .5));
+        }
+
+        .row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .chip {
+            font-size: 11px;
+            padding: 6px 8px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .05);
+            border: 1px solid var(--line);
+            color: var(--muted);
+        }
+
+        .list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .group {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .groupTitle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 10px 12px;
+            background: rgba(255, 255, 255, .04);
+            border-bottom: 1px solid var(--line);
+            font-size: 13px;
+        }
+
+        .groupTitle small {
+            color: var(--muted)
+        }
+
+        .groupBody {
+            padding: 10px 12px;
+            display: grid;
+            gap: 8px
+        }
+
+        .item {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, .12);
+        }
+
+        .item:hover {
+            border-color: rgba(59, 130, 246, .30)
+        }
+
+        .url {
+            word-break: break-all;
+            font-size: 13px;
+            line-height: 1.35;
+        }
+
+        .meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .badge {
+            padding: 4px 8px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            background: var(--chip);
+        }
+
+        .badge.missing {
+            background: rgba(239, 68, 68, .14);
+            border-color: rgba(239, 68, 68, .28);
+            color: #ffd1d1
+        }
+
+        .badge.included {
+            background: rgba(34, 197, 94, .12);
+            border-color: rgba(34, 197, 94, .24);
+            color: #d7ffe5
+        }
+
+        .rightTools {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid var(--line);
+            color: var(--text);
+            padding: 10px;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .note {
+            font-size: 12px;
+            color: var(--muted);
+            line-height: 1.6
+        }
+
+        .kpi {
+            display: grid;
+            gap: 8px;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .kpi .box {
+            padding: 10px;
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, .03);
+            border-radius: 12px;
+        }
+
+        .kpi .box b {
+            display: block;
+            font-size: 14px
+        }
+
+        .kpi .box span {
+            font-size: 12px;
+            color: var(--muted)
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="wrap">
+            <div class="title">
+                <h1>CanSTEM URL Progress Tracker</h1>
+                <span class="pill" id="pillTotals">Loading…</span>
+                <span class="pill">✅ Checks are saved automatically</span>
+            </div>
+
+            <div class="controls">
+                <input id="q" type="search"
+                    placeholder="Search URL / keyword (example: /product/ , ouac , policy)..." />
+                <div class="tabs">
+                    <div class="tab active" data-view="all">All</div>
+                    <div class="tab" data-view="included">Included (224)</div>
+                    <div class="tab" data-view="missing">Missing</div>
+                </div>
+                <button id="btnReset" title="Clear all checkmarks">Reset</button>
+                <button id="btnExport" title="Download your progress as JSON">Export</button>
+                <label class="btn" title="Import JSON you exported earlier">
+                    Import <input id="fileImport" type="file" accept="application/json" hidden>
+                </label>
+            </div>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <div class="grid">
+
+            <!-- LEFT -->
+            <section class="card">
+                <div class="hd">
+                    <div>
+                        <b>Progress</b><br />
+                        <span style="color:var(--muted);font-size:12px;">Mark URLs you see in GSC report ✅</span>
+                    </div>
+                </div>
+                <div class="bd">
+                    <div class="progressBox">
+                        <div class="row">
+                            <span>Overall completion</span>
+                            <span id="overallTxt">0%</span>
+                        </div>
+                        <div class="bar">
+                            <div class="fill" id="overallFill"></div>
+                        </div>
+
+                        <div class="kpi" style="margin-top:12px;">
+                            <div class="box">
+                                <b id="kpiChecked">0</b>
+                                <span>Checked URLs</span>
+                            </div>
+                            <div class="box">
+                                <b id="kpiTotal">0</b>
+                                <span>Total URLs</span>
+                            </div>
+                        </div>
+
+                        <hr style="border:none;border-top:1px solid var(--line);margin:14px 0">
+
+                        <div class="note">
+                            <b>How to use:</b><br />
+                            1) Open your GSC “Pages” report.<br />
+                            2) When you see a URL from this tracker, tick it ✅<br />
+                            3) Progress updates instantly + auto-saves.
+                        </div>
+
+                        <hr style="border:none;border-top:1px solid var(--line);margin:14px 0">
+
+                        <div class="note">
+                            <b>Tip:</b> Use search like <code>/product/</code> or <code>policy</code> to filter fast.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT -->
+            <section class="card">
+                <div class="hd">
+                    <div>
+                        <b>URL List</b><br />
+                        <span style="color:var(--muted);font-size:12px;">Grouped by category + progress per
+                            category</span>
+                    </div>
+                    <span class="chip" id="viewLabel">View: All</span>
+                </div>
+                <div class="bd">
+                    <div class="list" id="list"></div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <script>
+        /* =========================
+           DATA (Included + Missing)
+           ========================= */
+
+        // INCLUDED URLs (224) – from your master list
+        const INCLUDED = [
+            "https://canstemeducation.com/5-benefits-of-earning-college-credit-in-high-school/",
+            "https://canstemeducation.com/product/chc2d/",
+            "https://canstemeducation.com/product/baf3m/",
+            "https://canstemeducation.com/product/ics4u/",
+            "https://canstemeducation.com/product/hfa4c/",
+            "https://canstemeducation.com/product/ics4c/",
+            "https://canstemeducation.com/sitemap/",
+            "https://canstemeducation.com/our-blogs-canstem/canstem-education-private-school-middle-school-program-overview/",
+            "https://canstemeducation.com/our-blogs-canstem/bramptons-best-high-schools/",
+            "https://canstemeducation.com/summer-camp/",
+            "https://canstemeducation.com/product/tgj4m/",
+            "https://canstemeducation.com/the-value-of-private-school-education/",
+            "https://canstemeducation.com/product/tdj2o/",
+            "https://canstemeducation.com/product/hpd4c/",
+            "https://canstemeducation.com/stem-programs/",
+            "https://canstemeducation.com/product/eng4u/",
+            "https://canstemeducation.com/product/hse4m/",
+            "https://canstemeducation.com/product/boh4m/",
+            "https://canstemeducation.com/registration/",
+            "https://canstemeducation.com/wp-content/uploads/2023/08/Trainee-Volunteer-Teaching-candidate.pdf",
+            "https://canstemeducation.com/product/eps3o/",
+            "https://canstemeducation.com/product/mfm2p/",
+            "https://canstemeducation.com/payment/",
+            "https://canstemeducation.com/product/tdj4m/",
+            "https://canstemeducation.com/faq/",
+            "https://canstemeducation.com/canstem-education-private-school-3/",
+            "https://canstemeducation.com/course-mode-change-terms-policy/",
+            "https://canstemeducation.com/product/hhs4c/",
+            "https://canstemeducation.com/product/tfj3c/",
+            "https://canstemeducation.com/product/fif3u/",
+            "https://canstemeducation.com/student-services/ouac/how-to-videos/",
+            "https://canstemeducation.com/product/eng3u/",
+            "https://canstemeducation.com/empowering-mature-students/",
+            "https://canstemeducation.com/product/ada4m/",
+            "https://canstemeducation.com/healthcare-programs/",
+            "https://canstemeducation.com/product/cln4u/",
+            "https://canstemeducation.com/product/mbf3c/",
+            "https://canstemeducation.com/product/ppl3o/",
+            "https://canstemeducation.com/product/cht3o/",
+            "https://canstemeducation.com/google-reviews/?reviews-page=3",
+            "https://canstemeducation.com/product/hpc3o/",
+            "https://canstemeducation.com/product/hfn2o/",
+            "https://canstemeducation.com/product/mcf3m/",
+            "https://canstemeducation.com/product/ada3m/",
+            "https://canstemeducation.com/product/fsf2d/",
+            "https://canstemeducation.com/product/cha3u/",
+            "https://canstemeducation.com/math-kangaroo-contest/",
+            "https://canstemeducation.com/our-blogs-canstem/all-inclusive-manual-for-finishing-the-ouac-application/",
+            "https://canstemeducation.com/product/nbe3u/",
+            "https://canstemeducation.com/product/plf4m/",
+            "https://canstemeducation.com/product/cln4c/",
+            "https://canstemeducation.com/ontario-high-school-literacy/",
+            "https://canstemeducation.com/product/tas1o/",
+            "https://canstemeducation.com/online-student-instructions/",
+            "https://canstemeducation.com/product/hif2o/",
+            "https://canstemeducation.com/product/cgd3m/",
+            "https://canstemeducation.com/product/tdj3m/",
+            "https://canstemeducation.com/product/ppl4o/",
+            "https://canstemeducation.com/product/cgg3o/",
+            "https://canstemeducation.com/product/fsf1d/",
+            "https://canstemeducation.com/online-high-school/",
+            "https://canstemeducation.com/school-policies-practices-and-procedures/",
+            "https://canstemeducation.com/examination-policy/",
+            "https://canstemeducation.com/international-student/",
+            "https://canstemeducation.com/product/ppz3c/",
+            "https://canstemeducation.com/product/asm3m/",
+            "https://canstemeducation.com/tutoring/",
+            "https://canstemeducation.com/product/eldao/",
+            "https://canstemeducation.com/product/map4c/",
+            "https://canstemeducation.com/product/cgr4m/",
+            "https://canstemeducation.com/product/mcr3u/",
+            "https://canstemeducation.com/product/hhg4m/",
+            "https://canstemeducation.com/product/mpm2d/",
+            "https://canstemeducation.com/product/sph3u/",
+            "https://canstemeducation.com/our-blogs-canstem/ontarios-grad-requirements-with-tech-credits-and-online-access/",
+            "https://canstemeducation.com/tcf-and-tef/",
+            "https://canstemeducation.com/product/tas2o/",
+            "https://canstemeducation.com/online-learning-at-canstem/",
+            "https://canstemeducation.com/product/hfn1o/",
+            "https://canstemeducation.com/our-blogs-canstem/mississauga-night-schools-unlock-your-potential/",
+            "https://canstemeducation.com/product/bdp3o/",
+            "https://canstemeducation.com/computer-usage-policy/",
+            "https://canstemeducation.com/product/chw3m/",
+            "https://canstemeducation.com/product/eng4e/",
+            "https://canstemeducation.com/student-services/",
+            "https://canstemeducation.com/product/hfa4u/",
+            "https://canstemeducation.com/nursing-prerequisite-courses-at-canstem-education/",
+            "https://canstemeducation.com/product/tij1o/",
+            "https://canstemeducation.com/canstem-education-private-school/",
+            "https://canstemeducation.com/gallery/",
+            "https://canstemeducation.com/product/bat4m/",
+            "https://canstemeducation.com/product/snc4m/",
+            "https://canstemeducation.com/product/fif4u/",
+            "https://canstemeducation.com/product/ses4u/",
+            "https://canstemeducation.com/fee-structure/",
+            "https://canstemeducation.com/product/tgj3o/",
+            "https://canstemeducation.com/product/fsf3u/",
+            "https://canstemeducation.com/product/bbb4m/",
+            "https://canstemeducation.com/product/hfc3m/",
+            "https://canstemeducation.com/product/ics3u/",
+            "https://canstemeducation.com/product/cgc1w/",
+            "https://canstemeducation.com/ossd-requirements-2025/",
+            "https://canstemeducation.com/our-blogs-canstem/",
+            "https://canstemeducation.com/what-to-wear-to-a-private-school-parent-interview/",
+            "https://canstemeducation.com/product/tdj3o/",
+            "https://canstemeducation.com/product/hip4o/",
+            "https://canstemeducation.com/product/cie3m/",
+            "https://canstemeducation.com/product/eng2p/",
+            "https://canstemeducation.com/our-blog/",
+            "https://canstemeducation.com/product/cpw4u/",
+            "https://canstemeducation.com/product/sch4c/",
+            "https://canstemeducation.com/product/elddo/",
+            "https://canstemeducation.com/product/tfj4c/",
+            "https://canstemeducation.com/academic-success-and-lifelong-outcomes/",
+            "https://canstemeducation.com/product/sbi3c/",
+            "https://canstemeducation.com/product/hrt3m/",
+            "https://canstemeducation.com/tutoring-language-coaching-mississauga-brampton/",
+            "https://canstemeducation.com/adult-education/",
+            "https://canstemeducation.com/product/hzt4u/",
+            "https://canstemeducation.com/product/eldco/",
+            "https://canstemeducation.com/course-coding-system/",
+            "https://canstemeducation.com/registration-forms/",
+            "https://canstemeducation.com/5-things-to-consider-before-changing-schools-for-your-child/",
+            "https://canstemeducation.com/product/sch3u/",
+            "https://canstemeducation.com/caec/",
+            "https://canstemeducation.com/enrollment-open-full-time-school-ontario-2025-26/",
+            "https://canstemeducation.com/product/enl1w/",
+            "https://canstemeducation.com/product/mdm4u/",
+            "https://canstemeducation.com/about-2/",
+            "https://canstemeducation.com/promo/",
+            "https://canstemeducation.com/career/",
+            "https://canstemeducation.com/product/mcv4u/",
+            "https://canstemeducation.com/product/hhs4u/",
+            "https://canstemeducation.com/product/cia4u/",
+            "https://canstemeducation.com/product/eae2d/",
+            "https://canstemeducation.com/student-services/ouac/",
+            "https://canstemeducation.com/product/mct4c/",
+            "https://canstemeducation.com/product/eldeo/",
+            "https://canstemeducation.com/student-achievement-the-assessment-and-evaluation-policy/",
+            "https://canstemeducation.com/final-exam-and-report-card-information/",
+            "https://canstemeducation.com/product/svn3m/",
+            "https://canstemeducation.com/our-blogs-canstem/ouac-ocas-applications/",
+            "https://canstemeducation.com/product/tej2o/",
+            "https://canstemeducation.com/pte/",
+            "https://canstemeducation.com/product/sch4u/",
+            "https://canstemeducation.com/product/asm3o/",
+            "https://canstemeducation.com/product/mhf4u/",
+            "https://canstemeducation.com/ielts/",
+            "https://canstemeducation.com/product/ada2o/",
+            "https://canstemeducation.com/product/cgw4u/",
+            "https://canstemeducation.com/product/snc1w/",
+            "https://canstemeducation.com/product/tfj2o/",
+            "https://canstemeducation.com/product/psk4u/",
+            "https://canstemeducation.com/competitive-exam-prep/",
+            "https://canstemeducation.com/product/chy4c/",
+            "https://canstemeducation.com/product/tgj2o/",
+            "https://canstemeducation.com/product/sph4c/",
+            "https://canstemeducation.com/product/tej3m/",
+            "https://canstemeducation.com/product/avi3o/",
+            "https://canstemeducation.com/product/cgw4c/",
+            "https://canstemeducation.com/wp-content/uploads/2025/09/Day-school-registration-document-check-list.pdf",
+            "https://canstemeducation.com/holiday-and-special-hours/",
+            "https://canstemeducation.com/full-time-school/",
+            "https://canstemeducation.com/english-test-coaching-canada/",
+            "https://canstemeducation.com/university-open-house/",
+            "https://canstemeducation.com/student-services/ossd/",
+            "https://canstemeducation.com/our-blogs-canstem/ouac-program-for-students-in-ontario/",
+            "https://canstemeducation.com/product/mth1w/",
+            "https://canstemeducation.com/product/idc4o/",
+            "https://canstemeducation.com/product/bdv4c/",
+            "https://canstemeducation.com/google-reviews/",
+            "https://canstemeducation.com/contact-us/",
+            "https://canstemeducation.com/international-logic-olympiad-canada-canstem/",
+            "https://canstemeducation.com/international-logic-olympiad/",
+            "https://canstemeducation.com/product/sbi3u/",
+            "https://canstemeducation.com/product/ics3c/",
+            "https://canstemeducation.com/product/bta3o/",
+            "https://canstemeducation.com/google-reviews/?reviews-page=2",
+            "https://canstemeducation.com/5-ways-a-tutor-can-help-students-with-exceptionalities/",
+            "https://canstemeducation.com/product/clu3m/",
+            "https://canstemeducation.com/product/tej4m/",
+            "https://canstemeducation.com/product/eng4c/",
+            "https://canstemeducation.com/product/olc4o/",
+            "https://canstemeducation.com/product/sbi4u/",
+            "https://canstemeducation.com/product/bep2o/",
+            "https://canstemeducation.com/final-exam-request/",
+            "https://canstemeducation.com/product/cgf3m/",
+            "https://canstemeducation.com/product/eae4u/",
+            "https://canstemeducation.com/summer-school/",
+            "https://canstemeducation.com/product/bmi3c/",
+            "https://canstemeducation.com/",
+            "https://canstemeducation.com/product/ada3o/",
+            "https://canstemeducation.com/product/sph4u/",
+            "https://canstemeducation.com/student-services/ocas/",
+            "https://canstemeducation.com/tag/private-school-near-me-mississauga/",
+            "https://canstemeducation.com/product/idc4u/",
+            "https://canstemeducation.com/high-school-credits/",
+            "https://canstemeducation.com/private-vs-public-school-ontario/",
+            "https://canstemeducation.com/product/avi1o/",
+            "https://canstemeducation.com/product/ppl1o/",
+            "https://canstemeducation.com/product/ada4e/",
+            "https://canstemeducation.com/product/chv2o/",
+            "https://canstemeducation.com/in-class-student-instructions/",
+            "https://canstemeducation.com/product/avi4m/",
+            "https://canstemeducation.com/product/cgt3o/",
+            "https://canstemeducation.com/top-10-school-principals-in-canada-2026/",
+            "https://canstemeducation.com/wp-content/uploads/2023/08/English-and-Social-Science-Teacher.pdf",
+            "https://canstemeducation.com/why-canstem/",
+            "https://canstemeducation.com/product/hsp3u/",
+            "https://canstemeducation.com/refer-a-friend/",
+            "https://canstemeducation.com/our-blogs-canstem/forward-looking-summer-courses-in-2024/",
+            "https://canstemeducation.com/policies/",
+            "https://canstemeducation.com/product/gls1o/",
+            "https://canstemeducation.com/wp-content/uploads/2023/08/School-Calender-Special-Education-6th-Sept-2022.pdf",
+            "https://canstemeducation.com/our-blogs-canstem/adult-learners-perspective-on-the-shift-from-ged-testing/",
+            "https://canstemeducation.com/product/ewc4c/",
+            "https://canstemeducation.com/product/aea4o/",
+            "https://canstemeducation.com/product/hsb4u/",
+            "https://canstemeducation.com/product/cgo4m/",
+            "https://canstemeducation.com/product/cpc3o/",
+            "https://canstemeducation.com/wp-content/uploads/2023/08/Mathematics-Science-and-Computer-Science-Teacherdocx.pdf",
+            "https://canstemeducation.com/celpip/",
+            "https://canstemeducation.com/the-role-of-ai-in-modern-education/",
+            "https://canstemeducation.com/product/btx4c/"
+        ];
+
+        // MISSING URLs (from our comparison) – you can edit/add more later
+        const MISSING = {
+            "Missing Products (Grade 9)": [
+                "https://canstemeducation.com/product/ada1o/",
+                "https://canstemeducation.com/product/hif1o/"
+            ],
+            "Missing Products (Grade 10)": [
+                "https://canstemeducation.com/product/avi2o/",
+                "https://canstemeducation.com/product/asm2o/",
+                "https://canstemeducation.com/product/chc2p/",
+                "https://canstemeducation.com/product/eng2d/",
+                "https://canstemeducation.com/product/fsf2p/",
+                "https://canstemeducation.com/product/glc2o/",
+                "https://canstemeducation.com/product/ics2o/",
+                "https://canstemeducation.com/product/ppl2o/",
+                "https://canstemeducation.com/product/snc2d/",
+                "https://canstemeducation.com/product/snc2p/"
+            ],
+            "Missing Products (Grade 11)": [
+                "https://canstemeducation.com/product/avi3m/",
+                "https://canstemeducation.com/product/eae3u/",
+                "https://canstemeducation.com/product/fsf3o/",
+                "https://canstemeducation.com/product/fef3u/",
+                "https://canstemeducation.com/product/fif3o/",
+                "https://canstemeducation.com/product/gwl3o/",
+                "https://canstemeducation.com/product/hsg3m/",
+                "https://canstemeducation.com/product/hzb3m/",
+                "https://canstemeducation.com/product/hpw3c/",
+                "https://canstemeducation.com/product/idc3o/",
+                "https://canstemeducation.com/product/svn3e/",
+                "https://canstemeducation.com/product/tgj3m/"
+            ],
+            "Missing Products (Grade 12)": [
+                "https://canstemeducation.com/product/asm4e/",
+                "https://canstemeducation.com/product/cgu4m/",
+                "https://canstemeducation.com/product/chy4u/",
+                "https://canstemeducation.com/product/chi4u/",
+                "https://canstemeducation.com/product/ewc4u/",
+                "https://canstemeducation.com/product/fsf4u/",
+                "https://canstemeducation.com/product/fsf4o/",
+                "https://canstemeducation.com/product/hsc4m/",
+                "https://canstemeducation.com/product/snc4e/",
+                "https://canstemeducation.com/product/tgj4o/",
+                "https://canstemeducation.com/product/tfj4e/",
+                "https://canstemeducation.com/product/tpj4m/"
+            ],
+            "Missing Products (ESL/ELD)": [
+                "https://canstemeducation.com/product/eslao/",
+                "https://canstemeducation.com/product/eslbo/",
+                "https://canstemeducation.com/product/eslco/",
+                "https://canstemeducation.com/product/esldo/",
+                "https://canstemeducation.com/product/esleo/",
+                "https://canstemeducation.com/product/eldbo/"
+            ],
+            "Missing Site Pages": [
+                "https://canstemeducation.com/accessibility/",
+                "https://canstemeducation.com/attendance-policy/",
+                "https://canstemeducation.com/cheating-and-plagiarism/",
+                "https://canstemeducation.com/code-of-conduct/",
+                "https://canstemeducation.com/change-request/",
+                "https://canstemeducation.com/late-and-missed-assignments-policy/",
+                "https://canstemeducation.com/live-links/",
+                "https://canstemeducation.com/cart/",
+                "https://canstemeducation.com/online-payment/",
+                "https://canstemeducation.com/privacy-policy/",
+                "https://canstemeducation.com/safe-school-policy/",
+                "https://canstemeducation.com/terms-and-conditions/",
+                "https://canstemeducation.com/ocas/",
+                "https://canstemeducation.com/ossd/",
+                "https://canstemeducation.com/ouac/",
+                "https://canstemeducation.com/how-to-videos/"
+            ],
+            "Missing Blogs": [
+                "https://canstemeducation.com/why-canstem-is-different/",
+                "https://canstemeducation.com/7-easy-steps-to-a-successful-result/",
+                "https://canstemeducation.com/applying-through-the-ouac-website/",
+                "https://canstemeducation.com/building-a-successful-study-plan/",
+                "https://canstemeducation.com/exploring-modern-work-realities/",
+                "https://canstemeducation.com/exploring-possible-post-secondary-careers/",
+                "https://canstemeducation.com/handling-the-ossds-requirements/",
+                "https://canstemeducation.com/how-to-achieve-academic-success-in-high-school/",
+                "https://canstemeducation.com/making-a-successful-exam-study-plan/",
+                "https://canstemeducation.com/manual-for-post-secondary-education/",
+                "https://canstemeducation.com/online-students-guide-to-back-to-school-in-2024/",
+                "https://canstemeducation.com/ontario-students-2024-graduation-requirements/",
+                "https://canstemeducation.com/ontario-updates-secondary-school-graduation-standards/",
+                "https://canstemeducation.com/planning-for-summer-2024-college-and-university-admission/",
+                "https://canstemeducation.com/summer-camp-2025-at-canstem/",
+                "https://canstemeducation.com/summer-school-2025-at-canstem/",
+                "https://canstemeducation.com/the-role-of-parents-and-families-in-online-schooling/",
+                "https://canstemeducation.com/2024-high-school-graduation-requirements/",
+                "https://canstemeducation.com/the-benefits-of-one-on-one-tutoring-services/",
+                "https://canstemeducation.com/dual-enrollment-explained-college-and-high-school-credits/",
+                "https://canstemeducation.com/raising-pets-can-help-children-develop-emotional-intelligence/",
+                "https://canstemeducation.com/the-best-way-to-balance-study-and-fun-over-the-holidays/",
+                "https://canstemeducation.com/how-to-stop-your-child-from-hating-school/",
+                "https://canstemeducation.com/perspectives-on-screen-time-in-a-pandemic/",
+                "https://canstemeducation.com/four-steps-to-selecting-a-school-for-your-child/",
+                "https://canstemeducation.com/tips-to-choose-a-tutor/",
+                "https://canstemeducation.com/tips-for-starting-high-school/",
+                "https://canstemeducation.com/boost-grades-and-achieve-academic-excellence/",
+                "https://canstemeducation.com/university-scholarship-applications-for-2024-2025/",
+                "https://canstemeducation.com/the-importance-of-early-preparation-for-university/",
+                "https://canstemeducation.com/remembrance-day-in-canada/",
+                "https://canstemeducation.com/impact-of-ircc-closing-the-student-direct-stream/",
+                "https://canstemeducation.com/how-raising-pets-can-help-children-develop-emotional-intelligence/",
+                "https://canstemeducation.com/navigating-covid/"
+            ]
+        };
+
+        /* =========================
+           APP LOGIC
+           ========================= */
+
+        const STORAGE_KEY = "canstem_url_tracker_v1";
+        const state = loadState();
+
+        // Build one normalized dataset with categories
+        const DATASET = buildDataset();
+
+        let currentView = "all";
+        let query = "";
+
+        // UI elements
+        const listEl = document.getElementById("list");
+        const qEl = document.getElementById("q");
+        const pillTotals = document.getElementById("pillTotals");
+        const viewLabel = document.getElementById("viewLabel");
+        const overallFill = document.getElementById("overallFill");
+        const overallTxt = document.getElementById("overallTxt");
+        const kpiChecked = document.getElementById("kpiChecked");
+        const kpiTotal = document.getElementById("kpiTotal");
+        const btnReset = document.getElementById("btnReset");
+        const btnExport = document.getElementById("btnExport");
+        const fileImport = document.getElementById("fileImport");
+
+        // Tabs
+        document.querySelectorAll(".tab").forEach(t => {
+            t.addEventListener("click", () => {
+                document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+                t.classList.add("active");
+                currentView = t.dataset.view;
+                viewLabel.textContent = "View: " + (currentView === "all" ? "All" : currentView[0].toUpperCase() + currentView.slice(1));
+                render();
+            });
+        });
+
+        // Search
+        qEl.addEventListener("input", () => {
+            query = (qEl.value || "").trim().toLowerCase();
+            render();
+        });
+
+        // Reset
+        btnReset.addEventListener("click", () => {
+            if (!confirm("Reset all checkmarks?")) return;
+            state.checked = {};
+            saveState(state);
+            render();
+        });
+
+        // Export
+        btnExport.addEventListener("click", () => {
+            const payload = {
+                version: 1,
+                exportedAt: new Date().toISOString(),
+                checked: state.checked
+            };
+            const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+            const a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "canstem-url-progress.json";
+            a.click();
+            URL.revokeObjectURL(a.href);
+        });
+
+        // Import
+        fileImport.addEventListener("change", async (e) => {
+            const f = e.target.files?.[0];
+            if (!f) return;
+            try {
+                const text = await f.text();
+                const data = JSON.parse(text);
+                if (!data || typeof data !== "object" || !data.checked) throw new Error("Invalid file");
+                state.checked = data.checked;
+                saveState(state);
+                render();
+                alert("Imported successfully ✅");
+            } catch (err) {
+                alert("Import failed: " + err.message);
+            } finally {
+                fileImport.value = "";
+            }
+        });
+
+        function buildDataset() {
+            const groups = [];
+
+            // Included group (we’ll categorize by type automatically)
+            const includedGroups = categorizeIncluded(INCLUDED);
+            for (const [cat, urls] of Object.entries(includedGroups)) {
+                groups.push({
+                    category: cat,
+                    kind: "included",
+                    urls: urls.map(u => ({ url: u, kind: "included" }))
+                });
+            }
+
+            // Missing groups
+            for (const [cat, urls] of Object.entries(MISSING)) {
+                groups.push({
+                    category: cat,
+                    kind: "missing",
+                    urls: urls.map(u => ({ url: u, kind: "missing" }))
+                });
+            }
+
+            return groups;
+        }
+
+        function categorizeIncluded(urls) {
+            // simple rules for grouping
+            const cats = {
+                "Included Products (/product/)": [],
+                "Included Pages": [],
+                "Included Blogs": [],
+                "Included Files (PDF/DOC)": [],
+                "Included Other": []
+            };
+
+            urls.forEach(u => {
+                const lower = u.toLowerCase();
+                if (lower.includes("/product/")) cats["Included Products (/product/)"].push(u);
+                else if (lower.endsWith(".pdf") || lower.endsWith(".doc") || lower.endsWith(".docx")) cats["Included Files (PDF/DOC)"].push(u);
+                else if (lower.includes("/our-blogs-canstem/") || lower.includes("/our-blog/") || lower.includes("/tag/")) cats["Included Blogs"].push(u);
+                else if (lower.startsWith("https://canstemeducation.com/")) cats["Included Pages"].push(u);
+                else cats["Included Other"].push(u);
+            });
+
+            // remove empty
+            Object.keys(cats).forEach(k => { if (!cats[k].length) delete cats[k]; });
+            return cats;
+        }
+
+        function normalizeUrl(u) {
+            return String(u || "").trim().replace(/\/+$/, "/"); // keep trailing slash for consistency
+        }
+
+        function loadState() {
+            try {
+                const raw = localStorage.getItem(STORAGE_KEY);
+                if (!raw) return { checked: {} };
+                const parsed = JSON.parse(raw);
+                return { checked: parsed.checked || {} };
+            } catch {
+                return { checked: {} };
+            }
+        }
+        function saveState(s) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({ checked: s.checked || {} }));
+        }
+
+        function isChecked(url) {
+            return !!state.checked[normalizeUrl(url)];
+        }
+        function setChecked(url, val) {
+            const key = normalizeUrl(url);
+            if (val) state.checked[key] = true;
+            else delete state.checked[key];
+            saveState(state);
+        }
+
+        function passesView(kind) {
+            if (currentView === "all") return true;
+            return kind === currentView;
+        }
+        function passesQuery(url) {
+            if (!query) return true;
+            return url.toLowerCase().includes(query);
+        }
+
+        function render() {
+            // compute totals (all URLs across all groups)
+            const allItems = DATASET.flatMap(g => g.urls.map(x => ({ ...x, category: g.category })));
+
+            const filteredItems = allItems.filter(x =>
+                passesView(x.kind) && passesQuery(x.url)
+            );
+
+            // Group again for display
+            const grouped = {};
+            filteredItems.forEach(x => {
+                grouped[x.category] = grouped[x.category] || [];
+                grouped[x.category].push(x);
+            });
+
+            // Header totals (overall uses ALL, not filtered)
+            const totalAll = allItems.length;
+            const checkedAll = allItems.filter(x => isChecked(x.url)).length;
+
+            const pct = totalAll ? Math.round((checkedAll / totalAll) * 100) : 0;
+            overallFill.style.width = pct + "%";
+            overallTxt.textContent = pct + "%";
+            kpiChecked.textContent = checkedAll;
+            kpiTotal.textContent = totalAll;
+
+            const includedCount = allItems.filter(x => x.kind === "included").length;
+            const missingCount = allItems.filter(x => x.kind === "missing").length;
+            pillTotals.textContent = `Included: ${includedCount} • Missing: ${missingCount} • Total: ${totalAll}`;
+
+            // render groups
+            listEl.innerHTML = "";
+            const catNames = Object.keys(grouped);
+
+            if (catNames.length === 0) {
+                listEl.innerHTML = `<div class="note">No results found for this filter/search.</div>`;
+                return;
+            }
+
+            catNames.forEach(cat => {
+                const items = grouped[cat];
+
+                // category progress (within that category, based on ALL items in that category, not filtered)
+                const catAll = allItems.filter(x => x.category === cat);
+                const catChecked = catAll.filter(x => isChecked(x.url)).length;
+                const catPct = catAll.length ? Math.round((catChecked / catAll.length) * 100) : 0;
+
+                const group = document.createElement("div");
+                group.className = "group";
+
+                group.innerHTML = `
+        <div class="groupTitle">
+          <div>
+            <b>${cat}</b>
+            <small> • ${catChecked}/${catAll.length} checked (${catPct}%)</small>
+          </div>
+          <span class="chip">${items.length} shown</span>
+        </div>
+        <div class="groupBody">
+          <div class="bar" style="height:10px;margin-bottom:8px;">
+            <div class="miniFill" style="width:${catPct}%;"></div>
+          </div>
+          <div class="items"></div>
+        </div>
+      `;
+
+                const itemsEl = group.querySelector(".items");
+                itemsEl.style.display = "grid";
+                itemsEl.style.gap = "8px";
+
+                items.forEach((x) => {
+                    const checked = isChecked(x.url);
+
+                    const item = document.createElement("div");
+                    item.className = "item";
+                    item.innerHTML = `
+          <input type="checkbox" ${checked ? "checked" : ""} />
+          <div style="flex:1;">
+            <div class="url">${x.url}</div>
+            <div class="meta">
+              <span class="badge ${x.kind}">${x.kind.toUpperCase()}</span>
+              ${x.url.toLowerCase().includes("/product/") ? `<span class="badge" style="background:var(--chip2);">PRODUCT</span>` : ""}
+              ${x.url.toLowerCase().endsWith(".pdf") ? `<span class="badge" style="background:rgba(245,158,11,.14);border-color:rgba(245,158,11,.28);color:#ffe9c7;">PDF</span>` : ""}
+              <a href="${x.url}" target="_blank" rel="noreferrer" style="color:#bcd3ff;text-decoration:none;">Open</a>
+            </div>
+          </div>
+        `;
+
+                    const cb = item.querySelector("input[type=checkbox]");
+                    cb.addEventListener("change", () => {
+                        setChecked(x.url, cb.checked);
+                        render(); // refresh progress bars + counts
+                    });
+
+                    itemsEl.appendChild(item);
+                });
+
+                listEl.appendChild(group);
+            });
+        }
+
+        render();
+    </script>
+
+</body>
+
+</html>
