@@ -1,7 +1,12 @@
 <?php
 /**
- * CanSTEM - Clover charge endpoint (FINAL CLEAN VERSION)
+ * CanSTEM - Clover charge endpoint (FINAL CLEAN VERSION + STAFF EMAIL NOTIFICATION)
  * URL: /wp-json/canstem/charge
+ *
+ * What this does:
+ * 1) Charges customer via Clover
+ * 2) Sends a staff notification email (to multiple recipients) AFTER successful charge
+ * 3) Returns success + chargeId to frontend
  */
 
 add_action('rest_api_init', function () {
@@ -11,6 +16,101 @@ add_action('rest_api_init', function () {
     'permission_callback' => '__return_true',
   ]);
 });
+
+/**
+ * Send staff email notification (non-blocking)
+ */
+function canstem_send_payment_notification($details) {
+
+  // ✅ Add as many staff emails / Google Groups as you want here
+  $to = [
+    'canstem.education@gmail.com',
+    'frontdesk@canstemeducation.com',
+    // 'payments@canstemeducation.com', // optional
+  ];
+
+  $amount   = isset($details['amount']) ? floatval($details['amount']) : 0;
+  $name     = sanitize_text_field($details['name'] ?? '');
+  $email    = sanitize_email($details['email'] ?? '');
+  $phone    = sanitize_text_field($details['phone'] ?? '');
+  $purpose  = sanitize_textarea_field($details['purpose'] ?? '');
+  $chargeId = sanitize_text_field($details['chargeId'] ?? '');
+  $time     = sanitize_text_field($details['time'] ?? '');
+
+  // ✅ Meaningful subject like Clover
+  $subject = sprintf(
+    'Payment from %s — CA$%s (PAID) | TXN %s',
+    $name ?: 'Customer',
+    number_format($amount, 2),
+    $chargeId ?: 'N/A'
+  );
+
+  // ✅ Nice, clean email body
+  $body = '
+  <div style="font-family:Arial,Helvetica,sans-serif;color:#0f172a;max-width:720px;margin:0 auto;padding:16px;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px;">
+      <h2 style="margin:0;color:#001161;">Payment Notification</h2>
+      <span style="display:inline-block;background:#16a34a;color:#fff;padding:6px 14px;border-radius:999px;font-weight:700;font-size:12px;">
+        PAID
+      </span>
+    </div>
+
+    <p style="margin:0 0 12px;color:#475569;">
+      A new payment was submitted from the CanSTEM payment form. Confirm full details in Clover using the Charge ID below.
+    </p>
+
+    <table style="border-collapse:separate;border-spacing:0;width:100%;border:1px solid #e5e7eb;border-radius:12px;overflow:hidden;">
+      <tr>
+        <th style="text-align:left;background:#f8fafc;width:220px;padding:10px;">Amount</th>
+        <td style="padding:10px;"><strong>CA$' . esc_html(number_format($amount, 2)) . '</strong></td>
+      </tr>
+      <tr>
+        <th style="text-align:left;background:#f8fafc;padding:10px;border-top:1px solid #e5e7eb;">Payer Name</th>
+        <td style="padding:10px;border-top:1px solid #e5e7eb;">' . esc_html($name) . '</td>
+      </tr>
+      <tr>
+        <th style="text-align:left;background:#f8fafc;padding:10px;border-top:1px solid #e5e7eb;">Payer Email</th>
+        <td style="padding:10px;border-top:1px solid #e5e7eb;">' . esc_html($email) . '</td>
+      </tr>
+      <tr>
+        <th style="text-align:left;background:#f8fafc;padding:10px;border-top:1px solid #e5e7eb;">Phone</th>
+        <td style="padding:10px;border-top:1px solid #e5e7eb;">' . esc_html($phone) . '</td>
+      </tr>
+      <tr>
+        <th style="text-align:left;background:#f8fafc;padding:10px;border-top:1px solid #e5e7eb;">Purpose</th>
+        <td style="padding:10px;border-top:1px solid #e5e7eb;">' . nl2br(esc_html($purpose)) . '</td>
+      </tr>
+      <tr>
+        <th style="text-align:left;background:#f8fafc;padding:10px;border-top:1px solid #e5e7eb;">Payment ID</th>
+        <td style="padding:10px;border-top:1px solid #e5e7eb;"><code>' . esc_html($chargeId) . '</code></td>
+      </tr>
+      <tr>
+        <th style="text-align:left;background:#f8fafc;padding:10px;border-top:1px solid #e5e7eb;">Submitted At</th>
+        <td style="padding:10px;border-top:1px solid #e5e7eb;">' . esc_html($time) . '</td>
+      </tr>
+    </table>
+
+    <p style="margin-top:12px;color:#64748b;font-size:12px;">
+      Note: This is an internal notification email. Replying will go to the payer (if email was provided).
+    </p>
+  </div>';
+
+  $headers = [ 'Content-Type: text/html; charset=UTF-8' ];
+
+  /**
+   * IMPORTANT:
+   * For best delivery, keep From domain as canstemeducation.com
+   * (and ideally match your SMTP sending account/domain).
+   */
+  $headers[] = 'From: CanSTEM Payments <payments@canstemeducation.com>';
+
+  // ✅ So staff can reply directly to payer
+  if ($email) {
+    $headers[] = 'Reply-To: ' . ($name ?: 'Payer') . ' <' . $email . '>';
+  }
+
+  return wp_mail($to, $subject, $body, $headers);
+}
 
 function canstem_process_payment(WP_REST_Request $request) {
 
@@ -41,7 +141,7 @@ function canstem_process_payment(WP_REST_Request $request) {
   // CLOVER CREDENTIALS (PRODUCTION)
   // ==============================
   $merchant_id = '318000254739';
-  $secret_key  = '97ea1413-4037-f6aa-d8aa-30fb40a75c13'; // MOVE TO ENV LATER
+  $secret_key  = '97ea1413-4037-f6aa-d8aa-30fb40a75c13'; // TODO: move to env/secret manager
   $clover_base = 'https://scl.clover.com';
 
   $amount_cents = (int) round($amount_raw * 100);
@@ -86,9 +186,8 @@ function canstem_process_payment(WP_REST_Request $request) {
   $customer_id = $customer_body['id'];
 
   // ==============================
-  // STEP 2: CREATE CLEAN RECEIPT NOTE
+  // STEP 2: RECEIPT NOTE (PRINTED BY CLOVER)
   // ==============================
-  // THIS IS THE ONLY TEXT CLOVER WILL PRINT
   $description = sprintf(
     'Purpose: %s | Payer: %s | Phone: %s',
     $purpose,
@@ -104,7 +203,7 @@ function canstem_process_payment(WP_REST_Request $request) {
     'amount'        => $amount_cents,
     'currency'      => 'CAD',
     'source'        => $customer_id,
-    'receipt_email' => $email, // sends email but does NOT print it
+    'receipt_email' => $email,
     'description'   => $description,
   ];
 
@@ -129,9 +228,27 @@ function canstem_process_payment(WP_REST_Request $request) {
   $charge_body = json_decode(wp_remote_retrieve_body($charge_resp), true);
 
   if (!empty($charge_body['id'])) {
+
+    $charge_id = sanitize_text_field($charge_body['id']);
+
+    // ✅ Send staff notification (do NOT block payment success if email fails)
+    try {
+      canstem_send_payment_notification([
+        'amount'   => $amount_raw,
+        'name'     => trim($first_name . ' ' . $last_name),
+        'email'    => $email,
+        'phone'    => $phone,
+        'purpose'  => $purpose,
+        'chargeId' => $charge_id,
+        'time'     => wp_date('D, M j, Y · g:i a', time(), wp_timezone()),
+      ]);
+    } catch (Throwable $e) {
+      error_log('Payment notification email failed: ' . $e->getMessage());
+    }
+
     return [
       'success'  => true,
-      'chargeId'=> $charge_body['id'],
+      'chargeId' => $charge_id,
     ];
   }
 
