@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EAE2D - English (Grade 10 Academic)</title>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: #26262B;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      font-size: 18px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    table,
+    td,
+    th {
+      border: 0px solid var(--ast-border-color);
+    }
+
+    .unit-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .unit-table thead {
+      background-color: #00427C;
+      color: #fff;
+    }
+
+    .unit-table th,
+    .unit-table td {
+      padding: 18px 20px;
+      text-align: left;
+      font-size: 18px;
+      border-bottom: 1px solid transparent;
+      vertical-align: top;
+    }
+
+    .unit-table td:last-child,
+    .unit-table th:last-child {
+      white-space: nowrap;
+    }
+
+    .unit-table tbody tr:not(:last-child) td {
+      border-bottom: 1px solid #eee;
+    }
+
+    .unit-table tbody tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        font-size: 16px;
+      }
+
+      .unit-table thead {
+        display: none;
+      }
+
+      .unit-table,
+      .unit-table tbody,
+      .unit-table tr,
+      .unit-table td {
+        display: block;
+      }
+
+      .unit-table {
+        box-shadow: none !important;
+        margin-bottom: 0 !important;
+      }
+
+      .unit-table tbody tr:not(:last-child) td {
+        border-bottom: 0;
+      }
+
+      .unit-table tr {
+        margin-bottom: 16px;
+        border: 1px solid #00427c;
+        padding: 16px;
+        box-shadow: none;
+        border-radius: 12px;
+        background: #fff;
+      }
+
+      .unit-table td {
+        font-size: 16px;
+        padding: 12px 0px;
+        border: none;
+        position: relative;
+        overflow-wrap: anywhere;
+        word-break: break-word;
+        hyphens: auto;
+      }
+
+      .unit-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: #00427c;
+        display: block;
+        margin-bottom: 4px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="eae2d-course">
+    <div class="container">
+      <table class="unit-table">
+        <thead>
+          <tr>
+            <th>Unit</th>
+            <th>Title</th>
+            <th>Expectations Summary</th>
+            <th>Time</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td data-label="Unit">1</td>
+            <td data-label="Title">Oral &amp; Oral-Visual Communication</td>
+            <td data-label="Expectations Summary">
+              Build active listening and speaking skills. In addition, plan and deliver oral and oral-visual
+              presentations in formal and informal settings.
+            </td>
+            <td data-label="Time">30 Hours</td>
+          </tr>
+
+          <tr>
+            <td data-label="Unit">2</td>
+            <td data-label="Title">Reading &amp; Interpretation</td>
+            <td data-label="Expectations Summary">
+              Use reading strategies to understand increasingly challenging texts. Also, analyze literary,
+              informational, and media texts for message, style, and perspective.
+            </td>
+            <td data-label="Time">35 Hours</td>
+          </tr>
+
+          <tr>
+            <td data-label="Unit">3</td>
+            <td data-label="Title">Writing &amp; Representation</td>
+            <td data-label="Expectations Summary">
+              Plan, draft, revise, and publish writing for different audiences and purposes. Moreover, conduct research,
+              document sources, and present ideas clearly across forms and media.
+            </td>
+            <td data-label="Time">35 Hours</td>
+          </tr>
+
+          <tr>
+            <td data-label="Unit">4</td>
+            <td data-label="Title">Summative, Review &amp; Exam</td>
+            <td data-label="Expectations Summary">
+              Consolidate learning, complete the final summative task, and demonstrate overall course expectations
+              through final evaluation activities.
+            </td>
+            <td data-label="Time">10 Hours</td>
+          </tr>
+
+          <tr>
+            <td data-label="Unit"><strong>Total</strong></td>
+            <td data-label="Title"><strong>Course Total</strong></td>
+            <td data-label="Expectations Summary"><strong>Total instructional time for EAE2D.</strong></td>
+            <td data-label="Time"><strong>110 Hours</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</body>
+
+</html>

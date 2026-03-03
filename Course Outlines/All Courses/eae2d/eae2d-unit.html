@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ENG2D - English (Grade 10 Academic)</title>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: #fff;
+      color: #26262B;
+      margin: 0;
+      padding: 0;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .unit-details {
+      margin-top: 1rem;
+    }
+
+    .unit-toggle {
+      background-color: #00427C;
+      color: #fff;
+      font-weight: 600;
+      padding: 14px 20px;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      font-size: 18px;
+      border-radius: 12px;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+      transition: background 0.3s ease;
+      border: 0;
+    }
+
+    .unit-toggle:hover {
+      background-color: #001161;
+    }
+
+    .unit-toggle .arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .unit-toggle.open .arrow {
+      transform: rotate(180deg);
+    }
+
+    .unit-content {
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      padding: 0 1.5rem;
+      transform: scaleY(0.98);
+      transition: max-height 0.5s ease, opacity 0.5s ease, padding 0.4s ease, transform 0.4s ease;
+      background-color: #ffffff;
+      border-left: 4px solid #e59500;
+      border-radius: 0 0 6px 6px;
+      margin-bottom: 1rem;
+    }
+
+    .unit-content.open {
+      opacity: 1;
+      transform: scaleY(1);
+    }
+
+    .unit-content ul {
+      margin: 0;
+      padding: 1rem 0 1rem 1.2rem;
+    }
+
+    .unit-content li {
+      margin-bottom: 0.5rem;
+      font-size: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .unit-toggle,
+      .unit-content li {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="eng2d-course">
+    <div class="container">
+      <div class="unit-details">
+
+        <div class="unit-toggle">1. Short Stories <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Read a wide range of short stories and analyze themes, plot, and character.</li>
+            <li>Write responses and analytical paragraphs using evidence from the text.</li>
+            <li>Create an original short story using structure, voice, and imagination.</li>
+            <li><strong>Time:</strong> 24 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">2. Poetry <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Study poetic devices such as stanzas, rhyme scheme, imagery, and sound.</li>
+            <li>Explore different forms of poetry and how poets engage the reader’s senses.</li>
+            <li>Write original poems, practise reading aloud, and build presentation skills.</li>
+            <li>Complete a final poetry anthology.</li>
+            <li><strong>Time:</strong> 20 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">3. Shakespeare Drama <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Learn about Shakespeare’s life and the purpose of drama as tragedy or comedy.</li>
+            <li>Analyze themes, structure, and key features of the play through guided study.</li>
+            <li>Use drama terminology such as allusion, dramatic irony, soliloquy, aside, and iambic pentameter.</li>
+            <li>Strengthen oral communication through listening tasks, dramatic readings, and short presentations.</li>
+            <li><strong>Time:</strong> 25 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">4. Novel Study <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Analyze an assigned novel using literary terms (theme, setting, conflict, plot, purpose).</li>
+            <li>Use discussion, homework, and presentations to deepen understanding of the text.</li>
+            <li>Explore historical and socio-cultural context through research tasks.</li>
+            <li>Practise correct citation, acknowledge sources, and avoid plagiarism.</li>
+            <li><strong>Time:</strong> 25 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle">5. Media and Culminating Unit <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Study how media form and content work together to communicate meaning.</li>
+            <li>Create a media product (tabloid, newscast, magazine, or storyboard/script plan).</li>
+            <li>Use planning, drafting, and revision to improve clarity and impact.</li>
+            <li><strong>Time:</strong> 15 Hours</li>
+            <li><strong>Total Course Hours:</strong> 110 Hours</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle"> Evaluation Breakdown <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li><strong>70%</strong> - Term Work (assignments, quizzes, tests, presentations, projects)</li>
+            <li><strong>30%</strong> - Final Evaluation (summative + exam)</li>
+            <li>Knowledge & Understanding - 25%</li>
+            <li>Thinking - 25%</li>
+            <li>Communication - 25%</li>
+            <li>Application - 25%</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle"> Teaching & Learning Strategies <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Teacher-led instruction, class discussion, and guided reading activities</li>
+            <li>Writing workshops, peer feedback, and conferencing</li>
+            <li>Group work, presentations, and oral communication practice</li>
+            <li>Research tasks with a focus on credible sources and citation skills</li>
+          </ul>
+        </div>
+
+        <div class="unit-toggle"> Resources <span class="arrow">▼</span></div>
+        <div class="unit-content">
+          <ul>
+            <li>Course readings (short stories, poems, drama, and an assigned novel)</li>
+            <li>Teacher-provided notes, handouts, and writing supports</li>
+            <li>Online research tools and library resources for context and inquiry</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const toggles = document.querySelectorAll('.unit-toggle');
+
+    toggles.forEach(toggle => {
+      toggle.addEventListener('click', () => {
+        const content = toggle.nextElementSibling;
+        const isOpen = toggle.classList.contains('open');
+
+        document.querySelectorAll('.unit-toggle').forEach(t => t.classList.remove('open'));
+        document.querySelectorAll('.unit-content').forEach(c => {
+          c.classList.remove('open');
+          c.style.maxHeight = null;
+        });
+
+        if (!isOpen) {
+          toggle.classList.add('open');
+          content.classList.add('open');
+          content.style.maxHeight = content.scrollHeight + "px";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
