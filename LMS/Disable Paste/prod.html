@@ -1,0 +1,113 @@
+<script>
+/**
+ * CanSTEM Moodle: Disable paste in TinyMCE for students (best-effort).
+ * Put this in: Site administration → Appearance → Additional HTML → Before BODY is closed
+ *
+ * Notes:
+ * - This blocks pasting in TinyMCE editor iframes + contenteditable areas.
+ * - It only runs for "student" pages (quick role detection via body classes + URL checks).
+ * - Users can still type manually. This is not a plagiarism solution; it’s just paste prevention.
+ */
+
+(function () {
+  // ---- 1) Simple "student detection" (best-effort) ----
+  // Moodle usually adds role classes to body like: role-student, role-teacher, role-editingteacher, role-manager, etc.
+  // If your theme doesn't add these, we also fall back to URL patterns used on assignment submission pages.
+  function isLikelyStudentView() {
+    const b = document.body;
+    if (!b) return true;
+
+    const cls = b.className || "";
+    const isTeacherLike =
+      /role-(editingteacher|teacher|manager|coursecreator|admin|administrator)/i.test(cls);
+    const isStudentLike = /role-student/i.test(cls);
+
+    // If role-student exists → student
+    if (isStudentLike) return true;
+    // If teacher/admin roles → not student
+    if (isTeacherLike) return false;
+
+    // Fallback: only enforce on common student submission contexts
+    const url = location.href;
+    const looksLikeSubmission =
+      /\/mod\/assign\/view\.php/i.test(url) ||
+      /action=editsubmission/i.test(url) ||
+      /action=submit/i.test(url);
+
+    return looksLikeSubmission; // if unsure, enforce only on submission-like pages
+  }
+
+  if (!isLikelyStudentView()) return;
+
+  // ---- 2) Small one-time toast/alert ----
+  let lastWarn = 0;
+  function warnOnce(msg) {
+    const now = Date.now();
+    if (now - lastWarn < 1500) return; // stop spam
+    lastWarn = now;
+    alert(msg);
+  }
+
+  // ---- 3) Block paste in normal editable areas (just in case) ----
+  document.addEventListener("paste", function (e) {
+    const t = e.target;
+    if (!t) return;
+
+    const isEditable =
+      (t.isContentEditable === true) ||
+      (t.tagName === "TEXTAREA") ||
+      (t.tagName === "INPUT" && (t.type === "text" || t.type === "search" || t.type === "email"));
+
+    if (isEditable) {
+      e.preventDefault();
+      warnOnce("Pasting is disabled for this submission. Please type your own work.");
+    }
+  }, true);
+
+  // ---- 4) TinyMCE: block paste inside editor iframe(s) ----
+  function blockPasteInTinyMCEIframe(iframe) {
+    try {
+      const doc = iframe.contentDocument;
+      if (!doc) return;
+
+      // Avoid double-binding
+      if (doc.__pasteBlocked) return;
+      doc.__pasteBlocked = true;
+
+      doc.addEventListener("paste", function (e) {
+        e.preventDefault();
+        warnOnce("Pasting is disabled for this submission. Please type your own work.");
+      }, true);
+
+      // Also block drop (drag-drop text)
+      doc.addEventListener("drop", function (e) {
+        e.preventDefault();
+        warnOnce("Pasting/drag-drop is disabled for this submission.");
+      }, true);
+    } catch (err) {
+      // Cross-origin issues shouldn’t happen in Moodle, but ignore if they do
+    }
+  }
+
+  function scanAndBindTinyMCE() {
+    // TinyMCE iframes commonly look like: iframe[id^="tiny_"] or iframe.tox-edit-area__iframe
+    const iframes = document.querySelectorAll('iframe.tox-edit-area__iframe, iframe[id^="tiny_"], iframe');
+    iframes.forEach((iframe) => {
+      // Only bind if it looks like TinyMCE
+      const isTiny =
+        iframe.classList.contains("tox-edit-area__iframe") ||
+        (iframe.id && iframe.id.startsWith("tiny_"));
+
+      if (isTiny) blockPasteInTinyMCEIframe(iframe);
+    });
+  }
+
+  // Initial bind
+  scanAndBindTinyMCE();
+
+  // Re-bind when Moodle loads editor dynamically
+  const mo = new MutationObserver(() => scanAndBindTinyMCE());
+  mo.observe(document.documentElement, { childList: true, subtree: true });
+
+})();
+</script>
