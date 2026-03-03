@@ -1,113 +1,159 @@
 <script>
 /**
- * CanSTEM Moodle: Disable paste in TinyMCE for students (best-effort).
- * Put this in: Site administration → Appearance → Additional HTML → Before BODY is closed
- *
- * Notes:
- * - This blocks pasting in TinyMCE editor iframes + contenteditable areas.
- * - It only runs for "student" pages (quick role detection via body classes + URL checks).
- * - Users can still type manually. This is not a plagiarism solution; it’s just paste prevention.
+ * CanSTEM Moodle: Student-only restrictions for Assignment Online Text submissions.
+ * - Keeps TinyMCE enabled (no HTML block view)
+ * - Students: blocks paste + hides menubar items (Insert etc) + hides rich insert buttons
+ * - Staff: not affected
  */
 
 (function () {
-  // ---- 1) Simple "student detection" (best-effort) ----
-  // Moodle usually adds role classes to body like: role-student, role-teacher, role-editingteacher, role-manager, etc.
-  // If your theme doesn't add these, we also fall back to URL patterns used on assignment submission pages.
-  function isLikelyStudentView() {
+  // ---------- Role checks ----------
+  function isTeacherOrAdmin() {
     const b = document.body;
-    if (!b) return true;
-
-    const cls = b.className || "";
-    const isTeacherLike =
-      /role-(editingteacher|teacher|manager|coursecreator|admin|administrator)/i.test(cls);
-    const isStudentLike = /role-student/i.test(cls);
-
-    // If role-student exists → student
-    if (isStudentLike) return true;
-    // If teacher/admin roles → not student
-    if (isTeacherLike) return false;
-
-    // Fallback: only enforce on common student submission contexts
-    const url = location.href;
-    const looksLikeSubmission =
-      /\/mod\/assign\/view\.php/i.test(url) ||
-      /action=editsubmission/i.test(url) ||
-      /action=submit/i.test(url);
-
-    return looksLikeSubmission; // if unsure, enforce only on submission-like pages
+    const cls = (b && b.className) ? b.className : "";
+    return /role-(editingteacher|teacher|manager|coursecreator|admin|administrator)/i.test(cls);
   }
 
-  if (!isLikelyStudentView()) return;
+  function isStudentSubmissionContext() {
+    if (isTeacherOrAdmin()) return false;
 
-  // ---- 2) Small one-time toast/alert ----
+    const b = document.body;
+    const cls = (b && b.className) ? b.className : "";
+    const url = location.href;
+
+    const isAssign = /\/mod\/assign\/view\.php/i.test(url);
+    const isStudentAction =
+      /action=editsubmission/i.test(url) ||
+      /action=submit/i.test(url) ||
+      /action=view/i.test(url);
+
+    const isGradingAction =
+      /action=grading/i.test(url) ||
+      /action=grader/i.test(url) ||
+      /action=grade/i.test(url) ||
+      /action=viewall/i.test(url);
+
+    if (!isAssign || isGradingAction) return false;
+
+    // If role-student exists, trust it; otherwise fallback to URL action
+    if (/role-student/i.test(cls)) return isStudentAction;
+    return isStudentAction;
+  }
+
+  if (!isStudentSubmissionContext()) return;
+
+  // ---------- Alert helper ----------
   let lastWarn = 0;
   function warnOnce(msg) {
     const now = Date.now();
-    if (now - lastWarn < 1500) return; // stop spam
+    if (now - lastWarn < 1500) return;
     lastWarn = now;
     alert(msg);
   }
 
-  // ---- 3) Block paste in normal editable areas (just in case) ----
-  document.addEventListener("paste", function (e) {
-    const t = e.target;
-    if (!t) return;
+  // ---------- 1) Block paste in normal editable areas ----------
+  document.addEventListener(
+    "paste",
+    function (e) {
+      const t = e.target;
+      if (!t) return;
 
-    const isEditable =
-      (t.isContentEditable === true) ||
-      (t.tagName === "TEXTAREA") ||
-      (t.tagName === "INPUT" && (t.type === "text" || t.type === "search" || t.type === "email"));
+      const tag = (t.tagName || "").toUpperCase();
+      const type = (t.type || "").toLowerCase();
 
-    if (isEditable) {
-      e.preventDefault();
-      warnOnce("Pasting is disabled for this submission. Please type your own work.");
-    }
-  }, true);
+      const isEditable =
+        t.isContentEditable === true ||
+        tag === "TEXTAREA" ||
+        (tag === "INPUT" && (type === "text" || type === "search" || type === "email"));
 
-  // ---- 4) TinyMCE: block paste inside editor iframe(s) ----
-  function blockPasteInTinyMCEIframe(iframe) {
-    try {
-      const doc = iframe.contentDocument;
-      if (!doc) return;
-
-      // Avoid double-binding
-      if (doc.__pasteBlocked) return;
-      doc.__pasteBlocked = true;
-
-      doc.addEventListener("paste", function (e) {
+      if (isEditable) {
         e.preventDefault();
         warnOnce("Pasting is disabled for this submission. Please type your own work.");
-      }, true);
+      }
+    },
+    true
+  );
 
-      // Also block drop (drag-drop text)
-      doc.addEventListener("drop", function (e) {
-        e.preventDefault();
-        warnOnce("Pasting/drag-drop is disabled for this submission.");
-      }, true);
-    } catch (err) {
-      // Cross-origin issues shouldn’t happen in Moodle, but ignore if they do
-    }
-  }
+  // ---------- 2) Hide common rich insert toolbar buttons (best-effort) ----------
+  const style = document.createElement("style");
+  style.textContent = `
+    /* Hide link/image/media/code/record/h5p toolbar buttons if present */
+    .tox .tox-tbtn[aria-label*="link" i],
+    .tox .tox-tbtn[title*="link" i],
+    .tox .tox-tbtn[aria-label*="image" i],
+    .tox .tox-tbtn[title*="image" i],
+    .tox .tox-tbtn[aria-label*="media" i],
+    .tox .tox-tbtn[title*="media" i],
+    .tox .tox-tbtn[aria-label*="code" i],
+    .tox .tox-tbtn[title*="code" i],
+    .tox .tox-tbtn[aria-label*="record" i],
+    .tox .tox-tbtn[title*="record" i],
+    .tox .tox-tbtn[aria-label*="h5p" i],
+    .tox .tox-tbtn[title*="h5p" i] { display:none !important; }
+  `;
+  document.head.appendChild(style);
 
-  function scanAndBindTinyMCE() {
-    // TinyMCE iframes commonly look like: iframe[id^="tiny_"] or iframe.tox-edit-area__iframe
-    const iframes = document.querySelectorAll('iframe.tox-edit-area__iframe, iframe[id^="tiny_"], iframe');
-    iframes.forEach((iframe) => {
-      // Only bind if it looks like TinyMCE
-      const isTiny =
-        iframe.classList.contains("tox-edit-area__iframe") ||
-        (iframe.id && iframe.id.startsWith("tiny_"));
+  // ---------- 3) Remove TinyMCE MENUBAR items (Edit/View/Insert/Tools/Table/Help) ----------
+  // This is why you're still seeing Insert in your screenshot.
+  function hideMenubarItems(root) {
+    // root can be document or a TinyMCE container
+    const scope = root || document;
 
-      if (isTiny) blockPasteInTinyMCEIframe(iframe);
+    // Menubar buttons in TinyMCE 6 are typically .tox-mbtn
+    const buttons = scope.querySelectorAll(".tox .tox-menubar .tox-mbtn");
+    if (!buttons.length) return;
+
+    const hideLabels = new Set(["Edit", "View", "Insert", "Tools", "Table", "Help"]);
+    buttons.forEach((btn) => {
+      const label = (btn.textContent || "").trim();
+      if (hideLabels.has(label)) {
+        btn.style.display = "none";
+      }
     });
   }
 
-  // Initial bind
-  scanAndBindTinyMCE();
+  // Optional: If you want ONLY plain typing, you can also hide Format:
+  // add "Format" to hideLabels above.
 
-  // Re-bind when Moodle loads editor dynamically
-  const mo = new MutationObserver(() => scanAndBindTinyMCE());
+  // ---------- 4) Block paste + drop inside TinyMCE iframes ----------
+  function guardIframe(iframe) {
+    try {
+      const doc = iframe.contentDocument;
+      if (!doc || doc.__canstemGuarded) return;
+      doc.__canstemGuarded = true;
+
+      doc.addEventListener(
+        "paste",
+        function (e) {
+          e.preventDefault();
+          warnOnce("Pasting is disabled for this submission. Please type your own work.");
+        },
+        true
+      );
+
+      doc.addEventListener(
+        "drop",
+        function (e) {
+          e.preventDefault();
+          warnOnce("Drag & drop is disabled for this submission.");
+        },
+        true
+      );
+    } catch (err) {}
+  }
+
+  function scan() {
+    hideMenubarItems(document);
+
+    const iframes = document.querySelectorAll('iframe.tox-edit-area__iframe, iframe[id^="tiny_"]');
+    iframes.forEach((iframe) => {
+      guardIframe(iframe);
+    });
+  }
+
+  // Run now + keep reapplying as editor loads
+  scan();
+  const mo = new MutationObserver(scan);
   mo.observe(document.documentElement, { childList: true, subtree: true });
-
 })();
 </script>
