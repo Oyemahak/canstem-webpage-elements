@@ -1,0 +1,215 @@
+<!-- CELPIP Fees — Desktop table + Mobile/Tablet compact panel (scoped) -->
+<style>
+  /* Scope everything to this block only */
+  #celpip-fees{
+    --sub:#00427c;
+    --ink:#26262B;
+    --panel:#ffffff;
+    --border:#e2e8f0;
+    --shadow:0 4px 20px rgba(0,0,0,.08);
+    --radius:12px;
+
+    font-family:"Open Sans",sans-serif;
+    color:var(--ink);
+    max-width:1200px;
+    width:100%;
+    margin:0 auto;
+    line-height:1.8;
+    font-size:18px;
+  }
+
+  #celpip-fees .section-body{ background:#fff; padding:0; }
+
+  /* Desktop title above table */
+  #celpip-fees .accent{
+    color:var(--sub);
+    font-weight:700;
+    margin:1rem 0 .5rem;
+  }
+
+  /* ===== Desktop table ===== */
+  #celpip-fees table.rtable{
+    width:100%;
+    border-collapse:collapse;
+    overflow:hidden;
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    margin:0 0 1.5rem;
+    background:#fff;
+  }
+
+  #celpip-fees .rtable thead{
+    background:var(--sub);
+    color:#fff;
+  }
+
+  #celpip-fees .rtable th,
+  #celpip-fees .rtable td{
+    padding:16px;
+    text-align:left;
+    font-size:18px;
+    border-bottom:1px solid #eee;
+    vertical-align:top;
+  }
+
+  #celpip-fees .rtable tbody tr:nth-child(even){
+    background:#f9f9f9;
+  }
+
+  /* ===== Mobile/Tablet compact panel (hidden on desktop) ===== */
+  #celpip-fees .lf-mobile{ display:none; }
+
+  @media (max-width:1024px){
+    #celpip-fees{ font-size:16px; }
+
+    /* Hide desktop table + heading */
+    #celpip-fees table.rtable,
+    #celpip-fees .accent{ display:none; }
+
+    #celpip-fees .lf-mobile{ display:block; }
+
+    /* Panel wrapper */
+    #celpip-fees .lf-panel{
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:#fff;
+      box-shadow:var(--shadow);
+      margin-bottom:12px;
+    }
+
+    #celpip-fees .lf-panel-head{
+      padding:12px 14px;
+      background:linear-gradient(180deg,#f6f9ff 0%,#ffffff 100%);
+      border-bottom:1px solid #eef2f7;
+    }
+
+    #celpip-fees .lf-panel-title{
+      display:block;
+      font-weight:900;
+      color:#0b1220;
+      font-size:16px;
+      margin:0;
+    }
+
+    /* Tight list rows */
+    #celpip-fees ul.lf-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+    }
+
+    #celpip-fees li.lf-row{
+      display:grid;
+      grid-template-columns:1.2fr .9fr;
+      gap:8px;
+      padding:10px 14px;
+      border-top:1px solid #eef2f7;
+      align-items:center;
+    }
+    #celpip-fees li.lf-row:first-child{ border-top:none; }
+
+    #celpip-fees .lf-left{
+      font-weight:600;
+      color:#000;
+      font-size:16px;
+      line-height:1.35;
+    }
+
+    #celpip-fees .lf-right{
+      text-align:right;
+      font-weight:900;
+      color:#000;
+      font-size:16px;
+      line-height:1.35;
+      white-space:nowrap;
+    }
+
+    #celpip-fees .lf-sub{
+      grid-column:1 / -1;
+      margin-top:2px;
+      font-weight:600;
+      color:#334155;
+      font-size:13px;
+      line-height:1.35;
+    }
+  }
+
+  @media (max-width:520px){
+    #celpip-fees .lf-left,
+    #celpip-fees .lf-right{ font-size:15px; }
+    #celpip-fees .lf-sub{ font-size:12px; }
+  }
+</style>
+
+<div id="celpip-fees">
+  <div class="section-body">
+
+    <!-- ===== Desktop ===== -->
+    <p class="accent">CELPIP (Tutoring)</p>
+    <table class="rtable">
+      <thead><tr><th>Plan</th><th>Amount</th></tr></thead>
+      <tbody>
+        <tr><td>Monthly</td><td>$250 per month</td></tr>
+        <tr><td>2 weeks</td><td>$150</td></tr>
+        <tr><td>Crash preparation</td><td>$100 for 4 hours</td></tr>
+      </tbody>
+    </table>
+
+    <p class="accent">Trial Class (CELPIP)</p>
+    <table class="rtable">
+      <thead><tr><th>Mode</th><th>Amount</th></tr></thead>
+      <tbody>
+        <tr><td>In-person</td><td>$25</td></tr>
+        <tr><td>Online</td><td>$35</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ===== Tablet/Mobile ===== -->
+    <div class="lf-mobile">
+
+      <div class="lf-panel">
+        <div class="lf-panel-head">
+          <span class="lf-panel-title">CELPIP (Tutoring)</span>
+        </div>
+        <ul class="lf-list">
+          <li class="lf-row">
+            <div class="lf-left">Monthly</div>
+            <div class="lf-right">$250</div>
+            <div class="lf-sub">per month</div>
+          </li>
+          <li class="lf-row">
+            <div class="lf-left">2 weeks</div>
+            <div class="lf-right">$150</div>
+            <div class="lf-sub"></div>
+          </li>
+          <li class="lf-row">
+            <div class="lf-left">Crash preparation</div>
+            <div class="lf-right">$100</div>
+            <div class="lf-sub">for 4 hours</div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="lf-panel">
+        <div class="lf-panel-head">
+          <span class="lf-panel-title">Trial Class (CELPIP)</span>
+        </div>
+        <ul class="lf-list">
+          <li class="lf-row">
+            <div class="lf-left">In-person</div>
+            <div class="lf-right">$25</div>
+            <div class="lf-sub"></div>
+          </li>
+          <li class="lf-row">
+            <div class="lf-left">Online</div>
+            <div class="lf-right">$35</div>
+            <div class="lf-sub"></div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+</div>
