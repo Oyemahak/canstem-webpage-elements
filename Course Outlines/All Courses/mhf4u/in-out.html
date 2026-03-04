@@ -1,0 +1,162 @@
+<!-- Quick Links (Internal + External) — FIXED CSS (no dark overlay / clean pills) -->
+<style>
+  /* Safety: keep styles contained + stop theme CSS from bleeding in */
+  #cs-quicklinks,
+  #cs-quicklinks * {
+    box-sizing: border-box;
+    font-family: "Open Sans", sans-serif;
+  }
+
+  #cs-quicklinks {
+    margin: 14px 0 8px;
+    padding: 12px 14px;
+    border: 1px solid rgba(226, 232, 240, .95);
+    border-radius: 14px;
+    background: linear-gradient(180deg, #ffffff, #f8fbff);
+    box-shadow: 0 6px 18px rgba(2, 6, 23, .06);
+  }
+
+  #cs-quicklinks .cs-quicklinks__title {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: 800;
+    color: #001161;
+    letter-spacing: -.1px;
+  }
+
+  #cs-quicklinks .cs-quicklinks__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+
+  /* Pill link */
+  #cs-quicklinks a.cs-ql,
+  #cs-quicklinks a.cs-ql:link,
+  #cs-quicklinks a.cs-ql:visited {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(199, 210, 254, .95);
+    background: #ffffff;
+    color: #0b1b5a;
+    font-weight: 800;
+    text-decoration: none;
+    line-height: 1.2;
+    white-space: nowrap;
+
+    /* IMPORTANT: prevent Elementor / theme from applying weird filters/overlays */
+    opacity: 1 !important;
+    filter: none !important;
+    mix-blend-mode: normal !important;
+    -webkit-text-fill-color: currentColor;
+    text-shadow: none !important;
+
+    transition: transform .14s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease;
+  }
+
+  #cs-quicklinks a.cs-ql:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 30px rgba(2, 6, 23, .10);
+    border-color: rgba(191, 219, 254, .95);
+    color: #0b1b5a;
+  }
+
+  #cs-quicklinks a.cs-ql:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, .35);
+    outline-offset: 3px;
+  }
+
+  #cs-quicklinks .cs-ql__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #001161, #2563eb);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, .10);
+    flex: 0 0 auto;
+  }
+
+  /* Primary pill */
+  #cs-quicklinks a.cs-ql.cs-ql--primary,
+  #cs-quicklinks a.cs-ql.cs-ql--primary:visited {
+    background: linear-gradient(90deg, #001161, #2563eb) !important;
+    color: #ffffff !important;
+    border-color: rgba(0, 17, 97, .25) !important;
+    box-shadow: 0 12px 28px rgba(0, 17, 97, .18);
+  }
+
+  #cs-quicklinks a.cs-ql.cs-ql--primary:hover {
+    color: #ffffff !important;
+  }
+
+  /* External icon */
+  #cs-quicklinks a.cs-ql.cs-ql--external::after {
+    content: "↗";
+    font-weight: 900;
+    opacity: .9;
+    margin-left: 2px;
+  }
+
+  /* Mobile: full width chips */
+  @media (max-width: 768px) {
+    #cs-quicklinks {
+      padding: 12px;
+    }
+
+    #cs-quicklinks a.cs-ql {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #cs-quicklinks a.cs-ql {
+      transition: none !important;
+    }
+  }
+</style>
+
+<div id="cs-quicklinks" aria-label="Quick links">
+  <div class="cs-quicklinks__title">Quick Links</div>
+
+  <div class="cs-quicklinks__row">
+    <a class="cs-ql cs-ql--primary"
+       href="https://canstemeducation.com/high-school-credits/">
+      <span class="cs-ql__dot" aria-hidden="true"></span>
+      Browse All Courses
+    </a>
+
+    <a class="cs-ql cs-ql--external"
+       href="https://www.dcp.edu.gov.on.ca/en/course-descriptions-and-prerequisites/mathematics#:~:text=Advanced%20Functions%2C%20Grade,12%2C%20College%20Preparation"
+       target="_blank" rel="noopener noreferrer">
+      <span class="cs-ql__dot" aria-hidden="true"></span>
+      Ontario Ministry of Education
+    </a>
+  </div>
+</div>
+
+<script>
+  // Keep script lightweight; only smooth-scroll for #anchors if you add any later
+  (function () {
+    var wrap = document.getElementById("cs-quicklinks");
+    if (!wrap) return;
+
+    wrap.querySelectorAll("a.cs-ql").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        var href = a.getAttribute("href") || "";
+        if (href.charAt(0) !== "#") return;
+
+        var id = href.slice(1);
+        var el = document.getElementById(id);
+        if (!el) return;
+
+        e.preventDefault();
+        try { el.scrollIntoView({ behavior: "smooth", block: "start" }); }
+        catch (err) { el.scrollIntoView(true); }
+      });
+    });
+  })();
+</script>
