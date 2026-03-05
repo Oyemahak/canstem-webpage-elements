@@ -1,9 +1,17 @@
 <script>
 /**
- * CanSTEM Moodle: Student-only restrictions for Assignment Online Text submissions.
- * - Keeps TinyMCE enabled (no HTML block view)
- * - Students: blocks paste + hides menubar items (Insert etc) + hides rich insert buttons
- * - Staff: not affected
+ * CanSTEM Moodle: Student-only paste restrictions + simplified editor UI
+ * Works for:
+ *  - Assignment Online Text submission pages (student actions)
+ *  - Quiz attempt pages (student typing responses, including Essay questions)
+ *
+ * Students:
+ *  - Blocks paste + drag/drop into text fields and TinyMCE
+ *  - Hides TinyMCE menubar items (Edit/View/Insert/Tools/Table/Help [+ optional Format])
+ *  - Hides common "insert" toolbar buttons (link/image/media/code/record/h5p)
+ *
+ * Staff:
+ *  - Not affected anywhere (even on grading/review/edit pages)
  */
 
 (function () {
@@ -14,33 +22,60 @@
     return /role-(editingteacher|teacher|manager|coursecreator|admin|administrator)/i.test(cls);
   }
 
-  function isStudentSubmissionContext() {
-    if (isTeacherOrAdmin()) return false;
-
+  function isStudentRole() {
     const b = document.body;
     const cls = (b && b.className) ? b.className : "";
+    return /role-student/i.test(cls);
+  }
+
+  // ---------- Context checks ----------
+  function isStudentRestrictedContext() {
+    if (isTeacherOrAdmin()) return false; // NEVER restrict staff
+
     const url = location.href;
 
+    // --- Assignment submission contexts (student) ---
     const isAssign = /\/mod\/assign\/view\.php/i.test(url);
-    const isStudentAction =
+    const isAssignStudentAction =
       /action=editsubmission/i.test(url) ||
       /action=submit/i.test(url) ||
       /action=view/i.test(url);
 
-    const isGradingAction =
+    const isAssignGradingAction =
       /action=grading/i.test(url) ||
       /action=grader/i.test(url) ||
       /action=grade/i.test(url) ||
       /action=viewall/i.test(url);
 
-    if (!isAssign || isGradingAction) return false;
+    const assignStudentContext = isAssign && isAssignStudentAction && !isAssignGradingAction;
 
-    // If role-student exists, trust it; otherwise fallback to URL action
-    if (/role-student/i.test(cls)) return isStudentAction;
-    return isStudentAction;
+    // --- Quiz student attempt contexts (where students type answers) ---
+    // Typical student attempt pages:
+    //  - /mod/quiz/attempt.php
+    //  - /mod/quiz/summary.php
+    //  - /mod/quiz/review.php  (students can view; sometimes typing is disabled anyway)
+    const isQuizAttempt =
+      /\/mod\/quiz\/attempt\.php/i.test(url) ||
+      /\/mod\/quiz\/summary\.php/i.test(url) ||
+      /\/mod\/quiz\/review\.php/i.test(url);
+
+    // Avoid restricting admin/teacher quiz editing pages:
+    const isQuizEditOrBank =
+      /\/mod\/quiz\/edit\.php/i.test(url) ||
+      /\/question\/bank\//i.test(url) ||
+      /\/question\/edit\.php/i.test(url);
+
+    const quizStudentContext = isQuizAttempt && !isQuizEditOrBank;
+
+    // If Moodle has role-student, trust it strongly.
+    // If role class is missing, use URL context fallback.
+    if (isStudentRole()) return assignStudentContext || quizStudentContext;
+
+    // No role info: only enforce on assignment submission or quiz attempt pages
+    return assignStudentContext || quizStudentContext;
   }
 
-  if (!isStudentSubmissionContext()) return;
+  if (!isStudentRestrictedContext()) return;
 
   // ---------- Alert helper ----------
   let lastWarn = 0;
@@ -68,13 +103,36 @@
 
       if (isEditable) {
         e.preventDefault();
-        warnOnce("Pasting is disabled for this submission. Please type your own work.");
+        warnOnce("Pasting is disabled. Please type your own work.");
       }
     },
     true
   );
 
-  // ---------- 2) Hide common rich insert toolbar buttons (best-effort) ----------
+  // ---------- 2) Also block drop (drag/drop text) on normal areas ----------
+  document.addEventListener(
+    "drop",
+    function (e) {
+      const t = e.target;
+      if (!t) return;
+
+      const tag = (t.tagName || "").toUpperCase();
+      const type = (t.type || "").toLowerCase();
+
+      const isEditable =
+        t.isContentEditable === true ||
+        tag === "TEXTAREA" ||
+        (tag === "INPUT" && (type === "text" || type === "search" || type === "email"));
+
+      if (isEditable) {
+        e.preventDefault();
+        warnOnce("Drag & drop is disabled. Please type your own work.");
+      }
+    },
+    true
+  );
+
+  // ---------- 3) Hide common rich insert toolbar buttons (TinyMCE) ----------
   const style = document.createElement("style");
   style.textContent = `
     /* Hide link/image/media/code/record/h5p toolbar buttons if present */
@@ -93,29 +151,23 @@
   `;
   document.head.appendChild(style);
 
-  // ---------- 3) Remove TinyMCE MENUBAR items (Edit/View/Insert/Tools/Table/Help) ----------
-  // This is why you're still seeing Insert in your screenshot.
-  function hideMenubarItems(root) {
-    // root can be document or a TinyMCE container
-    const scope = root || document;
-
-    // Menubar buttons in TinyMCE 6 are typically .tox-mbtn
-    const buttons = scope.querySelectorAll(".tox .tox-menubar .tox-mbtn");
+  // ---------- 4) Hide TinyMCE MENUBAR items ----------
+  function hideMenubarItems() {
+    const buttons = document.querySelectorAll(".tox .tox-menubar .tox-mbtn");
     if (!buttons.length) return;
 
+    // Hide these menu headings for students
     const hideLabels = new Set(["Edit", "View", "Insert", "Tools", "Table", "Help"]);
+    // If you want to also remove formatting menu, uncomment next line:
+    // hideLabels.add("Format");
+
     buttons.forEach((btn) => {
       const label = (btn.textContent || "").trim();
-      if (hideLabels.has(label)) {
-        btn.style.display = "none";
-      }
+      if (hideLabels.has(label)) btn.style.display = "none";
     });
   }
 
-  // Optional: If you want ONLY plain typing, you can also hide Format:
-  // add "Format" to hideLabels above.
-
-  // ---------- 4) Block paste + drop inside TinyMCE iframes ----------
+  // ---------- 5) Block paste + drop inside TinyMCE iframes ----------
   function guardIframe(iframe) {
     try {
       const doc = iframe.contentDocument;
@@ -126,7 +178,7 @@
         "paste",
         function (e) {
           e.preventDefault();
-          warnOnce("Pasting is disabled for this submission. Please type your own work.");
+          warnOnce("Pasting is disabled. Please type your own work.");
         },
         true
       );
@@ -135,23 +187,25 @@
         "drop",
         function (e) {
           e.preventDefault();
-          warnOnce("Drag & drop is disabled for this submission.");
+          warnOnce("Drag & drop is disabled. Please type your own work.");
         },
         true
       );
+
+      // Keep browser spellcheck ON (safe)
+      if (doc.body) doc.body.setAttribute("spellcheck", "true");
     } catch (err) {}
   }
 
   function scan() {
-    hideMenubarItems(document);
+    hideMenubarItems();
 
+    // TinyMCE iframes
     const iframes = document.querySelectorAll('iframe.tox-edit-area__iframe, iframe[id^="tiny_"]');
-    iframes.forEach((iframe) => {
-      guardIframe(iframe);
-    });
+    iframes.forEach(guardIframe);
   }
 
-  // Run now + keep reapplying as editor loads
+  // Run now + keep applying as content loads dynamically
   scan();
   const mo = new MutationObserver(scan);
   mo.observe(document.documentElement, { childList: true, subtree: true });
