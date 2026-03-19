@@ -440,7 +440,9 @@ Math Kangaroo Contest Coaching Page
         border: 1px solid rgba(226, 232, 240, .95);
         border-left: 8px solid var(--gold);
         box-shadow: 0 14px 34px rgba(2, 6, 23, .10);
-        background: radial-gradient(900px 220px at 10% 0%, rgba(239, 246, 255, .92), transparent 60%), radial-gradient(900px 240px at 90% 20%, rgba(255, 247, 237, .92), transparent 60%), #ffffff;
+        background: radial-gradient(900px 220px at 10% 0%, rgba(239, 246, 255, .92), transparent 60%),
+            radial-gradient(900px 240px at 90% 20%, rgba(255, 247, 237, .92), transparent 60%),
+            #ffffff;
     }
 
     .reg-title {
@@ -912,6 +914,130 @@ Math Kangaroo Contest Coaching Page
             font-size: 40px;
         }
     }
+
+    /* =========================
+       NEW: Contest Day Logistics (separate section + box)
+       ========================= */
+    .log-card {
+        border-radius: var(--radius);
+        padding: 18px 16px;
+        border: 1px solid rgba(226, 232, 240, .95);
+        border-left: 8px solid rgba(37, 99, 235, .75);
+        box-shadow: 0 14px 34px rgba(2, 6, 23, .10);
+        background:
+            radial-gradient(900px 220px at 10% 0%, rgba(239, 246, 255, .92), transparent 60%),
+            radial-gradient(900px 240px at 90% 20%, rgba(241, 245, 249, .92), transparent 60%),
+            #ffffff;
+    }
+
+    .log-title {
+        margin: 0 0 10px;
+        color: var(--brand);
+        font-size: 24px;
+        font-weight: 900;
+        letter-spacing: -.2px;
+    }
+
+    .log-sub {
+        margin: 0 0 12px;
+        color: #0b1220;
+        font-weight: 700;
+    }
+
+    .log-meta {
+        display: grid;
+        gap: 8px;
+        margin-top: 8px;
+    }
+
+    .log-meta .row {
+        color: #0b1220;
+        line-height: 1.85;
+        font-size: 18px;
+    }
+
+    .log-meta strong {
+        font-weight: 900;
+        color: #0b1220;
+    }
+
+    .log-table-wrap {
+        margin-top: 14px;
+        border: 1px solid rgba(226, 232, 240, .95);
+        border-radius: 14px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 10px 26px rgba(2, 6, 23, .06);
+    }
+
+    .log-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+    .log-table th,
+    .log-table td {
+        padding: 12px 12px;
+        border-bottom: 1px solid rgba(226, 232, 240, .95);
+        vertical-align: top;
+        color: #0b1220;
+    }
+
+    .log-table th {
+        background: #f8fbff;
+        font-weight: 900;
+        color: #0b1b5a;
+        white-space: nowrap;
+    }
+
+    .log-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .log-note {
+        margin-top: 14px;
+        color: #0b1220;
+        font-size: 18px;
+        line-height: 1.85;
+    }
+
+    .log-note ul {
+        margin: 10px 0 0 1.1rem;
+        padding: 0;
+    }
+
+    .log-note li {
+        margin: 8px 0;
+    }
+
+    .log-links {
+        margin-top: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+    }
+
+    @media (max-width:768px) {
+        .log-title {
+            font-size: 20px;
+        }
+
+        .log-table {
+            font-size: 16px;
+        }
+
+        .log-meta .row,
+        .log-note {
+            font-size: 16px;
+        }
+
+        .log-links .reg-btn {
+            width: 100%;
+        }
+    }
 </style>
 
 <div class="kang-topbar" aria-label="Math Kangaroo page tabs">
@@ -936,14 +1062,20 @@ Math Kangaroo Contest Coaching Page
 <section id="kangaroo-page-wrap" aria-label="Math Kangaroo coaching page">
 
     <section class="cs-intro" aria-label="Math Kangaroo Contest (Grades 1-12) - Brampton introduction">
-        <p class="intro-p">Math Kangaroo Contest (Grades 1-12) - Brampton coaching at CanSTEM helps students build
-            contest problem-solving, improve speed, and grow confidence. So, if your child is new to contests or aiming
-            for awards, we can guide the next step.</p>
-        <p class="intro-p muted small">Also, CanSTEM is an official testing centre in Brampton. Therefore, families can
-            often combine coaching and in-person testing at one location.</p>
+        <p class="intro-p">
+            Math Kangaroo Contest (Grades 1-12) - Brampton coaching at CanSTEM helps students build contest
+            problem-solving,
+            improve speed, and grow confidence. So, if your child is new to contests or aiming for awards, we can guide
+            the next step.
+        </p>
+        <p class="intro-p muted small">
+            Also, CanSTEM is an official testing centre in Brampton. Therefore, families can often combine coaching and
+            in-person testing at one location.
+        </p>
         <div class="intro-links" aria-label="Quick intro links">
             <a class="intro-chip primary" href="#fees-and-packages">View Fees &amp; Packages</a>
             <a class="intro-chip" href="#how-to-start">How to Start</a>
+            <a class="intro-chip" href="#contest-day-logistics">Contest Day Details</a>
         </div>
     </section>
 
@@ -1051,6 +1183,96 @@ Math Kangaroo Contest Coaching Page
 
     <div class="sep"></div>
 
+    <!-- ✅ NEW: Contest Day Details / Logistics (separate section + box + section id for navigation) -->
+    <section id="contest-day-logistics" class="log-card mt-8" aria-label="Math Kangaroo Contest day logistics Brampton">
+        <div class="log-title">Contest Day Details (Test Site - CanSTEM Education Private School)</div>
+        <div class="log-sub">Quick logistics for families attending the in-person Math Kangaroo contest at CanSTEM.
+        </div>
+
+        <div class="log-meta" aria-label="Test site details">
+            <div class="row"><strong>Location:</strong> CanSTEM Education Private School</div>
+            <div class="row"><strong>Contest day:</strong> March 22, 2026</div>
+            <div class="row"><strong>Address:</strong> 350 Rutherford Rd South, Plaza 1, Unit 10, Brampton, ON L6W 4N6</div>
+            <div class="row"><strong>Building:</strong> Plaza 1</div>
+        </div>
+
+        <div class="log-table-wrap" aria-label="Test schedule by grade group">
+            <table class="log-table">
+                <thead>
+                    <tr>
+                        <th>Grade</th>
+                        <th>Drop-off</th>
+                        <th>Doors open</th>
+                        <th>Test start</th>
+                        <th>Test end</th>
+                        <th>Pick-up</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1-2</strong></td>
+                        <td>9:00 am</td>
+                        <td>09:15 AM</td>
+                        <td>10:30 AM</td>
+                        <td>11:15 AM</td>
+                        <td>11:45 AM</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3-4</strong></td>
+                        <td>9:00 am</td>
+                        <td>09:15 AM</td>
+                        <td>10:30 AM</td>
+                        <td>11:30 AM</td>
+                        <td>11:45 AM</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5-12</strong></td>
+                        <td>9:00 am</td>
+                        <td>09:15 AM</td>
+                        <td>10:30 AM</td>
+                        <td>11:45 AM</td>
+                        <td>12:00 PM</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="log-note" aria-label="Important notes for families">
+            <ul>
+               <li><strong>Pick-up place:</strong> Inside the CanSTEM premises inside school building</li> 
+                <li><strong>Pick-up rules:</strong> Arrive 15 minutes after the exam ends.</li>
+                <li><strong>Parking info:</strong> Parking is available on all sides of the building.</li>
+                <li><strong>Cafeteria:</strong> We have students cafeteria and students may bring light snack in case of
+                    unavoidable situation.</li>
+                <li><strong>Wait areas:</strong> School Hallway</li>
+                <li><strong>Coordinator/Contact:</strong> Ms. Sajjala P. Sankhe/ Ms. Nallenee &nbsp;|&nbsp;
+                    <strong>647-568-0258</strong></li>
+                <li><strong>Contest rules:</strong> <a href="https://mathkangaroo.ca/faq/general/contest-rules/en" target="_blank"
+                        rel="noopener">mathkangaroo.ca FAQ (Rules)</a></li>
+                <li><strong>Awards:</strong> <a href="https://mathkangaroo.ca/faq/general/contest-awards/en" target="_blank"
+                        rel="noopener">mathkangaroo.ca FAQ (Awards)</a></li>
+                <li><strong>Aids:</strong> We will provide pencils with erasers and scrap paper. You may give students
+                    additional pencils, eraser, water and small snack (not noisy nor smelly). Rulers and calculators are
+                    not permitted. No external materials of any kind are permitted for use by the contestants.</li>
+                <li><strong>Additional Info</strong> Parents' contest may be available</li>
+                <li><strong>Other:</strong> Print, sign and email / bring the following liability waiver form: <a
+                        href="#" target="_blank" rel="noopener">link</a></li>
+            </ul>
+        </div>
+
+        <div class="log-links" aria-label="Contest day quick actions">
+            <a class="reg-btn primary"
+                href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                target="_blank" rel="noopener">Inquiry Form</a>
+            <a class="reg-btn ghost"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=Math%20Kangaroo%20Contest%20Day%20Question&body=Hello%2C%0A%0AI%20have%20a%20question%20about%20the%20Math%20Kangaroo%20in-person%20test%20day%20at%20CanSTEM.%0A%0AStudent%20Name%3A%0A%0AGrade%3A%0A%0AQuestion%3A%0A%0AThank%20you."
+                target="_blank" rel="noopener">Email: inquiry@canstemeducation.com</a>
+            <a class="reg-btn ghost" href="tel:+16475680258">Call: 647-568-0258</a>
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
     <section class="mt-8" aria-label="Why choose our coaching">
         <div class="title-sec" role="heading" aria-level="2">Why families choose Math Kangaroo coaching</div>
         <div class="cs-grid3 mt-4">
@@ -1071,6 +1293,7 @@ Math Kangaroo Contest Coaching Page
                 <p>Students learn how to read tricky questions, eliminate choices, and solve efficiently—without panic.
                 </p>
             </div>
+
             <div class="cs-mini">
                 <div class="mini-head">
                     <span class="mini-ico" aria-hidden="true">
@@ -1087,6 +1310,7 @@ Math Kangaroo Contest Coaching Page
                 <p>Timed drills, mock tests, and common “trap” patterns help students become faster and more accurate.
                 </p>
             </div>
+
             <div class="cs-mini">
                 <div class="mini-head">
                     <span class="mini-ico" aria-hidden="true">
@@ -1126,9 +1350,12 @@ Math Kangaroo Contest Coaching Page
             <summary class="fee-toggle">About the Math Kangaroo Contest</summary>
             <div class="fee-content">
                 <h3 class="subhead">Math Kangaroo Contest (Grades 1-12) - Brampton overview</h3>
-                <p>The Canadian Math Kangaroo Contest is known for <strong>fun and challenging</strong> questions that
-                    reward creative thinking—not just memorized formulas. Students typically face multiple-choice
-                    problems designed to build confidence in <strong>logic, patterns, and problem-solving</strong>.</p>
+                <p>
+                    The Canadian Math Kangaroo Contest is known for <strong>fun and challenging</strong> questions that
+                    reward creative thinking—not just memorized formulas.
+                    Students typically face multiple-choice problems designed to build confidence in <strong>logic,
+                        patterns, and problem-solving</strong>.
+                </p>
                 <ul class="bullets">
                     <li><strong>Grades:</strong> 1-12</li>
                     <li><strong>Skills tested:</strong> logical reasoning, number sense, geometry, and smart strategies
@@ -1136,8 +1363,10 @@ Math Kangaroo Contest Coaching Page
                     <li><strong>Great for:</strong> students who love puzzles, want a first contest experience, or aim
                         for awards</li>
                 </ul>
-                <p class="muted small">We can also prepare students for related contests such as Waterloo math contests
-                    and other school math/science competitions. Also, we can suggest a plan based on your child’s level.
+                <p class="muted small">
+                    We can also prepare students for related contests such as Waterloo math contests and other school
+                    math/science competitions.
+                    Also, we can suggest a plan based on your child’s level.
                 </p>
             </div>
         </details>
@@ -1156,18 +1385,21 @@ Math Kangaroo Contest Coaching Page
                         strong performance.</li>
                 </ul>
                 <div class="sep"></div>
-                <p class="muted">Parents often tell us the biggest difference is not just higher scores—it's how
-                    students start enjoying challenging questions and become comfortable with “contest-style” thinking.
-                    Therefore, they feel more confident on test day.</p>
+                <p class="muted">
+                    Parents often tell us the biggest difference is not just higher scores—it's how students start
+                    enjoying challenging questions and become comfortable with “contest-style” thinking.
+                    Therefore, they feel more confident on test day.
+                </p>
             </div>
         </details>
 
         <details class="fee-section" id="coaching-program" data-title="Our Coaching Program">
             <summary class="fee-toggle">Our Coaching Program (How we teach)</summary>
             <div class="fee-content">
-                <p>Our coaching is structured around <strong>contest-style problem sets</strong>, guided solutions, and
-                    weekly progress support. Students learn both <strong>strategy</strong> and
-                    <strong>accuracy</strong>.
+                <p>
+                    Our coaching is structured around <strong>contest-style problem sets</strong>, guided solutions, and
+                    weekly progress support.
+                    Students learn both <strong>strategy</strong> and <strong>accuracy</strong>.
                 </p>
                 <h3 class="subhead">What’s included</h3>
                 <ul class="bullets">
@@ -1184,24 +1416,34 @@ Math Kangaroo Contest Coaching Page
                     <li><strong>Two weekly options:</strong> 2 days/week (2 hours/day) or 3 days/week (2 hours/day)</li>
                     <li>We confirm schedule after a quick level check and plan selection</li>
                 </ul>
-                <p class="muted small">Also, we can adjust pacing as needed. As a result, students stay challenged
-                    without feeling overwhelmed.</p>
+                <p class="muted small">
+                    Also, we can adjust pacing as needed. As a result, students stay challenged without feeling
+                    overwhelmed.
+                </p>
             </div>
         </details>
 
         <details class="fee-section" id="testing-centre" data-title="Official Testing Centre in Brampton">
             <summary class="fee-toggle">Official Testing Centre in Brampton (We host the contest)</summary>
             <div class="fee-content">
-                <p>CanSTEM is an <strong>official testing centre in Brampton</strong>. If you register for an in-person
-                    sitting and choose our site, your child can write the contest here in a supervised, student-friendly
-                    environment.</p>
+                <p>
+                    CanSTEM is an <strong>official testing centre in Brampton</strong>. If you register for an in-person
+                    sitting and choose our site,
+                    your child can write the contest here in a supervised, student-friendly environment.
+                </p>
                 <ul class="bullets">
                     <li>Comfortable testing setting</li>
                     <li>Clear check-in process and on-site support</li>
                     <li>Families can combine <strong>coaching + in-person testing</strong> at one location</li>
                 </ul>
-                <p class="muted small">Note: Exact contest dates, rules, and registration steps may change by year.
-                    However, we can guide you based on the current cycle.</p>
+                <p class="muted small">
+                    Note: Exact contest dates, rules, and registration steps may change by year. However, we can guide
+                    you based on the current cycle.
+                </p>
+
+                <div class="mt-4" style="display:flex;flex-wrap:wrap;gap:10px;">
+                    <a class="btn ghost" href="#contest-day-logistics">View contest day details</a>
+                </div>
             </div>
         </details>
 
@@ -1219,11 +1461,12 @@ Math Kangaroo Contest Coaching Page
                     <li>The regular fee is <strong>$25</strong> from <strong>February 10</strong> to the registration
                         deadline on <strong>February 23rd</strong>.</li>
                 </ul>
-                <p class="muted small">Registration help: <strong>inquiry@canstemeducation.com</strong> or submit the
-                    inquiry form: <a
-                        href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
-                        target="_blank" rel="noopener">Click here</a>. Also, contest registration fees are separate from
-                    coaching fees.</p>
+                <p class="muted small">
+                    Registration help: <strong>inquiry@canstemeducation.com</strong> or submit the inquiry form:
+                    <a href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
+                        target="_blank" rel="noopener">Click here</a>.
+                    Also, contest registration fees are separate from coaching fees.
+                </p>
 
                 <div class="sep"></div>
 
@@ -1266,12 +1509,15 @@ Math Kangaroo Contest Coaching Page
 
                 </div>
 
-                <p class="muted">We’ll recommend the best option after a quick level check (grade + current comfort with
-                    contest questions). Therefore, you choose the right plan without overpaying.</p>
+                <p class="muted">
+                    We’ll recommend the best option after a quick level check (grade + current comfort with contest
+                    questions).
+                    Therefore, you choose the right plan without overpaying.
+                </p>
 
                 <div class="mt-4" style="display:flex;flex-wrap:wrap;gap:10px;">
                     <div class="btn primary" role="button" tabindex="0" data-go="how-to-start">Start Now</div>
-                    <div class="btn ghost" role="button" tabindex="0" data-href="tel:+16478471231">Call: 647-847-1231
+                    <div class="btn ghost" role="button" tabindex="0" data-href="tel:+16475680258">Call: 647-568-0258
                     </div>
                 </div>
             </div>
@@ -1295,47 +1541,56 @@ Math Kangaroo Contest Coaching Page
 
                 <h3 class="subhead">Contact</h3>
                 <ul class="bullets">
-                    <li>Email: <a
-                            href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=Student%20Inquiry%20via%20Website%20Email%3A&body=Hello%2C%0A%0AStudent%20Name%3A%0A%0ADescribe%20what%20kind%20of%20help%20you%20want%20from%20us%3A%0A%0AYou%20can%20expect%20a%20response%20within%2024%20hours%20from%20us%20during%20business%20days.%0A%0AThank%20you."
-                            target="_blank" rel="noopener">inquiry@canstemeducation.com</a></li>
-                    <li>Phone: <a href="tel:+16478471231">647-847-1231</a></li>
+                    <li>Email:
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=inquiry@canstemeducation.com&su=Student%20Inquiry%20via%20Website%20Email%3A&body=Hello%2C%0A%0AStudent%20Name%3A%0A%0ADescribe%20what%20kind%20of%20help%20you%20want%20from%20us%3A%0A%0AYou%20can%20expect%20a%20response%20within%2024%20hours%20from%20us%20during%20business%20days.%0A%0AThank%20you."
+                            target="_blank" rel="noopener">inquiry@canstemeducation.com</a>
+                    </li>
+                    <li>Phone: <a href="tel:+16475680258">647-568-0258</a></li>
                     <li>Location: Brampton (in-person)</li>
                 </ul>
 
-                <p class="muted small">Also, if you’re unsure which plan to choose, we can recommend one quickly. Then
-                    you can start without delay.</p>
+                <p class="muted small">
+                    Also, if you’re unsure which plan to choose, we can recommend one quickly. Then you can start
+                    without delay.
+                </p>
             </div>
         </details>
 
     </div>
 
-    <!-- ✅ REPLACED FAQ SECTION (ONLY the official-style FAQs you provided) -->
+    <!-- ✅ CLEANED + REPLACED FAQ SECTION (no duplicates) -->
     <section id="faq-wrap" class="mt-4" aria-label="FAQ section">
         <div class="faq-head">
             <div class="title-sec" role="heading" aria-level="2">Frequently asked questions (FAQs)</div>
         </div>
 
+        <!-- Official-style FAQs -->
         <details class="fee-section faq-item" id="faq-what-is-mkc">
             <summary class="fee-toggle">What is Math Kangaroo Canada?</summary>
             <div class="fee-content">
-                <p>Math Kangaroo Canada is a nationally ranked multiple-choice contest which aims to challenge
-                    participants and show them just how fun math can be. The purpose of this competition is to introduce
-                    youngsters from Grade 1 to Grade 12 to math challenges in a fun and enjoyable way, thus inspiring
-                    their further interest and advancement in mathematics.</p>
-                <p>The competition is held yearly in more than 50 Canadian cities. Contest content is covered in the
-                    Province Math Curriculum. Problems require creativity, logical thinking, or a different
-                    perspective—herein lies the challenge.</p>
+                <p>Math Kangaroo Canada is nationally ranked multiple choice contest which aims to challenge
+                    participants and show them just how fun math can be!</p>
+                <p>The purpose of this competition is to introduce youngsters from grade 1 to grade 12 to math
+                    challenges in a fun and enjoyable way, thus inspiring their further interest and advancement in
+                    mathematics.</p>
+                <p>The competition is held yearly in more than 50 Canadian cities.</p>
+                <p>Contest content is covered in the Province Math Curriculum. Problems require creativity, logical
+                    thinking or a different perspective. Here in lies the challenge.</p>
             </div>
         </details>
 
         <details class="fee-section faq-item" id="faq-rules">
             <summary class="fee-toggle">What are the contest rules?</summary>
             <div class="fee-content">
-                <p>Detailed contest rules can be found in the Contest Procedures and Appeals Policy:</p>
-                <p><a href="https://docs.mathkangaroo.ca/2024/cmkc-contest-procedures-and-appeals-policy-with-online-format-final.pdf"
-                        target="_blank" rel="noopener">Contest Procedures and Appeals Policy (PDF)</a></p>
+                <p>Detailed contest rules can be found at Contest Procedures and Appeals Policy:</p>
+                <p>
+                    <a href="https://docs.mathkangaroo.ca/2024/cmkc-contest-procedures-and-appeals-policy-with-online-format-final.pdf"
+                        target="_blank" rel="noopener">Contest Procedures and Appeals Policy (PDF)</a>
+                </p>
+
                 <div class="sep"></div>
-                <p><strong>Categories:</strong></p>
+
+                <p><strong>Students participate in six categories:</strong></p>
                 <ul class="bullets">
                     <li>Grades 1 and 2</li>
                     <li>Grades 3 and 4</li>
@@ -1344,20 +1599,28 @@ Math Kangaroo Contest Coaching Page
                     <li>Grades 9 and 10</li>
                     <li>Grades 11 and 12</li>
                 </ul>
+
                 <p>Please note that even though contestants in different school grades write the same paper, they are
-                    ranked only within their individual school grades. For example, Grade 5 contestants are not ranked
-                    with Grade 6 contestants.</p>
-                <div class="sep"></div>
+                    ranked only within their individual school grades. For example, grade 5 contestants are not ranked
+                    with grade 6 contestants.</p>
+
                 <ul class="bullets">
-                    <li>Grades 1-2: 18 multiple-choice questions, 45 minutes</li>
-                    <li>Grades 3-4: 24 multiple-choice questions, 60 minutes</li>
-                    <li>Grades 5-12: 30 multiple-choice questions, 75 minutes</li>
-                    <li>Problems are grouped into A, B, and C by challenge level</li>
-                    <li>Points: A=3, B=4, C=5</li>
-                    <li>Penalty: -1 for each incorrect answer; unanswered = 0</li>
-                    <li>Maximum score: 90 / 120 / 150 depending on grade group</li>
-                    <li>To avoid negative scores, each student begins with 18 / 24 / 30 points (minimum score = 0)</li>
-                    <li>Calculators are not permitted; no external materials are permitted</li>
+                    <li>The test for grades 1-2 consists of 18 multiple-choice questions, arranged in increasing
+                        difficulty, to be answered in 45 minutes.</li>
+                    <li>The test for grades 3-4 consists of 24 multiple-choice questions, arranged in increasing
+                        difficulty, to be answered in 60 minutes.</li>
+                    <li>The test for grades 5-12 consists of 30 multiple-choice questions, arranged in increasing
+                        difficulty, to be answered in 75 minutes.</li>
+                    <li>The problems are divided in three categories, A, B, and C, by the level of challenge. Each
+                        category consists of 6, 8, or 10 problems.</li>
+                    <li>A correct answer for a Group A problem is worth three points, for a Group B problem is worth
+                        four points, and for a Group C problem is worth five points.</li>
+                    <li>There is a penalty of one point for each incorrect answer. If the question is left unanswered,
+                        it is worth 0 points.</li>
+                    <li>The maximum score attained is 90, 120 or 150 points. To avoid negative scores, each student
+                        begins with 18, 24, or 30 points. Hence, the minimum score attainable is 0 points.</li>
+                    <li>Calculators are not permitted. No external materials of any kind are permitted for use by the
+                        contestants.</li>
                 </ul>
             </div>
         </details>
@@ -1365,50 +1628,64 @@ Math Kangaroo Contest Coaching Page
         <details class="fee-section faq-item" id="faq-awards">
             <summary class="fee-toggle">What awards are offered?</summary>
             <div class="fee-content">
-                <p>The award rules for the contest have been updated in 2025. Please find the rules here:</p>
-                <p><a href="https://docs.mathkangaroo.ca/2025/cmkc-awards-rules-2025-final.pdf" target="_blank"
-                        rel="noopener">Canadian Math Kangaroo Contest Awards Rules (PDF)</a></p>
+                <p>The award rules for the contest have been updated in 2025. Please find the RULES for Canadian Math
+                    Kangaroo Contest Awards here:</p>
+                <p>
+                    <a href="https://docs.mathkangaroo.ca/2025/cmkc-awards-rules-2025-final.pdf" target="_blank"
+                        rel="noopener">CMKC Awards Rules 2025 (PDF)</a>
+                </p>
 
                 <div class="sep"></div>
 
                 <h3 class="subhead">Virtual Location Contest Awards</h3>
-                <p>Since the virtual location contest is administered without official supervision, only electronic
-                    certificates of participation are given to online participants. National/provincial awards,
-                    medals/ribbons, and public posting of rankings/percentiles are not offered for online participants.
-                </p>
+                <p>Since the virtual location contest is administered without official supervision, ONLY electronic
+                    certificates of participation are given to online participants. The following is not to be offered
+                    to those who write the contest online: national awards and provincial awards, medals/ribbons,
+                    posting of percentiles/rankings/averages/score distributions/names of provincial winners on our
+                    website.</p>
 
                 <h3 class="subhead">In-person Contest Awards</h3>
-                <ul class="bullets">
-                    <li><strong>National Awards:</strong> Top 3 students in each grade nationally receive
-                        First/Second/Third Place in Canada Certificates (ties recognized). Scores must be at or above
-                        the 80th percentile nationwide.</li>
-                    <li><strong>National Medal:</strong> Top 10% nationally receive the National Math Kangaroo Medal.
-                    </li>
-                    <li><strong>Provincial Awards:</strong> Top 10% in each province receive the Math Kangaroo Ribbon
-                        (ties recognized).</li>
-                    <li><strong>School Site Awards:</strong> Best Score in School Award for highest score in each grade
-                        at schools hosting the contest (ties recognized).</li>
-                    <li><strong>Special Recognition:</strong> Monetary awards ($1,000 / $500 / $250) for Grade 11-12
-                        students with consistent participation and exceptional performance. CMKC may withhold awards if
-                        unsupervised or misconduct is suspected.</li>
-                    <li><strong>Certificates:</strong> Award recipients receive electronic certificates including
-                        national and provincial percentiles.</li>
-                </ul>
+                <p class="accent">National Awards</p>
+                <p>In each grade, the top three students nationally are awarded First, Second, and Third Place in Canada
+                    Certificates. In the event of a tie, all students with the same score are recognized. Scores must be
+                    at or above the 80th percentile nationwide.</p>
+                <p>Students who place in the top 10% nationally are awarded the National Math Kangaroo Medal.</p>
+
+                <p class="accent">Provincial Awards</p>
+                <p>In each grade, students who rank in the top 10% within their province are awarded the Math Kangaroo
+                    Ribbon, in recognition of their achievement. In the case of a tie, all students with the same score
+                    receive the award.</p>
+
+                <p class="accent">School Site Awards</p>
+                <p>In each grade, the student(s) achieving the highest score in their school receive the Best Score in
+                    School Award. In the event of a tie, all students with the same score are recognized. This award is
+                    given only to schools hosting the contest.</p>
+
+                <p class="accent">Special Recognition</p>
+                <p>The Special Recognitions for Outstanding Results are monetary awards of $1,000, $500, or $250,
+                    presented to Grade 11 and Grade 12 students who have shown consistent participation and exceptional
+                    performance in the Canadian Math Kangaroo Contest. CMKC reserves the right to withhold awards if
+                    participation in a given year was not supervised or if there is evidence of misconduct or
+                    dishonesty.</p>
+
+                <p class="accent">Certificates</p>
+                <p>All award recipients receive electronic certificates recognizing their achievements, which include
+                    their national and provincial percentiles.</p>
             </div>
         </details>
 
         <details class="fee-section faq-item" id="faq-language">
             <summary class="fee-toggle">In what languages can the contest be written?</summary>
             <div class="fee-content">
-                <p>The test can be written in <strong>English</strong> or in <strong>French</strong>.</p>
+                <p>The test can be written in English or in French</p>
             </div>
         </details>
 
         <details class="fee-section faq-item" id="faq-parent-register">
             <summary class="fee-toggle">I am parent or guardian. How to register my students in the contest?</summary>
             <div class="fee-content">
-                <p>Watch the YouTube demonstration video for how you can register students in the contest and enroll
-                    them in programs using a Family account:</p>
+                <p>Watch our Youtube video for demostration how you can register students in the contest and enrol them
+                    in our programs using Family account:</p>
                 <p><a href="https://www.youtube.com/watch?v=2iDO-DFpZHs" target="_blank" rel="noopener">Register
                         students using Family account (YouTube)</a></p>
             </div>
@@ -1417,8 +1694,8 @@ Math Kangaroo Contest Coaching Page
         <details class="fee-section faq-item" id="faq-teacher-register">
             <summary class="fee-toggle">I am a teacher. How can I register students for the contest?</summary>
             <div class="fee-content">
-                <p>Watch the YouTube demonstration video for how a teacher can connect to students and register them in
-                    the contest:</p>
+                <p>Watch our Youtube video for demostration how Teacher can connect to students and register them in the
+                    contest:</p>
                 <p><a href="https://www.youtube.com/watch?v=_8PGVWPe25Y" target="_blank" rel="noopener">Canadian Math
                         Kangaroo Contest Registration by Teacher (YouTube)</a></p>
             </div>
@@ -1427,10 +1704,11 @@ Math Kangaroo Contest Coaching Page
         <details class="fee-section faq-item" id="faq-program-details">
             <summary class="fee-toggle">Where can I find the details for my purchased programs?</summary>
             <div class="fee-content">
-                <p>If you need help completing payment for educational resources and programs, or you have already paid
-                    but don't know how to access your purchase details, please watch:</p>
+                <p>If you need help completing the payment for educational resources and programs that we offer or you
+                    have already paid but don't know how to access details for your purchase, please check Youtube video
+                    How to enroll in our training programs and to purchase contest solutions:</p>
                 <p><a href="https://www.youtube.com/watch?v=QZ8Zrd1HdeQ" target="_blank" rel="noopener">How to enroll in
-                        training programs and purchase contest solutions (YouTube)</a></p>
+                        our training programs and to purchase contest solutions (YouTube)</a></p>
             </div>
         </details>
 
@@ -1438,169 +1716,47 @@ Math Kangaroo Contest Coaching Page
             <summary class="fee-toggle">How can I resolve payment issues?</summary>
             <div class="fee-content">
                 <p>In case you experience any technical issues related to your payment, please send an email to
-                    <strong>support@mathkangaroo.ca</strong>, otherwise contact
-                    <strong>info@mathkangaroocanada.com</strong>.
-                </p>
+                    <strong>support@mathkangaroo.ca</strong>, otherwise contact us at
+                    <strong>info@mathkangaroocanada.com</strong></p>
             </div>
         </details>
 
         <details class="fee-section faq-item" id="faq-signup-url">
             <summary class="fee-toggle">What’s the sign up URL?</summary>
             <div class="fee-content">
-                <p><a href="https://mathkangaroo.ca/login/en" target="_blank" rel="noopener">Math Kangaroo Canada sign
-                        in / sign up</a></p>
+                <p><a href="https://mathkangaroo.ca/login/en" target="_blank"
+                        rel="noopener">https://mathkangaroo.ca/login/en</a></p>
             </div>
         </details>
 
-        <details class="fee-section faq-item" id="faq-beginners">
-            <summary class="fee-toggle">Is Math Kangaroo good for beginners?</summary>
+        <!-- CanSTEM coaching FAQs (short + non-repetitive) -->
+        <details class="fee-section faq-item" id="faq-canstem-coaching">
+            <summary class="fee-toggle">Do you offer Math Kangaroo coaching in Brampton?</summary>
             <div class="fee-content">
-                <p>Yes—many students start with Math Kangaroo because it’s designed to be fun and accessible while still
-                    challenging.</p>
-            </div>
-        </details>
-
-        <details class="fee-section faq-item" id="faq-keyphrase">
-            <summary class="fee-toggle">Do you offer Math Kangaroo Contest (Grades 1-12) - Brampton coaching?</summary>
-            <div class="fee-content">
-                <p>Yes. We support Grades 1-12 and offer both in-person coaching in Brampton and online live sessions.
-                </p>
-            </div>
-        </details>
-
-        <details class="fee-section faq-item" id="faq-grades">
-            <summary class="fee-toggle">What grades do you support for Math Kangaroo coaching?</summary>
-            <div class="fee-content">
-                <p>We support students in Grades 1-12, and we place them based on grade level and current comfort with
-                    contest-style questions.</p>
-            </div>
-        </details>
-
-        <details class="fee-section faq-item" id="faq-online-inperson">
-            <summary class="fee-toggle">Do you offer in-person and online coaching?</summary>
-            <div class="fee-content">
-                <p>Yes. We offer in-person coaching in Brampton and online live, interactive sessions.</p>
+                <p>Yes. CanSTEM provides Math Kangaroo coaching in Brampton for Grades 1-12, with a clear weekly
+                    structure and contest-style practice.</p>
             </div>
         </details>
 
         <details class="fee-section faq-item" id="faq-coaching-fees">
             <summary class="fee-toggle">What are your coaching fees?</summary>
             <div class="fee-content">
-                <p>We offer two coaching options for Math Kangaroo and similar contests:</p>
+                <p>We offer two coaching options:</p>
                 <ul class="bullets">
-                    <li><strong>$250:</strong> 2 days/week, 2 hours/day (Total: 4 hours/week)</li>
-                    <li><strong>$350:</strong> 3 days/week, 2 hours/day (Total: 6 hours/week)</li>
+                    <li><strong>$250/month:</strong> 2 days/week, 2 hours/day (Total: 4 hours/week)</li>
+                    <li><strong>$350/month:</strong> 3 days/week, 2 hours/day (Total: 6 hours/week)</li>
                 </ul>
-                <p class="muted small">Also, we can recommend the best option after a quick level check.</p>
-            </div>
-        </details>
-
-        <details class="fee-section faq-item" id="faq-contest-fees">
-            <summary class="fee-toggle">What is the Math Kangaroo contest registration fee (2026)?</summary>
-            <div class="fee-content">
-                <ul class="bullets">
-                    <li><strong>$20</strong> early bird fee if registered by <strong>February 9</strong></li>
-                    <li><strong>$25</strong> regular fee from <strong>February 10</strong> to the registration deadline
-                        on <strong>February 23rd</strong></li>
-                </ul>
-                <p class="muted small">Contest registration fees are separate from coaching fees.</p>
-            </div>
-        </details>
-
-        <details class="fee-section faq-item" id="faq-training-invite">
-            <summary class="fee-toggle">Is there any free training offer with registration?</summary>
-            <div class="fee-content">
-                <p>Participants who register by <strong>February 21st</strong> will be invited to a free 60-minute
-                    training class.</p>
-            </div>
-        </details>
-
-        <details class="fee-section faq-item" id="faq-test-date">
-            <summary class="fee-toggle">When is the Math Kangaroo contest in 2026?</summary>
-            <div class="fee-content">
-                <p>It will be held both online (March 23-25, 2026) and in-person (March 22, 2026).</p>
+                <p class="muted small">We can recommend the best option after a quick level check.</p>
             </div>
         </details>
 
         <details class="fee-section faq-item" id="faq-test-site">
             <summary class="fee-toggle">Are you an official testing centre?</summary>
             <div class="fee-content">
-                <p>Yes—CanSTEM is an official testing centre in Brampton. If you register for an in-person sitting and
-                    choose our site, your child can write the contest here.</p>
-            </div>
-        </details>
-
-        <details class="fee-section faq-item" id="faq-practice">
-            <summary class="fee-toggle">Do you offer practice questions?</summary>
-            <div class="fee-content">
-                <p>Yes. We use contest-style sets and can guide families to official sample resources as well.</p>
-            </div>
-        </details>
-
-        <details class="fee-section faq-item" id="faq-what-included">
-            <summary class="fee-toggle">What’s included in the coaching program?</summary>
-            <div class="fee-content">
-                <p>Coaching typically includes contest-style worksheets, timed mini tests, guided solutions, error
-                    analysis, and Q&amp;A support. Therefore, students improve both accuracy and speed.</p>
-            </div>
-        </details>
-
-        <details class="fee-section faq-item" id="faq-schedule">
-            <summary class="fee-toggle">How does scheduling work for tutoring?</summary>
-            <div class="fee-content">
-                <p>
-                    We schedule based on the option you choose:
-                </p>
-                <ul class="bullets">
-                    <li><strong>Option 1:</strong> 2 days/week, 2 hours/day</li>
-                    <li><strong>Option 2:</strong> 3 days/week, 2 hours/day</li>
-                </ul>
-                <p class="muted small">
-                    After you confirm the plan, we finalize the weekly schedule and start the coaching.
-                </p>
-            </div>
-        </details>
-
-        <details class="fee-section faq-item" id="faq-1on1-group">
-            <summary class="fee-toggle">Do you offer 1-on-1 or group sessions?</summary>
-            <div class="fee-content">
-                <p>Yes—hourly online coaching can be done as 1-on-1 or small group sessions, depending on student needs
-                    and availability.</p>
-            </div>
-        </details>
-
-        <details class="fee-section faq-item" id="faq-placement">
-            <summary class="fee-toggle">How do you place a student at the right level?</summary>
-            <div class="fee-content">
-                <p>We use the student’s grade plus a quick level check (optional) to choose the right difficulty and
-                    plan. As a result, the student starts at the right pace.</p>
-            </div>
-        </details>
-
-        <details class="fee-section faq-item" id="faq-registration-help">
-            <summary class="fee-toggle">How can I register or ask questions about registration?</summary>
-            <div class="fee-content">
-                <p>You can email <strong>inquiry@canstemeducation.com</strong> or submit the inquiry form:</p>
-                <p><a href="https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en"
-                        target="_blank"
-                        rel="noopener">https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000869&culture=en</a>
-                </p>
-            </div>
-        </details>
-
-        <details class="fee-section faq-item" id="faq-late">
-            <summary class="fee-toggle">Can my child join late?</summary>
-            <div class="fee-content">
-                <p>Usually yes. We’ll place them at the right level and focus on the highest-impact strategies first.
-                </p>
-            </div>
-        </details>
-
-        <details class="fee-section faq-item" id="faq-waterloo">
-            <summary class="fee-toggle">Do you help with Waterloo contests too?</summary>
-            <div class="fee-content">
-                <p>Yes—this tutoring category covers Math Kangaroo, Waterloo, and other school math/science contests.
-                </p>
+                <p>Yes—CanSTEM is an official testing centre in Brampton. If you choose our site for the in-person
+                    sitting, your child can write the contest here.</p>
+                <p class="muted small">For timing, parking, and pick-up details, see: <a
+                        href="#contest-day-logistics">Contest Day Details</a>.</p>
             </div>
         </details>
 
@@ -1609,8 +1765,8 @@ Math Kangaroo Contest Coaching Page
             <div class="fee-content">
                 <ul class="bullets">
                     <li>Email: <strong>inquiry@canstemeducation.com</strong></li>
-                    <li>Phone: <a href="tel:+16478471231">647-847-1231</a></li>
-                    <li>Location: Brampton (in-person) + Online live classes</li>
+                    <li>Phone: <a href="tel:+16475680258">647-568-0258</a></li>
+                    <li>Location: Brampton (in-person)</li>
                 </ul>
             </div>
         </details>
@@ -1619,48 +1775,63 @@ Math Kangaroo Contest Coaching Page
 
     <!-- JSON-LD -->
     <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "EducationalOrganization",
-    "name": "CanSTEM Education Private School",
-    "url": "https://canstemeducation.com/",
-    "email": "inquiry@canstemeducation.com",
-    "telephone": "+1-647-847-1231",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Brampton",
-      "addressRegion": "ON",
-      "addressCountry": "CA"
-    },
-    "makesOffer": [
-      {
-        "@type": "Offer",
-        "name": "Math Kangaroo Contest Coaching (Option 1)",
-        "category": "Math Contest Tutoring",
-        "price": "250",
-        "priceCurrency": "CAD"
+    {
+      "@context": "https://schema.org",
+      "@type": "EducationalOrganization",
+      "name": "CanSTEM Education Private School",
+      "url": "https://canstemeducation.com/",
+      "email": "inquiry@canstemeducation.com",
+      "telephone": "+1-647-568-0258",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Brampton",
+        "addressRegion": "ON",
+        "addressCountry": "CA"
       },
-      {
-        "@type": "Offer",
-        "name": "Math Kangaroo Contest Coaching (Option 2)",
-        "category": "Math Contest Tutoring",
-        "price": "350",
-        "priceCurrency": "CAD"
-      }
-    ]
-  }
-  </script>
+      "makesOffer": [
+        {
+          "@type": "Offer",
+          "name": "Math Kangaroo Contest Coaching (Option 1)",
+          "category": "Math Contest Tutoring",
+          "price": "250",
+          "priceCurrency": "CAD"
+        },
+        {
+          "@type": "Offer",
+          "name": "Math Kangaroo Contest Coaching (Option 2)",
+          "category": "Math Contest Tutoring",
+          "price": "350",
+          "priceCurrency": "CAD"
+        }
+      ]
+    }
+    </script>
 
 </section>
 
 <script>
     (function () {
         var wrap = document.getElementById("kangaroo-page-wrap"); if (!wrap) return;
+
         function byId(id) { return document.getElementById(id); }
         function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
-        function bindKeyClick(el) { if (!el) return; el.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); el.click(); } }); }
-        function scrollToEl(el) { if (!el) return; try { el.scrollIntoView({ behavior: "smooth", block: "start" }); } catch (e) { el.scrollIntoView(true); } }
-        function openDetailsIfNeeded(el) { if (el && el.tagName && el.tagName.toLowerCase() === "details") el.setAttribute("open", ""); }
+
+        function bindKeyClick(el) {
+            if (!el) return;
+            el.addEventListener("keydown", function (e) {
+                if (e.key === "Enter" || e.key === " ") { e.preventDefault(); el.click(); }
+            });
+        }
+
+        function scrollToEl(el) {
+            if (!el) return;
+            try { el.scrollIntoView({ behavior: "smooth", block: "start" }); }
+            catch (e) { el.scrollIntoView(true); }
+        }
+
+        function openDetailsIfNeeded(el) {
+            if (el && el.tagName && el.tagName.toLowerCase() === "details") el.setAttribute("open", "");
+        }
 
         var mainAcc = $all("details.fee-section", wrap).filter(function (d) { return !d.classList.contains("faq-item"); });
         var faqAcc = $all("details.faq-item", wrap);
@@ -1668,20 +1839,35 @@ Math Kangaroo Contest Coaching Page
         $all(".kang-tab").forEach(function (tab) {
             bindKeyClick(tab);
             tab.addEventListener("click", function () {
-                var id = tab.getAttribute("data-target"); var target = byId(id); if (!target) return;
+                var id = tab.getAttribute("data-target");
+                var target = byId(id);
+                if (!target) return;
+
                 openDetailsIfNeeded(target);
-                if (target.classList.contains("fee-section") && !target.classList.contains("faq-item")) { mainAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); }); }
-                if (target.classList.contains("faq-item")) { faqAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); }); }
-                scrollToEl(target); try { history.replaceState(null, "", "#" + id); } catch (e) { location.hash = id; }
+
+                if (target.classList.contains("fee-section") && !target.classList.contains("faq-item")) {
+                    mainAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); });
+                }
+                if (target.classList.contains("faq-item")) {
+                    faqAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); });
+                }
+
+                scrollToEl(target);
+                try { history.replaceState(null, "", "#" + id); } catch (e) { location.hash = id; }
             });
         });
 
         $all("[data-go]").forEach(function (btn) {
             bindKeyClick(btn);
             btn.addEventListener("click", function () {
-                var id = btn.getAttribute("data-go"); var target = byId(id); if (!target) return;
+                var id = btn.getAttribute("data-go");
+                var target = byId(id);
+                if (!target) return;
+
                 openDetailsIfNeeded(target);
-                if (target.classList.contains("fee-section") && !target.classList.contains("faq-item")) { mainAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); }); }
+                if (target.classList.contains("fee-section") && !target.classList.contains("faq-item")) {
+                    mainAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); });
+                }
                 scrollToEl(target);
             });
         });
@@ -1689,30 +1875,55 @@ Math Kangaroo Contest Coaching Page
         $all("[data-href]").forEach(function (el) {
             bindKeyClick(el);
             el.addEventListener("click", function () {
-                var href = el.getAttribute("data-href"); if (!href) return;
+                var href = el.getAttribute("data-href");
+                if (!href) return;
                 var newtab = el.getAttribute("data-newtab") === "1";
                 if (newtab) window.open(href, "_blank", "noopener");
                 else window.location.href = href;
             });
         });
 
-        function closeMainOthers(openId) { mainAcc.forEach(function (s) { if (s.id !== openId) s.removeAttribute("open"); }); }
-        mainAcc.forEach(function (sec) { sec.addEventListener("toggle", function () { if (!sec.open) return; closeMainOthers(sec.id); }); });
+        function closeMainOthers(openId) {
+            mainAcc.forEach(function (s) { if (s.id !== openId) s.removeAttribute("open"); });
+        }
+        mainAcc.forEach(function (sec) {
+            sec.addEventListener("toggle", function () {
+                if (!sec.open) return;
+                closeMainOthers(sec.id);
+            });
+        });
 
-        faqAcc.forEach(function (d) { d.addEventListener("toggle", function () { if (!d.open) return; faqAcc.forEach(function (x) { if (x !== d) x.removeAttribute("open"); }); }); });
+        faqAcc.forEach(function (d) {
+            d.addEventListener("toggle", function () {
+                if (!d.open) return;
+                faqAcc.forEach(function (x) { if (x !== d) x.removeAttribute("open"); });
+            });
+        });
 
         var box = wrap.querySelector(".snapshot-accordion");
         if (box) {
             var snaps = $all("details.snap-sec", box);
-            snaps.forEach(function (d) { d.addEventListener("toggle", function () { if (!d.open) return; snaps.forEach(function (x) { if (x !== d) x.removeAttribute("open"); }); }); });
+            snaps.forEach(function (d) {
+                d.addEventListener("toggle", function () {
+                    if (!d.open) return;
+                    snaps.forEach(function (x) { if (x !== d) x.removeAttribute("open"); });
+                });
+            });
         }
 
         if (location.hash) {
-            var id = location.hash.replace("#", ""); var target = byId(id);
+            var id = location.hash.replace("#", "");
+            var target = byId(id);
             if (target) {
                 openDetailsIfNeeded(target);
-                if (target.classList.contains("fee-section") && !target.classList.contains("faq-item")) { mainAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); }); }
-                if (target.classList.contains("faq-item")) { faqAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); }); }
+
+                if (target.classList.contains("fee-section") && !target.classList.contains("faq-item")) {
+                    mainAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); });
+                }
+                if (target.classList.contains("faq-item")) {
+                    faqAcc.forEach(function (x) { if (x !== target) x.removeAttribute("open"); });
+                }
+
                 scrollToEl(target);
             }
         }
