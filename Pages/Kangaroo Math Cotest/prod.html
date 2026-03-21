@@ -1038,6 +1038,65 @@ Math Kangaroo Contest Coaching Page
             width: 100%;
         }
     }
+
+    /* ✅ Mobile table fix: keeps desktop table as-is, stacks rows on mobile (no cut-off) */
+    @media (max-width: 768px) {
+        .log-table-wrap {
+            overflow: visible;
+        }
+
+        /* hide header row on mobile */
+        .log-table thead {
+            display: none;
+        }
+
+        /* turn table into stacked blocks */
+        .log-table,
+        .log-table tbody,
+        .log-table tr,
+        .log-table td {
+            display: block;
+            width: 100%;
+        }
+
+        .log-table tr {
+            padding: 12px 12px;
+            border-bottom: 1px solid rgba(226, 232, 240, .95);
+        }
+
+        .log-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .log-table td {
+            border: 0;
+            padding: 10px 0;
+            display: grid;
+            grid-template-columns: 140px 1fr;
+            gap: 10px;
+            align-items: start;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* label on left, value on right */
+        .log-table td::before {
+            content: attr(data-label);
+            font-weight: 900;
+            color: var(--sub);
+        }
+    }
+
+    @media (max-width: 420px) {
+        .log-table td {
+            grid-template-columns: 1fr;
+            gap: 6px;
+        }
+
+        .log-table td::before {
+            margin-bottom: 2px;
+        }
+    }
 </style>
 
 <div class="kang-topbar" aria-label="Math Kangaroo page tabs">
@@ -1192,7 +1251,8 @@ Math Kangaroo Contest Coaching Page
         <div class="log-meta" aria-label="Test site details">
             <div class="row"><strong>Location:</strong> CanSTEM Education Private School</div>
             <div class="row"><strong>Contest day:</strong> March 22, 2026</div>
-            <div class="row"><strong>Address:</strong> 350 Rutherford Rd South, Plaza 1, Unit 10, Brampton, ON L6W 4N6</div>
+            <div class="row"><strong>Address:</strong> 350 Rutherford Rd South, Plaza 1, Unit 10, Brampton, ON L6W 4N6
+            </div>
             <div class="row"><strong>Building:</strong> Plaza 1</div>
         </div>
 
@@ -1210,28 +1270,30 @@ Math Kangaroo Contest Coaching Page
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>1-2</strong></td>
-                        <td>9:00 am</td>
-                        <td>09:15 AM</td>
-                        <td>10:30 AM</td>
-                        <td>11:15 AM</td>
-                        <td>11:45 AM</td>
+                        <td data-label="Grade"><strong>1-2</strong></td>
+                        <td data-label="Drop-off">9:00 am</td>
+                        <td data-label="Doors open">09:15 AM</td>
+                        <td data-label="Test start">10:30 AM</td>
+                        <td data-label="Test end">11:15 AM</td>
+                        <td data-label="Pick-up">11:45 AM</td>
                     </tr>
+
                     <tr>
-                        <td><strong>3-4</strong></td>
-                        <td>9:00 am</td>
-                        <td>09:15 AM</td>
-                        <td>10:30 AM</td>
-                        <td>11:30 AM</td>
-                        <td>11:45 AM</td>
+                        <td data-label="Grade"><strong>3-4</strong></td>
+                        <td data-label="Drop-off">9:00 am</td>
+                        <td data-label="Doors open">09:15 AM</td>
+                        <td data-label="Test start">10:30 AM</td>
+                        <td data-label="Test end">11:30 AM</td>
+                        <td data-label="Pick-up">11:45 AM</td>
                     </tr>
+
                     <tr>
-                        <td><strong>5-12</strong></td>
-                        <td>9:00 am</td>
-                        <td>09:15 AM</td>
-                        <td>10:30 AM</td>
-                        <td>11:45 AM</td>
-                        <td>12:00 PM</td>
+                        <td data-label="Grade"><strong>5-12</strong></td>
+                        <td data-label="Drop-off">9:00 am</td>
+                        <td data-label="Doors open">09:15 AM</td>
+                        <td data-label="Test start">10:30 AM</td>
+                        <td data-label="Test end">11:45 AM</td>
+                        <td data-label="Pick-up">12:00 PM</td>
                     </tr>
                 </tbody>
             </table>
@@ -1239,18 +1301,19 @@ Math Kangaroo Contest Coaching Page
 
         <div class="log-note" aria-label="Important notes for families">
             <ul>
-               <li><strong>Pick-up place:</strong> Inside the CanSTEM premises inside school building</li> 
+                <li><strong>Pick-up place:</strong> Inside the CanSTEM premises inside school building</li>
                 <li><strong>Pick-up rules:</strong> Arrive 15 minutes after the exam ends.</li>
                 <li><strong>Parking info:</strong> Parking is available on all sides of the building.</li>
                 <li><strong>Cafeteria:</strong> We have students cafeteria and students may bring light snack in case of
                     unavoidable situation.</li>
                 <li><strong>Wait areas:</strong> School Hallway</li>
                 <li><strong>Coordinator/Contact:</strong> Ms. Sajjala P. Sankhe/ Ms. Nallenee &nbsp;|&nbsp;
-                    <strong>647-568-0258</strong></li>
-                <li><strong>Contest rules:</strong> <a href="https://mathkangaroo.ca/faq/general/contest-rules/en" target="_blank"
-                        rel="noopener">mathkangaroo.ca FAQ (Rules)</a></li>
-                <li><strong>Awards:</strong> <a href="https://mathkangaroo.ca/faq/general/contest-awards/en" target="_blank"
-                        rel="noopener">mathkangaroo.ca FAQ (Awards)</a></li>
+                    <strong>647-568-0258</strong>
+                </li>
+                <li><strong>Contest rules:</strong> <a href="https://mathkangaroo.ca/faq/general/contest-rules/en"
+                        target="_blank" rel="noopener">mathkangaroo.ca FAQ (Rules)</a></li>
+                <li><strong>Awards:</strong> <a href="https://mathkangaroo.ca/faq/general/contest-awards/en"
+                        target="_blank" rel="noopener">mathkangaroo.ca FAQ (Awards)</a></li>
                 <li><strong>Aids:</strong> We will provide pencils with erasers and scrap paper. You may give students
                     additional pencils, eraser, water and small snack (not noisy nor smelly). Rulers and calculators are
                     not permitted. No external materials of any kind are permitted for use by the contestants.</li>
@@ -1717,7 +1780,8 @@ Math Kangaroo Contest Coaching Page
             <div class="fee-content">
                 <p>In case you experience any technical issues related to your payment, please send an email to
                     <strong>support@mathkangaroo.ca</strong>, otherwise contact us at
-                    <strong>info@mathkangaroocanada.com</strong></p>
+                    <strong>info@mathkangaroocanada.com</strong>
+                </p>
             </div>
         </details>
 
