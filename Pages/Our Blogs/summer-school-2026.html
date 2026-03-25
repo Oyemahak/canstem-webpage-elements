@@ -1,0 +1,580 @@
+<style>
+    /* ===== Scoped Blog Styles ===== */
+    #cs-summer-blog {
+        --blue: #00427C;
+        --blue-dark: #0d2f57;
+        --green: #2FBF71;
+        --orange: #F59E0B;
+        --ink: #26262B;
+        --muted: #5f6b7a;
+        --panel: #ffffff;
+        --line: #e6edf5;
+        --soft: #f7fbff;
+        --soft-2: #eef6ff;
+        --shadow: 0 10px 28px rgba(0, 0, 0, .08);
+        font-family: "Open Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        color: var(--ink);
+        max-width: 1200px;
+        margin: 0 auto;
+        line-height: 1.75;
+        font-size: 18px;
+    }
+
+    #cs-summer-blog * {
+        box-sizing: border-box;
+    }
+
+    #cs-summer-blog p {
+        margin: 0 0 1rem;
+    }
+
+    #cs-summer-blog a {
+        color: var(--blue);
+        text-decoration: none;
+        font-weight: 700;
+    }
+
+    #cs-summer-blog a:hover {
+        text-decoration: underline;
+    }
+
+    #cs-summer-blog .muted {
+        color: var(--muted);
+    }
+
+    #cs-summer-blog .hero {
+        background: linear-gradient(135deg, #E9F6FF 0%, #F2FFF8 52%, #FFF8EE 100%);
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 24px;
+        box-shadow: var(--shadow);
+        margin: 10px 0 28px;
+    }
+
+    #cs-summer-blog .badge {
+        display: inline-block;
+        background: #000;
+        color: #fff;
+        border-radius: 999px;
+        padding: 6px 12px;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: .2px;
+        margin-bottom: 10px;
+    }
+
+    #cs-summer-blog .lead {
+        font-size: 20px;
+        color: #223045;
+        margin: 0;
+    }
+
+    #cs-summer-blog .h {
+        font-size: 30px;
+        font-weight: 700;
+        margin: 2rem 0 1rem;
+        color: var(--blue);
+        line-height: 1.25;
+    }
+
+    #cs-summer-blog .subh {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--blue);
+        margin: .8rem 0 .5rem;
+    }
+
+    #cs-summer-blog .sep {
+        height: 1px;
+        background: #e9eef6;
+        margin: 24px 0;
+    }
+
+    #cs-summer-blog .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        margin: 24px 0;
+    }
+
+    #cs-summer-blog .grid-2 {
+        display: grid;
+        grid-template-columns: 1.1fr .9fr;
+        gap: 24px;
+        margin: 24px 0;
+        align-items: start;
+    }
+
+    #cs-summer-blog .card {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 18px;
+        box-shadow: var(--shadow);
+        height: 100%;
+    }
+
+    #cs-summer-blog .cap {
+        display: inline-block;
+        color: #fff;
+        font-weight: 800;
+        font-size: 13px;
+        padding: 6px 10px;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    #cs-summer-blog .cap.blue {
+        background: linear-gradient(135deg, #0b68d6, var(--blue));
+    }
+
+    #cs-summer-blog .cap.green {
+        background: linear-gradient(135deg, #36c983, var(--green));
+    }
+
+    #cs-summer-blog .cap.orange {
+        background: linear-gradient(135deg, #ffb14b, var(--orange));
+    }
+
+    #cs-summer-blog .card p:last-child {
+        margin-bottom: 0;
+    }
+
+    #cs-summer-blog .video-wrap {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+    }
+
+    #cs-summer-blog .video-wrap video {
+        width: 100%;
+        display: block;
+        background: #000;
+    }
+
+    #cs-summer-blog .video-caption {
+        padding: 12px 14px;
+        font-size: 14px;
+        color: var(--muted);
+        border-top: 1px solid #edf2f7;
+    }
+
+    #cs-summer-blog .note {
+        border: 2px dashed #cfe3ff;
+        background: #f7fbff;
+        border-radius: 14px;
+        padding: 14px 16px;
+        margin: 16px 0;
+    }
+
+    #cs-summer-blog ul,
+    #cs-summer-blog ol {
+        margin: 0 0 1rem;
+        padding-left: 22px;
+    }
+
+    #cs-summer-blog li {
+        margin-bottom: 8px;
+    }
+
+    #cs-summer-blog .mini-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 14px;
+    }
+
+    #cs-summer-blog .mini-links a {
+        display: inline-block;
+        padding: 10px 14px;
+        border: 1px solid #d5e4f3;
+        border-radius: 999px;
+        background: #fff;
+        font-weight: 700;
+    }
+
+    #cs-summer-blog .cta {
+        text-align: center;
+        margin: 34px 0 28px;
+    }
+
+    #cs-summer-blog .btn {
+        display: inline-block;
+        padding: 14px 30px;
+        border-radius: 12px;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--green), var(--blue));
+        color: #fff;
+        text-decoration: none;
+        box-shadow: var(--shadow);
+    }
+
+    #cs-summer-blog .btn:hover {
+        color: #fff;
+        filter: brightness(.97);
+        text-decoration: none;
+    }
+
+    #cs-summer-blog details {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: var(--shadow);
+        margin-bottom: 12px;
+    }
+
+    #cs-summer-blog summary {
+        list-style: none;
+        cursor: pointer;
+        padding: 16px 18px;
+        background: #434343;
+        color: #fff;
+        font-size: 17px;
+        font-weight: 700;
+        position: relative;
+        padding-right: 50px;
+    }
+
+    #cs-summer-blog summary::-webkit-details-marker {
+        display: none;
+    }
+
+    #cs-summer-blog summary::after {
+        content: "+";
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 28px;
+        font-weight: 400;
+        line-height: 1;
+    }
+
+    #cs-summer-blog details[open] summary::after {
+        content: "–";
+    }
+
+    #cs-summer-blog .faq-body {
+        padding: 16px 18px;
+        border-top: 1px solid #eceff4;
+        background: #fff;
+    }
+
+    @media (max-width: 1024px) {
+        #cs-summer-blog {
+            font-size: 16px;
+        }
+
+        #cs-summer-blog .h {
+            font-size: 24px;
+        }
+
+        #cs-summer-blog .lead {
+            font-size: 18px;
+        }
+
+        #cs-summer-blog .grid,
+        #cs-summer-blog .grid-2 {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<div id="cs-summer-blog" role="article" aria-label="Summer School 2026 blog content">
+
+    <div class="hero">
+        <span class="badge">Summer School 2026 • Brampton + Online</span>
+        <p class="lead">
+            Looking for a flexible way to <strong>earn Ontario high school credits</strong>, improve marks, or get ahead
+            before the next school year?
+            CanSTEM Education’s <a href="https://canstemeducation.com/summer-school-2025-at-canstem/">Summer School 2026
+                </a> is now live with
+            in-class and online options for students who want strong academic support and a smoother path toward
+            graduation, university, or college goals.
+        </p>
+    </div>
+
+    <p>
+        <strong>Summer school</strong> is not only for students who need to catch up. Many families search for summer programs because
+        they want a smarter way to manage the school year,
+        <strong>improve a difficult course result, complete a missing credit, or strengthen a student’s academic profile</strong> before
+        post-secondary applications.
+        That is exactly why Summer School 2026 continues to be a practical option for students across Brampton,
+        Ontario and Canada.
+    </p>
+
+    <div class="grid">
+        <div class="card">
+            <span class="cap blue">Credit Goals</span>
+            <p><strong>Earn or recover credits</strong> needed for graduation and future academic planning.</p>
+        </div>
+        <div class="card">
+            <span class="cap green">Mark Improvement</span>
+            <p><strong>Upgrade marks</strong> in important subjects before the next semester or application cycle.</p>
+        </div>
+        <div class="card">
+            <span class="cap orange">Flexible Learning</span>
+            <p><strong>Choose in-class or online study</strong> with a format that fits your summer schedule.</p>
+        </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <p class="h">What do students and parents usually search for about summer school?</p>
+    <p>
+        Most people are not just searching for “summer school” in general. They are searching with real concerns and
+        practical questions:
+        Which school offers Ontario credits? Can my child improve a grade before university applications? Is online
+        summer school accepted?
+        Is there support for prerequisites? Can the student study from home or attend classes in person?
+    </p>
+    <p>
+        A good summer program needs to answer those questions clearly. At CanSTEM, Summer School 2026 is designed around
+        the things families care about most:
+        <strong>recognized Ontario high school credits, flexibility, academic support, and clear pathways for next
+            steps.</strong>
+    </p>
+
+    <div class="note">
+        <p style="margin:0;">
+            <strong>Why this matters:</strong> families often compare private summer school options based on
+            flexibility, course range, student support,
+            and how helpful the program is for graduation, university, or college preparation.
+        </p>
+    </div>
+
+    <div class="grid-2">
+        <div>
+            <p class="h">Why Summer School 2026 can be a smart move</p>
+            <ol>
+                <li><strong>Complete a needed course early</strong> instead of carrying that pressure into the next
+                    school year.</li>
+                <li><strong>Improve a final mark</strong> in a subject that matters for future applications.</li>
+                <li><strong>Reduce timetable stress</strong> by getting ahead during the summer.</li>
+                <li><strong>Stay on track for graduation</strong> with better planning and support.</li>
+                <li><strong>Use summer productively</strong> while still keeping learning flexible.</li>
+            </ol>
+
+            <p>
+                For many students, summer school is not just about catching up. It is about creating more options for
+                the future.
+            </p>
+        </div>
+
+        <div class="video-wrap">
+            <video controls preload="metadata" playsinline>
+                <source src="https://canstemeducation.com/wp-content/uploads/2026/02/CanSTEM-Summer-School-2026.mp4"
+                    type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="video-caption">
+                A quick overview of Summer School 2026 at CanSTEM Education.
+            </div>
+        </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <p class="h">What makes students choose CanSTEM for summer school?</p>
+    <div class="grid">
+        <div class="card">
+            <span class="cap blue">Ontario Curriculum</span>
+            <p>
+                Students can work toward <strong>Ontario high school credits</strong> in a structured and supportive
+                learning environment.
+            </p>
+        </div>
+        <div class="card">
+            <span class="cap green">Subject Variety</span>
+            <p>
+                Families often look for core subjects like <strong>Math, Science, English, Business, and French</strong>
+                when planning summer school.
+            </p>
+        </div>
+        <div class="card">
+            <span class="cap orange">Academic Support</span>
+            <p>
+                Students benefit from support with <strong>prerequisites, mark improvement, and post-secondary
+                    preparation</strong>.
+            </p>
+        </div>
+    </div>
+
+    <p>
+        Summer School 2026 is especially useful for students who want to make progress without waiting for the fall.
+        Some students need a missing credit. Others want to improve one key course. Some simply want more breathing room
+        in the next academic year.
+        A flexible summer option can help with all of these goals.
+    </p>
+
+    <p class="h">In-class or online: which format is better?</p>
+    <div class="grid">
+        <div class="card">
+            <span class="cap blue">In-Class Learning</span>
+            <p>
+                A good fit for students who prefer face-to-face instruction, classroom structure, and direct support at
+                the Brampton campus.
+            </p>
+        </div>
+        <div class="card">
+            <span class="cap green">Online Learning</span>
+            <p>
+                A practical choice for students who need flexibility, want to study from home, or need easier access
+                during the summer.
+            </p>
+        </div>
+        <div class="card">
+            <span class="cap orange">Flexible Start</span>
+            <p>
+                Families often value the ability to align the course with travel plans, work schedules, or other summer
+                commitments.
+            </p>
+        </div>
+    </div>
+
+    <p>
+        The best format depends on the student. What matters most is choosing a program that supports progress while
+        keeping the summer manageable.
+    </p>
+
+    <div class="sep"></div>
+
+    <p class="h">Who can benefit most from Summer School 2026?</p>
+    <ul>
+        <li>Students who want to recover or complete a credit</li>
+        <li>Students trying to improve a mark before university or college applications</li>
+        <li>Students who want to reduce next year’s course load</li>
+        <li>Students looking for a private school summer option in Brampton or online</li>
+        <li>Students who want a more flexible learning path during the summer months</li>
+    </ul>
+
+    <p>
+        If any of these sound familiar, the next step is simple: review the official Summer School page, check the
+        program details, and see whether the available format matches the student’s goals.
+    </p>
+
+    <div class="cta">
+        <a class="btn" href="https://canstemeducation.com/summer-school-2025-at-canstem/">Explore the Summer School 2026</a>
+    </div>
+
+    <p class="h">Related pages you may also want to explore</p>
+    <div class="mini-links">
+        <a href="https://canstemeducation.com/high-school-credits/">High School Credits</a>
+        <a href="https://canstemeducation.com/online-high-school/">Online High School</a>
+        <a href="https://canstemeducation.com/faq/">FAQ</a>
+        <a href="https://canstemeducation.com/contact-us/">Contact Us</a>
+        <a href="https://canstemeducation.com/registration/">Registration</a>
+    </div>
+
+    <div class="sep"></div>
+
+    <p class="h">FAQs</p>
+
+    <details open>
+        <summary>Is summer school only for students who failed a course?</summary>
+        <div class="faq-body">
+            No. Many students join summer school to improve marks, complete a credit early, reduce next year’s workload,
+            or strengthen their academic profile before university or college applications.
+        </div>
+    </details>
+
+    <details>
+        <summary>What are the main benefits of taking summer school in Grade 9 to 12?</summary>
+        <div class="faq-body">
+            Summer school can help students stay on track for graduation, improve marks in key subjects, complete
+            prerequisites earlier, and create a lighter timetable during the regular school year.
+        </div>
+    </details>
+
+    <details>
+        <summary>Do students usually take summer school for credit recovery or mark upgrades?</summary>
+        <div class="faq-body">
+            Both. Some students need to recover a missing credit, while others use summer school to upgrade marks in
+            courses that matter for future academic pathways.
+        </div>
+    </details>
+
+    <details>
+        <summary>How do families decide between online and in-class summer school?</summary>
+        <div class="faq-body">
+            Families usually compare flexibility, commute, learning style, and the level of structure a student needs.
+            Online learning works well for convenience, while in-class study can be better for students who want
+            face-to-face support.
+        </div>
+    </details>
+
+    <details>
+        <summary>Why do students look for summer school before the next academic year starts?</summary>
+        <div class="faq-body">
+            Because it gives them a chance to solve academic gaps early, improve confidence, and begin the next school
+            year with fewer course pressures and better preparation.
+        </div>
+    </details>
+
+</div>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"BlogPosting",
+  "headline":"Summer School 2026 in Brampton | Earn Ontario High School Credits (OSSD)",
+  "description":"A short guide for students and families exploring Summer School 2026, including what people search for, why students choose summer school, and how CanSTEM supports academic progress.",
+  "publisher":{
+    "@type":"Organization",
+    "name":"CanSTEM Education Private School",
+    "url":"https://canstemeducation.com/"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {
+      "@type":"Question",
+      "name":"Is summer school only for students who failed a course?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"No. Many students join summer school to improve marks, complete a credit early, reduce next year’s workload, or strengthen their academic profile before university or college applications."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"What are the main benefits of taking summer school in Grade 9 to 12?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Summer school can help students stay on track for graduation, improve marks in key subjects, complete prerequisites earlier, and create a lighter timetable during the regular school year."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Do students usually take summer school for credit recovery or mark upgrades?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Both. Some students need to recover a missing credit, while others use summer school to upgrade marks in courses that matter for future academic pathways."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"How do families decide between online and in-class summer school?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Families usually compare flexibility, commute, learning style, and the level of structure a student needs. Online learning works well for convenience, while in-class study can be better for students who want face-to-face support."
+      }
+    },
+    {
+      "@type":"Question",
+      "name":"Why do students look for summer school before the next academic year starts?",
+      "acceptedAnswer":{
+        "@type":"Answer",
+        "text":"Because it gives them a chance to solve academic gaps early, improve confidence, and begin the next school year with fewer course pressures and better preparation."
+      }
+    }
+  ]
+}
+</script>
