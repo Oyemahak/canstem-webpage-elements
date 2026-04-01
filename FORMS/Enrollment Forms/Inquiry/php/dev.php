@@ -1,8 +1,8 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-if ( ! class_exists( 'Canstem_Inquiry_Form_Handler_V2' ) ) {
+if ( ! class_exists( 'Canstem_Inquiry_Form_Handler_V3' ) ) {
 
-class Canstem_Inquiry_Form_Handler_V2 {
+class Canstem_Inquiry_Form_Handler_V3 {
 
     const SMTP_USER        = 'canstem.frontdesk@canstemeducation.com';
     const SMTP_APP_PASS    = 'persoqionuoycbkl';
@@ -13,7 +13,7 @@ class Canstem_Inquiry_Form_Handler_V2 {
     const MAIL_CC          = '';
     const MAIL_BCC         = '';
 
-    const GOOGLE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyI279jGubbJhfkSfi177d9ZljHGL48SgCTotkk5ZOxWlNF8QEIBUtHIyt10OziDDNVtQ/exec';
+    const GOOGLE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwIuSOrcRgqYxHMxhS0w4b3TDZhCSh9RgYUNUYTNLiWsiGhMK4a19zMjtjzlZhpeWs02Q/exec';
 
     public static function boot() {
         add_action( 'phpmailer_init', [ __CLASS__, 'smtp_setup' ], 999 );
@@ -52,7 +52,7 @@ class Canstem_Inquiry_Form_Handler_V2 {
     public static function handle_ajax() {
         try {
             if ( strtoupper( $_SERVER['REQUEST_METHOD'] ?? '' ) !== 'POST' ) {
-                wp_send_json_error( [ 'error' => 'Invalid method' ], 405 );
+                wp_send_json_error( [ 'error' => 'Invalid method.' ], 405 );
             }
 
             $sx = function( $v ) {
@@ -87,7 +87,7 @@ class Canstem_Inquiry_Form_Handler_V2 {
             }
 
             if ( $programInterest === 'Other' && ! $programOtherDetails ) {
-                wp_send_json_error( [ 'error' => 'Please fill "Tell us more about your requirements".' ], 400 );
+                wp_send_json_error( [ 'error' => 'Please fill "Tell Us More About Your Requirements".' ], 400 );
             }
 
             if ( ! is_email( $studentEmail ) ) {
@@ -105,6 +105,7 @@ class Canstem_Inquiry_Form_Handler_V2 {
 
             $uploads = wp_upload_dir();
             $tmpdir  = trailingslashit( $uploads['basedir'] ) . 'canstem-inquiry-temp';
+
             if ( ! file_exists( $tmpdir ) ) {
                 wp_mkdir_p( $tmpdir );
             }
@@ -157,34 +158,6 @@ class Canstem_Inquiry_Form_Handler_V2 {
                 }
             }
 
-            $google_payload = [
-                'type'                => 'Inquiry',
-                'submittedAt'         => $submittedAt,
-                'firstName'           => $firstName,
-                'lastName'            => $lastName,
-                'fullName'            => $studentName,
-                'gender'              => $gender,
-                'studentPhone'        => $studentPhone,
-                'studentEmail'        => $studentEmail,
-                'programInterest'     => $programInterest,
-                'programOtherDetails' => $programOtherDetails,
-                'hearAbout'           => $hearAbout,
-                'hearOtherSpecify'    => $hearOtherSpecify,
-                'otherRequirements'   => $otherRequirements,
-                'uploadedDocuments'   => $uploaded_doc_names,
-                'attachments'         => $clean_attachments
-            ];
-
-            $google_result = self::post_json( self::GOOGLE_WEBHOOK_URL, $google_payload );
-
-            if ( empty( $google_result['ok'] ) ) {
-                foreach ( $email_attachments as $tmp ) {
-                    @unlink( $tmp );
-                }
-                $msg = ! empty( $google_result['error'] ) ? $google_result['error'] : 'Google sync failed.';
-                wp_send_json_error( [ 'error' => $msg ], 500 );
-            }
-
             $subject = sprintf(
                 'Inquiry Submission — %s — %s',
                 $studentName,
@@ -218,18 +191,6 @@ class Canstem_Inquiry_Form_Handler_V2 {
                 $rows[] = self::tr( 'Uploaded Documents', esc_html( implode( ', ', $uploaded_doc_names ) ) );
             }
 
-            if ( ! empty( $google_result['folderName'] ) ) {
-                $rows[] = self::tr( 'Folder Name', esc_html( $google_result['folderName'] ) );
-            }
-
-            if ( ! empty( $google_result['folderUrl'] ) ) {
-                $rows[] = self::tr( 'Folder Link', '<a href="' . esc_url( $google_result['folderUrl'] ) . '" target="_blank">Open Folder</a>' );
-            }
-
-            if ( ! empty( $google_result['pdfUrl'] ) ) {
-                $rows[] = self::tr( 'Summary PDF', '<a href="' . esc_url( $google_result['pdfUrl'] ) . '" target="_blank">Open PDF</a>' );
-            }
-
             $body = '<style>
                 body{font-family:Arial,Helvetica,sans-serif;color:#0f172a}
                 .wrap{max-width:760px;margin:0 auto;padding:16px}
@@ -254,22 +215,53 @@ class Canstem_Inquiry_Form_Handler_V2 {
                 $headers[] = 'Bcc: ' . self::MAIL_BCC;
             }
 
+            // Send email FIRST so submission doesn't appear broken if Google sync has issues.
             $sent = wp_mail( self::MAIL_TO, $subject, $body, $headers, $email_attachments );
+
+            if ( ! $sent ) {
+                foreach ( $email_attachments as $tmp ) {
+                    @unlink( $tmp );
+                }
+                wp_send_json_error( [ 'error' => 'Email notification failed.' ], 500 );
+            }
+
+            $google_payload = [
+                'type'                => 'Inquiry',
+                'submittedAt'         => $submittedAt,
+                'firstName'           => $firstName,
+                'lastName'            => $lastName,
+                'fullName'            => $studentName,
+                'gender'              => $gender,
+                'studentPhone'        => $studentPhone,
+                'studentEmail'        => $studentEmail,
+                'programInterest'     => $programInterest,
+                'programOtherDetails' => $programOtherDetails,
+                'hearAbout'           => $hearAbout,
+                'hearOtherSpecify'    => $hearOtherSpecify,
+                'otherRequirements'   => $otherRequirements,
+                'uploadedDocuments'   => $uploaded_doc_names,
+                'attachments'         => $clean_attachments
+            ];
+
+            $google_result = self::post_json( self::GOOGLE_WEBHOOK_URL, $google_payload );
 
             foreach ( $email_attachments as $tmp ) {
                 @unlink( $tmp );
             }
 
-            if ( ! $sent ) {
-                error_log( 'Inquiry email failed, but Google sync succeeded.' );
+            if ( empty( $google_result['ok'] ) ) {
+                error_log( 'Google sync failed after email success: ' . ( $google_result['error'] ?? 'Unknown error' ) );
+
                 wp_send_json_success( [
-                    'ok' => true,
-                    'warning' => 'Saved to sheet and drive, but email failed.'
+                    'ok'      => true,
+                    'warning' => 'Email sent successfully, but Drive/Sheet sync failed.'
                 ] );
             }
 
-            wp_send_json_success( [ 'ok' => true ] );
-
+            wp_send_json_success( [
+                'ok'      => true,
+                'warning' => ''
+            ] );
         } catch ( Throwable $e ) {
             error_log( 'canstem_inquiry_request exception: ' . $e->getMessage() );
             error_log( 'canstem_inquiry_request trace: ' . $e->getTraceAsString() );
@@ -302,14 +294,14 @@ class Canstem_Inquiry_Form_Handler_V2 {
 
         if ( $code < 200 || $code >= 300 ) {
             return [
-                'ok' => false,
+                'ok'    => false,
                 'error' => 'Google webhook returned HTTP ' . $code . ' | Body: ' . substr( trim( wp_strip_all_tags( $body ) ), 0, 300 )
             ];
         }
 
         if ( ! is_array( $json ) ) {
             return [
-                'ok' => false,
+                'ok'    => false,
                 'error' => 'Google webhook did not return valid JSON | Body: ' . substr( trim( wp_strip_all_tags( $body ) ), 0, 300 )
             ];
         }
@@ -322,5 +314,6 @@ class Canstem_Inquiry_Form_Handler_V2 {
     }
 }
 
-Canstem_Inquiry_Form_Handler_V2::boot();
+Canstem_Inquiry_Form_Handler_V3::boot();
+
 }

@@ -2,6 +2,13 @@ const SHEET_ID = '1sOYLYpXd3nYbbui3lu_2vOB1vQGl0AV44HIMBvlwgys';
 const SHEET_TAB = 'All Inquiries';
 const PARENT_FOLDER_ID = '105oG2ZkCgMnt8KvNN7p9u3AwAZnTDcKu';
 
+function doGet() {
+  return jsonResponse({
+    ok: true,
+    message: 'Inquiry web app is live'
+  });
+}
+
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents || '{}');
@@ -117,9 +124,9 @@ function createSummaryPdf(submissionFolder, inquiryId, data, uploadedDocNames) {
     ['Email Address', data.studentEmail || ''],
     ['Phone Number', data.studentPhone || ''],
     ['Program of Interest', data.programInterest || ''],
-    ['Tell Us More About Your Requirements', data.programOtherDetails || ''],
     ['How You Hear About Us?', data.hearAbout || ''],
     ['Please Specify', data.hearOtherSpecify || ''],
+    ['Tell Us More About Your Requirements', data.programOtherDetails || ''],
     ['Additional Notes', data.otherRequirements || '']
   ];
 

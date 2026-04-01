@@ -137,12 +137,6 @@
             margin: 16px 0;
         }
 
-        #cs-req .cs-subnote {
-            font-size: 16px;
-            color: #475569;
-            margin-top: 6px;
-        }
-
         #cs-req .cs-notice {
             margin: 8px 0 16px;
             padding: 12px 14px;
@@ -249,12 +243,12 @@
                 </div>
 
                 <div class="cs-field">
-                    <label class="cs-label cs-req" for="studentPhone">Student Phone Number</label>
+                    <label class="cs-label cs-req" for="studentPhone">Phone Number</label>
                     <input class="cs-input" id="studentPhone" name="studentPhone" placeholder="+1 555 555 5555" required>
                 </div>
 
                 <div class="cs-field">
-                    <label class="cs-label cs-req" for="studentEmail">Student Personal Email</label>
+                    <label class="cs-label cs-req" for="studentEmail">Email Address</label>
                     <input class="cs-input" id="studentEmail" name="studentEmail" type="email" placeholder="name@domain.com" required>
                 </div>
 
@@ -271,7 +265,7 @@
 
                 <div class="cs-field is-hidden" id="programOtherWrap" style="grid-column:1/-1;">
                     <label class="cs-label cs-req" for="programOtherDetails">Tell us more about your requirements</label>
-                    <textarea class="cs-input" id="programOtherDetails" name="programOtherDetails" maxlength="500" placeholder="Please specify your program or requirements..."></textarea>
+                    <textarea class="cs-input" id="programOtherDetails" name="programOtherDetails" maxlength="500" placeholder="Please specify your requirements..."></textarea>
                     <div class="cs-inline-msg"><span id="programOtherCount">500</span> characters remaining</div>
                 </div>
             </div>
@@ -312,7 +306,7 @@
 
             <span class="cs-chip">Document Uploads</span>
             <div class="cs-notice">
-                You may upload supporting documents if available. These documents will be reviewed by our admissions / inquiry team.
+                You may upload supporting documents if available. Documents are optional. A PDF summary of the submission will also be saved in the Drive folder automatically.
             </div>
 
             <div class="cs-row">
@@ -386,7 +380,6 @@
             function toggleHearOther() {
                 const isOther = hearAbout.value === 'Other';
                 hearOtherWrap.classList.toggle('is-hidden', !isOther);
-                hearOtherSpecify.required = false;
 
                 if (!isOther) {
                     hearOtherSpecify.value = '';
@@ -448,13 +441,6 @@
                 otherReqCount.textContent = '500';
             }
 
-            function appendFileIfAny(fd, inputId, fieldName) {
-                const el = document.getElementById(inputId);
-                if (!el || !el.files || !el.files.length) return false;
-                fd.append(fieldName, el.files[0], el.files[0].name);
-                return true;
-            }
-
             async function submitForm() {
                 if (!isValid()) {
                     if (!document.getElementById('status').textContent) {
@@ -465,25 +451,30 @@
 
                 setStatus('Submitting…');
 
-                const fd = new FormData();
-                fd.append('action', 'canstem_inquiry_request');
-                fd.append('type', 'Inquiry');
-                fd.append('firstName', val('fname'));
-                fd.append('lastName', val('lname'));
-                fd.append('gender', val('gender'));
-                fd.append('studentPhone', val('studentPhone'));
-                fd.append('studentEmail', val('studentEmail'));
-                fd.append('programInterest', val('programInterest'));
-                fd.append('programOtherDetails', val('programOtherDetails'));
-                fd.append('hearAbout', val('hearAbout'));
-                fd.append('hearOtherSpecify', val('hearOtherSpecify'));
-                fd.append('otherRequirements', val('otherRequirements'));
-
-                appendFileIfAny(fd, 'transcriptFile', 'transcriptFile');
-                appendFileIfAny(fd, 'additionalDocFile', 'additionalDocFile');
-                appendFileIfAny(fd, 'pictureIdFile', 'pictureIdFile');
-
                 try {
+                    const fd = new FormData();
+                    fd.append('action', 'canstem_inquiry_request');
+
+                    fd.append('type', 'Inquiry');
+                    fd.append('firstName', val('fname'));
+                    fd.append('lastName', val('lname'));
+                    fd.append('gender', val('gender'));
+                    fd.append('studentPhone', val('studentPhone'));
+                    fd.append('studentEmail', val('studentEmail'));
+                    fd.append('programInterest', val('programInterest'));
+                    fd.append('programOtherDetails', val('programOtherDetails'));
+                    fd.append('hearAbout', val('hearAbout'));
+                    fd.append('hearOtherSpecify', val('hearOtherSpecify'));
+                    fd.append('otherRequirements', val('otherRequirements'));
+
+                    const transcript = document.getElementById('transcriptFile');
+                    const additional = document.getElementById('additionalDocFile');
+                    const passport = document.getElementById('pictureIdFile');
+
+                    if (transcript?.files?.[0]) fd.append('transcriptFile', transcript.files[0]);
+                    if (additional?.files?.[0]) fd.append('additionalDocFile', additional.files[0]);
+                    if (passport?.files?.[0]) fd.append('pictureIdFile', passport.files[0]);
+
                     const resp = await fetch(AJAX_URL, {
                         method: 'POST',
                         body: fd,
@@ -491,24 +482,29 @@
                     });
 
                     const raw = await resp.text();
+
                     let data = {};
                     try {
                         data = JSON.parse(raw);
                     } catch (e) {
+                        console.error('Raw server response:', raw);
                         data = { success: false, data: { error: 'Invalid server response' } };
                     }
 
                     if (resp.ok && data.success) {
-                        clearForm();
-                        setStatus('Success! Your inquiry form has been submitted successfully.', true);
+                        if (data.data && data.data.warning) {
+                            clearForm();
+                            setStatus('Submitted successfully. ' + data.data.warning, true);
+                        } else {
+                            clearForm();
+                            setStatus('Success! Your inquiry form has been submitted successfully.', true);
+                        }
                     } else {
-                        const looksLikeHtml = /<html|<!doctype/i.test(raw || '');
-                        const msg = looksLikeHtml
-                            ? 'Upload failed or server blocked the request. Please try again.'
-                            : (data?.data?.error || 'Error sending your request. Please try again.');
+                        const msg = data?.data?.error || `Error sending your request. HTTP ${resp.status}`;
                         setStatus(msg, false);
                     }
                 } catch (e) {
+                    console.error(e);
                     setStatus('Network error. Please try again.', false);
                 }
             }

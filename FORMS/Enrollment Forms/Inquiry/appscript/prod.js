@@ -2,6 +2,13 @@ const SHEET_ID = '1sOYLYpXd3nYbbui3lu_2vOB1vQGl0AV44HIMBvlwgys';
 const SHEET_TAB = 'All Inquiries';
 const PARENT_FOLDER_ID = '105oG2ZkCgMnt8KvNN7p9u3AwAZnTDcKu';
 
+function doGet() {
+  return jsonResponse({
+    ok: true,
+    message: 'Inquiry web app is live'
+  });
+}
+
 function doPost(e) {
   try {
     const data = JSON.parse(e.postData.contents || '{}');
@@ -20,10 +27,9 @@ function doPost(e) {
 
     const inquiryId = 'INQ-' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyyMMdd-HHmmss');
 
-    const fileLinks = {};
     const uploadedDocNames = [];
-
     const attachments = Array.isArray(data.attachments) ? data.attachments : [];
+
     attachments.forEach(file => {
       if (!file || !file.dataBase64 || !file.name) return;
 
@@ -33,52 +39,50 @@ function doPost(e) {
         file.mimeType || 'application/octet-stream',
         file.name
       );
-      const created = submissionFolder.createFile(blob);
 
-      fileLinks[file.label || file.name] = created.getUrl();
+      submissionFolder.createFile(blob);
       uploadedDocNames.push(file.label || file.name);
     });
 
-    const pdfUrl = createSummaryPdf(submissionFolder, inquiryId, data, fileLinks);
+    const pdfUrl = createSummaryPdf(submissionFolder, inquiryId, data, uploadedDocNames);
     const folderUrl = submissionFolder.getUrl();
 
     const sheet = SpreadsheetApp.openById(SHEET_ID).getSheetByName(SHEET_TAB);
     if (!sheet) throw new Error(`Sheet tab "${SHEET_TAB}" not found.`);
 
-    const row = [
-      ts,                                              // Timestamp
-      inquiryId,                                       // Inquiry ID
-      data.firstName || '',                            // First Name
-      data.lastName || '',                             // Last Name
-      fullName,                                        // Full Name
-      data.studentEmail || '',                         // Email Address
-      data.studentPhone || '',                         // Phone Number
-      data.programInterest || '',                      // Program of Interest
-      data.hearAbout || '',                            // How Did You Hear About Us
-      data.hearOtherSpecify || '',                     // Please Specify
-      data.programOtherDetails || '',                  // Tell Us More About Your Requirements
-      uploadedDocNames.join(', '),                     // Uploaded Documents
-      folderUrl,                                       // Submission Folder Link
-      pdfUrl,                                          // PDF Summary Link
-      fileLinks['Transcript 1 - Report card'] || '',   // Transcript Link
-      fileLinks['Additional Document 1'] || '',        // Additional Document Link
-      fileLinks['Picture ID Passport'] || '',          // Picture ID Link
-      'New',                                           // Status
-      '',                                              // Assigned To
-      '',                                              // Notes
-      '',                                              // Follow Up Date
-      '',                                              // Payment Status
-      ''                                               // Internal Remarks
-    ];
+    const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+    const rowData = {};
 
+    rowData['Timestamp'] = ts;
+    rowData['Inquiry ID'] = inquiryId;
+    rowData['First Name'] = data.firstName || '';
+    rowData['Last Name'] = data.lastName || '';
+    rowData['Full Name'] = fullName;
+    rowData['Gender'] = data.gender || '';
+    rowData['Email Address'] = data.studentEmail || '';
+    rowData['Phone Number'] = data.studentPhone || '';
+    rowData['Program of Interest'] = data.programInterest || '';
+    rowData['How You Hear About Us?'] = data.hearAbout || '';
+    rowData['Please Specify'] = data.hearOtherSpecify || '';
+    rowData['Tell Us More About Your Requirements'] = data.programOtherDetails || '';
+    rowData['Additional Notes'] = data.otherRequirements || '';
+    rowData['Uploaded Documents'] = uploadedDocNames.join(', ');
+    rowData['Folder Name'] = folderName;
+    rowData['Folder Link'] = folderUrl;
+    rowData['Status'] = 'New';
+    rowData['Assigned To'] = '';
+    rowData['Notes'] = '';
+    rowData['Last Updated'] = 'New';
+
+    const row = headers.map(header => rowData[header] !== undefined ? rowData[header] : '');
     sheet.appendRow(row);
 
     return jsonResponse({
       ok: true,
       inquiryId,
+      folderName,
       folderUrl,
-      pdfUrl,
-      fileLinks
+      pdfUrl
     });
 
   } catch (err) {
@@ -101,7 +105,7 @@ function sanitizeName(value) {
     .trim();
 }
 
-function createSummaryPdf(submissionFolder, inquiryId, data, fileLinks) {
+function createSummaryPdf(submissionFolder, inquiryId, data, uploadedDocNames) {
   const doc = DocumentApp.create(`${inquiryId} - Inquiry Summary`);
   const body = doc.getBody();
 
@@ -120,9 +124,9 @@ function createSummaryPdf(submissionFolder, inquiryId, data, fileLinks) {
     ['Email Address', data.studentEmail || ''],
     ['Phone Number', data.studentPhone || ''],
     ['Program of Interest', data.programInterest || ''],
-    ['Tell Us More About Your Requirements', data.programOtherDetails || ''],
-    ['How Did You Hear About Us', data.hearAbout || ''],
+    ['How You Hear About Us?', data.hearAbout || ''],
     ['Please Specify', data.hearOtherSpecify || ''],
+    ['Tell Us More About Your Requirements', data.programOtherDetails || ''],
     ['Additional Notes', data.otherRequirements || '']
   ];
 
@@ -131,12 +135,10 @@ function createSummaryPdf(submissionFolder, inquiryId, data, fileLinks) {
   });
 
   body.appendParagraph('');
-  body.appendParagraph('Uploaded File Links:');
+  body.appendParagraph('Uploaded Documents:');
 
-  if (Object.keys(fileLinks).length) {
-    Object.keys(fileLinks).forEach(label => {
-      body.appendParagraph(`${label}: ${fileLinks[label]}`);
-    });
+  if (uploadedDocNames.length) {
+    uploadedDocNames.forEach(name => body.appendParagraph(name));
   } else {
     body.appendParagraph('No uploaded documents.');
   }
