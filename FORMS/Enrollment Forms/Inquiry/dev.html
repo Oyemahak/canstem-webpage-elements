@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Inquiry Form</title>
+
+    <style>
+        html:has(#cs-req),
+        body:has(#cs-req) {
+            background-color: #fff !important;
+        }
+
+        .elementor-section:has(#cs-req) {
+            background-color: #fff !important;
+        }
+
+        #cs-req,
+        #cs-req * {
+            box-sizing: border-box;
+        }
+
+        #cs-req {
+            --cs-bg: #fff;
+            --cs-ink: #0b1324;
+            --cs-sub: #475569;
+            --cs-line: #e5e7eb;
+            --cs-primary: #001161;
+            --cs-primary-ink: #fff;
+            --cs-chip-bg: #eef2ff;
+            --cs-chip-ink: #1e1b4b;
+            max-width: 1200px;
+            color: var(--cs-ink);
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        }
+
+        #cs-req .cs-card {
+            background: var(--cs-bg);
+            border: 1px solid var(--cs-line);
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 10px 28px rgba(2, 6, 23, .08);
+        }
+
+        #cs-req .cs-chip {
+            display: inline-block;
+            background: var(--cs-chip-bg);
+            color: var(--cs-chip-ink);
+            border: 1px solid #e0e7ff;
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        #cs-req .cs-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        @media (max-width:820px) {
+            #cs-req .cs-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        #cs-req .cs-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        #cs-req .cs-label {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--cs-ink);
+        }
+
+        #cs-req .cs-req::after {
+            content: " *";
+            color: #e11d48;
+        }
+
+        #cs-req .cs-input,
+        #cs-req select.cs-input,
+        #cs-req textarea.cs-input,
+        #cs-req input[type=file].cs-input {
+            width: 100%;
+            min-height: 52px;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            background: #fff;
+            color: var(--cs-ink);
+            font-size: 18px;
+            line-height: 1.3;
+            outline: none;
+            appearance: none;
+            transition: border-color .15s, box-shadow .15s;
+        }
+
+        #cs-req .cs-input::placeholder {
+            color: #94a3b8;
+        }
+
+        #cs-req .cs-input:focus {
+            border-color: #4169e1;
+            box-shadow: 0 0 0 3px color-mix(in srgb, #4169e1 25%, transparent);
+        }
+
+        #cs-req select.cs-input {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="%23001161" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 18px 18px;
+            padding-right: 48px;
+            cursor: pointer;
+        }
+
+        #cs-req textarea.cs-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        #cs-req input[type=file].cs-input {
+            min-height: auto;
+            padding: 10px;
+        }
+
+        #cs-req .cs-sep {
+            border: none;
+            border-top: 1px dashed #e2e8f0;
+            margin: 16px 0;
+        }
+
+        #cs-req .cs-notice {
+            margin: 8px 0 16px;
+            padding: 12px 14px;
+            border: 1px dashed var(--cs-line);
+            border-radius: 12px;
+            background: #f8fafc;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        #cs-req .cs-finish {
+            color: #dc2626;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 8px;
+        }
+
+        #cs-req .cs-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        #cs-req .cs-btn {
+            background: var(--cs-primary);
+            color: var(--cs-primary-ink);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 48px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #cs-req .cs-btn:hover {
+            filter: brightness(1.05);
+        }
+
+        #cs-req .cs-status {
+            min-height: 1.4em;
+            font-size: 18px;
+        }
+
+        #cs-req .cs-ok {
+            color: #16a34a;
+            font-weight: 700;
+        }
+
+        #cs-req .cs-err {
+            color: #b91c1c;
+            font-weight: 700;
+        }
+
+        #cs-req .cs-inline-msg {
+            font-size: 14px;
+            color: #475569;
+        }
+
+        #cs-req .is-hidden {
+            display: none !important;
+        }
+
+        #cs-req input.cs-input,
+        #cs-req select.cs-input,
+        #cs-req textarea.cs-input,
+        #cs-req input[type="file"].cs-input {
+            box-shadow: none;
+        }
+
+        #cs-req input.cs-input:focus,
+        #cs-req select.cs-input:focus,
+        #cs-req textarea.cs-input:focus,
+        #cs-req input[type="file"].cs-input:focus {
+            box-shadow: 0 0 0 3px color-mix(in srgb, #4169e1 25%, transparent);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cs-wrap" id="cs-req" role="form" aria-labelledby="req-title">
+        <section class="cs-card">
+            <span class="cs-chip" id="req-title">Inquiry Form (2024–2026)</span>
+
+            <div class="cs-row">
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="fname">First Name</label>
+                    <input class="cs-input" id="fname" name="firstName" autocomplete="given-name" placeholder="First" required>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="lname">Last Name</label>
+                    <input class="cs-input" id="lname" name="lastName" autocomplete="family-name" placeholder="Last" required>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="gender">Gender</label>
+                    <select class="cs-input" id="gender" name="gender" required>
+                        <option value="">Select gender…</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="studentPhone">Phone Number</label>
+                    <input class="cs-input" id="studentPhone" name="studentPhone" placeholder="+1 555 555 5555" required>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="studentEmail">Email Address</label>
+                    <input class="cs-input" id="studentEmail" name="studentEmail" type="email" placeholder="name@domain.com" required>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="programInterest">Program of Interest</label>
+                    <select class="cs-input" id="programInterest" name="programInterest" required>
+                        <option value="">Select program…</option>
+                        <option value="Full Time School">Full Time School</option>
+                        <option value="High School Credit Course">High School Credit Course</option>
+                        <option value="Tutoring">Tutoring</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="cs-field is-hidden" id="programOtherWrap" style="grid-column:1/-1;">
+                    <label class="cs-label cs-req" for="programOtherDetails">Tell us more about your requirements</label>
+                    <textarea class="cs-input" id="programOtherDetails" name="programOtherDetails" maxlength="500" placeholder="Please specify your requirements..."></textarea>
+                    <div class="cs-inline-msg"><span id="programOtherCount">500</span> characters remaining</div>
+                </div>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <span class="cs-chip">Other Information</span>
+            <div class="cs-row">
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="hearAbout">How did you hear about our school?</label>
+                    <select class="cs-input" id="hearAbout" name="hearAbout" required>
+                        <option value="">Select option…</option>
+                        <option value="Google">Google</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Family">Family</option>
+                        <option value="Friend">Friend</option>
+                        <option value="Kijiji">Kijiji</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="cs-field is-hidden" id="hearOtherWrap">
+                    <label class="cs-label" for="hearOtherSpecify">Please Specify:</label>
+                    <input class="cs-input" id="hearOtherSpecify" name="hearOtherSpecify" type="text" placeholder="Please specify">
+                </div>
+
+                <div class="cs-field" style="grid-column:1/-1;">
+                    <label class="cs-label" for="otherRequirements">Additional Notes</label>
+                    <textarea class="cs-input" id="otherRequirements" name="otherRequirements" maxlength="500" placeholder="Optional additional information..."></textarea>
+                    <div class="cs-inline-msg"><span id="otherReqCount">500</span> characters remaining</div>
+                </div>
+            </div>
+
+            <div class="cs-finish">When you are finished, please click 'Submit' to complete this form.</div>
+
+            <hr class="cs-sep" />
+
+            <span class="cs-chip">Document Uploads</span>
+            <div class="cs-notice">
+                You may upload supporting documents if available. Documents are optional. A PDF summary of the submission will also be saved in the Drive folder automatically.
+            </div>
+
+            <div class="cs-row">
+                <div class="cs-field">
+                    <label class="cs-label" for="transcriptFile">Transcript 1 - Report card</label>
+                    <input class="cs-input" id="transcriptFile" name="transcriptFile" type="file"
+                        accept=".doc,.docx,.pdf,.txt,.rtf,.xls,.xlsx,.bmp,.gif,.jpg,.jpeg,.png">
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label" for="additionalDocFile">Additional Document 1</label>
+                    <input class="cs-input" id="additionalDocFile" name="additionalDocFile" type="file"
+                        accept=".doc,.docx,.pdf,.txt,.rtf,.xls,.xlsx,.bmp,.gif,.jpg,.jpeg,.png">
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label" for="pictureIdFile">Picture ID Passport</label>
+                    <input class="cs-input" id="pictureIdFile" name="pictureIdFile" type="file"
+                        accept=".doc,.docx,.pdf,.txt,.rtf,.xls,.xlsx,.bmp,.gif,.jpg,.jpeg,.png">
+                </div>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <div class="cs-actions">
+                <button class="cs-btn" id="submitBtn" type="button">Submit</button>
+                <span class="cs-status" id="status" aria-live="polite"></span>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        (function () {
+            const AJAX_URL = '/wp-admin/admin-ajax.php';
+
+            const programInterest = document.getElementById('programInterest');
+            const programOtherWrap = document.getElementById('programOtherWrap');
+            const programOtherDetails = document.getElementById('programOtherDetails');
+            const programOtherCount = document.getElementById('programOtherCount');
+
+            const hearAbout = document.getElementById('hearAbout');
+            const hearOtherWrap = document.getElementById('hearOtherWrap');
+            const hearOtherSpecify = document.getElementById('hearOtherSpecify');
+
+            const otherReq = document.getElementById('otherRequirements');
+            const otherReqCount = document.getElementById('otherReqCount');
+
+            function bindCount(textarea, counter, max) {
+                if (!textarea || !counter) return;
+                const update = () => {
+                    counter.textContent = Math.max(0, max - textarea.value.length);
+                };
+                textarea.addEventListener('input', update);
+                update();
+            }
+
+            bindCount(programOtherDetails, programOtherCount, 500);
+            bindCount(otherReq, otherReqCount, 500);
+
+            function toggleProgramOther() {
+                const isOther = programInterest.value === 'Other';
+                programOtherWrap.classList.toggle('is-hidden', !isOther);
+                programOtherDetails.required = isOther;
+
+                if (!isOther) {
+                    programOtherDetails.value = '';
+                    programOtherCount.textContent = '500';
+                }
+            }
+
+            function toggleHearOther() {
+                const isOther = hearAbout.value === 'Other';
+                hearOtherWrap.classList.toggle('is-hidden', !isOther);
+
+                if (!isOther) {
+                    hearOtherSpecify.value = '';
+                }
+            }
+
+            programInterest.addEventListener('change', toggleProgramOther);
+            hearAbout.addEventListener('change', toggleHearOther);
+
+            toggleProgramOther();
+            toggleHearOther();
+
+            const val = id => (document.getElementById(id)?.value || '').trim();
+
+            function setStatus(msg, ok) {
+                const el = document.getElementById('status');
+                el.className = 'cs-status';
+                el.textContent = msg;
+                if (ok === true) el.classList.add('cs-ok');
+                else if (ok === false) el.classList.add('cs-err');
+            }
+
+            function isValid() {
+                const req = ['fname', 'lname', 'gender', 'studentPhone', 'studentEmail', 'programInterest', 'hearAbout'];
+                for (const id of req) {
+                    const el = document.getElementById(id);
+                    if (!el || !el.value.trim()) {
+                        el?.focus();
+                        return false;
+                    }
+                }
+
+                if (programInterest.value === 'Other' && !programOtherDetails.value.trim()) {
+                    programOtherDetails.focus();
+                    setStatus('Please fill the required Program of Interest details.', false);
+                    return false;
+                }
+
+                const email = val('studentEmail');
+                const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+                if (!emailOk) {
+                    document.getElementById('studentEmail').focus();
+                    setStatus('Please enter a valid email address.', false);
+                    return false;
+                }
+
+                return true;
+            }
+
+            function clearForm() {
+                document.querySelectorAll('#cs-req input, #cs-req textarea, #cs-req select').forEach(el => {
+                    if (el.type === 'file') el.value = '';
+                    else el.value = '';
+                });
+
+                toggleProgramOther();
+                toggleHearOther();
+                programOtherCount.textContent = '500';
+                otherReqCount.textContent = '500';
+            }
+
+            async function submitForm() {
+                if (!isValid()) {
+                    if (!document.getElementById('status').textContent) {
+                        setStatus('Please fill all required fields.', false);
+                    }
+                    return;
+                }
+
+                setStatus('Submitting…');
+
+                try {
+                    const fd = new FormData();
+                    fd.append('action', 'canstem_inquiry_request');
+
+                    fd.append('type', 'Inquiry');
+                    fd.append('firstName', val('fname'));
+                    fd.append('lastName', val('lname'));
+                    fd.append('gender', val('gender'));
+                    fd.append('studentPhone', val('studentPhone'));
+                    fd.append('studentEmail', val('studentEmail'));
+                    fd.append('programInterest', val('programInterest'));
+                    fd.append('programOtherDetails', val('programOtherDetails'));
+                    fd.append('hearAbout', val('hearAbout'));
+                    fd.append('hearOtherSpecify', val('hearOtherSpecify'));
+                    fd.append('otherRequirements', val('otherRequirements'));
+
+                    const transcript = document.getElementById('transcriptFile');
+                    const additional = document.getElementById('additionalDocFile');
+                    const passport = document.getElementById('pictureIdFile');
+
+                    if (transcript?.files?.[0]) fd.append('transcriptFile', transcript.files[0]);
+                    if (additional?.files?.[0]) fd.append('additionalDocFile', additional.files[0]);
+                    if (passport?.files?.[0]) fd.append('pictureIdFile', passport.files[0]);
+
+                    const resp = await fetch(AJAX_URL, {
+                        method: 'POST',
+                        body: fd,
+                        credentials: 'same-origin'
+                    });
+
+                    const raw = await resp.text();
+
+                    let data = {};
+                    try {
+                        data = JSON.parse(raw);
+                    } catch (e) {
+                        console.error('Raw server response:', raw);
+                        data = { success: false, data: { error: 'Invalid server response' } };
+                    }
+
+                    if (resp.ok && data.success) {
+                        clearForm();
+                        setStatus('Success! Your inquiry form has been submitted successfully.', true);
+                    } else {
+                        const msg = data?.data?.error || `Error sending your request. HTTP ${resp.status}`;
+                        setStatus(msg, false);
+                    }
+                } catch (e) {
+                    console.error(e);
+                    setStatus('Network error. Please try again.', false);
+                }
+            }
+
+            document.getElementById('submitBtn').addEventListener('click', function (e) {
+                e.preventDefault();
+                submitForm();
+            });
+        })();
+    </script>
+</body>
+
+</html>
