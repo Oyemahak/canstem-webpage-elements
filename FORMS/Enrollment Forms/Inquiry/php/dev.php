@@ -5,7 +5,7 @@ if ( ! class_exists( 'Canstem_Inquiry_Form_Handler' ) ) {
 class Canstem_Inquiry_Form_Handler {
 
     const SMTP_USER        = 'canstem.frontdesk@canstemeducation.com';
-    const SMTP_APP_PASS    = 'PASTE_YOUR_CURRENT_APP_PASSWORD_HERE';
+    const SMTP_APP_PASS    = 'persoqionuoycbkl';
     const FROM_ALIAS_EMAIL = 'student-request@canstemeducation.com';
     const FROM_ALIAS_NAME  = 'Student Inquiry';
 
