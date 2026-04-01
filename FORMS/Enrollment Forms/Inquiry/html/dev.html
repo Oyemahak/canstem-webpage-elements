@@ -492,8 +492,13 @@
                     }
 
                     if (resp.ok && data.success) {
-                        clearForm();
-                        setStatus('Success! Your inquiry form has been submitted successfully.', true);
+                        if (data.data && data.data.warning) {
+                            clearForm();
+                            setStatus('Submitted successfully. ' + data.data.warning, true);
+                        } else {
+                            clearForm();
+                            setStatus('Success! Your inquiry form has been submitted successfully.', true);
+                        }
                     } else {
                         const msg = data?.data?.error || `Error sending your request. HTTP ${resp.status}`;
                         setStatus(msg, false);

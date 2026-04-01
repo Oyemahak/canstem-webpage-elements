@@ -5,8 +5,8 @@ if ( ! class_exists( 'Canstem_Inquiry_Form_Handler' ) ) {
 class Canstem_Inquiry_Form_Handler {
 
     const SMTP_USER        = 'canstem.frontdesk@canstemeducation.com';
-    const SMTP_APP_PASS    = 'persoqionuoycbkl';
-    const FROM_ALIAS_EMAIL = 'student-request@canstemeducation.com'; // keep same verified alias email if already working
+    const SMTP_APP_PASS    = 'PASTE_YOUR_CURRENT_APP_PASSWORD_HERE';
+    const FROM_ALIAS_EMAIL = 'student-request@canstemeducation.com';
     const FROM_ALIAS_NAME  = 'Student Inquiry';
 
     const MAIL_TO          = 'canstem.frontdesk@canstemeducation.com';
@@ -99,8 +99,8 @@ class Canstem_Inquiry_Form_Handler {
 
             $allowed_exts = [ 'doc', 'docx', 'pdf', 'txt', 'rtf', 'xls', 'xlsx', 'bmp', 'gif', 'jpg', 'jpeg', 'png' ];
 
-            $clean_attachments = [];
             $email_attachments = [];
+            $uploaded_doc_names = [];
 
             $uploads = wp_upload_dir();
             $tmpdir  = trailingslashit( $uploads['basedir'] ) . 'canstem-inquiry-temp';
@@ -134,19 +134,12 @@ class Canstem_Inquiry_Form_Handler {
                     wp_send_json_error( [ 'error' => 'Invalid file type uploaded for ' . $label ], 400 );
                 }
 
-                $mime = sanitize_text_field( $_FILES[ $field ]['type'] ?? 'application/octet-stream' );
-                $bin  = file_get_contents( $_FILES[ $field ]['tmp_name'] );
-
+                $bin = file_get_contents( $_FILES[ $field ]['tmp_name'] );
                 if ( $bin === false ) {
                     wp_send_json_error( [ 'error' => 'Could not read uploaded file for ' . $label ], 400 );
                 }
 
-                $clean_attachments[] = [
-                    'label'      => $label,
-                    'name'       => $name,
-                    'mimeType'   => $mime,
-                    'dataBase64' => base64_encode( $bin ),
-                ];
+                $uploaded_doc_names[] = $label;
 
                 $tmpfile = trailingslashit( $tmpdir ) . wp_unique_filename( $tmpdir, $name );
                 if ( file_put_contents( $tmpfile, $bin ) !== false ) {
@@ -168,7 +161,8 @@ class Canstem_Inquiry_Form_Handler {
                 'hearAbout'           => $hearAbout,
                 'hearOtherSpecify'    => $hearOtherSpecify,
                 'otherRequirements'   => $otherRequirements,
-                'attachments'         => $clean_attachments
+                'uploadedDocuments'   => $uploaded_doc_names,
+                'attachments'         => []
             ];
 
             $google_result = self::post_json( self::GOOGLE_WEBHOOK_URL, $google_payload );
@@ -211,20 +205,20 @@ class Canstem_Inquiry_Form_Handler {
                 $rows[] = self::tr( 'Additional Notes', nl2br( esc_html( $otherRequirements ) ) );
             }
 
+            if ( ! empty( $uploaded_doc_names ) ) {
+                $rows[] = self::tr( 'Uploaded Documents', esc_html( implode( ', ', $uploaded_doc_names ) ) );
+            }
+
+            if ( ! empty( $google_result['folderName'] ) ) {
+                $rows[] = self::tr( 'Folder Name', esc_html( $google_result['folderName'] ) );
+            }
+
             if ( ! empty( $google_result['folderUrl'] ) ) {
-                $rows[] = self::tr( 'Submission Folder', '<a href="' . esc_url( $google_result['folderUrl'] ) . '" target="_blank">Open Folder</a>' );
+                $rows[] = self::tr( 'Folder Link', '<a href="' . esc_url( $google_result['folderUrl'] ) . '" target="_blank">Open Folder</a>' );
             }
 
             if ( ! empty( $google_result['pdfUrl'] ) ) {
-                $rows[] = self::tr( 'Summary PDF', '<a href="' . esc_url( $google_result['pdfUrl'] ) . '" target="_blank">Open PDF</a>' );
-            }
-
-            if ( ! empty( $google_result['fileLinks'] ) && is_array( $google_result['fileLinks'] ) ) {
-                foreach ( $google_result['fileLinks'] as $label => $url ) {
-                    if ( $url ) {
-                        $rows[] = self::tr( $label, '<a href="' . esc_url( $url ) . '" target="_blank">Open File</a>' );
-                    }
-                }
+                $rows[] = self::tr( 'Summary PDF Link', '<a href="' . esc_url( $google_result['pdfUrl'] ) . '" target="_blank">Open PDF</a>' );
             }
 
             $body = '<style>
@@ -258,14 +252,22 @@ class Canstem_Inquiry_Form_Handler {
             }
 
             if ( ! $sent ) {
-                wp_send_json_error( [ 'error' => 'Mail failed after Google sync.' ], 500 );
+                error_log( 'Inquiry email failed, but Google sync succeeded.' );
+                wp_send_json_success( [
+                    'ok' => true,
+                    'warning' => 'Saved to sheet and drive, but email failed.'
+                ] );
             }
 
             wp_send_json_success( [ 'ok' => true ] );
 
         } catch ( Throwable $e ) {
             error_log( 'canstem_inquiry_request exception: ' . $e->getMessage() );
-            wp_send_json_error( [ 'error' => 'Server error' ], 500 );
+            error_log( 'canstem_inquiry_request trace: ' . $e->getTraceAsString() );
+
+            wp_send_json_error( [
+                'error' => 'PHP exception: ' . $e->getMessage()
+            ], 500 );
         }
     }
 
@@ -277,15 +279,30 @@ class Canstem_Inquiry_Form_Handler {
         ] );
 
         if ( is_wp_error( $response ) ) {
-            return [ 'ok' => false, 'error' => $response->get_error_message() ];
+            error_log( 'Google webhook WP error: ' . $response->get_error_message() );
+            return [ 'ok' => false, 'error' => 'WP error: ' . $response->get_error_message() ];
         }
 
         $code = wp_remote_retrieve_response_code( $response );
         $body = wp_remote_retrieve_body( $response );
+
+        error_log( 'Google webhook HTTP code: ' . $code );
+        error_log( 'Google webhook raw body: ' . $body );
+
         $json = json_decode( $body, true );
 
-        if ( $code < 200 || $code >= 300 || ! is_array( $json ) ) {
-            return [ 'ok' => false, 'error' => 'Invalid Google webhook response.' ];
+        if ( $code < 200 || $code >= 300 ) {
+            return [
+                'ok' => false,
+                'error' => 'Google webhook returned HTTP ' . $code . ' | Body: ' . substr( trim( wp_strip_all_tags( $body ) ), 0, 300 )
+            ];
+        }
+
+        if ( ! is_array( $json ) ) {
+            return [
+                'ok' => false,
+                'error' => 'Google webhook did not return valid JSON | Body: ' . substr( trim( wp_strip_all_tags( $body ) ), 0, 300 )
+            ];
         }
 
         return $json;
