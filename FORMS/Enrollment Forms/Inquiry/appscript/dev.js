@@ -20,7 +20,22 @@ function doPost(e) {
 
     const inquiryId = 'INQ-' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'yyyyMMdd-HHmmss');
 
-    const uploadedDocNames = Array.isArray(data.uploadedDocuments) ? data.uploadedDocuments : [];
+    const uploadedDocNames = [];
+    const attachments = Array.isArray(data.attachments) ? data.attachments : [];
+
+    attachments.forEach(file => {
+      if (!file || !file.dataBase64 || !file.name) return;
+
+      const bytes = Utilities.base64Decode(file.dataBase64);
+      const blob = Utilities.newBlob(
+        bytes,
+        file.mimeType || 'application/octet-stream',
+        file.name
+      );
+
+      submissionFolder.createFile(blob);
+      uploadedDocNames.push(file.label || file.name);
+    });
 
     const pdfUrl = createSummaryPdf(submissionFolder, inquiryId, data, uploadedDocNames);
     const folderUrl = submissionFolder.getUrl();
@@ -40,20 +55,17 @@ function doPost(e) {
     rowData['Email Address'] = data.studentEmail || '';
     rowData['Phone Number'] = data.studentPhone || '';
     rowData['Program of Interest'] = data.programInterest || '';
-    rowData['How Did You Hear About Us?'] = data.hearAbout || '';
-    rowData['Please Specify (Referral Source)'] = data.hearOtherSpecify || '';
+    rowData['How You Hear About Us?'] = data.hearAbout || '';
+    rowData['Please Specify'] = data.hearOtherSpecify || '';
     rowData['Tell Us More About Your Requirements'] = data.programOtherDetails || '';
     rowData['Additional Notes'] = data.otherRequirements || '';
     rowData['Uploaded Documents'] = uploadedDocNames.join(', ');
-    rowData['Transcript 1 Link'] = '';
-    rowData['Additional Document 1 Link'] = '';
-    rowData['Picture ID Passport Link'] = '';
     rowData['Folder Name'] = folderName;
     rowData['Folder Link'] = folderUrl;
     rowData['Status'] = 'New';
     rowData['Assigned To'] = '';
     rowData['Notes'] = '';
-    rowData['Last Updated'] = ts;
+    rowData['Last Updated'] = 'New';
 
     const row = headers.map(header => rowData[header] !== undefined ? rowData[header] : '');
     sheet.appendRow(row);
@@ -106,7 +118,7 @@ function createSummaryPdf(submissionFolder, inquiryId, data, uploadedDocNames) {
     ['Phone Number', data.studentPhone || ''],
     ['Program of Interest', data.programInterest || ''],
     ['Tell Us More About Your Requirements', data.programOtherDetails || ''],
-    ['How Did You Hear About Us?', data.hearAbout || ''],
+    ['How You Hear About Us?', data.hearAbout || ''],
     ['Please Specify', data.hearOtherSpecify || ''],
     ['Additional Notes', data.otherRequirements || '']
   ];

@@ -1,8 +1,8 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-if ( ! class_exists( 'Canstem_Inquiry_Form_Handler' ) ) {
+if ( ! class_exists( 'Canstem_Inquiry_Form_Handler_V2' ) ) {
 
-class Canstem_Inquiry_Form_Handler {
+class Canstem_Inquiry_Form_Handler_V2 {
 
     const SMTP_USER        = 'canstem.frontdesk@canstemeducation.com';
     const SMTP_APP_PASS    = 'persoqionuoycbkl';
@@ -13,7 +13,7 @@ class Canstem_Inquiry_Form_Handler {
     const MAIL_CC          = '';
     const MAIL_BCC         = '';
 
-    const GOOGLE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwEUL-5JX8EbmBqpdWZ35MpmmHgTnIh2CLVmpDS1_PZ2lgjhL_S28rIfk-_7fr1h7052g/exec';
+    const GOOGLE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbyI279jGubbJhfkSfi177d9ZljHGL48SgCTotkk5ZOxWlNF8QEIBUtHIyt10OziDDNVtQ/exec';
 
     public static function boot() {
         add_action( 'phpmailer_init', [ __CLASS__, 'smtp_setup' ], 999 );
@@ -99,6 +99,7 @@ class Canstem_Inquiry_Form_Handler {
 
             $allowed_exts = [ 'doc', 'docx', 'pdf', 'txt', 'rtf', 'xls', 'xlsx', 'bmp', 'gif', 'jpg', 'jpeg', 'png' ];
 
+            $clean_attachments = [];
             $email_attachments = [];
             $uploaded_doc_names = [];
 
@@ -134,12 +135,21 @@ class Canstem_Inquiry_Form_Handler {
                     wp_send_json_error( [ 'error' => 'Invalid file type uploaded for ' . $label ], 400 );
                 }
 
-                $bin = file_get_contents( $_FILES[ $field ]['tmp_name'] );
+                $mime = sanitize_text_field( $_FILES[ $field ]['type'] ?? 'application/octet-stream' );
+                $bin  = file_get_contents( $_FILES[ $field ]['tmp_name'] );
+
                 if ( $bin === false ) {
                     wp_send_json_error( [ 'error' => 'Could not read uploaded file for ' . $label ], 400 );
                 }
 
                 $uploaded_doc_names[] = $label;
+
+                $clean_attachments[] = [
+                    'label'      => $label,
+                    'name'       => $name,
+                    'mimeType'   => $mime,
+                    'dataBase64' => base64_encode( $bin ),
+                ];
 
                 $tmpfile = trailingslashit( $tmpdir ) . wp_unique_filename( $tmpdir, $name );
                 if ( file_put_contents( $tmpfile, $bin ) !== false ) {
@@ -162,7 +172,7 @@ class Canstem_Inquiry_Form_Handler {
                 'hearOtherSpecify'    => $hearOtherSpecify,
                 'otherRequirements'   => $otherRequirements,
                 'uploadedDocuments'   => $uploaded_doc_names,
-                'attachments'         => []
+                'attachments'         => $clean_attachments
             ];
 
             $google_result = self::post_json( self::GOOGLE_WEBHOOK_URL, $google_payload );
@@ -182,7 +192,7 @@ class Canstem_Inquiry_Form_Handler {
             );
 
             $rows   = [];
-            $rows[] = self::tr( 'Submitted At', esc_html( $submittedAt ) );
+            $rows[] = self::tr( 'Timestamp', esc_html( $submittedAt ) );
             $rows[] = self::tr( 'First Name', esc_html( $firstName ) );
             $rows[] = self::tr( 'Last Name', esc_html( $lastName ) );
             $rows[] = self::tr( 'Full Name', esc_html( $studentName ) );
@@ -190,15 +200,14 @@ class Canstem_Inquiry_Form_Handler {
             $rows[] = self::tr( 'Email Address', esc_html( $studentEmail ) );
             $rows[] = self::tr( 'Phone Number', esc_html( $studentPhone ) );
             $rows[] = self::tr( 'Program of Interest', esc_html( $programInterest ) );
+            $rows[] = self::tr( 'How You Hear About Us?', esc_html( $hearAbout ) );
 
-            if ( $programInterest === 'Other' && $programOtherDetails ) {
-                $rows[] = self::tr( 'Tell Us More About Your Requirements', nl2br( esc_html( $programOtherDetails ) ) );
+            if ( $hearOtherSpecify ) {
+                $rows[] = self::tr( 'Please Specify', esc_html( $hearOtherSpecify ) );
             }
 
-            $rows[] = self::tr( 'How Did You Hear About Us', esc_html( $hearAbout ) );
-
-            if ( $hearAbout === 'Other' && $hearOtherSpecify ) {
-                $rows[] = self::tr( 'Please Specify', esc_html( $hearOtherSpecify ) );
+            if ( $programOtherDetails ) {
+                $rows[] = self::tr( 'Tell Us More About Your Requirements', nl2br( esc_html( $programOtherDetails ) ) );
             }
 
             if ( $otherRequirements ) {
@@ -218,7 +227,7 @@ class Canstem_Inquiry_Form_Handler {
             }
 
             if ( ! empty( $google_result['pdfUrl'] ) ) {
-                $rows[] = self::tr( 'Summary PDF Link', '<a href="' . esc_url( $google_result['pdfUrl'] ) . '" target="_blank">Open PDF</a>' );
+                $rows[] = self::tr( 'Summary PDF', '<a href="' . esc_url( $google_result['pdfUrl'] ) . '" target="_blank">Open PDF</a>' );
             }
 
             $body = '<style>
@@ -313,6 +322,5 @@ class Canstem_Inquiry_Form_Handler {
     }
 }
 
-Canstem_Inquiry_Form_Handler::boot();
-
+Canstem_Inquiry_Form_Handler_V2::boot();
 }
