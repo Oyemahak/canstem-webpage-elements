@@ -215,7 +215,7 @@ class Canstem_Inquiry_Form_Handler_V3 {
                 $headers[] = 'Bcc: ' . self::MAIL_BCC;
             }
 
-            // Send email FIRST so submission doesn't appear broken if Google sync has issues.
+            // 1. Send email immediately
             $sent = wp_mail( self::MAIL_TO, $subject, $body, $headers, $email_attachments );
 
             if ( ! $sent ) {
@@ -225,6 +225,7 @@ class Canstem_Inquiry_Form_Handler_V3 {
                 wp_send_json_error( [ 'error' => 'Email notification failed.' ], 500 );
             }
 
+            // 2. Start Google sync in background
             $google_payload = [
                 'type'                => 'Inquiry',
                 'submittedAt'         => $submittedAt,
@@ -243,25 +244,15 @@ class Canstem_Inquiry_Form_Handler_V3 {
                 'attachments'         => $clean_attachments
             ];
 
-            $google_result = self::post_json( self::GOOGLE_WEBHOOK_URL, $google_payload );
+            self::post_json_async( self::GOOGLE_WEBHOOK_URL, $google_payload );
 
             foreach ( $email_attachments as $tmp ) {
                 @unlink( $tmp );
             }
 
-            if ( empty( $google_result['ok'] ) ) {
-                error_log( 'Google sync failed after email success: ' . ( $google_result['error'] ?? 'Unknown error' ) );
+            // 3. Return success quickly to user
+            wp_send_json_success( [ 'ok' => true ] );
 
-                wp_send_json_success( [
-                    'ok'      => true,
-                    'warning' => 'Email sent successfully, but Drive/Sheet sync failed.'
-                ] );
-            }
-
-            wp_send_json_success( [
-                'ok'      => true,
-                'warning' => ''
-            ] );
         } catch ( Throwable $e ) {
             error_log( 'canstem_inquiry_request exception: ' . $e->getMessage() );
             error_log( 'canstem_inquiry_request trace: ' . $e->getTraceAsString() );
@@ -272,41 +263,17 @@ class Canstem_Inquiry_Form_Handler_V3 {
         }
     }
 
-    private static function post_json( $url, array $payload ) {
+    private static function post_json_async( $url, array $payload ) {
         $response = wp_remote_post( $url, [
-            'timeout' => 90,
-            'headers' => [ 'Content-Type' => 'application/json' ],
-            'body'    => wp_json_encode( $payload ),
+            'timeout'  => 2,
+            'blocking' => false,
+            'headers'  => [ 'Content-Type' => 'application/json' ],
+            'body'     => wp_json_encode( $payload ),
         ] );
 
         if ( is_wp_error( $response ) ) {
-            error_log( 'Google webhook WP error: ' . $response->get_error_message() );
-            return [ 'ok' => false, 'error' => 'WP error: ' . $response->get_error_message() ];
+            error_log( 'Google webhook async WP error: ' . $response->get_error_message() );
         }
-
-        $code = wp_remote_retrieve_response_code( $response );
-        $body = wp_remote_retrieve_body( $response );
-
-        error_log( 'Google webhook HTTP code: ' . $code );
-        error_log( 'Google webhook raw body: ' . $body );
-
-        $json = json_decode( $body, true );
-
-        if ( $code < 200 || $code >= 300 ) {
-            return [
-                'ok'    => false,
-                'error' => 'Google webhook returned HTTP ' . $code . ' | Body: ' . substr( trim( wp_strip_all_tags( $body ) ), 0, 300 )
-            ];
-        }
-
-        if ( ! is_array( $json ) ) {
-            return [
-                'ok'    => false,
-                'error' => 'Google webhook did not return valid JSON | Body: ' . substr( trim( wp_strip_all_tags( $body ) ), 0, 300 )
-            ];
-        }
-
-        return $json;
     }
 
     private static function tr( $label, $val ) {

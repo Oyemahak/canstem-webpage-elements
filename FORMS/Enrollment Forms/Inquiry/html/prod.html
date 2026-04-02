@@ -224,12 +224,14 @@
             <div class="cs-row">
                 <div class="cs-field">
                     <label class="cs-label cs-req" for="fname">First Name</label>
-                    <input class="cs-input" id="fname" name="firstName" autocomplete="given-name" placeholder="First" required>
+                    <input class="cs-input" id="fname" name="firstName" autocomplete="given-name" placeholder="First"
+                        required>
                 </div>
 
                 <div class="cs-field">
                     <label class="cs-label cs-req" for="lname">Last Name</label>
-                    <input class="cs-input" id="lname" name="lastName" autocomplete="family-name" placeholder="Last" required>
+                    <input class="cs-input" id="lname" name="lastName" autocomplete="family-name" placeholder="Last"
+                        required>
                 </div>
 
                 <div class="cs-field">
@@ -244,12 +246,14 @@
 
                 <div class="cs-field">
                     <label class="cs-label cs-req" for="studentPhone">Phone Number</label>
-                    <input class="cs-input" id="studentPhone" name="studentPhone" placeholder="+1 555 555 5555" required>
+                    <input class="cs-input" id="studentPhone" name="studentPhone" placeholder="+1 555 555 5555"
+                        required>
                 </div>
 
                 <div class="cs-field">
                     <label class="cs-label cs-req" for="studentEmail">Email Address</label>
-                    <input class="cs-input" id="studentEmail" name="studentEmail" type="email" placeholder="name@domain.com" required>
+                    <input class="cs-input" id="studentEmail" name="studentEmail" type="email"
+                        placeholder="name@domain.com" required>
                 </div>
 
                 <div class="cs-field">
@@ -264,8 +268,10 @@
                 </div>
 
                 <div class="cs-field is-hidden" id="programOtherWrap" style="grid-column:1/-1;">
-                    <label class="cs-label cs-req" for="programOtherDetails">Tell us more about your requirements</label>
-                    <textarea class="cs-input" id="programOtherDetails" name="programOtherDetails" maxlength="500" placeholder="Please specify your requirements..."></textarea>
+                    <label class="cs-label cs-req" for="programOtherDetails">Tell us more about your
+                        requirements</label>
+                    <textarea class="cs-input" id="programOtherDetails" name="programOtherDetails" maxlength="500"
+                        placeholder="Please specify your requirements..."></textarea>
                     <div class="cs-inline-msg"><span id="programOtherCount">500</span> characters remaining</div>
                 </div>
             </div>
@@ -290,12 +296,14 @@
 
                 <div class="cs-field is-hidden" id="hearOtherWrap">
                     <label class="cs-label" for="hearOtherSpecify">Please Specify:</label>
-                    <input class="cs-input" id="hearOtherSpecify" name="hearOtherSpecify" type="text" placeholder="Please specify">
+                    <input class="cs-input" id="hearOtherSpecify" name="hearOtherSpecify" type="text"
+                        placeholder="Please specify">
                 </div>
 
                 <div class="cs-field" style="grid-column:1/-1;">
                     <label class="cs-label" for="otherRequirements">Additional Notes</label>
-                    <textarea class="cs-input" id="otherRequirements" name="otherRequirements" maxlength="500" placeholder="Optional additional information..."></textarea>
+                    <textarea class="cs-input" id="otherRequirements" name="otherRequirements" maxlength="500"
+                        placeholder="Optional additional information..."></textarea>
                     <div class="cs-inline-msg"><span id="otherReqCount">500</span> characters remaining</div>
                 </div>
             </div>
@@ -306,7 +314,8 @@
 
             <span class="cs-chip">Document Uploads</span>
             <div class="cs-notice">
-                You may upload supporting documents if available. Documents are optional. A PDF summary of the submission will also be saved in the Drive folder automatically.
+                You may upload supporting documents if available. Documents are optional. A PDF summary of the
+                submission will also be saved in the Drive folder automatically.
             </div>
 
             <div class="cs-row">
@@ -448,9 +457,11 @@
                     }
                     return;
                 }
-
+                const submitBtn = document.getElementById('submitBtn');
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
                 setStatus('Submitting…');
-
+                
                 try {
                     const fd = new FormData();
                     fd.append('action', 'canstem_inquiry_request');
@@ -492,13 +503,8 @@
                     }
 
                     if (resp.ok && data.success) {
-                        if (data.data && data.data.warning) {
-                            clearForm();
-                            setStatus('Submitted successfully. ' + data.data.warning, true);
-                        } else {
-                            clearForm();
-                            setStatus('Success! Your inquiry form has been submitted successfully.', true);
-                        }
+                        clearForm();
+                        setStatus('Success! Your inquiry form has been submitted successfully.', true);
                     } else {
                         const msg = data?.data?.error || `Error sending your request. HTTP ${resp.status}`;
                         setStatus(msg, false);
@@ -506,6 +512,10 @@
                 } catch (e) {
                     console.error(e);
                     setStatus('Network error. Please try again.', false);
+                }
+                finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit';
                 }
             }
 
