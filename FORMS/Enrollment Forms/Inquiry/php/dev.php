@@ -13,7 +13,7 @@ class Canstem_Inquiry_Form_Handler_V3 {
     const MAIL_CC          = '';
     const MAIL_BCC         = '';
 
-    const GOOGLE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwIuSOrcRgqYxHMxhS0w4b3TDZhCSh9RgYUNUYTNLiWsiGhMK4a19zMjtjzlZhpeWs02Q/exec';
+    const GOOGLE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzpHC0iJjkLA0GV7EKanjXdb-Z3PDjbRgbZqhsh9dPuM5-mUF9G5SztPsJoQQZbY28irA/exec';
 
     public static function boot() {
         add_action( 'phpmailer_init', [ __CLASS__, 'smtp_setup' ], 999 );

@@ -246,8 +246,8 @@
 
                 <div class="cs-field">
                     <label class="cs-label cs-req" for="studentPhone">Phone Number</label>
-                    <input class="cs-input" id="studentPhone" name="studentPhone" placeholder="+1 555 555 5555"
-                        required>
+                    <input class="cs-input" id="studentPhone" name="studentPhone" type="tel" inputmode="tel"
+                        autocomplete="tel" placeholder="xxx-xxx-xxxx" required>
                 </div>
 
                 <div class="cs-field">
@@ -461,7 +461,7 @@
                 submitBtn.disabled = true;
                 submitBtn.textContent = 'Submitting...';
                 setStatus('Submitting…');
-                
+
                 try {
                     const fd = new FormData();
                     fd.append('action', 'canstem_inquiry_request');

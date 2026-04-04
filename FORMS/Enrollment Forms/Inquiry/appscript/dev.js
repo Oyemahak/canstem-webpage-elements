@@ -60,7 +60,7 @@ function doPost(e) {
     rowData['Full Name'] = fullName;
     rowData['Gender'] = data.gender || '';
     rowData['Email Address'] = data.studentEmail || '';
-    rowData['Phone Number'] = data.studentPhone || '';
+    rowData['Phone Number'] = data.studentPhone ? "'" + String(data.studentPhone) : '';
     rowData['Program of Interest'] = data.programInterest || '';
     rowData['How You Hear About Us?'] = data.hearAbout || '';
     rowData['Please Specify'] = data.hearOtherSpecify || '';
