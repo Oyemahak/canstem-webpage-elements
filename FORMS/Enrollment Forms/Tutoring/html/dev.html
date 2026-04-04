@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tutoring Enrollment Form</title>
+
+    <style>
+        html:has(#cs-tutoring),
+        body:has(#cs-tutoring) {
+            background-color: #fff !important;
+        }
+
+        .elementor-section:has(#cs-tutoring) {
+            background-color: #fff !important;
+        }
+
+        #cs-tutoring,
+        #cs-tutoring * {
+            box-sizing: border-box;
+        }
+
+        #cs-tutoring {
+            --cs-bg: #fff;
+            --cs-ink: #0b1324;
+            --cs-sub: #475569;
+            --cs-line: #e5e7eb;
+            --cs-primary: #001161;
+            --cs-primary-ink: #fff;
+            --cs-chip-bg: #eef2ff;
+            --cs-chip-ink: #1e1b4b;
+            max-width: 1200px;
+            color: var(--cs-ink);
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        }
+
+        #cs-tutoring .cs-card {
+            background: var(--cs-bg);
+            border: 1px solid var(--cs-line);
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: 0 10px 28px rgba(2, 6, 23, .08);
+        }
+
+        #cs-tutoring .cs-chip {
+            display: inline-block;
+            background: var(--cs-chip-bg);
+            color: var(--cs-chip-ink);
+            border: 1px solid #e0e7ff;
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        #cs-tutoring .cs-title {
+            font-size: 34px;
+            line-height: 1.15;
+            margin: 0 0 12px;
+            color: var(--cs-ink);
+            font-weight: 400;
+        }
+
+        #cs-tutoring .cs-subtitle {
+            font-size: 22px;
+            line-height: 1.35;
+            margin: 0 0 24px;
+            color: var(--cs-ink);
+            font-weight: 400;
+        }
+
+        #cs-tutoring .cs-row {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        @media (max-width: 820px) {
+            #cs-tutoring .cs-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        #cs-tutoring .cs-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 6px;
+        }
+
+        #cs-tutoring .cs-label {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--cs-ink);
+        }
+
+        #cs-tutoring .cs-help {
+            margin-top: -4px;
+            font-size: 14px;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        #cs-tutoring .cs-req::after {
+            content: " *";
+            color: #e11d48;
+        }
+
+        #cs-tutoring .cs-input,
+        #cs-tutoring select.cs-input,
+        #cs-tutoring textarea.cs-input,
+        #cs-tutoring input[type=file].cs-input {
+            width: 100%;
+            min-height: 52px;
+            padding: 12px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            background: #fff;
+            color: var(--cs-ink);
+            font-size: 18px;
+            line-height: 1.3;
+            outline: none;
+            appearance: none;
+            transition: border-color .15s, box-shadow .15s;
+        }
+
+        #cs-tutoring .cs-input::placeholder {
+            color: #94a3b8;
+        }
+
+        #cs-tutoring .cs-input:focus {
+            border-color: #4169e1;
+            box-shadow: 0 0 0 3px color-mix(in srgb, #4169e1 25%, transparent);
+        }
+
+        #cs-tutoring select.cs-input {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="%23001161" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            background-size: 18px 18px;
+            padding-right: 48px;
+            cursor: pointer;
+        }
+
+        #cs-tutoring textarea.cs-input {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        #cs-tutoring input[type=file].cs-input {
+            min-height: auto;
+            padding: 10px;
+        }
+
+        #cs-tutoring .cs-sep {
+            border: none;
+            border-top: 1px dashed #e2e8f0;
+            margin: 20px 0;
+        }
+
+        #cs-tutoring .cs-copy,
+        #cs-tutoring .cs-copy p,
+        #cs-tutoring .cs-copy li {
+            font-size: 18px;
+            line-height: 1.75;
+            color: var(--cs-ink);
+        }
+
+        #cs-tutoring .cs-copy p {
+            margin: 0 0 12px;
+        }
+
+        #cs-tutoring .cs-copy ul,
+        #cs-tutoring .cs-copy ol {
+            margin: 0 0 16px 24px;
+            padding: 0;
+        }
+
+        #cs-tutoring .cs-copy strong {
+            font-weight: 800;
+        }
+
+        #cs-tutoring .cs-copy a {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        #cs-tutoring .cs-radio-group {
+            display: grid;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        #cs-tutoring .cs-radio {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        #cs-tutoring .cs-radio input[type="radio"] {
+            width: 22px;
+            height: 22px;
+            margin-top: 2px;
+            accent-color: #0ea5e9;
+            flex: 0 0 auto;
+        }
+
+        #cs-tutoring .cs-conditional {
+            margin-top: 18px;
+            padding: 18px;
+            border: 1px dashed var(--cs-line);
+            border-radius: 14px;
+            background: #fafcff;
+        }
+
+        #cs-tutoring .cs-section-title {
+            font-size: 24px;
+            line-height: 1.25;
+            margin: 0 0 14px;
+            font-weight: 400;
+            color: var(--cs-ink);
+        }
+
+        #cs-tutoring .cs-inline-msg {
+            font-size: 14px;
+            color: #475569;
+        }
+
+        #cs-tutoring .cs-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        #cs-tutoring .cs-btn {
+            background: var(--cs-primary);
+            color: var(--cs-primary-ink);
+            border: none;
+            border-radius: 12px;
+            padding: 12px 48px;
+            font-weight: 800;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #cs-tutoring .cs-btn:hover {
+            filter: brightness(1.05);
+        }
+
+        #cs-tutoring .cs-status {
+            min-height: 1.4em;
+            font-size: 18px;
+        }
+
+        #cs-tutoring .cs-ok {
+            color: #16a34a;
+            font-weight: 700;
+        }
+
+        #cs-tutoring .cs-err {
+            color: #b91c1c;
+            font-weight: 700;
+        }
+
+        #cs-tutoring .cs-figure {
+            margin: 10px 0 18px;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            background: #fff;
+        }
+
+        #cs-tutoring .cs-figure img {
+            width: 100%;
+            max-width: 520px;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+
+        #cs-tutoring .is-hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cs-wrap" id="cs-tutoring" role="form" aria-labelledby="tutoring-title">
+        <section class="cs-card">
+            <h1 class="cs-title" id="tutoring-title">TUTORING FORM</h1>
+            <p class="cs-subtitle">Welcome to CanSTEM Education Private School's Enrollment Forms - Tutoring.</p>
+
+            <span class="cs-chip">Student Information</span>
+
+            <div class="cs-row">
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="firstName">First Name</label>
+                    <input class="cs-input" id="firstName" name="firstName" type="text" required>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label" for="middleName">Middle Name</label>
+                    <input class="cs-input" id="middleName" name="middleName" type="text">
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="lastName">Last Name</label>
+                    <input class="cs-input" id="lastName" name="lastName" type="text" required>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="gender">Gender</label>
+                    <select class="cs-input" id="gender" name="gender" required>
+                        <option value="">- Select -</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="dob">Date of Birth</label>
+                    <div class="cs-help">mm/dd/yyyy</div>
+                    <input class="cs-input" id="dob" name="dob" type="text" placeholder="mm/dd/yyyy" required>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="isAdult">Is the student 18 years or older?</label>
+                    <select class="cs-input" id="isAdult" name="isAdult" required>
+                        <option value="">- Select -</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="enrollingGrade">Enrolling Grade</label>
+                    <select class="cs-input" id="enrollingGrade" name="enrollingGrade" required>
+                        <option value="">- Select -</option>
+                        <option value="JK">JK</option>
+                        <option value="SK">SK</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="Language Proficiency (PTE, IELTS, CELPIP, DUOLINGO, TOEFL)">Language Proficiency (PTE, IELTS, CELPIP, DUOLINGO, TOEFL)</option>
+                        <option value="University Preparation">University Preparation</option>
+                        <option value="CAEC/GED">CAEC/GED</option>
+                        <option value="Not in the list">Not in the list</option>
+                    </select>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="onlineInClass">Online or In class?</label>
+                    <select class="cs-input" id="onlineInClass" name="onlineInClass" required>
+                        <option value="">- Select -</option>
+                        <option value="Online">Online</option>
+                        <option value="In Class">In Class</option>
+                    </select>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="studentEmail">Student Personal Email Address</label>
+                    <input class="cs-input" id="studentEmail" name="studentEmail" type="email" required>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="studentPhone">Student Phone Number</label>
+                    <input class="cs-input" id="studentPhone" name="studentPhone" type="tel" placeholder="xxx-xxx-xxxx" required>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label" for="altPhone">Alternative Phone Number</label>
+                    <input class="cs-input" id="altPhone" name="altPhone" type="tel" placeholder="xxx-xxx-xxxx">
+                </div>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <h2 class="cs-section-title">Home/Residential Information</h2>
+
+            <div class="cs-row">
+                <div class="cs-field" style="grid-column:1/-1;">
+                    <label class="cs-label cs-req" for="streetAddress">Apt / Unit / Street Number / Street Name</label>
+                    <input class="cs-input" id="streetAddress" name="streetAddress" type="text" required>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="cityCountry">City and Country</label>
+                    <input class="cs-input" id="cityCountry" name="cityCountry" type="text" required>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="provinceState">Province - State</label>
+                    <input class="cs-input" id="provinceState" name="provinceState" type="text" required>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="postalCode">Postal Code</label>
+                    <input class="cs-input" id="postalCode" name="postalCode" type="text" required>
+                </div>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <h2 class="cs-section-title">Fee Structure</h2>
+            <div class="cs-copy">
+                <p>
+                    To check the package details for your program of interest, please call us at <strong>647-847-1231</strong>
+                    or email us at <strong>tutoring@canstemeducation.com</strong>. For more details on our tutoring package
+                    and fee <a href="https://canstemeducation.com/tutoring/" target="_blank" rel="noopener">click here</a>.
+                </p>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <h2 class="cs-section-title">Payment</h2>
+
+            <div class="cs-field">
+                <label class="cs-label cs-req">How would you like to pay your registration fees?</label>
+
+                <div class="cs-radio-group">
+                    <label class="cs-radio">
+                        <input type="radio" name="paymentMethod" value="Credit - Debit Card Payment (AMEX Card - 5% surcharge applicable)">
+                        <span>Credit - Debit Card Payment ( AMEX Card - 5% surcharge applicable )</span>
+                    </label>
+
+                    <label class="cs-radio">
+                        <input type="radio" name="paymentMethod" value="INTERAC® eTransfer">
+                        <span>INTERAC® eTransfer</span>
+                    </label>
+
+                    <label class="cs-radio">
+                        <input type="radio" name="paymentMethod" value="In-Person">
+                        <span>In-Person</span>
+                    </label>
+
+                    <label class="cs-radio">
+                        <input type="radio" name="paymentMethod" value="Paying Internationally">
+                        <span>Paying Internationally</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Credit / Debit -->
+            <div class="cs-conditional is-hidden" id="paymentCardBlock">
+                <div class="cs-copy">
+                    <p><strong>Please carefully read the directions below:</strong></p>
+                    <ol>
+                        <li>
+                            Click
+                            <a href="https://canstemeducation.com/online-payment/" target="_blank" rel="noopener">here</a>
+                            to pay your registration fees through Clover.
+                        </li>
+                        <li>Enter the payment amount, your information, payment details, and submit payment.</li>
+                        <li>
+                            Return to this form and select the payment verification method you would like:
+                            <br><br>
+                            <strong>Method 1:</strong> Copy the Order ID from your emailed receipt and paste it in the
+                            'Order ID' field on this page
+                            <br><br>
+                            <strong>Method 2:</strong> Take a screenshot of your full transaction receipt and upload the
+                            image on this page
+                        </li>
+                        <li>Submit this form after payment is submitted and payment verification is complete.</li>
+                    </ol>
+
+                    <p><strong>Method 1 Directions</strong></p>
+                    <ul>
+                        <li>Check your email for a payment receipt from Clover. Click on the 'full transaction receipt' link as pictured below.</li>
+                    </ul>
+
+                    <div class="cs-figure">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/receipt-example.jpeg" alt="Receipt Example">
+                    </div>
+
+                    <ul>
+                        <li>Copy the Order ID (pictured below) and paste it into the Order ID field on this page.</li>
+                    </ul>
+
+                    <div class="cs-figure">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/credit-card-example.png" alt="Credit Card Example">
+                    </div>
+
+                    <p><strong>Method 2 Directions</strong></p>
+                    <ul>
+                        <li>Check your email for a payment receipt from Clover. Click on the 'full transaction receipt' link as pictured below.</li>
+                    </ul>
+
+                    <div class="cs-figure">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/receipt-example.jpeg" alt="Receipt Example">
+                    </div>
+
+                    <ul>
+                        <li>Take a screenshot of the Order ID (pictured below) and upload it into the Order ID upload field on this page.</li>
+                    </ul>
+
+                    <div class="cs-figure">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/credit-card-example.png" alt="Credit Card Example">
+                    </div>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req">Please select a payment verification method</label>
+                    <div class="cs-radio-group">
+                        <label class="cs-radio">
+                            <input type="radio" name="cardVerificationMethod" value="Paste Order ID">
+                            <span>Verify payment by pasting the Order ID from your emailed receipt</span>
+                        </label>
+
+                        <label class="cs-radio">
+                            <input type="radio" name="cardVerificationMethod" value="Upload Receipt Screenshot">
+                            <span>Verify payment by uploading a screenshot of your full transaction receipt</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="cs-field is-hidden" id="cardOrderIdWrap">
+                    <label class="cs-label cs-req" for="cardOrderId">
+                        Please enter the Order ID found in the full transaction receipt from Clover
+                    </label>
+                    <div class="cs-help">Follow directions above</div>
+                    <input class="cs-input" id="cardOrderId" name="cardOrderId" type="text">
+                </div>
+
+                <div class="cs-field is-hidden" id="cardReceiptUploadWrap">
+                    <label class="cs-label cs-req" for="cardReceiptUpload">
+                        Please upload a screenshot of your full transaction receipt with Order ID
+                    </label>
+                    <div class="cs-help">Follow directions above</div>
+                    <input class="cs-input" id="cardReceiptUpload" name="cardReceiptUpload" type="file" accept=".jpg,.jpeg,.png,.pdf">
+                </div>
+            </div>
+
+            <!-- Interac -->
+            <div class="cs-conditional is-hidden" id="paymentInteracBlock">
+                <div class="cs-copy">
+                    <p>Please send your e-transfer to: <strong>canstem.education@gmail.com</strong>.</p>
+                    <p>
+                        Include your <strong>full name</strong> (as it was entered in this form) and the course(s)
+                        registering for into the notes section. Not including this information may result in a delay in
+                        the activation of the course(s).
+                    </p>
+                    <p>
+                        Please allow up to 24 hours for your payment to be confirmed by our accounting team. Once confirmed,
+                        you will be manually enrolled into your course and will receive your log-in details and a welcome
+                        email from your new CanSTEM Education instructor to help get you started!
+                    </p>
+                    <p>
+                        If you have any questions, please contact our office at 647-568-0258, 647-847-1231, or 647-709-0258
+                        (Monday-Friday from 9am-8pm, Saturday from 12 to 6pm)
+                    </p>
+                    <p>
+                        Interac Email:
+                        <a href="mailto:canstem.education@gmail.com">canstem.education@gmail.com</a>
+                    </p>
+                </div>
+
+                <div class="cs-row">
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="securityQuestion">Security Question</label>
+                        <div class="cs-help">Only used for setting up your e-Transfer</div>
+                        <input class="cs-input" id="securityQuestion" name="securityQuestion" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="securityAnswer">Security Answer</label>
+                        <div class="cs-help">Only used for setting up your e-Transfer</div>
+                        <input class="cs-input" id="securityAnswer" name="securityAnswer" type="text">
+                    </div>
+
+                    <div class="cs-field" style="grid-column:1/-1;">
+                        <label class="cs-label cs-req" for="interacOrderId">
+                            Please enter the Order ID found in the full transaction receipt from Clover
+                        </label>
+                        <div class="cs-help">Follow directions above</div>
+                        <input class="cs-input" id="interacOrderId" name="interacOrderId" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <!-- In person -->
+            <div class="cs-conditional is-hidden" id="paymentInPersonBlock">
+                <div class="cs-copy">
+                    <p>Please visit our school at:</p>
+                    <p>
+                        <strong>Canstem Education Private School</strong><br>
+                        Plaza 1, 350 Rutherford Rd S Unit 10<br>
+                        Brampton, Ontario, L6M 4N6<br>
+                        Phone: 647-568-0258, 647-847-1231, 647-709-0258
+                    </p>
+                    <p>Open Monday-Friday from 9am-8pm, Saturday from 12 to 6pm</p>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="inPersonOrderId">
+                        Please enter the Order ID found in the full transaction receipt from Clover
+                    </label>
+                    <div class="cs-help">Follow directions above</div>
+                    <input class="cs-input" id="inPersonOrderId" name="inPersonOrderId" type="text">
+                </div>
+            </div>
+
+            <!-- International -->
+            <div class="cs-conditional is-hidden" id="paymentInternationalBlock">
+                <div class="cs-copy">
+                    <p>Please call or email us to get info on how to pay internationally</p>
+                    <p>
+                        <strong>Phone:</strong> 647-568-0258, 647-847-1231, 647-709-0258<br>
+                        <strong>Email:</strong>
+                        <a href="mailto:canstem.education@gmail.com">canstem.education@gmail.com</a>
+                    </p>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="internationalOrderId">
+                        Please enter the Order ID found in the full transaction receipt from Clover
+                    </label>
+                    <div class="cs-help">Follow directions above</div>
+                    <input class="cs-input" id="internationalOrderId" name="internationalOrderId" type="text">
+                </div>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <h2 class="cs-section-title">Enrollment Details</h2>
+
+            <div id="courseBlocks">
+                <!-- Course 1 -->
+                <div class="course-block" data-course="1">
+                    <div class="cs-row">
+                        <div class="cs-field">
+                            <label class="cs-label" for="subject1">Subject 1</label>
+                            <input class="cs-input" id="subject1" name="subject1" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="timeSlot1">Time Slot</label>
+                            <div class="cs-help">1 hour minimum. Specify AM/PM. Example:11AM - 12PM</div>
+                            <input class="cs-input" id="timeSlot1" name="timeSlot1" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="preferredDays1">Preferred Days</label>
+                            <div class="cs-help">Monday-Saturday</div>
+                            <input class="cs-input" id="preferredDays1" name="preferredDays1" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="specialInstructions1">Any special instructions</label>
+                            <input class="cs-input" id="specialInstructions1" name="specialInstructions1" type="text">
+                        </div>
+
+                        <div class="cs-field" style="grid-column:1/-1;">
+                            <label class="cs-label" for="anotherCourse1">Do you want another course?</label>
+                            <select class="cs-input course-toggle" id="anotherCourse1" name="anotherCourse1" data-next="2">
+                                <option value="">- Select -</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 2 -->
+                <div class="course-block is-hidden" id="courseBlock2" data-course="2">
+                    <hr class="cs-sep" />
+                    <div class="cs-row">
+                        <div class="cs-field">
+                            <label class="cs-label" for="subject2">Subject 2</label>
+                            <input class="cs-input" id="subject2" name="subject2" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="timeSlot2">Time Slot</label>
+                            <div class="cs-help">1 hour minimum. Specify AM/PM. Example:11AM - 12PM</div>
+                            <input class="cs-input" id="timeSlot2" name="timeSlot2" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="preferredDays2">Preferred Days</label>
+                            <div class="cs-help">Monday-Saturday</div>
+                            <input class="cs-input" id="preferredDays2" name="preferredDays2" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="specialInstructions2">Any special instructions</label>
+                            <input class="cs-input" id="specialInstructions2" name="specialInstructions2" type="text">
+                        </div>
+
+                        <div class="cs-field" style="grid-column:1/-1;">
+                            <label class="cs-label" for="anotherCourse2">Do you want another course?</label>
+                            <select class="cs-input course-toggle" id="anotherCourse2" name="anotherCourse2" data-next="3">
+                                <option value="">- Select -</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 3 -->
+                <div class="course-block is-hidden" id="courseBlock3" data-course="3">
+                    <hr class="cs-sep" />
+                    <div class="cs-row">
+                        <div class="cs-field">
+                            <label class="cs-label" for="subject3">Subject 3</label>
+                            <input class="cs-input" id="subject3" name="subject3" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="timeSlot3">Time Slot</label>
+                            <div class="cs-help">1 hour minimum. Specify AM/PM. Example:11AM - 12PM</div>
+                            <input class="cs-input" id="timeSlot3" name="timeSlot3" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="preferredDays3">Preferred Days</label>
+                            <div class="cs-help">Monday-Saturday</div>
+                            <input class="cs-input" id="preferredDays3" name="preferredDays3" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="specialInstructions3">Any special instructions</label>
+                            <input class="cs-input" id="specialInstructions3" name="specialInstructions3" type="text">
+                        </div>
+
+                        <div class="cs-field" style="grid-column:1/-1;">
+                            <label class="cs-label" for="anotherCourse3">Do you want another course?</label>
+                            <select class="cs-input course-toggle" id="anotherCourse3" name="anotherCourse3" data-next="4">
+                                <option value="">- Select -</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course 4 -->
+                <div class="course-block is-hidden" id="courseBlock4" data-course="4">
+                    <hr class="cs-sep" />
+                    <div class="cs-row">
+                        <div class="cs-field">
+                            <label class="cs-label" for="subject4">Subject 4</label>
+                            <input class="cs-input" id="subject4" name="subject4" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="timeSlot4">Time Slot</label>
+                            <div class="cs-help">1 hour minimum. Specify AM/PM. Example:11AM - 12PM</div>
+                            <input class="cs-input" id="timeSlot4" name="timeSlot4" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="preferredDays4">Preferred Days</label>
+                            <div class="cs-help">Monday-Saturday</div>
+                            <input class="cs-input" id="preferredDays4" name="preferredDays4" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="specialInstructions4">Any special instructions</label>
+                            <input class="cs-input" id="specialInstructions4" name="specialInstructions4" type="text">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <h2 class="cs-section-title">Document Uploads</h2>
+
+            <div class="cs-row">
+                <div class="cs-field">
+                    <label class="cs-label" for="photoId">Photo ID</label>
+                    <input class="cs-input" id="photoId" name="photoId" type="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label" for="iepDocument">IEP Accommodation Document</label>
+                    <input class="cs-input" id="iepDocument" name="iepDocument" type="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label" for="orderIdUpload">Order ID</label>
+                    <input class="cs-input" id="orderIdUpload" name="orderIdUpload" type="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label" for="reportCard">Report Card</label>
+                    <input class="cs-input" id="reportCard" name="reportCard" type="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="hearAbout">How did you hear about us?</label>
+                    <select class="cs-input" id="hearAbout" name="hearAbout" required>
+                        <option value="">- Select -</option>
+                        <option value="Google">Google</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Family">Family</option>
+                        <option value="Friend">Friend</option>
+                        <option value="KIJIJI">KIJIJI</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="cs-field is-hidden" id="hearAboutOtherWrap">
+                    <label class="cs-label cs-req" for="hearAboutOther">Please Specify</label>
+                    <input class="cs-input" id="hearAboutOther" name="hearAboutOther" type="text">
+                </div>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <h2 class="cs-section-title">Registration Information</h2>
+            <div class="cs-copy">
+                <ul>
+                    <li>A fee of $50 must be paid at registration. Any fees paid are non-refundable. NO REFUND.</li>
+                    <li>All fees must be paid between day 1 to day 10 of the month, or tutoring will be stopped until the balance is cleared.</li>
+                    <li>Use of phones or any other electronic gadget is not permitted in classrooms. You must surrender them at the front desk. Cell phones are not permitted in the classroom.</li>
+                    <li>You must finish your hours within the same month; there is no transferring or carrying over of pending hours due to absences. NO REFUND.</li>
+                    <li>We do not guarantee marks, results of your course, satisfaction of our services, or scholarships. No refunds will be issued for the same.</li>
+                    <li>Switching from in-class to online or online to in-class requires a fee, and only one switch is allowed. The fee must be paid before the switch is done.</li>
+                    <li>If the course requires any paid subscriptions, the student will be responsible for purchasing them separately and informing the teacher. The cost of these subscriptions is not included in the course fee.</li>
+                    <li>I agree to receive text messages, emails, and phone calls from CanSTEM Education Private School regarding deadlines, pending payments, and other relevant school communications.</li>
+                    <li>Students are responsible for attending all scheduled classes. The school does not provide follow-ups for missed sessions.</li>
+                    <li>Missed classes will not be rescheduled unless informed at least 24 hours ahead of the class time. Failure to attend does not qualify for any transfer or adjustment in fees.</li>
+                    <li>Transferring the fee from one paid service, program, or course to another is not permitted.</li>
+                    <li>For detailed terms and conditions of your enrollment, fee schedules, and policies, refer to the official website.</li>
+                </ul>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <h2 class="cs-section-title">Electronic Signature</h2>
+            <div class="cs-copy">
+                <p>The electronic signature and all of its related fields replaces a handwritten signature on paper and is legally binding.</p>
+                <p><em>I affirm that the information provided is true, correct and complete, to the best of my knowledge and belief. This electronic signature and its related fields are treated like a handwritten signature on a paper form.</em></p>
+            </div>
+
+            <div class="cs-field">
+                <label class="cs-label cs-req" for="noRefundAgree">
+                    Do you agree to the "NO REFUND POLICY" and that you will not request a refund in any condition
+                </label>
+                <select class="cs-input" id="noRefundAgree" name="noRefundAgree" required>
+                    <option value="">- Select -</option>
+                    <option value="I agree">I agree</option>
+                </select>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <div class="cs-actions">
+                <button class="cs-btn" id="submitBtn" type="button">Submit</button>
+                <span class="cs-status" id="status" aria-live="polite"></span>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        (function () {
+            const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
+            const cardBlock = document.getElementById('paymentCardBlock');
+            const interacBlock = document.getElementById('paymentInteracBlock');
+            const inPersonBlock = document.getElementById('paymentInPersonBlock');
+            const internationalBlock = document.getElementById('paymentInternationalBlock');
+
+            const cardMethodRadios = document.querySelectorAll('input[name="cardVerificationMethod"]');
+            const cardOrderIdWrap = document.getElementById('cardOrderIdWrap');
+            const cardReceiptUploadWrap = document.getElementById('cardReceiptUploadWrap');
+            const cardOrderId = document.getElementById('cardOrderId');
+            const cardReceiptUpload = document.getElementById('cardReceiptUpload');
+
+            const hearAbout = document.getElementById('hearAbout');
+            const hearAboutOtherWrap = document.getElementById('hearAboutOtherWrap');
+            const hearAboutOther = document.getElementById('hearAboutOther');
+
+            function resetPaymentBlocks() {
+                cardBlock.classList.add('is-hidden');
+                interacBlock.classList.add('is-hidden');
+                inPersonBlock.classList.add('is-hidden');
+                internationalBlock.classList.add('is-hidden');
+            }
+
+            function resetPaymentRequired() {
+                const interacOrderId = document.getElementById('interacOrderId');
+                const securityQuestion = document.getElementById('securityQuestion');
+                const securityAnswer = document.getElementById('securityAnswer');
+                const inPersonOrderId = document.getElementById('inPersonOrderId');
+                const internationalOrderId = document.getElementById('internationalOrderId');
+
+                cardOrderId.required = false;
+                cardReceiptUpload.required = false;
+
+                if (interacOrderId) interacOrderId.required = false;
+                if (securityQuestion) securityQuestion.required = false;
+                if (securityAnswer) securityAnswer.required = false;
+                if (inPersonOrderId) inPersonOrderId.required = false;
+                if (internationalOrderId) internationalOrderId.required = false;
+            }
+
+            function updatePaymentMethod() {
+                resetPaymentBlocks();
+                resetPaymentRequired();
+                updateCardVerificationMethod();
+
+                const selected = document.querySelector('input[name="paymentMethod"]:checked');
+                if (!selected) return;
+
+                if (selected.value.includes('Credit - Debit Card')) {
+                    cardBlock.classList.remove('is-hidden');
+                } else if (selected.value === 'INTERAC® eTransfer') {
+                    interacBlock.classList.remove('is-hidden');
+                    document.getElementById('interacOrderId').required = true;
+                    document.getElementById('securityQuestion').required = true;
+                    document.getElementById('securityAnswer').required = true;
+                } else if (selected.value === 'In-Person') {
+                    inPersonBlock.classList.remove('is-hidden');
+                    document.getElementById('inPersonOrderId').required = true;
+                } else if (selected.value === 'Paying Internationally') {
+                    internationalBlock.classList.remove('is-hidden');
+                    document.getElementById('internationalOrderId').required = true;
+                }
+            }
+
+            function updateCardVerificationMethod() {
+                const selected = document.querySelector('input[name="cardVerificationMethod"]:checked');
+
+                cardOrderIdWrap.classList.add('is-hidden');
+                cardReceiptUploadWrap.classList.add('is-hidden');
+
+                cardOrderId.required = false;
+                cardReceiptUpload.required = false;
+
+                if (!selected || cardBlock.classList.contains('is-hidden')) return;
+
+                if (selected.value === 'Paste Order ID') {
+                    cardOrderIdWrap.classList.remove('is-hidden');
+                    cardOrderId.required = true;
+                }
+
+                if (selected.value === 'Upload Receipt Screenshot') {
+                    cardReceiptUploadWrap.classList.remove('is-hidden');
+                    cardReceiptUpload.required = true;
+                }
+            }
+
+            function updateHearAboutOther() {
+                const isOther = hearAbout.value === 'Other';
+                hearAboutOtherWrap.classList.toggle('is-hidden', !isOther);
+                hearAboutOther.required = isOther;
+
+                if (!isOther) {
+                    hearAboutOther.value = '';
+                }
+            }
+
+            paymentRadios.forEach(radio => {
+                radio.addEventListener('change', updatePaymentMethod);
+            });
+
+            cardMethodRadios.forEach(radio => {
+                radio.addEventListener('change', updateCardVerificationMethod);
+            });
+
+            hearAbout.addEventListener('change', updateHearAboutOther);
+
+            const courseToggles = document.querySelectorAll('.course-toggle');
+
+            function hideCourseFrom(number) {
+                for (let i = number; i <= 4; i++) {
+                    const block = document.getElementById(`courseBlock${i}`);
+                    if (block) block.classList.add('is-hidden');
+
+                    const toggle = document.getElementById(`anotherCourse${i}`);
+                    if (toggle) toggle.value = '';
+
+                    ['subject', 'timeSlot', 'preferredDays', 'specialInstructions'].forEach(prefix => {
+                        const field = document.getElementById(`${prefix}${i}`);
+                        if (field) field.value = '';
+                    });
+                }
+            }
+
+            courseToggles.forEach(toggle => {
+                toggle.addEventListener('change', function () {
+                    const next = this.dataset.next;
+                    if (!next) return;
+
+                    const nextBlock = document.getElementById(`courseBlock${next}`);
+                    if (!nextBlock) return;
+
+                    if (this.value === 'Yes') {
+                        nextBlock.classList.remove('is-hidden');
+                    } else {
+                        hideCourseFrom(parseInt(next, 10));
+                    }
+                });
+            });
+
+            updatePaymentMethod();
+            updateCardVerificationMethod();
+            updateHearAboutOther();
+        })();
+    </script>
+</body>
+
+</html>
