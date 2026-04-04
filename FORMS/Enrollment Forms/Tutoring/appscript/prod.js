@@ -1,6 +1,6 @@
-const SHEET_ID = 'PASTE_TUTORING_SHEET_ID_HERE';
-const SHEET_TAB = 'All Tutoring';
-const PARENT_FOLDER_ID = 'PASTE_TUTORING_PARENT_FOLDER_ID_HERE';
+const SHEET_ID = '1sOYLYpXd3nYbbui3lu_2vOB1vQGl0AV44HIMBvlwgys';
+const SHEET_TAB = 'Tutoring';
+const PARENT_FOLDER_ID = '105oG2ZkCgMnt8KvNN7p9u3AwAZnTDcKu';
 
 /*
 Expected sheet headers in row 1:

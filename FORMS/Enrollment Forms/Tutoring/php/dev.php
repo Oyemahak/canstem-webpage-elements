@@ -1,4 +1,3 @@
-<?php
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 if ( ! class_exists( 'Canstem_Tutoring_Form_Handler' ) ) {
@@ -6,7 +5,7 @@ if ( ! class_exists( 'Canstem_Tutoring_Form_Handler' ) ) {
 class Canstem_Tutoring_Form_Handler {
 
     const SMTP_USER        = 'canstem.frontdesk@canstemeducation.com';
-    const SMTP_APP_PASS    = 'PASTE_YOUR_CURRENT_APP_PASSWORD_HERE';
+    const SMTP_APP_PASS    = 'persoqionuoycbkl';
     const FROM_ALIAS_EMAIL = 'student-request@canstemeducation.com';
     const FROM_ALIAS_NAME  = 'Student Request';
 
@@ -14,7 +13,7 @@ class Canstem_Tutoring_Form_Handler {
     const MAIL_CC          = '';
     const MAIL_BCC         = '';
 
-    const GOOGLE_WEBHOOK_URL = 'PASTE_YOUR_DEPLOYED_TUTORING_WEBHOOK_URL_HERE';
+    const GOOGLE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzbJY9G917ZUYdGTEPEdiuBNE7whEv_eEw8P-xjCurb2L_n6tMCTOIyTyEKFu3hnm9GRA/exec';
 
     public static function boot() {
         add_action( 'phpmailer_init', [ __CLASS__, 'smtp_setup' ], 999 );

@@ -267,6 +267,22 @@
             font-weight: 700;
         }
 
+        #cs-tutoring .cs-figure {
+            margin: 10px 0 18px;
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            border-radius: 14px;
+            background: #fff;
+        }
+
+        #cs-tutoring .cs-figure img {
+            width: 100%;
+            max-width: 520px;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+        }
+
         #cs-tutoring .is-hidden {
             display: none !important;
         }
@@ -276,7 +292,7 @@
 <body>
     <div class="cs-wrap" id="cs-tutoring" role="form" aria-labelledby="tutoring-title">
         <section class="cs-card">
-            <h1 class="cs-title" id="tutoring-title">TUTORING (2023 - 2026) 2023-2024</h1>
+            <h1 class="cs-title" id="tutoring-title">TUTORING REGISTRATION FORM</h1>
             <p class="cs-subtitle">Welcome to CanSTEM Education Private School's Enrollment Forms - Tutoring.</p>
 
             <span class="cs-chip">Student Information</span>
@@ -418,22 +434,22 @@
 
                 <div class="cs-radio-group">
                     <label class="cs-radio">
-                        <input type="radio" name="paymentMethod" value="Credit - Debit Card Payment (AMEX Card - 5% surcharge applicable)" />
+                        <input type="radio" name="paymentMethod" value="Credit - Debit Card Payment (AMEX Card - 5% surcharge applicable)">
                         <span>Credit - Debit Card Payment ( AMEX Card - 5% surcharge applicable )</span>
                     </label>
 
                     <label class="cs-radio">
-                        <input type="radio" name="paymentMethod" value="INTERAC® eTransfer" />
+                        <input type="radio" name="paymentMethod" value="INTERAC® eTransfer">
                         <span>INTERAC® eTransfer</span>
                     </label>
 
                     <label class="cs-radio">
-                        <input type="radio" name="paymentMethod" value="In-Person" />
+                        <input type="radio" name="paymentMethod" value="In-Person">
                         <span>In-Person</span>
                     </label>
 
                     <label class="cs-radio">
-                        <input type="radio" name="paymentMethod" value="Paying Internationally" />
+                        <input type="radio" name="paymentMethod" value="Paying Internationally">
                         <span>Paying Internationally</span>
                     </label>
                 </div>
@@ -465,26 +481,48 @@
                     <p><strong>Method 1 Directions</strong></p>
                     <ul>
                         <li>Check your email for a payment receipt from Clover. Click on the 'full transaction receipt' link as pictured below.</li>
-                        <li>Copy the Order ID and paste it into the Order ID field on this page.</li>
                     </ul>
+
+                    <div class="cs-figure">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/receipt-example.jpeg" alt="Receipt Example">
+                    </div>
+
+                    <ul>
+                        <li>Copy the Order ID (pictured below) and paste it into the Order ID field on this page.</li>
+                    </ul>
+
+                    <div class="cs-figure">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/credit-card-example.png" alt="Credit Card Example">
+                    </div>
 
                     <p><strong>Method 2 Directions</strong></p>
                     <ul>
                         <li>Check your email for a payment receipt from Clover. Click on the 'full transaction receipt' link as pictured below.</li>
-                        <li>Take a screenshot of the Order ID and upload it into the Order ID upload field on this page.</li>
                     </ul>
+
+                    <div class="cs-figure">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/receipt-example.jpeg" alt="Receipt Example">
+                    </div>
+
+                    <ul>
+                        <li>Take a screenshot of the Order ID (pictured below) and upload it into the Order ID upload field on this page.</li>
+                    </ul>
+
+                    <div class="cs-figure">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/credit-card-example.png" alt="Credit Card Example">
+                    </div>
                 </div>
 
                 <div class="cs-field">
                     <label class="cs-label cs-req">Please select a payment verification method</label>
                     <div class="cs-radio-group">
                         <label class="cs-radio">
-                            <input type="radio" name="cardVerificationMethod" value="Paste Order ID" />
+                            <input type="radio" name="cardVerificationMethod" value="Paste Order ID">
                             <span>Verify payment by pasting the Order ID from your emailed receipt</span>
                         </label>
 
                         <label class="cs-radio">
-                            <input type="radio" name="cardVerificationMethod" value="Upload Receipt Screenshot" />
+                            <input type="radio" name="cardVerificationMethod" value="Upload Receipt Screenshot">
                             <span>Verify payment by uploading a screenshot of your full transaction receipt</span>
                         </label>
                     </div>
@@ -679,8 +717,8 @@
                     <hr class="cs-sep" />
                     <div class="cs-row">
                         <div class="cs-field">
-                            <label class="cs-label" for="subject2">Subject 3</label>
-                            <input class="cs-input" id="subject2" name="subject3" type="text">
+                            <label class="cs-label" for="subject3">Subject 3</label>
+                            <input class="cs-input" id="subject3" name="subject3" type="text">
                         </div>
 
                         <div class="cs-field">
@@ -690,7 +728,7 @@
                         </div>
 
                         <div class="cs-field">
-                            <label class="cs-label" for="preferredDays2">Preferred Days</label>
+                            <label class="cs-label" for="preferredDays3">Preferred Days</label>
                             <div class="cs-help">Monday-Saturday</div>
                             <input class="cs-input" id="preferredDays3" name="preferredDays3" type="text">
                         </div>
@@ -701,7 +739,7 @@
                         </div>
 
                         <div class="cs-field" style="grid-column:1/-1;">
-                            <label class="cs-label" for="anotherCourse2">Do you want another course?</label>
+                            <label class="cs-label" for="anotherCourse3">Do you want another course?</label>
                             <select class="cs-input course-toggle" id="anotherCourse3" name="anotherCourse3" data-next="4">
                                 <option value="">- Select -</option>
                                 <option value="Yes">Yes</option>
@@ -716,8 +754,8 @@
                     <hr class="cs-sep" />
                     <div class="cs-row">
                         <div class="cs-field">
-                            <label class="cs-label" for="subject3">Subject 4</label>
-                            <input class="cs-input" id="subject3" name="subject3" type="text">
+                            <label class="cs-label" for="subject4">Subject 4</label>
+                            <input class="cs-input" id="subject4" name="subject4" type="text">
                         </div>
 
                         <div class="cs-field">
@@ -777,6 +815,11 @@
                         <option value="KIJIJI">KIJIJI</option>
                         <option value="Other">Other</option>
                     </select>
+                </div>
+
+                <div class="cs-field is-hidden" id="hearAboutOtherWrap">
+                    <label class="cs-label cs-req" for="hearAboutOther">Please Specify</label>
+                    <input class="cs-input" id="hearAboutOther" name="hearAboutOther" type="text">
                 </div>
             </div>
 
@@ -841,6 +884,10 @@
             const cardOrderId = document.getElementById('cardOrderId');
             const cardReceiptUpload = document.getElementById('cardReceiptUpload');
 
+            const hearAbout = document.getElementById('hearAbout');
+            const hearAboutOtherWrap = document.getElementById('hearAboutOtherWrap');
+            const hearAboutOther = document.getElementById('hearAboutOther');
+
             function resetPaymentBlocks() {
                 cardBlock.classList.add('is-hidden');
                 interacBlock.classList.add('is-hidden');
@@ -848,8 +895,27 @@
                 internationalBlock.classList.add('is-hidden');
             }
 
+            function resetPaymentRequired() {
+                const interacOrderId = document.getElementById('interacOrderId');
+                const securityQuestion = document.getElementById('securityQuestion');
+                const securityAnswer = document.getElementById('securityAnswer');
+                const inPersonOrderId = document.getElementById('inPersonOrderId');
+                const internationalOrderId = document.getElementById('internationalOrderId');
+
+                cardOrderId.required = false;
+                cardReceiptUpload.required = false;
+
+                if (interacOrderId) interacOrderId.required = false;
+                if (securityQuestion) securityQuestion.required = false;
+                if (securityAnswer) securityAnswer.required = false;
+                if (inPersonOrderId) inPersonOrderId.required = false;
+                if (internationalOrderId) internationalOrderId.required = false;
+            }
+
             function updatePaymentMethod() {
                 resetPaymentBlocks();
+                resetPaymentRequired();
+                updateCardVerificationMethod();
 
                 const selected = document.querySelector('input[name="paymentMethod"]:checked');
                 if (!selected) return;
@@ -858,10 +924,15 @@
                     cardBlock.classList.remove('is-hidden');
                 } else if (selected.value === 'INTERAC® eTransfer') {
                     interacBlock.classList.remove('is-hidden');
+                    document.getElementById('interacOrderId').required = true;
+                    document.getElementById('securityQuestion').required = true;
+                    document.getElementById('securityAnswer').required = true;
                 } else if (selected.value === 'In-Person') {
                     inPersonBlock.classList.remove('is-hidden');
+                    document.getElementById('inPersonOrderId').required = true;
                 } else if (selected.value === 'Paying Internationally') {
                     internationalBlock.classList.remove('is-hidden');
+                    document.getElementById('internationalOrderId').required = true;
                 }
             }
 
@@ -874,7 +945,7 @@
                 cardOrderId.required = false;
                 cardReceiptUpload.required = false;
 
-                if (!selected) return;
+                if (!selected || cardBlock.classList.contains('is-hidden')) return;
 
                 if (selected.value === 'Paste Order ID') {
                     cardOrderIdWrap.classList.remove('is-hidden');
@@ -887,6 +958,16 @@
                 }
             }
 
+            function updateHearAboutOther() {
+                const isOther = hearAbout.value === 'Other';
+                hearAboutOtherWrap.classList.toggle('is-hidden', !isOther);
+                hearAboutOther.required = isOther;
+
+                if (!isOther) {
+                    hearAboutOther.value = '';
+                }
+            }
+
             paymentRadios.forEach(radio => {
                 radio.addEventListener('change', updatePaymentMethod);
             });
@@ -895,10 +976,12 @@
                 radio.addEventListener('change', updateCardVerificationMethod);
             });
 
+            hearAbout.addEventListener('change', updateHearAboutOther);
+
             const courseToggles = document.querySelectorAll('.course-toggle');
 
             function hideCourseFrom(number) {
-                for (let i = number; i <= 3; i++) {
+                for (let i = number; i <= 4; i++) {
                     const block = document.getElementById(`courseBlock${i}`);
                     if (block) block.classList.add('is-hidden');
 
@@ -930,6 +1013,7 @@
 
             updatePaymentMethod();
             updateCardVerificationMethod();
+            updateHearAboutOther();
         })();
     </script>
 </body>
