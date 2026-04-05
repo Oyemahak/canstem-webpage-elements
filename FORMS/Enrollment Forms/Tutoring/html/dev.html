@@ -55,22 +55,6 @@
             margin-bottom: 10px;
         }
 
-        #cs-tutoring .cs-title {
-            font-size: 34px;
-            line-height: 1.15;
-            margin: 0 0 12px;
-            color: var(--cs-ink);
-            font-weight: 400;
-        }
-
-        #cs-tutoring .cs-subtitle {
-            font-size: 22px;
-            line-height: 1.35;
-            margin: 0 0 24px;
-            color: var(--cs-ink);
-            font-weight: 400;
-        }
-
         #cs-tutoring .cs-row {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -157,7 +141,7 @@
         #cs-tutoring .cs-sep {
             border: none;
             border-top: 1px dashed #e2e8f0;
-            margin: 20px 0;
+            margin: 16px 0;
         }
 
         #cs-tutoring .cs-copy,
@@ -217,12 +201,19 @@
             background: #fafcff;
         }
 
+        /* Match Inquiry form heading/chip style */
         #cs-tutoring .cs-section-title {
-            font-size: 24px;
-            line-height: 1.25;
-            margin: 0 0 14px;
-            font-weight: 400;
-            color: var(--cs-ink);
+            display: inline-block;
+            background: var(--cs-chip-bg);
+            color: var(--cs-chip-ink);
+            border: 1px solid #e0e7ff;
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-weight: 700;
+            font-size: 18px;
+            line-height: 1.3;
+            margin: 0 0 10px;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
         }
 
         #cs-tutoring .cs-inline-msg {
@@ -286,6 +277,26 @@
         #cs-tutoring .is-hidden {
             display: none !important;
         }
+
+        #cs-tutoring input.cs-input,
+        #cs-tutoring select.cs-input,
+        #cs-tutoring textarea.cs-input,
+        #cs-tutoring input[type="file"].cs-input {
+            box-shadow: none;
+        }
+
+        #cs-tutoring input.cs-input:focus,
+        #cs-tutoring select.cs-input:focus,
+        #cs-tutoring textarea.cs-input:focus,
+        #cs-tutoring input[type="file"].cs-input:focus {
+            box-shadow: 0 0 0 3px color-mix(in srgb, #4169e1 25%, transparent);
+        }
+
+        .elementor-kit-465 input:not([type="button"]):not([type="submit"]),
+        .elementor-kit-465 textarea,
+        .elementor-kit-465 .elementor-field-textual {
+            box-shadow: none !important;
+        }
     </style>
 </head>
 
@@ -323,7 +334,6 @@
 
                 <div class="cs-field">
                     <label class="cs-label cs-req" for="dob">Date of Birth</label>
-                    <div class="cs-help">mm/dd/yyyy</div>
                     <input class="cs-input" id="dob" name="dob" type="text" placeholder="mm/dd/yyyy" required>
                 </div>
 
@@ -354,7 +364,8 @@
                         <option value="10">10</option>
                         <option value="11">11</option>
                         <option value="12">12</option>
-                        <option value="Language Proficiency (PTE, IELTS, CELPIP, DUOLINGO, TOEFL)">Language Proficiency (PTE, IELTS, CELPIP, DUOLINGO, TOEFL)</option>
+                        <option value="Language Proficiency (PTE, IELTS, CELPIP, DUOLINGO, TOEFL)">Language Proficiency
+                            (PTE, IELTS, CELPIP, DUOLINGO, TOEFL)</option>
                         <option value="University Preparation">University Preparation</option>
                         <option value="CAEC/GED">CAEC/GED</option>
                         <option value="Not in the list">Not in the list</option>
@@ -377,7 +388,8 @@
 
                 <div class="cs-field">
                     <label class="cs-label cs-req" for="studentPhone">Student Phone Number</label>
-                    <input class="cs-input" id="studentPhone" name="studentPhone" type="tel" placeholder="xxx-xxx-xxxx" required>
+                    <input class="cs-input" id="studentPhone" name="studentPhone" type="tel" placeholder="xxx-xxx-xxxx"
+                        required>
                 </div>
 
                 <div class="cs-field">
@@ -417,9 +429,12 @@
             <h2 class="cs-section-title">Fee Structure</h2>
             <div class="cs-copy">
                 <p>
-                    To check the package details for your program of interest, please call us at <strong>647-847-1231</strong>
-                    or email us at <strong>tutoring@canstemeducation.com</strong>. For more details on our tutoring package
-                    and fee <a href="https://canstemeducation.com/tutoring/" target="_blank" rel="noopener">click here</a>.
+                    To check the package details for your program of interest, please call us at
+                    <strong>647-847-1231</strong>
+                    or email us at <strong>tutoring@canstemeducation.com</strong>. For more details on our tutoring
+                    package
+                    and fee <a href="https://canstemeducation.com/tutoring/" target="_blank" rel="noopener">click
+                        here</a>.
                 </p>
             </div>
 
@@ -432,7 +447,8 @@
 
                 <div class="cs-radio-group">
                     <label class="cs-radio">
-                        <input type="radio" name="paymentMethod" value="Credit - Debit Card Payment (AMEX Card - 5% surcharge applicable)">
+                        <input type="radio" name="paymentMethod"
+                            value="Credit - Debit Card Payment (AMEX Card - 5% surcharge applicable)">
                         <span>Credit - Debit Card Payment ( AMEX Card - 5% surcharge applicable )</span>
                     </label>
 
@@ -460,7 +476,8 @@
                     <ol>
                         <li>
                             Click
-                            <a href="https://canstemeducation.com/online-payment/" target="_blank" rel="noopener">here</a>
+                            <a href="https://canstemeducation.com/online-payment/" target="_blank"
+                                rel="noopener">here</a>
                             to pay your registration fees through Clover.
                         </li>
                         <li>Enter the payment amount, your information, payment details, and submit payment.</li>
@@ -478,11 +495,13 @@
 
                     <p><strong>Method 1 Directions</strong></p>
                     <ul>
-                        <li>Check your email for a payment receipt from Clover. Click on the 'full transaction receipt' link as pictured below.</li>
+                        <li>Check your email for a payment receipt from Clover. Click on the 'full transaction receipt'
+                            link as pictured below.</li>
                     </ul>
 
                     <div class="cs-figure">
-                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/receipt-example.jpeg" alt="Receipt Example">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/receipt-example.jpeg"
+                            alt="Receipt Example">
                     </div>
 
                     <ul>
@@ -490,24 +509,29 @@
                     </ul>
 
                     <div class="cs-figure">
-                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/credit-card-example.png" alt="Credit Card Example">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/credit-card-example.png"
+                            alt="Credit Card Example">
                     </div>
 
                     <p><strong>Method 2 Directions</strong></p>
                     <ul>
-                        <li>Check your email for a payment receipt from Clover. Click on the 'full transaction receipt' link as pictured below.</li>
+                        <li>Check your email for a payment receipt from Clover. Click on the 'full transaction receipt'
+                            link as pictured below.</li>
                     </ul>
 
                     <div class="cs-figure">
-                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/receipt-example.jpeg" alt="Receipt Example">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/receipt-example.jpeg"
+                            alt="Receipt Example">
                     </div>
 
                     <ul>
-                        <li>Take a screenshot of the Order ID (pictured below) and upload it into the Order ID upload field on this page.</li>
+                        <li>Take a screenshot of the Order ID (pictured below) and upload it into the Order ID upload
+                            field on this page.</li>
                     </ul>
 
                     <div class="cs-figure">
-                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/credit-card-example.png" alt="Credit Card Example">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/credit-card-example.png"
+                            alt="Credit Card Example">
                     </div>
                 </div>
 
@@ -539,7 +563,8 @@
                         Please upload a screenshot of your full transaction receipt with Order ID
                     </label>
                     <div class="cs-help">Follow directions above</div>
-                    <input class="cs-input" id="cardReceiptUpload" name="cardReceiptUpload" type="file" accept=".jpg,.jpeg,.png,.pdf">
+                    <input class="cs-input" id="cardReceiptUpload" name="cardReceiptUpload" type="file"
+                        accept=".jpg,.jpeg,.png,.pdf">
                 </div>
             </div>
 
@@ -553,12 +578,15 @@
                         the activation of the course(s).
                     </p>
                     <p>
-                        Please allow up to 24 hours for your payment to be confirmed by our accounting team. Once confirmed,
-                        you will be manually enrolled into your course and will receive your log-in details and a welcome
+                        Please allow up to 24 hours for your payment to be confirmed by our accounting team. Once
+                        confirmed,
+                        you will be manually enrolled into your course and will receive your log-in details and a
+                        welcome
                         email from your new CanSTEM Education instructor to help get you started!
                     </p>
                     <p>
-                        If you have any questions, please contact our office at 647-568-0258, 647-847-1231, or 647-709-0258
+                        If you have any questions, please contact our office at 647-568-0258, 647-847-1231, or
+                        647-709-0258
                         (Monday-Friday from 9am-8pm, Saturday from 12 to 6pm)
                     </p>
                     <p>
@@ -601,14 +629,6 @@
                         Phone: 647-568-0258, 647-847-1231, 647-709-0258
                     </p>
                     <p>Open Monday-Friday from 9am-8pm, Saturday from 12 to 6pm</p>
-                </div>
-
-                <div class="cs-field">
-                    <label class="cs-label cs-req" for="inPersonOrderId">
-                        Please enter the Order ID found in the full transaction receipt from Clover
-                    </label>
-                    <div class="cs-help">Follow directions above</div>
-                    <input class="cs-input" id="inPersonOrderId" name="inPersonOrderId" type="text">
                 </div>
             </div>
 
@@ -664,7 +684,8 @@
 
                         <div class="cs-field" style="grid-column:1/-1;">
                             <label class="cs-label" for="anotherCourse1">Do you want another course?</label>
-                            <select class="cs-input course-toggle" id="anotherCourse1" name="anotherCourse1" data-next="2">
+                            <select class="cs-input course-toggle" id="anotherCourse1" name="anotherCourse1"
+                                data-next="2">
                                 <option value="">- Select -</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -701,7 +722,8 @@
 
                         <div class="cs-field" style="grid-column:1/-1;">
                             <label class="cs-label" for="anotherCourse2">Do you want another course?</label>
-                            <select class="cs-input course-toggle" id="anotherCourse2" name="anotherCourse2" data-next="3">
+                            <select class="cs-input course-toggle" id="anotherCourse2" name="anotherCourse2"
+                                data-next="3">
                                 <option value="">- Select -</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -738,7 +760,8 @@
 
                         <div class="cs-field" style="grid-column:1/-1;">
                             <label class="cs-label" for="anotherCourse3">Do you want another course?</label>
-                            <select class="cs-input course-toggle" id="anotherCourse3" name="anotherCourse3" data-next="4">
+                            <select class="cs-input course-toggle" id="anotherCourse3" name="anotherCourse3"
+                                data-next="4">
                                 <option value="">- Select -</option>
                                 <option value="Yes">Yes</option>
                                 <option value="No">No</option>
@@ -783,22 +806,26 @@
             <div class="cs-row">
                 <div class="cs-field">
                     <label class="cs-label" for="photoId">Photo ID</label>
-                    <input class="cs-input" id="photoId" name="photoId" type="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                    <input class="cs-input" id="photoId" name="photoId" type="file"
+                        accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
                 </div>
 
                 <div class="cs-field">
                     <label class="cs-label" for="iepDocument">IEP Accommodation Document</label>
-                    <input class="cs-input" id="iepDocument" name="iepDocument" type="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                    <input class="cs-input" id="iepDocument" name="iepDocument" type="file"
+                        accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
                 </div>
 
                 <div class="cs-field">
                     <label class="cs-label" for="orderIdUpload">Order ID</label>
-                    <input class="cs-input" id="orderIdUpload" name="orderIdUpload" type="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                    <input class="cs-input" id="orderIdUpload" name="orderIdUpload" type="file"
+                        accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
                 </div>
 
                 <div class="cs-field">
                     <label class="cs-label" for="reportCard">Report Card</label>
-                    <input class="cs-input" id="reportCard" name="reportCard" type="file" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                    <input class="cs-input" id="reportCard" name="reportCard" type="file"
+                        accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
                 </div>
 
                 <div class="cs-field">
@@ -827,17 +854,28 @@
             <div class="cs-copy">
                 <ul>
                     <li>A fee of $50 must be paid at registration. Any fees paid are non-refundable. NO REFUND.</li>
-                    <li>All fees must be paid between day 1 to day 10 of the month, or tutoring will be stopped until the balance is cleared.</li>
-                    <li>Use of phones or any other electronic gadget is not permitted in classrooms. You must surrender them at the front desk. Cell phones are not permitted in the classroom.</li>
-                    <li>You must finish your hours within the same month; there is no transferring or carrying over of pending hours due to absences. NO REFUND.</li>
-                    <li>We do not guarantee marks, results of your course, satisfaction of our services, or scholarships. No refunds will be issued for the same.</li>
-                    <li>Switching from in-class to online or online to in-class requires a fee, and only one switch is allowed. The fee must be paid before the switch is done.</li>
-                    <li>If the course requires any paid subscriptions, the student will be responsible for purchasing them separately and informing the teacher. The cost of these subscriptions is not included in the course fee.</li>
-                    <li>I agree to receive text messages, emails, and phone calls from CanSTEM Education Private School regarding deadlines, pending payments, and other relevant school communications.</li>
-                    <li>Students are responsible for attending all scheduled classes. The school does not provide follow-ups for missed sessions.</li>
-                    <li>Missed classes will not be rescheduled unless informed at least 24 hours ahead of the class time. Failure to attend does not qualify for any transfer or adjustment in fees.</li>
+                    <li>All fees must be paid between day 1 to day 10 of the month, or tutoring will be stopped until
+                        the balance is cleared.</li>
+                    <li>Use of phones or any other electronic gadget is not permitted in classrooms. You must surrender
+                        them at the front desk. Cell phones are not permitted in the classroom.</li>
+                    <li>You must finish your hours within the same month; there is no transferring or carrying over of
+                        pending hours due to absences. NO REFUND.</li>
+                    <li>We do not guarantee marks, results of your course, satisfaction of our services, or
+                        scholarships. No refunds will be issued for the same.</li>
+                    <li>Switching from in-class to online or online to in-class requires a fee, and only one switch is
+                        allowed. The fee must be paid before the switch is done.</li>
+                    <li>If the course requires any paid subscriptions, the student will be responsible for purchasing
+                        them separately and informing the teacher. The cost of these subscriptions is not included in
+                        the course fee.</li>
+                    <li>I agree to receive text messages, emails, and phone calls from CanSTEM Education Private School
+                        regarding deadlines, pending payments, and other relevant school communications.</li>
+                    <li>Students are responsible for attending all scheduled classes. The school does not provide
+                        follow-ups for missed sessions.</li>
+                    <li>Missed classes will not be rescheduled unless informed at least 24 hours ahead of the class
+                        time. Failure to attend does not qualify for any transfer or adjustment in fees.</li>
                     <li>Transferring the fee from one paid service, program, or course to another is not permitted.</li>
-                    <li>For detailed terms and conditions of your enrollment, fee schedules, and policies, refer to the official website.</li>
+                    <li>For detailed terms and conditions of your enrollment, fee schedules, and policies, refer to the
+                        official website.</li>
                 </ul>
             </div>
 
@@ -845,8 +883,11 @@
 
             <h2 class="cs-section-title">Electronic Signature</h2>
             <div class="cs-copy">
-                <p>The electronic signature and all of its related fields replaces a handwritten signature on paper and is legally binding.</p>
-                <p><em>I affirm that the information provided is true, correct and complete, to the best of my knowledge and belief. This electronic signature and its related fields are treated like a handwritten signature on a paper form.</em></p>
+                <p>The electronic signature and all of its related fields replaces a handwritten signature on paper and
+                    is legally binding.</p>
+                <p><em>I affirm that the information provided is true, correct and complete, to the best of my knowledge
+                        and belief. This electronic signature and its related fields are treated like a handwritten
+                        signature on a paper form.</em></p>
             </div>
 
             <div class="cs-field">
@@ -870,6 +911,8 @@
 
     <script>
         (function () {
+            const AJAX_URL = '/wp-admin/admin-ajax.php';
+
             const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
             const cardBlock = document.getElementById('paymentCardBlock');
             const interacBlock = document.getElementById('paymentInteracBlock');
@@ -886,6 +929,21 @@
             const hearAboutOtherWrap = document.getElementById('hearAboutOtherWrap');
             const hearAboutOther = document.getElementById('hearAboutOther');
 
+            const submitBtn = document.getElementById('submitBtn');
+            const statusEl = document.getElementById('status');
+
+            function setStatus(msg, ok) {
+                statusEl.className = 'cs-status';
+                statusEl.textContent = msg;
+                if (ok === true) statusEl.classList.add('cs-ok');
+                if (ok === false) statusEl.classList.add('cs-err');
+            }
+
+            function val(id) {
+                const el = document.getElementById(id);
+                return el ? el.value.trim() : '';
+            }
+
             function resetPaymentBlocks() {
                 cardBlock.classList.add('is-hidden');
                 interacBlock.classList.add('is-hidden');
@@ -897,16 +955,14 @@
                 const interacOrderId = document.getElementById('interacOrderId');
                 const securityQuestion = document.getElementById('securityQuestion');
                 const securityAnswer = document.getElementById('securityAnswer');
-                const inPersonOrderId = document.getElementById('inPersonOrderId');
                 const internationalOrderId = document.getElementById('internationalOrderId');
 
-                cardOrderId.required = false;
-                cardReceiptUpload.required = false;
+                if (cardOrderId) cardOrderId.required = false;
+                if (cardReceiptUpload) cardReceiptUpload.required = false;
 
                 if (interacOrderId) interacOrderId.required = false;
                 if (securityQuestion) securityQuestion.required = false;
                 if (securityAnswer) securityAnswer.required = false;
-                if (inPersonOrderId) inPersonOrderId.required = false;
                 if (internationalOrderId) internationalOrderId.required = false;
             }
 
@@ -927,7 +983,6 @@
                     document.getElementById('securityAnswer').required = true;
                 } else if (selected.value === 'In-Person') {
                     inPersonBlock.classList.remove('is-hidden');
-                    document.getElementById('inPersonOrderId').required = true;
                 } else if (selected.value === 'Paying Internationally') {
                     internationalBlock.classList.remove('is-hidden');
                     document.getElementById('internationalOrderId').required = true;
@@ -940,8 +995,8 @@
                 cardOrderIdWrap.classList.add('is-hidden');
                 cardReceiptUploadWrap.classList.add('is-hidden');
 
-                cardOrderId.required = false;
-                cardReceiptUpload.required = false;
+                if (cardOrderId) cardOrderId.required = false;
+                if (cardReceiptUpload) cardReceiptUpload.required = false;
 
                 if (!selected || cardBlock.classList.contains('is-hidden')) return;
 
@@ -1007,6 +1062,181 @@
                         hideCourseFrom(parseInt(next, 10));
                     }
                 });
+            });
+
+            function isValid() {
+                const requiredIds = [
+                    'firstName',
+                    'lastName',
+                    'gender',
+                    'dob',
+                    'isAdult',
+                    'enrollingGrade',
+                    'onlineInClass',
+                    'studentEmail',
+                    'studentPhone',
+                    'streetAddress',
+                    'cityCountry',
+                    'provinceState',
+                    'postalCode',
+                    'hearAbout',
+                    'noRefundAgree'
+                ];
+
+                for (const id of requiredIds) {
+                    const el = document.getElementById(id);
+                    if (!el || !el.value.trim()) {
+                        el?.focus();
+                        setStatus('Please fill all required fields.', false);
+                        return false;
+                    }
+                }
+
+                const email = val('studentEmail');
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    document.getElementById('studentEmail').focus();
+                    setStatus('Please enter a valid email address.', false);
+                    return false;
+                }
+
+                const selectedPayment = document.querySelector('input[name="paymentMethod"]:checked');
+                if (!selectedPayment) {
+                    setStatus('Please select a payment method.', false);
+                    return false;
+                }
+
+                if (hearAbout.value === 'Other' && !val('hearAboutOther')) {
+                    hearAboutOther.focus();
+                    setStatus('Please fill "Please Specify".', false);
+                    return false;
+                }
+
+                if (selectedPayment.value.includes('Credit - Debit Card')) {
+                    const selectedCardMethod = document.querySelector('input[name="cardVerificationMethod"]:checked');
+                    if (!selectedCardMethod) {
+                        setStatus('Please select a payment verification method.', false);
+                        return false;
+                    }
+
+                    if (selectedCardMethod.value === 'Paste Order ID' && !val('cardOrderId')) {
+                        cardOrderId.focus();
+                        setStatus('Please enter the card Order ID.', false);
+                        return false;
+                    }
+
+                    if (selectedCardMethod.value === 'Upload Receipt Screenshot' && !document.getElementById('cardReceiptUpload').files.length) {
+                        setStatus('Please upload the card receipt screenshot.', false);
+                        return false;
+                    }
+                }
+
+                if (selectedPayment.value === 'INTERAC® eTransfer') {
+                    if (!val('securityQuestion') || !val('securityAnswer') || !val('interacOrderId')) {
+                        setStatus('Please complete all Interac payment fields.', false);
+                        return false;
+                    }
+                }
+
+                if (selectedPayment.value === 'Paying Internationally' && !val('internationalOrderId')) {
+                    setStatus('Please enter the international Order ID.', false);
+                    return false;
+                }
+
+                return true;
+            }
+
+            function clearForm() {
+                document.querySelectorAll('#cs-tutoring input, #cs-tutoring textarea, #cs-tutoring select').forEach(el => {
+                    if (el.type === 'radio' || el.type === 'checkbox') {
+                        el.checked = false;
+                    } else if (el.type === 'file') {
+                        el.value = '';
+                    } else {
+                        el.value = '';
+                    }
+                });
+
+                resetPaymentBlocks();
+                resetPaymentRequired();
+                updateCardVerificationMethod();
+                updateHearAboutOther();
+                hideCourseFrom(2);
+            }
+
+            async function submitForm() {
+                if (!isValid()) return;
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+                setStatus('Submitting…');
+
+                try {
+                    const fd = new FormData();
+                    fd.append('action', 'canstem_tutoring_request');
+
+                    [
+                        'firstName', 'middleName', 'lastName', 'gender', 'dob', 'isAdult', 'enrollingGrade',
+                        'onlineInClass', 'studentEmail', 'studentPhone', 'altPhone', 'streetAddress',
+                        'cityCountry', 'provinceState', 'postalCode', 'cardOrderId', 'securityQuestion',
+                        'securityAnswer', 'interacOrderId', 'internationalOrderId',
+                        'subject1', 'timeSlot1', 'preferredDays1', 'specialInstructions1', 'anotherCourse1',
+                        'subject2', 'timeSlot2', 'preferredDays2', 'specialInstructions2', 'anotherCourse2',
+                        'subject3', 'timeSlot3', 'preferredDays3', 'specialInstructions3', 'anotherCourse3',
+                        'subject4', 'timeSlot4', 'preferredDays4', 'specialInstructions4',
+                        'hearAbout', 'hearAboutOther', 'noRefundAgree'
+                    ].forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el) fd.append(id, el.value || '');
+                    });
+
+                    const paymentMethod = document.querySelector('input[name="paymentMethod"]:checked');
+                    const cardVerificationMethod = document.querySelector('input[name="cardVerificationMethod"]:checked');
+
+                    fd.append('paymentMethod', paymentMethod ? paymentMethod.value : '');
+                    fd.append('cardVerificationMethod', cardVerificationMethod ? cardVerificationMethod.value : '');
+
+                    ['photoId', 'iepDocument', 'orderIdUpload', 'reportCard', 'cardReceiptUpload'].forEach(id => {
+                        const fileInput = document.getElementById(id);
+                        if (fileInput && fileInput.files && fileInput.files[0]) {
+                            fd.append(id, fileInput.files[0]);
+                        }
+                    });
+
+                    const resp = await fetch(AJAX_URL, {
+                        method: 'POST',
+                        body: fd,
+                        credentials: 'same-origin'
+                    });
+
+                    const raw = await resp.text();
+
+                    let data = {};
+                    try {
+                        data = JSON.parse(raw);
+                    } catch (e) {
+                        console.error('Raw server response:', raw);
+                        data = { success: false, data: { error: 'Invalid server response' } };
+                    }
+
+                    if (resp.ok && data.success) {
+                        clearForm();
+                        setStatus('Success! Your tutoring enrollment form has been submitted successfully.', true);
+                    } else {
+                        const msg = data?.data?.error || `Error sending your request. HTTP ${resp.status}`;
+                        setStatus(msg, false);
+                    }
+                } catch (e) {
+                    console.error(e);
+                    setStatus('Network error. Please try again.', false);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit';
+                }
+            }
+
+            submitBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                submitForm();
             });
 
             updatePaymentMethod();
