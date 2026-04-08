@@ -13,7 +13,7 @@ class Canstem_Tutoring_Form_Handler {
     const MAIL_CC          = '';
     const MAIL_BCC         = '';
 
-    const GOOGLE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzbJY9G917ZUYdGTEPEdiuBNE7whEv_eEw8P-xjCurb2L_n6tMCTOIyTyEKFu3hnm9GRA/exec';
+    const GOOGLE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwbpI-RisjAK3jK03eIuJ8gn_bCG6LPkI8AwEIRBTVT5flUH4diaYG1XMEOc2vttc2MrA/exec';
 
     public static function boot() {
         add_action( 'phpmailer_init', [ __CLASS__, 'smtp_setup' ], 999 );
@@ -79,14 +79,13 @@ class Canstem_Tutoring_Form_Handler {
             $provinceState    = $sx( $_POST['provinceState'] ?? '' );
             $postalCode       = $sx( $_POST['postalCode'] ?? '' );
 
-            $paymentMethod         = $sx( $_POST['paymentMethod'] ?? '' );
+            $paymentMethod          = $sx( $_POST['paymentMethod'] ?? '' );
             $cardVerificationMethod = $sx( $_POST['cardVerificationMethod'] ?? '' );
-            $cardOrderId           = $sx( $_POST['cardOrderId'] ?? '' );
-            $securityQuestion      = $sx( $_POST['securityQuestion'] ?? '' );
-            $securityAnswer        = $sx( $_POST['securityAnswer'] ?? '' );
-            $interacOrderId        = $sx( $_POST['interacOrderId'] ?? '' );
-            $inPersonOrderId       = $sx( $_POST['inPersonOrderId'] ?? '' );
-            $internationalOrderId  = $sx( $_POST['internationalOrderId'] ?? '' );
+            $cardOrderId            = $sx( $_POST['cardOrderId'] ?? '' );
+            $securityQuestion       = $sx( $_POST['securityQuestion'] ?? '' );
+            $securityAnswer         = $sx( $_POST['securityAnswer'] ?? '' );
+            $interacOrderId         = $sx( $_POST['interacOrderId'] ?? '' );
+            $internationalOrderId   = $sx( $_POST['internationalOrderId'] ?? '' );
 
             $subject1             = $sx( $_POST['subject1'] ?? '' );
             $timeSlot1            = $sx( $_POST['timeSlot1'] ?? '' );
@@ -162,10 +161,6 @@ class Canstem_Tutoring_Form_Handler {
                 if ( ! $securityQuestion || ! $securityAnswer || ! $interacOrderId ) {
                     wp_send_json_error( [ 'error' => 'Please complete all Interac payment fields.' ], 400 );
                 }
-            }
-
-            if ( $paymentMethod === 'In-Person' && ! $inPersonOrderId ) {
-                wp_send_json_error( [ 'error' => 'Please enter the in-person Order ID.' ], 400 );
             }
 
             if ( $paymentMethod === 'Paying Internationally' && ! $internationalOrderId ) {
@@ -279,9 +274,6 @@ class Canstem_Tutoring_Form_Handler {
             if ( $interacOrderId ) {
                 $rows[] = self::tr( 'Interac Order ID', esc_html( $interacOrderId ) );
             }
-            if ( $inPersonOrderId ) {
-                $rows[] = self::tr( 'In-Person Order ID', esc_html( $inPersonOrderId ) );
-            }
             if ( $internationalOrderId ) {
                 $rows[] = self::tr( 'International Order ID', esc_html( $internationalOrderId ) );
             }
@@ -382,7 +374,6 @@ class Canstem_Tutoring_Form_Handler {
                 'securityQuestion'        => $securityQuestion,
                 'securityAnswer'          => $securityAnswer,
                 'interacOrderId'          => $interacOrderId,
-                'inPersonOrderId'         => $inPersonOrderId,
                 'internationalOrderId'    => $internationalOrderId,
                 'subject1'                => $subject1,
                 'timeSlot1'               => $timeSlot1,

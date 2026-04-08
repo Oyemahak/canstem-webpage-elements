@@ -4,6 +4,7 @@ const PARENT_FOLDER_ID = '105oG2ZkCgMnt8KvNN7p9u3AwAZnTDcKu';
 
 /*
 Expected sheet headers in row 1:
+
 Timestamp
 Form Type
 Form Title
@@ -30,7 +31,6 @@ Card Order ID
 Interac Security Question
 Interac Security Answer
 Interac Order ID
-In-Person Order ID
 International Order ID
 Subject 1
 Time Slot 1
@@ -126,6 +126,7 @@ function doPost(e) {
     rowData['Form Type'] = 'Tutoring';
     rowData['Form Title'] = 'Tutoring Enrollment Form';
     rowData['Submission ID'] = submissionId;
+
     rowData['First Name'] = data.firstName || '';
     rowData['Middle Name'] = data.middleName || '';
     rowData['Last Name'] = data.lastName || '';
@@ -149,7 +150,6 @@ function doPost(e) {
     rowData['Interac Security Question'] = data.securityQuestion || '';
     rowData['Interac Security Answer'] = data.securityAnswer || '';
     rowData['Interac Order ID'] = data.interacOrderId || '';
-    rowData['In-Person Order ID'] = data.inPersonOrderId || '';
     rowData['International Order ID'] = data.internationalOrderId || '';
 
     rowData['Subject 1'] = data.subject1 || '';
@@ -204,6 +204,7 @@ function doPost(e) {
       folderUrl,
       pdfUrl
     });
+
   } catch (err) {
     return jsonResponse({
       ok: false,
@@ -262,7 +263,6 @@ function createSummaryPdf(submissionFolder, submissionId, data, uploadedDocNames
     ['Interac Security Question', data.securityQuestion || ''],
     ['Interac Security Answer', data.securityAnswer || ''],
     ['Interac Order ID', data.interacOrderId || ''],
-    ['In-Person Order ID', data.inPersonOrderId || ''],
     ['International Order ID', data.internationalOrderId || ''],
     ['Subject 1', data.subject1 || ''],
     ['Time Slot 1', data.timeSlot1 || ''],
