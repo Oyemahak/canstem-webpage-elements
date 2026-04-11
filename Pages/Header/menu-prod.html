@@ -1,0 +1,841 @@
+<?php
+/**
+ * CanSTEM Global Responsive Header v2
+ * Usage: [canstem_global_header]
+ */
+
+if (!function_exists('canstem_get_menu_tree')) {
+    function canstem_get_menu_tree($menu_name) {
+        $menu_obj = wp_get_nav_menu_object($menu_name);
+        if (!$menu_obj) return [];
+
+        $items = wp_get_nav_menu_items($menu_obj->term_id);
+        if (empty($items)) return [];
+
+        $by_parent = [];
+        foreach ($items as $item) {
+            $item->children = [];
+            $by_parent[$item->menu_item_parent][] = $item;
+        }
+
+        $tree = [];
+        if (!empty($by_parent[0])) {
+            foreach ($by_parent[0] as $parent) {
+                if (!empty($by_parent[$parent->ID])) {
+                    $parent->children = $by_parent[$parent->ID];
+                }
+                $tree[] = $parent;
+            }
+        }
+
+        return $tree;
+    }
+}
+
+if (!function_exists('canstem_render_mobile_menu_tree')) {
+    function canstem_render_mobile_menu_tree($items) {
+        if (empty($items)) return;
+
+        foreach ($items as $item) {
+            $has_children = !empty($item->children);
+            $submenu_id = 'csh-submenu-' . $item->ID;
+
+            echo '<li class="csh-m-item ' . ($has_children ? 'has-children' : 'no-children') . '">';
+
+            if ($has_children) {
+                echo '<button class="csh-m-toggle" type="button" aria-expanded="false" aria-controls="' . esc_attr($submenu_id) . '">';
+                echo '<span class="csh-m-toggle-text">' . esc_html($item->title) . '</span>';
+                echo '<span class="csh-m-plus" aria-hidden="true"></span>';
+                echo '</button>';
+
+                echo '<div id="' . esc_attr($submenu_id) . '" class="csh-m-submenu" hidden>';
+                echo '<ul class="csh-m-submenu-list">';
+                foreach ($item->children as $child) {
+                    echo '<li class="csh-m-submenu-item">';
+                    echo '<a class="csh-m-submenu-link" href="' . esc_url($child->url) . '">' . esc_html($child->title) . '</a>';
+                    echo '</li>';
+                }
+                echo '</ul>';
+                echo '</div>';
+            } else {
+                echo '<a class="csh-m-link" href="' . esc_url($item->url) . '">';
+                echo '<span class="csh-m-toggle-text">' . esc_html($item->title) . '</span>';
+                echo '</a>';
+            }
+
+            echo '</li>';
+        }
+    }
+}
+
+if (!function_exists('canstem_global_header_shortcode_v2')) {
+    function canstem_global_header_shortcode_v2() {
+        $desktop_menu = 'Menu Type: Mahak';
+        $mobile_menu  = 'New Menu By Mahak';
+
+        $mobile_tree = canstem_get_menu_tree($mobile_menu);
+
+        $home_url = home_url('/');
+        $contact_url = home_url('/contact-us/');
+        $enroll_url = 'https://registration.ca.powerschool.com/family/gosnap.aspx?action=100000879&culture=en';
+        $phone_display = '647-568-0258';
+        $phone_link = 'tel:+16475680258';
+
+        $logo_url = '';
+        if (has_custom_logo()) {
+            $custom_logo_id = get_theme_mod('custom_logo');
+            $logo_data = wp_get_attachment_image_src($custom_logo_id, 'full');
+            if (!empty($logo_data[0])) {
+                $logo_url = $logo_data[0];
+            }
+        }
+        if (!$logo_url) {
+            $logo_url = 'https://canstemeducation.com/wp-content/uploads/2023/07/CanSTEM-Education-Private-School.png';
+        }
+
+        $cart_url = function_exists('wc_get_cart_url') ? wc_get_cart_url() : home_url('/cart/');
+        $cart_count = 0;
+        if (function_exists('WC') && WC()->cart) {
+            $cart_count = WC()->cart->get_cart_contents_count();
+        }
+
+        ob_start();
+        ?>
+        <div class="csh-wrap-root" data-csh-root>
+            <style>
+                .csh-wrap-root,
+                .csh-wrap-root * {
+                    box-sizing: border-box;
+                }
+
+                .csh-wrap-root {
+                    --csh-primary: #001161;
+                    --csh-primary-2: #0b69d0;
+                    --csh-primary-3: #1787d8;
+                    --csh-white: #ffffff;
+                    --csh-text: #111827;
+                    --csh-submenu-bg: #f3f4f8;
+                    --csh-border: #e5e7eb;
+                    --csh-shadow: 0 8px 24px rgba(2, 6, 23, 0.10);
+                    --csh-shadow-lg: 0 16px 40px rgba(2, 6, 23, 0.16);
+                    --csh-radius: 6px;
+                    position: relative;
+                    z-index: 9999;
+                    width: 100%;
+                    font-family: "Open Sans", sans-serif;
+                    background: #fff;
+                }
+
+                .csh-wrap-root a,
+                .csh-wrap-root button {
+                    -webkit-tap-highlight-color: transparent;
+                }
+
+                .csh-inner {
+                    max-width: 1320px;
+                    margin: 0 auto;
+                    padding: 0 18px;
+                }
+
+                .csh-top-desktop {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 18px;
+                    min-height: 96px;
+                    padding: 14px 0;
+                    background: #fff;
+                }
+
+                .csh-left,
+                .csh-right {
+                    display: flex;
+                    align-items: center;
+                    gap: 14px;
+                }
+
+                .csh-logo-link {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-decoration: none;
+                    flex: 0 0 auto;
+                }
+
+                .csh-logo {
+                    display: block;
+                    width: auto;
+                    max-width: 116px;
+                    height: auto;
+                }
+
+                .csh-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-height: 48px;
+                    padding: 0 22px;
+                    border-radius: var(--csh-radius);
+                    background: var(--csh-primary-3);
+                    color: #fff !important;
+                    text-decoration: none !important;
+                    font-size: 15px;
+                    font-weight: 700;
+                    line-height: 1;
+                    white-space: nowrap;
+                    box-shadow: none;
+                    border: 0;
+                    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+                }
+
+                .csh-btn:hover {
+                    background: #117bd0;
+                    transform: translateY(-1px);
+                    box-shadow: 0 8px 20px rgba(23, 135, 216, 0.22);
+                }
+
+                .csh-phone {
+                    font-size: 24px;
+                    line-height: 1;
+                    font-weight: 800;
+                    color: #111;
+                    white-space: nowrap;
+                }
+
+                .csh-cart {
+                    position: relative;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 50px;
+                    height: 50px;
+                    background: var(--csh-primary-3);
+                    border-radius: 4px;
+                    text-decoration: none;
+                    flex: 0 0 50px;
+                    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+                }
+
+                .csh-cart:hover {
+                    background: #117bd0;
+                    transform: translateY(-1px);
+                    box-shadow: 0 8px 20px rgba(23, 135, 216, 0.22);
+                }
+
+                .csh-cart svg {
+                    width: 22px;
+                    height: 22px;
+                    color: #fff;
+                    fill: currentColor;
+                }
+
+                .csh-cart-count {
+                    position: absolute;
+                    top: -5px;
+                    right: -5px;
+                    min-width: 18px;
+                    height: 18px;
+                    padding: 0 5px;
+                    border-radius: 999px;
+                    background: var(--csh-primary);
+                    color: #fff;
+                    font-size: 11px;
+                    font-weight: 700;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+                }
+
+                .csh-lang {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    min-height: 46px;
+                }
+
+                .csh-desktop-nav-wrap {
+                    border-top: 1px solid #edf2f7;
+                    border-bottom: 3px solid #0b69d0;
+                    background: #fff;
+                    box-shadow: var(--csh-shadow);
+                }
+
+                .csh-desktop-nav .menu {
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 36px;
+                    flex-wrap: nowrap;
+                }
+
+                .csh-desktop-nav .menu > li {
+                    margin: 0;
+                    padding: 0;
+                    position: relative;
+                }
+
+                .csh-desktop-nav .menu > li > a {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 8px;
+                    min-height: 50px;
+                    text-decoration: none;
+                    color: #111827;
+                    font-size: 16px;
+                    font-weight: 700;
+                    white-space: nowrap;
+                    transition: color 0.18s ease;
+                }
+
+                .csh-desktop-nav .menu > li:hover > a {
+                    color: var(--csh-primary);
+                }
+
+                .csh-desktop-nav .menu > li.menu-item-has-children > a::after {
+                    content: "";
+                    width: 8px;
+                    height: 8px;
+                    border-right: 2px solid currentColor;
+                    border-bottom: 2px solid currentColor;
+                    transform: rotate(45deg);
+                    margin-top: -3px;
+                }
+
+                .csh-desktop-nav .sub-menu {
+                    list-style: none;
+                    margin: 0;
+                    padding: 10px 0;
+                    min-width: 280px;
+                    position: absolute;
+                    top: calc(100% + 10px);
+                    left: 0;
+                    background: #fff;
+                    border: 1px solid #e5e7eb;
+                    box-shadow: var(--csh-shadow-lg);
+                    border-radius: 10px;
+                    opacity: 0;
+                    visibility: hidden;
+                    transform: translateY(10px);
+                    transition: opacity .22s ease, transform .22s ease, visibility .22s ease;
+                    z-index: 50;
+                }
+
+                .csh-desktop-nav .menu > li:hover > .sub-menu,
+                .csh-desktop-nav .menu > li:focus-within > .sub-menu {
+                    opacity: 1;
+                    visibility: visible;
+                    transform: translateY(0);
+                }
+
+                .csh-desktop-nav .sub-menu li a {
+                    display: block;
+                    padding: 12px 18px;
+                    text-decoration: none;
+                    color: var(--csh-primary);
+                    font-size: 15px;
+                    line-height: 1.35;
+                    font-weight: 600;
+                }
+
+                .csh-desktop-nav .sub-menu li a:hover {
+                    background: #f6f8fc;
+                }
+
+                /* Mobile + Tablet top bar */
+                .csh-mobile-top {
+                    display: none;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 16px;
+                    min-height: 110px;
+                    padding: 16px 0;
+                    background: #f8f8fa;
+                    border-top: 1px solid #edf2f7;
+                    border-bottom: 1px solid #edf2f7;
+                }
+
+                .csh-mobile-left,
+                .csh-mobile-right {
+                    display: flex;
+                    align-items: center;
+                    gap: 12px;
+                    flex: 0 0 auto;
+                }
+
+                .csh-mobile-center {
+                    flex: 1 1 auto;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+                .csh-mobile-logo {
+                    display: block;
+                    max-width: 180px;
+                    width: auto;
+                    height: auto;
+                }
+
+                .csh-burger {
+                    width: 52px;
+                    height: 52px;
+                    border: 0;
+                    background: transparent;
+                    border-radius: 6px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    padding: 0;
+                    position: relative;
+                }
+
+                .csh-burger-icon,
+                .csh-burger-icon::before,
+                .csh-burger-icon::after {
+                    display: block;
+                    width: 26px;
+                    height: 3px;
+                    background: #0b69d0;
+                    border-radius: 2px;
+                    position: relative;
+                    transition: transform .22s ease, opacity .22s ease, top .22s ease;
+                    content: "";
+                }
+
+                .csh-burger-icon::before {
+                    position: absolute;
+                    top: -8px;
+                    left: 0;
+                }
+
+                .csh-burger-icon::after {
+                    position: absolute;
+                    top: 8px;
+                    left: 0;
+                }
+
+                .csh-burger.is-active .csh-burger-icon {
+                    background: transparent;
+                }
+
+                .csh-burger.is-active .csh-burger-icon::before {
+                    top: 0;
+                    transform: rotate(45deg);
+                }
+
+                .csh-burger.is-active .csh-burger-icon::after {
+                    top: 0;
+                    transform: rotate(-45deg);
+                }
+
+                .csh-mobile-lang {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .csh-mobile-panel {
+                    display: none;
+                    background: #fff;
+                    border-bottom: 1px solid #edf2f7;
+                    box-shadow: var(--csh-shadow);
+                    overflow: hidden;
+                }
+
+                .csh-mobile-panel.is-open {
+                    display: block;
+                    animation: cshFadeDown .24s ease forwards;
+                }
+
+                @keyframes cshFadeDown {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-8px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+
+                .csh-m-list,
+                .csh-m-submenu-list {
+                    list-style: none;
+                    margin: 0;
+                    padding: 0;
+                }
+
+                .csh-m-toggle,
+                .csh-m-link {
+                    width: 100%;
+                    min-height: 84px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 14px;
+                    padding: 0 16px 0 24px;
+                    background: var(--csh-primary);
+                    color: #fff;
+                    border: 0;
+                    border-top: 1px solid rgba(255,255,255,0.62);
+                    text-decoration: none;
+                    text-align: left;
+                    cursor: pointer;
+                    transition: background .18s ease;
+                }
+
+                .csh-m-toggle:hover,
+                .csh-m-link:hover {
+                    background: #021a84;
+                }
+
+                .csh-m-toggle-text {
+                    font-size: 23px;
+                    line-height: 1.2;
+                    font-weight: 700;
+                    color: inherit;
+                }
+
+                .csh-m-plus {
+                    width: 46px;
+                    height: 46px;
+                    flex: 0 0 46px;
+                    background: #fff;
+                    border: 2px solid #27a3ff;
+                    border-radius: 4px;
+                    position: relative;
+                    box-shadow: 0 2px 8px rgba(2, 6, 23, 0.08);
+                }
+
+                .csh-m-plus::before,
+                .csh-m-plus::after {
+                    content: "";
+                    position: absolute;
+                    left: 50%;
+                    top: 50%;
+                    background: var(--csh-primary);
+                    transform: translate(-50%, -50%);
+                    transition: all .22s ease;
+                }
+
+                .csh-m-plus::before {
+                    width: 18px;
+                    height: 4px;
+                    border-radius: 2px;
+                }
+
+                .csh-m-plus::after {
+                    width: 4px;
+                    height: 18px;
+                    border-radius: 2px;
+                }
+
+                .csh-m-toggle[aria-expanded="true"] .csh-m-plus::after {
+                    opacity: 0;
+                    transform: translate(-50%, -50%) scaleY(0);
+                }
+
+                .csh-m-submenu {
+                    background: var(--csh-submenu-bg);
+                    overflow: hidden;
+                }
+
+                .csh-m-submenu-link {
+                    display: block;
+                    padding: 18px 24px;
+                    text-decoration: none;
+                    color: var(--csh-primary);
+                    font-size: 20px;
+                    line-height: 1.3;
+                    font-weight: 500;
+                    transition: background .18s ease, color .18s ease;
+                }
+
+                .csh-m-submenu-link:hover {
+                    background: #e9edf7;
+                    color: #021a84;
+                }
+
+                .csh-mobile-bottom {
+                    display: grid;
+                    gap: 14px;
+                    padding: 18px;
+                    background: #fff;
+                    border-top: 1px solid #edf2f7;
+                }
+
+                .csh-mobile-phone-row {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    gap: 16px;
+                    padding: 16px 12px;
+                    background: #f6f7fb;
+                    border-top: 2px solid #dbe4f2;
+                    border-bottom: 2px solid #dbe4f2;
+                }
+
+                .csh-mobile-phone {
+                    font-size: 22px;
+                    line-height: 1;
+                    font-weight: 800;
+                    color: #111;
+                    text-decoration: none;
+                }
+
+                .csh-mobile-bottom .csh-btn {
+                    width: 100%;
+                }
+
+                /* Breakpoints */
+                @media (max-width: 1024px) {
+                    .csh-top-desktop,
+                    .csh-desktop-nav-wrap {
+                        display: none;
+                    }
+
+                    .csh-mobile-top {
+                        display: flex;
+                    }
+                }
+
+                @media (min-width: 1025px) {
+                    .csh-mobile-top,
+                    .csh-mobile-panel {
+                        display: none !important;
+                    }
+                }
+
+                @media (max-width: 767px) {
+                    .csh-inner {
+                        padding: 0 14px;
+                    }
+
+                    .csh-mobile-top {
+                        min-height: 94px;
+                        padding: 14px 0;
+                    }
+
+                    .csh-mobile-logo {
+                        max-width: 150px;
+                    }
+
+                    .csh-burger,
+                    .csh-cart {
+                        width: 46px;
+                        height: 46px;
+                        flex-basis: 46px;
+                    }
+
+                    .csh-cart svg {
+                        width: 20px;
+                        height: 20px;
+                    }
+
+                    .csh-m-toggle,
+                    .csh-m-link {
+                        min-height: 76px;
+                        padding-left: 20px;
+                        padding-right: 14px;
+                    }
+
+                    .csh-m-toggle-text {
+                        font-size: 19px;
+                    }
+
+                    .csh-m-plus {
+                        width: 42px;
+                        height: 42px;
+                        flex-basis: 42px;
+                    }
+
+                    .csh-m-submenu-link {
+                        font-size: 18px;
+                        padding: 16px 20px;
+                    }
+
+                    .csh-mobile-phone {
+                        font-size: 18px;
+                    }
+
+                    .csh-mobile-phone-row {
+                        flex-direction: row;
+                        gap: 12px;
+                    }
+
+                    .csh-mobile-phone-row .csh-btn {
+                        min-height: 42px;
+                        padding: 0 16px;
+                        font-size: 14px;
+                    }
+                }
+            </style>
+
+            <header class="csh-header" role="banner">
+                <div class="csh-inner">
+                    <div class="csh-top-desktop">
+                        <div class="csh-left">
+                            <a href="<?php echo esc_url($home_url); ?>" class="csh-logo-link">
+                                <img src="<?php echo esc_url($logo_url); ?>" alt="CanSTEM Education" class="csh-logo">
+                            </a>
+                            <a href="<?php echo esc_url($contact_url); ?>" class="csh-btn">EMAIL US!</a>
+                            <a href="<?php echo esc_url($contact_url); ?>" class="csh-btn">ANY QUESTIONS?</a>
+                        </div>
+
+                        <div class="csh-phone"><?php echo esc_html($phone_display); ?></div>
+
+                        <div class="csh-right">
+                            <a href="<?php echo esc_url($enroll_url); ?>" class="csh-btn">ENROLL NOW</a>
+
+                            <a class="csh-cart" href="<?php echo esc_url($cart_url); ?>" aria-label="Cart">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M17 8V7a5 5 0 0 0-10 0v1H5.75A.75.75 0 0 0 5 8.75v10.5c0 .41.34.75.75.75h12.5c.41 0 .75-.34.75-.75V8.75A.75.75 0 0 0 18.25 8H17zm-8 0V7a3 3 0 0 1 6 0v1H9zm-2.5 1.5H8v1a1 1 0 1 0 2 0v-1h4v1a1 1 0 1 0 2 0v-1h1.5v9h-11v-9z" fill="currentColor"/>
+                                </svg>
+                                <?php if ($cart_count > 0): ?>
+                                    <span class="csh-cart-count"><?php echo intval($cart_count); ?></span>
+                                <?php endif; ?>
+                            </a>
+
+                            <div class="csh-lang"><?php echo do_shortcode('[gtranslate]'); ?></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="csh-desktop-nav-wrap">
+                    <div class="csh-inner csh-desktop-nav">
+                        <?php
+                        wp_nav_menu([
+                            'menu'        => $desktop_menu,
+                            'container'   => false,
+                            'menu_class'  => 'menu',
+                            'fallback_cb' => false,
+                            'depth'       => 2,
+                        ]);
+                        ?>
+                    </div>
+                </div>
+
+                <div class="csh-inner">
+                    <div class="csh-mobile-top">
+                        <div class="csh-mobile-left">
+                            <button class="csh-burger" type="button" aria-expanded="false" aria-label="Open menu">
+                                <span class="csh-burger-icon"></span>
+                            </button>
+                        </div>
+
+                        <div class="csh-mobile-center">
+                            <a href="<?php echo esc_url($home_url); ?>" class="csh-logo-link">
+                                <img src="<?php echo esc_url($logo_url); ?>" alt="CanSTEM Education" class="csh-mobile-logo">
+                            </a>
+                        </div>
+
+                        <div class="csh-mobile-right">
+                            <a class="csh-cart" href="<?php echo esc_url($cart_url); ?>" aria-label="Cart">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M17 8V7a5 5 0 0 0-10 0v1H5.75A.75.75 0 0 0 5 8.75v10.5c0 .41.34.75.75.75h12.5c.41 0 .75-.34.75-.75V8.75A.75.75 0 0 0 18.25 8H17zm-8 0V7a3 3 0 0 1 6 0v1H9zm-2.5 1.5H8v1a1 1 0 1 0 2 0v-1h4v1a1 1 0 1 0 2 0v-1h1.5v9h-11v-9z" fill="currentColor"/>
+                                </svg>
+                                <?php if ($cart_count > 0): ?>
+                                    <span class="csh-cart-count"><?php echo intval($cart_count); ?></span>
+                                <?php endif; ?>
+                            </a>
+
+                            <div class="csh-mobile-lang"><?php echo do_shortcode('[gtranslate]'); ?></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="csh-mobile-panel" data-csh-panel>
+                    <div class="csh-inner">
+                        <nav class="csh-mobile-nav" aria-label="Mobile Menu">
+                            <ul class="csh-m-list">
+                                <?php canstem_render_mobile_menu_tree($mobile_tree); ?>
+                            </ul>
+                        </nav>
+
+                        <div class="csh-mobile-bottom">
+                            <div class="csh-mobile-phone-row">
+                                <a href="<?php echo esc_url($phone_link); ?>" class="csh-mobile-phone"><?php echo esc_html($phone_display); ?></a>
+                                <a href="<?php echo esc_url($enroll_url); ?>" class="csh-btn">ENROLL NOW</a>
+                            </div>
+
+                            <a href="<?php echo esc_url($contact_url); ?>" class="csh-btn">EMAIL US!</a>
+                            <a href="<?php echo esc_url($contact_url); ?>" class="csh-btn">ANY QUESTIONS?</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <script>
+                (function() {
+                    if (window.canstemHeaderV2Bound) return;
+                    window.canstemHeaderV2Bound = true;
+
+                    function getRoot(el) {
+                        return el ? el.closest('[data-csh-root]') : null;
+                    }
+
+                    document.addEventListener('click', function(e) {
+                        const burger = e.target.closest('.csh-burger');
+                        if (burger) {
+                            const root = getRoot(burger);
+                            if (!root) return;
+
+                            const panel = root.querySelector('[data-csh-panel]');
+                            if (!panel) return;
+
+                            const isOpen = panel.classList.contains('is-open');
+
+                            panel.classList.toggle('is-open', !isOpen);
+                            burger.classList.toggle('is-active', !isOpen);
+                            burger.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
+                            return;
+                        }
+
+                        const toggle = e.target.closest('.csh-m-toggle');
+                        if (toggle) {
+                            const targetId = toggle.getAttribute('aria-controls');
+                            const submenu = document.getElementById(targetId);
+                            if (!submenu) return;
+
+                            const expanded = toggle.getAttribute('aria-expanded') === 'true';
+                            toggle.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+                            submenu.hidden = expanded;
+                            return;
+                        }
+                    });
+
+                    window.addEventListener('resize', function() {
+                        document.querySelectorAll('[data-csh-root]').forEach(function(root) {
+                            if (window.innerWidth > 1024) {
+                                const panel = root.querySelector('[data-csh-panel]');
+                                const burger = root.querySelector('.csh-burger');
+                                if (panel) panel.classList.remove('is-open');
+                                if (burger) {
+                                    burger.classList.remove('is-active');
+                                    burger.setAttribute('aria-expanded', 'false');
+                                }
+
+                                root.querySelectorAll('.csh-m-toggle').forEach(function(toggle) {
+                                    toggle.setAttribute('aria-expanded', 'false');
+                                });
+
+                                root.querySelectorAll('.csh-m-submenu').forEach(function(submenu) {
+                                    submenu.hidden = true;
+                                });
+                            }
+                        });
+                    });
+                })();
+            </script>
+        </div>
+        <?php
+        return ob_get_clean();
+    }
+
+    add_shortcode('canstem_global_header', 'canstem_global_header_shortcode_v2');
+}
