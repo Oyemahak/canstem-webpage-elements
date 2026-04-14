@@ -54,6 +54,14 @@ function doPost(e) {
     const headers = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
     const rowData = {};
 
+    const course1 = getCourseValue(data, 1);
+    const course2 = getCourseValue(data, 2);
+    const course3 = getCourseValue(data, 3);
+    const course4 = getCourseValue(data, 4);
+    const course5 = getCourseValue(data, 5);
+
+    const isAdult = String(data.isAdult || '').trim() === 'Yes';
+
     // =========================
     // BASIC INFO
     // =========================
@@ -96,31 +104,31 @@ function doPost(e) {
     // COURSES
     // =========================
     rowData['Course Grade 1'] = data.courseGrade1 || '';
-    rowData['Course 1'] = data.courseFinal1 || '';
+    rowData['Course 1'] = course1;
     rowData['Mode 1'] = data.courseMode1 || '';
     rowData['Course Requirement 1'] = data.courseRequirement1 || '';
     rowData['Another Course 1'] = data.anotherCourse1 || '';
 
     rowData['Course Grade 2'] = data.courseGrade2 || '';
-    rowData['Course 2'] = data.courseFinal2 || '';
+    rowData['Course 2'] = course2;
     rowData['Mode 2'] = data.courseMode2 || '';
     rowData['Course Requirement 2'] = data.courseRequirement2 || '';
     rowData['Another Course 2'] = data.anotherCourse2 || '';
 
     rowData['Course Grade 3'] = data.courseGrade3 || '';
-    rowData['Course 3'] = data.courseFinal3 || '';
+    rowData['Course 3'] = course3;
     rowData['Mode 3'] = data.courseMode3 || '';
     rowData['Course Requirement 3'] = data.courseRequirement3 || '';
     rowData['Another Course 3'] = data.anotherCourse3 || '';
 
     rowData['Course Grade 4'] = data.courseGrade4 || '';
-    rowData['Course 4'] = data.courseFinal4 || '';
+    rowData['Course 4'] = course4;
     rowData['Mode 4'] = data.courseMode4 || '';
     rowData['Course Requirement 4'] = data.courseRequirement4 || '';
     rowData['Another Course 4'] = data.anotherCourse4 || '';
 
     rowData['Course Grade 5'] = data.courseGrade5 || '';
-    rowData['Course 5'] = data.courseFinal5 || '';
+    rowData['Course 5'] = course5;
     rowData['Mode 5'] = data.courseMode5 || '';
     rowData['Course Requirement 5'] = data.courseRequirement5 || '';
 
@@ -167,6 +175,16 @@ function doPost(e) {
     rowData['Emergency Contact 1 Cell Phone'] = data.emergencyCellPhone || '';
     rowData['Emergency Contact 1 Email Address'] = data.emergencyEmail || '';
 
+    rowData['Emergency Contact 2 First Name'] = data.emergency2FirstName || '';
+    rowData['Emergency Contact 2 Last Name'] = data.emergency2LastName || '';
+    rowData['Emergency Contact 2 Relationship'] = data.emergency2Relationship || '';
+    rowData['Emergency Contact 2 Street Address'] = data.emergency2StreetAddress || '';
+    rowData['Emergency Contact 2 City and Country'] = data.emergency2CityCountry || '';
+    rowData['Emergency Contact 2 Province - State'] = data.emergency2ProvinceState || '';
+    rowData['Emergency Contact 2 Postal Code'] = data.emergency2PostalCode || '';
+    rowData['Emergency Contact 2 Cell Phone'] = data.emergency2CellPhone || '';
+    rowData['Emergency Contact 2 Email Address'] = data.emergency2Email || '';
+
     // =========================
     // PAYMENT
     // =========================
@@ -186,10 +204,17 @@ function doPost(e) {
     rowData['Terms Agree'] = data.termsAgree || '';
     rowData['Final Grades Upload Option'] = data.gradesUploadOption || '';
     rowData['No Refund Policy Agreement'] = data.noRefundAgree || '';
-    rowData['Parent Terms Agree'] = data.parentTermsAgree || '';
-    rowData['Parent/Guardian Electronic Signature'] = data.parentSignature || '';
-    rowData['Student Electronic Signature'] = data.studentSignature || '';
-    rowData["Today's Date"] = data.todayDate || '';
+
+    // Minor signature fields
+    rowData['Parent Terms Agree'] = isAdult ? '' : (data.parentTermsAgree || '');
+    rowData['Parent/Guardian Electronic Signature'] = isAdult ? '' : (data.parentSignature || '');
+    rowData['Student Electronic Signature'] = isAdult ? '' : (data.studentSignature || '');
+    rowData["Today's Date"] = isAdult ? '' : (data.todayDate || '');
+
+    // Adult signature fields
+    rowData["Applicant Terms Agree"] = isAdult ? (data.applicantTermsAgree || '') : '';
+    rowData["Applicant / Adult Student Electronic Signature"] = isAdult ? (data.adultStudentSignature || '') : '';
+    rowData["Applicant Today's Date"] = isAdult ? (data.adultTodayDate || '') : '';
 
     // =========================
     // FILE STATUS
@@ -231,6 +256,15 @@ function doPost(e) {
   }
 }
 
+function getCourseValue(data, index) {
+  return (
+    data[`courseFinal${index}`] ||
+    data[`courseManual${index}`] ||
+    data[`courseSearch${index}`] ||
+    ''
+  );
+}
+
 function hasUploadedLabel(uploadedDocNames, label) {
   return uploadedDocNames.indexOf(label) !== -1;
 }
@@ -250,6 +284,13 @@ function sanitizeName(value) {
 function createSummaryPdf(submissionFolder, enrollmentId, data, uploadedDocNames) {
   const doc = DocumentApp.create(`${enrollmentId} - High School Enrollment Summary`);
   const body = doc.getBody();
+
+  const course1 = getCourseValue(data, 1);
+  const course2 = getCourseValue(data, 2);
+  const course3 = getCourseValue(data, 3);
+  const course4 = getCourseValue(data, 4);
+  const course5 = getCourseValue(data, 5);
+  const isAdult = String(data.isAdult || '').trim() === 'Yes';
 
   body.appendParagraph('High School Credit Course Enrollment Submission')
       .setHeading(DocumentApp.ParagraphHeading.HEADING1);
@@ -287,31 +328,31 @@ function createSummaryPdf(submissionFolder, enrollmentId, data, uploadedDocNames
     ['Application Number', data.applicationNumber || ''],
 
     ['Course Grade 1', data.courseGrade1 || ''],
-    ['Course 1', data.courseFinal1 || ''],
+    ['Course 1', course1],
     ['Mode 1', data.courseMode1 || ''],
     ['Course Requirement 1', data.courseRequirement1 || ''],
     ['Another Course 1', data.anotherCourse1 || ''],
 
     ['Course Grade 2', data.courseGrade2 || ''],
-    ['Course 2', data.courseFinal2 || ''],
+    ['Course 2', course2],
     ['Mode 2', data.courseMode2 || ''],
     ['Course Requirement 2', data.courseRequirement2 || ''],
     ['Another Course 2', data.anotherCourse2 || ''],
 
     ['Course Grade 3', data.courseGrade3 || ''],
-    ['Course 3', data.courseFinal3 || ''],
+    ['Course 3', course3],
     ['Mode 3', data.courseMode3 || ''],
     ['Course Requirement 3', data.courseRequirement3 || ''],
     ['Another Course 3', data.anotherCourse3 || ''],
 
     ['Course Grade 4', data.courseGrade4 || ''],
-    ['Course 4', data.courseFinal4 || ''],
+    ['Course 4', course4],
     ['Mode 4', data.courseMode4 || ''],
     ['Course Requirement 4', data.courseRequirement4 || ''],
     ['Another Course 4', data.anotherCourse4 || ''],
 
     ['Course Grade 5', data.courseGrade5 || ''],
-    ['Course 5', data.courseFinal5 || ''],
+    ['Course 5', course5],
     ['Mode 5', data.courseMode5 || ''],
     ['Course Requirement 5', data.courseRequirement5 || ''],
 
@@ -349,6 +390,16 @@ function createSummaryPdf(submissionFolder, enrollmentId, data, uploadedDocNames
     ['Emergency Contact 1 Cell Phone', data.emergencyCellPhone || ''],
     ['Emergency Contact 1 Email Address', data.emergencyEmail || ''],
 
+    ['Emergency Contact 2 First Name', data.emergency2FirstName || ''],
+    ['Emergency Contact 2 Last Name', data.emergency2LastName || ''],
+    ['Emergency Contact 2 Relationship', data.emergency2Relationship || ''],
+    ['Emergency Contact 2 Street Address', data.emergency2StreetAddress || ''],
+    ['Emergency Contact 2 City and Country', data.emergency2CityCountry || ''],
+    ['Emergency Contact 2 Province - State', data.emergency2ProvinceState || ''],
+    ['Emergency Contact 2 Postal Code', data.emergency2PostalCode || ''],
+    ['Emergency Contact 2 Cell Phone', data.emergency2CellPhone || ''],
+    ['Emergency Contact 2 Email Address', data.emergency2Email || ''],
+
     ['Payment Method', data.paymentMethod || ''],
     ['Card Verification Method', data.cardVerificationMethod || ''],
     ['Card Order ID', data.cardOrderId || ''],
@@ -362,10 +413,15 @@ function createSummaryPdf(submissionFolder, enrollmentId, data, uploadedDocNames
     ['Terms Agree', data.termsAgree || ''],
     ['Final Grades Upload Option', data.gradesUploadOption || ''],
     ['No Refund Policy Agreement', data.noRefundAgree || ''],
-    ['Parent Terms Agree', data.parentTermsAgree || ''],
-    ['Parent/Guardian Electronic Signature', data.parentSignature || ''],
-    ['Student Electronic Signature', data.studentSignature || ''],
-    ["Today's Date", data.todayDate || '']
+
+    ['Parent Terms Agree', isAdult ? '' : (data.parentTermsAgree || '')],
+    ['Parent/Guardian Electronic Signature', isAdult ? '' : (data.parentSignature || '')],
+    ['Student Electronic Signature', isAdult ? '' : (data.studentSignature || '')],
+    ["Today's Date", isAdult ? '' : (data.todayDate || '')],
+
+    ['Applicant Terms Agree', isAdult ? (data.applicantTermsAgree || '') : ''],
+    ['Applicant / Adult Student Electronic Signature', isAdult ? (data.adultStudentSignature || '') : ''],
+    ["Applicant Today's Date", isAdult ? (data.adultTodayDate || '') : '']
   ];
 
   rows.forEach(([label, value]) => {
