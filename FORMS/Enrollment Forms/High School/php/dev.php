@@ -1,19 +1,23 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-if ( ! class_exists( 'Canstem_Inquiry_Form_Handler_V3' ) ) {
+if ( ! class_exists( 'Canstem_Highschool_Form_Handler' ) ) {
 
-class Canstem_Inquiry_Form_Handler_V3 {
+class Canstem_Highschool_Form_Handler {
 
+    // =========================
+    // CONFIG
+    // =========================
     const SMTP_USER        = 'canstem.frontdesk@canstemeducation.com';
     const SMTP_APP_PASS    = 'persoqionuoycbkl';
     const FROM_ALIAS_EMAIL = 'student-request@canstemeducation.com';
-    const FROM_ALIAS_NAME  = 'Student Inquiry';
+    const FROM_ALIAS_NAME  = 'Student Request';
 
     const MAIL_TO          = 'canstem.frontdesk@canstemeducation.com';
     const MAIL_CC          = '';
     const MAIL_BCC         = '';
 
-    const GOOGLE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzpHC0iJjkLA0GV7EKanjXdb-Z3PDjbRgbZqhsh9dPuM5-mUF9G5SztPsJoQQZbY28irA/exec';
+    // Replace with your High School Apps Script web app URL
+    const GOOGLE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxM85pQzY-CKw3JSHFgwfTVLzNYcA0KUqp6Wlc-jqUGTqvqu1NkP3QDnhLzwKH4OJFA/exec';
 
     public static function boot() {
         add_action( 'phpmailer_init', [ __CLASS__, 'smtp_setup' ], 999 );
@@ -24,8 +28,8 @@ class Canstem_Inquiry_Form_Handler_V3 {
             }
         });
 
-        add_action( 'wp_ajax_canstem_inquiry_request', [ __CLASS__, 'handle_ajax' ] );
-        add_action( 'wp_ajax_nopriv_canstem_inquiry_request', [ __CLASS__, 'handle_ajax' ] );
+        add_action( 'wp_ajax_canstem_highschool_request', [ __CLASS__, 'handle_ajax' ] );
+        add_action( 'wp_ajax_nopriv_canstem_highschool_request', [ __CLASS__, 'handle_ajax' ] );
     }
 
     public static function smtp_setup( $phpmailer ) {
@@ -55,6 +59,9 @@ class Canstem_Inquiry_Form_Handler_V3 {
                 wp_send_json_error( [ 'error' => 'Invalid method.' ], 405 );
             }
 
+            // =========================
+            // HELPERS
+            // =========================
             $sx = function( $v ) {
                 return sanitize_text_field( wp_unslash( $v ?? '' ) );
             };
@@ -63,57 +70,275 @@ class Canstem_Inquiry_Form_Handler_V3 {
                 return sanitize_textarea_field( wp_unslash( $v ?? '' ) );
             };
 
-            $firstName           = $sx( $_POST['firstName'] ?? '' );
-            $lastName            = $sx( $_POST['lastName'] ?? '' );
-            $gender              = $sx( $_POST['gender'] ?? '' );
-            $studentPhone        = $sx( $_POST['studentPhone'] ?? '' );
-            $studentEmail        = sanitize_email( $_POST['studentEmail'] ?? '' );
-            $programInterest     = $sx( $_POST['programInterest'] ?? '' );
-            $programOtherDetails = $tx( $_POST['programOtherDetails'] ?? '' );
-            $hearAbout           = $sx( $_POST['hearAbout'] ?? '' );
-            $hearOtherSpecify    = $sx( $_POST['hearOtherSpecify'] ?? '' );
-            $otherRequirements   = $tx( $_POST['otherRequirements'] ?? '' );
+            $emailx = function( $v ) {
+                return sanitize_email( wp_unslash( $v ?? '' ) );
+            };
 
+            // =========================
+            // STUDENT INFO
+            // =========================
+            $firstName       = $sx( $_POST['firstName'] ?? '' );
+            $middleName      = $sx( $_POST['middleName'] ?? '' );
+            $lastName        = $sx( $_POST['lastName'] ?? '' );
+            $gender          = $sx( $_POST['gender'] ?? '' );
+            $dob             = $sx( $_POST['dob'] ?? '' );
+            $isAdult         = $sx( $_POST['isAdult'] ?? '' );
+            $onlineInClass   = $sx( $_POST['onlineInClass'] ?? '' );
+            $isInternational = $sx( $_POST['isInternational'] ?? '' );
+            $inCanada        = $sx( $_POST['inCanada'] ?? '' );
+            $validStudyPermit= $sx( $_POST['validStudyPermit'] ?? '' );
+            $moveToCanada    = $sx( $_POST['moveToCanada'] ?? '' );
+            $studentEmail    = $emailx( $_POST['studentEmail'] ?? '' );
+            $studentPhone    = $sx( $_POST['studentPhone'] ?? '' );
+
+            // =========================
+            // ADDRESS
+            // =========================
+            $streetAddress = $sx( $_POST['streetAddress'] ?? '' );
+            $cityCountry   = $sx( $_POST['cityCountry'] ?? '' );
+            $provinceState = $sx( $_POST['provinceState'] ?? '' );
+            $postalCode    = $sx( $_POST['postalCode'] ?? '' );
+
+            // =========================
+            // SCHOOL HISTORY
+            // =========================
+            $ontarioSchool         = $sx( $_POST['ontarioSchool'] ?? '' );
+            $previousSchoolName    = $sx( $_POST['previousSchoolName'] ?? '' );
+            $guidanceCounselorEmail= $emailx( $_POST['guidanceCounselorEmail'] ?? '' );
+            $institutionName       = $sx( $_POST['institutionName'] ?? '' );
+            $institutionEmail      = $emailx( $_POST['institutionEmail'] ?? '' );
+            $applicationNumber     = $sx( $_POST['applicationNumber'] ?? '' );
+
+            // =========================
+            // COURSES 1 TO 5
+            // =========================
+            $courseGrade1       = $sx( $_POST['courseGrade1'] ?? '' );
+            $courseSearch1      = $sx( $_POST['courseSearch1'] ?? '' );
+            $courseManual1      = $sx( $_POST['courseManual1'] ?? '' );
+            $courseMode1        = $sx( $_POST['courseMode1'] ?? '' );
+            $courseRequirement1 = $tx( $_POST['courseRequirement1'] ?? '' );
+            $anotherCourse1     = $sx( $_POST['anotherCourse1'] ?? '' );
+
+            $courseGrade2       = $sx( $_POST['courseGrade2'] ?? '' );
+            $courseSearch2      = $sx( $_POST['courseSearch2'] ?? '' );
+            $courseManual2      = $sx( $_POST['courseManual2'] ?? '' );
+            $courseMode2        = $sx( $_POST['courseMode2'] ?? '' );
+            $courseRequirement2 = $tx( $_POST['courseRequirement2'] ?? '' );
+            $anotherCourse2     = $sx( $_POST['anotherCourse2'] ?? '' );
+
+            $courseGrade3       = $sx( $_POST['courseGrade3'] ?? '' );
+            $courseSearch3      = $sx( $_POST['courseSearch3'] ?? '' );
+            $courseManual3      = $sx( $_POST['courseManual3'] ?? '' );
+            $courseMode3        = $sx( $_POST['courseMode3'] ?? '' );
+            $courseRequirement3 = $tx( $_POST['courseRequirement3'] ?? '' );
+            $anotherCourse3     = $sx( $_POST['anotherCourse3'] ?? '' );
+
+            $courseGrade4       = $sx( $_POST['courseGrade4'] ?? '' );
+            $courseSearch4      = $sx( $_POST['courseSearch4'] ?? '' );
+            $courseManual4      = $sx( $_POST['courseManual4'] ?? '' );
+            $courseMode4        = $sx( $_POST['courseMode4'] ?? '' );
+            $courseRequirement4 = $tx( $_POST['courseRequirement4'] ?? '' );
+            $anotherCourse4     = $sx( $_POST['anotherCourse4'] ?? '' );
+
+            $courseGrade5       = $sx( $_POST['courseGrade5'] ?? '' );
+            $courseSearch5      = $sx( $_POST['courseSearch5'] ?? '' );
+            $courseManual5      = $sx( $_POST['courseManual5'] ?? '' );
+            $courseMode5        = $sx( $_POST['courseMode5'] ?? '' );
+            $courseRequirement5 = $tx( $_POST['courseRequirement5'] ?? '' );
+
+            // =========================
+            // CONTACT SECTION
+            // =========================
+            $parent1FirstName     = $sx( $_POST['parent1FirstName'] ?? '' );
+            $parent1LastName      = $sx( $_POST['parent1LastName'] ?? '' );
+            $parent1Relationship  = $sx( $_POST['parent1Relationship'] ?? '' );
+            $parent1SameAddress   = $sx( $_POST['parent1SameAddress'] ?? '' );
+            $parent1StreetAddress = $sx( $_POST['parent1StreetAddress'] ?? '' );
+            $parent1CityCountry   = $sx( $_POST['parent1CityCountry'] ?? '' );
+            $parent1ProvinceState = $sx( $_POST['parent1ProvinceState'] ?? '' );
+            $parent1PostalCode    = $sx( $_POST['parent1PostalCode'] ?? '' );
+            $parent1CellPhone     = $sx( $_POST['parent1CellPhone'] ?? '' );
+            $parent1Email         = $emailx( $_POST['parent1Email'] ?? '' );
+
+            $addParent2           = $sx( $_POST['addParent2'] ?? '' );
+
+            $parent2FirstName     = $sx( $_POST['parent2FirstName'] ?? '' );
+            $parent2LastName      = $sx( $_POST['parent2LastName'] ?? '' );
+            $parent2Relationship  = $sx( $_POST['parent2Relationship'] ?? '' );
+            $parent2SameAddress   = $sx( $_POST['parent2SameAddress'] ?? '' );
+            $parent2StreetAddress = $sx( $_POST['parent2StreetAddress'] ?? '' );
+            $parent2CityCountry   = $sx( $_POST['parent2CityCountry'] ?? '' );
+            $parent2ProvinceState = $sx( $_POST['parent2ProvinceState'] ?? '' );
+            $parent2PostalCode    = $sx( $_POST['parent2PostalCode'] ?? '' );
+            $parent2CellPhone     = $sx( $_POST['parent2CellPhone'] ?? '' );
+            $parent2Email         = $emailx( $_POST['parent2Email'] ?? '' );
+
+            $addEmergencyContact  = $sx( $_POST['addEmergencyContact'] ?? '' );
+
+            $emergencyFirstName     = $sx( $_POST['emergencyFirstName'] ?? '' );
+            $emergencyLastName      = $sx( $_POST['emergencyLastName'] ?? '' );
+            $emergencyRelationship  = $sx( $_POST['emergencyRelationship'] ?? '' );
+            $emergencyStreetAddress = $sx( $_POST['emergencyStreetAddress'] ?? '' );
+            $emergencyCityCountry   = $sx( $_POST['emergencyCityCountry'] ?? '' );
+            $emergencyProvinceState = $sx( $_POST['emergencyProvinceState'] ?? '' );
+            $emergencyPostalCode    = $sx( $_POST['emergencyPostalCode'] ?? '' );
+            $emergencyCellPhone     = $sx( $_POST['emergencyCellPhone'] ?? '' );
+            $emergencyEmail         = $emailx( $_POST['emergencyEmail'] ?? '' );
+
+            // =========================
+            // PAYMENT
+            // =========================
+            $paymentMethod          = $sx( $_POST['paymentMethod'] ?? '' );
+            $cardVerificationMethod = $sx( $_POST['cardVerificationMethod'] ?? '' );
+            $cardOrderId            = $sx( $_POST['cardOrderId'] ?? '' );
+            $securityQuestion       = $sx( $_POST['securityQuestion'] ?? '' );
+            $securityAnswer         = $sx( $_POST['securityAnswer'] ?? '' );
+            $interacOrderId         = $sx( $_POST['interacOrderId'] ?? '' );
+            $internationalOrderId   = $sx( $_POST['internationalOrderId'] ?? '' );
+
+            // =========================
+            // OTHER
+            // =========================
+            $hearAbout         = $sx( $_POST['hearAbout'] ?? '' );
+            $hearAboutOther    = $sx( $_POST['hearAboutOther'] ?? '' );
+            $termsAgree        = $sx( $_POST['termsAgree'] ?? '' );
+            $gradesUploadOption= $sx( $_POST['gradesUploadOption'] ?? '' );
+            $noRefundAgree     = $sx( $_POST['noRefundAgree'] ?? '' );
+            $parentTermsAgree  = $sx( $_POST['parentTermsAgree'] ?? '' );
+            $parentSignature   = $sx( $_POST['parentSignature'] ?? '' );
+            $studentSignature  = $sx( $_POST['studentSignature'] ?? '' );
+            $todayDate         = $sx( $_POST['todayDate'] ?? '' );
+
+            // =========================
+            // VALIDATION
+            // =========================
             if (
                 ! $firstName ||
                 ! $lastName ||
                 ! $gender ||
-                ! $studentPhone ||
+                ! $dob ||
+                ! $isAdult ||
+                ! $onlineInClass ||
+                ! $isInternational ||
                 ! $studentEmail ||
-                ! $programInterest ||
-                ! $hearAbout
+                ! $studentPhone ||
+                ! $streetAddress ||
+                ! $cityCountry ||
+                ! $provinceState ||
+                ! $postalCode ||
+                ! $ontarioSchool ||
+                ! $courseGrade1 ||
+                ! $courseSearch1 ||
+                ! $courseMode1 ||
+                ! $paymentMethod ||
+                ! $hearAbout ||
+                ! $termsAgree ||
+                ! $gradesUploadOption ||
+                ! $noRefundAgree ||
+                ! $parentTermsAgree ||
+                ! $parentSignature ||
+                ! $studentSignature ||
+                ! $todayDate
             ) {
                 wp_send_json_error( [ 'error' => 'Please fill all required fields.' ], 400 );
             }
 
-            if ( $programInterest === 'Other' && ! $programOtherDetails ) {
-                wp_send_json_error( [ 'error' => 'Please fill "Tell Us More About Your Requirements".' ], 400 );
-            }
-
             if ( ! is_email( $studentEmail ) ) {
-                wp_send_json_error( [ 'error' => 'Please enter a valid email address.' ], 400 );
+                wp_send_json_error( [ 'error' => 'Please enter a valid student email address.' ], 400 );
             }
 
-            $studentName = trim( $firstName . ' ' . $lastName );
-            $submittedAt = current_time( 'mysql' );
+            if ( $hearAbout === 'Other' && ! $hearAboutOther ) {
+                wp_send_json_error( [ 'error' => 'Please specify how you heard about us.' ], 400 );
+            }
 
-            $allowed_exts = [ 'doc', 'docx', 'pdf', 'txt', 'rtf', 'xls', 'xlsx', 'bmp', 'gif', 'jpg', 'jpeg', 'png' ];
+            if ( $isInternational === 'Yes' ) {
+                if ( ! $inCanada ) {
+                    wp_send_json_error( [ 'error' => 'Please answer whether you are in Canada.' ], 400 );
+                }
 
-            $clean_attachments = [];
-            $email_attachments = [];
+                if ( $inCanada === 'Yes' && ! $validStudyPermit ) {
+                    wp_send_json_error( [ 'error' => 'Please answer whether you have a valid study permit.' ], 400 );
+                }
+
+                if ( $inCanada === 'No' && ! $moveToCanada ) {
+                    wp_send_json_error( [ 'error' => 'Please answer whether you are interested in moving to Canada on study permit.' ], 400 );
+                }
+            }
+
+            if ( $ontarioSchool === 'Yes' && $guidanceCounselorEmail && ! is_email( $guidanceCounselorEmail ) ) {
+                wp_send_json_error( [ 'error' => 'Please enter a valid guidance counselor email address.' ], 400 );
+            }
+
+            if ( $ontarioSchool === 'No' && $institutionEmail && ! is_email( $institutionEmail ) ) {
+                wp_send_json_error( [ 'error' => 'Please enter a valid institution email address.' ], 400 );
+            }
+
+            if ( $isAdult === 'No' ) {
+                if ( ! $parent1FirstName || ! $parent1LastName || ! $parent1Relationship || ! $parent1SameAddress ) {
+                    wp_send_json_error( [ 'error' => 'Please complete Parent/Guardian 1 information.' ], 400 );
+                }
+            }
+
+            if ( $isAdult === 'Yes' ) {
+                if ( ! $emergencyFirstName || ! $emergencyLastName || ! $emergencyRelationship || ! $emergencyStreetAddress || ! $emergencyCityCountry || ! $emergencyProvinceState || ! $emergencyPostalCode || ! $emergencyCellPhone ) {
+                    wp_send_json_error( [ 'error' => 'Please complete Emergency Contact 1 information.' ], 400 );
+                }
+            }
+
+            if ( strpos( $paymentMethod, 'Credit - Debit Card' ) !== false ) {
+                if ( ! $cardVerificationMethod ) {
+                    wp_send_json_error( [ 'error' => 'Please select a card verification method.' ], 400 );
+                }
+
+                if ( $cardVerificationMethod === 'Paste Order ID' && ! $cardOrderId ) {
+                    wp_send_json_error( [ 'error' => 'Please enter the card Order ID.' ], 400 );
+                }
+
+                if ( $cardVerificationMethod === 'Upload Receipt Screenshot' && empty( $_FILES['cardReceiptUpload']['name'] ) ) {
+                    wp_send_json_error( [ 'error' => 'Please upload the card receipt screenshot.' ], 400 );
+                }
+            }
+
+            if ( $paymentMethod === 'INTERAC® eTransfer' ) {
+                if ( ! $securityQuestion || ! $securityAnswer || ! $interacOrderId ) {
+                    wp_send_json_error( [ 'error' => 'Please complete all Interac payment fields.' ], 400 );
+                }
+            }
+
+            if ( $paymentMethod === 'Paying Internationally' && ! $internationalOrderId ) {
+                wp_send_json_error( [ 'error' => 'Please enter the international Order ID.' ], 400 );
+            }
+
+            if ( empty( $_FILES['requiredDocuments']['name'] ) ) {
+                wp_send_json_error( [ 'error' => 'Please upload the required transcript/report card/student status document.' ], 400 );
+            }
+
+            if ( $isInternational === 'Yes' && $inCanada === 'Yes' && $validStudyPermit === 'Yes' && empty( $_FILES['studyPermitUpload']['name'] ) ) {
+                wp_send_json_error( [ 'error' => 'Please upload the valid study permit copy.' ], 400 );
+            }
+
+            // =========================
+            // FILE UPLOADS
+            // =========================
+            $allowed_exts = [ 'doc', 'docx', 'pdf', 'txt', 'rtf', 'xls', 'xlsx', 'bmp', 'gif', 'jpg', 'jpeg', 'png', 'webp' ];
+
+            $clean_attachments  = [];
+            $email_attachments  = [];
             $uploaded_doc_names = [];
 
             $uploads = wp_upload_dir();
-            $tmpdir  = trailingslashit( $uploads['basedir'] ) . 'canstem-inquiry-temp';
+            $tmpdir  = trailingslashit( $uploads['basedir'] ) . 'canstem-highschool-temp';
 
             if ( ! file_exists( $tmpdir ) ) {
                 wp_mkdir_p( $tmpdir );
             }
 
             $file_map = [
-                'transcriptFile'    => 'Transcript 1 - Report card',
-                'additionalDocFile' => 'Additional Document 1',
-                'pictureIdFile'     => 'Picture ID Passport',
+                'requiredDocuments'  => 'Required Documents',
+                'studyPermitUpload'  => 'Study Permit Upload',
+                'additionalDocuments1' => 'Additional Documents 1',
+                'additionalDocuments2' => 'Additional Documents 2',
+                'cardReceiptUpload'  => 'Card Receipt Upload',
             ];
 
             foreach ( $file_map as $field => $label ) {
@@ -158,34 +383,140 @@ class Canstem_Inquiry_Form_Handler_V3 {
                 }
             }
 
+            // =========================
+            // EMAIL BUILD
+            // =========================
+            $fullName    = trim( implode( ' ', array_filter( [ $firstName, $middleName, $lastName ] ) ) );
+            $submittedAt = current_time( 'mysql' );
+
+            $course1Final = $courseSearch1 === 'Not in the list' ? $courseManual1 : $courseSearch1;
+            $course2Final = $courseSearch2 === 'Not in the list' ? $courseManual2 : $courseSearch2;
+            $course3Final = $courseSearch3 === 'Not in the list' ? $courseManual3 : $courseSearch3;
+            $course4Final = $courseSearch4 === 'Not in the list' ? $courseManual4 : $courseSearch4;
+            $course5Final = $courseSearch5 === 'Not in the list' ? $courseManual5 : $courseSearch5;
+
             $subject = sprintf(
-                'Inquiry Submission — %s — %s',
-                $studentName,
-                $programInterest
+                'High School Credit Enrollment — %s',
+                $fullName
             );
 
             $rows   = [];
             $rows[] = self::tr( 'Timestamp', esc_html( $submittedAt ) );
             $rows[] = self::tr( 'First Name', esc_html( $firstName ) );
+            $rows[] = self::tr( 'Middle Name', esc_html( $middleName ) );
             $rows[] = self::tr( 'Last Name', esc_html( $lastName ) );
-            $rows[] = self::tr( 'Full Name', esc_html( $studentName ) );
+            $rows[] = self::tr( 'Full Name', esc_html( $fullName ) );
             $rows[] = self::tr( 'Gender', esc_html( $gender ) );
-            $rows[] = self::tr( 'Email Address', esc_html( $studentEmail ) );
-            $rows[] = self::tr( 'Phone Number', esc_html( $studentPhone ) );
-            $rows[] = self::tr( 'Program of Interest', esc_html( $programInterest ) );
-            $rows[] = self::tr( 'How You Hear About Us?', esc_html( $hearAbout ) );
+            $rows[] = self::tr( 'Date of Birth', esc_html( $dob ) );
+            $rows[] = self::tr( 'Is Student 18 Or Older', esc_html( $isAdult ) );
+            $rows[] = self::tr( 'Online or In Class', esc_html( $onlineInClass ) );
+            $rows[] = self::tr( 'Is International Student', esc_html( $isInternational ) );
+            $rows[] = self::tr( 'In Canada', esc_html( $inCanada ) );
+            $rows[] = self::tr( 'Valid Study Permit', esc_html( $validStudyPermit ) );
+            $rows[] = self::tr( 'Interested in Moving to Canada on Study Permit', esc_html( $moveToCanada ) );
+            $rows[] = self::tr( 'Student Email', esc_html( $studentEmail ) );
+            $rows[] = self::tr( 'Student Phone', esc_html( $studentPhone ) );
 
-            if ( $hearOtherSpecify ) {
-                $rows[] = self::tr( 'Please Specify', esc_html( $hearOtherSpecify ) );
+            $rows[] = self::tr( 'Street Address', esc_html( $streetAddress ) );
+            $rows[] = self::tr( 'City and Country', esc_html( $cityCountry ) );
+            $rows[] = self::tr( 'Province - State', esc_html( $provinceState ) );
+            $rows[] = self::tr( 'Postal Code', esc_html( $postalCode ) );
+
+            $rows[] = self::tr( 'Ontario High School History', esc_html( $ontarioSchool ) );
+            $rows[] = self::tr( 'Previous School Name', esc_html( $previousSchoolName ) );
+            $rows[] = self::tr( 'Guidance Counselor Email', esc_html( $guidanceCounselorEmail ) );
+            $rows[] = self::tr( 'Institution Name', esc_html( $institutionName ) );
+            $rows[] = self::tr( 'Institution Email', esc_html( $institutionEmail ) );
+            $rows[] = self::tr( 'Application Number', esc_html( $applicationNumber ) );
+
+            $rows[] = self::tr( 'Course Grade 1', esc_html( $courseGrade1 ) );
+            $rows[] = self::tr( 'Course 1', esc_html( $course1Final ) );
+            $rows[] = self::tr( 'Mode 1', esc_html( $courseMode1 ) );
+            $rows[] = self::tr( 'Course Requirement 1', nl2br( esc_html( $courseRequirement1 ) ) );
+            $rows[] = self::tr( 'Another Course 1', esc_html( $anotherCourse1 ) );
+
+            if ( $courseGrade2 || $course2Final || $courseMode2 ) {
+                $rows[] = self::tr( 'Course Grade 2', esc_html( $courseGrade2 ) );
+                $rows[] = self::tr( 'Course 2', esc_html( $course2Final ) );
+                $rows[] = self::tr( 'Mode 2', esc_html( $courseMode2 ) );
+                $rows[] = self::tr( 'Course Requirement 2', nl2br( esc_html( $courseRequirement2 ) ) );
+                $rows[] = self::tr( 'Another Course 2', esc_html( $anotherCourse2 ) );
             }
 
-            if ( $programOtherDetails ) {
-                $rows[] = self::tr( 'Tell Us More About Your Requirements', nl2br( esc_html( $programOtherDetails ) ) );
+            if ( $courseGrade3 || $course3Final || $courseMode3 ) {
+                $rows[] = self::tr( 'Course Grade 3', esc_html( $courseGrade3 ) );
+                $rows[] = self::tr( 'Course 3', esc_html( $course3Final ) );
+                $rows[] = self::tr( 'Mode 3', esc_html( $courseMode3 ) );
+                $rows[] = self::tr( 'Course Requirement 3', nl2br( esc_html( $courseRequirement3 ) ) );
+                $rows[] = self::tr( 'Another Course 3', esc_html( $anotherCourse3 ) );
             }
 
-            if ( $otherRequirements ) {
-                $rows[] = self::tr( 'Additional Notes', nl2br( esc_html( $otherRequirements ) ) );
+            if ( $courseGrade4 || $course4Final || $courseMode4 ) {
+                $rows[] = self::tr( 'Course Grade 4', esc_html( $courseGrade4 ) );
+                $rows[] = self::tr( 'Course 4', esc_html( $course4Final ) );
+                $rows[] = self::tr( 'Mode 4', esc_html( $courseMode4 ) );
+                $rows[] = self::tr( 'Course Requirement 4', nl2br( esc_html( $courseRequirement4 ) ) );
+                $rows[] = self::tr( 'Another Course 4', esc_html( $anotherCourse4 ) );
             }
+
+            if ( $courseGrade5 || $course5Final || $courseMode5 ) {
+                $rows[] = self::tr( 'Course Grade 5', esc_html( $courseGrade5 ) );
+                $rows[] = self::tr( 'Course 5', esc_html( $course5Final ) );
+                $rows[] = self::tr( 'Mode 5', esc_html( $courseMode5 ) );
+                $rows[] = self::tr( 'Course Requirement 5', nl2br( esc_html( $courseRequirement5 ) ) );
+            }
+
+            $rows[] = self::tr( 'Parent 1 First Name', esc_html( $parent1FirstName ) );
+            $rows[] = self::tr( 'Parent 1 Last Name', esc_html( $parent1LastName ) );
+            $rows[] = self::tr( 'Parent 1 Relationship', esc_html( $parent1Relationship ) );
+            $rows[] = self::tr( 'Parent 1 Same Address', esc_html( $parent1SameAddress ) );
+            $rows[] = self::tr( 'Parent 1 Street Address', esc_html( $parent1StreetAddress ) );
+            $rows[] = self::tr( 'Parent 1 City/Country', esc_html( $parent1CityCountry ) );
+            $rows[] = self::tr( 'Parent 1 Province/State', esc_html( $parent1ProvinceState ) );
+            $rows[] = self::tr( 'Parent 1 Postal Code', esc_html( $parent1PostalCode ) );
+            $rows[] = self::tr( 'Parent 1 Cell Phone', esc_html( $parent1CellPhone ) );
+            $rows[] = self::tr( 'Parent 1 Email', esc_html( $parent1Email ) );
+
+            $rows[] = self::tr( 'Add Parent 2', esc_html( $addParent2 ) );
+            $rows[] = self::tr( 'Parent 2 First Name', esc_html( $parent2FirstName ) );
+            $rows[] = self::tr( 'Parent 2 Last Name', esc_html( $parent2LastName ) );
+            $rows[] = self::tr( 'Parent 2 Relationship', esc_html( $parent2Relationship ) );
+            $rows[] = self::tr( 'Parent 2 Same Address', esc_html( $parent2SameAddress ) );
+            $rows[] = self::tr( 'Parent 2 Street Address', esc_html( $parent2StreetAddress ) );
+            $rows[] = self::tr( 'Parent 2 City/Country', esc_html( $parent2CityCountry ) );
+            $rows[] = self::tr( 'Parent 2 Province/State', esc_html( $parent2ProvinceState ) );
+            $rows[] = self::tr( 'Parent 2 Postal Code', esc_html( $parent2PostalCode ) );
+            $rows[] = self::tr( 'Parent 2 Cell Phone', esc_html( $parent2CellPhone ) );
+            $rows[] = self::tr( 'Parent 2 Email', esc_html( $parent2Email ) );
+
+            $rows[] = self::tr( 'Add Emergency Contact', esc_html( $addEmergencyContact ) );
+            $rows[] = self::tr( 'Emergency First Name', esc_html( $emergencyFirstName ) );
+            $rows[] = self::tr( 'Emergency Last Name', esc_html( $emergencyLastName ) );
+            $rows[] = self::tr( 'Emergency Relationship', esc_html( $emergencyRelationship ) );
+            $rows[] = self::tr( 'Emergency Street Address', esc_html( $emergencyStreetAddress ) );
+            $rows[] = self::tr( 'Emergency City/Country', esc_html( $emergencyCityCountry ) );
+            $rows[] = self::tr( 'Emergency Province/State', esc_html( $emergencyProvinceState ) );
+            $rows[] = self::tr( 'Emergency Postal Code', esc_html( $emergencyPostalCode ) );
+            $rows[] = self::tr( 'Emergency Cell Phone', esc_html( $emergencyCellPhone ) );
+            $rows[] = self::tr( 'Emergency Email', esc_html( $emergencyEmail ) );
+
+            $rows[] = self::tr( 'Payment Method', esc_html( $paymentMethod ) );
+            $rows[] = self::tr( 'Card Verification Method', esc_html( $cardVerificationMethod ) );
+            $rows[] = self::tr( 'Card Order ID', esc_html( $cardOrderId ) );
+            $rows[] = self::tr( 'Security Question', esc_html( $securityQuestion ) );
+            $rows[] = self::tr( 'Security Answer', esc_html( $securityAnswer ) );
+            $rows[] = self::tr( 'Interac Order ID', esc_html( $interacOrderId ) );
+            $rows[] = self::tr( 'International Order ID', esc_html( $internationalOrderId ) );
+
+            $rows[] = self::tr( 'Hear About', esc_html( $hearAbout ) );
+            $rows[] = self::tr( 'Hear About Other', esc_html( $hearAboutOther ) );
+            $rows[] = self::tr( 'Terms Agree', esc_html( $termsAgree ) );
+            $rows[] = self::tr( 'Grades Upload Option', esc_html( $gradesUploadOption ) );
+            $rows[] = self::tr( 'No Refund Agree', esc_html( $noRefundAgree ) );
+            $rows[] = self::tr( 'Parent Terms Agree', esc_html( $parentTermsAgree ) );
+            $rows[] = self::tr( 'Parent Signature', esc_html( $parentSignature ) );
+            $rows[] = self::tr( 'Student Signature', esc_html( $studentSignature ) );
+            $rows[] = self::tr( 'Today Date', esc_html( $todayDate ) );
 
             if ( ! empty( $uploaded_doc_names ) ) {
                 $rows[] = self::tr( 'Uploaded Documents', esc_html( implode( ', ', $uploaded_doc_names ) ) );
@@ -193,20 +524,20 @@ class Canstem_Inquiry_Form_Handler_V3 {
 
             $body = '<style>
                 body{font-family:Arial,Helvetica,sans-serif;color:#0f172a}
-                .wrap{max-width:760px;margin:0 auto;padding:16px}
+                .wrap{max-width:900px;margin:0 auto;padding:16px}
                 h2{margin:0 0 12px;color:#001161}
                 table{border-collapse:collapse;width:100%;border:1px solid #e5e7eb}
                 th,td{padding:10px 12px;border:1px solid #e5e7eb;vertical-align:top;font-size:14px}
-                th{background:#f8fafc;text-align:left;width:240px}
+                th{background:#f8fafc;text-align:left;width:320px}
             </style>
             <div class="wrap">
-                <h2>Student Inquiry Submission</h2>
+                <h2>High School Credit Course Enrollment</h2>
                 <table>' . implode( '', $rows ) . '</table>
             </div>';
 
             $headers   = [ 'Content-Type: text/html; charset=UTF-8' ];
             $headers[] = 'From: ' . self::FROM_ALIAS_NAME . ' <' . self::FROM_ALIAS_EMAIL . '>';
-            $headers[] = 'Reply-To: ' . $studentName . ' <' . $studentEmail . '>';
+            $headers[] = 'Reply-To: ' . $fullName . ' <' . $studentEmail . '>';
 
             if ( self::MAIL_CC ) {
                 $headers[] = 'Cc: ' . self::MAIL_CC;
@@ -215,7 +546,6 @@ class Canstem_Inquiry_Form_Handler_V3 {
                 $headers[] = 'Bcc: ' . self::MAIL_BCC;
             }
 
-            // 1. Send email immediately
             $sent = wp_mail( self::MAIL_TO, $subject, $body, $headers, $email_attachments );
 
             if ( ! $sent ) {
@@ -225,23 +555,127 @@ class Canstem_Inquiry_Form_Handler_V3 {
                 wp_send_json_error( [ 'error' => 'Email notification failed.' ], 500 );
             }
 
-            // 2. Start Google sync in background
+            // =========================
+            // GOOGLE WEBHOOK PAYLOAD
+            // =========================
             $google_payload = [
-                'type'                => 'Inquiry',
-                'submittedAt'         => $submittedAt,
-                'firstName'           => $firstName,
-                'lastName'            => $lastName,
-                'fullName'            => $studentName,
-                'gender'              => $gender,
-                'studentPhone'        => $studentPhone,
-                'studentEmail'        => $studentEmail,
-                'programInterest'     => $programInterest,
-                'programOtherDetails' => $programOtherDetails,
-                'hearAbout'           => $hearAbout,
-                'hearOtherSpecify'    => $hearOtherSpecify,
-                'otherRequirements'   => $otherRequirements,
-                'uploadedDocuments'   => $uploaded_doc_names,
-                'attachments'         => $clean_attachments
+                'submittedAt'             => $submittedAt,
+                'firstName'               => $firstName,
+                'middleName'              => $middleName,
+                'lastName'                => $lastName,
+                'fullName'                => $fullName,
+                'gender'                  => $gender,
+                'dob'                     => $dob,
+                'isAdult'                 => $isAdult,
+                'onlineInClass'           => $onlineInClass,
+                'isInternational'         => $isInternational,
+                'inCanada'                => $inCanada,
+                'validStudyPermit'        => $validStudyPermit,
+                'moveToCanada'            => $moveToCanada,
+                'studentEmail'            => $studentEmail,
+                'studentPhone'            => $studentPhone,
+                'streetAddress'           => $streetAddress,
+                'cityCountry'             => $cityCountry,
+                'provinceState'           => $provinceState,
+                'postalCode'              => $postalCode,
+                'ontarioSchool'           => $ontarioSchool,
+                'previousSchoolName'      => $previousSchoolName,
+                'guidanceCounselorEmail'  => $guidanceCounselorEmail,
+                'institutionName'         => $institutionName,
+                'institutionEmail'        => $institutionEmail,
+                'applicationNumber'       => $applicationNumber,
+
+                'courseGrade1'            => $courseGrade1,
+                'courseSearch1'           => $courseSearch1,
+                'courseManual1'           => $courseManual1,
+                'courseFinal1'            => $course1Final,
+                'courseMode1'             => $courseMode1,
+                'courseRequirement1'      => $courseRequirement1,
+                'anotherCourse1'          => $anotherCourse1,
+
+                'courseGrade2'            => $courseGrade2,
+                'courseSearch2'           => $courseSearch2,
+                'courseManual2'           => $courseManual2,
+                'courseFinal2'            => $course2Final,
+                'courseMode2'             => $courseMode2,
+                'courseRequirement2'      => $courseRequirement2,
+                'anotherCourse2'          => $anotherCourse2,
+
+                'courseGrade3'            => $courseGrade3,
+                'courseSearch3'           => $courseSearch3,
+                'courseManual3'           => $courseManual3,
+                'courseFinal3'            => $course3Final,
+                'courseMode3'             => $courseMode3,
+                'courseRequirement3'      => $courseRequirement3,
+                'anotherCourse3'          => $anotherCourse3,
+
+                'courseGrade4'            => $courseGrade4,
+                'courseSearch4'           => $courseSearch4,
+                'courseManual4'           => $courseManual4,
+                'courseFinal4'            => $course4Final,
+                'courseMode4'             => $courseMode4,
+                'courseRequirement4'      => $courseRequirement4,
+                'anotherCourse4'          => $anotherCourse4,
+
+                'courseGrade5'            => $courseGrade5,
+                'courseSearch5'           => $courseSearch5,
+                'courseManual5'           => $courseManual5,
+                'courseFinal5'            => $course5Final,
+                'courseMode5'             => $courseMode5,
+                'courseRequirement5'      => $courseRequirement5,
+
+                'parent1FirstName'        => $parent1FirstName,
+                'parent1LastName'         => $parent1LastName,
+                'parent1Relationship'     => $parent1Relationship,
+                'parent1SameAddress'      => $parent1SameAddress,
+                'parent1StreetAddress'    => $parent1StreetAddress,
+                'parent1CityCountry'      => $parent1CityCountry,
+                'parent1ProvinceState'    => $parent1ProvinceState,
+                'parent1PostalCode'       => $parent1PostalCode,
+                'parent1CellPhone'        => $parent1CellPhone,
+                'parent1Email'            => $parent1Email,
+
+                'addParent2'              => $addParent2,
+                'parent2FirstName'        => $parent2FirstName,
+                'parent2LastName'         => $parent2LastName,
+                'parent2Relationship'     => $parent2Relationship,
+                'parent2SameAddress'      => $parent2SameAddress,
+                'parent2StreetAddress'    => $parent2StreetAddress,
+                'parent2CityCountry'      => $parent2CityCountry,
+                'parent2ProvinceState'    => $parent2ProvinceState,
+                'parent2PostalCode'       => $parent2PostalCode,
+                'parent2CellPhone'        => $parent2CellPhone,
+                'parent2Email'            => $parent2Email,
+
+                'addEmergencyContact'     => $addEmergencyContact,
+                'emergencyFirstName'      => $emergencyFirstName,
+                'emergencyLastName'       => $emergencyLastName,
+                'emergencyRelationship'   => $emergencyRelationship,
+                'emergencyStreetAddress'  => $emergencyStreetAddress,
+                'emergencyCityCountry'    => $emergencyCityCountry,
+                'emergencyProvinceState'  => $emergencyProvinceState,
+                'emergencyPostalCode'     => $emergencyPostalCode,
+                'emergencyCellPhone'      => $emergencyCellPhone,
+                'emergencyEmail'          => $emergencyEmail,
+
+                'paymentMethod'           => $paymentMethod,
+                'cardVerificationMethod'  => $cardVerificationMethod,
+                'cardOrderId'             => $cardOrderId,
+                'securityQuestion'        => $securityQuestion,
+                'securityAnswer'          => $securityAnswer,
+                'interacOrderId'          => $interacOrderId,
+                'internationalOrderId'    => $internationalOrderId,
+
+                'hearAbout'               => $hearAbout,
+                'hearAboutOther'          => $hearAboutOther,
+                'termsAgree'              => $termsAgree,
+                'gradesUploadOption'      => $gradesUploadOption,
+                'noRefundAgree'           => $noRefundAgree,
+                'parentTermsAgree'        => $parentTermsAgree,
+                'parentSignature'         => $parentSignature,
+                'studentSignature'        => $studentSignature,
+                'todayDate'               => $todayDate,
+                'attachments'             => $clean_attachments
             ];
 
             self::post_json_async( self::GOOGLE_WEBHOOK_URL, $google_payload );
@@ -250,12 +684,11 @@ class Canstem_Inquiry_Form_Handler_V3 {
                 @unlink( $tmp );
             }
 
-            // 3. Return success quickly to user
             wp_send_json_success( [ 'ok' => true ] );
 
         } catch ( Throwable $e ) {
-            error_log( 'canstem_inquiry_request exception: ' . $e->getMessage() );
-            error_log( 'canstem_inquiry_request trace: ' . $e->getTraceAsString() );
+            error_log( 'canstem_highschool_request exception: ' . $e->getMessage() );
+            error_log( 'canstem_highschool_request trace: ' . $e->getTraceAsString() );
 
             wp_send_json_error( [
                 'error' => 'PHP exception: ' . $e->getMessage()
@@ -265,7 +698,7 @@ class Canstem_Inquiry_Form_Handler_V3 {
 
     private static function post_json_async( $url, array $payload ) {
         $response = wp_remote_post( $url, [
-            'timeout'  => 2,
+            'timeout'  => 1,
             'blocking' => false,
             'headers'  => [ 'Content-Type' => 'application/json' ],
             'body'     => wp_json_encode( $payload ),
@@ -281,6 +714,6 @@ class Canstem_Inquiry_Form_Handler_V3 {
     }
 }
 
-Canstem_Inquiry_Form_Handler_V3::boot();
+Canstem_Highschool_Form_Handler::boot();
 
 }

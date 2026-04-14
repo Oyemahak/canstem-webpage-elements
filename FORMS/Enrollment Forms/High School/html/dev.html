@@ -317,20 +317,7 @@
     <div class="cs-wrap" id="cs-highschool" role="form" aria-labelledby="highschool-title">
         <section class="cs-card">
 
-            <div class="cs-copy" style="margin-bottom:12px;">
-                <p id="highschool-title">
-                    <strong>Enrollment Forms - High School Credit Course | CanSTEM Education Private School</strong>
-                </p>
-                <p>
-                    High school credit courses are designed for students who need to upgrade marks, recover missed
-                    credits,
-                    complete prerequisites, or take courses that are not available in their home school. Credit courses
-                    are
-                    offered for students in grades 9, 10, 11 or 12, including adult learners working towards their high
-                    school diploma.
-                </p>
-            </div>
-
+            <!-- ===================== STUDENT INFORMATION ===================== -->
             <span class="cs-chip">Student Information</span>
 
             <div class="cs-row">
@@ -481,6 +468,7 @@
 
             <hr class="cs-sep" />
 
+            <!-- ===================== HOME ADDRESS ===================== -->
             <h2 class="cs-section-title">Home - Residential Address</h2>
 
             <div class="cs-row">
@@ -507,6 +495,7 @@
 
             <hr class="cs-sep" />
 
+            <!-- ===================== CURRENT / PREVIOUS SCHOOL ===================== -->
             <h2 class="cs-section-title">Current School or Previous School</h2>
 
             <div class="cs-field">
@@ -527,8 +516,7 @@
                 <div class="cs-copy">
                     <p>
                         If you don't provide this informaiton asked below, in the next few days, it will delay reporting
-                        of your grades-Transcript,
-                        to your institution.
+                        of your grades-Transcript, to your institution.
                     </p>
                 </div>
 
@@ -570,6 +558,7 @@
 
             <hr class="cs-sep" />
 
+            <!-- ===================== COURSES OF INTEREST ===================== -->
             <h2 class="cs-section-title">Courses of Interest</h2>
 
             <div class="cs-copy">
@@ -854,110 +843,25 @@
 
             <hr class="cs-sep" />
 
-            <h2 class="cs-section-title">Parent/Guardian 1 Information</h2>
-
-            <div class="cs-row">
-                <div class="cs-field">
-                    <label class="cs-label cs-req" for="parent1FirstName">First Name</label>
-                    <input class="cs-input" id="parent1FirstName" name="parent1FirstName" type="text">
-                </div>
-
-                <div class="cs-field">
-                    <label class="cs-label cs-req" for="parent1LastName">Last Name</label>
-                    <input class="cs-input" id="parent1LastName" name="parent1LastName" type="text">
-                </div>
-
-                <div class="cs-field">
-                    <label class="cs-label cs-req" for="parent1Relationship">What is the relationship with the
-                        student?</label>
-                    <select class="cs-input" id="parent1Relationship" name="parent1Relationship">
-                        <option value="">- Select -</option>
-                        <option value="Mother">Mother</option>
-                        <option value="Father">Father</option>
-                        <option value="Guardian">Guardian</option>
-                    </select>
-                </div>
-
-                <div class="cs-field">
-                    <label class="cs-label cs-req" for="parent1SameAddress">Is the parents' address same as student's
-                        address?</label>
-                    <select class="cs-input" id="parent1SameAddress" name="parent1SameAddress">
-                        <option value="">- Select -</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="cs-conditional is-hidden" id="parent1AddressBlock">
-                <div class="cs-row">
-                    <div class="cs-field" style="grid-column:1/-1;">
-                        <label class="cs-label" for="parent1StreetAddress">Apt / Unit / Street Number / Street
-                            Name</label>
-                        <input class="cs-input" id="parent1StreetAddress" name="parent1StreetAddress" type="text">
-                    </div>
-
-                    <div class="cs-field">
-                        <label class="cs-label" for="parent1CityCountry">City and Country</label>
-                        <input class="cs-input" id="parent1CityCountry" name="parent1CityCountry" type="text">
-                    </div>
-
-                    <div class="cs-field">
-                        <label class="cs-label" for="parent1ProvinceState">Province - State</label>
-                        <input class="cs-input" id="parent1ProvinceState" name="parent1ProvinceState" type="text">
-                    </div>
-
-                    <div class="cs-field">
-                        <label class="cs-label" for="parent1PostalCode">Postal Code</label>
-                        <input class="cs-input" id="parent1PostalCode" name="parent1PostalCode" type="text">
-                    </div>
-                </div>
-            </div>
-
-            <div class="cs-row" style="margin-top:16px;">
-                <div class="cs-field">
-                    <label class="cs-label" for="parent1CellPhone">Cell Phone</label>
-                    <input class="cs-input" id="parent1CellPhone" name="parent1CellPhone" type="tel">
-                </div>
-
-                <div class="cs-field">
-                    <label class="cs-label" for="parent1Email">Email Address</label>
-                    <input class="cs-input" id="parent1Email" name="parent1Email" type="email">
-                </div>
-            </div>
-
-            <div class="cs-field" style="margin-top:16px;">
-                <label class="cs-label">Do you want to add another Parent's information?</label>
-                <div class="cs-radio-group">
-                    <label class="cs-radio">
-                        <input type="radio" name="addParent2" value="Yes">
-                        <span>Yes</span>
-                    </label>
-                    <label class="cs-radio">
-                        <input type="radio" name="addParent2" value="No">
-                        <span>No</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="cs-conditional is-hidden" id="parent2Block">
-                <h2 class="cs-section-title">Parent/Guardian 2 Information</h2>
+            <!-- ===================== CONTACT INFORMATION (MINOR) ===================== -->
+            <div id="minorContactSection">
+                <h2 class="cs-section-title">Parent/Guardian 1 Information</h2>
 
                 <div class="cs-row">
                     <div class="cs-field">
-                        <label class="cs-label" for="parent2FirstName">First Name</label>
-                        <input class="cs-input" id="parent2FirstName" name="parent2FirstName" type="text">
+                        <label class="cs-label cs-req" for="parent1FirstName">First Name</label>
+                        <input class="cs-input" id="parent1FirstName" name="parent1FirstName" type="text">
                     </div>
 
                     <div class="cs-field">
-                        <label class="cs-label" for="parent2LastName">Last Name</label>
-                        <input class="cs-input" id="parent2LastName" name="parent2LastName" type="text">
+                        <label class="cs-label cs-req" for="parent1LastName">Last Name</label>
+                        <input class="cs-input" id="parent1LastName" name="parent1LastName" type="text">
                     </div>
 
                     <div class="cs-field">
-                        <label class="cs-label" for="parent2Relationship">What is the relationship with the
+                        <label class="cs-label cs-req" for="parent1Relationship">What is the relationship with the
                             student?</label>
-                        <select class="cs-input" id="parent2Relationship" name="parent2Relationship">
+                        <select class="cs-input" id="parent1Relationship" name="parent1Relationship">
                             <option value="">- Select -</option>
                             <option value="Mother">Mother</option>
                             <option value="Father">Father</option>
@@ -966,9 +870,9 @@
                     </div>
 
                     <div class="cs-field">
-                        <label class="cs-label" for="parent2SameAddress">Is the parents' address same as student's
-                            address?</label>
-                        <select class="cs-input" id="parent2SameAddress" name="parent2SameAddress">
+                        <label class="cs-label cs-req" for="parent1SameAddress">Is the parents' address same as
+                            student's address?</label>
+                        <select class="cs-input" id="parent1SameAddress" name="parent1SameAddress">
                             <option value="">- Select -</option>
                             <option value="Yes">Yes</option>
                             <option value="No">No</option>
@@ -976,59 +880,136 @@
                     </div>
                 </div>
 
-                <div class="cs-conditional is-hidden" id="parent2AddressBlock">
+                <div class="cs-conditional is-hidden" id="parent1AddressBlock">
                     <div class="cs-row">
                         <div class="cs-field" style="grid-column:1/-1;">
-                            <label class="cs-label" for="parent2StreetAddress">Apt / Unit / Street Number / Street
+                            <label class="cs-label" for="parent1StreetAddress">Apt / Unit / Street Number / Street
                                 Name</label>
-                            <input class="cs-input" id="parent2StreetAddress" name="parent2StreetAddress" type="text">
+                            <input class="cs-input" id="parent1StreetAddress" name="parent1StreetAddress" type="text">
                         </div>
 
                         <div class="cs-field">
-                            <label class="cs-label" for="parent2CityCountry">City and Country</label>
-                            <input class="cs-input" id="parent2CityCountry" name="parent2CityCountry" type="text">
+                            <label class="cs-label" for="parent1CityCountry">City and Country</label>
+                            <input class="cs-input" id="parent1CityCountry" name="parent1CityCountry" type="text">
                         </div>
 
                         <div class="cs-field">
-                            <label class="cs-label" for="parent2ProvinceState">Province - State</label>
-                            <input class="cs-input" id="parent2ProvinceState" name="parent2ProvinceState" type="text">
+                            <label class="cs-label" for="parent1ProvinceState">Province - State</label>
+                            <input class="cs-input" id="parent1ProvinceState" name="parent1ProvinceState" type="text">
                         </div>
 
                         <div class="cs-field">
-                            <label class="cs-label" for="parent2PostalCode">Postal Code</label>
-                            <input class="cs-input" id="parent2PostalCode" name="parent2PostalCode" type="text">
+                            <label class="cs-label" for="parent1PostalCode">Postal Code</label>
+                            <input class="cs-input" id="parent1PostalCode" name="parent1PostalCode" type="text">
                         </div>
                     </div>
                 </div>
 
                 <div class="cs-row" style="margin-top:16px;">
                     <div class="cs-field">
-                        <label class="cs-label" for="parent2CellPhone">Cell Phone</label>
-                        <input class="cs-input" id="parent2CellPhone" name="parent2CellPhone" type="tel">
+                        <label class="cs-label" for="parent1CellPhone">Cell Phone</label>
+                        <input class="cs-input" id="parent1CellPhone" name="parent1CellPhone" type="tel">
                     </div>
 
                     <div class="cs-field">
-                        <label class="cs-label" for="parent2Email">Email Address</label>
-                        <input class="cs-input" id="parent2Email" name="parent2Email" type="email">
+                        <label class="cs-label" for="parent1Email">Email Address</label>
+                        <input class="cs-input" id="parent1Email" name="parent1Email" type="email">
+                    </div>
+                </div>
+
+                <div class="cs-field" style="margin-top:16px;">
+                    <label class="cs-label">Do you want to add another Parent's information?</label>
+                    <div class="cs-radio-group">
+                        <label class="cs-radio">
+                            <input type="radio" name="addParent2" value="Yes">
+                            <span>Yes</span>
+                        </label>
+                        <label class="cs-radio">
+                            <input type="radio" name="addParent2" value="No">
+                            <span>No</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="cs-conditional is-hidden" id="parent2Block">
+                    <h2 class="cs-section-title">Parent/Guardian 2 Information</h2>
+
+                    <div class="cs-row">
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent2FirstName">First Name</label>
+                            <input class="cs-input" id="parent2FirstName" name="parent2FirstName" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent2LastName">Last Name</label>
+                            <input class="cs-input" id="parent2LastName" name="parent2LastName" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent2Relationship">What is the relationship with the
+                                student?</label>
+                            <select class="cs-input" id="parent2Relationship" name="parent2Relationship">
+                                <option value="">- Select -</option>
+                                <option value="Mother">Mother</option>
+                                <option value="Father">Father</option>
+                                <option value="Guardian">Guardian</option>
+                            </select>
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent2SameAddress">Is the parents' address same as student's
+                                address?</label>
+                            <select class="cs-input" id="parent2SameAddress" name="parent2SameAddress">
+                                <option value="">- Select -</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="cs-conditional is-hidden" id="parent2AddressBlock">
+                        <div class="cs-row">
+                            <div class="cs-field" style="grid-column:1/-1;">
+                                <label class="cs-label" for="parent2StreetAddress">Apt / Unit / Street Number / Street
+                                    Name</label>
+                                <input class="cs-input" id="parent2StreetAddress" name="parent2StreetAddress"
+                                    type="text">
+                            </div>
+
+                            <div class="cs-field">
+                                <label class="cs-label" for="parent2CityCountry">City and Country</label>
+                                <input class="cs-input" id="parent2CityCountry" name="parent2CityCountry" type="text">
+                            </div>
+
+                            <div class="cs-field">
+                                <label class="cs-label" for="parent2ProvinceState">Province - State</label>
+                                <input class="cs-input" id="parent2ProvinceState" name="parent2ProvinceState"
+                                    type="text">
+                            </div>
+
+                            <div class="cs-field">
+                                <label class="cs-label" for="parent2PostalCode">Postal Code</label>
+                                <input class="cs-input" id="parent2PostalCode" name="parent2PostalCode" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cs-row" style="margin-top:16px;">
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent2CellPhone">Cell Phone</label>
+                            <input class="cs-input" id="parent2CellPhone" name="parent2CellPhone" type="tel">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent2Email">Email Address</label>
+                            <input class="cs-input" id="parent2Email" name="parent2Email" type="email">
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="cs-field" style="margin-top:16px;">
-                <label class="cs-label">Do you want to add Emergency contact?</label>
-                <div class="cs-radio-group">
-                    <label class="cs-radio">
-                        <input type="radio" name="addEmergencyContact" value="Yes">
-                        <span>Yes</span>
-                    </label>
-                    <label class="cs-radio">
-                        <input type="radio" name="addEmergencyContact" value="No">
-                        <span>No</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="cs-conditional is-hidden" id="emergencyBlock">
+            <!-- ===================== CONTACT INFORMATION (ADULT) ===================== -->
+            <div id="adultContactSection" class="is-hidden">
                 <h2 class="cs-section-title">Emergency Contact 1 Information</h2>
 
                 <div class="cs-row">
@@ -1080,14 +1061,89 @@
                     </div>
 
                     <div class="cs-field">
-                        <label class="cs-label" for="emergencyEmail">Email Address</label>
+                        <label class="cs-label cs-req" for="emergencyEmail">Email Address</label>
                         <input class="cs-input" id="emergencyEmail" name="emergencyEmail" type="email">
+                    </div>
+                </div>
+
+                <div class="cs-field" style="margin-top:16px;">
+                    <label class="cs-label">Do you want to add Emergency contact?</label>
+                    <div class="cs-radio-group">
+                        <label class="cs-radio">
+                            <input type="radio" name="addEmergencyContact" value="Yes">
+                            <span>Yes</span>
+                        </label>
+                        <label class="cs-radio">
+                            <input type="radio" name="addEmergencyContact" value="No">
+                            <span>No</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="cs-conditional is-hidden" id="emergencyBlock2">
+                    <h2 class="cs-section-title">Emergency Contact 2 Information</h2>
+
+                    <div class="cs-row">
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2FirstName">First Name</label>
+                            <input class="cs-input" id="emergency2FirstName" name="emergency2FirstName" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2LastName">Last Name</label>
+                            <input class="cs-input" id="emergency2LastName" name="emergency2LastName" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2Relationship">Relationship to Student</label>
+                            <select class="cs-input" id="emergency2Relationship" name="emergency2Relationship">
+                                <option value="">- Select -</option>
+                                <option value="Mother">Mother</option>
+                                <option value="Father">Father</option>
+                                <option value="Guardian">Guardian</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="cs-field" style="grid-column:1/-1;">
+                            <label class="cs-label" for="emergency2StreetAddress">Apt / Unit / Street Number / Street
+                                Name</label>
+                            <input class="cs-input" id="emergency2StreetAddress" name="emergency2StreetAddress"
+                                type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2CityCountry">City and Country</label>
+                            <input class="cs-input" id="emergency2CityCountry" name="emergency2CityCountry" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2ProvinceState">Province - State</label>
+                            <input class="cs-input" id="emergency2ProvinceState" name="emergency2ProvinceState"
+                                type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2PostalCode">Postal Code</label>
+                            <input class="cs-input" id="emergency2PostalCode" name="emergency2PostalCode" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2CellPhone">Cell Phone</label>
+                            <input class="cs-input" id="emergency2CellPhone" name="emergency2CellPhone" type="tel">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2Email">Email Address</label>
+                            <input class="cs-input" id="emergency2Email" name="emergency2Email" type="email">
+                        </div>
                     </div>
                 </div>
             </div>
 
             <hr class="cs-sep" />
 
+            <!-- ===================== PROOF OF EDUCATION ===================== -->
             <h2 class="cs-section-title">Proof of Education</h2>
 
             <div class="cs-copy">
@@ -1138,6 +1194,7 @@
 
             <hr class="cs-sep" />
 
+            <!-- ===================== PAYMENT ===================== -->
             <h2 class="cs-section-title">Payment: Are you ready to pay?</h2>
 
             <div class="cs-field">
@@ -1272,15 +1329,13 @@
                     </p>
                     <p>
                         Please allow up to 24 hours for your payment to be confirmed by our accounting team. Once
-                        confirmed,
-                        you will be manually enrolled into your course and will receive your log-in details and a
-                        welcome
-                        email from your new CanSTEM Education instructor to help get you started!
+                        confirmed, you will be manually enrolled into your course and will receive your log-in details
+                        and a
+                        welcome email from your new CanSTEM Education instructor to help get you started!
                     </p>
                     <p>
                         If you have any questions, please contact our office at 647-568-0258, 647-847-1231, or
-                        647-709-0258
-                        (Monday-Friday from 9am-8pm, Saturday from 12 to 6pm)
+                        647-709-0258 (Monday-Friday from 9am-8pm, Saturday from 12 to 6pm)
                     </p>
                     <p>
                         Interac Email:
@@ -1362,6 +1417,7 @@
 
             <hr class="cs-sep" />
 
+            <!-- ===================== TERMS ===================== -->
             <h2 class="cs-section-title">Registration - Terms and Conditions</h2>
             <div class="cs-copy">
                 <p>( You must read carefully, before you accept. They are legally binding )</p>
@@ -1427,6 +1483,7 @@
 
             <hr class="cs-sep" />
 
+            <!-- ===================== SIGNATURE ===================== -->
             <h2 class="cs-section-title">Electronic Signature</h2>
             <div class="cs-copy">
                 <p>The electronic signature and all of its related fields replaces a handwritten signature on paper and
@@ -1478,6 +1535,7 @@
 
             <hr class="cs-sep" />
 
+            <!-- ===================== SUBMIT ===================== -->
             <div class="cs-actions">
                 <button class="cs-btn" id="submitBtn" type="button">Submit</button>
                 <span class="cs-status" id="status" aria-live="polite"></span>
@@ -1511,7 +1569,6 @@
                     "Technology and the Skilled Trades Grade 9 | TAS1O",
                     "Not in the list"
                 ],
-
                 "10": [
                     "Visual Arts Grade 10 | AVI2O",
                     "Drama Grade 10 | ADA2O",
@@ -1546,7 +1603,6 @@
                     "Technology and the Skilled Trades Grade 10 | TAS2O",
                     "Not in the list"
                 ],
-
                 "11": [
                     "Visual Arts Grade 11 | AVI3M",
                     "Visual Arts Grade 11 | AVI3O",
@@ -1630,7 +1686,6 @@
                     "Health Care Grade 11 | TPJ3M",
                     "Not in the list"
                 ],
-
                 "12": [
                     "Working with School-Age Children and Adolescents Grade 12 | HPD4C",
                     "Challenge and change in Society Grade 12 | HSB4U",
@@ -1682,7 +1737,6 @@
                     "Health Care, Grade 12 (University/College) | TPJ4M",
                     "Not in the list"
                 ],
-
                 "ESL / ELD": [
                     "ESL Level 1 | ESLAO",
                     "ESL Level 2 | ESLBO",
@@ -1698,6 +1752,7 @@
                 ]
             };
 
+            // ---------- INTERNATIONAL ----------
             const isInternational = document.getElementById('isInternational');
             const inCanada = document.getElementById('inCanada');
             const validStudyPermit = document.getElementById('validStudyPermit');
@@ -1710,25 +1765,34 @@
             const studyPermitUpload = document.getElementById('studyPermitUpload');
             const moveToCanada = document.getElementById('moveToCanada');
 
+            // ---------- SCHOOL ----------
             const ontarioSchoolRadios = document.querySelectorAll('input[name="ontarioSchool"]');
             const ontarioSchoolYesBlock = document.getElementById('ontarioSchoolYesBlock');
             const ontarioSchoolNoBlock = document.getElementById('ontarioSchoolNoBlock');
 
+            // ---------- ADULT / MINOR FLOW ----------
+            const isAdult = document.getElementById('isAdult');
+            const minorContactSection = document.getElementById('minorContactSection');
+            const adultContactSection = document.getElementById('adultContactSection');
+
+            // ---------- MINOR CONTACT ----------
             const parent1SameAddress = document.getElementById('parent1SameAddress');
             const parent1AddressBlock = document.getElementById('parent1AddressBlock');
-
             const addParent2Radios = document.querySelectorAll('input[name="addParent2"]');
             const parent2Block = document.getElementById('parent2Block');
             const parent2SameAddress = document.getElementById('parent2SameAddress');
             const parent2AddressBlock = document.getElementById('parent2AddressBlock');
 
+            // ---------- ADULT CONTACT ----------
             const addEmergencyRadios = document.querySelectorAll('input[name="addEmergencyContact"]');
-            const emergencyBlock = document.getElementById('emergencyBlock');
+            const emergencyBlock2 = document.getElementById('emergencyBlock2');
 
+            // ---------- COURSE ----------
             const courseToggles = document.querySelectorAll('.course-toggle');
             const courseGrades = document.querySelectorAll('.course-grade');
             const courseSearches = document.querySelectorAll('.course-search');
 
+            // ---------- PAYMENT ----------
             const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
             const cardBlock = document.getElementById('paymentCardBlock');
             const interacBlock = document.getElementById('paymentInteracBlock');
@@ -1741,6 +1805,7 @@
             const cardOrderId = document.getElementById('cardOrderId');
             const cardReceiptUpload = document.getElementById('cardReceiptUpload');
 
+            // ---------- HEAR ABOUT ----------
             const hearAbout = document.getElementById('hearAbout');
             const hearAboutOtherWrap = document.getElementById('hearAboutOtherWrap');
             const hearAboutOther = document.getElementById('hearAboutOther');
@@ -1755,6 +1820,7 @@
                 el.required = !!isRequired;
             }
 
+            // ---------- INTERNATIONAL FLOW ----------
             function updateInternationalFlow() {
                 toggleEl(internationalYesBlock, isInternational.value === 'Yes');
 
@@ -1808,12 +1874,33 @@
                 }
             }
 
+            // ---------- SCHOOL FLOW ----------
             function updateOntarioSchool() {
                 const selected = document.querySelector('input[name="ontarioSchool"]:checked');
                 toggleEl(ontarioSchoolYesBlock, selected && selected.value === 'Yes');
                 toggleEl(ontarioSchoolNoBlock, selected && selected.value === 'No');
             }
 
+            // ---------- ADULT / MINOR FLOW ----------
+            function updateAdultMinorFlow() {
+                const adult = isAdult.value === 'Yes';
+
+                toggleEl(minorContactSection, !adult);
+                toggleEl(adultContactSection, adult);
+
+                if (adult) {
+                    // Clear parent side radios/blocks
+                    document.querySelectorAll('input[name="addParent2"]').forEach(r => r.checked = false);
+                    toggleEl(parent2Block, false);
+                    toggleEl(parent2AddressBlock, false);
+                } else {
+                    // Clear adult emergency extra section
+                    document.querySelectorAll('input[name="addEmergencyContact"]').forEach(r => r.checked = false);
+                    toggleEl(emergencyBlock2, false);
+                }
+            }
+
+            // ---------- MINOR CONTACT FLOW ----------
             function updateParent1Address() {
                 toggleEl(parent1AddressBlock, parent1SameAddress.value === 'No');
             }
@@ -1827,11 +1914,13 @@
                 toggleEl(parent2AddressBlock, parent2SameAddress.value === 'No');
             }
 
-            function updateEmergency() {
+            // ---------- ADULT EMERGENCY FLOW ----------
+            function updateEmergency2() {
                 const selected = document.querySelector('input[name="addEmergencyContact"]:checked');
-                toggleEl(emergencyBlock, selected && selected.value === 'Yes');
+                toggleEl(emergencyBlock2, selected && selected.value === 'Yes');
             }
 
+            // ---------- COURSE HELPERS ----------
             function hideCourseFrom(number) {
                 for (let i = number; i <= 5; i++) {
                     const block = document.getElementById(`courseBlock${i}`);
@@ -1993,6 +2082,7 @@
                 });
             });
 
+            // ---------- PAYMENT ----------
             function resetPaymentBlocks() {
                 cardBlock.classList.add('is-hidden');
                 interacBlock.classList.add('is-hidden');
@@ -2060,6 +2150,7 @@
                 }
             }
 
+            // ---------- HEAR ABOUT ----------
             function updateHearAboutOther() {
                 const isOther = hearAbout.value === 'Other';
                 hearAboutOtherWrap.classList.toggle('is-hidden', !isOther);
@@ -2067,26 +2158,33 @@
                 if (!isOther) hearAboutOther.value = '';
             }
 
+            // ---------- EVENTS ----------
             isInternational.addEventListener('change', updateInternationalFlow);
             inCanada.addEventListener('change', updateInternationalFlow);
             validStudyPermit.addEventListener('change', updateInternationalFlow);
 
             ontarioSchoolRadios.forEach(r => r.addEventListener('change', updateOntarioSchool));
+
+            isAdult.addEventListener('change', updateAdultMinorFlow);
+
             parent1SameAddress.addEventListener('change', updateParent1Address);
             addParent2Radios.forEach(r => r.addEventListener('change', updateParent2));
             parent2SameAddress.addEventListener('change', updateParent2Address);
-            addEmergencyRadios.forEach(r => r.addEventListener('change', updateEmergency));
+
+            addEmergencyRadios.forEach(r => r.addEventListener('change', updateEmergency2));
 
             paymentRadios.forEach(r => r.addEventListener('change', updatePaymentMethod));
             cardMethodRadios.forEach(r => r.addEventListener('change', updateCardVerificationMethod));
             hearAbout.addEventListener('change', updateHearAboutOther);
 
+            // ---------- INIT ----------
             updateInternationalFlow();
             updateOntarioSchool();
+            updateAdultMinorFlow();
             updateParent1Address();
             updateParent2();
             updateParent2Address();
-            updateEmergency();
+            updateEmergency2();
             updatePaymentMethod();
             updateCardVerificationMethod();
             updateHearAboutOther();
