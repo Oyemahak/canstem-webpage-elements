@@ -7,21 +7,21 @@
     <title>Enrollment Forms - High School Credit Course | CanSTEM Education Private School</title>
 
     <style>
-        html:has(#cs-highschool),
-        body:has(#cs-highschool) {
+        html:has(#cs-highschool-form),
+        body:has(#cs-highschool-form) {
             background-color: #fff !important;
         }
 
-        .elementor-section:has(#cs-highschool) {
+        .elementor-section:has(#cs-highschool-form) {
             background-color: #fff !important;
         }
 
-        #cs-highschool,
-        #cs-highschool * {
+        #cs-highschool-form,
+        #cs-highschool-form * {
             box-sizing: border-box;
         }
 
-        #cs-highschool {
+        #cs-highschool-form {
             --cs-bg: #fff;
             --cs-ink: #0b1324;
             --cs-sub: #475569;
@@ -35,7 +35,7 @@
             font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
         }
 
-        #cs-highschool .cs-card {
+        #cs-highschool-form .cs-card {
             background: var(--cs-bg);
             border: 1px solid var(--cs-line);
             border-radius: 16px;
@@ -43,7 +43,7 @@
             box-shadow: 0 10px 28px rgba(2, 6, 23, .08);
         }
 
-        #cs-highschool .cs-chip {
+        #cs-highschool-form .cs-chip {
             display: inline-block;
             background: var(--cs-chip-bg);
             color: var(--cs-chip-ink);
@@ -55,19 +55,19 @@
             margin-bottom: 10px;
         }
 
-        #cs-highschool .cs-row {
+        #cs-highschool-form .cs-row {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 16px;
         }
 
         @media (max-width: 820px) {
-            #cs-highschool .cs-row {
+            #cs-highschool-form .cs-row {
                 grid-template-columns: 1fr;
             }
         }
 
-        #cs-highschool .cs-field {
+        #cs-highschool-form .cs-field {
             display: flex;
             flex-direction: column;
             gap: 6px;
@@ -75,28 +75,28 @@
             position: relative;
         }
 
-        #cs-highschool .cs-label {
+        #cs-highschool-form .cs-label {
             font-size: 18px;
             font-weight: 700;
             color: var(--cs-ink);
         }
 
-        #cs-highschool .cs-help {
+        #cs-highschool-form .cs-help {
             margin-top: -4px;
             font-size: 14px;
             color: #6b7280;
             font-style: italic;
         }
 
-        #cs-highschool .cs-req::after {
+        #cs-highschool-form .cs-req::after {
             content: " *";
             color: #e11d48;
         }
 
-        #cs-highschool .cs-input,
-        #cs-highschool select.cs-input,
-        #cs-highschool textarea.cs-input,
-        #cs-highschool input[type=file].cs-input {
+        #cs-highschool-form .cs-input,
+        #cs-highschool-form select.cs-input,
+        #cs-highschool-form textarea.cs-input,
+        #cs-highschool-form input[type=file].cs-input {
             width: 100%;
             min-height: 52px;
             padding: 12px 14px;
@@ -112,16 +112,16 @@
             box-shadow: none;
         }
 
-        #cs-highschool .cs-input::placeholder {
+        #cs-highschool-form .cs-input::placeholder {
             color: #94a3b8;
         }
 
-        #cs-highschool .cs-input:focus {
+        #cs-highschool-form .cs-input:focus {
             border-color: #4169e1;
             box-shadow: 0 0 0 3px color-mix(in srgb, #4169e1 25%, transparent);
         }
 
-        #cs-highschool select.cs-input {
+        #cs-highschool-form select.cs-input {
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="%23001161" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
             background-repeat: no-repeat;
             background-position: right 14px center;
@@ -130,56 +130,56 @@
             cursor: pointer;
         }
 
-        #cs-highschool textarea.cs-input {
+        #cs-highschool-form textarea.cs-input {
             min-height: 120px;
             resize: vertical;
         }
 
-        #cs-highschool input[type=file].cs-input {
+        #cs-highschool-form input[type=file].cs-input {
             min-height: auto;
             padding: 10px;
         }
 
-        #cs-highschool .cs-sep {
+        #cs-highschool-form .cs-sep {
             border: none;
             border-top: 1px dashed #e2e8f0;
             margin: 16px 0;
         }
 
-        #cs-highschool .cs-copy,
-        #cs-highschool .cs-copy p,
-        #cs-highschool .cs-copy li {
+        #cs-highschool-form .cs-copy,
+        #cs-highschool-form .cs-copy p,
+        #cs-highschool-form .cs-copy li {
             font-size: 18px;
             line-height: 1.75;
             color: var(--cs-ink);
         }
 
-        #cs-highschool .cs-copy p {
+        #cs-highschool-form .cs-copy p {
             margin: 0 0 12px;
         }
 
-        #cs-highschool .cs-copy ul,
-        #cs-highschool .cs-copy ol {
+        #cs-highschool-form .cs-copy ul,
+        #cs-highschool-form .cs-copy ol {
             margin: 0 0 16px 24px;
             padding: 0;
         }
 
-        #cs-highschool .cs-copy strong {
+        #cs-highschool-form .cs-copy strong {
             font-weight: 800;
         }
 
-        #cs-highschool .cs-copy a {
+        #cs-highschool-form .cs-copy a {
             color: #2563eb;
             text-decoration: underline;
         }
 
-        #cs-highschool .cs-radio-group {
+        #cs-highschool-form .cs-radio-group {
             display: grid;
             gap: 14px;
             margin-top: 8px;
         }
 
-        #cs-highschool .cs-radio {
+        #cs-highschool-form .cs-radio {
             display: flex;
             align-items: flex-start;
             gap: 10px;
@@ -187,7 +187,7 @@
             line-height: 1.5;
         }
 
-        #cs-highschool .cs-radio input[type="radio"] {
+        #cs-highschool-form .cs-radio input[type="radio"] {
             width: 22px;
             height: 22px;
             margin-top: 2px;
@@ -195,7 +195,7 @@
             flex: 0 0 auto;
         }
 
-        #cs-highschool .cs-conditional {
+        #cs-highschool-form .cs-conditional {
             margin-top: 18px;
             padding: 18px;
             border: 1px dashed var(--cs-line);
@@ -203,7 +203,7 @@
             background: #fafcff;
         }
 
-        #cs-highschool .cs-section-title {
+        #cs-highschool-form .cs-section-title {
             display: inline-block;
             background: var(--cs-chip-bg);
             color: var(--cs-chip-ink);
@@ -217,14 +217,14 @@
             font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
         }
 
-        #cs-highschool .cs-actions {
+        #cs-highschool-form .cs-actions {
             display: flex;
             gap: 12px;
             align-items: center;
             flex-wrap: wrap;
         }
 
-        #cs-highschool .cs-btn {
+        #cs-highschool-form .cs-btn {
             background: var(--cs-primary);
             color: var(--cs-primary-ink);
             border: none;
@@ -235,26 +235,31 @@
             font-size: 18px;
         }
 
-        #cs-highschool .cs-btn:hover {
+        #cs-highschool-form .cs-btn:hover {
             filter: brightness(1.05);
         }
 
-        #cs-highschool .cs-status {
+        #cs-highschool-form .cs-btn:disabled {
+            opacity: .7;
+            cursor: not-allowed;
+        }
+
+        #cs-highschool-form .cs-status {
             min-height: 1.4em;
             font-size: 18px;
         }
 
-        #cs-highschool .cs-ok {
+        #cs-highschool-form .cs-ok {
             color: #16a34a;
             font-weight: 700;
         }
 
-        #cs-highschool .cs-err {
+        #cs-highschool-form .cs-err {
             color: #b91c1c;
             font-weight: 700;
         }
 
-        #cs-highschool .cs-figure {
+        #cs-highschool-form .cs-figure {
             margin: 10px 0 18px;
             padding: 12px;
             border: 1px solid #e2e8f0;
@@ -262,7 +267,7 @@
             background: #fff;
         }
 
-        #cs-highschool .cs-figure img {
+        #cs-highschool-form .cs-figure img {
             width: 100%;
             max-width: 520px;
             height: auto;
@@ -270,11 +275,11 @@
             border-radius: 10px;
         }
 
-        #cs-highschool .is-hidden {
+        #cs-highschool-form .is-hidden {
             display: none !important;
         }
 
-        #cs-highschool .cs-course-list {
+        #cs-highschool-form .cs-course-list {
             position: absolute;
             top: calc(100% + 4px);
             left: 0;
@@ -289,7 +294,7 @@
             display: none;
         }
 
-        #cs-highschool .cs-course-item {
+        #cs-highschool-form .cs-course-item {
             padding: 12px 14px;
             font-size: 16px;
             line-height: 1.4;
@@ -297,11 +302,11 @@
             border-bottom: 1px solid #eef2f7;
         }
 
-        #cs-highschool .cs-course-item:last-child {
+        #cs-highschool-form .cs-course-item:last-child {
             border-bottom: none;
         }
 
-        #cs-highschool .cs-course-item:hover {
+        #cs-highschool-form .cs-course-item:hover {
             background: #eef2ff;
         }
 
@@ -314,7 +319,8 @@
 </head>
 
 <body>
-    <div class="cs-wrap" id="cs-highschool" role="form" aria-labelledby="highschool-title">
+    <form class="cs-wrap" id="cs-highschool-form" aria-labelledby="highschool-title" enctype="multipart/form-data"
+        novalidate>
         <section class="cs-card">
 
             <!-- ===================== STUDENT INFORMATION ===================== -->
@@ -566,7 +572,6 @@
             </div>
 
             <div id="courseBlocks">
-                <!-- COURSE 1 -->
                 <div class="cs-conditional" id="courseBlock1">
                     <div class="cs-row">
                         <div class="cs-field">
@@ -623,7 +628,6 @@
                     </div>
                 </div>
 
-                <!-- COURSE 2 -->
                 <div class="cs-conditional is-hidden" id="courseBlock2">
                     <div class="cs-row">
                         <div class="cs-field">
@@ -680,7 +684,6 @@
                     </div>
                 </div>
 
-                <!-- COURSE 3 -->
                 <div class="cs-conditional is-hidden" id="courseBlock3">
                     <div class="cs-row">
                         <div class="cs-field">
@@ -737,7 +740,6 @@
                     </div>
                 </div>
 
-                <!-- COURSE 4 -->
                 <div class="cs-conditional is-hidden" id="courseBlock4">
                     <div class="cs-row">
                         <div class="cs-field">
@@ -794,7 +796,6 @@
                     </div>
                 </div>
 
-                <!-- COURSE 5 -->
                 <div class="cs-conditional is-hidden" id="courseBlock5">
                     <div class="cs-row">
                         <div class="cs-field">
@@ -1330,8 +1331,7 @@
                     <p>
                         Please allow up to 24 hours for your payment to be confirmed by our accounting team. Once
                         confirmed, you will be manually enrolled into your course and will receive your log-in details
-                        and a
-                        welcome email from your new CanSTEM Education instructor to help get you started!
+                        and a welcome email from your new CanSTEM Education instructor to help get you started!
                     </p>
                     <p>
                         If you have any questions, please contact our office at 647-568-0258, 647-847-1231, or
@@ -1502,34 +1502,66 @@
                 </select>
             </div>
 
-            <h2 class="cs-section-title" style="margin-top:16px;">Parent/Guardian Signature</h2>
+            <!-- ===================== SIGNATURE (MINOR) ===================== -->
+            <div id="minorSignatureSection">
+                <h2 class="cs-section-title" style="margin-top:16px;">Parent/Guardian Signature</h2>
 
-            <div class="cs-field">
-                <label class="cs-label cs-req" for="parentTermsAgree">Do you agree and accept to all terms and
-                    conditions mentioned above</label>
-                <select class="cs-input" id="parentTermsAgree" name="parentTermsAgree">
-                    <option value="">- Select -</option>
-                    <option value="Yes">Yes</option>
-                </select>
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="parentTermsAgree">Do you agree and accept to all terms and
+                        conditions mentioned above</label>
+                    <select class="cs-input" id="parentTermsAgree" name="parentTermsAgree">
+                        <option value="">- Select -</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+
+                <div class="cs-row">
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="parentSignature">Parent/Guardian Electronic
+                            Signature</label>
+                        <div class="cs-help">(type name of parent/guardian)</div>
+                        <input class="cs-input" id="parentSignature" name="parentSignature" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="studentSignature">Student Electronic Signature</label>
+                        <div class="cs-help">(type name of student)</div>
+                        <input class="cs-input" id="studentSignature" name="studentSignature" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="todayDate">Today's Date</label>
+                        <div class="cs-help">mm/dd/yyyy</div>
+                        <input class="cs-input" id="todayDate" name="todayDate" type="text" placeholder="mm/dd/yyyy">
+                    </div>
+                </div>
             </div>
 
-            <div class="cs-row">
-                <div class="cs-field">
-                    <label class="cs-label cs-req" for="parentSignature">Parent/Guardian Electronic Signature</label>
-                    <div class="cs-help">(type name of parent/guardian)</div>
-                    <input class="cs-input" id="parentSignature" name="parentSignature" type="text">
-                </div>
+            <!-- ===================== SIGNATURE (ADULT) ===================== -->
+            <div id="adultSignatureSection" class="is-hidden">
+                <h2 class="cs-section-title" style="margin-top:16px;">Applicant's Signature</h2>
 
                 <div class="cs-field">
-                    <label class="cs-label cs-req" for="studentSignature">Student Electronic Signature</label>
-                    <div class="cs-help">(type name of student)</div>
-                    <input class="cs-input" id="studentSignature" name="studentSignature" type="text">
+                    <label class="cs-label cs-req" for="applicantTermsAgree">Do you agree and accept to all terms and
+                        conditions mentioned above</label>
+                    <select class="cs-input" id="applicantTermsAgree" name="applicantTermsAgree">
+                        <option value="">- Select -</option>
+                        <option value="Yes">Yes</option>
+                    </select>
                 </div>
 
-                <div class="cs-field">
-                    <label class="cs-label cs-req" for="todayDate">Today's Date</label>
-                    <div class="cs-help">mm/dd/yyyy</div>
-                    <input class="cs-input" id="todayDate" name="todayDate" type="text" placeholder="mm/dd/yyyy">
+                <div class="cs-row">
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="adultStudentSignature">Student Electronic Signature</label>
+                        <input class="cs-input" id="adultStudentSignature" name="adultStudentSignature" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="adultTodayDate">Today's Date</label>
+                        <div class="cs-help">mm/dd/yyyy</div>
+                        <input class="cs-input" id="adultTodayDate" name="adultTodayDate" type="text"
+                            placeholder="mm/dd/yyyy">
+                    </div>
                 </div>
             </div>
 
@@ -1537,14 +1569,17 @@
 
             <!-- ===================== SUBMIT ===================== -->
             <div class="cs-actions">
-                <button class="cs-btn" id="submitBtn" type="button">Submit</button>
+                <button class="cs-btn" id="submitBtn" type="submit">Submit</button>
                 <span class="cs-status" id="status" aria-live="polite"></span>
             </div>
         </section>
-    </div>
+    </form>
 
     <script>
         (function () {
+            const AJAX_URL = '/wp-admin/admin-ajax.php';
+            const AJAX_ACTION = 'canstem_highschool_credit_request';
+
             const gradeCourseData = {
                 "9": [
                     "Visual Arts Grade 9 | AVI1O",
@@ -1752,7 +1787,7 @@
                 ]
             };
 
-            // ---------- INTERNATIONAL ----------
+            const formEl = document.getElementById('cs-highschool-form');
             const isInternational = document.getElementById('isInternational');
             const inCanada = document.getElementById('inCanada');
             const validStudyPermit = document.getElementById('validStudyPermit');
@@ -1765,17 +1800,16 @@
             const studyPermitUpload = document.getElementById('studyPermitUpload');
             const moveToCanada = document.getElementById('moveToCanada');
 
-            // ---------- SCHOOL ----------
             const ontarioSchoolRadios = document.querySelectorAll('input[name="ontarioSchool"]');
             const ontarioSchoolYesBlock = document.getElementById('ontarioSchoolYesBlock');
             const ontarioSchoolNoBlock = document.getElementById('ontarioSchoolNoBlock');
 
-            // ---------- ADULT / MINOR FLOW ----------
             const isAdult = document.getElementById('isAdult');
             const minorContactSection = document.getElementById('minorContactSection');
             const adultContactSection = document.getElementById('adultContactSection');
+            const minorSignatureSection = document.getElementById('minorSignatureSection');
+            const adultSignatureSection = document.getElementById('adultSignatureSection');
 
-            // ---------- MINOR CONTACT ----------
             const parent1SameAddress = document.getElementById('parent1SameAddress');
             const parent1AddressBlock = document.getElementById('parent1AddressBlock');
             const addParent2Radios = document.querySelectorAll('input[name="addParent2"]');
@@ -1783,16 +1817,13 @@
             const parent2SameAddress = document.getElementById('parent2SameAddress');
             const parent2AddressBlock = document.getElementById('parent2AddressBlock');
 
-            // ---------- ADULT CONTACT ----------
             const addEmergencyRadios = document.querySelectorAll('input[name="addEmergencyContact"]');
             const emergencyBlock2 = document.getElementById('emergencyBlock2');
 
-            // ---------- COURSE ----------
             const courseToggles = document.querySelectorAll('.course-toggle');
             const courseGrades = document.querySelectorAll('.course-grade');
             const courseSearches = document.querySelectorAll('.course-search');
 
-            // ---------- PAYMENT ----------
             const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
             const cardBlock = document.getElementById('paymentCardBlock');
             const interacBlock = document.getElementById('paymentInteracBlock');
@@ -1805,10 +1836,12 @@
             const cardOrderId = document.getElementById('cardOrderId');
             const cardReceiptUpload = document.getElementById('cardReceiptUpload');
 
-            // ---------- HEAR ABOUT ----------
             const hearAbout = document.getElementById('hearAbout');
             const hearAboutOtherWrap = document.getElementById('hearAboutOtherWrap');
             const hearAboutOther = document.getElementById('hearAboutOther');
+
+            const submitBtn = document.getElementById('submitBtn');
+            const statusEl = document.getElementById('status');
 
             function toggleEl(el, show) {
                 if (!el) return;
@@ -1820,7 +1853,23 @@
                 el.required = !!isRequired;
             }
 
-            // ---------- INTERNATIONAL FLOW ----------
+            function setStatus(msg, ok) {
+                statusEl.className = 'cs-status';
+                statusEl.textContent = msg || '';
+                if (ok === true) statusEl.classList.add('cs-ok');
+                if (ok === false) statusEl.classList.add('cs-err');
+            }
+
+            function getVal(id) {
+                const el = document.getElementById(id);
+                return el ? String(el.value || '').trim() : '';
+            }
+
+            function getCheckedValue(name) {
+                const el = document.querySelector(`input[name="${name}"]:checked`);
+                return el ? el.value : '';
+            }
+
             function updateInternationalFlow() {
                 toggleEl(internationalYesBlock, isInternational.value === 'Yes');
 
@@ -1874,33 +1923,39 @@
                 }
             }
 
-            // ---------- SCHOOL FLOW ----------
             function updateOntarioSchool() {
                 const selected = document.querySelector('input[name="ontarioSchool"]:checked');
                 toggleEl(ontarioSchoolYesBlock, selected && selected.value === 'Yes');
                 toggleEl(ontarioSchoolNoBlock, selected && selected.value === 'No');
             }
 
-            // ---------- ADULT / MINOR FLOW ----------
             function updateAdultMinorFlow() {
                 const adult = isAdult.value === 'Yes';
 
                 toggleEl(minorContactSection, !adult);
                 toggleEl(adultContactSection, adult);
+                toggleEl(minorSignatureSection, !adult);
+                toggleEl(adultSignatureSection, adult);
+
+                setRequired(document.getElementById('parentTermsAgree'), !adult);
+                setRequired(document.getElementById('parentSignature'), !adult);
+                setRequired(document.getElementById('studentSignature'), !adult);
+                setRequired(document.getElementById('todayDate'), !adult);
+
+                setRequired(document.getElementById('applicantTermsAgree'), adult);
+                setRequired(document.getElementById('adultStudentSignature'), adult);
+                setRequired(document.getElementById('adultTodayDate'), adult);
 
                 if (adult) {
-                    // Clear parent side radios/blocks
                     document.querySelectorAll('input[name="addParent2"]').forEach(r => r.checked = false);
                     toggleEl(parent2Block, false);
                     toggleEl(parent2AddressBlock, false);
                 } else {
-                    // Clear adult emergency extra section
                     document.querySelectorAll('input[name="addEmergencyContact"]').forEach(r => r.checked = false);
                     toggleEl(emergencyBlock2, false);
                 }
             }
 
-            // ---------- MINOR CONTACT FLOW ----------
             function updateParent1Address() {
                 toggleEl(parent1AddressBlock, parent1SameAddress.value === 'No');
             }
@@ -1914,13 +1969,11 @@
                 toggleEl(parent2AddressBlock, parent2SameAddress.value === 'No');
             }
 
-            // ---------- ADULT EMERGENCY FLOW ----------
             function updateEmergency2() {
                 const selected = document.querySelector('input[name="addEmergencyContact"]:checked');
                 toggleEl(emergencyBlock2, selected && selected.value === 'Yes');
             }
 
-            // ---------- COURSE HELPERS ----------
             function hideCourseFrom(number) {
                 for (let i = number; i <= 5; i++) {
                     const block = document.getElementById(`courseBlock${i}`);
@@ -2082,7 +2135,6 @@
                 });
             });
 
-            // ---------- PAYMENT ----------
             function resetPaymentBlocks() {
                 cardBlock.classList.add('is-hidden');
                 interacBlock.classList.add('is-hidden');
@@ -2150,7 +2202,6 @@
                 }
             }
 
-            // ---------- HEAR ABOUT ----------
             function updateHearAboutOther() {
                 const isOther = hearAbout.value === 'Other';
                 hearAboutOtherWrap.classList.toggle('is-hidden', !isOther);
@@ -2158,26 +2209,385 @@
                 if (!isOther) hearAboutOther.value = '';
             }
 
-            // ---------- EVENTS ----------
+            function isValid() {
+                const requiredFields = [
+                    'firstName', 'lastName', 'gender', 'dob', 'isAdult', 'onlineInClass', 'isInternational',
+                    'studentEmail', 'studentPhone', 'streetAddress', 'cityCountry', 'provinceState', 'postalCode',
+                    'requiredDocuments', 'termsAgree', 'gradesUploadOption', 'noRefundAgree', 'hearAbout'
+                ];
+
+                for (const id of requiredFields) {
+                    const el = document.getElementById(id);
+                    if (!el) continue;
+
+                    if (el.type === 'file') {
+                        if (!el.files || !el.files.length) {
+                            el.focus?.();
+                            setStatus('Please fill all required fields.', false);
+                            return false;
+                        }
+                    } else if (!String(el.value || '').trim()) {
+                        el.focus?.();
+                        setStatus('Please fill all required fields.', false);
+                        return false;
+                    }
+                }
+
+                const email = getVal('studentEmail');
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    document.getElementById('studentEmail').focus();
+                    setStatus('Please enter a valid student email address.', false);
+                    return false;
+                }
+
+                if (hearAbout.value === 'Other' && !getVal('hearAboutOther')) {
+                    hearAboutOther.focus();
+                    setStatus('Please fill "Please Specify".', false);
+                    return false;
+                }
+
+                if (isInternational.value === 'Yes') {
+                    if (!getVal('inCanada')) {
+                        inCanada.focus();
+                        setStatus('Please complete the international student section.', false);
+                        return false;
+                    }
+
+                    if (inCanada.value === 'Yes') {
+                        if (!getVal('validStudyPermit')) {
+                            validStudyPermit.focus();
+                            setStatus('Please complete the international student section.', false);
+                            return false;
+                        }
+
+                        if (validStudyPermit.value === 'Yes' && (!studyPermitUpload.files || !studyPermitUpload.files.length)) {
+                            studyPermitUpload.focus?.();
+                            setStatus('Please upload the study permit.', false);
+                            return false;
+                        }
+                    }
+
+                    if (inCanada.value === 'No' && !getVal('moveToCanada')) {
+                        moveToCanada.focus();
+                        setStatus('Please complete the international student section.', false);
+                        return false;
+                    }
+                }
+
+                const ontarioSchool = getCheckedValue('ontarioSchool');
+                if (!ontarioSchool) {
+                    setStatus('Please answer whether you have studied in any high school in Ontario.', false);
+                    return false;
+                }
+
+                if (!getVal('courseGrade1') || !getVal('courseSearch1') || !getVal('courseMode1')) {
+                    setStatus('Please complete Course 1 details.', false);
+                    return false;
+                }
+
+                for (let i = 1; i <= 5; i++) {
+                    const block = document.getElementById(`courseBlock${i}`);
+                    if (!block || block.classList.contains('is-hidden')) continue;
+
+                    if (!getVal(`courseGrade${i}`) || !getVal(`courseSearch${i}`) || !getVal(`courseMode${i}`)) {
+                        setStatus(`Please complete Course ${i} details.`, false);
+                        return false;
+                    }
+
+                    const searchVal = getVal(`courseSearch${i}`);
+                    if (searchVal && !getVal(`courseManual${i}`)) {
+                        setStatus(`Please complete the manual course field for Course ${i}.`, false);
+                        return false;
+                    }
+                }
+
+                if (isAdult.value === 'No') {
+                    const minorRequired = ['parent1FirstName', 'parent1LastName', 'parent1Relationship', 'parent1SameAddress', 'parent1CellPhone', 'parent1Email'];
+                    for (const id of minorRequired) {
+                        if (!getVal(id)) {
+                            document.getElementById(id).focus();
+                            setStatus('Please complete Parent/Guardian 1 Information.', false);
+                            return false;
+                        }
+                    }
+
+                    if (parent1SameAddress.value === 'No') {
+                        const parent1AddressRequired = ['parent1StreetAddress', 'parent1CityCountry', 'parent1ProvinceState', 'parent1PostalCode'];
+                        for (const id of parent1AddressRequired) {
+                            if (!getVal(id)) {
+                                document.getElementById(id).focus();
+                                setStatus('Please complete Parent/Guardian 1 address.', false);
+                                return false;
+                            }
+                        }
+                    }
+
+                    const addParent2 = getCheckedValue('addParent2');
+                    if (!addParent2) {
+                        setStatus("Please answer if you want to add another parent's information.", false);
+                        return false;
+                    }
+
+                    if (addParent2 === 'Yes') {
+                        const p2Required = ['parent2FirstName', 'parent2LastName', 'parent2Relationship', 'parent2SameAddress', 'parent2CellPhone', 'parent2Email'];
+                        for (const id of p2Required) {
+                            if (!getVal(id)) {
+                                document.getElementById(id).focus();
+                                setStatus('Please complete Parent/Guardian 2 Information.', false);
+                                return false;
+                            }
+                        }
+
+                        if (parent2SameAddress.value === 'No') {
+                            const parent2AddressRequired = ['parent2StreetAddress', 'parent2CityCountry', 'parent2ProvinceState', 'parent2PostalCode'];
+                            for (const id of parent2AddressRequired) {
+                                if (!getVal(id)) {
+                                    document.getElementById(id).focus();
+                                    setStatus('Please complete Parent/Guardian 2 address.', false);
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+
+                    const minorSignatureRequired = ['parentTermsAgree', 'parentSignature', 'studentSignature', 'todayDate'];
+                    for (const id of minorSignatureRequired) {
+                        if (!getVal(id)) {
+                            document.getElementById(id).focus();
+                            setStatus('Please complete the Parent/Guardian Signature section.', false);
+                            return false;
+                        }
+                    }
+                } else {
+                    const adultRequired = ['emergencyFirstName', 'emergencyLastName', 'emergencyRelationship', 'emergencyStreetAddress', 'emergencyCityCountry', 'emergencyProvinceState', 'emergencyPostalCode', 'emergencyCellPhone', 'emergencyEmail'];
+                    for (const id of adultRequired) {
+                        if (!getVal(id)) {
+                            document.getElementById(id).focus();
+                            setStatus('Please complete Emergency Contact 1 Information.', false);
+                            return false;
+                        }
+                    }
+
+                    const addEmergency = getCheckedValue('addEmergencyContact');
+                    if (!addEmergency) {
+                        setStatus('Please answer if you want to add another emergency contact.', false);
+                        return false;
+                    }
+
+                    if (addEmergency === 'Yes') {
+                        const emergency2Required = ['emergency2FirstName', 'emergency2LastName', 'emergency2Relationship', 'emergency2StreetAddress', 'emergency2CityCountry', 'emergency2ProvinceState', 'emergency2PostalCode', 'emergency2CellPhone', 'emergency2Email'];
+                        for (const id of emergency2Required) {
+                            if (!getVal(id)) {
+                                document.getElementById(id).focus();
+                                setStatus('Please complete Emergency Contact 2 Information.', false);
+                                return false;
+                            }
+                        }
+                    }
+
+                    const adultSignatureRequired = ['applicantTermsAgree', 'adultStudentSignature', 'adultTodayDate'];
+                    for (const id of adultSignatureRequired) {
+                        if (!getVal(id)) {
+                            document.getElementById(id).focus();
+                            setStatus("Please complete the Applicant's Signature section.", false);
+                            return false;
+                        }
+                    }
+                }
+
+                const paymentMethod = getCheckedValue('paymentMethod');
+                if (!paymentMethod) {
+                    setStatus('Please select a payment method.', false);
+                    return false;
+                }
+
+                if (paymentMethod.includes('Credit - Debit Card')) {
+                    const cardVerificationMethod = getCheckedValue('cardVerificationMethod');
+                    if (!cardVerificationMethod) {
+                        setStatus('Please select a payment verification method.', false);
+                        return false;
+                    }
+
+                    if (cardVerificationMethod === 'Paste Order ID' && !getVal('cardOrderId')) {
+                        document.getElementById('cardOrderId').focus();
+                        setStatus('Please enter the card Order ID.', false);
+                        return false;
+                    }
+
+                    if (cardVerificationMethod === 'Upload Receipt Screenshot' && (!cardReceiptUpload.files || !cardReceiptUpload.files.length)) {
+                        cardReceiptUpload.focus?.();
+                        setStatus('Please upload the card receipt screenshot.', false);
+                        return false;
+                    }
+                }
+
+                if (paymentMethod === 'INTERAC® eTransfer') {
+                    const interacRequired = ['securityQuestion', 'securityAnswer', 'interacOrderId'];
+                    for (const id of interacRequired) {
+                        if (!getVal(id)) {
+                            document.getElementById(id).focus();
+                            setStatus('Please complete all Interac payment fields.', false);
+                            return false;
+                        }
+                    }
+                }
+
+                if (paymentMethod === 'Paying Internationally' && !getVal('internationalOrderId')) {
+                    document.getElementById('internationalOrderId').focus();
+                    setStatus('Please enter the international Order ID.', false);
+                    return false;
+                }
+
+                return true;
+            }
+
+            function appendFileIfPresent(fd, id) {
+                const el = document.getElementById(id);
+                if (el && el.files && el.files[0]) {
+                    fd.append(id, el.files[0]);
+                }
+            }
+
+            function clearForm() {
+                document.querySelectorAll('#cs-highschool-form input, #cs-highschool-form textarea, #cs-highschool-form select').forEach(el => {
+                    if (el.type === 'radio' || el.type === 'checkbox') {
+                        el.checked = false;
+                    } else if (el.type === 'file') {
+                        el.value = '';
+                    } else {
+                        el.value = '';
+                    }
+                });
+
+                document.querySelectorAll('.cs-course-list').forEach(list => list.style.display = 'none');
+
+                hideCourseFrom(2);
+                updateInternationalFlow();
+                updateOntarioSchool();
+                updateAdultMinorFlow();
+                updateParent1Address();
+                updateParent2();
+                updateParent2Address();
+                updateEmergency2();
+                updatePaymentMethod();
+                updateCardVerificationMethod();
+                updateHearAboutOther();
+                updateVisibleCourseRequirements();
+            }
+
+            async function submitForm() {
+                if (!isValid()) return;
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+                setStatus('Submitting…');
+
+                try {
+                    const fd = new FormData();
+                    fd.append('action', AJAX_ACTION);
+
+                    const simpleIds = [
+                        'firstName', 'middleName', 'lastName', 'gender', 'dob', 'isAdult', 'onlineInClass', 'isInternational',
+                        'inCanada', 'validStudyPermit', 'moveToCanada',
+                        'studentEmail', 'studentPhone',
+                        'streetAddress', 'cityCountry', 'provinceState', 'postalCode',
+                        'previousSchoolName', 'guidanceCounselorEmail',
+                        'institutionName', 'institutionEmail', 'applicationNumber',
+                        'parent1FirstName', 'parent1LastName', 'parent1Relationship', 'parent1SameAddress',
+                        'parent1StreetAddress', 'parent1CityCountry', 'parent1ProvinceState', 'parent1PostalCode',
+                        'parent1CellPhone', 'parent1Email',
+                        'parent2FirstName', 'parent2LastName', 'parent2Relationship', 'parent2SameAddress',
+                        'parent2StreetAddress', 'parent2CityCountry', 'parent2ProvinceState', 'parent2PostalCode',
+                        'parent2CellPhone', 'parent2Email',
+                        'emergencyFirstName', 'emergencyLastName', 'emergencyRelationship',
+                        'emergencyStreetAddress', 'emergencyCityCountry', 'emergencyProvinceState', 'emergencyPostalCode',
+                        'emergencyCellPhone', 'emergencyEmail',
+                        'emergency2FirstName', 'emergency2LastName', 'emergency2Relationship',
+                        'emergency2StreetAddress', 'emergency2CityCountry', 'emergency2ProvinceState', 'emergency2PostalCode',
+                        'emergency2CellPhone', 'emergency2Email',
+                        'termsAgree', 'gradesUploadOption', 'noRefundAgree',
+                        'parentTermsAgree', 'parentSignature', 'studentSignature', 'todayDate',
+                        'applicantTermsAgree', 'adultStudentSignature', 'adultTodayDate',
+                        'cardOrderId', 'securityQuestion', 'securityAnswer', 'interacOrderId', 'internationalOrderId',
+                        'hearAbout', 'hearAboutOther'
+                    ];
+
+                    simpleIds.forEach(id => {
+                        const el = document.getElementById(id);
+                        if (el) fd.append(id, el.value || '');
+                    });
+
+                    for (let i = 1; i <= 5; i++) {
+                        ['courseGrade', 'courseSearch', 'courseMode', 'courseManual', 'courseRequirement', 'anotherCourse'].forEach(prefix => {
+                            const el = document.getElementById(`${prefix}${i}`);
+                            if (el) fd.append(`${prefix}${i}`, el.value || '');
+                        });
+                    }
+
+                    fd.append('ontarioSchool', getCheckedValue('ontarioSchool'));
+                    fd.append('addParent2', getCheckedValue('addParent2'));
+                    fd.append('addEmergencyContact', getCheckedValue('addEmergencyContact'));
+                    fd.append('paymentMethod', getCheckedValue('paymentMethod'));
+                    fd.append('cardVerificationMethod', getCheckedValue('cardVerificationMethod'));
+
+                    appendFileIfPresent(fd, 'requiredDocuments');
+                    appendFileIfPresent(fd, 'studyPermitUpload');
+                    appendFileIfPresent(fd, 'additionalDocuments1');
+                    appendFileIfPresent(fd, 'additionalDocuments2');
+                    appendFileIfPresent(fd, 'cardReceiptUpload');
+
+                    const resp = await fetch(AJAX_URL, {
+                        method: 'POST',
+                        body: fd,
+                        credentials: 'same-origin'
+                    });
+
+                    const raw = await resp.text();
+                    let data = {};
+
+                    try {
+                        data = JSON.parse(raw);
+                    } catch (e) {
+                        console.error('Raw server response:', raw);
+                        data = { success: false, data: { error: 'Invalid server response.' } };
+                    }
+
+                    if (resp.ok && data.success) {
+                        clearForm();
+                        setStatus('Success! Your high school credit course form has been submitted successfully.', true);
+                    } else {
+                        const msg = (data && data.data && data.data.error) ? data.data.error : `Error sending your request. HTTP ${resp.status}`;
+                        setStatus(msg, false);
+                    }
+                } catch (err) {
+                    console.error(err);
+                    setStatus('Network error. Please try again.', false);
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit';
+                }
+            }
+
             isInternational.addEventListener('change', updateInternationalFlow);
             inCanada.addEventListener('change', updateInternationalFlow);
             validStudyPermit.addEventListener('change', updateInternationalFlow);
 
             ontarioSchoolRadios.forEach(r => r.addEventListener('change', updateOntarioSchool));
-
             isAdult.addEventListener('change', updateAdultMinorFlow);
-
             parent1SameAddress.addEventListener('change', updateParent1Address);
             addParent2Radios.forEach(r => r.addEventListener('change', updateParent2));
-            parent2SameAddress.addEventListener('change', updateParent2Address);
-
+            if (parent2SameAddress) parent2SameAddress.addEventListener('change', updateParent2Address);
             addEmergencyRadios.forEach(r => r.addEventListener('change', updateEmergency2));
 
             paymentRadios.forEach(r => r.addEventListener('change', updatePaymentMethod));
             cardMethodRadios.forEach(r => r.addEventListener('change', updateCardVerificationMethod));
             hearAbout.addEventListener('change', updateHearAboutOther);
 
-            // ---------- INIT ----------
+            formEl.addEventListener('submit', function (e) {
+                e.preventDefault();
+                submitForm();
+            });
+
             updateInternationalFlow();
             updateOntarioSchool();
             updateAdultMinorFlow();

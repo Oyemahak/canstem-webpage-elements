@@ -17,7 +17,7 @@ class Canstem_Highschool_Form_Handler {
     const MAIL_BCC         = '';
 
     // Replace with your High School Apps Script web app URL
-    const GOOGLE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxM85pQzY-CKw3JSHFgwfTVLzNYcA0KUqp6Wlc-jqUGTqvqu1NkP3QDnhLzwKH4OJFA/exec';
+    const GOOGLE_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwEsXmMEZB6Mz7tjzwWeK4HV-eHpU73dWXnsO_2N0gQ2Or_-xiAh2yM6dyXdNCEWuPF/exec';
 
     public static function boot() {
         add_action( 'phpmailer_init', [ __CLASS__, 'smtp_setup' ], 999 );
@@ -28,8 +28,8 @@ class Canstem_Highschool_Form_Handler {
             }
         });
 
-        add_action( 'wp_ajax_canstem_highschool_request', [ __CLASS__, 'handle_ajax' ] );
-        add_action( 'wp_ajax_nopriv_canstem_highschool_request', [ __CLASS__, 'handle_ajax' ] );
+        add_action( 'wp_ajax_canstem_highschool_credit_request', [ __CLASS__, 'handle_ajax' ] );
+        add_action( 'wp_ajax_nopriv_canstem_highschool_credit_request', [ __CLASS__, 'handle_ajax' ] );
     }
 
     public static function smtp_setup( $phpmailer ) {
@@ -74,22 +74,29 @@ class Canstem_Highschool_Form_Handler {
                 return sanitize_email( wp_unslash( $v ?? '' ) );
             };
 
+            $course_final = function( $search, $manual ) {
+                if ( $search === 'Not in the list' ) {
+                    return $manual;
+                }
+                return $manual ?: $search;
+            };
+
             // =========================
             // STUDENT INFO
             // =========================
-            $firstName       = $sx( $_POST['firstName'] ?? '' );
-            $middleName      = $sx( $_POST['middleName'] ?? '' );
-            $lastName        = $sx( $_POST['lastName'] ?? '' );
-            $gender          = $sx( $_POST['gender'] ?? '' );
-            $dob             = $sx( $_POST['dob'] ?? '' );
-            $isAdult         = $sx( $_POST['isAdult'] ?? '' );
-            $onlineInClass   = $sx( $_POST['onlineInClass'] ?? '' );
-            $isInternational = $sx( $_POST['isInternational'] ?? '' );
-            $inCanada        = $sx( $_POST['inCanada'] ?? '' );
-            $validStudyPermit= $sx( $_POST['validStudyPermit'] ?? '' );
-            $moveToCanada    = $sx( $_POST['moveToCanada'] ?? '' );
-            $studentEmail    = $emailx( $_POST['studentEmail'] ?? '' );
-            $studentPhone    = $sx( $_POST['studentPhone'] ?? '' );
+            $firstName        = $sx( $_POST['firstName'] ?? '' );
+            $middleName       = $sx( $_POST['middleName'] ?? '' );
+            $lastName         = $sx( $_POST['lastName'] ?? '' );
+            $gender           = $sx( $_POST['gender'] ?? '' );
+            $dob              = $sx( $_POST['dob'] ?? '' );
+            $isAdult          = $sx( $_POST['isAdult'] ?? '' );
+            $onlineInClass    = $sx( $_POST['onlineInClass'] ?? '' );
+            $isInternational  = $sx( $_POST['isInternational'] ?? '' );
+            $inCanada         = $sx( $_POST['inCanada'] ?? '' );
+            $validStudyPermit = $sx( $_POST['validStudyPermit'] ?? '' );
+            $moveToCanada     = $sx( $_POST['moveToCanada'] ?? '' );
+            $studentEmail     = $emailx( $_POST['studentEmail'] ?? '' );
+            $studentPhone     = $sx( $_POST['studentPhone'] ?? '' );
 
             // =========================
             // ADDRESS
@@ -102,12 +109,12 @@ class Canstem_Highschool_Form_Handler {
             // =========================
             // SCHOOL HISTORY
             // =========================
-            $ontarioSchool         = $sx( $_POST['ontarioSchool'] ?? '' );
-            $previousSchoolName    = $sx( $_POST['previousSchoolName'] ?? '' );
-            $guidanceCounselorEmail= $emailx( $_POST['guidanceCounselorEmail'] ?? '' );
-            $institutionName       = $sx( $_POST['institutionName'] ?? '' );
-            $institutionEmail      = $emailx( $_POST['institutionEmail'] ?? '' );
-            $applicationNumber     = $sx( $_POST['applicationNumber'] ?? '' );
+            $ontarioSchool          = $sx( $_POST['ontarioSchool'] ?? '' );
+            $previousSchoolName     = $sx( $_POST['previousSchoolName'] ?? '' );
+            $guidanceCounselorEmail = $emailx( $_POST['guidanceCounselorEmail'] ?? '' );
+            $institutionName        = $sx( $_POST['institutionName'] ?? '' );
+            $institutionEmail       = $emailx( $_POST['institutionEmail'] ?? '' );
+            $applicationNumber      = $sx( $_POST['applicationNumber'] ?? '' );
 
             // =========================
             // COURSES 1 TO 5
@@ -146,6 +153,12 @@ class Canstem_Highschool_Form_Handler {
             $courseMode5        = $sx( $_POST['courseMode5'] ?? '' );
             $courseRequirement5 = $tx( $_POST['courseRequirement5'] ?? '' );
 
+            $course1Final = $course_final( $courseSearch1, $courseManual1 );
+            $course2Final = $course_final( $courseSearch2, $courseManual2 );
+            $course3Final = $course_final( $courseSearch3, $courseManual3 );
+            $course4Final = $course_final( $courseSearch4, $courseManual4 );
+            $course5Final = $course_final( $courseSearch5, $courseManual5 );
+
             // =========================
             // CONTACT SECTION
             // =========================
@@ -173,7 +186,7 @@ class Canstem_Highschool_Form_Handler {
             $parent2CellPhone     = $sx( $_POST['parent2CellPhone'] ?? '' );
             $parent2Email         = $emailx( $_POST['parent2Email'] ?? '' );
 
-            $addEmergencyContact  = $sx( $_POST['addEmergencyContact'] ?? '' );
+            $addEmergencyContact   = $sx( $_POST['addEmergencyContact'] ?? '' );
 
             $emergencyFirstName     = $sx( $_POST['emergencyFirstName'] ?? '' );
             $emergencyLastName      = $sx( $_POST['emergencyLastName'] ?? '' );
@@ -184,6 +197,16 @@ class Canstem_Highschool_Form_Handler {
             $emergencyPostalCode    = $sx( $_POST['emergencyPostalCode'] ?? '' );
             $emergencyCellPhone     = $sx( $_POST['emergencyCellPhone'] ?? '' );
             $emergencyEmail         = $emailx( $_POST['emergencyEmail'] ?? '' );
+
+            $emergency2FirstName     = $sx( $_POST['emergency2FirstName'] ?? '' );
+            $emergency2LastName      = $sx( $_POST['emergency2LastName'] ?? '' );
+            $emergency2Relationship  = $sx( $_POST['emergency2Relationship'] ?? '' );
+            $emergency2StreetAddress = $sx( $_POST['emergency2StreetAddress'] ?? '' );
+            $emergency2CityCountry   = $sx( $_POST['emergency2CityCountry'] ?? '' );
+            $emergency2ProvinceState = $sx( $_POST['emergency2ProvinceState'] ?? '' );
+            $emergency2PostalCode    = $sx( $_POST['emergency2PostalCode'] ?? '' );
+            $emergency2CellPhone     = $sx( $_POST['emergency2CellPhone'] ?? '' );
+            $emergency2Email         = $emailx( $_POST['emergency2Email'] ?? '' );
 
             // =========================
             // PAYMENT
@@ -199,15 +222,22 @@ class Canstem_Highschool_Form_Handler {
             // =========================
             // OTHER
             // =========================
-            $hearAbout         = $sx( $_POST['hearAbout'] ?? '' );
-            $hearAboutOther    = $sx( $_POST['hearAboutOther'] ?? '' );
-            $termsAgree        = $sx( $_POST['termsAgree'] ?? '' );
-            $gradesUploadOption= $sx( $_POST['gradesUploadOption'] ?? '' );
-            $noRefundAgree     = $sx( $_POST['noRefundAgree'] ?? '' );
-            $parentTermsAgree  = $sx( $_POST['parentTermsAgree'] ?? '' );
-            $parentSignature   = $sx( $_POST['parentSignature'] ?? '' );
-            $studentSignature  = $sx( $_POST['studentSignature'] ?? '' );
-            $todayDate         = $sx( $_POST['todayDate'] ?? '' );
+            $hearAbout          = $sx( $_POST['hearAbout'] ?? '' );
+            $hearAboutOther     = $sx( $_POST['hearAboutOther'] ?? '' );
+            $termsAgree         = $sx( $_POST['termsAgree'] ?? '' );
+            $gradesUploadOption = $sx( $_POST['gradesUploadOption'] ?? '' );
+            $noRefundAgree      = $sx( $_POST['noRefundAgree'] ?? '' );
+
+            // Minor signature fields
+            $parentTermsAgree = $sx( $_POST['parentTermsAgree'] ?? '' );
+            $parentSignature  = $sx( $_POST['parentSignature'] ?? '' );
+            $studentSignature = $sx( $_POST['studentSignature'] ?? '' );
+            $todayDate        = $sx( $_POST['todayDate'] ?? '' );
+
+            // Adult signature fields
+            $applicantTermsAgree = $sx( $_POST['applicantTermsAgree'] ?? '' );
+            $adultStudentSignature = $sx( $_POST['adultStudentSignature'] ?? '' );
+            $adultTodayDate = $sx( $_POST['adultTodayDate'] ?? '' );
 
             // =========================
             // VALIDATION
@@ -228,17 +258,13 @@ class Canstem_Highschool_Form_Handler {
                 ! $postalCode ||
                 ! $ontarioSchool ||
                 ! $courseGrade1 ||
-                ! $courseSearch1 ||
+                ! $course1Final ||
                 ! $courseMode1 ||
                 ! $paymentMethod ||
                 ! $hearAbout ||
                 ! $termsAgree ||
                 ! $gradesUploadOption ||
-                ! $noRefundAgree ||
-                ! $parentTermsAgree ||
-                ! $parentSignature ||
-                ! $studentSignature ||
-                ! $todayDate
+                ! $noRefundAgree
             ) {
                 wp_send_json_error( [ 'error' => 'Please fill all required fields.' ], 400 );
             }
@@ -274,14 +300,70 @@ class Canstem_Highschool_Form_Handler {
             }
 
             if ( $isAdult === 'No' ) {
-                if ( ! $parent1FirstName || ! $parent1LastName || ! $parent1Relationship || ! $parent1SameAddress ) {
+                if ( ! $parent1FirstName || ! $parent1LastName || ! $parent1Relationship || ! $parent1SameAddress || ! $parent1CellPhone || ! $parent1Email ) {
                     wp_send_json_error( [ 'error' => 'Please complete Parent/Guardian 1 information.' ], 400 );
+                }
+
+                if ( ! is_email( $parent1Email ) ) {
+                    wp_send_json_error( [ 'error' => 'Please enter a valid Parent/Guardian 1 email address.' ], 400 );
+                }
+
+                if ( $parent1SameAddress === 'No' ) {
+                    if ( ! $parent1StreetAddress || ! $parent1CityCountry || ! $parent1ProvinceState || ! $parent1PostalCode ) {
+                        wp_send_json_error( [ 'error' => 'Please complete Parent/Guardian 1 address.' ], 400 );
+                    }
+                }
+
+                if ( ! $addParent2 ) {
+                    wp_send_json_error( [ 'error' => "Please answer if you want to add another parent's information." ], 400 );
+                }
+
+                if ( $addParent2 === 'Yes' ) {
+                    if ( ! $parent2FirstName || ! $parent2LastName || ! $parent2Relationship || ! $parent2SameAddress || ! $parent2CellPhone || ! $parent2Email ) {
+                        wp_send_json_error( [ 'error' => 'Please complete Parent/Guardian 2 information.' ], 400 );
+                    }
+
+                    if ( ! is_email( $parent2Email ) ) {
+                        wp_send_json_error( [ 'error' => 'Please enter a valid Parent/Guardian 2 email address.' ], 400 );
+                    }
+
+                    if ( $parent2SameAddress === 'No' ) {
+                        if ( ! $parent2StreetAddress || ! $parent2CityCountry || ! $parent2ProvinceState || ! $parent2PostalCode ) {
+                            wp_send_json_error( [ 'error' => 'Please complete Parent/Guardian 2 address.' ], 400 );
+                        }
+                    }
+                }
+
+                if ( ! $parentTermsAgree || ! $parentSignature || ! $studentSignature || ! $todayDate ) {
+                    wp_send_json_error( [ 'error' => 'Please complete the Parent/Guardian Signature section.' ], 400 );
                 }
             }
 
             if ( $isAdult === 'Yes' ) {
-                if ( ! $emergencyFirstName || ! $emergencyLastName || ! $emergencyRelationship || ! $emergencyStreetAddress || ! $emergencyCityCountry || ! $emergencyProvinceState || ! $emergencyPostalCode || ! $emergencyCellPhone ) {
+                if ( ! $emergencyFirstName || ! $emergencyLastName || ! $emergencyRelationship || ! $emergencyStreetAddress || ! $emergencyCityCountry || ! $emergencyProvinceState || ! $emergencyPostalCode || ! $emergencyCellPhone || ! $emergencyEmail ) {
                     wp_send_json_error( [ 'error' => 'Please complete Emergency Contact 1 information.' ], 400 );
+                }
+
+                if ( ! is_email( $emergencyEmail ) ) {
+                    wp_send_json_error( [ 'error' => 'Please enter a valid Emergency Contact 1 email address.' ], 400 );
+                }
+
+                if ( ! $addEmergencyContact ) {
+                    wp_send_json_error( [ 'error' => 'Please answer if you want to add another emergency contact.' ], 400 );
+                }
+
+                if ( $addEmergencyContact === 'Yes' ) {
+                    if ( ! $emergency2FirstName || ! $emergency2LastName || ! $emergency2Relationship || ! $emergency2StreetAddress || ! $emergency2CityCountry || ! $emergency2ProvinceState || ! $emergency2PostalCode || ! $emergency2CellPhone || ! $emergency2Email ) {
+                        wp_send_json_error( [ 'error' => 'Please complete Emergency Contact 2 information.' ], 400 );
+                    }
+
+                    if ( ! is_email( $emergency2Email ) ) {
+                        wp_send_json_error( [ 'error' => 'Please enter a valid Emergency Contact 2 email address.' ], 400 );
+                    }
+                }
+
+                if ( ! $applicantTermsAgree || ! $adultStudentSignature || ! $adultTodayDate ) {
+                    wp_send_json_error( [ 'error' => 'Please complete the Applicant Signature section.' ], 400 );
                 }
             }
 
@@ -334,11 +416,11 @@ class Canstem_Highschool_Form_Handler {
             }
 
             $file_map = [
-                'requiredDocuments'  => 'Required Documents',
-                'studyPermitUpload'  => 'Study Permit Upload',
-                'additionalDocuments1' => 'Additional Documents 1',
-                'additionalDocuments2' => 'Additional Documents 2',
-                'cardReceiptUpload'  => 'Card Receipt Upload',
+                'requiredDocuments'   => 'Required Documents',
+                'studyPermitUpload'   => 'Study Permit Upload',
+                'additionalDocuments1'=> 'Additional Documents 1',
+                'additionalDocuments2'=> 'Additional Documents 2',
+                'cardReceiptUpload'   => 'Card Receipt Upload',
             ];
 
             foreach ( $file_map as $field => $label ) {
@@ -388,12 +470,6 @@ class Canstem_Highschool_Form_Handler {
             // =========================
             $fullName    = trim( implode( ' ', array_filter( [ $firstName, $middleName, $lastName ] ) ) );
             $submittedAt = current_time( 'mysql' );
-
-            $course1Final = $courseSearch1 === 'Not in the list' ? $courseManual1 : $courseSearch1;
-            $course2Final = $courseSearch2 === 'Not in the list' ? $courseManual2 : $courseSearch2;
-            $course3Final = $courseSearch3 === 'Not in the list' ? $courseManual3 : $courseSearch3;
-            $course4Final = $courseSearch4 === 'Not in the list' ? $courseManual4 : $courseSearch4;
-            $course5Final = $courseSearch5 === 'Not in the list' ? $courseManual5 : $courseSearch5;
 
             $subject = sprintf(
                 'High School Credit Enrollment — %s',
@@ -466,39 +542,62 @@ class Canstem_Highschool_Form_Handler {
                 $rows[] = self::tr( 'Course Requirement 5', nl2br( esc_html( $courseRequirement5 ) ) );
             }
 
-            $rows[] = self::tr( 'Parent 1 First Name', esc_html( $parent1FirstName ) );
-            $rows[] = self::tr( 'Parent 1 Last Name', esc_html( $parent1LastName ) );
-            $rows[] = self::tr( 'Parent 1 Relationship', esc_html( $parent1Relationship ) );
-            $rows[] = self::tr( 'Parent 1 Same Address', esc_html( $parent1SameAddress ) );
-            $rows[] = self::tr( 'Parent 1 Street Address', esc_html( $parent1StreetAddress ) );
-            $rows[] = self::tr( 'Parent 1 City/Country', esc_html( $parent1CityCountry ) );
-            $rows[] = self::tr( 'Parent 1 Province/State', esc_html( $parent1ProvinceState ) );
-            $rows[] = self::tr( 'Parent 1 Postal Code', esc_html( $parent1PostalCode ) );
-            $rows[] = self::tr( 'Parent 1 Cell Phone', esc_html( $parent1CellPhone ) );
-            $rows[] = self::tr( 'Parent 1 Email', esc_html( $parent1Email ) );
+            if ( $isAdult === 'No' ) {
+                $rows[] = self::tr( 'Parent 1 First Name', esc_html( $parent1FirstName ) );
+                $rows[] = self::tr( 'Parent 1 Last Name', esc_html( $parent1LastName ) );
+                $rows[] = self::tr( 'Parent 1 Relationship', esc_html( $parent1Relationship ) );
+                $rows[] = self::tr( 'Parent 1 Same Address', esc_html( $parent1SameAddress ) );
+                $rows[] = self::tr( 'Parent 1 Street Address', esc_html( $parent1StreetAddress ) );
+                $rows[] = self::tr( 'Parent 1 City/Country', esc_html( $parent1CityCountry ) );
+                $rows[] = self::tr( 'Parent 1 Province/State', esc_html( $parent1ProvinceState ) );
+                $rows[] = self::tr( 'Parent 1 Postal Code', esc_html( $parent1PostalCode ) );
+                $rows[] = self::tr( 'Parent 1 Cell Phone', esc_html( $parent1CellPhone ) );
+                $rows[] = self::tr( 'Parent 1 Email', esc_html( $parent1Email ) );
 
-            $rows[] = self::tr( 'Add Parent 2', esc_html( $addParent2 ) );
-            $rows[] = self::tr( 'Parent 2 First Name', esc_html( $parent2FirstName ) );
-            $rows[] = self::tr( 'Parent 2 Last Name', esc_html( $parent2LastName ) );
-            $rows[] = self::tr( 'Parent 2 Relationship', esc_html( $parent2Relationship ) );
-            $rows[] = self::tr( 'Parent 2 Same Address', esc_html( $parent2SameAddress ) );
-            $rows[] = self::tr( 'Parent 2 Street Address', esc_html( $parent2StreetAddress ) );
-            $rows[] = self::tr( 'Parent 2 City/Country', esc_html( $parent2CityCountry ) );
-            $rows[] = self::tr( 'Parent 2 Province/State', esc_html( $parent2ProvinceState ) );
-            $rows[] = self::tr( 'Parent 2 Postal Code', esc_html( $parent2PostalCode ) );
-            $rows[] = self::tr( 'Parent 2 Cell Phone', esc_html( $parent2CellPhone ) );
-            $rows[] = self::tr( 'Parent 2 Email', esc_html( $parent2Email ) );
+                $rows[] = self::tr( 'Add Parent 2', esc_html( $addParent2 ) );
+                $rows[] = self::tr( 'Parent 2 First Name', esc_html( $parent2FirstName ) );
+                $rows[] = self::tr( 'Parent 2 Last Name', esc_html( $parent2LastName ) );
+                $rows[] = self::tr( 'Parent 2 Relationship', esc_html( $parent2Relationship ) );
+                $rows[] = self::tr( 'Parent 2 Same Address', esc_html( $parent2SameAddress ) );
+                $rows[] = self::tr( 'Parent 2 Street Address', esc_html( $parent2StreetAddress ) );
+                $rows[] = self::tr( 'Parent 2 City/Country', esc_html( $parent2CityCountry ) );
+                $rows[] = self::tr( 'Parent 2 Province/State', esc_html( $parent2ProvinceState ) );
+                $rows[] = self::tr( 'Parent 2 Postal Code', esc_html( $parent2PostalCode ) );
+                $rows[] = self::tr( 'Parent 2 Cell Phone', esc_html( $parent2CellPhone ) );
+                $rows[] = self::tr( 'Parent 2 Email', esc_html( $parent2Email ) );
 
-            $rows[] = self::tr( 'Add Emergency Contact', esc_html( $addEmergencyContact ) );
-            $rows[] = self::tr( 'Emergency First Name', esc_html( $emergencyFirstName ) );
-            $rows[] = self::tr( 'Emergency Last Name', esc_html( $emergencyLastName ) );
-            $rows[] = self::tr( 'Emergency Relationship', esc_html( $emergencyRelationship ) );
-            $rows[] = self::tr( 'Emergency Street Address', esc_html( $emergencyStreetAddress ) );
-            $rows[] = self::tr( 'Emergency City/Country', esc_html( $emergencyCityCountry ) );
-            $rows[] = self::tr( 'Emergency Province/State', esc_html( $emergencyProvinceState ) );
-            $rows[] = self::tr( 'Emergency Postal Code', esc_html( $emergencyPostalCode ) );
-            $rows[] = self::tr( 'Emergency Cell Phone', esc_html( $emergencyCellPhone ) );
-            $rows[] = self::tr( 'Emergency Email', esc_html( $emergencyEmail ) );
+                $rows[] = self::tr( 'Parent Terms Agree', esc_html( $parentTermsAgree ) );
+                $rows[] = self::tr( 'Parent Signature', esc_html( $parentSignature ) );
+                $rows[] = self::tr( 'Student Signature', esc_html( $studentSignature ) );
+                $rows[] = self::tr( 'Today Date', esc_html( $todayDate ) );
+            }
+
+            if ( $isAdult === 'Yes' ) {
+                $rows[] = self::tr( 'Add Emergency Contact', esc_html( $addEmergencyContact ) );
+                $rows[] = self::tr( 'Emergency First Name', esc_html( $emergencyFirstName ) );
+                $rows[] = self::tr( 'Emergency Last Name', esc_html( $emergencyLastName ) );
+                $rows[] = self::tr( 'Emergency Relationship', esc_html( $emergencyRelationship ) );
+                $rows[] = self::tr( 'Emergency Street Address', esc_html( $emergencyStreetAddress ) );
+                $rows[] = self::tr( 'Emergency City/Country', esc_html( $emergencyCityCountry ) );
+                $rows[] = self::tr( 'Emergency Province/State', esc_html( $emergencyProvinceState ) );
+                $rows[] = self::tr( 'Emergency Postal Code', esc_html( $emergencyPostalCode ) );
+                $rows[] = self::tr( 'Emergency Cell Phone', esc_html( $emergencyCellPhone ) );
+                $rows[] = self::tr( 'Emergency Email', esc_html( $emergencyEmail ) );
+
+                $rows[] = self::tr( 'Emergency Contact 2 First Name', esc_html( $emergency2FirstName ) );
+                $rows[] = self::tr( 'Emergency Contact 2 Last Name', esc_html( $emergency2LastName ) );
+                $rows[] = self::tr( 'Emergency Contact 2 Relationship', esc_html( $emergency2Relationship ) );
+                $rows[] = self::tr( 'Emergency Contact 2 Street Address', esc_html( $emergency2StreetAddress ) );
+                $rows[] = self::tr( 'Emergency Contact 2 City/Country', esc_html( $emergency2CityCountry ) );
+                $rows[] = self::tr( 'Emergency Contact 2 Province/State', esc_html( $emergency2ProvinceState ) );
+                $rows[] = self::tr( 'Emergency Contact 2 Postal Code', esc_html( $emergency2PostalCode ) );
+                $rows[] = self::tr( 'Emergency Contact 2 Cell Phone', esc_html( $emergency2CellPhone ) );
+                $rows[] = self::tr( 'Emergency Contact 2 Email', esc_html( $emergency2Email ) );
+
+                $rows[] = self::tr( 'Applicant Terms Agree', esc_html( $applicantTermsAgree ) );
+                $rows[] = self::tr( 'Applicant / Adult Student Signature', esc_html( $adultStudentSignature ) );
+                $rows[] = self::tr( 'Applicant Today Date', esc_html( $adultTodayDate ) );
+            }
 
             $rows[] = self::tr( 'Payment Method', esc_html( $paymentMethod ) );
             $rows[] = self::tr( 'Card Verification Method', esc_html( $cardVerificationMethod ) );
@@ -513,10 +612,6 @@ class Canstem_Highschool_Form_Handler {
             $rows[] = self::tr( 'Terms Agree', esc_html( $termsAgree ) );
             $rows[] = self::tr( 'Grades Upload Option', esc_html( $gradesUploadOption ) );
             $rows[] = self::tr( 'No Refund Agree', esc_html( $noRefundAgree ) );
-            $rows[] = self::tr( 'Parent Terms Agree', esc_html( $parentTermsAgree ) );
-            $rows[] = self::tr( 'Parent Signature', esc_html( $parentSignature ) );
-            $rows[] = self::tr( 'Student Signature', esc_html( $studentSignature ) );
-            $rows[] = self::tr( 'Today Date', esc_html( $todayDate ) );
 
             if ( ! empty( $uploaded_doc_names ) ) {
                 $rows[] = self::tr( 'Uploaded Documents', esc_html( implode( ', ', $uploaded_doc_names ) ) );
@@ -658,6 +753,16 @@ class Canstem_Highschool_Form_Handler {
                 'emergencyCellPhone'      => $emergencyCellPhone,
                 'emergencyEmail'          => $emergencyEmail,
 
+                'emergency2FirstName'     => $emergency2FirstName,
+                'emergency2LastName'      => $emergency2LastName,
+                'emergency2Relationship'  => $emergency2Relationship,
+                'emergency2StreetAddress' => $emergency2StreetAddress,
+                'emergency2CityCountry'   => $emergency2CityCountry,
+                'emergency2ProvinceState' => $emergency2ProvinceState,
+                'emergency2PostalCode'    => $emergency2PostalCode,
+                'emergency2CellPhone'     => $emergency2CellPhone,
+                'emergency2Email'         => $emergency2Email,
+
                 'paymentMethod'           => $paymentMethod,
                 'cardVerificationMethod'  => $cardVerificationMethod,
                 'cardOrderId'             => $cardOrderId,
@@ -671,10 +776,16 @@ class Canstem_Highschool_Form_Handler {
                 'termsAgree'              => $termsAgree,
                 'gradesUploadOption'      => $gradesUploadOption,
                 'noRefundAgree'           => $noRefundAgree,
+
                 'parentTermsAgree'        => $parentTermsAgree,
                 'parentSignature'         => $parentSignature,
                 'studentSignature'        => $studentSignature,
                 'todayDate'               => $todayDate,
+
+                'applicantTermsAgree'     => $applicantTermsAgree,
+                'adultStudentSignature'   => $adultStudentSignature,
+                'adultTodayDate'          => $adultTodayDate,
+
                 'attachments'             => $clean_attachments
             ];
 
@@ -687,8 +798,8 @@ class Canstem_Highschool_Form_Handler {
             wp_send_json_success( [ 'ok' => true ] );
 
         } catch ( Throwable $e ) {
-            error_log( 'canstem_highschool_request exception: ' . $e->getMessage() );
-            error_log( 'canstem_highschool_request trace: ' . $e->getTraceAsString() );
+            error_log( 'canstem_highschool_credit_request exception: ' . $e->getMessage() );
+            error_log( 'canstem_highschool_credit_request trace: ' . $e->getTraceAsString() );
 
             wp_send_json_error( [
                 'error' => 'PHP exception: ' . $e->getMessage()
