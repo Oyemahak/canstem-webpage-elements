@@ -7,21 +7,21 @@
     <title>Enrollment Forms - Fulltime School | CanSTEM Education Private School</title>
 
     <style>
-        html:has(#cs-highschool-form),
-        body:has(#cs-highschool-form) {
+        html:has(#cs-fulltimeschool-form),
+        body:has(#cs-fulltimeschool-form) {
             background-color: #fff !important;
         }
 
-        .elementor-section:has(#cs-highschool-form) {
+        .elementor-section:has(#cs-fulltimeschool-form) {
             background-color: #fff !important;
         }
 
-        #cs-highschool-form,
-        #cs-highschool-form * {
+        #cs-fulltimeschool-form,
+        #cs-fulltimeschool-form * {
             box-sizing: border-box;
         }
 
-        #cs-highschool-form {
+        #cs-fulltimeschool-form {
             --cs-bg: #fff;
             --cs-ink: #0b1324;
             --cs-sub: #475569;
@@ -35,7 +35,7 @@
             font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
         }
 
-        #cs-highschool-form .cs-card {
+        #cs-fulltimeschool-form .cs-card {
             background: var(--cs-bg);
             border: 1px solid var(--cs-line);
             border-radius: 16px;
@@ -43,7 +43,7 @@
             box-shadow: 0 10px 28px rgba(2, 6, 23, .08);
         }
 
-        #cs-highschool-form .cs-chip {
+        #cs-fulltimeschool-form .cs-chip {
             display: inline-block;
             background: var(--cs-chip-bg);
             color: var(--cs-chip-ink);
@@ -55,19 +55,19 @@
             margin-bottom: 10px;
         }
 
-        #cs-highschool-form .cs-row {
+        #cs-fulltimeschool-form .cs-row {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 16px;
         }
 
         @media (max-width: 820px) {
-            #cs-highschool-form .cs-row {
+            #cs-fulltimeschool-form .cs-row {
                 grid-template-columns: 1fr;
             }
         }
 
-        #cs-highschool-form .cs-field {
+        #cs-fulltimeschool-form .cs-field {
             display: flex;
             flex-direction: column;
             gap: 6px;
@@ -75,28 +75,28 @@
             position: relative;
         }
 
-        #cs-highschool-form .cs-label {
+        #cs-fulltimeschool-form .cs-label {
             font-size: 18px;
             font-weight: 700;
             color: var(--cs-ink);
         }
 
-        #cs-highschool-form .cs-help {
+        #cs-fulltimeschool-form .cs-help {
             margin-top: -4px;
             font-size: 14px;
             color: #6b7280;
             font-style: italic;
         }
 
-        #cs-highschool-form .cs-req::after {
+        #cs-fulltimeschool-form .cs-req::after {
             content: " *";
             color: #e11d48;
         }
 
-        #cs-highschool-form .cs-input,
-        #cs-highschool-form select.cs-input,
-        #cs-highschool-form textarea.cs-input,
-        #cs-highschool-form input[type=file].cs-input {
+        #cs-fulltimeschool-form .cs-input,
+        #cs-fulltimeschool-form select.cs-input,
+        #cs-fulltimeschool-form textarea.cs-input,
+        #cs-fulltimeschool-form input[type=file].cs-input {
             width: 100%;
             min-height: 52px;
             padding: 12px 14px;
@@ -112,16 +112,16 @@
             box-shadow: none;
         }
 
-        #cs-highschool-form .cs-input::placeholder {
+        #cs-fulltimeschool-form .cs-input::placeholder {
             color: #94a3b8;
         }
 
-        #cs-highschool-form .cs-input:focus {
+        #cs-fulltimeschool-form .cs-input:focus {
             border-color: #4169e1;
             box-shadow: 0 0 0 3px color-mix(in srgb, #4169e1 25%, transparent);
         }
 
-        #cs-highschool-form select.cs-input {
+        #cs-fulltimeschool-form select.cs-input {
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="%23001161" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
             background-repeat: no-repeat;
             background-position: right 14px center;
@@ -130,56 +130,56 @@
             cursor: pointer;
         }
 
-        #cs-highschool-form textarea.cs-input {
+        #cs-fulltimeschool-form textarea.cs-input {
             min-height: 120px;
             resize: vertical;
         }
 
-        #cs-highschool-form input[type=file].cs-input {
+        #cs-fulltimeschool-form input[type=file].cs-input {
             min-height: auto;
             padding: 10px;
         }
 
-        #cs-highschool-form .cs-sep {
+        #cs-fulltimeschool-form .cs-sep {
             border: none;
             border-top: 1px dashed #e2e8f0;
             margin: 16px 0;
         }
 
-        #cs-highschool-form .cs-copy,
-        #cs-highschool-form .cs-copy p,
-        #cs-highschool-form .cs-copy li {
+        #cs-fulltimeschool-form .cs-copy,
+        #cs-fulltimeschool-form .cs-copy p,
+        #cs-fulltimeschool-form .cs-copy li {
             font-size: 18px;
             line-height: 1.75;
             color: var(--cs-ink);
         }
 
-        #cs-highschool-form .cs-copy p {
+        #cs-fulltimeschool-form .cs-copy p {
             margin: 0 0 12px;
         }
 
-        #cs-highschool-form .cs-copy ul,
-        #cs-highschool-form .cs-copy ol {
+        #cs-fulltimeschool-form .cs-copy ul,
+        #cs-fulltimeschool-form .cs-copy ol {
             margin: 0 0 16px 24px;
             padding: 0;
         }
 
-        #cs-highschool-form .cs-copy strong {
+        #cs-fulltimeschool-form .cs-copy strong {
             font-weight: 800;
         }
 
-        #cs-highschool-form .cs-copy a {
+        #cs-fulltimeschool-form .cs-copy a {
             color: #2563eb;
             text-decoration: underline;
         }
 
-        #cs-highschool-form .cs-radio-group {
+        #cs-fulltimeschool-form .cs-radio-group {
             display: grid;
             gap: 14px;
             margin-top: 8px;
         }
 
-        #cs-highschool-form .cs-radio {
+        #cs-fulltimeschool-form .cs-radio {
             display: flex;
             align-items: flex-start;
             gap: 10px;
@@ -187,7 +187,7 @@
             line-height: 1.5;
         }
 
-        #cs-highschool-form .cs-radio input[type="radio"] {
+        #cs-fulltimeschool-form .cs-radio input[type="radio"] {
             width: 22px;
             height: 22px;
             margin-top: 2px;
@@ -195,7 +195,7 @@
             flex: 0 0 auto;
         }
 
-        #cs-highschool-form .cs-conditional {
+        #cs-fulltimeschool-form .cs-conditional {
             margin-top: 18px;
             padding: 18px;
             border: 1px dashed var(--cs-line);
@@ -203,7 +203,7 @@
             background: #fafcff;
         }
 
-        #cs-highschool-form .cs-section-title {
+        #cs-fulltimeschool-form .cs-section-title {
             display: inline-block;
             background: var(--cs-chip-bg);
             color: var(--cs-chip-ink);
@@ -217,14 +217,14 @@
             font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
         }
 
-        #cs-highschool-form .cs-actions {
+        #cs-fulltimeschool-form .cs-actions {
             display: flex;
             gap: 12px;
             align-items: center;
             flex-wrap: wrap;
         }
 
-        #cs-highschool-form .cs-btn {
+        #cs-fulltimeschool-form .cs-btn {
             background: var(--cs-primary);
             color: var(--cs-primary-ink);
             border: none;
@@ -235,31 +235,31 @@
             font-size: 18px;
         }
 
-        #cs-highschool-form .cs-btn:hover {
+        #cs-fulltimeschool-form .cs-btn:hover {
             filter: brightness(1.05);
         }
 
-        #cs-highschool-form .cs-btn:disabled {
+        #cs-fulltimeschool-form .cs-btn:disabled {
             opacity: .7;
             cursor: not-allowed;
         }
 
-        #cs-highschool-form .cs-status {
+        #cs-fulltimeschool-form .cs-status {
             min-height: 1.4em;
             font-size: 18px;
         }
 
-        #cs-highschool-form .cs-ok {
+        #cs-fulltimeschool-form .cs-ok {
             color: #16a34a;
             font-weight: 700;
         }
 
-        #cs-highschool-form .cs-err {
+        #cs-fulltimeschool-form .cs-err {
             color: #b91c1c;
             font-weight: 700;
         }
 
-        #cs-highschool-form .cs-figure {
+        #cs-fulltimeschool-form .cs-figure {
             margin: 10px 0 18px;
             padding: 12px;
             border: 1px solid #e2e8f0;
@@ -267,7 +267,7 @@
             background: #fff;
         }
 
-        #cs-highschool-form .cs-figure img {
+        #cs-fulltimeschool-form .cs-figure img {
             width: 100%;
             max-width: 520px;
             height: auto;
@@ -275,11 +275,11 @@
             border-radius: 10px;
         }
 
-        #cs-highschool-form .is-hidden {
+        #cs-fulltimeschool-form .is-hidden {
             display: none !important;
         }
 
-        #cs-highschool-form .cs-course-list {
+        #cs-fulltimeschool-form .cs-course-list {
             position: absolute;
             top: calc(100% + 4px);
             left: 0;
@@ -294,7 +294,7 @@
             display: none;
         }
 
-        #cs-highschool-form .cs-course-item {
+        #cs-fulltimeschool-form .cs-course-item {
             padding: 12px 14px;
             font-size: 16px;
             line-height: 1.4;
@@ -302,11 +302,11 @@
             border-bottom: 1px solid #eef2f7;
         }
 
-        #cs-highschool-form .cs-course-item:last-child {
+        #cs-fulltimeschool-form .cs-course-item:last-child {
             border-bottom: none;
         }
 
-        #cs-highschool-form .cs-course-item:hover {
+        #cs-fulltimeschool-form .cs-course-item:hover {
             background: #eef2ff;
         }
 
@@ -319,8 +319,8 @@
 </head>
 
 <body>
-    <form class="cs-wrap" id="cs-highschool-form" aria-labelledby="highschool-title" enctype="multipart/form-data"
-        novalidate>
+    <form class="cs-wrap" id="cs-fulltimeschool-form" aria-labelledby="fulltimeschool-title"
+        enctype="multipart/form-data" novalidate>
         <section class="cs-card">
 
             <!-- ===================== STUDENT INFORMATION ===================== -->
@@ -396,17 +396,29 @@
                 </div>
 
                 <div class="cs-field">
+                    <label class="cs-label cs-req" for="studentEmail">Student Personal Email Address</label>
+                    <input class="cs-input" id="studentEmail" name="studentEmail" type="email" required>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="studentPhone">Student Phone Number</label>
+                    <input class="cs-input" id="studentPhone" name="studentPhone" type="tel" placeholder="xxx-xxx-xxxx"
+                        required>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label" for="studentAlternativePhone">Alternative Phone Number</label>
+                    <input class="cs-input" id="studentAlternativePhone" name="studentAlternativePhone" type="tel"
+                        placeholder="xxx-xxx-xxxx">
+                </div>
+
+                <div class="cs-field">
                     <label class="cs-label cs-req" for="isInternational">Are you an international student?</label>
                     <select class="cs-input" id="isInternational" name="isInternational" required>
                         <option value="">- Select -</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
-                </div>
-
-                <div class="cs-field">
-                    <label class="cs-label cs-req" for="studentEmail">Student Personal Email Address</label>
-                    <input class="cs-input" id="studentEmail" name="studentEmail" type="email" required>
                 </div>
             </div>
 
@@ -423,6 +435,8 @@
                 <div class="cs-conditional is-hidden" id="inCanadaYesBlock">
                     <div class="cs-field">
                         <label class="cs-label cs-req" for="validStudyPermit">Do you have a valid study permit?</label>
+                        <div class="cs-help">If yes, you will be asked to upload a copy on the Required Documents page
+                        </div>
                         <select class="cs-input" id="validStudyPermit" name="validStudyPermit">
                             <option value="">- Select -</option>
                             <option value="Yes">Yes</option>
@@ -440,23 +454,16 @@
                             Contact School for further guidance at
                             <a href="mailto:Canstem.education@gmail.com">Canstem.education@gmail.com</a>
                         </p>
-                        <p>
-                            Please click on the
-                            <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit.html"
-                                target="_blank" rel="noopener">
-                                Immigration study permit link
-                            </a>
-                            or contact canstem at
-                            <a href="mailto:Canstem.education@gmail.com">Canstem.education@gmail.com</a>
-                            for further assistance
-                        </p>
                     </div>
                 </div>
 
                 <div class="cs-conditional is-hidden" id="inCanadaNoBlock">
+
                     <div class="cs-field">
-                        <label class="cs-label cs-req" for="moveToCanada">Are you interested in moving to canada on
-                            study permit?</label>
+                        <label class="cs-label cs-req" for="moveToCanada">
+                            Are you interested in moving to Canada on a study permit?
+                        </label>
+
                         <select class="cs-input" id="moveToCanada" name="moveToCanada">
                             <option value="">- Select -</option>
                             <option value="Yes">Yes</option>
@@ -464,37 +471,20 @@
                         </select>
                     </div>
 
-                    <div class="cs-copy">
-                        <p>
-                            Contact School for further guidance at
-                            <a href="mailto:Canstem.education@gmail.com">Canstem.education@gmail.com</a>
-                        </p>
-                        <p>
-                            Please click on the
-                            <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit.html"
-                                target="_blank" rel="noopener">
-                                Immigration study permit link
-                            </a>
-                            or contact canstem at
-                            <a href="mailto:Canstem.education@gmail.com">Canstem.education@gmail.com</a>
-                            for further assistance
-                        </p>
+                    <!-- Show when Yes selected -->
+                    <div class="cs-copy is-hidden" id="moveToCanadaYesBlock">
+                        Please click the
+                        <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit.html"
+                            target="_blank" rel="noopener">
+                            Immigration Study Permit link
+                        </a>
+                        or contact Canstem at
+                        <a href="mailto:Canstem.education@gmail.com">
+                            Canstem.education@gmail.com
+                        </a>
+                        for further assistance.
                     </div>
-                </div>
-            </div>
 
-            <div class="cs-row" style="margin-top:16px;">
-
-                <div class="cs-field">
-                    <label class="cs-label cs-req" for="studentPhone">Student Phone Number</label>
-                    <input class="cs-input" id="studentPhone" name="studentPhone" type="tel" placeholder="xxx-xxx-xxxx"
-                        required>
-                </div>
-
-                <div class="cs-field">
-                    <label class="cs-label" for="studentAlternativePhone">Alternative Phone Number</label>
-                    <input class="cs-input" id="studentAlternativePhone" name="studentAlternativePhone" type="tel"
-                        placeholder="xxx-xxx-xxxx">
                 </div>
             </div>
 
@@ -523,21 +513,944 @@
                     <label class="cs-label cs-req" for="postalCode">Postal Code</label>
                     <input class="cs-input" id="postalCode" name="postalCode" type="text" required>
                 </div>
+            </div>
 
-                <div class="cs-field">
-                    <label class="cs-label cs-req" for="hearAboutUs">How did you hear about us?</label>
-                    <select class="cs-input" id="hearAboutUs" name="hearAboutUs">
-                        <option value="">- Select -</option>
-                        <option value="Google">Google</option>
-                        <option value="Facebook">Facebook</option>
-                        <option value="Instagram">Instagram</option>
-                        <option value="Family">Family</option>
-                        <option value="Friend">Friend</option>
-                        <option value="Kijiji">Kijiji</option>
-                        <option value="Other">Other</option>
-                    </select>
+            <hr class="cs-sep" />
+
+            <!-- ===================== CURRENT / PREVIOUS SCHOOL ===================== -->
+            <h2 class="cs-section-title">Current School or Previous School</h2>
+
+            <div class="cs-field">
+                <label class="cs-label cs-req">Have you studied in any high school in Ontario?</label>
+                <div class="cs-radio-group">
+                    <label class="cs-radio">
+                        <input type="radio" name="ontarioSchool" value="Yes">
+                        <span>Yes</span>
+                    </label>
+                    <label class="cs-radio">
+                        <input type="radio" name="ontarioSchool" value="No">
+                        <span>No</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="cs-conditional is-hidden" id="ontarioSchoolYesBlock">
+                <h2 class="cs-section-title">Educational Background</h2>
+
+                <div class="cs-row">
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="previousSchoolName">Previous School Name</label>
+                        <input class="cs-input" id="previousSchoolName" name="previousSchoolName" type="text">
+                    </div>
+                    <div class="cs-field">
+                        <label class="cs-label" for="guidanceCounselorEmail">Guidance Counselor Email Address</label>
+                        <input class="cs-input" id="guidanceCounselorEmail" name="guidanceCounselorEmail" type="email">
+                    </div>
+
+                    <div class="cs-field" style="grid-column:1/-1;">
+                        <label class="cs-label cs-req" for="educatuonStreetAddress">Apt / Unit / Street Number / Street
+                            Name</label>
+                        <input class="cs-input" id="educatuonStreetAddress" name="educatuonStreetAddress" type="text"
+                            required>
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="educationCityCountry">City and Country</label>
+                        <input class="cs-input" id="educationCityCountry" name="educationCityCountry" type="text"
+                            required>
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="educationProvinceState">Province - State</label>
+                        <input class="cs-input" id="educationProvinceState" name="educationProvinceState" type="text"
+                            required>
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="educationPostalCode">Postal Code</label>
+                        <input class="cs-input" id="educationPostalCode" name="postalCode" type="text" required>
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="educationaSchoolPhone">School Phone</label>
+                        <input class="cs-input" id="schoolPhone" name="educationPostalCode" type="tel">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="educationDoD">Departure Date</label>
+                        <div class="cs-help">mm/dd/yyyy</div>
+                        <input class="cs-input" id="educationDoD" name="educationDoD" type="text"
+                            placeholder="mm/dd/yyyy" required>
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="lastGrade">Last Grade</label>
+                        <select class="cs-input" id="lastGrade" name="lastGrade ">
+                            <option value="">- Select -</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+
+                    <div class="cs-field" style="grid-column:1/-1;">
+                        <label class="cs-label cs-req" for="reasonforTransfer">Reason for Transfer</label>
+                        <input class="cs-input" id="reasonforTransfer" name="reasonforTransfer" type="text" required>
+                    </div>
+
+                    <div class="cs-field" style="grid-column:1/-1;">
+                        <label class="cs-label">
+                            Has the student ever received any Special Education Assistance?
+                        </label>
+
+                        <div class="cs-radio-group">
+                            <label class="cs-radio">
+                                <input type="radio" name="specialEducaiton" value="Yes">
+                                <span>Yes</span>
+                            </label>
+
+                            <label class="cs-radio">
+                                <input type="radio" name="specialEducaiton" value="No">
+                                <span>No</span>
+                            </label>
+                        </div>
+
+                        <div class="cs-field is-hidden" id="specialEducaitonYesBlock">
+                            <label class="cs-label cs-req" for="specialEducationDetails">
+                                Please provide more details.
+                            </label>
+
+                            <textarea class="cs-input" id="specialEducationDetails" name="specialEducationDetails"
+                                style="min-height:70px; resize:vertical;"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="cs-field" style="grid-column:1/-1;">
+                        <label class="cs-label">
+                            Has the student ever been expelled from school?
+                        </label>
+
+                        <div class="cs-radio-group">
+                            <label class="cs-radio">
+                                <input type="radio" name="studentExpelled" value="Yes">
+                                <span>Yes</span>
+                            </label>
+
+                            <label class="cs-radio">
+                                <input type="radio" name="studentExpelled" value="No">
+                                <span>No</span>
+                            </label>
+                        </div>
+                        <p class="cs-field is-hidden" id="studentExpelledYesBlock">
+                            <label class="cs-label cs-req" for="studentExpelledDetails">
+                                Please provide more details.
+                            </label>
+
+                            <textarea class="cs-input" id="studentExpelledDetails" name="studentExpelledDetails"
+                                style="min-height:70px; resize:vertical;"></textarea>
+                        </p>
+                    </div>
+
+                    <div class="cs-field" style="grid-column:1/-1;">
+                        <label class="cs-label">
+                            Is the student currently under suspension from any school?
+                        </label>
+
+                        <div class="cs-radio-group">
+                            <label class="cs-radio">
+                                <input type="radio" name="studentSuspension" value="Yes">
+                                <span>Yes</span>
+                            </label>
+
+                            <label class="cs-radio">
+                                <input type="radio" name="studentSuspension" value="No">
+                                <span>No</span>
+                            </label>
+                        </div>
+                        <p class="cs-field is-hidden" id="studentSuspensionYesBlock">
+                            <label class="cs-label cs-req" for="studentSuspensionDetails">
+                                Please provide more details.
+                            </label>
+
+                            <textarea class="cs-input" id="studentSuspensionDetails" name="studentSuspensionDetails"
+                                style="min-height:70px; resize:vertical;"></textarea>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <!-- ===================== Contact Information ===================== -->
+            <h2 class="cs-section-title">Contact Information</h2>
+
+            <div class="cs-field" style="grid-column:1/-1;">
+                <label class="cs-label cs-req">
+                    Does the student have any disabilities?
+                </label>
+
+                <div class="cs-radio-group">
+                    <label class="cs-radio">
+                        <input type="radio" name="studentDisabilities" value="Yes">
+                        <span>Yes</span>
+                    </label>
+
+                    <label class="cs-radio">
+                        <input type="radio" name="studentDisabilities" value="No">
+                        <span>No</span>
+                    </label>
                 </div>
 
+                <div class="cs-field is-hidden" id="studentDisabilitiesYesBlock">
+                    <label class="cs-label cs-req" for="studentDisabilitiesDetails">
+                        Please provide more details.
+                    </label>
+
+                    <textarea class="cs-input" id="studentDisabilitiesDetails" name="studentDisabilitiesDetails"
+                        style="min-height:70px; resize:vertical;"></textarea>
+                </div>
+            </div>
+
+            <div class="cs-field" style="grid-column:1/-1; margin-top:16px;">
+                <label class="cs-label cs-req">
+                    Does the student have any allergies?
+                </label>
+
+                <div class="cs-radio-group">
+                    <label class="cs-radio">
+                        <input type="radio" name="studentAllergies" value="Yes">
+                        <span>Yes</span>
+                    </label>
+
+                    <label class="cs-radio">
+                        <input type="radio" name="studentAllergies" value="No">
+                        <span>No</span>
+                    </label>
+                </div>
+                <p class="cs-field is-hidden" id="studentAllergiesYesBlock">
+                    <label class="cs-label cs-req" for="studentAllergiesDetails">
+                        Please provide more details.
+                    </label>
+
+                    <textarea class="cs-input" id="studentAllergiesDetails" name="studentAllergiesDetails"
+                        style="min-height:70px; resize:vertical;"></textarea>
+                </p>
+            </div>
+
+            <div class="cs-field" style="grid-column:1/-1; margin-top:16px;">
+                <label class="cs-label cs-req">
+                    Does the student have any other medical considerations?
+                </label>
+
+                <div class="cs-radio-group">
+                    <label class="cs-radio">
+                        <input type="radio" name="studentMedicalConsideration" value="Yes">
+                        <span>Yes</span>
+                    </label>
+
+                    <label class="cs-radio">
+                        <input type="radio" name="studentMedicalConsideration" value="No">
+                        <span>No</span>
+                    </label>
+                </div>
+                <p class="cs-field is-hidden" id="studentMedicalConsiderationYesBlock">
+                    <label class="cs-label cs-req" for="studentMedicalConsiderationDetails">
+                        Please provide more details.
+                    </label>
+
+                    <textarea class="cs-input" id="studentMedicalConsiderationDetails"
+                        name="studentMedicalConsiderationDetails" style="min-height:70px; resize:vertical;"></textarea>
+                </p>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <!-- ===================== Health Card Information ===================== -->
+            <h2 class="cs-section-title">Health Card Information</h2>
+
+            <div class="cs-row">
+                <div class="cs-field" style="grid-column:1/-1;">
+                    <label class="cs-label" for="healthCard">Health Card # (This is a critical information, not
+                        providing
+                        this will affect health and safety of your child.)</label>
+                    <input class="cs-input" id="healthCard" name="healthCard" type="text">
+                </div>
+            </div>
+
+            <div class="cs-row">
+                <div class="cs-field" style="grid-column:1/-1; margin-top:16px;">
+                    <label class="cs-label" for="healthCardExpDate">Health Card Expiry Date (This is a critical
+                        information,
+                        not providing this will affect health and safety of your child.)</label>
+                    <div class="cs-help">mm/dd/yyyy</div>
+                    <input class="cs-input" id="healthCardExpDate" name="healthCardExpDate" type="text"
+                        placeholder="mm/dd/yyyy">
+                </div>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <!-- ===================== Doctor Information ===================== -->
+            <h2 class="cs-section-title">Doctor Information</h2>
+
+            <div class="cs-row">
+                <div class="cs-field">
+                    <label class="cs-label" for="doctorName">Family Doctor's Name</label>
+                    <input class="cs-input" id="doctorName" name="doctorName" type="text">
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label" for="doctorPhone">Family Doctor's Phone</label>
+                    <input class="cs-input" id="doctorPhone" name="doctorPhone" type="tel" placeholder="xxx-xxx-xxxx">
+                </div>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <!-- ===================== CONTACT INFORMATION (MINOR) ===================== -->
+            <div id="minorContactSection">
+                <h2 class="cs-section-title">Parent/Guardian 1 Information</h2>
+
+                <div class="cs-row">
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="parent1FirstName">First Name</label>
+                        <input class="cs-input" id="parent1FirstName" name="parent1FirstName" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="parent1LastName">Last Name</label>
+                        <input class="cs-input" id="parent1LastName" name="parent1LastName" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="parent1Relationship">What is the relationship with the
+                            student?</label>
+                        <select class="cs-input" id="parent1Relationship" name="parent1Relationship">
+                            <option value="">- Select -</option>
+                            <option value="Mother">Mother</option>
+                            <option value="Father">Father</option>
+                            <option value="Guardian">Guardian</option>
+                        </select>
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="parent1SameAddress">Is the parents' address same as
+                            student's address?</label>
+                        <select class="cs-input" id="parent1SameAddress" name="parent1SameAddress">
+                            <option value="">- Select -</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="cs-conditional is-hidden" id="parent1AddressBlock">
+                    <div class="cs-row">
+                        <div class="cs-field" style="grid-column:1/-1;">
+                            <label class="cs-label" for="parent1StreetAddress">Apt / Unit / Street Number / Street
+                                Name</label>
+                            <input class="cs-input" id="parent1StreetAddress" name="parent1StreetAddress" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent1CityCountry">City and Country</label>
+                            <input class="cs-input" id="parent1CityCountry" name="parent1CityCountry" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent1ProvinceState">Province - State</label>
+                            <input class="cs-input" id="parent1ProvinceState" name="parent1ProvinceState" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent1PostalCode">Postal Code</label>
+                            <input class="cs-input" id="parent1PostalCode" name="parent1PostalCode" type="text">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cs-row" style="margin-top:16px;">
+                    <div class="cs-field">
+                        <label class="cs-label" for="parent1CellPhone">Cell Phone</label>
+                        <input class="cs-input" id="parent1CellPhone" name="parent1CellPhone" type="tel">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label" for="parent1Email">Email Address</label>
+                        <input class="cs-input" id="parent1Email" name="parent1Email" type="email">
+                    </div>
+                </div>
+
+                <div class="cs-field" style="margin-top:16px;">
+                    <label class="cs-label">Do you want to add another Parent's information?</label>
+                    <div class="cs-radio-group">
+                        <label class="cs-radio">
+                            <input type="radio" name="addParent2" value="Yes">
+                            <span>Yes</span>
+                        </label>
+                        <label class="cs-radio">
+                            <input type="radio" name="addParent2" value="No">
+                            <span>No</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="cs-conditional is-hidden" id="parent2Block">
+                    <h2 class="cs-section-title">Parent/Guardian 2 Information</h2>
+
+                    <div class="cs-row">
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent2FirstName">First Name</label>
+                            <input class="cs-input" id="parent2FirstName" name="parent2FirstName" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent2LastName">Last Name</label>
+                            <input class="cs-input" id="parent2LastName" name="parent2LastName" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent2Relationship">What is the relationship with the
+                                student?</label>
+                            <select class="cs-input" id="parent2Relationship" name="parent2Relationship">
+                                <option value="">- Select -</option>
+                                <option value="Mother">Mother</option>
+                                <option value="Father">Father</option>
+                                <option value="Guardian">Guardian</option>
+                            </select>
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent2SameAddress">Is the parents' address same as student's
+                                address?</label>
+                            <select class="cs-input" id="parent2SameAddress" name="parent2SameAddress">
+                                <option value="">- Select -</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="cs-conditional is-hidden" id="parent2AddressBlock">
+                        <div class="cs-row">
+                            <div class="cs-field" style="grid-column:1/-1;">
+                                <label class="cs-label" for="parent2StreetAddress">Apt / Unit / Street Number / Street
+                                    Name</label>
+                                <input class="cs-input" id="parent2StreetAddress" name="parent2StreetAddress"
+                                    type="text">
+                            </div>
+
+                            <div class="cs-field">
+                                <label class="cs-label" for="parent2CityCountry">City and Country</label>
+                                <input class="cs-input" id="parent2CityCountry" name="parent2CityCountry" type="text">
+                            </div>
+
+                            <div class="cs-field">
+                                <label class="cs-label" for="parent2ProvinceState">Province - State</label>
+                                <input class="cs-input" id="parent2ProvinceState" name="parent2ProvinceState"
+                                    type="text">
+                            </div>
+
+                            <div class="cs-field">
+                                <label class="cs-label" for="parent2PostalCode">Postal Code</label>
+                                <input class="cs-input" id="parent2PostalCode" name="parent2PostalCode" type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="cs-row" style="margin-top:16px;">
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent2CellPhone">Cell Phone</label>
+                            <input class="cs-input" id="parent2CellPhone" name="parent2CellPhone" type="tel">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="parent2Email">Email Address</label>
+                            <input class="cs-input" id="parent2Email" name="parent2Email" type="email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===================== CONTACT INFORMATION (ADULT) ===================== -->
+            <div id="adultContactSection" class="is-hidden">
+                <h2 class="cs-section-title">Emergency Contact 1 Information</h2>
+
+                <div class="cs-row">
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="emergencyFirstName">First Name</label>
+                        <input class="cs-input" id="emergencyFirstName" name="emergencyFirstName" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="emergencyLastName">Last Name</label>
+                        <input class="cs-input" id="emergencyLastName" name="emergencyLastName" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="emergencyRelationship">Relationship to Student</label>
+                        <select class="cs-input" id="emergencyRelationship" name="emergencyRelationship">
+                            <option value="">- Select -</option>
+                            <option value="Mother">Mother</option>
+                            <option value="Father">Father</option>
+                            <option value="Guardian">Guardian</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="cs-field" style="grid-column:1/-1;">
+                        <label class="cs-label cs-req" for="emergencyStreetAddress">Apt / Unit / Street Number / Street
+                            Name</label>
+                        <input class="cs-input" id="emergencyStreetAddress" name="emergencyStreetAddress" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="emergencyCityCountry">City and Country</label>
+                        <input class="cs-input" id="emergencyCityCountry" name="emergencyCityCountry" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="emergencyProvinceState">Province - State</label>
+                        <input class="cs-input" id="emergencyProvinceState" name="emergencyProvinceState" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="emergencyPostalCode">Postal Code</label>
+                        <input class="cs-input" id="emergencyPostalCode" name="emergencyPostalCode" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="emergencyCellPhone">Cell Phone</label>
+                        <input class="cs-input" id="emergencyCellPhone" name="emergencyCellPhone" type="tel">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="emergencyEmail">Email Address</label>
+                        <input class="cs-input" id="emergencyEmail" name="emergencyEmail" type="email">
+                    </div>
+                </div>
+
+                <div class="cs-field" style="margin-top:16px;">
+                    <label class="cs-label">Do you want to add Emergency contact?</label>
+                    <div class="cs-radio-group">
+                        <label class="cs-radio">
+                            <input type="radio" name="addEmergencyContact" value="Yes">
+                            <span>Yes</span>
+                        </label>
+                        <label class="cs-radio">
+                            <input type="radio" name="addEmergencyContact" value="No">
+                            <span>No</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="cs-conditional is-hidden" id="emergencyBlock2">
+                    <h2 class="cs-section-title">Emergency Contact 2 Information</h2>
+
+                    <div class="cs-row">
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2FirstName">First Name</label>
+                            <input class="cs-input" id="emergency2FirstName" name="emergency2FirstName" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2LastName">Last Name</label>
+                            <input class="cs-input" id="emergency2LastName" name="emergency2LastName" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2Relationship">Relationship to Student</label>
+                            <select class="cs-input" id="emergency2Relationship" name="emergency2Relationship">
+                                <option value="">- Select -</option>
+                                <option value="Mother">Mother</option>
+                                <option value="Father">Father</option>
+                                <option value="Guardian">Guardian</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="cs-field" style="grid-column:1/-1;">
+                            <label class="cs-label" for="emergency2StreetAddress">Apt / Unit / Street Number / Street
+                                Name</label>
+                            <input class="cs-input" id="emergency2StreetAddress" name="emergency2StreetAddress"
+                                type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2CityCountry">City and Country</label>
+                            <input class="cs-input" id="emergency2CityCountry" name="emergency2CityCountry" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2ProvinceState">Province - State</label>
+                            <input class="cs-input" id="emergency2ProvinceState" name="emergency2ProvinceState"
+                                type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2PostalCode">Postal Code</label>
+                            <input class="cs-input" id="emergency2PostalCode" name="emergency2PostalCode" type="text">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2CellPhone">Cell Phone</label>
+                            <input class="cs-input" id="emergency2CellPhone" name="emergency2CellPhone" type="tel">
+                        </div>
+
+                        <div class="cs-field">
+                            <label class="cs-label" for="emergency2Email">Email Address</label>
+                            <input class="cs-input" id="emergency2Email" name="emergency2Email" type="email">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <!-- ===================== PROOF OF EDUCATION ===================== -->
+            <h2 class="cs-section-title">Proof of Education</h2>
+
+            <div class="cs-copy">
+                <ul>
+                    <li>For Secondary students who are attending or have attended secondary school in Ontario, please
+                        provide the most recent transcript, report card or credit summary report (if available).</li>
+                    <li>
+                        Courses in Grades 10, 11, and 12 may have prerequisites for enrolment. For instance, student
+                        must have done grade 11 functions (MCR3U) in order to enroll in grade 12 Advanced Functions
+                        (MHF4U).
+                        <a href="https://canstemeducation.com/high-school-credit-courses/" target="_blank"
+                            rel="noopener">Click here</a>
+                        to learn more about Course Descriptions and Pre-Requisites.
+                    </li>
+                    <li>Student must submit one the following documents below, or no midterm or final grades will be
+                        released and no enrollment letter or confirmation will be issued.</li>
+                </ul>
+            </div>
+
+            <h2 class="cs-section-title">Required Documents</h2>
+            <div class="cs-field">
+                <label class="cs-label cs-req" for="requiredDocuments">Please upload a copy of your recent transcript/
+                    Report card / Student status sheet</label>
+                <input class="cs-input" id="requiredDocuments" name="requiredDocuments" type="file"
+                    accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+            </div>
+
+            <div class="cs-field is-hidden" id="studyPermitUploadWrap">
+                <label class="cs-label cs-req" for="studyPermitUpload">Please upload a copy of your valid study
+                    permit</label>
+                <input class="cs-input" id="studyPermitUpload" name="studyPermitUpload" type="file"
+                    accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+            </div>
+
+            <div class="cs-field">
+                <label class="cs-label" for="additionalDocuments1">Additional Documents 1</label>
+                <div class="cs-help">Please upload additional documents</div>
+                <input class="cs-input" id="additionalDocuments1" name="additionalDocuments1" type="file"
+                    accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+            </div>
+
+            <div class="cs-field">
+                <label class="cs-label" for="additionalDocuments2">Additional Documents 2</label>
+                <div class="cs-help">Please upload additional documents</div>
+                <input class="cs-input" id="additionalDocuments2" name="additionalDocuments2" type="file"
+                    accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+            </div>
+
+            <hr class="cs-sep" />
+
+            <!-- ===================== PAYMENT ===================== -->
+            <h2 class="cs-section-title">Payment: Are you ready to pay?</h2>
+
+            <div class="cs-field">
+                <label class="cs-label cs-req">How would you like to pay your registration fees?</label>
+                <div class="cs-radio-group">
+                    <label class="cs-radio">
+                        <input type="radio" name="paymentMethod"
+                            value="Credit - Debit Card Payment (AMEX Card - 5% surcharge applicable)">
+                        <span>Credit - Debit Card Payment ( AMEX Card - 5% surcharge applicable )</span>
+                    </label>
+
+                    <label class="cs-radio">
+                        <input type="radio" name="paymentMethod" value="INTERAC® eTransfer">
+                        <span>INTERAC® eTransfer</span>
+                    </label>
+
+                    <label class="cs-radio">
+                        <input type="radio" name="paymentMethod" value="In-Person">
+                        <span>In-Person</span>
+                    </label>
+
+                    <label class="cs-radio">
+                        <input type="radio" name="paymentMethod" value="Paying Internationally">
+                        <span>Paying Internationally</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="cs-conditional is-hidden" id="paymentCardBlock">
+                <div class="cs-copy">
+                    <p><strong>Please carefully read the directions below:</strong></p>
+                    <ol>
+                        <li>
+                            Click
+                            <a href="https://canstemeducation.com/online-payment/" target="_blank"
+                                rel="noopener">here</a>
+                            to pay your registration fees through Clover.
+                        </li>
+                        <li>Enter the payment amount, your information, payment details, and submit payment.</li>
+                        <li>
+                            Return to this form and select the payment verification method you would like:
+                            <br><br>
+                            <strong>Method 1:</strong> Copy the Order ID from your emailed receipt and paste it in the
+                            'Order ID' field on this page
+                            <br><br>
+                            <strong>Method 2:</strong> Take a screenshot of your full transaction receipt and upload the
+                            image on this page
+                        </li>
+                        <li>Submit this form after payment is submitted and payment verification is complete.</li>
+                    </ol>
+
+                    <p><strong>Method 1 Directions</strong></p>
+                    <ul>
+                        <li>Check your email for a payment receipt from Clover. Click on the 'full transaction receipt'
+                            link as pictured below.</li>
+                    </ul>
+
+                    <div class="cs-figure">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/receipt-example.jpeg"
+                            alt="Receipt Example">
+                    </div>
+
+                    <ul>
+                        <li>Copy the Order ID (pictured below) and paste it into the Order ID field on this page.</li>
+                    </ul>
+
+                    <div class="cs-figure">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/credit-card-example.png"
+                            alt="Credit Card Example">
+                    </div>
+
+                    <p><strong>Method 2 Directions</strong></p>
+                    <ul>
+                        <li>Check your email for a payment receipt from Clover. Click on the 'full transaction receipt'
+                            link as pictured below.</li>
+                    </ul>
+
+                    <div class="cs-figure">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/receipt-example.jpeg"
+                            alt="Receipt Example">
+                    </div>
+
+                    <ul>
+                        <li>Take a screenshot of the Order ID (pictured below) and upload it into the Order ID upload
+                            field on this page.</li>
+                    </ul>
+
+                    <div class="cs-figure">
+                        <img src="https://canstemeducation.com/wp-content/uploads/2026/04/credit-card-example.png"
+                            alt="Credit Card Example">
+                    </div>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req">Please select a payment verification method</label>
+                    <div class="cs-radio-group">
+                        <label class="cs-radio">
+                            <input type="radio" name="cardVerificationMethod" value="Paste Order ID">
+                            <span>Verify payment by pasting the Order ID from your emailed receipt</span>
+                        </label>
+
+                        <label class="cs-radio">
+                            <input type="radio" name="cardVerificationMethod" value="Upload Receipt Screenshot">
+                            <span>Verify payment by uploading a screenshot of your full transaction receipt</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="cs-field is-hidden" id="cardOrderIdWrap">
+                    <label class="cs-label cs-req" for="cardOrderId">Please enter the Order ID found in the full
+                        transaction receipt from Clover</label>
+                    <div class="cs-help">Follow directions above</div>
+                    <input class="cs-input" id="cardOrderId" name="cardOrderId" type="text">
+                </div>
+
+                <div class="cs-field is-hidden" id="cardReceiptUploadWrap">
+                    <label class="cs-label cs-req" for="cardReceiptUpload">Please upload a screenshot of your full
+                        transaction receipt with Order ID</label>
+                    <div class="cs-help">Follow directions above</div>
+                    <input class="cs-input" id="cardReceiptUpload" name="cardReceiptUpload" type="file"
+                        accept=".jpg,.jpeg,.png,.pdf">
+                </div>
+            </div>
+
+            <div class="cs-conditional is-hidden" id="paymentInteracBlock">
+                <div class="cs-copy">
+                    <p>Please send your e-transfer to: <strong>canstem.education@gmail.com</strong>.</p>
+                    <p>
+                        Include your <strong>full name</strong> (as it was entered in this form) and the course(s)
+                        registering for into the notes section. Not including this information may result in a delay in
+                        the activation of the course(s).
+                    </p>
+                    <p>
+                        Please allow up to 24 hours for your payment to be confirmed by our accounting team. Once
+                        confirmed, you will be manually enrolled into your course and will receive your log-in details
+                        and a welcome email from your new CanSTEM Education instructor to help get you started!
+                    </p>
+                    <p>
+                        If you have any questions, please contact our office at 647-568-0258, 647-847-1231, or
+                        647-709-0258 (Monday-Friday from 9am-8pm, Saturday from 12 to 6pm)
+                    </p>
+                    <p>
+                        Interac Email:
+                        <a href="mailto:canstem.education@gmail.com">canstem.education@gmail.com</a>
+                    </p>
+                </div>
+
+                <div class="cs-row">
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="securityQuestion">Security Question</label>
+                        <div class="cs-help">Only used for setting up your e-Transfer</div>
+                        <input class="cs-input" id="securityQuestion" name="securityQuestion" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="securityAnswer">Security Answer</label>
+                        <div class="cs-help">Only used for setting up your e-Transfer</div>
+                        <input class="cs-input" id="securityAnswer" name="securityAnswer" type="text">
+                    </div>
+
+                    <div class="cs-field" style="grid-column:1/-1;">
+                        <label class="cs-label cs-req" for="interacOrderId">Please enter the Order ID found in the full
+                            transaction receipt from Clover</label>
+                        <div class="cs-help">Follow directions above</div>
+                        <input class="cs-input" id="interacOrderId" name="interacOrderId" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="cs-conditional is-hidden" id="paymentInPersonBlock">
+                <div class="cs-copy">
+                    <p>Please visit our school at:</p>
+                    <p>
+                        <strong>Canstem Education Private School</strong><br>
+                        Plaza 1, 350 Rutherford Rd S Unit 10<br>
+                        Brampton, Ontario, L6M 4N6<br>
+                        Phone: 647-568-0258, 647-847-1231, 647-709-0258
+                    </p>
+                    <p>Open Monday-Friday from 9am-8pm, Saturday from 12 to 6pm</p>
+                </div>
+            </div>
+
+            <div class="cs-conditional is-hidden" id="paymentInternationalBlock">
+                <div class="cs-copy">
+                    <p>Please call or email us to get info on how to pay internationally</p>
+                    <p>
+                        <strong>Phone:</strong> 647-568-0258, 647-847-1231, 647-709-0258<br>
+                        <strong>Email:</strong>
+                        <a href="mailto:canstem.education@gmail.com">canstem.education@gmail.com</a>
+                    </p>
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="internationalOrderId">Please enter the Order ID found in the
+                        full transaction receipt from Clover</label>
+                    <div class="cs-help">Follow directions above</div>
+                    <input class="cs-input" id="internationalOrderId" name="internationalOrderId" type="text">
+                </div>
+            </div>
+
+            <div class="cs-field" style="margin-top:16px;">
+                <label class="cs-label cs-req" for="hearAbout">How did you hear about us?</label>
+                <select class="cs-input" id="hearAbout" name="hearAbout" required>
+                    <option value="">- Select -</option>
+                    <option value="Google">Google</option>
+                    <option value="Facebook">Facebook</option>
+                    <option value="Instagram">Instagram</option>
+                    <option value="Family">Family</option>
+                    <option value="Friend">Friend</option>
+                    <option value="KIJIJI">KIJIJI</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="cs-field is-hidden" id="hearAboutOtherWrap">
+                <label class="cs-label cs-req" for="hearAboutOther">Please Specify</label>
+                <input class="cs-input" id="hearAboutOther" name="hearAboutOther" type="text">
+            </div>
+
+            <hr class="cs-sep" />
+
+            <!-- ===================== TERMS ===================== -->
+            <h2 class="cs-section-title">Registration - Terms and Conditions</h2>
+            <div class="cs-copy">
+                <p>( You must read carefully, before you accept. They are legally binding )</p>
+                <ul>
+                    <li>A fee of $499 per course must be paid at registration. Any Fees Paid are Non-Refundable. NO
+                        REFUND.</li>
+                    <li>NO CREDITS or Marks will be issued until proof of prerequisites is provided and all outstanding
+                        balances settled.</li>
+                    <li>
+                        Use of Phones or any other Electronic Gadget is not permitted in classrooms. You must surrender
+                        at the front desk.
+                        Cell phones are not permitted in the classroom -
+                        <a href="https://www.ontario.ca/page/cellphones-and-other-personal-mobile-devices-schools"
+                            target="_blank" rel="noopener">Click Here to know more</a>
+                    </li>
+                    <li>You must finish your course within 6 months of the registration date, failing to do so will
+                        result in cancellation of registration, without refund. You can extend duration of your course
+                        or reinstate by paying nominal fees.</li>
+                    <li>We do not guarantee marks, results of your course, satisfaction of our services or scholarship.
+                        No refunds will be issued, for the same.</li>
+                    <li>Switching from In-Class to ONLINE or ONLINE to In-class requires fees, and only one switch is
+                        allowed. Fee must be paid before switch is done.</li>
+                    <li>If the course requires any paid subscriptions, the student will be responsible for purchasing
+                        them separately and informing the teacher. The cost of these subscriptions will be separate and
+                        is not included in the course fee.</li>
+                    <li>If you need additional copies of report card, transcript, pay receipt, enrollment letter, and
+                        confirmation, mailing documents, there will be an additional charge or fees.</li>
+                    <li>I agree to receive text messages, emails, and phone calls from CanSTEM Education Private School
+                        regarding deadlines, pending payments, and other relevant school communications.</li>
+                    <li>
+                        Steps to add our school on
+                        <a href="https://registration.ca.powerschool.com/resources/100000085/files/Steps%20to%20add%20%20CanSTEM%20in%20OUAC_OCAS__2024--2025%20%20SCHOOL%20YEAR.pdf"
+                            target="_blank" rel="noopener">OUAC and OCAS</a>
+                    </li>
+                    <li>
+                        For detailed Terms and Condition of your enrollment, Fee schedules and Policies,
+                        <a href="https://canstemeducation.com/student-services/" target="_blank" rel="noopener">Click
+                            here</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="cs-field">
+                <label class="cs-label cs-req" for="termsAgree">Do you agree and accept to all terms and conditions
+                    mentioned above</label>
+                <select class="cs-input" id="termsAgree" name="termsAgree">
+                    <option value="">- Select -</option>
+                    <option value="Yes">Yes</option>
+                </select>
+            </div>
+
+            <div class="cs-field">
+                <label class="cs-label cs-req" for="gradesUploadOption">Please select how you would like your final
+                    grades uploaded</label>
+                <select class="cs-input" id="gradesUploadOption" name="gradesUploadOption">
+                    <option value="">- Select -</option>
+                    <option value="Option A - OUAC">Option A - OUAC</option>
+                    <option value="Option B - OCAS">Option B - OCAS</option>
+                    <option value="Neither">Neither</option>
+                    <option value="Both">Both</option>
+                </select>
             </div>
 
             <hr class="cs-sep" />
@@ -559,6 +1472,69 @@
                     <option value="">- Select -</option>
                     <option value="I agree">I agree</option>
                 </select>
+            </div>
+
+            <!-- ===================== SIGNATURE (MINOR) ===================== -->
+            <div id="minorSignatureSection">
+                <h2 class="cs-section-title" style="margin-top:16px;">Parent/Guardian Signature</h2>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="parentTermsAgree">Do you agree and accept to all terms and
+                        conditions mentioned above</label>
+                    <select class="cs-input" id="parentTermsAgree" name="parentTermsAgree">
+                        <option value="">- Select -</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+
+                <div class="cs-row">
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="parentSignature">Parent/Guardian Electronic
+                            Signature</label>
+                        <div class="cs-help">(type name of parent/guardian)</div>
+                        <input class="cs-input" id="parentSignature" name="parentSignature" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="studentSignature">Student Electronic Signature</label>
+                        <div class="cs-help">(type name of student)</div>
+                        <input class="cs-input" id="studentSignature" name="studentSignature" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="todayDate">Today's Date</label>
+                        <div class="cs-help">mm/dd/yyyy</div>
+                        <input class="cs-input" id="todayDate" name="todayDate" type="text" placeholder="mm/dd/yyyy">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ===================== SIGNATURE (ADULT) ===================== -->
+            <div id="adultSignatureSection" class="is-hidden">
+                <h2 class="cs-section-title" style="margin-top:16px;">Applicant's Signature</h2>
+
+                <div class="cs-field">
+                    <label class="cs-label cs-req" for="applicantTermsAgree">Do you agree and accept to all terms and
+                        conditions mentioned above</label>
+                    <select class="cs-input" id="applicantTermsAgree" name="applicantTermsAgree">
+                        <option value="">- Select -</option>
+                        <option value="Yes">Yes</option>
+                    </select>
+                </div>
+
+                <div class="cs-row">
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="adultStudentSignature">Student Electronic Signature</label>
+                        <input class="cs-input" id="adultStudentSignature" name="adultStudentSignature" type="text">
+                    </div>
+
+                    <div class="cs-field">
+                        <label class="cs-label cs-req" for="adultTodayDate">Today's Date</label>
+                        <div class="cs-help">mm/dd/yyyy</div>
+                        <input class="cs-input" id="adultTodayDate" name="adultTodayDate" type="text"
+                            placeholder="mm/dd/yyyy">
+                    </div>
+                </div>
             </div>
 
             <hr class="cs-sep" />
@@ -783,7 +1759,7 @@
                 ]
             };
 
-            const formEl = document.getElementById('cs-highschool-form');
+            const formEl = document.getElementById('cs-fulltimeschool-form');
             const isInternational = document.getElementById('isInternational');
             const inCanada = document.getElementById('inCanada');
             const validStudyPermit = document.getElementById('validStudyPermit');
@@ -795,10 +1771,29 @@
             const studyPermitUploadWrap = document.getElementById('studyPermitUploadWrap');
             const studyPermitUpload = document.getElementById('studyPermitUpload');
             const moveToCanada = document.getElementById('moveToCanada');
+            const moveToCanadaYesBlock = document.getElementById('moveToCanadaYesBlock');
 
             const ontarioSchoolRadios = document.querySelectorAll('input[name="ontarioSchool"]');
             const ontarioSchoolYesBlock = document.getElementById('ontarioSchoolYesBlock');
             const ontarioSchoolNoBlock = document.getElementById('ontarioSchoolNoBlock');
+
+            const specialEducationRadios = document.querySelectorAll('input[name="specialEducaiton"]');
+            const specialEducaitonYesBlock = document.getElementById('specialEducaitonYesBlock');
+
+            const studentExpelledRadios = document.querySelectorAll('input[name="studentExpelled"]');
+            const studentExpelledYesBlock = document.getElementById('studentExpelledYesBlock');
+
+            const studentSuspensionRadios = document.querySelectorAll('input[name="studentSuspension"]');
+            const studentSuspensionYesBlock = document.getElementById('studentSuspensionYesBlock');
+
+            const studentDisabilitiesRadios = document.querySelectorAll('input[name="studentDisabilities"]');
+            const studentDisabilitiesYesBlock = document.getElementById('studentDisabilitiesYesBlock');
+
+            const studentAllergiesRadios = document.querySelectorAll('input[name="studentAllergies"]');
+            const studentAllergiesYesBlock = document.getElementById('studentAllergiesYesBlock');
+
+            const studentMedicalConsiderationRadios = document.querySelectorAll('input[name="studentMedicalConsideration"]');
+            const studentMedicalConsiderationYesBlock = document.getElementById('studentMedicalConsiderationYesBlock');
 
             const isAdult = document.getElementById('isAdult');
             const minorContactSection = document.getElementById('minorContactSection');
@@ -902,6 +1897,7 @@
                     setRequired(validStudyPermit, false);
                     validStudyPermit.value = '';
                     setRequired(moveToCanada, true);
+                    toggleEl(moveToCanadaYesBlock, moveToCanada.value === 'Yes');
 
                     toggleEl(studyPermitYesMsg, false);
                     toggleEl(studyPermitNoMsg, false);
@@ -923,6 +1919,36 @@
                 const selected = document.querySelector('input[name="ontarioSchool"]:checked');
                 toggleEl(ontarioSchoolYesBlock, selected && selected.value === 'Yes');
                 toggleEl(ontarioSchoolNoBlock, selected && selected.value === 'No');
+            }
+
+            function updateSpecialEducation() {
+                const selected = document.querySelector('input[name="specialEducaiton"]:checked');
+                toggleEl(specialEducaitonYesBlock, selected && selected.value === 'Yes');
+            }
+
+            function updateStudentExpelled() {
+                const selected = document.querySelector('input[name="studentExpelled"]:checked');
+                toggleEl(studentExpelledYesBlock, selected && selected.value === 'Yes');
+            }
+
+            function updateStudentSuspension() {
+                const selected = document.querySelector('input[name="studentSuspension"]:checked');
+                toggleEl(studentSuspensionYesBlock, selected && selected.value === 'Yes');
+            }
+
+            function updateStudentDisabilities() {
+                const selected = document.querySelector('input[name="studentDisabilities"]:checked');
+                toggleEl(studentDisabilitiesYesBlock, selected && selected.value === 'Yes');
+            }
+
+            function updateStudentAllergies() {
+                const selected = document.querySelector('input[name="studentAllergies"]:checked');
+                toggleEl(studentAllergiesYesBlock, selected && selected.value === 'Yes');
+            }
+
+            function updateStudentMedicalConsideration() {
+                const selected = document.querySelector('input[name="studentMedicalConsideration"]:checked');
+                toggleEl(studentMedicalConsiderationYesBlock, selected && selected.value === 'Yes');
             }
 
             function updateAdultMinorFlow() {
@@ -1445,7 +2471,7 @@
             }
 
             function clearForm() {
-                document.querySelectorAll('#cs-highschool-form input, #cs-highschool-form textarea, #cs-highschool-form select').forEach(el => {
+                document.querySelectorAll('#cs-fulltimeschool-form input, #cs-fulltimeschool-form textarea, #cs-fulltimeschool-form select').forEach(el => {
                     if (el.type === 'radio' || el.type === 'checkbox') {
                         el.checked = false;
                     } else if (el.type === 'file') {
@@ -1460,6 +2486,12 @@
                 hideCourseFrom(2);
                 updateInternationalFlow();
                 updateOntarioSchool();
+                updateSpecialEducation();
+                updateStudentExpelled();
+                updateStudentSuspension();
+                updateStudentDisabilities();
+                updateStudentAllergies();
+                updateStudentMedicalConsideration();
                 updateAdultMinorFlow();
                 updateParent1Address();
                 updateParent2();
@@ -1567,8 +2599,16 @@
             isInternational.addEventListener('change', updateInternationalFlow);
             inCanada.addEventListener('change', updateInternationalFlow);
             validStudyPermit.addEventListener('change', updateInternationalFlow);
+            moveToCanada.addEventListener('change', updateInternationalFlow);
 
             ontarioSchoolRadios.forEach(r => r.addEventListener('change', updateOntarioSchool));
+            specialEducationRadios.forEach(r => r.addEventListener('change', updateSpecialEducation));
+            studentExpelledRadios.forEach(r => r.addEventListener('change', updateStudentExpelled));
+            studentSuspensionRadios.forEach(r => r.addEventListener('change', updateStudentSuspension));
+            studentDisabilitiesRadios.forEach(r => r.addEventListener('change', updateStudentDisabilities));
+            studentAllergiesRadios.forEach(r => r.addEventListener('change', updateStudentAllergies));
+            studentMedicalConsiderationRadios.forEach(r => r.addEventListener('change', updateStudentMedicalConsideration));
+
             isAdult.addEventListener('change', updateAdultMinorFlow);
             parent1SameAddress.addEventListener('change', updateParent1Address);
             addParent2Radios.forEach(r => r.addEventListener('change', updateParent2));
@@ -1586,6 +2626,12 @@
 
             updateInternationalFlow();
             updateOntarioSchool();
+            updateSpecialEducation();
+            updateStudentExpelled();
+            updateStudentSuspension();
+            updateStudentDisabilities();
+            updateStudentAllergies();
+            updateStudentMedicalConsideration();
             updateAdultMinorFlow();
             updateParent1Address();
             updateParent2();
