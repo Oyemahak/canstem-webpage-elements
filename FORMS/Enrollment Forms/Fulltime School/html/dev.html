@@ -693,131 +693,8 @@
             <!-- ===================== Contact Information ===================== -->
             <h2 class="cs-section-title">Contact Information</h2>
 
-            <div class="cs-field" style="grid-column:1/-1;">
-                <label class="cs-label cs-req">
-                    Does the student have any disabilities?
-                </label>
-
-                <div class="cs-radio-group">
-                    <label class="cs-radio">
-                        <input type="radio" name="studentDisabilities" value="Yes">
-                        <span>Yes</span>
-                    </label>
-
-                    <label class="cs-radio">
-                        <input type="radio" name="studentDisabilities" value="No">
-                        <span>No</span>
-                    </label>
-                </div>
-
-                <div class="cs-field is-hidden" id="studentDisabilitiesYesBlock">
-                    <label class="cs-label cs-req" for="studentDisabilitiesDetails">
-                        Please provide more details.
-                    </label>
-
-                    <textarea class="cs-input" id="studentDisabilitiesDetails" name="studentDisabilitiesDetails"
-                        style="min-height:70px; resize:vertical;"></textarea>
-                </div>
-            </div>
-
-            <div class="cs-field" style="grid-column:1/-1; margin-top:16px;">
-                <label class="cs-label cs-req">
-                    Does the student have any allergies?
-                </label>
-
-                <div class="cs-radio-group">
-                    <label class="cs-radio">
-                        <input type="radio" name="studentAllergies" value="Yes">
-                        <span>Yes</span>
-                    </label>
-
-                    <label class="cs-radio">
-                        <input type="radio" name="studentAllergies" value="No">
-                        <span>No</span>
-                    </label>
-                </div>
-                <p class="cs-field is-hidden" id="studentAllergiesYesBlock">
-                    <label class="cs-label cs-req" for="studentAllergiesDetails">
-                        Please provide more details.
-                    </label>
-
-                    <textarea class="cs-input" id="studentAllergiesDetails" name="studentAllergiesDetails"
-                        style="min-height:70px; resize:vertical;"></textarea>
-                </p>
-            </div>
-
-            <div class="cs-field" style="grid-column:1/-1; margin-top:16px;">
-                <label class="cs-label cs-req">
-                    Does the student have any other medical considerations?
-                </label>
-
-                <div class="cs-radio-group">
-                    <label class="cs-radio">
-                        <input type="radio" name="studentMedicalConsideration" value="Yes">
-                        <span>Yes</span>
-                    </label>
-
-                    <label class="cs-radio">
-                        <input type="radio" name="studentMedicalConsideration" value="No">
-                        <span>No</span>
-                    </label>
-                </div>
-                <p class="cs-field is-hidden" id="studentMedicalConsiderationYesBlock">
-                    <label class="cs-label cs-req" for="studentMedicalConsiderationDetails">
-                        Please provide more details.
-                    </label>
-
-                    <textarea class="cs-input" id="studentMedicalConsiderationDetails"
-                        name="studentMedicalConsiderationDetails" style="min-height:70px; resize:vertical;"></textarea>
-                </p>
-            </div>
-
-            <hr class="cs-sep" />
-
-            <!-- ===================== Health Card Information ===================== -->
-            <h2 class="cs-section-title">Health Card Information</h2>
-
-            <div class="cs-row">
-                <div class="cs-field" style="grid-column:1/-1;">
-                    <label class="cs-label" for="healthCard">Health Card # (This is a critical information, not
-                        providing
-                        this will affect health and safety of your child.)</label>
-                    <input class="cs-input" id="healthCard" name="healthCard" type="text">
-                </div>
-            </div>
-
-            <div class="cs-row">
-                <div class="cs-field" style="grid-column:1/-1; margin-top:16px;">
-                    <label class="cs-label" for="healthCardExpDate">Health Card Expiry Date (This is a critical
-                        information,
-                        not providing this will affect health and safety of your child.)</label>
-                    <div class="cs-help">mm/dd/yyyy</div>
-                    <input class="cs-input" id="healthCardExpDate" name="healthCardExpDate" type="text"
-                        placeholder="mm/dd/yyyy">
-                </div>
-            </div>
-
-            <hr class="cs-sep" />
-
-            <!-- ===================== Doctor Information ===================== -->
-            <h2 class="cs-section-title">Doctor Information</h2>
-
-            <div class="cs-row">
-                <div class="cs-field">
-                    <label class="cs-label" for="doctorName">Family Doctor's Name</label>
-                    <input class="cs-input" id="doctorName" name="doctorName" type="text">
-                </div>
-
-                <div class="cs-field">
-                    <label class="cs-label" for="doctorPhone">Family Doctor's Phone</label>
-                    <input class="cs-input" id="doctorPhone" name="doctorPhone" type="tel" placeholder="xxx-xxx-xxxx">
-                </div>
-            </div>
-
-            <hr class="cs-sep" />
-
             <!-- ===================== CONTACT INFORMATION (MINOR) ===================== -->
-            <div id="minorContactSection">
+            <div class="cs-copy is-hidden" id="minorContactSection">
                 <h2 class="cs-section-title">Parent/Guardian 1 Information</h2>
 
                 <div class="cs-row">
@@ -982,7 +859,7 @@
             </div>
 
             <!-- ===================== CONTACT INFORMATION (ADULT) ===================== -->
-            <div id="adultContactSection" class="is-hidden">
+            <div class="cs-copy is-hidden" id="adultContactSection">
                 <h2 class="cs-section-title">Emergency Contact 1 Information</h2>
 
                 <div class="cs-row">
@@ -1030,7 +907,8 @@
 
                     <div class="cs-field">
                         <label class="cs-label cs-req" for="emergencyCellPhone">Cell Phone</label>
-                        <input class="cs-input" id="emergencyCellPhone" name="emergencyCellPhone" type="tel">
+                        <input class="cs-input" id="emergencyCellPhone" name="emergencyCellPhone" type="tel"
+                            placeholder="xxx-xxx-xxxx">
                     </div>
 
                     <div class="cs-field">
@@ -1103,7 +981,8 @@
 
                         <div class="cs-field">
                             <label class="cs-label" for="emergency2CellPhone">Cell Phone</label>
-                            <input class="cs-input" id="emergency2CellPhone" name="emergency2CellPhone" type="tel">
+                            <input class="cs-input" id="emergency2CellPhone" name="emergency2CellPhone" type="tel"
+                                placeholder="xxx-xxx-xxxx">
                         </div>
 
                         <div class="cs-field">
@@ -1116,7 +995,133 @@
 
             <hr class="cs-sep" />
 
+            <h2 class="cs-section-title">Medical Informatin</h2>
+            <div class="cs-field" style="grid-column:1/-1;">
+                <label class="cs-label cs-req">
+                    Does the student have any disabilities?
+                </label>
+
+                <div class="cs-radio-group">
+                    <label class="cs-radio">
+                        <input type="radio" name="studentDisabilities" value="Yes">
+                        <span>Yes</span>
+                    </label>
+
+                    <label class="cs-radio">
+                        <input type="radio" name="studentDisabilities" value="No">
+                        <span>No</span>
+                    </label>
+                </div>
+
+                <div class="cs-field is-hidden" id="studentDisabilitiesYesBlock">
+                    <label class="cs-label cs-req" for="studentDisabilitiesDetails">
+                        Please provide more details.
+                    </label>
+
+                    <textarea class="cs-input" id="studentDisabilitiesDetails" name="studentDisabilitiesDetails"
+                        style="min-height:70px; resize:vertical;"></textarea>
+                </div>
+            </div>
+
+            <div class="cs-field" style="grid-column:1/-1; margin-top:16px;">
+                <label class="cs-label cs-req">
+                    Does the student have any allergies?
+                </label>
+
+                <div class="cs-radio-group">
+                    <label class="cs-radio">
+                        <input type="radio" name="studentAllergies" value="Yes">
+                        <span>Yes</span>
+                    </label>
+
+                    <label class="cs-radio">
+                        <input type="radio" name="studentAllergies" value="No">
+                        <span>No</span>
+                    </label>
+                </div>
+                <p class="cs-field is-hidden" id="studentAllergiesYesBlock">
+                    <label class="cs-label cs-req" for="studentAllergiesDetails">
+                        Please provide more details.
+                    </label>
+
+                    <textarea class="cs-input" id="studentAllergiesDetails" name="studentAllergiesDetails"
+                        style="min-height:70px; resize:vertical;"></textarea>
+                </p>
+            </div>
+
+            <div class="cs-field" style="grid-column:1/-1; margin-top:16px;">
+                <label class="cs-label cs-req">
+                    Does the student have any other medical considerations?
+                </label>
+
+                <div class="cs-radio-group">
+                    <label class="cs-radio">
+                        <input type="radio" name="studentMedicalConsideration" value="Yes">
+                        <span>Yes</span>
+                    </label>
+
+                    <label class="cs-radio">
+                        <input type="radio" name="studentMedicalConsideration" value="No">
+                        <span>No</span>
+                    </label>
+                </div>
+                <p class="cs-field is-hidden" id="studentMedicalConsiderationYesBlock">
+                    <label class="cs-label cs-req" for="studentMedicalConsiderationDetails">
+                        Please provide more details.
+                    </label>
+
+                    <textarea class="cs-input" id="studentMedicalConsiderationDetails"
+                        name="studentMedicalConsiderationDetails" style="min-height:70px; resize:vertical;"></textarea>
+                </p>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <!-- ===================== Health Card Information ===================== -->
+            <h2 class="cs-section-title">Health Card Information</h2>
+
+            <div class="cs-row">
+                <div class="cs-field" style="grid-column:1/-1;">
+                    <label class="cs-label" for="healthCard">Health Card # (This is a critical information, not
+                        providing
+                        this will affect health and safety of your child.)</label>
+                    <input class="cs-input" id="healthCard" name="healthCard" type="text">
+                </div>
+            </div>
+
+            <div class="cs-row">
+                <div class="cs-field" style="grid-column:1/-1; margin-top:16px;">
+                    <label class="cs-label" for="healthCardExpDate">Health Card Expiry Date (This is a critical
+                        information,
+                        not providing this will affect health and safety of your child.)</label>
+                    <div class="cs-help">mm/dd/yyyy</div>
+                    <input class="cs-input" id="healthCardExpDate" name="healthCardExpDate" type="text"
+                        placeholder="mm/dd/yyyy">
+                </div>
+            </div>
+
+            <hr class="cs-sep" />
+
+            <!-- ===================== Doctor Information ===================== -->
+            <h2 class="cs-section-title">Doctor Information</h2>
+
+            <div class="cs-row">
+                <div class="cs-field">
+                    <label class="cs-label" for="doctorName">Family Doctor's Name</label>
+                    <input class="cs-input" id="doctorName" name="doctorName" type="text">
+                </div>
+
+                <div class="cs-field">
+                    <label class="cs-label" for="doctorPhone">Family Doctor's Phone</label>
+                    <input class="cs-input" id="doctorPhone" name="doctorPhone" type="tel" placeholder="xxx-xxx-xxxx">
+                </div>
+            </div>
+
+            <hr class="cs-sep" />
+
             <!-- ===================== PROOF OF EDUCATION ===================== -->
+            <h2 class="cs-section-title">Required Documents</h2>
+            <br>
             <h2 class="cs-section-title">Proof of Education</h2>
 
             <div class="cs-copy">
@@ -1135,8 +1140,6 @@
                         released and no enrollment letter or confirmation will be issued.</li>
                 </ul>
             </div>
-
-            <h2 class="cs-section-title">Required Documents</h2>
             <div class="cs-field">
                 <label class="cs-label cs-req" for="requiredDocuments">Please upload a copy of your recent transcript/
                     Report card / Student status sheet</label>
@@ -1150,7 +1153,104 @@
                 <input class="cs-input" id="studyPermitUpload" name="studyPermitUpload" type="file"
                     accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
             </div>
+            <hr class="cs-sep" />
 
+            <!-- ===================== Proof of Age ===================== -->
+            <h2 class="cs-section-title">Proof of Age</h2>
+            <p><b>Upload a copy of one original document from the list below</b></p>
+            <div class="cs-copy">
+                <ul>
+                    <li>Canadian Birth Certificate/Birth Registration Card.</li>
+                    <li>Canadian Citizenship Card / Certificate / Passport.</li>
+                    <li>Permanent Resident Card / Confirmation of Permanent Residence.</li>
+                    <li>Work permit/Employment Authorization from Citizenship and Immigration Canada.</li>
+                    <li>Study Permit issued to parent for a diploma or degree program from Citizenship and Immigration
+                        Canada.</li>
+                    <li>Refugee/Convention Refugee Permit.</li>
+                </ul>
+            </div>
+
+            <div class="cs-field">
+                <label class="cs-label" for="ageProofDocuments">Please upload a copy of your student's Proof of
+                    Age</label>
+                <input class="cs-input" id="ageProofDocuments" name="ageProofDocuments" type="file"
+                    accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+            </div>
+            <hr class="cs-sep" />
+
+            <!-- ===================== Proof of Address ===================== -->
+            <h2 class="cs-section-title">Proof of Address</h2>
+            <p><b>Upload a copy of one original document from the list below</b></p>
+            <div class="cs-copy">
+                <ul>
+                    <li>Ontario Driver's License.</li>
+                    <li>Utility Bill (water, hydro, gas, phone, cable, cell phone).</li>
+                    <li>Bank Statement/Letter from Financial Institution.</li>
+                    <li>Credit Card Statement.</li>
+                    <li>Government forms (i.e. Social Insurance Number, Service Canada documents).</li>
+                    <li>Purchase Agreement.</li>
+                </ul>
+            </div>
+
+            <div class="cs-field">
+                <label class="cs-label" for="addressProofDocuments">Please upload a copy of your student's Proof of
+                    Address</label>
+                <input class="cs-input" id="addressProofDocuments" name="addressProofDocuments" type="file"
+                    accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+            </div>
+            <hr class="cs-sep" />
+
+            <!-- ===================== Proof of Immunization ===================== -->
+            <h2 class="cs-section-title">Proof of Immunization</h2>
+            <p><b>Students registering in an Ontario school for the first time must provide proof of
+                    immunization/vaccination. Students with an Ontario Education Number (shown on Ontario report cards
+                    or transcripts) do not need to provide proof of immunization.</b></p>
+
+            <p><a href="https://www.ontario.ca/laws/statute/90i01." target="_blank" rel="noopener">Immunization of
+                    School Pupils Act, R.S.O. 1990, c. I.1</a></p>
+
+            <p><a href="https://registration.ca.powerschool.com/resources/100000085/files/CMOH%20Letter%20-%20ISPA%20Private%20Schools%2008-17-2023Eng.pdf"
+                    target="_blank" rel="noopener">Letter from the Ministry of Health</a></p>
+
+            <div class="cs-field">
+                <label class="cs-label" for="immunizationProofDocuments">Please upload a copy of your student's Proof of
+                    Immunization</label>
+                <input class="cs-input" id="immunizationProofDocuments" name="immunizationProofDocuments" type="file"
+                    accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+            </div>
+            <hr class="cs-sep" />
+
+            <!-- ===================== Proof of Custody ===================== -->
+            <h2 class="cs-section-title">Proof of Custody</h2>
+            <p><b>Children must live with their parent(s) unless provided documentation supports an alternate living
+                    arrangement.</b></p>
+
+            <div class="cs-field" style="grid-column:1/-1; margin-top:16px;">
+                <label class="cs-label cs-req">
+                    Does a custody order exist for this student?
+                </label>
+
+                <div class="cs-radio-group">
+                    <label class="cs-radio">
+                        <input type="radio" name="custody" value="Yes">
+                        <span>Yes</span>
+                    </label>
+
+                    <label class="cs-radio">
+                        <input type="radio" name="custody" value="No">
+                        <span>No</span>
+                    </label>
+                </div>
+                <p class="cs-field is-hidden" id="custodyYesBlock">
+                    <label class="cs-label cs-req" for="custodyProofDocuments">Please upload a copy of your Custody
+                        documentation</label>
+                    <input class="cs-input" id="custodyProofDocuments" name="custodyProofDocuments" type="file"
+                        accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
+                </p>
+            </div>
+            <hr class="cs-sep" />
+
+            <!-- ===================== Additional Documents 1 ===================== -->
             <div class="cs-field">
                 <label class="cs-label" for="additionalDocuments1">Additional Documents 1</label>
                 <div class="cs-help">Please upload additional documents</div>
@@ -1158,6 +1258,7 @@
                     accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
             </div>
 
+            <!-- ===================== Additional Documents 2 ===================== -->
             <div class="cs-field">
                 <label class="cs-label" for="additionalDocuments2">Additional Documents 2</label>
                 <div class="cs-help">Please upload additional documents</div>
@@ -1815,6 +1916,9 @@
             const courseGrades = document.querySelectorAll('.course-grade');
             const courseSearches = document.querySelectorAll('.course-search');
 
+            const custodyRadios = document.querySelectorAll('input[name="custody"]');
+            const custodyYesBlock = document.getElementById('custodyYesBlock');
+
             const paymentRadios = document.querySelectorAll('input[name="paymentMethod"]');
             const cardBlock = document.getElementById('paymentCardBlock');
             const interacBlock = document.getElementById('paymentInteracBlock');
@@ -1952,21 +2056,32 @@
             }
 
             function updateAdultMinorFlow() {
-                const adult = isAdult.value === 'Yes';
+                const adultValue = isAdult.value;
+                const selected = adultValue === 'Yes' || adultValue === 'No';
+                const adult = adultValue === 'Yes';
 
-                toggleEl(minorContactSection, !adult);
-                toggleEl(adultContactSection, adult);
-                toggleEl(minorSignatureSection, !adult);
-                toggleEl(adultSignatureSection, adult);
+                // If --Select-- then hide both sections
+                toggleEl(minorContactSection, selected && !adult);
+                toggleEl(adultContactSection, selected && adult);
+                toggleEl(minorSignatureSection, selected && !adult);
+                toggleEl(adultSignatureSection, selected && adult);
 
-                setRequired(document.getElementById('parentTermsAgree'), !adult);
-                setRequired(document.getElementById('parentSignature'), !adult);
-                setRequired(document.getElementById('studentSignature'), !adult);
-                setRequired(document.getElementById('todayDate'), !adult);
+                // Required fields only when selected
+                setRequired(document.getElementById('parentTermsAgree'), selected && !adult);
+                setRequired(document.getElementById('parentSignature'), selected && !adult);
+                setRequired(document.getElementById('studentSignature'), selected && !adult);
+                setRequired(document.getElementById('todayDate'), selected && !adult);
 
-                setRequired(document.getElementById('applicantTermsAgree'), adult);
-                setRequired(document.getElementById('adultStudentSignature'), adult);
-                setRequired(document.getElementById('adultTodayDate'), adult);
+                setRequired(document.getElementById('applicantTermsAgree'), selected && adult);
+                setRequired(document.getElementById('adultStudentSignature'), selected && adult);
+                setRequired(document.getElementById('adultTodayDate'), selected && adult);
+
+                if (!selected) {
+                    toggleEl(parent2Block, false);
+                    toggleEl(parent2AddressBlock, false);
+                    toggleEl(emergencyBlock2, false);
+                    return;
+                }
 
                 if (adult) {
                     document.querySelectorAll('input[name="addParent2"]').forEach(r => r.checked = false);
@@ -2156,6 +2271,11 @@
                     updateVisibleCourseRequirements();
                 });
             });
+
+            function updateCustody() {
+                const selected = document.querySelector('input[name="custody"]:checked');
+                toggleEl(custodyYesBlock, selected && selected.value === 'Yes');
+            }
 
             function resetPaymentBlocks() {
                 cardBlock.classList.add('is-hidden');
@@ -2615,6 +2735,7 @@
             if (parent2SameAddress) parent2SameAddress.addEventListener('change', updateParent2Address);
             addEmergencyRadios.forEach(r => r.addEventListener('change', updateEmergency2));
 
+            custodyRadios.forEach(r => r.addEventListener('change', updateCustody));
             paymentRadios.forEach(r => r.addEventListener('change', updatePaymentMethod));
             cardMethodRadios.forEach(r => r.addEventListener('change', updateCardVerificationMethod));
             hearAbout.addEventListener('change', updateHearAboutOther);
@@ -2637,6 +2758,7 @@
             updateParent2();
             updateParent2Address();
             updateEmergency2();
+            updateCustody();
             updatePaymentMethod();
             updateCardVerificationMethod();
             updateHearAboutOther();
